@@ -1,0 +1,2146 @@
+{
+  "会": [
+    {
+      "word": "社会",
+      "reading": "しゃかい",
+      "meaning": "society",
+      "type": "on"
+    },
+    {
+      "word": "会う",
+      "reading": "あう",
+      "meaning": "to meet",
+      "type": "kun"
+    }
+  ],
+  "同": [
+    {
+      "word": "同時",
+      "reading": "どうじ",
+      "meaning": "same time",
+      "type": "on"
+    },
+    {
+      "word": "同じ",
+      "reading": "おなじ",
+      "meaning": "same",
+      "type": "kun"
+    }
+  ],
+  "事": [
+    {
+      "word": "事業",
+      "reading": "じぎょう",
+      "meaning": "business",
+      "type": "on"
+    },
+    {
+      "word": "事柄",
+      "reading": "ことがら",
+      "meaning": "matter",
+      "type": "kun"
+    }
+  ],
+  "自": [
+    {
+      "word": "自分",
+      "reading": "じぶん",
+      "meaning": "myself",
+      "type": "on"
+    },
+    {
+      "word": "自ら",
+      "reading": "みずから",
+      "meaning": "oneself",
+      "type": "kun"
+    }
+  ],
+  "社": [
+    {
+      "word": "社会",
+      "reading": "しゃかい",
+      "meaning": "society",
+      "type": "on"
+    }
+  ],
+  "発": [
+    {
+      "word": "開発",
+      "reading": "かいはつ",
+      "meaning": "development",
+      "type": "on"
+    },
+    {
+      "word": "発達",
+      "reading": "はったつ",
+      "meaning": "development",
+      "type": "kun"
+    }
+  ],
+  "者": [
+    {
+      "word": "高齢者",
+      "reading": "こうれいしゃ",
+      "meaning": "old person",
+      "type": "on"
+    },
+    {
+      "word": "若者",
+      "reading": "わかもの",
+      "meaning": "young person",
+      "type": "kun"
+    }
+  ],
+  "地": [
+    {
+      "word": "地域",
+      "reading": "ちいき",
+      "meaning": "area",
+      "type": "on"
+    }
+  ],
+  "業": [
+    {
+      "word": "事業",
+      "reading": "じぎょう",
+      "meaning": "business",
+      "type": "on"
+    },
+    {
+      "word": "仕業",
+      "reading": "しわざ",
+      "meaning": "deed (esp. negative)",
+      "type": "kun"
+    }
+  ],
+  "方": [
+    {
+      "word": "方法",
+      "reading": "ほうほう",
+      "meaning": "method",
+      "type": "on"
+    },
+    {
+      "word": "考え方",
+      "reading": "かんがえかた",
+      "meaning": "way of thinking",
+      "type": "kun"
+    }
+  ],
+  "新": [
+    {
+      "word": "新聞",
+      "reading": "しんぶん",
+      "meaning": "newspaper",
+      "type": "on"
+    },
+    {
+      "word": "新しい",
+      "reading": "あたらしい",
+      "meaning": "new",
+      "type": "kun"
+    }
+  ],
+  "場": [
+    {
+      "word": "市場",
+      "reading": "しじょう",
+      "meaning": "market (financial, stock, domestic, etc.)",
+      "type": "on"
+    },
+    {
+      "word": "場合",
+      "reading": "ばあい",
+      "meaning": "case",
+      "type": "kun"
+    }
+  ],
+  "員": [
+    {
+      "word": "委員",
+      "reading": "いいん",
+      "meaning": "committee member",
+      "type": "on"
+    }
+  ],
+  "立": [
+    {
+      "word": "成立",
+      "reading": "せいりつ",
+      "meaning": "formation",
+      "type": "on"
+    },
+    {
+      "word": "立つ",
+      "reading": "たつ",
+      "meaning": "to stand (up)",
+      "type": "kun"
+    }
+  ],
+  "開": [
+    {
+      "word": "開発",
+      "reading": "かいはつ",
+      "meaning": "development",
+      "type": "on"
+    },
+    {
+      "word": "開く",
+      "reading": "ひらく",
+      "meaning": "to open",
+      "type": "kun"
+    }
+  ],
+  "手": [
+    {
+      "word": "選手",
+      "reading": "せんしゅ",
+      "meaning": "player (of a sport)",
+      "type": "on"
+    },
+    {
+      "word": "相手",
+      "reading": "あいて",
+      "meaning": "companion",
+      "type": "kun"
+    }
+  ],
+  "力": [
+    {
+      "word": "協力",
+      "reading": "きょうりょく",
+      "meaning": "cooperation",
+      "type": "on"
+    },
+    {
+      "word": "力強い",
+      "reading": "ちからづよい",
+      "meaning": "powerful",
+      "type": "kun"
+    }
+  ],
+  "問": [
+    {
+      "word": "問題",
+      "reading": "もんだい",
+      "meaning": "question (e.g. on a test)",
+      "type": "on"
+    },
+    {
+      "word": "問う",
+      "reading": "とう",
+      "meaning": "to ask",
+      "type": "kun"
+    }
+  ],
+  "代": [
+    {
+      "word": "時代",
+      "reading": "じだい",
+      "meaning": "period",
+      "type": "on"
+    },
+    {
+      "word": "代わり",
+      "reading": "かわり",
+      "meaning": "substitute",
+      "type": "kun"
+    }
+  ],
+  "明": [
+    {
+      "word": "説明",
+      "reading": "せつめい",
+      "meaning": "explanation",
+      "type": "on"
+    },
+    {
+      "word": "明らか",
+      "reading": "あきらか",
+      "meaning": "clear",
+      "type": "kun"
+    }
+  ],
+  "動": [
+    {
+      "word": "活動",
+      "reading": "かつどう",
+      "meaning": "activity (of a person, organization, animal, volcano, etc.)",
+      "type": "on"
+    },
+    {
+      "word": "動き",
+      "reading": "うごき",
+      "meaning": "movement",
+      "type": "kun"
+    }
+  ],
+  "京": [
+    {
+      "word": "東京",
+      "reading": "とうきょう",
+      "meaning": "Tokyo",
+      "type": "on"
+    }
+  ],
+  "目": [
+    {
+      "word": "目的",
+      "reading": "もくてき",
+      "meaning": "purpose",
+      "type": "on"
+    },
+    {
+      "word": "駄目",
+      "reading": "だめ",
+      "meaning": "no good",
+      "type": "kun"
+    }
+  ],
+  "通": [
+    {
+      "word": "普通",
+      "reading": "ふつう",
+      "meaning": "normal",
+      "type": "on"
+    },
+    {
+      "word": "通り",
+      "reading": "とおり",
+      "meaning": "street",
+      "type": "kun"
+    }
+  ],
+  "言": [
+    {
+      "word": "言語",
+      "reading": "げんご",
+      "meaning": "language",
+      "type": "on"
+    },
+    {
+      "word": "言う",
+      "reading": "いう",
+      "meaning": "to say",
+      "type": "kun"
+    }
+  ],
+  "理": [
+    {
+      "word": "理由",
+      "reading": "りゆう",
+      "meaning": "reason",
+      "type": "on"
+    }
+  ],
+  "体": [
+    {
+      "word": "全体",
+      "reading": "ぜんたい",
+      "meaning": "whole",
+      "type": "on"
+    },
+    {
+      "word": "体付き",
+      "reading": "からだつき",
+      "meaning": "body build",
+      "type": "kun"
+    }
+  ],
+  "田": [
+    {
+      "word": "水田",
+      "reading": "すいでん",
+      "meaning": "(water-filled) paddy field",
+      "type": "on"
+    },
+    {
+      "word": "田圃",
+      "reading": "たんぼ",
+      "meaning": "rice field",
+      "type": "kun"
+    }
+  ],
+  "主": [
+    {
+      "word": "主義",
+      "reading": "しゅぎ",
+      "meaning": "doctrine",
+      "type": "on"
+    },
+    {
+      "word": "主な",
+      "reading": "おもな",
+      "meaning": "chief",
+      "type": "kun"
+    }
+  ],
+  "題": [
+    {
+      "word": "問題",
+      "reading": "もんだい",
+      "meaning": "question (e.g. on a test)",
+      "type": "on"
+    }
+  ],
+  "意": [
+    {
+      "word": "意味",
+      "reading": "いみ",
+      "meaning": "meaning",
+      "type": "on"
+    }
+  ],
+  "不": [
+    {
+      "word": "不安",
+      "reading": "ふあん",
+      "meaning": "anxiety",
+      "type": "on"
+    }
+  ],
+  "作": [
+    {
+      "word": "作品",
+      "reading": "さくひん",
+      "meaning": "work (e.g. book, film, painting, composition)",
+      "type": "on"
+    },
+    {
+      "word": "作る",
+      "reading": "つくる",
+      "meaning": "to make",
+      "type": "kun"
+    }
+  ],
+  "用": [
+    {
+      "word": "利用",
+      "reading": "りよう",
+      "meaning": "use",
+      "type": "on"
+    },
+    {
+      "word": "用いる",
+      "reading": "もちいる",
+      "meaning": "to use",
+      "type": "kun"
+    }
+  ],
+  "度": [
+    {
+      "word": "年度",
+      "reading": "ねんど",
+      "meaning": "fiscal year (usu. April 1 to March 31 in Japan)",
+      "type": "on"
+    },
+    {
+      "word": "度々",
+      "reading": "たびたび",
+      "meaning": "often",
+      "type": "kun"
+    }
+  ],
+  "強": [
+    {
+      "word": "勉強",
+      "reading": "べんきょう",
+      "meaning": "study",
+      "type": "on"
+    },
+    {
+      "word": "強い",
+      "reading": "つよい",
+      "meaning": "strong",
+      "type": "kun"
+    }
+  ],
+  "公": [
+    {
+      "word": "公共",
+      "reading": "こうきょう",
+      "meaning": "public (facilities, service, etc.)",
+      "type": "on"
+    }
+  ],
+  "持": [
+    {
+      "word": "維持",
+      "reading": "いじ",
+      "meaning": "maintenance",
+      "type": "on"
+    },
+    {
+      "word": "持つ",
+      "reading": "もつ",
+      "meaning": "to hold (in one's hand)",
+      "type": "kun"
+    }
+  ],
+  "野": [
+    {
+      "word": "分野",
+      "reading": "ぶんや",
+      "meaning": "field",
+      "type": "on"
+    },
+    {
+      "word": "小野",
+      "reading": "おの",
+      "meaning": "plain",
+      "type": "kun"
+    }
+  ],
+  "以": [
+    {
+      "word": "以上",
+      "reading": "いじょう",
+      "meaning": "not less than ...",
+      "type": "on"
+    },
+    {
+      "word": "以ての外",
+      "reading": "もってのほか",
+      "meaning": "outrageous",
+      "type": "kun"
+    }
+  ],
+  "思": [
+    {
+      "word": "不思議",
+      "reading": "ふしぎ",
+      "meaning": "wonderful",
+      "type": "on"
+    },
+    {
+      "word": "思う",
+      "reading": "おもう",
+      "meaning": "to think",
+      "type": "kun"
+    }
+  ],
+  "家": [
+    {
+      "word": "家族",
+      "reading": "かぞく",
+      "meaning": "family",
+      "type": "on"
+    },
+    {
+      "word": "我が家",
+      "reading": "わがや",
+      "meaning": "one's house",
+      "type": "kun"
+    }
+  ],
+  "世": [
+    {
+      "word": "世界",
+      "reading": "せかい",
+      "meaning": "the world",
+      "type": "on"
+    },
+    {
+      "word": "世の中",
+      "reading": "よのなか",
+      "meaning": "society",
+      "type": "kun"
+    }
+  ],
+  "多": [
+    {
+      "word": "多分",
+      "reading": "たぶん",
+      "meaning": "probably",
+      "type": "on"
+    },
+    {
+      "word": "多い",
+      "reading": "おおい",
+      "meaning": "many",
+      "type": "kun"
+    }
+  ],
+  "正": [
+    {
+      "word": "改正",
+      "reading": "かいせい",
+      "meaning": "revision",
+      "type": "on"
+    },
+    {
+      "word": "正しい",
+      "reading": "ただしい",
+      "meaning": "right",
+      "type": "kun"
+    }
+  ],
+  "安": [
+    {
+      "word": "安全",
+      "reading": "あんぜん",
+      "meaning": "safety",
+      "type": "on"
+    },
+    {
+      "word": "安い",
+      "reading": "やすい",
+      "meaning": "cheap",
+      "type": "kun"
+    }
+  ],
+  "院": [
+    {
+      "word": "病院",
+      "reading": "びょういん",
+      "meaning": "hospital",
+      "type": "on"
+    }
+  ],
+  "心": [
+    {
+      "word": "中心",
+      "reading": "ちゅうしん",
+      "meaning": "center",
+      "type": "on"
+    },
+    {
+      "word": "心掛ける",
+      "reading": "こころがける",
+      "meaning": "to keep in mind",
+      "type": "kun"
+    }
+  ],
+  "界": [
+    {
+      "word": "世界",
+      "reading": "せかい",
+      "meaning": "the world",
+      "type": "on"
+    }
+  ],
+  "教": [
+    {
+      "word": "教育",
+      "reading": "きょういく",
+      "meaning": "education",
+      "type": "on"
+    },
+    {
+      "word": "教える",
+      "reading": "おしえる",
+      "meaning": "to teach",
+      "type": "kun"
+    }
+  ],
+  "文": [
+    {
+      "word": "文化",
+      "reading": "ぶんか",
+      "meaning": "culture",
+      "type": "on"
+    },
+    {
+      "word": "文月",
+      "reading": "ふみづき",
+      "meaning": "seventh month of the lunar calendar",
+      "type": "kun"
+    }
+  ],
+  "元": [
+    {
+      "word": "元気",
+      "reading": "げんき",
+      "meaning": "lively",
+      "type": "on"
+    },
+    {
+      "word": "元々",
+      "reading": "もともと",
+      "meaning": "originally",
+      "type": "kun"
+    }
+  ],
+  "重": [
+    {
+      "word": "重要",
+      "reading": "じゅうよう",
+      "meaning": "important",
+      "type": "on"
+    },
+    {
+      "word": "重い",
+      "reading": "おもい",
+      "meaning": "heavy",
+      "type": "kun"
+    }
+  ],
+  "近": [
+    {
+      "word": "最近",
+      "reading": "さいきん",
+      "meaning": "recently",
+      "type": "on"
+    },
+    {
+      "word": "近い",
+      "reading": "ちかい",
+      "meaning": "near",
+      "type": "kun"
+    }
+  ],
+  "考": [
+    {
+      "word": "参考",
+      "reading": "さんこう",
+      "meaning": "reference",
+      "type": "on"
+    },
+    {
+      "word": "考える",
+      "reading": "かんがえる",
+      "meaning": "to think (about, of)",
+      "type": "kun"
+    }
+  ],
+  "画": [
+    {
+      "word": "計画",
+      "reading": "けいかく",
+      "meaning": "plan",
+      "type": "on"
+    },
+    {
+      "word": "画する",
+      "reading": "かくする",
+      "meaning": "to draw (a line)",
+      "type": "kun"
+    }
+  ],
+  "海": [
+    {
+      "word": "海外",
+      "reading": "かいがい",
+      "meaning": "foreign",
+      "type": "on"
+    },
+    {
+      "word": "海辺",
+      "reading": "うみべ",
+      "meaning": "beach",
+      "type": "kun"
+    }
+  ],
+  "売": [
+    {
+      "word": "販売",
+      "reading": "はんばい",
+      "meaning": "sale",
+      "type": "on"
+    },
+    {
+      "word": "売る",
+      "reading": "うる",
+      "meaning": "to sell",
+      "type": "kun"
+    }
+  ],
+  "知": [
+    {
+      "word": "知識",
+      "reading": "ちしき",
+      "meaning": "knowledge",
+      "type": "on"
+    },
+    {
+      "word": "知る",
+      "reading": "しる",
+      "meaning": "to know",
+      "type": "kun"
+    }
+  ],
+  "道": [
+    {
+      "word": "道路",
+      "reading": "どうろ",
+      "meaning": "road",
+      "type": "on"
+    },
+    {
+      "word": "坂道",
+      "reading": "さかみち",
+      "meaning": "hill road",
+      "type": "kun"
+    }
+  ],
+  "集": [
+    {
+      "word": "集団",
+      "reading": "しゅうだん",
+      "meaning": "group",
+      "type": "on"
+    },
+    {
+      "word": "集める",
+      "reading": "あつめる",
+      "meaning": "to collect",
+      "type": "kun"
+    }
+  ],
+  "別": [
+    {
+      "word": "特別",
+      "reading": "とくべつ",
+      "meaning": "special",
+      "type": "on"
+    },
+    {
+      "word": "別れる",
+      "reading": "わかれる",
+      "meaning": "to part (usu. of people)",
+      "type": "kun"
+    }
+  ],
+  "物": [
+    {
+      "word": "人物",
+      "reading": "じんぶつ",
+      "meaning": "person",
+      "type": "on"
+    },
+    {
+      "word": "建物",
+      "reading": "たてもの",
+      "meaning": "building",
+      "type": "kun"
+    }
+  ],
+  "使": [
+    {
+      "word": "使用",
+      "reading": "しよう",
+      "meaning": "use",
+      "type": "on"
+    },
+    {
+      "word": "使う",
+      "reading": "つかう",
+      "meaning": "to use (a tool, method, etc.)",
+      "type": "kun"
+    }
+  ],
+  "品": [
+    {
+      "word": "作品",
+      "reading": "さくひん",
+      "meaning": "work (e.g. book, film, painting, composition)",
+      "type": "on"
+    },
+    {
+      "word": "品物",
+      "reading": "しなもの",
+      "meaning": "article",
+      "type": "kun"
+    }
+  ],
+  "計": [
+    {
+      "word": "計画",
+      "reading": "けいかく",
+      "meaning": "plan",
+      "type": "on"
+    },
+    {
+      "word": "見計らう",
+      "reading": "みはからう",
+      "meaning": "to choose at one's own discretion",
+      "type": "kun"
+    }
+  ],
+  "死": [
+    {
+      "word": "必死",
+      "reading": "ひっし",
+      "meaning": "frantic",
+      "type": "on"
+    },
+    {
+      "word": "死ぬ",
+      "reading": "しぬ",
+      "meaning": "to die",
+      "type": "kun"
+    }
+  ],
+  "特": [
+    {
+      "word": "特に",
+      "reading": "とくに",
+      "meaning": "particularly",
+      "type": "on"
+    }
+  ],
+  "私": [
+    {
+      "word": "私達",
+      "reading": "わたくしたち",
+      "meaning": "we",
+      "type": "on"
+    },
+    {
+      "word": "私宛て",
+      "reading": "わたくしあて",
+      "meaning": "addressed to me",
+      "type": "kun"
+    }
+  ],
+  "始": [
+    {
+      "word": "開始",
+      "reading": "かいし",
+      "meaning": "start",
+      "type": "on"
+    },
+    {
+      "word": "始める",
+      "reading": "はじめる",
+      "meaning": "to start",
+      "type": "kun"
+    }
+  ],
+  "朝": [
+    {
+      "word": "朝鮮",
+      "reading": "ちょうせん",
+      "meaning": "Korea",
+      "type": "on"
+    },
+    {
+      "word": "朝日",
+      "reading": "あさひ",
+      "meaning": "morning sun",
+      "type": "kun"
+    }
+  ],
+  "運": [
+    {
+      "word": "運動",
+      "reading": "うんどう",
+      "meaning": "exercise",
+      "type": "on"
+    },
+    {
+      "word": "運ぶ",
+      "reading": "はこぶ",
+      "meaning": "to carry",
+      "type": "kun"
+    }
+  ],
+  "終": [
+    {
+      "word": "最終",
+      "reading": "さいしゅう",
+      "meaning": "last",
+      "type": "on"
+    },
+    {
+      "word": "終わる",
+      "reading": "おわる",
+      "meaning": "to end",
+      "type": "kun"
+    }
+  ],
+  "台": [
+    {
+      "word": "舞台",
+      "reading": "ぶたい",
+      "meaning": "stage (of a theatre, concert hall, etc.)",
+      "type": "on"
+    }
+  ],
+  "広": [
+    {
+      "word": "広告",
+      "reading": "こうこく",
+      "meaning": "advertisement",
+      "type": "on"
+    },
+    {
+      "word": "広い",
+      "reading": "ひろい",
+      "meaning": "spacious",
+      "type": "kun"
+    }
+  ],
+  "住": [
+    {
+      "word": "住宅",
+      "reading": "じゅうたく",
+      "meaning": "residence",
+      "type": "on"
+    },
+    {
+      "word": "住む",
+      "reading": "すむ",
+      "meaning": "to live (of humans)",
+      "type": "kun"
+    }
+  ],
+  "真": [
+    {
+      "word": "写真",
+      "reading": "しゃしん",
+      "meaning": "photograph",
+      "type": "on"
+    },
+    {
+      "word": "真面目",
+      "reading": "まじめ",
+      "meaning": "serious",
+      "type": "kun"
+    }
+  ],
+  "有": [
+    {
+      "word": "有する",
+      "reading": "ゆうする",
+      "meaning": "to have",
+      "type": "on"
+    },
+    {
+      "word": "有る",
+      "reading": "ある",
+      "meaning": "to be",
+      "type": "kun"
+    }
+  ],
+  "口": [
+    {
+      "word": "人口",
+      "reading": "じんこう",
+      "meaning": "population",
+      "type": "on"
+    },
+    {
+      "word": "口振り",
+      "reading": "くちぶり",
+      "meaning": "way of speaking",
+      "type": "kun"
+    }
+  ],
+  "少": [
+    {
+      "word": "少年",
+      "reading": "しょうねん",
+      "meaning": "boy",
+      "type": "on"
+    },
+    {
+      "word": "少し",
+      "reading": "すこし",
+      "meaning": "a little",
+      "type": "kun"
+    }
+  ],
+  "町": [
+    {
+      "word": "市町村",
+      "reading": "しちょうそん",
+      "meaning": "cities, towns and villages",
+      "type": "on"
+    },
+    {
+      "word": "町作り",
+      "reading": "まちづくり",
+      "meaning": "town planning",
+      "type": "kun"
+    }
+  ],
+  "料": [
+    {
+      "word": "資料",
+      "reading": "しりょう",
+      "meaning": "material",
+      "type": "on"
+    }
+  ],
+  "工": [
+    {
+      "word": "工事",
+      "reading": "こうじ",
+      "meaning": "construction work",
+      "type": "on"
+    }
+  ],
+  "建": [
+    {
+      "word": "建設",
+      "reading": "けんせつ",
+      "meaning": "construction",
+      "type": "on"
+    },
+    {
+      "word": "建物",
+      "reading": "たてもの",
+      "meaning": "building",
+      "type": "kun"
+    }
+  ],
+  "空": [
+    {
+      "word": "空気",
+      "reading": "くうき",
+      "meaning": "air",
+      "type": "on"
+    },
+    {
+      "word": "空く",
+      "reading": "あく",
+      "meaning": "to open (e.g. doors)",
+      "type": "kun"
+    }
+  ],
+  "急": [
+    {
+      "word": "急速",
+      "reading": "きゅうそく",
+      "meaning": "rapid (e.g. progress)",
+      "type": "on"
+    },
+    {
+      "word": "急ぐ",
+      "reading": "いそぐ",
+      "meaning": "to hurry",
+      "type": "kun"
+    }
+  ],
+  "止": [
+    {
+      "word": "防止",
+      "reading": "ぼうし",
+      "meaning": "prevention",
+      "type": "on"
+    },
+    {
+      "word": "止める",
+      "reading": "やめる",
+      "meaning": "to stop (an activity)",
+      "type": "kun"
+    }
+  ],
+  "送": [
+    {
+      "word": "放送",
+      "reading": "ほうそう",
+      "meaning": "broadcasting",
+      "type": "on"
+    },
+    {
+      "word": "送る",
+      "reading": "おくる",
+      "meaning": "to send",
+      "type": "kun"
+    }
+  ],
+  "切": [
+    {
+      "word": "大切",
+      "reading": "たいせつ",
+      "meaning": "important",
+      "type": "on"
+    },
+    {
+      "word": "切る",
+      "reading": "きる",
+      "meaning": "to cut",
+      "type": "kun"
+    }
+  ],
+  "転": [
+    {
+      "word": "運転",
+      "reading": "うんてん",
+      "meaning": "operation (of a machine)",
+      "type": "on"
+    },
+    {
+      "word": "転がる",
+      "reading": "ころがる",
+      "meaning": "to roll",
+      "type": "kun"
+    }
+  ],
+  "研": [
+    {
+      "word": "研究",
+      "reading": "けんきゅう",
+      "meaning": "research",
+      "type": "on"
+    },
+    {
+      "word": "研ぐ",
+      "reading": "とぐ",
+      "meaning": "to sharpen",
+      "type": "kun"
+    }
+  ],
+  "足": [
+    {
+      "word": "不足",
+      "reading": "ふそく",
+      "meaning": "insufficiency",
+      "type": "on"
+    },
+    {
+      "word": "足りる",
+      "reading": "たりる",
+      "meaning": "to be sufficient",
+      "type": "kun"
+    }
+  ],
+  "究": [
+    {
+      "word": "研究",
+      "reading": "けんきゅう",
+      "meaning": "research",
+      "type": "on"
+    }
+  ],
+  "楽": [
+    {
+      "word": "音楽",
+      "reading": "おんがく",
+      "meaning": "music",
+      "type": "on"
+    },
+    {
+      "word": "楽しい",
+      "reading": "たのしい",
+      "meaning": "enjoyable",
+      "type": "kun"
+    }
+  ],
+  "起": [
+    {
+      "word": "起動",
+      "reading": "きどう",
+      "meaning": "startup",
+      "type": "on"
+    },
+    {
+      "word": "起こる",
+      "reading": "おこる",
+      "meaning": "to occur",
+      "type": "kun"
+    }
+  ],
+  "着": [
+    {
+      "word": "到着",
+      "reading": "とうちゃく",
+      "meaning": "arrival",
+      "type": "on"
+    },
+    {
+      "word": "着る",
+      "reading": "きる",
+      "meaning": "to wear (from the shoulders down)",
+      "type": "kun"
+    }
+  ],
+  "店": [
+    {
+      "word": "商店",
+      "reading": "しょうてん",
+      "meaning": "shop",
+      "type": "on"
+    },
+    {
+      "word": "店先",
+      "reading": "みせさき",
+      "meaning": "storefront",
+      "type": "kun"
+    }
+  ],
+  "病": [
+    {
+      "word": "病院",
+      "reading": "びょういん",
+      "meaning": "hospital",
+      "type": "on"
+    },
+    {
+      "word": "病む",
+      "reading": "やむ",
+      "meaning": "to fall ill",
+      "type": "kun"
+    }
+  ],
+  "質": [
+    {
+      "word": "質問",
+      "reading": "しつもん",
+      "meaning": "question",
+      "type": "on"
+    },
+    {
+      "word": "問い質す",
+      "reading": "といただす",
+      "meaning": "to inquire (about)",
+      "type": "kun"
+    }
+  ],
+  "待": [
+    {
+      "word": "期待",
+      "reading": "きたい",
+      "meaning": "expectation",
+      "type": "on"
+    },
+    {
+      "word": "待つ",
+      "reading": "まつ",
+      "meaning": "to wait",
+      "type": "kun"
+    }
+  ],
+  "試": [
+    {
+      "word": "試験",
+      "reading": "しけん",
+      "meaning": "examination",
+      "type": "on"
+    },
+    {
+      "word": "試す",
+      "reading": "ためす",
+      "meaning": "to try (out)",
+      "type": "kun"
+    }
+  ],
+  "族": [
+    {
+      "word": "家族",
+      "reading": "かぞく",
+      "meaning": "family",
+      "type": "on"
+    }
+  ],
+  "銀": [
+    {
+      "word": "銀行",
+      "reading": "ぎんこう",
+      "meaning": "bank",
+      "type": "on"
+    }
+  ],
+  "早": [
+    {
+      "word": "早速",
+      "reading": "さっそく",
+      "meaning": "at once",
+      "type": "on"
+    },
+    {
+      "word": "早い",
+      "reading": "はやい",
+      "meaning": "fast",
+      "type": "kun"
+    }
+  ],
+  "映": [
+    {
+      "word": "映画",
+      "reading": "えいが",
+      "meaning": "movie",
+      "type": "on"
+    },
+    {
+      "word": "映る",
+      "reading": "うつる",
+      "meaning": "to be reflected",
+      "type": "kun"
+    }
+  ],
+  "親": [
+    {
+      "word": "両親",
+      "reading": "りょうしん",
+      "meaning": "parents",
+      "type": "on"
+    },
+    {
+      "word": "母親",
+      "reading": "ははおや",
+      "meaning": "mother",
+      "type": "kun"
+    }
+  ],
+  "験": [
+    {
+      "word": "経験",
+      "reading": "けいけん",
+      "meaning": "experience",
+      "type": "on"
+    }
+  ],
+  "英": [
+    {
+      "word": "英語",
+      "reading": "えいご",
+      "meaning": "English (language)",
+      "type": "on"
+    }
+  ],
+  "医": [
+    {
+      "word": "医療",
+      "reading": "いりょう",
+      "meaning": "medical treatment",
+      "type": "on"
+    },
+    {
+      "word": "医療ミス",
+      "reading": "いりょうミス",
+      "meaning": "medical error",
+      "type": "kun"
+    }
+  ],
+  "仕": [
+    {
+      "word": "仕舞う",
+      "reading": "しまう",
+      "meaning": "to finish",
+      "type": "on"
+    },
+    {
+      "word": "仕える",
+      "reading": "つかえる",
+      "meaning": "to serve",
+      "type": "kun"
+    }
+  ],
+  "去": [
+    {
+      "word": "過去",
+      "reading": "かこ",
+      "meaning": "the past",
+      "type": "on"
+    },
+    {
+      "word": "去る",
+      "reading": "さる",
+      "meaning": "to leave",
+      "type": "kun"
+    }
+  ],
+  "味": [
+    {
+      "word": "意味",
+      "reading": "いみ",
+      "meaning": "meaning",
+      "type": "on"
+    },
+    {
+      "word": "味わう",
+      "reading": "あじわう",
+      "meaning": "to taste",
+      "type": "kun"
+    }
+  ],
+  "写": [
+    {
+      "word": "写真",
+      "reading": "しゃしん",
+      "meaning": "photograph",
+      "type": "on"
+    },
+    {
+      "word": "写る",
+      "reading": "うつる",
+      "meaning": "to be photographed",
+      "type": "kun"
+    }
+  ],
+  "字": [
+    {
+      "word": "文字",
+      "reading": "もじ",
+      "meaning": "letter (of an alphabet)",
+      "type": "on"
+    },
+    {
+      "word": "大字",
+      "reading": "おおあざ",
+      "meaning": "larger section (of village)",
+      "type": "kun"
+    }
+  ],
+  "答": [
+    {
+      "word": "回答",
+      "reading": "かいとう",
+      "meaning": "reply",
+      "type": "on"
+    },
+    {
+      "word": "答える",
+      "reading": "こたえる",
+      "meaning": "to answer",
+      "type": "kun"
+    }
+  ],
+  "夜": [
+    {
+      "word": "今夜",
+      "reading": "こんや",
+      "meaning": "this evening",
+      "type": "on"
+    },
+    {
+      "word": "夜中",
+      "reading": "よなか",
+      "meaning": "middle of the night",
+      "type": "kun"
+    }
+  ],
+  "音": [
+    {
+      "word": "音楽",
+      "reading": "おんがく",
+      "meaning": "music",
+      "type": "on"
+    },
+    {
+      "word": "本音",
+      "reading": "ほんね",
+      "meaning": "real intention",
+      "type": "kun"
+    }
+  ],
+  "注": [
+    {
+      "word": "注意",
+      "reading": "ちゅうい",
+      "meaning": "attention",
+      "type": "on"
+    },
+    {
+      "word": "注ぐ",
+      "reading": "そそぐ",
+      "meaning": "to pour (into)",
+      "type": "kun"
+    }
+  ],
+  "帰": [
+    {
+      "word": "帰国",
+      "reading": "きこく",
+      "meaning": "return to one's country",
+      "type": "on"
+    },
+    {
+      "word": "帰り",
+      "reading": "かえり",
+      "meaning": "return",
+      "type": "kun"
+    }
+  ],
+  "古": [
+    {
+      "word": "古代",
+      "reading": "こだい",
+      "meaning": "ancient times",
+      "type": "on"
+    },
+    {
+      "word": "古い",
+      "reading": "ふるい",
+      "meaning": "old",
+      "type": "kun"
+    }
+  ],
+  "歌": [
+    {
+      "word": "歌詞",
+      "reading": "かし",
+      "meaning": "song lyrics",
+      "type": "on"
+    },
+    {
+      "word": "歌う",
+      "reading": "うたう",
+      "meaning": "to sing",
+      "type": "kun"
+    }
+  ],
+  "買": [
+    {
+      "word": "売買",
+      "reading": "ばいばい",
+      "meaning": "trade",
+      "type": "on"
+    },
+    {
+      "word": "買う",
+      "reading": "かう",
+      "meaning": "to buy",
+      "type": "kun"
+    }
+  ],
+  "悪": [
+    {
+      "word": "悪魔",
+      "reading": "あくま",
+      "meaning": "devil",
+      "type": "on"
+    },
+    {
+      "word": "悪い",
+      "reading": "わるい",
+      "meaning": "bad",
+      "type": "kun"
+    }
+  ],
+  "図": [
+    {
+      "word": "図書",
+      "reading": "としょ",
+      "meaning": "books",
+      "type": "on"
+    },
+    {
+      "word": "図る",
+      "reading": "はかる",
+      "meaning": "to plan",
+      "type": "kun"
+    }
+  ],
+  "週": [
+    {
+      "word": "週間",
+      "reading": "しゅうかん",
+      "meaning": "week",
+      "type": "on"
+    }
+  ],
+  "室": [
+    {
+      "word": "教室",
+      "reading": "きょうしつ",
+      "meaning": "classroom",
+      "type": "on"
+    },
+    {
+      "word": "室町時代",
+      "reading": "むろまちじだい",
+      "meaning": "Muromachi period (1336-1573)",
+      "type": "kun"
+    }
+  ],
+  "歩": [
+    {
+      "word": "徒歩",
+      "reading": "とほ",
+      "meaning": "walking",
+      "type": "on"
+    },
+    {
+      "word": "歩く",
+      "reading": "あるく",
+      "meaning": "to walk",
+      "type": "kun"
+    }
+  ],
+  "風": [
+    {
+      "word": "風景",
+      "reading": "ふうけい",
+      "meaning": "scenery",
+      "type": "on"
+    },
+    {
+      "word": "風邪",
+      "reading": "かぜ",
+      "meaning": "(common) cold",
+      "type": "kun"
+    }
+  ],
+  "紙": [
+    {
+      "word": "表紙",
+      "reading": "ひょうし",
+      "meaning": "cover (of a book, magazine, etc.)",
+      "type": "on"
+    },
+    {
+      "word": "紙袋",
+      "reading": "かみぶくろ",
+      "meaning": "paper bag",
+      "type": "kun"
+    }
+  ],
+  "黒": [
+    {
+      "word": "黒人",
+      "reading": "こくじん",
+      "meaning": "black person",
+      "type": "on"
+    },
+    {
+      "word": "黒い",
+      "reading": "くろい",
+      "meaning": "black",
+      "type": "kun"
+    }
+  ],
+  "花": [
+    {
+      "word": "花粉",
+      "reading": "かふん",
+      "meaning": "pollen",
+      "type": "on"
+    },
+    {
+      "word": "花火",
+      "reading": "はなび",
+      "meaning": "fireworks",
+      "type": "kun"
+    }
+  ],
+  "春": [
+    {
+      "word": "青春",
+      "reading": "せいしゅん",
+      "meaning": "youth",
+      "type": "on"
+    },
+    {
+      "word": "春先",
+      "reading": "はるさき",
+      "meaning": "beginning of spring",
+      "type": "kun"
+    }
+  ],
+  "赤": [
+    {
+      "word": "赤外",
+      "reading": "せきがい",
+      "meaning": "infrared",
+      "type": "on"
+    },
+    {
+      "word": "赤い",
+      "reading": "あかい",
+      "meaning": "red",
+      "type": "kun"
+    }
+  ],
+  "青": [
+    {
+      "word": "青年",
+      "reading": "せいねん",
+      "meaning": "youth",
+      "type": "on"
+    },
+    {
+      "word": "青い",
+      "reading": "あおい",
+      "meaning": "blue",
+      "type": "kun"
+    }
+  ],
+  "館": [
+    {
+      "word": "図書館",
+      "reading": "としょかん",
+      "meaning": "library",
+      "type": "on"
+    }
+  ],
+  "屋": [
+    {
+      "word": "家屋",
+      "reading": "かおく",
+      "meaning": "house",
+      "type": "on"
+    },
+    {
+      "word": "部屋",
+      "reading": "へや",
+      "meaning": "room",
+      "type": "kun"
+    }
+  ],
+  "色": [
+    {
+      "word": "景色",
+      "reading": "けしき",
+      "meaning": "scenery",
+      "type": "on"
+    },
+    {
+      "word": "色々",
+      "reading": "いろいろ",
+      "meaning": "various",
+      "type": "kun"
+    }
+  ],
+  "走": [
+    {
+      "word": "走行",
+      "reading": "そうこう",
+      "meaning": "running (of a car, bus, etc.)",
+      "type": "on"
+    },
+    {
+      "word": "走る",
+      "reading": "はしる",
+      "meaning": "to run",
+      "type": "kun"
+    }
+  ],
+  "秋": [
+    {
+      "word": "晩秋",
+      "reading": "ばんしゅう",
+      "meaning": "late autumn (fall)",
+      "type": "on"
+    },
+    {
+      "word": "秋風",
+      "reading": "あきかぜ",
+      "meaning": "autumn breeze",
+      "type": "kun"
+    }
+  ],
+  "夏": [
+    {
+      "word": "初夏",
+      "reading": "しょか",
+      "meaning": "early summer",
+      "type": "on"
+    },
+    {
+      "word": "夏休み",
+      "reading": "なつやすみ",
+      "meaning": "summer vacation",
+      "type": "kun"
+    }
+  ],
+  "習": [
+    {
+      "word": "学習",
+      "reading": "がくしゅう",
+      "meaning": "learning",
+      "type": "on"
+    },
+    {
+      "word": "習う",
+      "reading": "ならう",
+      "meaning": "to take lessons in",
+      "type": "kun"
+    }
+  ],
+  "駅": [
+    {
+      "word": "駅前",
+      "reading": "えきまえ",
+      "meaning": "in front of a station",
+      "type": "on"
+    }
+  ],
+  "洋": [
+    {
+      "word": "西洋",
+      "reading": "せいよう",
+      "meaning": "the West",
+      "type": "on"
+    }
+  ],
+  "旅": [
+    {
+      "word": "旅行",
+      "reading": "りょこう",
+      "meaning": "travel",
+      "type": "on"
+    },
+    {
+      "word": "旅する",
+      "reading": "たびする",
+      "meaning": "to travel",
+      "type": "kun"
+    }
+  ],
+  "服": [
+    {
+      "word": "服装",
+      "reading": "ふくそう",
+      "meaning": "attire",
+      "type": "on"
+    }
+  ],
+  "夕": [
+    {
+      "word": "一夕",
+      "reading": "いっせき",
+      "meaning": "one evening",
+      "type": "on"
+    },
+    {
+      "word": "夕方",
+      "reading": "ゆうがた",
+      "meaning": "early evening (usu. from 3pm to 6pm)",
+      "type": "kun"
+    }
+  ],
+  "借": [
+    {
+      "word": "貸借",
+      "reading": "たいしゃく",
+      "meaning": "loan",
+      "type": "on"
+    },
+    {
+      "word": "借りる",
+      "reading": "かりる",
+      "meaning": "to borrow",
+      "type": "kun"
+    }
+  ],
+  "曜": [
+    {
+      "word": "日曜",
+      "reading": "にちよう",
+      "meaning": "Sunday",
+      "type": "on"
+    }
+  ],
+  "飲": [
+    {
+      "word": "飲食",
+      "reading": "いんしょく",
+      "meaning": "food and drink",
+      "type": "on"
+    },
+    {
+      "word": "飲む",
+      "reading": "のむ",
+      "meaning": "to drink",
+      "type": "kun"
+    }
+  ],
+  "肉": [
+    {
+      "word": "筋肉",
+      "reading": "きんにく",
+      "meaning": "muscle",
+      "type": "on"
+    },
+    {
+      "word": "肉叢",
+      "reading": "ししむら",
+      "meaning": "piece of meat",
+      "type": "kun"
+    }
+  ],
+  "貸": [
+    {
+      "word": "賃貸",
+      "reading": "ちんたい",
+      "meaning": "leasing (out)",
+      "type": "on"
+    },
+    {
+      "word": "貸す",
+      "reading": "かす",
+      "meaning": "to lend",
+      "type": "kun"
+    }
+  ],
+  "堂": [
+    {
+      "word": "堂々",
+      "reading": "どうどう",
+      "meaning": "magnificent",
+      "type": "on"
+    }
+  ],
+  "鳥": [
+    {
+      "word": "鳥獣",
+      "reading": "ちょうじゅう",
+      "meaning": "birds and wild animals",
+      "type": "on"
+    },
+    {
+      "word": "小鳥",
+      "reading": "ことり",
+      "meaning": "small bird",
+      "type": "kun"
+    }
+  ],
+  "飯": [
+    {
+      "word": "御飯",
+      "reading": "ごはん",
+      "meaning": "cooked rice",
+      "type": "on"
+    },
+    {
+      "word": "朝飯",
+      "reading": "あさめし",
+      "meaning": "breakfast",
+      "type": "kun"
+    }
+  ],
+  "勉": [
+    {
+      "word": "勉強",
+      "reading": "べんきょう",
+      "meaning": "study",
+      "type": "on"
+    }
+  ],
+  "冬": [
+    {
+      "word": "冬季",
+      "reading": "とうき",
+      "meaning": "winter season",
+      "type": "on"
+    },
+    {
+      "word": "冬場",
+      "reading": "ふゆば",
+      "meaning": "wintertime",
+      "type": "kun"
+    }
+  ],
+  "昼": [
+    {
+      "word": "昼食",
+      "reading": "ちゅうしょく",
+      "meaning": "lunch",
+      "type": "on"
+    },
+    {
+      "word": "昼間",
+      "reading": "ひるま",
+      "meaning": "daytime",
+      "type": "kun"
+    }
+  ],
+  "茶": [
+    {
+      "word": "喫茶",
+      "reading": "きっさ",
+      "meaning": "tea drinking",
+      "type": "on"
+    }
+  ],
+  "弟": [
+    {
+      "word": "兄弟",
+      "reading": "きょうだい",
+      "meaning": "brothers and sisters",
+      "type": "on"
+    },
+    {
+      "word": "弟さん",
+      "reading": "おとうとさん",
+      "meaning": "younger brother",
+      "type": "kun"
+    }
+  ],
+  "牛": [
+    {
+      "word": "牛乳",
+      "reading": "ぎゅうにゅう",
+      "meaning": "(cow's) milk",
+      "type": "on"
+    },
+    {
+      "word": "子牛",
+      "reading": "こうし",
+      "meaning": "calf",
+      "type": "kun"
+    }
+  ],
+  "魚": [
+    {
+      "word": "魚介",
+      "reading": "ぎょかい",
+      "meaning": "marine products",
+      "type": "on"
+    },
+    {
+      "word": "魚屋",
+      "reading": "さかなや",
+      "meaning": "fish market",
+      "type": "kun"
+    }
+  ],
+  "兄": [
+    {
+      "word": "兄弟",
+      "reading": "きょうだい",
+      "meaning": "brothers and sisters",
+      "type": "on"
+    },
+    {
+      "word": "兄貴",
+      "reading": "あにき",
+      "meaning": "elder brother",
+      "type": "kun"
+    }
+  ],
+  "犬": [
+    {
+      "word": "愛犬",
+      "reading": "あいけん",
+      "meaning": "pet dog",
+      "type": "on"
+    },
+    {
+      "word": "子犬",
+      "reading": "こいぬ",
+      "meaning": "puppy",
+      "type": "kun"
+    }
+  ],
+  "妹": [
+    {
+      "word": "姉妹",
+      "reading": "しまい",
+      "meaning": "sisters",
+      "type": "on"
+    },
+    {
+      "word": "妹さん",
+      "reading": "いもうとさん",
+      "meaning": "younger sister",
+      "type": "kun"
+    }
+  ],
+  "姉": [
+    {
+      "word": "姉妹",
+      "reading": "しまい",
+      "meaning": "sisters",
+      "type": "on"
+    },
+    {
+      "word": "姉さん",
+      "reading": "あねさん",
+      "meaning": "older sister",
+      "type": "kun"
+    }
+  ],
+  "漢": [
+    {
+      "word": "漢字",
+      "reading": "かんじ",
+      "meaning": "kanji",
+      "type": "on"
+    }
+  ]
+}

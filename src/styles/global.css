@@ -1,0 +1,377 @@
+/* Design system: tema genkouyoushi (kertas latihan kanji) */
+
+/* Reset dasar -- tanpa ini, min-height: 100% di .kd-root tidak ada acuan
+   (html/body defaultnya tidak punya height eksplisit), jadi background
+   grid genkouyoushi berhenti duluan sebelum akhir layar kalau konten
+   pendek. */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+body {
+  min-height: 100vh;
+}
+
+/* ===== Theme tokens =====
+   Light (default) = cream genkouyoushi paper.
+   Dark (.dark on <html>) = warm "night study" theme.
+   Everything reads these via var(--...), so toggling the class on <html>
+   re-themes the whole app. */
+.kd-root {
+  --paper: #F5F1E8;
+  --paper-line: #DDD5C3;
+  --ink: #211F1C;
+  --ink-soft: #6B6559;
+  --indigo: #1F3C5C;
+  --indigo-soft: #4C7091;
+  --seal: #A8402C;
+  --gold: #A8842E;
+  --surface: #ffffff;
+  --surface-hover: #faf8f2;
+  --correct-bg: #EAF1F6;
+  --wrong-bg: #FBECE8;
+  --on-tag-bg: #EAF1F6;
+  --kun-tag-bg: #F6EEE3;
+  --shadow: rgba(31, 60, 92, 0.08);
+  --shadow-strong: rgba(31, 60, 92, 0.10);
+  --toast-bg: #211F1C;
+  --toast-fg: #ffffff;
+  --genkou-border: #211F1C;
+
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  color: var(--ink);
+
+  /* Genkouyoushi grid: drawn as an inline SVG pattern instead of
+     repeating-linear-gradient. Two reasons:
+       1) `shape-rendering="crispEdges"` snaps the 1px lines to device
+          pixels so they don't anti-alias differently per row/column —
+          which was causing a "shimmer / moving background" effect
+          (classic 1px-gradient sub-pixel artifact, worse on HiDPI).
+       2) `background-attachment: fixed` pins the grid to the viewport so
+          it stays rock-steady while scrolling, instead of boiling. */
+  background-color: var(--paper);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='34' shape-rendering='crispEdges'><path d='M34 0.5H0.5V34' fill='none' stroke='%23DDD5C3' stroke-width='1'/></svg>");
+  background-size: 34px 34px;
+  background-position: 0 0;
+  background-attachment: fixed;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px 16px 60px;
+}
+.kd-root * { box-sizing: border-box; }
+.kd-root::before { content: none; }
+
+/* Dark theme overrides. SVG data-URI strokes can't read CSS variables,
+   so the whole background-image is re-issued here with the dark stroke. */
+.dark .kd-root {
+  --paper: #161310;
+  --paper-line: #2b2620;
+  --ink: #ebe4d6;
+  --ink-soft: #9c9281;
+  --indigo: #8fb6da;
+  --indigo-soft: #6a93b8;
+  --seal: #e07a68;
+  --gold: #d4ab5e;
+  --surface: #1f1b15;
+  --surface-hover: #28231b;
+  --correct-bg: #1c2c38;
+  --wrong-bg: #3a201b;
+  --on-tag-bg: #1c2c38;
+  --kun-tag-bg: #382b18;
+  --shadow: rgba(0, 0, 0, 0.4);
+  --shadow-strong: rgba(0, 0, 0, 0.55);
+  --toast-bg: #ebe4d6;
+  --toast-fg: #211f1c;
+  --genkou-border: #ebe4d6;
+
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='34' shape-rendering='crispEdges'><path d='M34 0.5H0.5V34' fill='none' stroke='%232b2620' stroke-width='1'/></svg>");
+}
+
+/* Smooth theme transitions on the major surfaces (so flipping dark/light
+   doesn't snap harshly). */
+.kd-root,
+.kd-root .kd-hero,
+.kd-root .kd-level-card,
+.kd-root .kd-unit-card,
+.kd-root .kd-genkou,
+.kd-root .kd-choice-btn,
+.kd-root .kd-reveal,
+.kd-root .kd-next-review,
+.kd-root .kd-btn,
+.kd-root .kd-streak,
+.kd-root .kd-theme-toggle,
+.kd-root .kd-hanko {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease,
+    box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.kd-topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 640px; margin: 0 auto 22px; gap: 10px;
+}
+.kd-topbar-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.kd-brand {
+  font-family: 'Shippori Mincho', serif; font-weight: 800; font-size: 26px;
+  letter-spacing: 0.02em; color: var(--indigo); display: flex; align-items: baseline; gap: 8px;
+}
+.kd-brand small { font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 500; font-size: 12.5px; color: var(--ink-soft); }
+.kd-streak {
+  display: flex; align-items: center; gap: 6px; font-family: 'DM Mono', monospace;
+  font-size: 13px; color: var(--seal); background: var(--surface); border: 1px solid var(--paper-line);
+  padding: 6px 10px; border-radius: 3px;
+}
+
+/* ---- Dark mode switch ---- */
+.kd-theme-toggle {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--surface); border: 1px solid var(--paper-line); color: var(--ink-soft);
+  padding: 6px 10px; border-radius: 3px; cursor: pointer;
+  font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 12.5px; font-weight: 700;
+  line-height: 1; min-height: 32px;
+}
+.kd-theme-toggle:hover { color: var(--indigo); border-color: var(--indigo-soft); }
+.kd-theme-toggle-label { font-family: 'DM Mono', monospace; }
+@media (max-width: 420px) {
+  .kd-theme-toggle-label { display: none; }
+}
+
+.kd-back {
+  display: inline-flex; align-items: center; gap: 4px; background: none; border: none;
+  color: var(--indigo-soft); font-family: 'Zen Kaku Gothic New'; font-size: 14px; font-weight: 700;
+  cursor: pointer; padding: 6px 0; margin-bottom: 6px;
+}
+.kd-back:hover { color: var(--indigo); }
+
+.kd-section-title {
+  font-family: 'Shippori Mincho', serif; font-weight: 700; font-size: 19px; color: var(--ink);
+  margin: 26px 0 12px; max-width: 640px; margin-left: auto; margin-right: auto;
+}
+
+.kd-hero {
+  max-width: 640px; margin: 0 auto; background: var(--surface); border: 1px solid var(--paper-line);
+  border-radius: 4px; padding: 22px 20px; position: relative; overflow: hidden;
+}
+.kd-hero-row { display: flex; gap: 14px; align-items: stretch; }
+.kd-stat {
+  flex: 1; text-align: center; padding: 14px 8px; border: 1px dashed var(--paper-line); border-radius: 3px;
+}
+.kd-stat-num { font-family: 'DM Mono', monospace; font-size: 28px; font-weight: 500; line-height: 1; }
+.kd-stat-label { font-size: 11.5px; color: var(--ink-soft); margin-top: 6px; }
+.kd-stat.due .kd-stat-num { color: var(--seal); }
+.kd-stat.mastered .kd-stat-num { color: var(--gold); }
+.kd-stat.new .kd-stat-num { color: var(--indigo-soft); }
+
+.kd-level-grid { max-width: 640px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
+.kd-level-card {
+  background: var(--surface); border: 1px solid var(--paper-line); border-radius: 4px; padding: 16px 12px;
+  cursor: pointer; text-align: left; position: relative; transition: transform 0.15s, box-shadow 0.15s;
+  color: var(--ink);
+}
+.kd-level-card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px var(--shadow); }
+.kd-level-card:not(.ready) { opacity: 0.55; }
+.kd-level-name { font-family: 'Shippori Mincho', serif; font-size: 22px; font-weight: 800; color: var(--indigo); }
+.kd-level-count { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--ink-soft); margin-top: 4px; }
+.kd-level-badge {
+  position: absolute; top: 10px; right: 10px; font-size: 9.5px; letter-spacing: 0.05em;
+  background: var(--indigo); color: #fff; padding: 2px 6px; border-radius: 2px; text-transform: uppercase;
+}
+.kd-level-badge.locked { background: var(--ink-soft); }
+
+.kd-unit-grid { max-width: 640px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.kd-unit-card {
+  background: var(--surface); border: 1.5px solid var(--paper-line); border-radius: 4px; padding: 14px; cursor: pointer;
+  position: relative; text-align: left; transition: transform 0.15s, box-shadow 0.2s; color: var(--ink);
+}
+.kd-unit-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px var(--shadow); }
+.kd-unit-card.due { border-color: var(--seal); }
+.kd-unit-card.mastered { border-color: var(--gold); }
+.kd-unit-title { font-family: 'Shippori Mincho', serif; font-weight: 700; font-size: 16px; }
+.kd-unit-status { font-size: 11px; color: var(--ink-soft); margin-top: 4px; }
+.kd-unit-card.due .kd-unit-status { color: var(--seal); font-weight: 700; }
+.kd-unit-preview { font-size: 20px; margin-top: 10px; letter-spacing: 2px; color: var(--ink); opacity: 0.75; }
+.kd-hanko {
+  position: absolute; top: -8px; right: -8px; width: 34px; height: 34px; border-radius: 50%;
+  border: 2px solid var(--seal); color: var(--seal); display: flex; align-items: center; justify-content: center;
+  font-family: 'Shippori Mincho', serif; font-size: 13px; font-weight: 800; background: var(--surface);
+  transform: rotate(-8deg);
+}
+.kd-hanko.gold { border-color: var(--gold); color: var(--gold); }
+
+.kd-progress-dots { display: flex; gap: 6px; justify-content: center; margin-bottom: 20px; max-width: 640px; margin-left: auto; margin-right: auto; flex-wrap: wrap; }
+.kd-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--paper-line); }
+.kd-dot.filled { background: var(--indigo-soft); }
+.kd-dot.current { background: var(--indigo); transform: scale(1.3); }
+
+.kd-genkou {
+  width: 168px; height: 168px; margin: 0 auto 22px; background: var(--surface); border: 2px solid var(--genkou-border);
+  border-radius: 2px; position: relative; display: flex; align-items: center; justify-content: center;
+}
+.kd-genkou::before, .kd-genkou::after {
+  content: ''; position: absolute; background: var(--paper-line);
+}
+.kd-genkou::before { left: 50%; top: 0; bottom: 0; width: 1px; }
+.kd-genkou::after { top: 50%; left: 0; right: 0; height: 1px; }
+.kd-genkou-glyph { font-family: 'Shippori Mincho', serif; font-size: 92px; font-weight: 600; position: relative; z-index: 1; color: var(--ink); }
+
+.kd-question-label { text-align: center; font-size: 14.5px; color: var(--ink-soft); margin-bottom: 4px; }
+.kd-question-sub { text-align: center; font-family: 'Shippori Mincho', serif; font-size: 17px; font-weight: 700; margin-bottom: 20px; color: var(--indigo); }
+
+.kd-choice-grid { max-width: 460px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.kd-choice-btn {
+  background: var(--surface); border: 1.5px solid var(--paper-line); border-radius: 4px; padding: 16px 10px;
+  font-family: 'DM Mono', monospace; font-size: 15px; cursor: pointer; text-align: center;
+  transition: border-color 0.15s, background 0.15s; position: relative; color: var(--ink);
+}
+.kd-choice-btn:hover:not(:disabled) { border-color: var(--indigo-soft); }
+.kd-choice-btn.correct { border-color: var(--indigo); background: var(--correct-bg); color: var(--indigo); font-weight: 700; }
+.kd-choice-btn.wrong { border-color: var(--seal); background: var(--wrong-bg); color: var(--seal); font-weight: 700; }
+.kd-choice-btn:disabled { cursor: default; }
+
+.kd-dontknow {
+  display: flex; align-items: center; justify-content: center; gap: 6px; max-width: 460px; margin: 12px auto 0;
+  width: 100%; background: none; border: 1.5px dashed var(--ink-soft); color: var(--ink-soft);
+  padding: 11px; border-radius: 4px; font-family: 'Zen Kaku Gothic New'; font-size: 13.5px; cursor: pointer;
+  position: relative;
+}
+.kd-dontknow:hover:not(:disabled) { border-color: var(--ink); color: var(--ink); }
+
+.kd-key-hint {
+  position: absolute; top: 6px; left: 8px; font-family: 'DM Mono', monospace; font-size: 10px;
+  color: var(--ink-soft); background: var(--paper); border: 1px solid var(--paper-line);
+  border-radius: 3px; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;
+  line-height: 1;
+}
+.kd-key-hint.muted { position: static; margin-right: 2px; }
+.kd-key-hint.on-primary {
+  position: static; margin-left: 8px; background: rgba(255,255,255,0.18); color: #fff;
+  border-color: rgba(255,255,255,0.35);
+}
+.kd-continue-btn { display: flex; align-items: center; justify-content: center; }
+
+.kd-reveal {
+  max-width: 460px; margin: 18px auto 0; background: var(--surface);
+  border: 1px solid var(--paper-line); border-radius: 4px; padding: 16px;
+}
+.kd-reveal-head {
+  display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;
+  padding-bottom: 12px; margin-bottom: 12px; border-bottom: 1px dashed var(--paper-line);
+}
+.kd-meaning-kanji { font-family: 'Shippori Mincho', serif; font-size: 26px; color: var(--indigo); }
+.kd-meaning-text { font-size: 14px; color: var(--ink); }
+.kd-reveal-yomi { display: flex; flex-direction: column; gap: 6px; margin-bottom: 4px; }
+.kd-yomi-row { font-size: 13.5px; color: var(--ink); display: flex; align-items: baseline; gap: 8px; }
+.kd-yomi-tag {
+  font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.04em;
+  padding: 2px 6px; border-radius: 2px; flex-shrink: 0;
+}
+.kd-yomi-tag.on { background: var(--on-tag-bg); color: var(--indigo); }
+.kd-yomi-tag.kun { background: var(--kun-tag-bg); color: var(--gold); }
+.kd-yomi-tag.small { font-size: 9px; padding: 1px 5px; }
+.kd-examples { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--paper-line); display: flex; flex-direction: column; gap: 8px; }
+.kd-example-item { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; font-size: 13px; }
+.kd-example-word { font-family: 'Shippori Mincho', serif; font-size: 16px; color: var(--ink); }
+.kd-example-reading { font-family: 'DM Mono', monospace; font-size: 11.5px; color: var(--indigo-soft); }
+.kd-example-meaning { font-size: 12.5px; color: var(--ink-soft); }
+.kd-continue-btn { max-width: 460px; margin: 12px auto 0; width: 100%; display: block; }
+
+.kd-result-stamp {
+  width: 140px; height: 140px; margin: 10px auto 18px; border-radius: 50%; border: 3px solid var(--indigo);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; transform: rotate(-4deg);
+}
+.kd-result-stamp.low { border-color: var(--seal); }
+.kd-result-stamp-num { font-family: 'Shippori Mincho', serif; font-weight: 800; font-size: 34px; color: var(--indigo); }
+.kd-result-stamp.low .kd-result-stamp-num { color: var(--seal); }
+.kd-result-stamp-label { font-size: 10px; letter-spacing: 0.08em; color: var(--ink-soft); text-transform: uppercase; margin-top: 2px; }
+
+.kd-result-breakdown { display: flex; justify-content: center; gap: 22px; margin-bottom: 22px; }
+.kd-rb-item { text-align: center; }
+.kd-rb-num { font-family: 'DM Mono', monospace; font-size: 20px; font-weight: 500; }
+.kd-rb-label { font-size: 11px; color: var(--ink-soft); margin-top: 2px; }
+
+.kd-next-review {
+  max-width: 420px; margin: 0 auto 24px; text-align: center; background: var(--surface);
+  border: 1px dashed var(--paper-line); border-radius: 4px; padding: 14px;
+}
+.kd-next-review-num { font-family: 'DM Mono', monospace; font-size: 22px; color: var(--indigo); }
+
+.kd-btn-row { max-width: 420px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; }
+.kd-btn {
+  font-family: 'Zen Kaku Gothic New'; font-weight: 700; font-size: 14.5px; padding: 13px; border-radius: 4px;
+  cursor: pointer; border: none; text-align: center;
+}
+.kd-btn.primary { background: var(--indigo); color: #fff; }
+.kd-btn.primary:hover { filter: brightness(1.08); }
+.kd-btn.secondary { background: var(--surface); color: var(--indigo); border: 1.5px solid var(--paper-line); }
+.kd-btn.secondary:hover { border-color: var(--indigo-soft); }
+
+.kd-toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--toast-bg); color: var(--toast-fg);
+  padding: 10px 18px; border-radius: 4px; font-size: 13px; max-width: 90%; text-align: center; z-index: 50;
+}
+
+.kd-empty-note { text-align: center; font-size: 12px; color: var(--ink-soft); max-width: 480px; margin: 30px auto 0; line-height: 1.6; }
+
+@media (max-width: 420px) {
+  .kd-genkou { width: 140px; height: 140px; }
+  .kd-genkou-glyph { font-size: 76px; }
+  .kd-choice-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== Desktop (>=900px): container lebih lebar, layout tidak
+   cuma kolom sempit di tengah layar kosong ===== */
+@media (min-width: 900px) {
+  .kd-root { padding: 36px 32px 80px; }
+
+  .kd-topbar, .kd-section-title, .kd-hero,
+  .kd-level-grid, .kd-unit-grid, .kd-progress-dots {
+    max-width: 880px;
+  }
+
+  .kd-brand { font-size: 30px; }
+
+  .kd-level-grid { grid-template-columns: repeat(5, 1fr); }
+  .kd-unit-grid { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; }
+  .kd-level-card, .kd-unit-card { padding: 20px 16px; }
+  .kd-level-card:hover, .kd-unit-card:hover { transform: translateY(-3px); box-shadow: 0 6px 18px var(--shadow-strong); }
+
+  /* Layar hasil kuis (bukan bagian dari layout kuis 2-kolom) */
+  .kd-next-review, .kd-btn-row { max-width: 520px; }
+  .kd-btn-row { flex-direction: row; }
+  .kd-btn-row .kd-btn { flex: 1; }
+}
+
+/* Kuis: kanji di kiri, soal + pilihan jawaban di kanan (2 kolom).
+   Mobile (default, di luar media query ini) tetap ditumpuk vertikal
+   seperti sebelumnya -- kd-quiz-left/right tidak override apa pun
+   di luar sini. */
+@media (min-width: 900px) {
+  .kd-quiz-layout {
+    display: flex; flex-direction: row; align-items: flex-start; justify-content: center;
+    gap: 64px; max-width: 900px; margin: 0 auto;
+  }
+  .kd-quiz-left {
+    flex: 0 0 auto; display: flex; justify-content: center;
+    position: sticky; top: 28px;
+  }
+  .kd-quiz-left .kd-genkou { margin: 0; width: 260px; height: 260px; }
+  .kd-quiz-left .kd-genkou-glyph { font-size: 138px; }
+
+  .kd-quiz-right { flex: 1 1 420px; max-width: 440px; }
+  .kd-quiz-right .kd-question-sub { font-size: 19px; }
+  .kd-quiz-right .kd-choice-grid { max-width: none; margin: 0; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .kd-quiz-right .kd-choice-btn { padding: 18px 10px; font-size: 15.5px; }
+  .kd-quiz-right .kd-dontknow { max-width: none; }
+  .kd-quiz-right .kd-reveal { max-width: none; }
+  .kd-quiz-right .kd-continue-btn { max-width: none; }
+}
+
+.kd-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  color: var(--ink-soft, #6B6559);
+  font-size: 14px;
+}

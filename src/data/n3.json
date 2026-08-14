@@ -1,0 +1,11937 @@
+[
+  {
+    "kanji": "政",
+    "jlpt_level": "N3",
+    "unit": "N3-U1",
+    "order_index": 0,
+    "readings": {
+      "on": [
+        "ショウ",
+        "セイ"
+      ],
+      "kun": [
+        "まつりごと",
+        "まん"
+      ]
+    },
+    "romaji_readings": [
+      "shou",
+      "sei",
+      "matsurigoto",
+      "man"
+    ],
+    "primary_romaji": [
+      "sei",
+      "matsurigoto"
+    ],
+    "meanings": [
+      "government",
+      "politics"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "議",
+    "jlpt_level": "N3",
+    "unit": "N3-U1",
+    "order_index": 1,
+    "readings": {
+      "on": [
+        "ギ"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "gi"
+    ],
+    "primary_romaji": [
+      "gi"
+    ],
+    "meanings": [
+      "consideration",
+      "consultation",
+      "debate",
+      "deliberation"
+    ],
+    "stroke_count": 20
+  },
+  {
+    "kanji": "民",
+    "jlpt_level": "N3",
+    "unit": "N3-U1",
+    "order_index": 2,
+    "readings": {
+      "on": [
+        "ミン"
+      ],
+      "kun": [
+        "たみ"
+      ]
+    },
+    "romaji_readings": [
+      "min",
+      "tami"
+    ],
+    "primary_romaji": [
+      "min",
+      "tami"
+    ],
+    "meanings": [
+      "nation",
+      "people",
+      "subjects"
+    ],
+    "stroke_count": 5
+  },
+  {
+    "kanji": "連",
+    "jlpt_level": "N3",
+    "unit": "N3-U1",
+    "order_index": 3,
+    "readings": {
+      "on": [
+        "レン"
+      ],
+      "kun": [
+        "-づ.れ",
+        "つ.れる",
+        "つら.なる",
+        "つら.ねる"
+      ]
+    },
+    "romaji_readings": [
+      "ren",
+      "zure",
+      "tsureru",
+      "tsuranaru",
+      "tsuraneru"
+    ],
+    "primary_romaji": [
+      "ren"
+    ],
+    "meanings": [
+      "clique",
+      "connect",
+      "gang",
+      "join",
+      "lead",
+      "party",
+      "take along"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "対",
+    "jlpt_level": "N3",
+    "unit": "N3-U1",
+    "order_index": 4,
+    "readings": {
+      "on": [
+        "タイ",
+        "ツイ"
+      ],
+      "kun": [
+        "あいて",
+        "こた.える",
+        "そろ.い",
+        "つれあ.い",
+        "なら.ぶ",
+        "むか.う"
+      ]
+    },
+    "romaji_readings": [
+      "tai",
+      "tsui",
+      "aite",
+      "kotaeru",
+      "soroi",
+      "tsureai",
+      "narabu",
+      "mukau"
+    ],
+    "primary_romaji": [
+      "tai",
+      "tsui"
+    ],
+    "meanings": [
+      "anti-",
+      "compare",
+      "equal",
+      "even",
+      "opposite",
+      "versus",
+      "vis-a-vis"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "部",
+    "jlpt_level": "N3",
+    "unit": "N3-U1",
+    "order_index": 5,
+    "readings": {
+      "on": [
+        "ブ"
+      ],
+      "kun": [
+        "-べ"
+      ]
+    },
+    "romaji_readings": [
+      "bu",
+      "be"
+    ],
+    "primary_romaji": [
+      "bu",
+      "be"
+    ],
+    "meanings": [
+      "bureau",
+      "class",
+      "copy",
+      "counter for copies of a newspaper or magazine",
+      "dept",
+      "part",
+      "portion",
+      "section"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "合",
+    "jlpt_level": "N3",
+    "unit": "N3-U1",
+    "order_index": 6,
+    "readings": {
+      "on": [
+        "カッ",
+        "ガッ",
+        "ゴウ"
+      ],
+      "kun": [
+        "-あ.い",
+        "-あ.う",
+        "-あ.わせる",
+        "-あい",
+        "あ.い",
+        "あ.う",
+        "あ.わす",
+        "あ.わせる",
+        "あい-"
+      ]
+    },
+    "romaji_readings": [
+      "katsu",
+      "gatsu",
+      "gou",
+      "ai",
+      "au",
+      "awaseru",
+      "awasu"
+    ],
+    "primary_romaji": [
+      "gou"
+    ],
+    "meanings": [
+      "0.1",
+      "fit",
+      "join",
+      "suit"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "市",
+    "jlpt_level": "N3",
+    "unit": "N3-U1",
+    "order_index": 7,
+    "readings": {
+      "on": [
+        "シ"
+      ],
+      "kun": [
+        "いち"
+      ]
+    },
+    "romaji_readings": [
+      "shi",
+      "ichi"
+    ],
+    "primary_romaji": [
+      "shi",
+      "ichi"
+    ],
+    "meanings": [
+      "city",
+      "market",
+      "town"
+    ],
+    "stroke_count": 5
+  },
+  {
+    "kanji": "内",
+    "jlpt_level": "N3",
+    "unit": "N3-U1",
+    "order_index": 8,
+    "readings": {
+      "on": [
+        "ダイ",
+        "ナイ"
+      ],
+      "kun": [
+        "うち"
+      ]
+    },
+    "romaji_readings": [
+      "dai",
+      "nai",
+      "uchi"
+    ],
+    "primary_romaji": [
+      "uchi",
+      "nai"
+    ],
+    "meanings": [
+      "among",
+      "between",
+      "home",
+      "house",
+      "inside",
+      "within"
+    ],
+    "stroke_count": 4
+  },
+  {
+    "kanji": "相",
+    "jlpt_level": "N3",
+    "unit": "N3-U1",
+    "order_index": 9,
+    "readings": {
+      "on": [
+        "ショウ",
+        "ソウ"
+      ],
+      "kun": [
+        "あい-"
+      ]
+    },
+    "romaji_readings": [
+      "shou",
+      "sou",
+      "ai"
+    ],
+    "primary_romaji": [
+      "ai",
+      "shou"
+    ],
+    "meanings": [
+      "aspect",
+      "councillor",
+      "each other",
+      "inter-",
+      "minister of state",
+      "mutual",
+      "phase",
+      "physiognomy",
+      "together"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "定",
+    "jlpt_level": "N3",
+    "unit": "N3-U1",
+    "order_index": 10,
+    "readings": {
+      "on": [
+        "ジョウ",
+        "テイ"
+      ],
+      "kun": [
+        "さだ.か",
+        "さだ.まる",
+        "さだ.める"
+      ]
+    },
+    "romaji_readings": [
+      "jou",
+      "tei",
+      "sadaka",
+      "sadamaru",
+      "sadameru"
+    ],
+    "primary_romaji": [
+      "tei",
+      "jou"
+    ],
+    "meanings": [
+      "decide",
+      "determine",
+      "establish",
+      "fix"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "回",
+    "jlpt_level": "N3",
+    "unit": "N3-U1",
+    "order_index": 11,
+    "readings": {
+      "on": [
+        "エ",
+        "カイ"
+      ],
+      "kun": [
+        "-まわ.し",
+        "-まわ.す",
+        "-まわ.り",
+        "-まわ.る",
+        "か.える",
+        "まわ.し-",
+        "まわ.す",
+        "まわ.る",
+        "もとお.る"
+      ]
+    },
+    "romaji_readings": [
+      "e",
+      "kai",
+      "mawashi",
+      "mawasu",
+      "mawari",
+      "mawaru",
+      "kaeru",
+      "motooru"
+    ],
+    "primary_romaji": [
+      "kai"
+    ],
+    "meanings": [
+      "-times",
+      "counter for occurrences",
+      "game",
+      "revolve",
+      "round"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "選",
+    "jlpt_level": "N3",
+    "unit": "N3-U1",
+    "order_index": 12,
+    "readings": {
+      "on": [
+        "セン"
+      ],
+      "kun": [
+        "え.る",
+        "えら.ぶ",
+        "よ.る"
+      ]
+    },
+    "romaji_readings": [
+      "sen",
+      "eru",
+      "erabu",
+      "yoru"
+    ],
+    "primary_romaji": [
+      "sen"
+    ],
+    "meanings": [
+      "choose",
+      "elect",
+      "prefer",
+      "select"
+    ],
+    "stroke_count": 15
+  },
+  {
+    "kanji": "米",
+    "jlpt_level": "N3",
+    "unit": "N3-U1",
+    "order_index": 13,
+    "readings": {
+      "on": [
+        "ベイ",
+        "マイ",
+        "メエトル"
+      ],
+      "kun": [
+        "こめ",
+        "よね"
+      ]
+    },
+    "romaji_readings": [
+      "bei",
+      "mai",
+      "meetoru",
+      "kome",
+      "yone"
+    ],
+    "primary_romaji": [
+      "bei",
+      "kome"
+    ],
+    "meanings": [
+      "USA",
+      "metre",
+      "rice"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "実",
+    "jlpt_level": "N3",
+    "unit": "N3-U1",
+    "order_index": 14,
+    "readings": {
+      "on": [
+        "シツ",
+        "ジツ"
+      ],
+      "kun": [
+        "まこと",
+        "み",
+        "みち.る",
+        "みの",
+        "みの.る"
+      ]
+    },
+    "romaji_readings": [
+      "shitsu",
+      "jitsu",
+      "makoto",
+      "mi",
+      "michiru",
+      "mino",
+      "minoru"
+    ],
+    "primary_romaji": [
+      "jitsu",
+      "mi"
+    ],
+    "meanings": [
+      "fruit",
+      "nut",
+      "reality",
+      "seed",
+      "truth"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "関",
+    "jlpt_level": "N3",
+    "unit": "N3-U2",
+    "order_index": 15,
+    "readings": {
+      "on": [
+        "カン"
+      ],
+      "kun": [
+        "-ぜき",
+        "かか.わる",
+        "からくり",
+        "かんぬき",
+        "せき"
+      ]
+    },
+    "romaji_readings": [
+      "kan",
+      "zeki",
+      "kakawaru",
+      "karakuri",
+      "kannuki",
+      "seki"
+    ],
+    "primary_romaji": [
+      "zeki",
+      "seki"
+    ],
+    "meanings": [
+      "barrier",
+      "concerning",
+      "connection",
+      "gateway",
+      "involve"
+    ],
+    "stroke_count": 14
+  },
+  {
+    "kanji": "決",
+    "jlpt_level": "N3",
+    "unit": "N3-U2",
+    "order_index": 16,
+    "readings": {
+      "on": [
+        "ケツ"
+      ],
+      "kun": [
+        "-ぎ.め",
+        "き.まる",
+        "き.める",
+        "さ.く"
+      ]
+    },
+    "romaji_readings": [
+      "ketsu",
+      "gime",
+      "kimaru",
+      "kimeru",
+      "saku"
+    ],
+    "primary_romaji": [
+      "ketsu"
+    ],
+    "meanings": [
+      "agree upon",
+      "appoint",
+      "decide",
+      "fix"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "全",
+    "jlpt_level": "N3",
+    "unit": "N3-U2",
+    "order_index": 17,
+    "readings": {
+      "on": [
+        "ゼン"
+      ],
+      "kun": [
+        "すべ.て",
+        "まった.く"
+      ]
+    },
+    "romaji_readings": [
+      "zen",
+      "subete",
+      "mattaku"
+    ],
+    "primary_romaji": [
+      "zen"
+    ],
+    "meanings": [
+      "all",
+      "complete",
+      "entire",
+      "fulfill",
+      "whole"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "表",
+    "jlpt_level": "N3",
+    "unit": "N3-U2",
+    "order_index": 18,
+    "readings": {
+      "on": [
+        "ヒョウ"
+      ],
+      "kun": [
+        "-おもて",
+        "あら.わす",
+        "あらわ.す",
+        "あらわ.れる",
+        "おもて"
+      ]
+    },
+    "romaji_readings": [
+      "hyou",
+      "omote",
+      "arawasu",
+      "arawareru"
+    ],
+    "primary_romaji": [
+      "hyou",
+      "omote"
+    ],
+    "meanings": [
+      "chart",
+      "diagram",
+      "surface",
+      "table"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "戦",
+    "jlpt_level": "N3",
+    "unit": "N3-U2",
+    "order_index": 19,
+    "readings": {
+      "on": [
+        "セン"
+      ],
+      "kun": [
+        "いくさ",
+        "おのの.く",
+        "そよ.ぐ",
+        "たたか.う",
+        "わなな.く"
+      ]
+    },
+    "romaji_readings": [
+      "sen",
+      "ikusa",
+      "ononoku",
+      "soyogu",
+      "tatakau",
+      "wananaku"
+    ],
+    "primary_romaji": [
+      "sen",
+      "ikusa"
+    ],
+    "meanings": [
+      "battle",
+      "match",
+      "war"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "経",
+    "jlpt_level": "N3",
+    "unit": "N3-U2",
+    "order_index": 20,
+    "readings": {
+      "on": [
+        "キョウ",
+        "キン",
+        "ケイ"
+      ],
+      "kun": [
+        "た.つ",
+        "たていと",
+        "のり",
+        "はか.る",
+        "へ.る"
+      ]
+    },
+    "romaji_readings": [
+      "kyou",
+      "kin",
+      "kei",
+      "tatsu",
+      "tateito",
+      "nori",
+      "hakaru",
+      "heru"
+    ],
+    "primary_romaji": [
+      "kyou",
+      "kei"
+    ],
+    "meanings": [
+      "expire",
+      "longitude",
+      "pass thru",
+      "sutra",
+      "warp"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "最",
+    "jlpt_level": "N3",
+    "unit": "N3-U2",
+    "order_index": 21,
+    "readings": {
+      "on": [
+        "サイ",
+        "シュ"
+      ],
+      "kun": [
+        "つま",
+        "もっと.も"
+      ]
+    },
+    "romaji_readings": [
+      "sai",
+      "shu",
+      "tsuma",
+      "mottomo"
+    ],
+    "primary_romaji": [
+      "sai"
+    ],
+    "meanings": [
+      "extreme",
+      "most",
+      "utmost"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "現",
+    "jlpt_level": "N3",
+    "unit": "N3-U2",
+    "order_index": 22,
+    "readings": {
+      "on": [
+        "ゲン"
+      ],
+      "kun": [
+        "あらわ.す",
+        "あらわ.れる",
+        "うつ.つ",
+        "うつつ"
+      ]
+    },
+    "romaji_readings": [
+      "gen",
+      "arawasu",
+      "arawareru",
+      "utsutsu"
+    ],
+    "primary_romaji": [
+      "gen",
+      "utsutsu"
+    ],
+    "meanings": [
+      "actual",
+      "existing",
+      "present"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "調",
+    "jlpt_level": "N3",
+    "unit": "N3-U2",
+    "order_index": 23,
+    "readings": {
+      "on": [
+        "チョウ"
+      ],
+      "kun": [
+        "しら.べ",
+        "しら.べる",
+        "ととの.う",
+        "ととの.える"
+      ]
+    },
+    "romaji_readings": [
+      "chou",
+      "shirabe",
+      "shiraberu",
+      "totonou",
+      "totonoeru"
+    ],
+    "primary_romaji": [
+      "chou"
+    ],
+    "meanings": [
+      "exorcise",
+      "harmonize",
+      "investigate",
+      "key (music)",
+      "mediate",
+      "meter",
+      "prepare",
+      "tone",
+      "tune",
+      "writing style"
+    ],
+    "stroke_count": 15
+  },
+  {
+    "kanji": "化",
+    "jlpt_level": "N3",
+    "unit": "N3-U2",
+    "order_index": 24,
+    "readings": {
+      "on": [
+        "カ",
+        "ケ"
+      ],
+      "kun": [
+        "け.する",
+        "ば.かす",
+        "ば.ける",
+        "ふ.ける"
+      ]
+    },
+    "romaji_readings": [
+      "ka",
+      "ke",
+      "kesuru",
+      "bakasu",
+      "bakeru",
+      "fukeru"
+    ],
+    "primary_romaji": [
+      "ka"
+    ],
+    "meanings": [
+      "-ization",
+      "change",
+      "delude",
+      "enchant",
+      "influence",
+      "take the form of"
+    ],
+    "stroke_count": 4
+  },
+  {
+    "kanji": "当",
+    "jlpt_level": "N3",
+    "unit": "N3-U2",
+    "order_index": 25,
+    "readings": {
+      "on": [
+        "トウ"
+      ],
+      "kun": [
+        "あ.たり",
+        "あ.たる",
+        "あ.て",
+        "あ.てる",
+        "まさ.に",
+        "まさ.にべし"
+      ]
+    },
+    "romaji_readings": [
+      "tou",
+      "atari",
+      "ataru",
+      "ate",
+      "ateru",
+      "masani",
+      "masanibeshi"
+    ],
+    "primary_romaji": [
+      "tou"
+    ],
+    "meanings": [
+      "appropriate",
+      "himself",
+      "hit",
+      "right"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "約",
+    "jlpt_level": "N3",
+    "unit": "N3-U2",
+    "order_index": 26,
+    "readings": {
+      "on": [
+        "ヤク"
+      ],
+      "kun": [
+        "つづ.まる",
+        "つづ.める",
+        "つづま.やか"
+      ]
+    },
+    "romaji_readings": [
+      "yaku",
+      "tsuzumaru",
+      "tsuzumeru",
+      "tsuzumayaka"
+    ],
+    "primary_romaji": [
+      "yaku"
+    ],
+    "meanings": [
+      "approximately",
+      "promise",
+      "shrink"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "首",
+    "jlpt_level": "N3",
+    "unit": "N3-U2",
+    "order_index": 27,
+    "readings": {
+      "on": [
+        "シュ"
+      ],
+      "kun": [
+        "くび"
+      ]
+    },
+    "romaji_readings": [
+      "shu",
+      "kubi"
+    ],
+    "primary_romaji": [
+      "kubi",
+      "shu"
+    ],
+    "meanings": [
+      "counter for songs and poems",
+      "neck"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "法",
+    "jlpt_level": "N3",
+    "unit": "N3-U2",
+    "order_index": 28,
+    "readings": {
+      "on": [
+        "ハッ",
+        "フラン",
+        "ホウ",
+        "ホッ"
+      ],
+      "kun": [
+        "のり"
+      ]
+    },
+    "romaji_readings": [
+      "hatsu",
+      "furan",
+      "hou",
+      "hotsu",
+      "nori"
+    ],
+    "primary_romaji": [
+      "hou",
+      "nori"
+    ],
+    "meanings": [
+      "law",
+      "method",
+      "model",
+      "principle",
+      "rule",
+      "system"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "性",
+    "jlpt_level": "N3",
+    "unit": "N3-U2",
+    "order_index": 29,
+    "readings": {
+      "on": [
+        "ショウ",
+        "セイ"
+      ],
+      "kun": [
+        "さが"
+      ]
+    },
+    "romaji_readings": [
+      "shou",
+      "sei",
+      "saga"
+    ],
+    "primary_romaji": [
+      "sei",
+      "saga"
+    ],
+    "meanings": [
+      "gender",
+      "nature",
+      "sex"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "要",
+    "jlpt_level": "N3",
+    "unit": "N3-U3",
+    "order_index": 30,
+    "readings": {
+      "on": [
+        "ヨウ"
+      ],
+      "kun": [
+        "い.る",
+        "かなめ"
+      ]
+    },
+    "romaji_readings": [
+      "you",
+      "iru",
+      "kaname"
+    ],
+    "primary_romaji": [
+      "you",
+      "kaname"
+    ],
+    "meanings": [
+      "essence",
+      "key to",
+      "main point",
+      "need",
+      "pivot"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "制",
+    "jlpt_level": "N3",
+    "unit": "N3-U3",
+    "order_index": 31,
+    "readings": {
+      "on": [
+        "セイ"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "sei"
+    ],
+    "primary_romaji": [
+      "sei"
+    ],
+    "meanings": [
+      "law",
+      "rule",
+      "system"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "治",
+    "jlpt_level": "N3",
+    "unit": "N3-U3",
+    "order_index": 32,
+    "readings": {
+      "on": [
+        "ジ",
+        "チ"
+      ],
+      "kun": [
+        "おさ.まる",
+        "おさ.める",
+        "なお.す",
+        "なお.る"
+      ]
+    },
+    "romaji_readings": [
+      "ji",
+      "chi",
+      "osamaru",
+      "osameru",
+      "naosu",
+      "naoru"
+    ],
+    "primary_romaji": [
+      "chi"
+    ],
+    "meanings": [
+      "be at peace",
+      "calm down",
+      "conserve",
+      "cure",
+      "govt",
+      "heal",
+      "quell",
+      "reign",
+      "rule",
+      "subdue"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "務",
+    "jlpt_level": "N3",
+    "unit": "N3-U3",
+    "order_index": 33,
+    "readings": {
+      "on": [
+        "ム"
+      ],
+      "kun": [
+        "つと.める"
+      ]
+    },
+    "romaji_readings": [
+      "mu",
+      "tsutomeru"
+    ],
+    "primary_romaji": [
+      "mu",
+      "tsutomeru"
+    ],
+    "meanings": [
+      "duties",
+      "task"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "成",
+    "jlpt_level": "N3",
+    "unit": "N3-U3",
+    "order_index": 34,
+    "readings": {
+      "on": [
+        "ジョウ",
+        "セイ"
+      ],
+      "kun": [
+        "-な.す",
+        "な.す",
+        "な.る"
+      ]
+    },
+    "romaji_readings": [
+      "jou",
+      "sei",
+      "nasu",
+      "naru"
+    ],
+    "primary_romaji": [
+      "sei",
+      "jou"
+    ],
+    "meanings": [
+      "become",
+      "elapse",
+      "get",
+      "grow",
+      "reach",
+      "turn into"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "期",
+    "jlpt_level": "N3",
+    "unit": "N3-U3",
+    "order_index": 35,
+    "readings": {
+      "on": [
+        "キ",
+        "ゴ"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "ki",
+      "go"
+    ],
+    "primary_romaji": [
+      "ki",
+      "go"
+    ],
+    "meanings": [
+      "date",
+      "period",
+      "term",
+      "time"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "取",
+    "jlpt_level": "N3",
+    "unit": "N3-U3",
+    "order_index": 36,
+    "readings": {
+      "on": [
+        "シュ"
+      ],
+      "kun": [
+        "-ど.り",
+        "と.り",
+        "と.り-",
+        "と.る",
+        "とり"
+      ]
+    },
+    "romaji_readings": [
+      "shu",
+      "dori",
+      "tori",
+      "toru"
+    ],
+    "primary_romaji": [
+      "shu",
+      "dori"
+    ],
+    "meanings": [
+      "fetch",
+      "take",
+      "take up"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "都",
+    "jlpt_level": "N3",
+    "unit": "N3-U3",
+    "order_index": 37,
+    "readings": {
+      "on": [
+        "ツ",
+        "ト"
+      ],
+      "kun": [
+        "みやこ"
+      ]
+    },
+    "romaji_readings": [
+      "tsu",
+      "to",
+      "miyako"
+    ],
+    "primary_romaji": [
+      "to",
+      "miyako"
+    ],
+    "meanings": [
+      "all",
+      "capital",
+      "everything",
+      "metropolis"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "和",
+    "jlpt_level": "N3",
+    "unit": "N3-U3",
+    "order_index": 38,
+    "readings": {
+      "on": [
+        "オ",
+        "カ",
+        "ワ"
+      ],
+      "kun": [
+        "あ.える",
+        "なご.む",
+        "なご.やか",
+        "やわ.らぐ",
+        "やわ.らげる"
+      ]
+    },
+    "romaji_readings": [
+      "o",
+      "ka",
+      "wa",
+      "aeru",
+      "nagomu",
+      "nagoyaka",
+      "yawaragu",
+      "yawarageru"
+    ],
+    "primary_romaji": [
+      "wa"
+    ],
+    "meanings": [
+      "Japan",
+      "Japanese style",
+      "harmony",
+      "peace",
+      "soften"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "機",
+    "jlpt_level": "N3",
+    "unit": "N3-U3",
+    "order_index": 39,
+    "readings": {
+      "on": [
+        "キ"
+      ],
+      "kun": [
+        "はた"
+      ]
+    },
+    "romaji_readings": [
+      "ki",
+      "hata"
+    ],
+    "primary_romaji": [
+      "ki",
+      "hata"
+    ],
+    "meanings": [
+      "airplane",
+      "efficacy",
+      "loom",
+      "machine",
+      "mechanism",
+      "occasion",
+      "opportunity",
+      "potency"
+    ],
+    "stroke_count": 16
+  },
+  {
+    "kanji": "平",
+    "jlpt_level": "N3",
+    "unit": "N3-U3",
+    "order_index": 40,
+    "readings": {
+      "on": [
+        "ヒョウ",
+        "ビョウ",
+        "ヘイ"
+      ],
+      "kun": [
+        "たい.ら",
+        "たい.らげる",
+        "ひら"
+      ]
+    },
+    "romaji_readings": [
+      "hyou",
+      "byou",
+      "hei",
+      "taira",
+      "tairageru",
+      "hira"
+    ],
+    "primary_romaji": [
+      "taira",
+      "hira"
+    ],
+    "meanings": [
+      "even",
+      "flat",
+      "peace"
+    ],
+    "stroke_count": 5
+  },
+  {
+    "kanji": "加",
+    "jlpt_level": "N3",
+    "unit": "N3-U3",
+    "order_index": 41,
+    "readings": {
+      "on": [
+        "カ"
+      ],
+      "kun": [
+        "くわ.える",
+        "くわ.わる"
+      ]
+    },
+    "romaji_readings": [
+      "ka",
+      "kuwaeru",
+      "kuwawaru"
+    ],
+    "primary_romaji": [
+      "ka"
+    ],
+    "meanings": [
+      "Canada",
+      "add",
+      "addition",
+      "include",
+      "increase",
+      "join"
+    ],
+    "stroke_count": 5
+  },
+  {
+    "kanji": "受",
+    "jlpt_level": "N3",
+    "unit": "N3-U3",
+    "order_index": 42,
+    "readings": {
+      "on": [
+        "ジュ"
+      ],
+      "kun": [
+        "-う.け",
+        "う.かる",
+        "う.ける"
+      ]
+    },
+    "romaji_readings": [
+      "ju",
+      "uke",
+      "ukaru",
+      "ukeru"
+    ],
+    "primary_romaji": [
+      "ju"
+    ],
+    "meanings": [
+      "accept",
+      "answer (phone)",
+      "catch",
+      "get",
+      "receive",
+      "take",
+      "undergo"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "続",
+    "jlpt_level": "N3",
+    "unit": "N3-U3",
+    "order_index": 43,
+    "readings": {
+      "on": [
+        "キョウ",
+        "コウ",
+        "ショク",
+        "ゾク"
+      ],
+      "kun": [
+        "つぐ.ない",
+        "つづ.く",
+        "つづ.ける"
+      ]
+    },
+    "romaji_readings": [
+      "kyou",
+      "kou",
+      "shoku",
+      "zoku",
+      "tsugunai",
+      "tsuzuku",
+      "tsuzukeru"
+    ],
+    "primary_romaji": [
+      "zoku",
+      "tsuzuku"
+    ],
+    "meanings": [
+      "continue",
+      "sequel",
+      "series"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "進",
+    "jlpt_level": "N3",
+    "unit": "N3-U3",
+    "order_index": 44,
+    "readings": {
+      "on": [
+        "シン"
+      ],
+      "kun": [
+        "すす.む",
+        "すす.める"
+      ]
+    },
+    "romaji_readings": [
+      "shin",
+      "susumu",
+      "susumeru"
+    ],
+    "primary_romaji": [
+      "shin",
+      "susumu"
+    ],
+    "meanings": [
+      "advance",
+      "proceed",
+      "progress",
+      "promote"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "数",
+    "jlpt_level": "N3",
+    "unit": "N3-U4",
+    "order_index": 45,
+    "readings": {
+      "on": [
+        "サク",
+        "シュ",
+        "ス",
+        "スウ",
+        "ソク"
+      ],
+      "kun": [
+        "かず",
+        "かぞ.える",
+        "しばしば",
+        "せ.める",
+        "わずらわ.しい"
+      ]
+    },
+    "romaji_readings": [
+      "saku",
+      "shu",
+      "su",
+      "suu",
+      "soku",
+      "kazu",
+      "kazoeru",
+      "shibashiba",
+      "semeru",
+      "wazurawashii"
+    ],
+    "primary_romaji": [
+      "suu",
+      "kazu"
+    ],
+    "meanings": [
+      "fate",
+      "figures",
+      "law",
+      "number",
+      "strength"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "記",
+    "jlpt_level": "N3",
+    "unit": "N3-U4",
+    "order_index": 46,
+    "readings": {
+      "on": [
+        "キ"
+      ],
+      "kun": [
+        "しる.す"
+      ]
+    },
+    "romaji_readings": [
+      "ki",
+      "shirusu"
+    ],
+    "primary_romaji": [
+      "ki"
+    ],
+    "meanings": [
+      "account",
+      "narrative",
+      "scribe"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "初",
+    "jlpt_level": "N3",
+    "unit": "N3-U4",
+    "order_index": 47,
+    "readings": {
+      "on": [
+        "ショ"
+      ],
+      "kun": [
+        "-そ.める",
+        "-ぞ.め",
+        "うい-",
+        "はじ.め",
+        "はじ.めて",
+        "はつ",
+        "はつ-"
+      ]
+    },
+    "romaji_readings": [
+      "sho",
+      "someru",
+      "zome",
+      "ui",
+      "hajime",
+      "hajimete",
+      "hatsu"
+    ],
+    "primary_romaji": [
+      "hatsu",
+      "sho"
+    ],
+    "meanings": [
+      "beginning",
+      "first time"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "指",
+    "jlpt_level": "N3",
+    "unit": "N3-U4",
+    "order_index": 48,
+    "readings": {
+      "on": [
+        "シ"
+      ],
+      "kun": [
+        "-さ.し",
+        "さ.す",
+        "ゆび"
+      ]
+    },
+    "romaji_readings": [
+      "shi",
+      "sashi",
+      "sasu",
+      "yubi"
+    ],
+    "primary_romaji": [
+      "yubi",
+      "shi"
+    ],
+    "meanings": [
+      "finger",
+      "indicate",
+      "measure (ruler)",
+      "play (chess)",
+      "point to",
+      "put into"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "権",
+    "jlpt_level": "N3",
+    "unit": "N3-U4",
+    "order_index": 49,
+    "readings": {
+      "on": [
+        "ケン",
+        "ゴン"
+      ],
+      "kun": [
+        "おもり",
+        "かり",
+        "はか.る"
+      ]
+    },
+    "romaji_readings": [
+      "ken",
+      "gon",
+      "omori",
+      "kari",
+      "hakaru"
+    ],
+    "primary_romaji": [
+      "ken",
+      "gon"
+    ],
+    "meanings": [
+      "authority",
+      "power",
+      "rights"
+    ],
+    "stroke_count": 15
+  },
+  {
+    "kanji": "支",
+    "jlpt_level": "N3",
+    "unit": "N3-U4",
+    "order_index": 50,
+    "readings": {
+      "on": [
+        "シ"
+      ],
+      "kun": [
+        "か.う",
+        "ささ.える",
+        "つか.える"
+      ]
+    },
+    "romaji_readings": [
+      "shi",
+      "kau",
+      "sasaeru",
+      "tsukaeru"
+    ],
+    "primary_romaji": [
+      "shi"
+    ],
+    "meanings": [
+      "branch",
+      "branch radical (no. 65)",
+      "support",
+      "sustain"
+    ],
+    "stroke_count": 4
+  },
+  {
+    "kanji": "産",
+    "jlpt_level": "N3",
+    "unit": "N3-U4",
+    "order_index": 51,
+    "readings": {
+      "on": [
+        "サン"
+      ],
+      "kun": [
+        "う.まれる",
+        "う.む",
+        "うぶ-",
+        "む.す"
+      ]
+    },
+    "romaji_readings": [
+      "san",
+      "umareru",
+      "umu",
+      "ubu",
+      "musu"
+    ],
+    "primary_romaji": [
+      "san"
+    ],
+    "meanings": [
+      "bear",
+      "childbirth",
+      "give birth",
+      "native",
+      "products",
+      "property",
+      "yield"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "点",
+    "jlpt_level": "N3",
+    "unit": "N3-U4",
+    "order_index": 52,
+    "readings": {
+      "on": [
+        "テン"
+      ],
+      "kun": [
+        "さ.す",
+        "た.てる",
+        "つ.く",
+        "つ.ける",
+        "とぼ.す",
+        "とも.す",
+        "ぼち"
+      ]
+    },
+    "romaji_readings": [
+      "ten",
+      "sasu",
+      "tateru",
+      "tsuku",
+      "tsukeru",
+      "tobosu",
+      "tomosu",
+      "bochi"
+    ],
+    "primary_romaji": [
+      "ten"
+    ],
+    "meanings": [
+      "decimal point",
+      "mark",
+      "point",
+      "speck",
+      "spot"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "報",
+    "jlpt_level": "N3",
+    "unit": "N3-U4",
+    "order_index": 53,
+    "readings": {
+      "on": [
+        "ホウ"
+      ],
+      "kun": [
+        "むく.いる"
+      ]
+    },
+    "romaji_readings": [
+      "hou",
+      "mukuiru"
+    ],
+    "primary_romaji": [
+      "hou"
+    ],
+    "meanings": [
+      "news",
+      "report",
+      "retribution",
+      "reward"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "済",
+    "jlpt_level": "N3",
+    "unit": "N3-U4",
+    "order_index": 54,
+    "readings": {
+      "on": [
+        "サイ",
+        "セイ"
+      ],
+      "kun": [
+        "-す.ます",
+        "-ず.み",
+        "-ずみ",
+        "す.ます",
+        "す.まない",
+        "す.む",
+        "すく.う",
+        "な.す",
+        "わた.る",
+        "わたし"
+      ]
+    },
+    "romaji_readings": [
+      "sai",
+      "sei",
+      "sumasu",
+      "zumi",
+      "sumanai",
+      "sumu",
+      "sukuu",
+      "nasu",
+      "wataru",
+      "watashi"
+    ],
+    "primary_romaji": [
+      "wataru"
+    ],
+    "meanings": [
+      "come to an end",
+      "excusable",
+      "finish",
+      "need not",
+      "relieve (burden)",
+      "settle (debt, etc.)"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "活",
+    "jlpt_level": "N3",
+    "unit": "N3-U4",
+    "order_index": 55,
+    "readings": {
+      "on": [
+        "カツ"
+      ],
+      "kun": [
+        "い.かす",
+        "い.きる",
+        "い.ける"
+      ]
+    },
+    "romaji_readings": [
+      "katsu",
+      "ikasu",
+      "ikiru",
+      "ikeru"
+    ],
+    "primary_romaji": [
+      "katsu"
+    ],
+    "meanings": [
+      "being helped",
+      "lively",
+      "living",
+      "resuscitation"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "原",
+    "jlpt_level": "N3",
+    "unit": "N3-U4",
+    "order_index": 56,
+    "readings": {
+      "on": [
+        "ゲン"
+      ],
+      "kun": [
+        "はら"
+      ]
+    },
+    "romaji_readings": [
+      "gen",
+      "hara"
+    ],
+    "primary_romaji": [
+      "gen",
+      "hara"
+    ],
+    "meanings": [
+      "field",
+      "meadow",
+      "original",
+      "plain",
+      "prairie",
+      "primitive",
+      "tundra",
+      "wilderness"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "共",
+    "jlpt_level": "N3",
+    "unit": "N3-U4",
+    "order_index": 57,
+    "readings": {
+      "on": [
+        "キョウ"
+      ],
+      "kun": [
+        "-ども",
+        "とも",
+        "とも.に"
+      ]
+    },
+    "romaji_readings": [
+      "kyou",
+      "domo",
+      "tomo",
+      "tomoni"
+    ],
+    "primary_romaji": [
+      "tomo",
+      "domo"
+    ],
+    "meanings": [
+      "alike",
+      "all",
+      "and",
+      "both",
+      "neither",
+      "together",
+      "with"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "得",
+    "jlpt_level": "N3",
+    "unit": "N3-U4",
+    "order_index": 58,
+    "readings": {
+      "on": [
+        "トク"
+      ],
+      "kun": [
+        "う.る",
+        "え.る"
+      ]
+    },
+    "romaji_readings": [
+      "toku",
+      "uru",
+      "eru"
+    ],
+    "primary_romaji": [
+      "toku"
+    ],
+    "meanings": [
+      "able to",
+      "acquire",
+      "advantage",
+      "benefit",
+      "can",
+      "earn",
+      "find",
+      "gain",
+      "get",
+      "may",
+      "profit"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "解",
+    "jlpt_level": "N3",
+    "unit": "N3-U4",
+    "order_index": 59,
+    "readings": {
+      "on": [
+        "カイ",
+        "ゲ"
+      ],
+      "kun": [
+        "さと.る",
+        "と.かす",
+        "と.く",
+        "と.ける",
+        "ほど.く",
+        "ほど.ける",
+        "わか.る"
+      ]
+    },
+    "romaji_readings": [
+      "kai",
+      "ge",
+      "satoru",
+      "tokasu",
+      "toku",
+      "tokeru",
+      "hodoku",
+      "hodokeru",
+      "wakaru"
+    ],
+    "primary_romaji": [
+      "kai"
+    ],
+    "meanings": [
+      "absolve",
+      "answer",
+      "cancel",
+      "explain",
+      "explanation",
+      "key",
+      "minute",
+      "notes",
+      "solve",
+      "understanding",
+      "undo",
+      "unravel",
+      "untie"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "交",
+    "jlpt_level": "N3",
+    "unit": "N3-U5",
+    "order_index": 60,
+    "readings": {
+      "on": [
+        "コウ"
+      ],
+      "kun": [
+        "-か.う",
+        "か.わす",
+        "かわ.す",
+        "こもごも",
+        "ま.ざる",
+        "ま.じる",
+        "ま.ぜる",
+        "まじ.える",
+        "まじ.る",
+        "まじ.わる"
+      ]
+    },
+    "romaji_readings": [
+      "kou",
+      "kau",
+      "kawasu",
+      "komogomo",
+      "mazaru",
+      "majiru",
+      "mazeru",
+      "majieru",
+      "majiwaru"
+    ],
+    "primary_romaji": [
+      "kou"
+    ],
+    "meanings": [
+      "association",
+      "coming & going",
+      "mingle",
+      "mixing"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "資",
+    "jlpt_level": "N3",
+    "unit": "N3-U5",
+    "order_index": 61,
+    "readings": {
+      "on": [
+        "シ"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "shi"
+    ],
+    "primary_romaji": [
+      "shi"
+    ],
+    "meanings": [
+      "assets",
+      "be conducive to",
+      "capital",
+      "contribute to",
+      "data",
+      "funds",
+      "resources"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "予",
+    "jlpt_level": "N3",
+    "unit": "N3-U5",
+    "order_index": 62,
+    "readings": {
+      "on": [
+        "シャ",
+        "ヨ"
+      ],
+      "kun": [
+        "あらかじ.め"
+      ]
+    },
+    "romaji_readings": [
+      "sha",
+      "yo",
+      "arakajime"
+    ],
+    "primary_romaji": [
+      "sha",
+      "arakajime"
+    ],
+    "meanings": [
+      "I",
+      "beforehand",
+      "myself",
+      "previous"
+    ],
+    "stroke_count": 4
+  },
+  {
+    "kanji": "向",
+    "jlpt_level": "N3",
+    "unit": "N3-U5",
+    "order_index": 63,
+    "readings": {
+      "on": [
+        "コウ"
+      ],
+      "kun": [
+        "-む.き",
+        "-む.け",
+        "む.い",
+        "む.かい",
+        "む.かう",
+        "む.く",
+        "む.ける",
+        "む.こう",
+        "む.こう-",
+        "むか.い",
+        "むこ"
+      ]
+    },
+    "romaji_readings": [
+      "kou",
+      "muki",
+      "muke",
+      "mui",
+      "mukai",
+      "mukau",
+      "muku",
+      "mukeru",
+      "mukou",
+      "muko"
+    ],
+    "primary_romaji": [
+      "kou",
+      "mukai"
+    ],
+    "meanings": [
+      "approach",
+      "beyond",
+      "confront",
+      "defy",
+      "facing",
+      "tend toward",
+      "yonder"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "際",
+    "jlpt_level": "N3",
+    "unit": "N3-U5",
+    "order_index": 64,
+    "readings": {
+      "on": [
+        "サイ"
+      ],
+      "kun": [
+        "-ぎわ",
+        "きわ"
+      ]
+    },
+    "romaji_readings": [
+      "sai",
+      "giwa",
+      "kiwa"
+    ],
+    "primary_romaji": [
+      "sai",
+      "kiwa"
+    ],
+    "meanings": [
+      "adventurous",
+      "dangerous",
+      "edge",
+      "indecent",
+      "occasion",
+      "side",
+      "time",
+      "verge",
+      "when"
+    ],
+    "stroke_count": 14
+  },
+  {
+    "kanji": "勝",
+    "jlpt_level": "N3",
+    "unit": "N3-U5",
+    "order_index": 65,
+    "readings": {
+      "on": [
+        "ショウ"
+      ],
+      "kun": [
+        "-が.ち",
+        "か.つ",
+        "かつ",
+        "すぐ.れる",
+        "まさ.る"
+      ]
+    },
+    "romaji_readings": [
+      "shou",
+      "gachi",
+      "katsu",
+      "sugureru",
+      "masaru"
+    ],
+    "primary_romaji": [
+      "shou",
+      "masaru"
+    ],
+    "meanings": [
+      "excel",
+      "prevail",
+      "victory",
+      "win"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "面",
+    "jlpt_level": "N3",
+    "unit": "N3-U5",
+    "order_index": 66,
+    "readings": {
+      "on": [
+        "ベン",
+        "メン"
+      ],
+      "kun": [
+        "おも",
+        "おもて",
+        "つら"
+      ]
+    },
+    "romaji_readings": [
+      "ben",
+      "men",
+      "omo",
+      "omote",
+      "tsura"
+    ],
+    "primary_romaji": [
+      "men",
+      "tsura"
+    ],
+    "meanings": [
+      "face",
+      "features",
+      "mask",
+      "surface"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "告",
+    "jlpt_level": "N3",
+    "unit": "N3-U5",
+    "order_index": 67,
+    "readings": {
+      "on": [
+        "コク"
+      ],
+      "kun": [
+        "つ.げる"
+      ]
+    },
+    "romaji_readings": [
+      "koku",
+      "tsugeru"
+    ],
+    "primary_romaji": [
+      "koku",
+      "tsugeru"
+    ],
+    "meanings": [
+      "announce",
+      "inform",
+      "revelation",
+      "tell"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "反",
+    "jlpt_level": "N3",
+    "unit": "N3-U5",
+    "order_index": 68,
+    "readings": {
+      "on": [
+        "タン",
+        "ハン",
+        "ホ",
+        "ホン"
+      ],
+      "kun": [
+        "-かえ.る",
+        "かえ.す",
+        "かえ.る",
+        "そ.らす",
+        "そ.る"
+      ]
+    },
+    "romaji_readings": [
+      "tan",
+      "han",
+      "ho",
+      "hon",
+      "kaeru",
+      "kaesu",
+      "sorasu",
+      "soru"
+    ],
+    "primary_romaji": [
+      "han",
+      "tan"
+    ],
+    "meanings": [
+      "anti-"
+    ],
+    "stroke_count": 4
+  },
+  {
+    "kanji": "判",
+    "jlpt_level": "N3",
+    "unit": "N3-U5",
+    "order_index": 69,
+    "readings": {
+      "on": [
+        "ハン",
+        "バン"
+      ],
+      "kun": [
+        "わか.る"
+      ]
+    },
+    "romaji_readings": [
+      "han",
+      "ban",
+      "wakaru"
+    ],
+    "primary_romaji": [
+      "han",
+      "ban"
+    ],
+    "meanings": [
+      "judgement",
+      "judgment",
+      "seal",
+      "signature",
+      "stamp"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "認",
+    "jlpt_level": "N3",
+    "unit": "N3-U5",
+    "order_index": 70,
+    "readings": {
+      "on": [
+        "ニン"
+      ],
+      "kun": [
+        "したた.める",
+        "みと.める"
+      ]
+    },
+    "romaji_readings": [
+      "nin",
+      "shitatameru",
+      "mitomeru"
+    ],
+    "primary_romaji": [
+      "nin"
+    ],
+    "meanings": [
+      "acknowledge",
+      "appreciate",
+      "believe",
+      "discern",
+      "recognize",
+      "witness"
+    ],
+    "stroke_count": 14
+  },
+  {
+    "kanji": "参",
+    "jlpt_level": "N3",
+    "unit": "N3-U5",
+    "order_index": 71,
+    "readings": {
+      "on": [
+        "サン",
+        "シン"
+      ],
+      "kun": [
+        "まい-",
+        "まい.る",
+        "まじわる",
+        "みつ"
+      ]
+    },
+    "romaji_readings": [
+      "san",
+      "shin",
+      "mai",
+      "mairu",
+      "majiwaru",
+      "mitsu"
+    ],
+    "primary_romaji": [
+      "san"
+    ],
+    "meanings": [
+      "be defeated",
+      "be madly in love",
+      "coming",
+      "die",
+      "going",
+      "nonplussed",
+      "participate",
+      "take part in",
+      "three (in documents)",
+      "visit",
+      "visiting"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "利",
+    "jlpt_level": "N3",
+    "unit": "N3-U5",
+    "order_index": 72,
+    "readings": {
+      "on": [
+        "リ"
+      ],
+      "kun": [
+        "き.く"
+      ]
+    },
+    "romaji_readings": [
+      "ri",
+      "kiku"
+    ],
+    "primary_romaji": [
+      "ri"
+    ],
+    "meanings": [
+      "advantage",
+      "benefit",
+      "profit"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "組",
+    "jlpt_level": "N3",
+    "unit": "N3-U5",
+    "order_index": 73,
+    "readings": {
+      "on": [
+        "ソ"
+      ],
+      "kun": [
+        "-ぐみ",
+        "く.む",
+        "くみ"
+      ]
+    },
+    "romaji_readings": [
+      "so",
+      "gumi",
+      "kumu",
+      "kumi"
+    ],
+    "primary_romaji": [
+      "kumi",
+      "gumi"
+    ],
+    "meanings": [
+      "assemble",
+      "association",
+      "braid",
+      "construct",
+      "cooperate",
+      "grapple",
+      "plait",
+      "unite"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "信",
+    "jlpt_level": "N3",
+    "unit": "N3-U5",
+    "order_index": 74,
+    "readings": {
+      "on": [
+        "シン"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "shin"
+    ],
+    "primary_romaji": [
+      "shin"
+    ],
+    "meanings": [
+      "faith",
+      "fidelity",
+      "trust",
+      "truth"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "在",
+    "jlpt_level": "N3",
+    "unit": "N3-U6",
+    "order_index": 75,
+    "readings": {
+      "on": [
+        "ザイ"
+      ],
+      "kun": [
+        "あ.る"
+      ]
+    },
+    "romaji_readings": [
+      "zai",
+      "aru"
+    ],
+    "primary_romaji": [
+      "zai"
+    ],
+    "meanings": [
+      "exist",
+      "located in",
+      "outskirts",
+      "suburbs"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "件",
+    "jlpt_level": "N3",
+    "unit": "N3-U6",
+    "order_index": 76,
+    "readings": {
+      "on": [
+        "ケン"
+      ],
+      "kun": [
+        "くだん"
+      ]
+    },
+    "romaji_readings": [
+      "ken",
+      "kudan"
+    ],
+    "primary_romaji": [
+      "ken",
+      "kudan"
+    ],
+    "meanings": [
+      "affair",
+      "case",
+      "item",
+      "matter"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "側",
+    "jlpt_level": "N3",
+    "unit": "N3-U6",
+    "order_index": 77,
+    "readings": {
+      "on": [
+        "ソク"
+      ],
+      "kun": [
+        "かわ",
+        "がわ",
+        "そば"
+      ]
+    },
+    "romaji_readings": [
+      "soku",
+      "kawa",
+      "gawa",
+      "soba"
+    ],
+    "primary_romaji": [
+      "gawa",
+      "soba"
+    ],
+    "meanings": [
+      "lean",
+      "oppose",
+      "regret",
+      "side"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "任",
+    "jlpt_level": "N3",
+    "unit": "N3-U6",
+    "order_index": 78,
+    "readings": {
+      "on": [
+        "ニン"
+      ],
+      "kun": [
+        "まか.す",
+        "まか.せる"
+      ]
+    },
+    "romaji_readings": [
+      "nin",
+      "makasu",
+      "makaseru"
+    ],
+    "primary_romaji": [
+      "nin"
+    ],
+    "meanings": [
+      "appoint",
+      "duty",
+      "entrust to",
+      "responsibility",
+      "term"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "引",
+    "jlpt_level": "N3",
+    "unit": "N3-U6",
+    "order_index": 79,
+    "readings": {
+      "on": [
+        "イン"
+      ],
+      "kun": [
+        "ひ.く",
+        "ひ.ける"
+      ]
+    },
+    "romaji_readings": [
+      "in",
+      "hiku",
+      "hikeru"
+    ],
+    "primary_romaji": [
+      "in",
+      "hiku"
+    ],
+    "meanings": [
+      "admit",
+      "install",
+      "jerk",
+      "pull",
+      "quote",
+      "refer to",
+      "tug"
+    ],
+    "stroke_count": 4
+  },
+  {
+    "kanji": "求",
+    "jlpt_level": "N3",
+    "unit": "N3-U6",
+    "order_index": 80,
+    "readings": {
+      "on": [
+        "キュウ",
+        "グ"
+      ],
+      "kun": [
+        "もと.める"
+      ]
+    },
+    "romaji_readings": [
+      "kyuu",
+      "gu",
+      "motomeru"
+    ],
+    "primary_romaji": [
+      "kyuu",
+      "gu"
+    ],
+    "meanings": [
+      "demand",
+      "request",
+      "require",
+      "want",
+      "wish for"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "所",
+    "jlpt_level": "N3",
+    "unit": "N3-U6",
+    "order_index": 81,
+    "readings": {
+      "on": [
+        "ショ"
+      ],
+      "kun": [
+        "-ところ",
+        "とこ",
+        "ところ",
+        "どころ"
+      ]
+    },
+    "romaji_readings": [
+      "sho",
+      "tokoro",
+      "toko",
+      "dokoro"
+    ],
+    "primary_romaji": [
+      "tokoro",
+      "sho"
+    ],
+    "meanings": [
+      "extent",
+      "place"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "次",
+    "jlpt_level": "N3",
+    "unit": "N3-U6",
+    "order_index": 82,
+    "readings": {
+      "on": [
+        "シ",
+        "ジ"
+      ],
+      "kun": [
+        "つ.ぐ",
+        "つぎ"
+      ]
+    },
+    "romaji_readings": [
+      "shi",
+      "ji",
+      "tsugu",
+      "tsugi"
+    ],
+    "primary_romaji": [
+      "tsugi",
+      "ji"
+    ],
+    "meanings": [
+      "next",
+      "order",
+      "sequence"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "昨",
+    "jlpt_level": "N3",
+    "unit": "N3-U6",
+    "order_index": 83,
+    "readings": {
+      "on": [
+        "サク"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "saku"
+    ],
+    "primary_romaji": [
+      "saku"
+    ],
+    "meanings": [
+      "previous",
+      "yesterday"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "論",
+    "jlpt_level": "N3",
+    "unit": "N3-U6",
+    "order_index": 84,
+    "readings": {
+      "on": [
+        "ロン"
+      ],
+      "kun": [
+        "あげつら.う"
+      ]
+    },
+    "romaji_readings": [
+      "ron",
+      "agetsurau"
+    ],
+    "primary_romaji": [
+      "ron"
+    ],
+    "meanings": [
+      "argument",
+      "discourse"
+    ],
+    "stroke_count": 15
+  },
+  {
+    "kanji": "官",
+    "jlpt_level": "N3",
+    "unit": "N3-U6",
+    "order_index": 85,
+    "readings": {
+      "on": [
+        "カン"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "kan"
+    ],
+    "primary_romaji": [
+      "kan"
+    ],
+    "meanings": [
+      "bureaucrat",
+      "organ",
+      "the government"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "増",
+    "jlpt_level": "N3",
+    "unit": "N3-U6",
+    "order_index": 86,
+    "readings": {
+      "on": [
+        "ゾウ"
+      ],
+      "kun": [
+        "ふ.える",
+        "ふ.やす",
+        "ま.し",
+        "ま.す"
+      ]
+    },
+    "romaji_readings": [
+      "zou",
+      "fueru",
+      "fuyasu",
+      "mashi",
+      "masu"
+    ],
+    "primary_romaji": [
+      "zou"
+    ],
+    "meanings": [
+      "add",
+      "augment",
+      "gain",
+      "increase",
+      "promote"
+    ],
+    "stroke_count": 14
+  },
+  {
+    "kanji": "係",
+    "jlpt_level": "N3",
+    "unit": "N3-U6",
+    "order_index": 87,
+    "readings": {
+      "on": [
+        "ケイ"
+      ],
+      "kun": [
+        "-がかり",
+        "かか.る",
+        "かか.わる",
+        "かかり"
+      ]
+    },
+    "romaji_readings": [
+      "kei",
+      "gakari",
+      "kakaru",
+      "kakawaru",
+      "kakari"
+    ],
+    "primary_romaji": [
+      "kakari",
+      "gakari"
+    ],
+    "meanings": [
+      "concern oneself",
+      "connection",
+      "duty",
+      "person in charge"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "感",
+    "jlpt_level": "N3",
+    "unit": "N3-U6",
+    "order_index": 88,
+    "readings": {
+      "on": [
+        "カン"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "kan"
+    ],
+    "primary_romaji": [
+      "kan"
+    ],
+    "meanings": [
+      "emotion",
+      "feeling",
+      "sensation"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "情",
+    "jlpt_level": "N3",
+    "unit": "N3-U6",
+    "order_index": 89,
+    "readings": {
+      "on": [
+        "ジョウ",
+        "セイ"
+      ],
+      "kun": [
+        "なさ.け"
+      ]
+    },
+    "romaji_readings": [
+      "jou",
+      "sei",
+      "nasake"
+    ],
+    "primary_romaji": [
+      "jou"
+    ],
+    "meanings": [
+      "circumstances",
+      "emotion",
+      "facts",
+      "feelings",
+      "passion",
+      "sympathy"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "投",
+    "jlpt_level": "N3",
+    "unit": "N3-U7",
+    "order_index": 90,
+    "readings": {
+      "on": [
+        "トウ"
+      ],
+      "kun": [
+        "-な.げ",
+        "な.げる"
+      ]
+    },
+    "romaji_readings": [
+      "tou",
+      "nage",
+      "nageru"
+    ],
+    "primary_romaji": [
+      "tou"
+    ],
+    "meanings": [
+      "abandon",
+      "discard",
+      "give up",
+      "hurl",
+      "invest in",
+      "join",
+      "launch into",
+      "sell at a loss",
+      "throw"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "示",
+    "jlpt_level": "N3",
+    "unit": "N3-U7",
+    "order_index": 91,
+    "readings": {
+      "on": [
+        "シ",
+        "ジ"
+      ],
+      "kun": [
+        "しめ.す"
+      ]
+    },
+    "romaji_readings": [
+      "shi",
+      "ji",
+      "shimesu"
+    ],
+    "primary_romaji": [
+      "shi",
+      "shimesu"
+    ],
+    "meanings": [
+      "display",
+      "express",
+      "indicate",
+      "point out",
+      "show"
+    ],
+    "stroke_count": 5
+  },
+  {
+    "kanji": "変",
+    "jlpt_level": "N3",
+    "unit": "N3-U7",
+    "order_index": 92,
+    "readings": {
+      "on": [
+        "ヘン"
+      ],
+      "kun": [
+        "か.える",
+        "か.わり",
+        "か.わる"
+      ]
+    },
+    "romaji_readings": [
+      "hen",
+      "kaeru",
+      "kawari",
+      "kawaru"
+    ],
+    "primary_romaji": [
+      "hen"
+    ],
+    "meanings": [
+      "change",
+      "strange",
+      "unusual"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "打",
+    "jlpt_level": "N3",
+    "unit": "N3-U7",
+    "order_index": 93,
+    "readings": {
+      "on": [
+        "ダ",
+        "ダース"
+      ],
+      "kun": [
+        "う.ち-",
+        "う.つ",
+        "ぶ.つ"
+      ]
+    },
+    "romaji_readings": [
+      "da",
+      "daasu",
+      "uchi",
+      "utsu",
+      "butsu"
+    ],
+    "primary_romaji": [
+      "da"
+    ],
+    "meanings": [
+      "dozen",
+      "hit",
+      "knock",
+      "pound",
+      "strike"
+    ],
+    "stroke_count": 5
+  },
+  {
+    "kanji": "直",
+    "jlpt_level": "N3",
+    "unit": "N3-U7",
+    "order_index": 94,
+    "readings": {
+      "on": [
+        "ジカ",
+        "ジキ",
+        "チョク"
+      ],
+      "kun": [
+        "-なお.す",
+        "す.ぐ",
+        "ただ.ちに",
+        "なお.き",
+        "なお.す",
+        "なお.る"
+      ]
+    },
+    "romaji_readings": [
+      "jika",
+      "jiki",
+      "choku",
+      "naosu",
+      "sugu",
+      "tadachini",
+      "naoki",
+      "naoru"
+    ],
+    "primary_romaji": [
+      "jika",
+      "jiki"
+    ],
+    "meanings": [
+      "fix",
+      "frankness",
+      "honesty",
+      "repair",
+      "straightaway"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "両",
+    "jlpt_level": "N3",
+    "unit": "N3-U7",
+    "order_index": 95,
+    "readings": {
+      "on": [
+        "リョウ"
+      ],
+      "kun": [
+        "てる",
+        "ふたつ"
+      ]
+    },
+    "romaji_readings": [
+      "ryou",
+      "teru",
+      "futatsu"
+    ],
+    "primary_romaji": [
+      "ryou"
+    ],
+    "meanings": [
+      "both",
+      "counter for carriages (e.g., in a train)",
+      "old Japanese coin",
+      "two"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "式",
+    "jlpt_level": "N3",
+    "unit": "N3-U7",
+    "order_index": 96,
+    "readings": {
+      "on": [
+        "シキ"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "shiki"
+    ],
+    "primary_romaji": [
+      "shiki"
+    ],
+    "meanings": [
+      "ceremony",
+      "expression",
+      "form",
+      "function",
+      "method",
+      "rite",
+      "style",
+      "system"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "確",
+    "jlpt_level": "N3",
+    "unit": "N3-U7",
+    "order_index": 97,
+    "readings": {
+      "on": [
+        "カク",
+        "コウ"
+      ],
+      "kun": [
+        "たし.か",
+        "たし.かめる"
+      ]
+    },
+    "romaji_readings": [
+      "kaku",
+      "kou",
+      "tashika",
+      "tashikameru"
+    ],
+    "primary_romaji": [
+      "kaku"
+    ],
+    "meanings": [
+      "assurance",
+      "clear",
+      "confirm",
+      "evident",
+      "firm",
+      "hard",
+      "solid",
+      "tight"
+    ],
+    "stroke_count": 15
+  },
+  {
+    "kanji": "果",
+    "jlpt_level": "N3",
+    "unit": "N3-U7",
+    "order_index": 98,
+    "readings": {
+      "on": [
+        "カ"
+      ],
+      "kun": [
+        "-は.たす",
+        "-は.てる",
+        "は.たす",
+        "は.て",
+        "は.てる",
+        "はた.す"
+      ]
+    },
+    "romaji_readings": [
+      "ka",
+      "hatasu",
+      "hateru",
+      "hate"
+    ],
+    "primary_romaji": [
+      "ka"
+    ],
+    "meanings": [
+      "achieve",
+      "carry out",
+      "complete",
+      "end",
+      "finish",
+      "fruit",
+      "reward",
+      "succeed"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "容",
+    "jlpt_level": "N3",
+    "unit": "N3-U7",
+    "order_index": 99,
+    "readings": {
+      "on": [
+        "ヨウ"
+      ],
+      "kun": [
+        "い.れる"
+      ]
+    },
+    "romaji_readings": [
+      "you",
+      "ireru"
+    ],
+    "primary_romaji": [
+      "you",
+      "ireru"
+    ],
+    "meanings": [
+      "contain",
+      "form",
+      "looks"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "必",
+    "jlpt_level": "N3",
+    "unit": "N3-U7",
+    "order_index": 100,
+    "readings": {
+      "on": [
+        "ヒツ"
+      ],
+      "kun": [
+        "かなら.ず"
+      ]
+    },
+    "romaji_readings": [
+      "hitsu",
+      "kanarazu"
+    ],
+    "primary_romaji": [
+      "hitsu",
+      "kanarazu"
+    ],
+    "meanings": [
+      "certain",
+      "inevitable",
+      "invariably"
+    ],
+    "stroke_count": 5
+  },
+  {
+    "kanji": "演",
+    "jlpt_level": "N3",
+    "unit": "N3-U7",
+    "order_index": 101,
+    "readings": {
+      "on": [
+        "エン"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "en"
+    ],
+    "primary_romaji": [
+      "en"
+    ],
+    "meanings": [
+      "act",
+      "performance",
+      "play",
+      "render",
+      "stage"
+    ],
+    "stroke_count": 14
+  },
+  {
+    "kanji": "歳",
+    "jlpt_level": "N3",
+    "unit": "N3-U7",
+    "order_index": 102,
+    "readings": {
+      "on": [
+        "サイ",
+        "セイ"
+      ],
+      "kun": [
+        "とし",
+        "とせ",
+        "よわい"
+      ]
+    },
+    "romaji_readings": [
+      "sai",
+      "sei",
+      "toshi",
+      "tose",
+      "yowai"
+    ],
+    "primary_romaji": [
+      "sai"
+    ],
+    "meanings": [
+      "age",
+      "occasion",
+      "opportunity",
+      "year-end"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "争",
+    "jlpt_level": "N3",
+    "unit": "N3-U7",
+    "order_index": 103,
+    "readings": {
+      "on": [
+        "ソウ"
+      ],
+      "kun": [
+        "あらそ.う",
+        "いか.でか"
+      ]
+    },
+    "romaji_readings": [
+      "sou",
+      "arasou",
+      "ikadeka"
+    ],
+    "primary_romaji": [
+      "sou",
+      "arasou"
+    ],
+    "meanings": [
+      "argue",
+      "contend",
+      "dispute"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "談",
+    "jlpt_level": "N3",
+    "unit": "N3-U7",
+    "order_index": 104,
+    "readings": {
+      "on": [
+        "ダン"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "dan"
+    ],
+    "primary_romaji": [
+      "dan"
+    ],
+    "meanings": [
+      "discuss",
+      "talk"
+    ],
+    "stroke_count": 15
+  },
+  {
+    "kanji": "能",
+    "jlpt_level": "N3",
+    "unit": "N3-U8",
+    "order_index": 105,
+    "readings": {
+      "on": [
+        "ノウ"
+      ],
+      "kun": [
+        "あた.う",
+        "よ.く"
+      ]
+    },
+    "romaji_readings": [
+      "nou",
+      "atau",
+      "yoku"
+    ],
+    "primary_romaji": [
+      "nou"
+    ],
+    "meanings": [
+      "ability",
+      "capacity",
+      "skill",
+      "talent"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "位",
+    "jlpt_level": "N3",
+    "unit": "N3-U8",
+    "order_index": 106,
+    "readings": {
+      "on": [
+        "イ"
+      ],
+      "kun": [
+        "くらい",
+        "ぐらい"
+      ]
+    },
+    "romaji_readings": [
+      "i",
+      "kurai",
+      "gurai"
+    ],
+    "primary_romaji": [
+      "i",
+      "kurai"
+    ],
+    "meanings": [
+      "about",
+      "crown",
+      "grade",
+      "rank",
+      "some",
+      "throne"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "置",
+    "jlpt_level": "N3",
+    "unit": "N3-U8",
+    "order_index": 107,
+    "readings": {
+      "on": [
+        "チ"
+      ],
+      "kun": [
+        "-お.き",
+        "お.く"
+      ]
+    },
+    "romaji_readings": [
+      "chi",
+      "oki",
+      "oku"
+    ],
+    "primary_romaji": [
+      "chi",
+      "oki"
+    ],
+    "meanings": [
+      "deposit",
+      "employ",
+      "keep",
+      "leave behind",
+      "pawn",
+      "placement",
+      "put",
+      "set"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "流",
+    "jlpt_level": "N3",
+    "unit": "N3-U8",
+    "order_index": 108,
+    "readings": {
+      "on": [
+        "リュウ",
+        "ル"
+      ],
+      "kun": [
+        "-なが.す",
+        "なが.す",
+        "なが.れ",
+        "なが.れる"
+      ]
+    },
+    "romaji_readings": [
+      "ryuu",
+      "ru",
+      "nagasu",
+      "nagare",
+      "nagareru"
+    ],
+    "primary_romaji": [
+      "ryuu",
+      "nagare"
+    ],
+    "meanings": [
+      "a sink",
+      "current",
+      "flow",
+      "forfeit"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "格",
+    "jlpt_level": "N3",
+    "unit": "N3-U8",
+    "order_index": 109,
+    "readings": {
+      "on": [
+        "カク",
+        "キャク",
+        "コウ",
+        "ゴウ"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "kaku",
+      "kyaku",
+      "kou",
+      "gou"
+    ],
+    "primary_romaji": [
+      "kaku"
+    ],
+    "meanings": [
+      "capacity",
+      "case (law, grammar)",
+      "character",
+      "rank",
+      "status"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "疑",
+    "jlpt_level": "N3",
+    "unit": "N3-U8",
+    "order_index": 110,
+    "readings": {
+      "on": [
+        "ギ"
+      ],
+      "kun": [
+        "うたが.う"
+      ]
+    },
+    "romaji_readings": [
+      "gi",
+      "utagau"
+    ],
+    "primary_romaji": [
+      "gi"
+    ],
+    "meanings": [
+      "be suspicious",
+      "distrust",
+      "doubt",
+      "question"
+    ],
+    "stroke_count": 14
+  },
+  {
+    "kanji": "過",
+    "jlpt_level": "N3",
+    "unit": "N3-U8",
+    "order_index": 111,
+    "readings": {
+      "on": [
+        "カ"
+      ],
+      "kun": [
+        "あやま.ち",
+        "あやま.つ",
+        "す.ぎる",
+        "す.ごす",
+        "よ.ぎる",
+        "よぎ.る"
+      ]
+    },
+    "romaji_readings": [
+      "ka",
+      "ayamachi",
+      "ayamatsu",
+      "sugiru",
+      "sugosu",
+      "yogiru"
+    ],
+    "primary_romaji": [
+      "ka"
+    ],
+    "meanings": [
+      "error",
+      "exceed",
+      "go beyond",
+      "overdo"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "局",
+    "jlpt_level": "N3",
+    "unit": "N3-U8",
+    "order_index": 112,
+    "readings": {
+      "on": [
+        "キョク"
+      ],
+      "kun": [
+        "つぼね"
+      ]
+    },
+    "romaji_readings": [
+      "kyoku",
+      "tsubone"
+    ],
+    "primary_romaji": [
+      "kyoku",
+      "tsubone"
+    ],
+    "meanings": [
+      "affair",
+      "board",
+      "bureau",
+      "conclusion",
+      "court lady",
+      "her apartment",
+      "lady-in-waiting",
+      "office"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "放",
+    "jlpt_level": "N3",
+    "unit": "N3-U8",
+    "order_index": 113,
+    "readings": {
+      "on": [
+        "ホウ"
+      ],
+      "kun": [
+        "-っぱな.し",
+        "こ.く",
+        "はな.す",
+        "はな.つ",
+        "はな.れる",
+        "ほう.る"
+      ]
+    },
+    "romaji_readings": [
+      "hou",
+      "ppanashi",
+      "koku",
+      "hanasu",
+      "hanatsu",
+      "hanareru",
+      "houru"
+    ],
+    "primary_romaji": [
+      "hou",
+      "ppanashi"
+    ],
+    "meanings": [
+      "banish",
+      "emit",
+      "fire",
+      "liberate",
+      "release",
+      "set free",
+      "shoot"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "常",
+    "jlpt_level": "N3",
+    "unit": "N3-U8",
+    "order_index": 114,
+    "readings": {
+      "on": [
+        "ジョウ"
+      ],
+      "kun": [
+        "つね",
+        "とこ-"
+      ]
+    },
+    "romaji_readings": [
+      "jou",
+      "tsune",
+      "toko"
+    ],
+    "primary_romaji": [
+      "tsune"
+    ],
+    "meanings": [
+      "always",
+      "common",
+      "continually",
+      "long-lasting",
+      "normal",
+      "ordinary",
+      "regular",
+      "usual"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "状",
+    "jlpt_level": "N3",
+    "unit": "N3-U8",
+    "order_index": 115,
+    "readings": {
+      "on": [
+        "ジョウ"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "jou"
+    ],
+    "primary_romaji": [
+      "jou"
+    ],
+    "meanings": [
+      "appearance",
+      "circumstances",
+      "conditions",
+      "form",
+      "status quo"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "球",
+    "jlpt_level": "N3",
+    "unit": "N3-U8",
+    "order_index": 116,
+    "readings": {
+      "on": [
+        "キュウ"
+      ],
+      "kun": [
+        "たま"
+      ]
+    },
+    "romaji_readings": [
+      "kyuu",
+      "tama"
+    ],
+    "primary_romaji": [
+      "kyuu"
+    ],
+    "meanings": [
+      "ball",
+      "sphere"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "職",
+    "jlpt_level": "N3",
+    "unit": "N3-U8",
+    "order_index": 117,
+    "readings": {
+      "on": [
+        "ショク",
+        "ソク"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "shoku",
+      "soku"
+    ],
+    "primary_romaji": [
+      "shoku"
+    ],
+    "meanings": [
+      "employment",
+      "post",
+      "work"
+    ],
+    "stroke_count": 18
+  },
+  {
+    "kanji": "与",
+    "jlpt_level": "N3",
+    "unit": "N3-U8",
+    "order_index": 118,
+    "readings": {
+      "on": [
+        "ヨ"
+      ],
+      "kun": [
+        "あずか.る",
+        "あた.える",
+        "くみ.する",
+        "ともに"
+      ]
+    },
+    "romaji_readings": [
+      "yo",
+      "azukaru",
+      "ataeru",
+      "kumisuru",
+      "tomoni"
+    ],
+    "primary_romaji": [
+      "yo"
+    ],
+    "meanings": [
+      "award",
+      "bestow",
+      "cause",
+      "gift",
+      "give",
+      "godsend",
+      "impart",
+      "participate in",
+      "provide"
+    ],
+    "stroke_count": 3
+  },
+  {
+    "kanji": "供",
+    "jlpt_level": "N3",
+    "unit": "N3-U8",
+    "order_index": 119,
+    "readings": {
+      "on": [
+        "キョウ",
+        "ク",
+        "クウ",
+        "グ"
+      ],
+      "kun": [
+        "-ども",
+        "そな.える",
+        "とも"
+      ]
+    },
+    "romaji_readings": [
+      "kyou",
+      "ku",
+      "kuu",
+      "gu",
+      "domo",
+      "sonaeru",
+      "tomo"
+    ],
+    "primary_romaji": [
+      "tomo"
+    ],
+    "meanings": [
+      "accompany",
+      "offer",
+      "present",
+      "serve (meal)",
+      "submit"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "役",
+    "jlpt_level": "N3",
+    "unit": "N3-U9",
+    "order_index": 120,
+    "readings": {
+      "on": [
+        "エキ",
+        "ヤク"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "eki",
+      "yaku"
+    ],
+    "primary_romaji": [
+      "yaku"
+    ],
+    "meanings": [
+      "campaign",
+      "drafted labor",
+      "duty",
+      "office",
+      "role",
+      "service",
+      "war"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "構",
+    "jlpt_level": "N3",
+    "unit": "N3-U9",
+    "order_index": 121,
+    "readings": {
+      "on": [
+        "コウ"
+      ],
+      "kun": [
+        "かま.う",
+        "かま.える"
+      ]
+    },
+    "romaji_readings": [
+      "kou",
+      "kamau",
+      "kamaeru"
+    ],
+    "primary_romaji": [
+      "kou",
+      "kamau"
+    ],
+    "meanings": [
+      "appearance",
+      "build",
+      "posture",
+      "set up",
+      "stance"
+    ],
+    "stroke_count": 14
+  },
+  {
+    "kanji": "割",
+    "jlpt_level": "N3",
+    "unit": "N3-U9",
+    "order_index": 122,
+    "readings": {
+      "on": [
+        "カツ"
+      ],
+      "kun": [
+        "さ.く",
+        "わ.り",
+        "わ.る",
+        "わ.れる",
+        "わり"
+      ]
+    },
+    "romaji_readings": [
+      "katsu",
+      "saku",
+      "wari",
+      "waru",
+      "wareru"
+    ],
+    "primary_romaji": [
+      "wari"
+    ],
+    "meanings": [
+      "comparatively",
+      "cut",
+      "divide",
+      "proportion",
+      "separate",
+      "split"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "費",
+    "jlpt_level": "N3",
+    "unit": "N3-U9",
+    "order_index": 123,
+    "readings": {
+      "on": [
+        "ヒ"
+      ],
+      "kun": [
+        "つい.える",
+        "つい.やす"
+      ]
+    },
+    "romaji_readings": [
+      "hi",
+      "tsuieru",
+      "tsuiyasu"
+    ],
+    "primary_romaji": [
+      "hi"
+    ],
+    "meanings": [
+      "consume",
+      "cost",
+      "expense",
+      "spend",
+      "waste"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "付",
+    "jlpt_level": "N3",
+    "unit": "N3-U9",
+    "order_index": 124,
+    "readings": {
+      "on": [
+        "フ"
+      ],
+      "kun": [
+        "-つ.き",
+        "-つ.け",
+        "-つ.ける",
+        "-つき",
+        "-づ.き",
+        "-づ.く",
+        "-づ.け",
+        "-づ.ける",
+        "-づき",
+        "-づけ",
+        "つ.き",
+        "つ.く",
+        "つ.け",
+        "つ.け-",
+        "つ.ける"
+      ]
+    },
+    "romaji_readings": [
+      "fu",
+      "tsuki",
+      "tsuke",
+      "tsukeru",
+      "zuki",
+      "zuku",
+      "zuke",
+      "zukeru",
+      "tsuku"
+    ],
+    "primary_romaji": [
+      "fu"
+    ],
+    "meanings": [
+      "adhere",
+      "append",
+      "attach",
+      "refer to"
+    ],
+    "stroke_count": 5
+  },
+  {
+    "kanji": "由",
+    "jlpt_level": "N3",
+    "unit": "N3-U9",
+    "order_index": 125,
+    "readings": {
+      "on": [
+        "ユ",
+        "ユイ",
+        "ユウ"
+      ],
+      "kun": [
+        "よ.る",
+        "よし"
+      ]
+    },
+    "romaji_readings": [
+      "yu",
+      "yui",
+      "yuu",
+      "yoru",
+      "yoshi"
+    ],
+    "primary_romaji": [
+      "yoshi"
+    ],
+    "meanings": [
+      "a reason",
+      "wherefore"
+    ],
+    "stroke_count": 5
+  },
+  {
+    "kanji": "説",
+    "jlpt_level": "N3",
+    "unit": "N3-U9",
+    "order_index": 126,
+    "readings": {
+      "on": [
+        "セツ",
+        "ゼイ"
+      ],
+      "kun": [
+        "と.く"
+      ]
+    },
+    "romaji_readings": [
+      "setsu",
+      "zei",
+      "toku"
+    ],
+    "primary_romaji": [
+      "setsu"
+    ],
+    "meanings": [
+      "explanation",
+      "opinion",
+      "rumor",
+      "theory"
+    ],
+    "stroke_count": 14
+  },
+  {
+    "kanji": "難",
+    "jlpt_level": "N3",
+    "unit": "N3-U9",
+    "order_index": 127,
+    "readings": {
+      "on": [
+        "ナン"
+      ],
+      "kun": [
+        "-がた.い",
+        "-にく.い",
+        "かた.い",
+        "むずか.しい",
+        "むつか.しい",
+        "むづか.しい"
+      ]
+    },
+    "romaji_readings": [
+      "nan",
+      "gatai",
+      "nikui",
+      "katai",
+      "muzukashii",
+      "mutsukashii"
+    ],
+    "primary_romaji": [
+      "nan"
+    ],
+    "meanings": [
+      "accident",
+      "defect",
+      "difficult",
+      "impossible",
+      "trouble"
+    ],
+    "stroke_count": 18
+  },
+  {
+    "kanji": "優",
+    "jlpt_level": "N3",
+    "unit": "N3-U9",
+    "order_index": 128,
+    "readings": {
+      "on": [
+        "ウ",
+        "ユウ"
+      ],
+      "kun": [
+        "すぐ.れる",
+        "まさ.る",
+        "やさ.しい"
+      ]
+    },
+    "romaji_readings": [
+      "u",
+      "yuu",
+      "sugureru",
+      "masaru",
+      "yasashii"
+    ],
+    "primary_romaji": [
+      "yuu"
+    ],
+    "meanings": [
+      "actor",
+      "excel",
+      "gentleness",
+      "superiority",
+      "surpass",
+      "tenderness"
+    ],
+    "stroke_count": 17
+  },
+  {
+    "kanji": "夫",
+    "jlpt_level": "N3",
+    "unit": "N3-U9",
+    "order_index": 129,
+    "readings": {
+      "on": [
+        "フ",
+        "フウ",
+        "ブ"
+      ],
+      "kun": [
+        "おっと",
+        "それ"
+      ]
+    },
+    "romaji_readings": [
+      "fu",
+      "fuu",
+      "bu",
+      "otto",
+      "sore"
+    ],
+    "primary_romaji": [
+      "otto",
+      "fu"
+    ],
+    "meanings": [
+      "husband",
+      "man"
+    ],
+    "stroke_count": 4
+  },
+  {
+    "kanji": "収",
+    "jlpt_level": "N3",
+    "unit": "N3-U9",
+    "order_index": 130,
+    "readings": {
+      "on": [
+        "シュウ"
+      ],
+      "kun": [
+        "おさ.まる",
+        "おさ.める"
+      ]
+    },
+    "romaji_readings": [
+      "shuu",
+      "osamaru",
+      "osameru"
+    ],
+    "primary_romaji": [
+      "shuu"
+    ],
+    "meanings": [
+      "income",
+      "obtain",
+      "pay",
+      "reap",
+      "store",
+      "supply"
+    ],
+    "stroke_count": 4
+  },
+  {
+    "kanji": "断",
+    "jlpt_level": "N3",
+    "unit": "N3-U9",
+    "order_index": 131,
+    "readings": {
+      "on": [
+        "ダン"
+      ],
+      "kun": [
+        "ことわ.る",
+        "さだ.める",
+        "た.つ"
+      ]
+    },
+    "romaji_readings": [
+      "dan",
+      "kotowaru",
+      "sadameru",
+      "tatsu"
+    ],
+    "primary_romaji": [
+      "dan"
+    ],
+    "meanings": [
+      "apologize",
+      "cutting",
+      "decision",
+      "decline",
+      "dismiss",
+      "judgement",
+      "prohibit",
+      "refuse",
+      "severance",
+      "warn"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "石",
+    "jlpt_level": "N3",
+    "unit": "N3-U9",
+    "order_index": 132,
+    "readings": {
+      "on": [
+        "コク",
+        "シャク",
+        "セキ"
+      ],
+      "kun": [
+        "いし"
+      ]
+    },
+    "romaji_readings": [
+      "koku",
+      "shaku",
+      "seki",
+      "ishi"
+    ],
+    "primary_romaji": [
+      "ishi",
+      "koku"
+    ],
+    "meanings": [
+      "stone"
+    ],
+    "stroke_count": 5
+  },
+  {
+    "kanji": "違",
+    "jlpt_level": "N3",
+    "unit": "N3-U9",
+    "order_index": 133,
+    "readings": {
+      "on": [
+        "イ"
+      ],
+      "kun": [
+        "-ちが.える",
+        "たが.う",
+        "たが.える",
+        "ちが.い",
+        "ちが.う",
+        "ちが.える"
+      ]
+    },
+    "romaji_readings": [
+      "i",
+      "chigaeru",
+      "tagau",
+      "tagaeru",
+      "chigai",
+      "chigau"
+    ],
+    "primary_romaji": [
+      "i"
+    ],
+    "meanings": [
+      "differ",
+      "difference"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "消",
+    "jlpt_level": "N3",
+    "unit": "N3-U9",
+    "order_index": 134,
+    "readings": {
+      "on": [
+        "ショウ"
+      ],
+      "kun": [
+        "き.える",
+        "け.す"
+      ]
+    },
+    "romaji_readings": [
+      "shou",
+      "kieru",
+      "kesu"
+    ],
+    "primary_romaji": [
+      "shou"
+    ],
+    "meanings": [
+      "blow out",
+      "cancel",
+      "extinguish",
+      "neutralize",
+      "turn off"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "神",
+    "jlpt_level": "N3",
+    "unit": "N3-U10",
+    "order_index": 135,
+    "readings": {
+      "on": [
+        "シン",
+        "ジン"
+      ],
+      "kun": [
+        "かみ",
+        "かん-",
+        "こう-"
+      ]
+    },
+    "romaji_readings": [
+      "shin",
+      "jin",
+      "kami",
+      "kan",
+      "kou"
+    ],
+    "primary_romaji": [
+      "kami",
+      "shin"
+    ],
+    "meanings": [
+      "gods",
+      "mind",
+      "soul"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "番",
+    "jlpt_level": "N3",
+    "unit": "N3-U10",
+    "order_index": 136,
+    "readings": {
+      "on": [
+        "バン"
+      ],
+      "kun": [
+        "つが.い"
+      ]
+    },
+    "romaji_readings": [
+      "ban",
+      "tsugai"
+    ],
+    "primary_romaji": [
+      "ban"
+    ],
+    "meanings": [
+      "number in a series",
+      "turn"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "規",
+    "jlpt_level": "N3",
+    "unit": "N3-U10",
+    "order_index": 137,
+    "readings": {
+      "on": [
+        "キ"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "ki"
+    ],
+    "primary_romaji": [
+      "ki"
+    ],
+    "meanings": [
+      "measure",
+      "standard"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "術",
+    "jlpt_level": "N3",
+    "unit": "N3-U10",
+    "order_index": 138,
+    "readings": {
+      "on": [
+        "ジュツ"
+      ],
+      "kun": [
+        "すべ"
+      ]
+    },
+    "romaji_readings": [
+      "jutsu",
+      "sube"
+    ],
+    "primary_romaji": [
+      "jutsu",
+      "sube"
+    ],
+    "meanings": [
+      "art",
+      "magic",
+      "means",
+      "resources",
+      "skill",
+      "technique",
+      "trick"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "備",
+    "jlpt_level": "N3",
+    "unit": "N3-U10",
+    "order_index": 139,
+    "readings": {
+      "on": [
+        "ビ"
+      ],
+      "kun": [
+        "そな.える",
+        "そな.わる",
+        "つぶさ.に"
+      ]
+    },
+    "romaji_readings": [
+      "bi",
+      "sonaeru",
+      "sonawaru",
+      "tsubusani"
+    ],
+    "primary_romaji": [
+      "bi",
+      "sonaeru"
+    ],
+    "meanings": [
+      "equip",
+      "preparation",
+      "provision"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "宅",
+    "jlpt_level": "N3",
+    "unit": "N3-U10",
+    "order_index": 140,
+    "readings": {
+      "on": [
+        "タク"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "taku"
+    ],
+    "primary_romaji": [
+      "taku"
+    ],
+    "meanings": [
+      "home",
+      "house",
+      "my husband",
+      "our house",
+      "residence"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "害",
+    "jlpt_level": "N3",
+    "unit": "N3-U10",
+    "order_index": 141,
+    "readings": {
+      "on": [
+        "ガイ"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "gai"
+    ],
+    "primary_romaji": [
+      "gai"
+    ],
+    "meanings": [
+      "harm",
+      "injury"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "配",
+    "jlpt_level": "N3",
+    "unit": "N3-U10",
+    "order_index": 142,
+    "readings": {
+      "on": [
+        "ハイ"
+      ],
+      "kun": [
+        "くば.る"
+      ]
+    },
+    "romaji_readings": [
+      "hai",
+      "kubaru"
+    ],
+    "primary_romaji": [
+      "hai"
+    ],
+    "meanings": [
+      "distribute",
+      "exile",
+      "rationing",
+      "spouse"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "警",
+    "jlpt_level": "N3",
+    "unit": "N3-U10",
+    "order_index": 143,
+    "readings": {
+      "on": [
+        "ケイ"
+      ],
+      "kun": [
+        "いまし.める"
+      ]
+    },
+    "romaji_readings": [
+      "kei",
+      "imashimeru"
+    ],
+    "primary_romaji": [
+      "kei"
+    ],
+    "meanings": [
+      "admonish",
+      "commandment"
+    ],
+    "stroke_count": 19
+  },
+  {
+    "kanji": "育",
+    "jlpt_level": "N3",
+    "unit": "N3-U10",
+    "order_index": 144,
+    "readings": {
+      "on": [
+        "イク"
+      ],
+      "kun": [
+        "そだ.ち",
+        "そだ.つ",
+        "そだ.てる",
+        "はぐく.む"
+      ]
+    },
+    "romaji_readings": [
+      "iku",
+      "sodachi",
+      "sodatsu",
+      "sodateru",
+      "hagukumu"
+    ],
+    "primary_romaji": [
+      "iku"
+    ],
+    "meanings": [
+      "bring up",
+      "grow up",
+      "raise",
+      "rear"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "席",
+    "jlpt_level": "N3",
+    "unit": "N3-U10",
+    "order_index": 145,
+    "readings": {
+      "on": [
+        "セキ"
+      ],
+      "kun": [
+        "むしろ"
+      ]
+    },
+    "romaji_readings": [
+      "seki",
+      "mushiro"
+    ],
+    "primary_romaji": [
+      "seki"
+    ],
+    "meanings": [
+      "mat",
+      "occasion",
+      "place",
+      "seat"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "訪",
+    "jlpt_level": "N3",
+    "unit": "N3-U10",
+    "order_index": 146,
+    "readings": {
+      "on": [
+        "ホウ"
+      ],
+      "kun": [
+        "おとず.れる",
+        "たず.ねる",
+        "と.う"
+      ]
+    },
+    "romaji_readings": [
+      "hou",
+      "otozureru",
+      "tazuneru",
+      "tou"
+    ],
+    "primary_romaji": [
+      "hou"
+    ],
+    "meanings": [
+      "call on",
+      "look up",
+      "offer sympathy",
+      "visit"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "乗",
+    "jlpt_level": "N3",
+    "unit": "N3-U10",
+    "order_index": 147,
+    "readings": {
+      "on": [
+        "ショウ",
+        "ジョウ"
+      ],
+      "kun": [
+        "-の.り",
+        "の.せる",
+        "の.る"
+      ]
+    },
+    "romaji_readings": [
+      "shou",
+      "jou",
+      "nori",
+      "noseru",
+      "noru"
+    ],
+    "primary_romaji": [
+      "jou"
+    ],
+    "meanings": [
+      "board",
+      "counter for vehicles",
+      "join",
+      "mount",
+      "multiplication",
+      "power",
+      "record",
+      "ride"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "残",
+    "jlpt_level": "N3",
+    "unit": "N3-U10",
+    "order_index": 148,
+    "readings": {
+      "on": [
+        "サン",
+        "ザン"
+      ],
+      "kun": [
+        "そこな.う",
+        "のこ.す",
+        "のこ.り",
+        "のこ.る"
+      ]
+    },
+    "romaji_readings": [
+      "san",
+      "zan",
+      "sokonau",
+      "nokosu",
+      "nokori",
+      "nokoru"
+    ],
+    "primary_romaji": [
+      "zan"
+    ],
+    "meanings": [
+      "balance",
+      "leftover",
+      "remainder"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "想",
+    "jlpt_level": "N3",
+    "unit": "N3-U10",
+    "order_index": 149,
+    "readings": {
+      "on": [
+        "ソ",
+        "ソウ"
+      ],
+      "kun": [
+        "おも.う"
+      ]
+    },
+    "romaji_readings": [
+      "so",
+      "sou",
+      "omou"
+    ],
+    "primary_romaji": [
+      "sou"
+    ],
+    "meanings": [
+      "concept",
+      "idea",
+      "think",
+      "thought"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "声",
+    "jlpt_level": "N3",
+    "unit": "N3-U11",
+    "order_index": 150,
+    "readings": {
+      "on": [
+        "ショウ",
+        "セイ"
+      ],
+      "kun": [
+        "こえ",
+        "こわ-"
+      ]
+    },
+    "romaji_readings": [
+      "shou",
+      "sei",
+      "koe",
+      "kowa"
+    ],
+    "primary_romaji": [
+      "koe",
+      "sei"
+    ],
+    "meanings": [
+      "voice"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "念",
+    "jlpt_level": "N3",
+    "unit": "N3-U11",
+    "order_index": 151,
+    "readings": {
+      "on": [
+        "ネン"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "nen"
+    ],
+    "primary_romaji": [
+      "nen"
+    ],
+    "meanings": [
+      "attention",
+      "desire",
+      "feeling",
+      "idea",
+      "sense",
+      "thought",
+      "wish"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "助",
+    "jlpt_level": "N3",
+    "unit": "N3-U11",
+    "order_index": 152,
+    "readings": {
+      "on": [
+        "ジョ"
+      ],
+      "kun": [
+        "す.ける",
+        "すけ",
+        "たす.かる",
+        "たす.ける"
+      ]
+    },
+    "romaji_readings": [
+      "jo",
+      "sukeru",
+      "suke",
+      "tasukaru",
+      "tasukeru"
+    ],
+    "primary_romaji": [
+      "suke",
+      "jo"
+    ],
+    "meanings": [
+      "assist",
+      "help",
+      "rescue"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "労",
+    "jlpt_level": "N3",
+    "unit": "N3-U11",
+    "order_index": 153,
+    "readings": {
+      "on": [
+        "ロウ"
+      ],
+      "kun": [
+        "いた.ずき",
+        "いたわ.る",
+        "つか.れる",
+        "ねぎら",
+        "ねぎら.う",
+        "ろう.する"
+      ]
+    },
+    "romaji_readings": [
+      "rou",
+      "itazuki",
+      "itawaru",
+      "tsukareru",
+      "negira",
+      "negirau",
+      "rousuru"
+    ],
+    "primary_romaji": [
+      "rou"
+    ],
+    "meanings": [
+      "labor",
+      "reward for",
+      "thank for",
+      "toil",
+      "trouble"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "例",
+    "jlpt_level": "N3",
+    "unit": "N3-U11",
+    "order_index": 154,
+    "readings": {
+      "on": [
+        "レイ"
+      ],
+      "kun": [
+        "たと.える"
+      ]
+    },
+    "romaji_readings": [
+      "rei",
+      "tatoeru"
+    ],
+    "primary_romaji": [
+      "rei"
+    ],
+    "meanings": [
+      "custom",
+      "example",
+      "precedent",
+      "usage"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "然",
+    "jlpt_level": "N3",
+    "unit": "N3-U11",
+    "order_index": 155,
+    "readings": {
+      "on": [
+        "ゼン",
+        "ネン"
+      ],
+      "kun": [
+        "さ",
+        "しか",
+        "しか.し",
+        "しか.り"
+      ]
+    },
+    "romaji_readings": [
+      "zen",
+      "nen",
+      "sa",
+      "shika",
+      "shikashi",
+      "shikari"
+    ],
+    "primary_romaji": [
+      "sa",
+      "zen"
+    ],
+    "meanings": [
+      "if so",
+      "in that case",
+      "so",
+      "sort of thing",
+      "well"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "限",
+    "jlpt_level": "N3",
+    "unit": "N3-U11",
+    "order_index": 156,
+    "readings": {
+      "on": [
+        "ゲン"
+      ],
+      "kun": [
+        "-かぎ.り",
+        "かぎ.り",
+        "かぎ.る"
+      ]
+    },
+    "romaji_readings": [
+      "gen",
+      "kagiri",
+      "kagiru"
+    ],
+    "primary_romaji": [
+      "gen"
+    ],
+    "meanings": [
+      "limit",
+      "restrict",
+      "to best of ability"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "追",
+    "jlpt_level": "N3",
+    "unit": "N3-U11",
+    "order_index": 157,
+    "readings": {
+      "on": [
+        "ツイ"
+      ],
+      "kun": [
+        "お.う"
+      ]
+    },
+    "romaji_readings": [
+      "tsui",
+      "ou"
+    ],
+    "primary_romaji": [
+      "tsui"
+    ],
+    "meanings": [
+      "chase",
+      "drive away",
+      "follow",
+      "meanwhile",
+      "pursue"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "商",
+    "jlpt_level": "N3",
+    "unit": "N3-U11",
+    "order_index": 158,
+    "readings": {
+      "on": [
+        "ショウ"
+      ],
+      "kun": [
+        "あきな.う"
+      ]
+    },
+    "romaji_readings": [
+      "shou",
+      "akinau"
+    ],
+    "primary_romaji": [
+      "shou"
+    ],
+    "meanings": [
+      "dealing in",
+      "make a deal",
+      "merchant",
+      "selling"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "葉",
+    "jlpt_level": "N3",
+    "unit": "N3-U11",
+    "order_index": 159,
+    "readings": {
+      "on": [
+        "ヨウ"
+      ],
+      "kun": [
+        "は"
+      ]
+    },
+    "romaji_readings": [
+      "you",
+      "ha"
+    ],
+    "primary_romaji": [
+      "ha",
+      "you"
+    ],
+    "meanings": [
+      "blade",
+      "counter for flat things",
+      "fragment",
+      "leaf",
+      "lobe",
+      "needle",
+      "piece",
+      "plane",
+      "spear"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "伝",
+    "jlpt_level": "N3",
+    "unit": "N3-U11",
+    "order_index": 160,
+    "readings": {
+      "on": [
+        "テン",
+        "デン"
+      ],
+      "kun": [
+        "-づた.い",
+        "つた.う",
+        "つた.える",
+        "つた.わる",
+        "つだ.う",
+        "つて"
+      ]
+    },
+    "romaji_readings": [
+      "ten",
+      "den",
+      "zutai",
+      "tsutau",
+      "tsutaeru",
+      "tsutawaru",
+      "tsudau",
+      "tsute"
+    ],
+    "primary_romaji": [
+      "den",
+      "tsute"
+    ],
+    "meanings": [
+      "communicate",
+      "follow",
+      "go along",
+      "legend",
+      "report",
+      "tradition",
+      "transmit",
+      "walk along"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "働",
+    "jlpt_level": "N3",
+    "unit": "N3-U11",
+    "order_index": 161,
+    "readings": {
+      "on": [
+        "ドウ"
+      ],
+      "kun": [
+        "はたら.く"
+      ]
+    },
+    "romaji_readings": [
+      "dou",
+      "hataraku"
+    ],
+    "primary_romaji": [
+      "dou",
+      "hataraku"
+    ],
+    "meanings": [
+      "(kokuji)",
+      "work"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "形",
+    "jlpt_level": "N3",
+    "unit": "N3-U11",
+    "order_index": 162,
+    "readings": {
+      "on": [
+        "ギョウ",
+        "ケイ"
+      ],
+      "kun": [
+        "-がた",
+        "かた",
+        "かたち",
+        "なり"
+      ]
+    },
+    "romaji_readings": [
+      "gyou",
+      "kei",
+      "gata",
+      "kata",
+      "katachi",
+      "nari"
+    ],
+    "primary_romaji": [
+      "katachi",
+      "nari"
+    ],
+    "meanings": [
+      "form",
+      "shape",
+      "style"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "景",
+    "jlpt_level": "N3",
+    "unit": "N3-U11",
+    "order_index": 163,
+    "readings": {
+      "on": [
+        "ケイ"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "kei"
+    ],
+    "primary_romaji": [
+      "kei"
+    ],
+    "meanings": [
+      "scenery",
+      "view"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "落",
+    "jlpt_level": "N3",
+    "unit": "N3-U11",
+    "order_index": 164,
+    "readings": {
+      "on": [
+        "ラク"
+      ],
+      "kun": [
+        "お.ち",
+        "お.ちる",
+        "お.とす"
+      ]
+    },
+    "romaji_readings": [
+      "raku",
+      "ochi",
+      "ochiru",
+      "otosu"
+    ],
+    "primary_romaji": [
+      "raku",
+      "ochi"
+    ],
+    "meanings": [
+      "come down",
+      "drop",
+      "fall",
+      "hamlet",
+      "village"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "好",
+    "jlpt_level": "N3",
+    "unit": "N3-U12",
+    "order_index": 165,
+    "readings": {
+      "on": [
+        "コウ"
+      ],
+      "kun": [
+        "い.い",
+        "この.む",
+        "す.く",
+        "よ.い"
+      ]
+    },
+    "romaji_readings": [
+      "kou",
+      "ii",
+      "konomu",
+      "suku",
+      "yoi"
+    ],
+    "primary_romaji": [
+      "kou"
+    ],
+    "meanings": [
+      "fond",
+      "like something",
+      "pleasing"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "退",
+    "jlpt_level": "N3",
+    "unit": "N3-U12",
+    "order_index": 166,
+    "readings": {
+      "on": [
+        "タイ"
+      ],
+      "kun": [
+        "しりぞ.く",
+        "しりぞ.ける",
+        "ど.く",
+        "の.く",
+        "の.ける",
+        "ひ.く"
+      ]
+    },
+    "romaji_readings": [
+      "tai",
+      "shirizoku",
+      "shirizokeru",
+      "doku",
+      "noku",
+      "nokeru",
+      "hiku"
+    ],
+    "primary_romaji": [
+      "tai"
+    ],
+    "meanings": [
+      "expel",
+      "reject",
+      "repel",
+      "resign",
+      "retire",
+      "retreat",
+      "withdraw"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "頭",
+    "jlpt_level": "N3",
+    "unit": "N3-U12",
+    "order_index": 167,
+    "readings": {
+      "on": [
+        "ズ",
+        "ト",
+        "トウ"
+      ],
+      "kun": [
+        "-がしら",
+        "あたま",
+        "かしら",
+        "かぶり"
+      ]
+    },
+    "romaji_readings": [
+      "zu",
+      "to",
+      "tou",
+      "gashira",
+      "atama",
+      "kashira",
+      "kaburi"
+    ],
+    "primary_romaji": [
+      "atama",
+      "tou"
+    ],
+    "meanings": [
+      "counter for large animals",
+      "head"
+    ],
+    "stroke_count": 16
+  },
+  {
+    "kanji": "負",
+    "jlpt_level": "N3",
+    "unit": "N3-U12",
+    "order_index": 168,
+    "readings": {
+      "on": [
+        "フ"
+      ],
+      "kun": [
+        "お.う",
+        "ま.かす",
+        "ま.ける"
+      ]
+    },
+    "romaji_readings": [
+      "fu",
+      "ou",
+      "makasu",
+      "makeru"
+    ],
+    "primary_romaji": [
+      "fu"
+    ],
+    "meanings": [
+      "-",
+      "assume a responsibility",
+      "bear",
+      "defeat",
+      "minus",
+      "negative",
+      "owe"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "渡",
+    "jlpt_level": "N3",
+    "unit": "N3-U12",
+    "order_index": 169,
+    "readings": {
+      "on": [
+        "ト"
+      ],
+      "kun": [
+        "-わた.る",
+        "わた.す",
+        "わた.る"
+      ]
+    },
+    "romaji_readings": [
+      "to",
+      "wataru",
+      "watasu"
+    ],
+    "primary_romaji": [
+      "wataru"
+    ],
+    "meanings": [
+      "cross",
+      "deliver",
+      "diameter",
+      "ferry",
+      "ford",
+      "import",
+      "migrate",
+      "transit"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "失",
+    "jlpt_level": "N3",
+    "unit": "N3-U12",
+    "order_index": 170,
+    "readings": {
+      "on": [
+        "シツ"
+      ],
+      "kun": [
+        "う.せる",
+        "うしな.う"
+      ]
+    },
+    "romaji_readings": [
+      "shitsu",
+      "useru",
+      "ushinau"
+    ],
+    "primary_romaji": [
+      "shitsu"
+    ],
+    "meanings": [
+      "disadvantage",
+      "error",
+      "fault",
+      "lose",
+      "loss"
+    ],
+    "stroke_count": 5
+  },
+  {
+    "kanji": "差",
+    "jlpt_level": "N3",
+    "unit": "N3-U12",
+    "order_index": 171,
+    "readings": {
+      "on": [
+        "サ"
+      ],
+      "kun": [
+        "さ.し",
+        "さ.す"
+      ]
+    },
+    "romaji_readings": [
+      "sa",
+      "sashi",
+      "sasu"
+    ],
+    "primary_romaji": [
+      "sa"
+    ],
+    "meanings": [
+      "balance",
+      "difference",
+      "discrepancy",
+      "distinction",
+      "margin",
+      "variation"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "末",
+    "jlpt_level": "N3",
+    "unit": "N3-U12",
+    "order_index": 172,
+    "readings": {
+      "on": [
+        "バツ",
+        "マツ"
+      ],
+      "kun": [
+        "うら",
+        "うれ",
+        "すえ"
+      ]
+    },
+    "romaji_readings": [
+      "batsu",
+      "matsu",
+      "ura",
+      "ure",
+      "sue"
+    ],
+    "primary_romaji": [
+      "matsu",
+      "sue"
+    ],
+    "meanings": [
+      "close",
+      "end",
+      "posterity",
+      "powder",
+      "tip"
+    ],
+    "stroke_count": 5
+  },
+  {
+    "kanji": "守",
+    "jlpt_level": "N3",
+    "unit": "N3-U12",
+    "order_index": 173,
+    "readings": {
+      "on": [
+        "シュ",
+        "ス"
+      ],
+      "kun": [
+        "-もり",
+        "かみ",
+        "まも.り",
+        "まも.る",
+        "もり"
+      ]
+    },
+    "romaji_readings": [
+      "shu",
+      "su",
+      "mori",
+      "kami",
+      "mamori",
+      "mamoru"
+    ],
+    "primary_romaji": [
+      "kami",
+      "mamoru"
+    ],
+    "meanings": [
+      "defend",
+      "guard",
+      "obey",
+      "protect"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "若",
+    "jlpt_level": "N3",
+    "unit": "N3-U12",
+    "order_index": 174,
+    "readings": {
+      "on": [
+        "ジャク",
+        "ニャ",
+        "ニャク"
+      ],
+      "kun": [
+        "ごと.し",
+        "も.し",
+        "も.しくは",
+        "も.しくわ",
+        "わか-",
+        "わか.い"
+      ]
+    },
+    "romaji_readings": [
+      "jaku",
+      "nya",
+      "nyaku",
+      "gotoshi",
+      "moshi",
+      "moshikuha",
+      "moshikuwa",
+      "waka",
+      "wakai"
+    ],
+    "primary_romaji": [
+      "waka",
+      "jaku"
+    ],
+    "meanings": [
+      "if",
+      "immature",
+      "low number",
+      "perhaps",
+      "possibly",
+      "young"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "種",
+    "jlpt_level": "N3",
+    "unit": "N3-U12",
+    "order_index": 175,
+    "readings": {
+      "on": [
+        "シュ"
+      ],
+      "kun": [
+        "-ぐさ",
+        "たね"
+      ]
+    },
+    "romaji_readings": [
+      "shu",
+      "gusa",
+      "tane"
+    ],
+    "primary_romaji": [
+      "shu",
+      "tane"
+    ],
+    "meanings": [
+      "class",
+      "kind",
+      "seed",
+      "species",
+      "variety"
+    ],
+    "stroke_count": 14
+  },
+  {
+    "kanji": "美",
+    "jlpt_level": "N3",
+    "unit": "N3-U12",
+    "order_index": 176,
+    "readings": {
+      "on": [
+        "ビ",
+        "ミ"
+      ],
+      "kun": [
+        "うつく.しい"
+      ]
+    },
+    "romaji_readings": [
+      "bi",
+      "mi",
+      "utsukushii"
+    ],
+    "primary_romaji": [
+      "bi"
+    ],
+    "meanings": [
+      "beautiful",
+      "beauty"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "命",
+    "jlpt_level": "N3",
+    "unit": "N3-U12",
+    "order_index": 177,
+    "readings": {
+      "on": [
+        "ミョウ",
+        "メイ"
+      ],
+      "kun": [
+        "いのち"
+      ]
+    },
+    "romaji_readings": [
+      "myou",
+      "mei",
+      "inochi"
+    ],
+    "primary_romaji": [
+      "inochi",
+      "mei"
+    ],
+    "meanings": [
+      "appoint",
+      "command",
+      "decree",
+      "destiny",
+      "fate",
+      "life"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "福",
+    "jlpt_level": "N3",
+    "unit": "N3-U12",
+    "order_index": 178,
+    "readings": {
+      "on": [
+        "フク"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "fuku"
+    ],
+    "primary_romaji": [
+      "fuku"
+    ],
+    "meanings": [
+      "blessing",
+      "fortune",
+      "luck",
+      "wealth"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "望",
+    "jlpt_level": "N3",
+    "unit": "N3-U12",
+    "order_index": 179,
+    "readings": {
+      "on": [
+        "ボウ",
+        "モウ"
+      ],
+      "kun": [
+        "のぞ.む",
+        "もち"
+      ]
+    },
+    "romaji_readings": [
+      "bou",
+      "mou",
+      "nozomu",
+      "mochi"
+    ],
+    "primary_romaji": [
+      "mochi",
+      "nozomu"
+    ],
+    "meanings": [
+      "ambition",
+      "aspire to",
+      "desire",
+      "expect",
+      "full moon",
+      "hope"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "非",
+    "jlpt_level": "N3",
+    "unit": "N3-U13",
+    "order_index": 180,
+    "readings": {
+      "on": [
+        "ヒ"
+      ],
+      "kun": [
+        "あら.ず"
+      ]
+    },
+    "romaji_readings": [
+      "hi",
+      "arazu"
+    ],
+    "primary_romaji": [
+      "hi"
+    ],
+    "meanings": [
+      "injustice",
+      "mistake",
+      "negative",
+      "non-",
+      "un-"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "観",
+    "jlpt_level": "N3",
+    "unit": "N3-U13",
+    "order_index": 181,
+    "readings": {
+      "on": [
+        "カン"
+      ],
+      "kun": [
+        "しめ.す",
+        "み.る"
+      ]
+    },
+    "romaji_readings": [
+      "kan",
+      "shimesu",
+      "miru"
+    ],
+    "primary_romaji": [
+      "kan"
+    ],
+    "meanings": [
+      "appearance",
+      "condition",
+      "look",
+      "outlook",
+      "view"
+    ],
+    "stroke_count": 18
+  },
+  {
+    "kanji": "察",
+    "jlpt_level": "N3",
+    "unit": "N3-U13",
+    "order_index": 182,
+    "readings": {
+      "on": [
+        "サツ"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "satsu"
+    ],
+    "primary_romaji": [
+      "satsu"
+    ],
+    "meanings": [
+      "guess",
+      "judge",
+      "presume",
+      "surmise",
+      "understand"
+    ],
+    "stroke_count": 14
+  },
+  {
+    "kanji": "段",
+    "jlpt_level": "N3",
+    "unit": "N3-U13",
+    "order_index": 183,
+    "readings": {
+      "on": [
+        "タン",
+        "ダン"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "tan",
+      "dan"
+    ],
+    "primary_romaji": [
+      "dan"
+    ],
+    "meanings": [
+      "grade",
+      "stairs",
+      "steps"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "横",
+    "jlpt_level": "N3",
+    "unit": "N3-U13",
+    "order_index": 184,
+    "readings": {
+      "on": [
+        "オウ"
+      ],
+      "kun": [
+        "よこ"
+      ]
+    },
+    "romaji_readings": [
+      "ou",
+      "yoko"
+    ],
+    "primary_romaji": [
+      "yoko",
+      "ou"
+    ],
+    "meanings": [
+      "horizontal",
+      "perverse",
+      "side",
+      "sideways",
+      "unreasonable",
+      "width",
+      "woof"
+    ],
+    "stroke_count": 15
+  },
+  {
+    "kanji": "深",
+    "jlpt_level": "N3",
+    "unit": "N3-U13",
+    "order_index": 185,
+    "readings": {
+      "on": [
+        "シン"
+      ],
+      "kun": [
+        "-ぶか.い",
+        "ふか.い",
+        "ふか.まる",
+        "ふか.める",
+        "み-"
+      ]
+    },
+    "romaji_readings": [
+      "shin",
+      "bukai",
+      "fukai",
+      "fukamaru",
+      "fukameru",
+      "mi"
+    ],
+    "primary_romaji": [
+      "shin"
+    ],
+    "meanings": [
+      "deep",
+      "heighten",
+      "intensify",
+      "strengthen"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "申",
+    "jlpt_level": "N3",
+    "unit": "N3-U13",
+    "order_index": 186,
+    "readings": {
+      "on": [
+        "シン"
+      ],
+      "kun": [
+        "さる",
+        "もう.し-",
+        "もう.す"
+      ]
+    },
+    "romaji_readings": [
+      "shin",
+      "saru",
+      "moushi",
+      "mousu"
+    ],
+    "primary_romaji": [
+      "saru",
+      "shin"
+    ],
+    "meanings": [
+      "3-5PM",
+      "have the honor to",
+      "ninth sign of Chinese zodiac",
+      "sign of the monkey"
+    ],
+    "stroke_count": 5
+  },
+  {
+    "kanji": "様",
+    "jlpt_level": "N3",
+    "unit": "N3-U13",
+    "order_index": 187,
+    "readings": {
+      "on": [
+        "ショウ",
+        "ヨウ"
+      ],
+      "kun": [
+        "さま",
+        "さん"
+      ]
+    },
+    "romaji_readings": [
+      "shou",
+      "you",
+      "sama",
+      "san"
+    ],
+    "primary_romaji": [
+      "you",
+      "sama"
+    ],
+    "meanings": [
+      "Esq.",
+      "manner",
+      "polite suffix",
+      "situation",
+      "way"
+    ],
+    "stroke_count": 14
+  },
+  {
+    "kanji": "財",
+    "jlpt_level": "N3",
+    "unit": "N3-U13",
+    "order_index": 188,
+    "readings": {
+      "on": [
+        "サイ",
+        "ザイ",
+        "ゾク"
+      ],
+      "kun": [
+        "たから"
+      ]
+    },
+    "romaji_readings": [
+      "sai",
+      "zai",
+      "zoku",
+      "takara"
+    ],
+    "primary_romaji": [
+      "zai"
+    ],
+    "meanings": [
+      "assets",
+      "money",
+      "property",
+      "wealth"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "港",
+    "jlpt_level": "N3",
+    "unit": "N3-U13",
+    "order_index": 189,
+    "readings": {
+      "on": [
+        "コウ"
+      ],
+      "kun": [
+        "みなと"
+      ]
+    },
+    "romaji_readings": [
+      "kou",
+      "minato"
+    ],
+    "primary_romaji": [
+      "minato",
+      "kou"
+    ],
+    "meanings": [
+      "harbor"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "識",
+    "jlpt_level": "N3",
+    "unit": "N3-U13",
+    "order_index": 190,
+    "readings": {
+      "on": [
+        "シキ"
+      ],
+      "kun": [
+        "し.る",
+        "しる.す"
+      ]
+    },
+    "romaji_readings": [
+      "shiki",
+      "shiru",
+      "shirusu"
+    ],
+    "primary_romaji": [
+      "shiki"
+    ],
+    "meanings": [
+      "discriminating",
+      "know",
+      "write"
+    ],
+    "stroke_count": 19
+  },
+  {
+    "kanji": "呼",
+    "jlpt_level": "N3",
+    "unit": "N3-U13",
+    "order_index": 191,
+    "readings": {
+      "on": [
+        "コ"
+      ],
+      "kun": [
+        "よ.ぶ"
+      ]
+    },
+    "romaji_readings": [
+      "ko",
+      "yobu"
+    ],
+    "primary_romaji": [
+      "ko"
+    ],
+    "meanings": [
+      "call",
+      "call out to",
+      "invite"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "達",
+    "jlpt_level": "N3",
+    "unit": "N3-U13",
+    "order_index": 192,
+    "readings": {
+      "on": [
+        "タツ",
+        "ダ"
+      ],
+      "kun": [
+        "-たち"
+      ]
+    },
+    "romaji_readings": [
+      "tatsu",
+      "da",
+      "tachi"
+    ],
+    "primary_romaji": [
+      "tachi"
+    ],
+    "meanings": [
+      "accomplished",
+      "arrive",
+      "attain",
+      "reach"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "良",
+    "jlpt_level": "N3",
+    "unit": "N3-U13",
+    "order_index": 193,
+    "readings": {
+      "on": [
+        "リョウ"
+      ],
+      "kun": [
+        "-い.い",
+        "-よ.い",
+        "い.い",
+        "よ.い"
+      ]
+    },
+    "romaji_readings": [
+      "ryou",
+      "ii",
+      "yoi"
+    ],
+    "primary_romaji": [
+      "ryou"
+    ],
+    "meanings": [
+      "good",
+      "pleasing",
+      "skilled"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "候",
+    "jlpt_level": "N3",
+    "unit": "N3-U13",
+    "order_index": 194,
+    "readings": {
+      "on": [
+        "コウ"
+      ],
+      "kun": [
+        "そうろう"
+      ]
+    },
+    "romaji_readings": [
+      "kou",
+      "sourou"
+    ],
+    "primary_romaji": [
+      "kou"
+    ],
+    "meanings": [
+      "climate",
+      "expect",
+      "season",
+      "wait for",
+      "weather"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "程",
+    "jlpt_level": "N3",
+    "unit": "N3-U14",
+    "order_index": 195,
+    "readings": {
+      "on": [
+        "テイ"
+      ],
+      "kun": [
+        "-ほど",
+        "ほど"
+      ]
+    },
+    "romaji_readings": [
+      "tei",
+      "hodo"
+    ],
+    "primary_romaji": [
+      "hodo",
+      "tei"
+    ],
+    "meanings": [
+      "amount",
+      "degree",
+      "distance",
+      "extent",
+      "formula",
+      "law",
+      "limits"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "満",
+    "jlpt_level": "N3",
+    "unit": "N3-U14",
+    "order_index": 196,
+    "readings": {
+      "on": [
+        "バン",
+        "マン"
+      ],
+      "kun": [
+        "み.たす",
+        "み.ちる",
+        "み.つ"
+      ]
+    },
+    "romaji_readings": [
+      "ban",
+      "man",
+      "mitasu",
+      "michiru",
+      "mitsu"
+    ],
+    "primary_romaji": [
+      "man"
+    ],
+    "meanings": [
+      "enough",
+      "full",
+      "fullness",
+      "satisfy"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "敗",
+    "jlpt_level": "N3",
+    "unit": "N3-U14",
+    "order_index": 197,
+    "readings": {
+      "on": [
+        "ハイ"
+      ],
+      "kun": [
+        "やぶ.れる"
+      ]
+    },
+    "romaji_readings": [
+      "hai",
+      "yabureru"
+    ],
+    "primary_romaji": [
+      "hai"
+    ],
+    "meanings": [
+      "defeat",
+      "failure",
+      "reversal"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "値",
+    "jlpt_level": "N3",
+    "unit": "N3-U14",
+    "order_index": 198,
+    "readings": {
+      "on": [
+        "チ"
+      ],
+      "kun": [
+        "あたい",
+        "ね"
+      ]
+    },
+    "romaji_readings": [
+      "chi",
+      "atai",
+      "ne"
+    ],
+    "primary_romaji": [
+      "chi",
+      "atai"
+    ],
+    "meanings": [
+      "cost",
+      "price",
+      "value"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "突",
+    "jlpt_level": "N3",
+    "unit": "N3-U14",
+    "order_index": 199,
+    "readings": {
+      "on": [
+        "カ",
+        "トツ"
+      ],
+      "kun": [
+        "つ.く"
+      ]
+    },
+    "romaji_readings": [
+      "ka",
+      "totsu",
+      "tsuku"
+    ],
+    "primary_romaji": [
+      "ka",
+      "tsuku"
+    ],
+    "meanings": [
+      "collision",
+      "pierce",
+      "prick",
+      "protruding",
+      "stab",
+      "sudden",
+      "thrust"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "光",
+    "jlpt_level": "N3",
+    "unit": "N3-U14",
+    "order_index": 200,
+    "readings": {
+      "on": [
+        "コウ"
+      ],
+      "kun": [
+        "ひか.る",
+        "ひかり"
+      ]
+    },
+    "romaji_readings": [
+      "kou",
+      "hikaru",
+      "hikari"
+    ],
+    "primary_romaji": [
+      "hikari",
+      "kou"
+    ],
+    "meanings": [
+      "light",
+      "ray"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "路",
+    "jlpt_level": "N3",
+    "unit": "N3-U14",
+    "order_index": 201,
+    "readings": {
+      "on": [
+        "ル",
+        "ロ"
+      ],
+      "kun": [
+        "-じ",
+        "みち"
+      ]
+    },
+    "romaji_readings": [
+      "ru",
+      "ro",
+      "ji",
+      "michi"
+    ],
+    "primary_romaji": [
+      "ro",
+      "ji"
+    ],
+    "meanings": [
+      "distance",
+      "path",
+      "road",
+      "route"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "科",
+    "jlpt_level": "N3",
+    "unit": "N3-U14",
+    "order_index": 202,
+    "readings": {
+      "on": [
+        "カ"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "ka"
+    ],
+    "primary_romaji": [
+      "ka"
+    ],
+    "meanings": [
+      "course",
+      "department",
+      "section"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "積",
+    "jlpt_level": "N3",
+    "unit": "N3-U14",
+    "order_index": 203,
+    "readings": {
+      "on": [
+        "セキ"
+      ],
+      "kun": [
+        "-づ.み",
+        "つ.む",
+        "つ.もり",
+        "つ.もる"
+      ]
+    },
+    "romaji_readings": [
+      "seki",
+      "zumi",
+      "tsumu",
+      "tsumori",
+      "tsumoru"
+    ],
+    "primary_romaji": [
+      "seki"
+    ],
+    "meanings": [
+      "acreage",
+      "amass",
+      "contents",
+      "load",
+      "pile up",
+      "product (x*y)",
+      "stack",
+      "volume"
+    ],
+    "stroke_count": 16
+  },
+  {
+    "kanji": "他",
+    "jlpt_level": "N3",
+    "unit": "N3-U14",
+    "order_index": 204,
+    "readings": {
+      "on": [
+        "タ"
+      ],
+      "kun": [
+        "ほか"
+      ]
+    },
+    "romaji_readings": [
+      "ta",
+      "hoka"
+    ],
+    "primary_romaji": [
+      "hoka",
+      "ta"
+    ],
+    "meanings": [
+      "another",
+      "other",
+      "the others"
+    ],
+    "stroke_count": 5
+  },
+  {
+    "kanji": "処",
+    "jlpt_level": "N3",
+    "unit": "N3-U14",
+    "order_index": 205,
+    "readings": {
+      "on": [
+        "ショ"
+      ],
+      "kun": [
+        "-こ",
+        "お.る",
+        "ところ"
+      ]
+    },
+    "romaji_readings": [
+      "sho",
+      "ko",
+      "oru",
+      "tokoro"
+    ],
+    "primary_romaji": [
+      "sho",
+      "ko"
+    ],
+    "meanings": [
+      "act",
+      "behave",
+      "condemn",
+      "deal with",
+      "dispose",
+      "manage",
+      "place",
+      "sentence"
+    ],
+    "stroke_count": 5
+  },
+  {
+    "kanji": "太",
+    "jlpt_level": "N3",
+    "unit": "N3-U14",
+    "order_index": 206,
+    "readings": {
+      "on": [
+        "タ",
+        "タイ"
+      ],
+      "kun": [
+        "ふと.い",
+        "ふと.る"
+      ]
+    },
+    "romaji_readings": [
+      "ta",
+      "tai",
+      "futoi",
+      "futoru"
+    ],
+    "primary_romaji": [
+      "tai"
+    ],
+    "meanings": [
+      "big around",
+      "plump",
+      "thick"
+    ],
+    "stroke_count": 4
+  },
+  {
+    "kanji": "客",
+    "jlpt_level": "N3",
+    "unit": "N3-U14",
+    "order_index": 207,
+    "readings": {
+      "on": [
+        "カク",
+        "キャク"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "kaku",
+      "kyaku"
+    ],
+    "primary_romaji": [
+      "kyaku"
+    ],
+    "meanings": [
+      "client",
+      "customer",
+      "guest",
+      "visitor"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "否",
+    "jlpt_level": "N3",
+    "unit": "N3-U14",
+    "order_index": 208,
+    "readings": {
+      "on": [
+        "ヒ"
+      ],
+      "kun": [
+        "いな",
+        "いや"
+      ]
+    },
+    "romaji_readings": [
+      "hi",
+      "ina",
+      "iya"
+    ],
+    "primary_romaji": [
+      "iya",
+      "ina"
+    ],
+    "meanings": [
+      "decline",
+      "deny",
+      "negate",
+      "no",
+      "noes",
+      "refuse"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "師",
+    "jlpt_level": "N3",
+    "unit": "N3-U14",
+    "order_index": 209,
+    "readings": {
+      "on": [
+        "シ"
+      ],
+      "kun": [
+        "いくさ"
+      ]
+    },
+    "romaji_readings": [
+      "shi",
+      "ikusa"
+    ],
+    "primary_romaji": [
+      "shi"
+    ],
+    "meanings": [
+      "army (incl. counter)",
+      "exemplar",
+      "expert",
+      "master",
+      "model",
+      "teacher",
+      "war"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "登",
+    "jlpt_level": "N3",
+    "unit": "N3-U15",
+    "order_index": 210,
+    "readings": {
+      "on": [
+        "ショウ",
+        "チョウ",
+        "ト",
+        "トウ",
+        "ドウ"
+      ],
+      "kun": [
+        "あ.がる",
+        "のぼ.る"
+      ]
+    },
+    "romaji_readings": [
+      "shou",
+      "chou",
+      "to",
+      "tou",
+      "dou",
+      "agaru",
+      "noboru"
+    ],
+    "primary_romaji": [
+      "tou",
+      "noboru"
+    ],
+    "meanings": [
+      "ascend",
+      "climb up"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "易",
+    "jlpt_level": "N3",
+    "unit": "N3-U15",
+    "order_index": 211,
+    "readings": {
+      "on": [
+        "イ",
+        "エキ"
+      ],
+      "kun": [
+        "やさ.しい",
+        "やす.い"
+      ]
+    },
+    "romaji_readings": [
+      "i",
+      "eki",
+      "yasashii",
+      "yasui"
+    ],
+    "primary_romaji": [
+      "eki",
+      "i"
+    ],
+    "meanings": [
+      "divination",
+      "easy",
+      "fortune-telling",
+      "ready to",
+      "simple"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "速",
+    "jlpt_level": "N3",
+    "unit": "N3-U15",
+    "order_index": 212,
+    "readings": {
+      "on": [
+        "ソク"
+      ],
+      "kun": [
+        "すみ.やか",
+        "はや-",
+        "はや.い",
+        "はや.める"
+      ]
+    },
+    "romaji_readings": [
+      "soku",
+      "sumiyaka",
+      "haya",
+      "hayai",
+      "hayameru"
+    ],
+    "primary_romaji": [
+      "soku"
+    ],
+    "meanings": [
+      "fast",
+      "quick"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "存",
+    "jlpt_level": "N3",
+    "unit": "N3-U15",
+    "order_index": 213,
+    "readings": {
+      "on": [
+        "ソン",
+        "ゾン"
+      ],
+      "kun": [
+        "あ.る",
+        "たも.つ",
+        "と.う",
+        "ながら.える"
+      ]
+    },
+    "romaji_readings": [
+      "son",
+      "zon",
+      "aru",
+      "tamotsu",
+      "tou",
+      "nagaraeru"
+    ],
+    "primary_romaji": [
+      "son",
+      "aru"
+    ],
+    "meanings": [
+      "be aware of",
+      "believe",
+      "exist",
+      "feel",
+      "suppose"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "飛",
+    "jlpt_level": "N3",
+    "unit": "N3-U15",
+    "order_index": 214,
+    "readings": {
+      "on": [
+        "ヒ"
+      ],
+      "kun": [
+        "-と.ばす",
+        "と.ばす",
+        "と.ぶ"
+      ]
+    },
+    "romaji_readings": [
+      "hi",
+      "tobasu",
+      "tobu"
+    ],
+    "primary_romaji": [
+      "hi"
+    ],
+    "meanings": [
+      "fly",
+      "scatter",
+      "skip (pages)"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "殺",
+    "jlpt_level": "N3",
+    "unit": "N3-U15",
+    "order_index": 215,
+    "readings": {
+      "on": [
+        "サイ",
+        "サツ",
+        "セツ"
+      ],
+      "kun": [
+        "-ごろ.し",
+        "あや.める",
+        "ころ.す",
+        "そ.ぐ"
+      ]
+    },
+    "romaji_readings": [
+      "sai",
+      "satsu",
+      "setsu",
+      "goroshi",
+      "ayameru",
+      "korosu",
+      "sogu"
+    ],
+    "primary_romaji": [
+      "satsu"
+    ],
+    "meanings": [
+      "butcher",
+      "diminish",
+      "kill",
+      "murder",
+      "reduce",
+      "slice off",
+      "split",
+      "spoil"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "号",
+    "jlpt_level": "N3",
+    "unit": "N3-U15",
+    "order_index": 216,
+    "readings": {
+      "on": [
+        "ゴウ"
+      ],
+      "kun": [
+        "さけ.ぶ",
+        "よびな"
+      ]
+    },
+    "romaji_readings": [
+      "gou",
+      "sakebu",
+      "yobina"
+    ],
+    "primary_romaji": [
+      "gou"
+    ],
+    "meanings": [
+      "call",
+      "item",
+      "name",
+      "nickname",
+      "number",
+      "pseudonym",
+      "title"
+    ],
+    "stroke_count": 5
+  },
+  {
+    "kanji": "単",
+    "jlpt_level": "N3",
+    "unit": "N3-U15",
+    "order_index": 217,
+    "readings": {
+      "on": [
+        "タン"
+      ],
+      "kun": [
+        "ひとえ"
+      ]
+    },
+    "romaji_readings": [
+      "tan",
+      "hitoe"
+    ],
+    "primary_romaji": [
+      "tan",
+      "hitoe"
+    ],
+    "meanings": [
+      "merely",
+      "one",
+      "simple",
+      "single"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "座",
+    "jlpt_level": "N3",
+    "unit": "N3-U15",
+    "order_index": 218,
+    "readings": {
+      "on": [
+        "ザ"
+      ],
+      "kun": [
+        "すわ.る"
+      ]
+    },
+    "romaji_readings": [
+      "za",
+      "suwaru"
+    ],
+    "primary_romaji": [
+      "za"
+    ],
+    "meanings": [
+      "cushion",
+      "gathering",
+      "seat",
+      "sit",
+      "squat"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "破",
+    "jlpt_level": "N3",
+    "unit": "N3-U15",
+    "order_index": 219,
+    "readings": {
+      "on": [
+        "ハ"
+      ],
+      "kun": [
+        "やぶ.る",
+        "やぶ.れる",
+        "わ.れる"
+      ]
+    },
+    "romaji_readings": [
+      "ha",
+      "yaburu",
+      "yabureru",
+      "wareru"
+    ],
+    "primary_romaji": [
+      "ha"
+    ],
+    "meanings": [
+      "break",
+      "defeat",
+      "destroy",
+      "frustrate",
+      "rend",
+      "rip",
+      "tear"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "除",
+    "jlpt_level": "N3",
+    "unit": "N3-U15",
+    "order_index": 220,
+    "readings": {
+      "on": [
+        "ジ",
+        "ジョ"
+      ],
+      "kun": [
+        "-よ.け",
+        "のぞ.く"
+      ]
+    },
+    "romaji_readings": [
+      "ji",
+      "jo",
+      "yoke",
+      "nozoku"
+    ],
+    "primary_romaji": [
+      "jo"
+    ],
+    "meanings": [
+      "abolish",
+      "cancel",
+      "division (x/3)",
+      "except",
+      "exclude",
+      "remove"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "完",
+    "jlpt_level": "N3",
+    "unit": "N3-U15",
+    "order_index": 221,
+    "readings": {
+      "on": [
+        "カン"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "kan"
+    ],
+    "primary_romaji": [
+      "kan"
+    ],
+    "meanings": [
+      "completion",
+      "end",
+      "perfect"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "降",
+    "jlpt_level": "N3",
+    "unit": "N3-U15",
+    "order_index": 222,
+    "readings": {
+      "on": [
+        "コウ",
+        "ゴ"
+      ],
+      "kun": [
+        "お.りる",
+        "お.ろす",
+        "くだ.す",
+        "くだ.る",
+        "ふ.り",
+        "ふ.る"
+      ]
+    },
+    "romaji_readings": [
+      "kou",
+      "go",
+      "oriru",
+      "orosu",
+      "kudasu",
+      "kudaru",
+      "furi",
+      "furu"
+    ],
+    "primary_romaji": [
+      "kou"
+    ],
+    "meanings": [
+      "descend",
+      "fall",
+      "precipitate",
+      "surrender"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "責",
+    "jlpt_level": "N3",
+    "unit": "N3-U15",
+    "order_index": 223,
+    "readings": {
+      "on": [
+        "セキ"
+      ],
+      "kun": [
+        "せ.める"
+      ]
+    },
+    "romaji_readings": [
+      "seki",
+      "semeru"
+    ],
+    "primary_romaji": [
+      "seki"
+    ],
+    "meanings": [
+      "blame",
+      "censure",
+      "condemn"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "捕",
+    "jlpt_level": "N3",
+    "unit": "N3-U15",
+    "order_index": 224,
+    "readings": {
+      "on": [
+        "ホ"
+      ],
+      "kun": [
+        "つか.まえる",
+        "つか.まる",
+        "と.らえる",
+        "と.らわれる",
+        "と.る",
+        "とら.える",
+        "とら.われる"
+      ]
+    },
+    "romaji_readings": [
+      "ho",
+      "tsukamaeru",
+      "tsukamaru",
+      "toraeru",
+      "torawareru",
+      "toru"
+    ],
+    "primary_romaji": [
+      "ho"
+    ],
+    "meanings": [
+      "capture",
+      "catch"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "危",
+    "jlpt_level": "N3",
+    "unit": "N3-U16",
+    "order_index": 225,
+    "readings": {
+      "on": [
+        "キ"
+      ],
+      "kun": [
+        "あぶ.ない",
+        "あや.うい",
+        "あや.ぶむ"
+      ]
+    },
+    "romaji_readings": [
+      "ki",
+      "abunai",
+      "ayaui",
+      "ayabumu"
+    ],
+    "primary_romaji": [
+      "ki",
+      "abunai"
+    ],
+    "meanings": [
+      "dangerous",
+      "fear",
+      "uneasy"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "給",
+    "jlpt_level": "N3",
+    "unit": "N3-U16",
+    "order_index": 226,
+    "readings": {
+      "on": [
+        "キュウ"
+      ],
+      "kun": [
+        "-たま.え",
+        "たま.う",
+        "たも.う"
+      ]
+    },
+    "romaji_readings": [
+      "kyuu",
+      "tamae",
+      "tamau",
+      "tamou"
+    ],
+    "primary_romaji": [
+      "kyuu"
+    ],
+    "meanings": [
+      "allow",
+      "bestow on",
+      "gift",
+      "grant",
+      "salary",
+      "wage"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "苦",
+    "jlpt_level": "N3",
+    "unit": "N3-U16",
+    "order_index": 227,
+    "readings": {
+      "on": [
+        "ク"
+      ],
+      "kun": [
+        "-ぐる.しい",
+        "くる.しい",
+        "くる.しむ",
+        "くる.しめる",
+        "にが.い",
+        "にが.る"
+      ]
+    },
+    "romaji_readings": [
+      "ku",
+      "gurushii",
+      "kurushii",
+      "kurushimu",
+      "kurushimeru",
+      "nigai",
+      "nigaru"
+    ],
+    "primary_romaji": [
+      "ku"
+    ],
+    "meanings": [
+      "feel bitter",
+      "hardship",
+      "scowl",
+      "suffering",
+      "trial",
+      "worry"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "迎",
+    "jlpt_level": "N3",
+    "unit": "N3-U16",
+    "order_index": 228,
+    "readings": {
+      "on": [
+        "ゲイ"
+      ],
+      "kun": [
+        "むか.える"
+      ]
+    },
+    "romaji_readings": [
+      "gei",
+      "mukaeru"
+    ],
+    "primary_romaji": [
+      "gei",
+      "mukaeru"
+    ],
+    "meanings": [
+      "greet",
+      "meet",
+      "welcome"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "園",
+    "jlpt_level": "N3",
+    "unit": "N3-U16",
+    "order_index": 229,
+    "readings": {
+      "on": [
+        "エン"
+      ],
+      "kun": [
+        "その"
+      ]
+    },
+    "romaji_readings": [
+      "en",
+      "sono"
+    ],
+    "primary_romaji": [
+      "en",
+      "sono"
+    ],
+    "meanings": [
+      "farm",
+      "garden",
+      "park",
+      "yard"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "具",
+    "jlpt_level": "N3",
+    "unit": "N3-U16",
+    "order_index": 230,
+    "readings": {
+      "on": [
+        "グ"
+      ],
+      "kun": [
+        "そな.える",
+        "つぶさ.に"
+      ]
+    },
+    "romaji_readings": [
+      "gu",
+      "sonaeru",
+      "tsubusani"
+    ],
+    "primary_romaji": [
+      "gu"
+    ],
+    "meanings": [
+      "counter for armor, suits, sets of furniture",
+      "ingredients",
+      "means",
+      "possess",
+      "tool",
+      "utensil"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "辞",
+    "jlpt_level": "N3",
+    "unit": "N3-U16",
+    "order_index": 231,
+    "readings": {
+      "on": [
+        "ジ"
+      ],
+      "kun": [
+        "いな.む",
+        "や.める"
+      ]
+    },
+    "romaji_readings": [
+      "ji",
+      "inamu",
+      "yameru"
+    ],
+    "primary_romaji": [
+      "ji"
+    ],
+    "meanings": [
+      "expression",
+      "resign",
+      "term",
+      "word"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "因",
+    "jlpt_level": "N3",
+    "unit": "N3-U16",
+    "order_index": 232,
+    "readings": {
+      "on": [
+        "イン"
+      ],
+      "kun": [
+        "ちな.む",
+        "よ.る"
+      ]
+    },
+    "romaji_readings": [
+      "in",
+      "chinamu",
+      "yoru"
+    ],
+    "primary_romaji": [
+      "in"
+    ],
+    "meanings": [
+      "be associated with",
+      "be limited to",
+      "cause",
+      "depend on",
+      "factor"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "馬",
+    "jlpt_level": "N3",
+    "unit": "N3-U16",
+    "order_index": 233,
+    "readings": {
+      "on": [
+        "バ"
+      ],
+      "kun": [
+        "うま",
+        "うま-",
+        "ま"
+      ]
+    },
+    "romaji_readings": [
+      "ba",
+      "uma",
+      "ma"
+    ],
+    "primary_romaji": [
+      "uma",
+      "ba"
+    ],
+    "meanings": [
+      "horse"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "愛",
+    "jlpt_level": "N3",
+    "unit": "N3-U16",
+    "order_index": 234,
+    "readings": {
+      "on": [
+        "アイ"
+      ],
+      "kun": [
+        "いと.しい",
+        "お.しむ",
+        "かな.しい",
+        "まな",
+        "め.でる"
+      ]
+    },
+    "romaji_readings": [
+      "ai",
+      "itoshii",
+      "oshimu",
+      "kanashii",
+      "mana",
+      "mederu"
+    ],
+    "primary_romaji": [
+      "ai",
+      "mana"
+    ],
+    "meanings": [
+      "affection",
+      "favourite",
+      "love"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "富",
+    "jlpt_level": "N3",
+    "unit": "N3-U16",
+    "order_index": 235,
+    "readings": {
+      "on": [
+        "フ",
+        "フウ"
+      ],
+      "kun": [
+        "と.む",
+        "とみ"
+      ]
+    },
+    "romaji_readings": [
+      "fu",
+      "fuu",
+      "tomu",
+      "tomi"
+    ],
+    "primary_romaji": [
+      "tomi",
+      "fu"
+    ],
+    "meanings": [
+      "abundant",
+      "enrich",
+      "wealth"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "彼",
+    "jlpt_level": "N3",
+    "unit": "N3-U16",
+    "order_index": 236,
+    "readings": {
+      "on": [
+        "ヒ"
+      ],
+      "kun": [
+        "か.の",
+        "かの",
+        "かれ"
+      ]
+    },
+    "romaji_readings": [
+      "hi",
+      "kano",
+      "kare"
+    ],
+    "primary_romaji": [
+      "kare"
+    ],
+    "meanings": [
+      "he",
+      "that",
+      "the"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "未",
+    "jlpt_level": "N3",
+    "unit": "N3-U16",
+    "order_index": 237,
+    "readings": {
+      "on": [
+        "ビ",
+        "ミ"
+      ],
+      "kun": [
+        "いま.だ",
+        "ひつじ",
+        "ま.だ"
+      ]
+    },
+    "romaji_readings": [
+      "bi",
+      "mi",
+      "imada",
+      "hitsuji",
+      "mada"
+    ],
+    "primary_romaji": [
+      "mi",
+      "hitsuji"
+    ],
+    "meanings": [
+      "1-3PM",
+      "eighth sign of Chinese zodiac",
+      "even now",
+      "hitherto",
+      "not yet",
+      "sign of the ram",
+      "still",
+      "un-"
+    ],
+    "stroke_count": 5
+  },
+  {
+    "kanji": "舞",
+    "jlpt_level": "N3",
+    "unit": "N3-U16",
+    "order_index": 238,
+    "readings": {
+      "on": [
+        "ブ"
+      ],
+      "kun": [
+        "-ま.う",
+        "ま.う",
+        "まい"
+      ]
+    },
+    "romaji_readings": [
+      "bu",
+      "mau",
+      "mai"
+    ],
+    "primary_romaji": [
+      "mai"
+    ],
+    "meanings": [
+      "circle",
+      "dance",
+      "flit",
+      "wheel"
+    ],
+    "stroke_count": 15
+  },
+  {
+    "kanji": "亡",
+    "jlpt_level": "N3",
+    "unit": "N3-U16",
+    "order_index": 239,
+    "readings": {
+      "on": [
+        "ボウ",
+        "モウ"
+      ],
+      "kun": [
+        "な.い",
+        "な.き-",
+        "ほろ.びる",
+        "ほろ.ぶ",
+        "ほろ.ぼす"
+      ]
+    },
+    "romaji_readings": [
+      "bou",
+      "mou",
+      "nai",
+      "naki",
+      "horobiru",
+      "horobu",
+      "horobosu"
+    ],
+    "primary_romaji": [
+      "bou"
+    ],
+    "meanings": [
+      "deceased",
+      "dying",
+      "perish",
+      "the late"
+    ],
+    "stroke_count": 3
+  },
+  {
+    "kanji": "冷",
+    "jlpt_level": "N3",
+    "unit": "N3-U17",
+    "order_index": 240,
+    "readings": {
+      "on": [
+        "レイ"
+      ],
+      "kun": [
+        "さ.ます",
+        "さ.める",
+        "つめ.たい",
+        "ひ.える",
+        "ひ.や",
+        "ひ.やかす",
+        "ひ.やす",
+        "ひ.ややか"
+      ]
+    },
+    "romaji_readings": [
+      "rei",
+      "samasu",
+      "sameru",
+      "tsumetai",
+      "hieru",
+      "hiya",
+      "hiyakasu",
+      "hiyasu",
+      "hiyayaka"
+    ],
+    "primary_romaji": [
+      "rei"
+    ],
+    "meanings": [
+      "chill",
+      "cold (beer, person)",
+      "cool"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "適",
+    "jlpt_level": "N3",
+    "unit": "N3-U17",
+    "order_index": 241,
+    "readings": {
+      "on": [
+        "テキ"
+      ],
+      "kun": [
+        "かな.う"
+      ]
+    },
+    "romaji_readings": [
+      "teki",
+      "kanau"
+    ],
+    "primary_romaji": [
+      "teki"
+    ],
+    "meanings": [
+      "capable",
+      "occasional",
+      "qualified",
+      "rare",
+      "suitable"
+    ],
+    "stroke_count": 14
+  },
+  {
+    "kanji": "婦",
+    "jlpt_level": "N3",
+    "unit": "N3-U17",
+    "order_index": 242,
+    "readings": {
+      "on": [
+        "フ"
+      ],
+      "kun": [
+        "よめ"
+      ]
+    },
+    "romaji_readings": [
+      "fu",
+      "yome"
+    ],
+    "primary_romaji": [
+      "fu"
+    ],
+    "meanings": [
+      "bride",
+      "lady",
+      "wife",
+      "woman"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "寄",
+    "jlpt_level": "N3",
+    "unit": "N3-U17",
+    "order_index": 243,
+    "readings": {
+      "on": [
+        "キ"
+      ],
+      "kun": [
+        "-よ.り",
+        "よ.せる",
+        "よ.る"
+      ]
+    },
+    "romaji_readings": [
+      "ki",
+      "yori",
+      "yoseru",
+      "yoru"
+    ],
+    "primary_romaji": [
+      "ki",
+      "yori"
+    ],
+    "meanings": [
+      "bring near",
+      "collect",
+      "draw near",
+      "forward",
+      "gather",
+      "send",
+      "stop in"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "込",
+    "jlpt_level": "N3",
+    "unit": "N3-U17",
+    "order_index": 244,
+    "readings": {
+      "on": [],
+      "kun": [
+        "-こ.み",
+        "-こ.む",
+        "こ.み",
+        "こ.む",
+        "こ.める"
+      ]
+    },
+    "romaji_readings": [
+      "komi",
+      "komu",
+      "komeru"
+    ],
+    "primary_romaji": [
+      "komi"
+    ],
+    "meanings": [
+      "(kokuji)",
+      "crowded",
+      "in bulk",
+      "included",
+      "mixture"
+    ],
+    "stroke_count": 5
+  },
+  {
+    "kanji": "顔",
+    "jlpt_level": "N3",
+    "unit": "N3-U17",
+    "order_index": 245,
+    "readings": {
+      "on": [
+        "ガン"
+      ],
+      "kun": [
+        "かお"
+      ]
+    },
+    "romaji_readings": [
+      "gan",
+      "kao"
+    ],
+    "primary_romaji": [
+      "kao"
+    ],
+    "meanings": [
+      "expression",
+      "face"
+    ],
+    "stroke_count": 18
+  },
+  {
+    "kanji": "類",
+    "jlpt_level": "N3",
+    "unit": "N3-U17",
+    "order_index": 246,
+    "readings": {
+      "on": [
+        "ルイ"
+      ],
+      "kun": [
+        "たぐ.い"
+      ]
+    },
+    "romaji_readings": [
+      "rui",
+      "tagui"
+    ],
+    "primary_romaji": [
+      "rui"
+    ],
+    "meanings": [
+      "class",
+      "genus",
+      "kind",
+      "sort",
+      "variety"
+    ],
+    "stroke_count": 18
+  },
+  {
+    "kanji": "余",
+    "jlpt_level": "N3",
+    "unit": "N3-U17",
+    "order_index": 247,
+    "readings": {
+      "on": [
+        "ヨ"
+      ],
+      "kun": [
+        "あま.す",
+        "あま.り",
+        "あま.る",
+        "あんま.り"
+      ]
+    },
+    "romaji_readings": [
+      "yo",
+      "amasu",
+      "amari",
+      "amaru",
+      "anmari"
+    ],
+    "primary_romaji": [
+      "yo"
+    ],
+    "meanings": [
+      "myself",
+      "other",
+      "remainder",
+      "surplus",
+      "too much"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "王",
+    "jlpt_level": "N3",
+    "unit": "N3-U17",
+    "order_index": 248,
+    "readings": {
+      "on": [
+        "-ノウ",
+        "オウ"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "nou",
+      "ou"
+    ],
+    "primary_romaji": [
+      "ou"
+    ],
+    "meanings": [
+      "king",
+      "magnate",
+      "rule"
+    ],
+    "stroke_count": 4
+  },
+  {
+    "kanji": "返",
+    "jlpt_level": "N3",
+    "unit": "N3-U17",
+    "order_index": 249,
+    "readings": {
+      "on": [
+        "ヘン"
+      ],
+      "kun": [
+        "-かえ.す",
+        "-かえ.る",
+        "かえ.す",
+        "かえ.る"
+      ]
+    },
+    "romaji_readings": [
+      "hen",
+      "kaesu",
+      "kaeru"
+    ],
+    "primary_romaji": [
+      "hen",
+      "kaesu"
+    ],
+    "meanings": [
+      "answer",
+      "fade",
+      "repay",
+      "return"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "妻",
+    "jlpt_level": "N3",
+    "unit": "N3-U17",
+    "order_index": 250,
+    "readings": {
+      "on": [
+        "サイ"
+      ],
+      "kun": [
+        "つま"
+      ]
+    },
+    "romaji_readings": [
+      "sai",
+      "tsuma"
+    ],
+    "primary_romaji": [
+      "tsuma"
+    ],
+    "meanings": [
+      "spouse",
+      "wife"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "背",
+    "jlpt_level": "N3",
+    "unit": "N3-U17",
+    "order_index": 251,
+    "readings": {
+      "on": [
+        "ハイ"
+      ],
+      "kun": [
+        "せ",
+        "せい",
+        "そむ.く",
+        "そむ.ける"
+      ]
+    },
+    "romaji_readings": [
+      "hai",
+      "se",
+      "sei",
+      "somuku",
+      "somukeru"
+    ],
+    "primary_romaji": [
+      "se",
+      "sei"
+    ],
+    "meanings": [
+      "back",
+      "behind",
+      "defy",
+      "disobey",
+      "go back on",
+      "height",
+      "rebel",
+      "stature"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "熱",
+    "jlpt_level": "N3",
+    "unit": "N3-U17",
+    "order_index": 252,
+    "readings": {
+      "on": [
+        "ネツ"
+      ],
+      "kun": [
+        "あつ.い"
+      ]
+    },
+    "romaji_readings": [
+      "netsu",
+      "atsui"
+    ],
+    "primary_romaji": [
+      "netsu"
+    ],
+    "meanings": [
+      "fever",
+      "heat",
+      "mania",
+      "passion",
+      "temperature"
+    ],
+    "stroke_count": 15
+  },
+  {
+    "kanji": "宿",
+    "jlpt_level": "N3",
+    "unit": "N3-U17",
+    "order_index": 253,
+    "readings": {
+      "on": [
+        "シュク"
+      ],
+      "kun": [
+        "やど",
+        "やど.す",
+        "やど.る"
+      ]
+    },
+    "romaji_readings": [
+      "shuku",
+      "yado",
+      "yadosu",
+      "yadoru"
+    ],
+    "primary_romaji": [
+      "yado",
+      "shuku"
+    ],
+    "meanings": [
+      "be pregnant",
+      "dwell",
+      "dwelling",
+      "home",
+      "inn",
+      "lodge",
+      "lodging",
+      "relay station"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "薬",
+    "jlpt_level": "N3",
+    "unit": "N3-U17",
+    "order_index": 254,
+    "readings": {
+      "on": [
+        "ヤク"
+      ],
+      "kun": [
+        "くすり"
+      ]
+    },
+    "romaji_readings": [
+      "yaku",
+      "kusuri"
+    ],
+    "primary_romaji": [
+      "kusuri",
+      "yaku"
+    ],
+    "meanings": [
+      "benefit",
+      "chemical",
+      "enamel",
+      "gunpowder",
+      "medicine"
+    ],
+    "stroke_count": 16
+  },
+  {
+    "kanji": "険",
+    "jlpt_level": "N3",
+    "unit": "N3-U18",
+    "order_index": 255,
+    "readings": {
+      "on": [
+        "ケン"
+      ],
+      "kun": [
+        "けわ.しい"
+      ]
+    },
+    "romaji_readings": [
+      "ken",
+      "kewashii"
+    ],
+    "primary_romaji": [
+      "ken"
+    ],
+    "meanings": [
+      "impregnable position",
+      "inaccessible place",
+      "precipitous",
+      "sharp eyes",
+      "steep place"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "頼",
+    "jlpt_level": "N3",
+    "unit": "N3-U18",
+    "order_index": 256,
+    "readings": {
+      "on": [
+        "ライ"
+      ],
+      "kun": [
+        "たの.む",
+        "たの.もしい",
+        "たよ.る"
+      ]
+    },
+    "romaji_readings": [
+      "rai",
+      "tanomu",
+      "tanomoshii",
+      "tayoru"
+    ],
+    "primary_romaji": [
+      "rai"
+    ],
+    "meanings": [
+      "request",
+      "trust"
+    ],
+    "stroke_count": 16
+  },
+  {
+    "kanji": "覚",
+    "jlpt_level": "N3",
+    "unit": "N3-U18",
+    "order_index": 257,
+    "readings": {
+      "on": [
+        "カク"
+      ],
+      "kun": [
+        "おぼ.える",
+        "さ.ます",
+        "さ.める",
+        "さと.る"
+      ]
+    },
+    "romaji_readings": [
+      "kaku",
+      "oboeru",
+      "samasu",
+      "sameru",
+      "satoru"
+    ],
+    "primary_romaji": [
+      "kaku"
+    ],
+    "meanings": [
+      "awake",
+      "learn",
+      "memorize",
+      "remember",
+      "sober up"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "船",
+    "jlpt_level": "N3",
+    "unit": "N3-U18",
+    "order_index": 258,
+    "readings": {
+      "on": [
+        "セン"
+      ],
+      "kun": [
+        "ふな-",
+        "ふね"
+      ]
+    },
+    "romaji_readings": [
+      "sen",
+      "funa",
+      "fune"
+    ],
+    "primary_romaji": [
+      "fune",
+      "sen"
+    ],
+    "meanings": [
+      "boat",
+      "ship"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "途",
+    "jlpt_level": "N3",
+    "unit": "N3-U18",
+    "order_index": 259,
+    "readings": {
+      "on": [
+        "ト"
+      ],
+      "kun": [
+        "みち"
+      ]
+    },
+    "romaji_readings": [
+      "to",
+      "michi"
+    ],
+    "primary_romaji": [
+      "to"
+    ],
+    "meanings": [
+      "road",
+      "route",
+      "way"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "許",
+    "jlpt_level": "N3",
+    "unit": "N3-U18",
+    "order_index": 260,
+    "readings": {
+      "on": [
+        "キョ"
+      ],
+      "kun": [
+        "もと",
+        "ゆる.す"
+      ]
+    },
+    "romaji_readings": [
+      "kyo",
+      "moto",
+      "yurusu"
+    ],
+    "primary_romaji": [
+      "kyo"
+    ],
+    "meanings": [
+      "approve",
+      "permit"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "抜",
+    "jlpt_level": "N3",
+    "unit": "N3-U18",
+    "order_index": 261,
+    "readings": {
+      "on": [
+        "ハイ",
+        "ハツ",
+        "バツ"
+      ],
+      "kun": [
+        "-ぬ.く",
+        "ぬ.かす",
+        "ぬ.かる",
+        "ぬ.き",
+        "ぬ.く",
+        "ぬ.ける"
+      ]
+    },
+    "romaji_readings": [
+      "hai",
+      "hatsu",
+      "batsu",
+      "nuku",
+      "nukasu",
+      "nukaru",
+      "nuki",
+      "nukeru"
+    ],
+    "primary_romaji": [
+      "hai",
+      "nuku"
+    ],
+    "meanings": [
+      "extract",
+      "omit",
+      "pilfer",
+      "pull out",
+      "quote",
+      "remove",
+      "slip out"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "便",
+    "jlpt_level": "N3",
+    "unit": "N3-U18",
+    "order_index": 262,
+    "readings": {
+      "on": [
+        "ビン",
+        "ベン"
+      ],
+      "kun": [
+        "たよ.り"
+      ]
+    },
+    "romaji_readings": [
+      "bin",
+      "ben",
+      "tayori"
+    ],
+    "primary_romaji": [
+      "bin",
+      "ben"
+    ],
+    "meanings": [
+      "chance",
+      "convenience",
+      "excrement",
+      "facility",
+      "feces",
+      "letter"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "留",
+    "jlpt_level": "N3",
+    "unit": "N3-U18",
+    "order_index": 263,
+    "readings": {
+      "on": [
+        "リュウ",
+        "ル"
+      ],
+      "kun": [
+        "と.まる",
+        "と.める",
+        "とど.まる",
+        "とど.める",
+        "るうぶる"
+      ]
+    },
+    "romaji_readings": [
+      "ryuu",
+      "ru",
+      "tomaru",
+      "tomeru",
+      "todomaru",
+      "todomeru",
+      "ruuburu"
+    ],
+    "primary_romaji": [
+      "ryuu"
+    ],
+    "meanings": [
+      "detain",
+      "fasten",
+      "halt",
+      "stop"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "罪",
+    "jlpt_level": "N3",
+    "unit": "N3-U18",
+    "order_index": 264,
+    "readings": {
+      "on": [
+        "ザイ"
+      ],
+      "kun": [
+        "つみ"
+      ]
+    },
+    "romaji_readings": [
+      "zai",
+      "tsumi"
+    ],
+    "primary_romaji": [
+      "tsumi",
+      "zai"
+    ],
+    "meanings": [
+      "blame",
+      "crime",
+      "fault",
+      "guilt",
+      "offense",
+      "sin"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "努",
+    "jlpt_level": "N3",
+    "unit": "N3-U18",
+    "order_index": 265,
+    "readings": {
+      "on": [
+        "ド"
+      ],
+      "kun": [
+        "つと.める"
+      ]
+    },
+    "romaji_readings": [
+      "do",
+      "tsutomeru"
+    ],
+    "primary_romaji": [
+      "do",
+      "tsutomeru"
+    ],
+    "meanings": [
+      "as much as possible",
+      "diligent",
+      "toil"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "精",
+    "jlpt_level": "N3",
+    "unit": "N3-U18",
+    "order_index": 266,
+    "readings": {
+      "on": [
+        "ショウ",
+        "セイ"
+      ],
+      "kun": [
+        "くわ.しい",
+        "しら.げる"
+      ]
+    },
+    "romaji_readings": [
+      "shou",
+      "sei",
+      "kuwashii",
+      "shirageru"
+    ],
+    "primary_romaji": [
+      "sei"
+    ],
+    "meanings": [
+      "energy",
+      "excellence",
+      "fairy",
+      "ghost",
+      "purity",
+      "refined",
+      "semen",
+      "skill",
+      "vitality"
+    ],
+    "stroke_count": 14
+  },
+  {
+    "kanji": "散",
+    "jlpt_level": "N3",
+    "unit": "N3-U18",
+    "order_index": 267,
+    "readings": {
+      "on": [
+        "サン"
+      ],
+      "kun": [
+        "-ち.らす",
+        "ち.らかす",
+        "ち.らかる",
+        "ち.らす",
+        "ち.らばる",
+        "ち.る",
+        "ばら",
+        "ばら.ける"
+      ]
+    },
+    "romaji_readings": [
+      "san",
+      "chirasu",
+      "chirakasu",
+      "chirakaru",
+      "chirabaru",
+      "chiru",
+      "bara",
+      "barakeru"
+    ],
+    "primary_romaji": [
+      "san",
+      "bara"
+    ],
+    "meanings": [
+      "disperse",
+      "scatter",
+      "spend",
+      "squander"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "静",
+    "jlpt_level": "N3",
+    "unit": "N3-U18",
+    "order_index": 268,
+    "readings": {
+      "on": [
+        "ジョウ",
+        "セイ"
+      ],
+      "kun": [
+        "しず-",
+        "しず.か",
+        "しず.まる",
+        "しず.める"
+      ]
+    },
+    "romaji_readings": [
+      "jou",
+      "sei",
+      "shizu",
+      "shizuka",
+      "shizumaru",
+      "shizumeru"
+    ],
+    "primary_romaji": [
+      "sei",
+      "shizu"
+    ],
+    "meanings": [
+      "quiet"
+    ],
+    "stroke_count": 14
+  },
+  {
+    "kanji": "婚",
+    "jlpt_level": "N3",
+    "unit": "N3-U18",
+    "order_index": 269,
+    "readings": {
+      "on": [
+        "コン"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "kon"
+    ],
+    "primary_romaji": [
+      "kon"
+    ],
+    "meanings": [
+      "marriage"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "喜",
+    "jlpt_level": "N3",
+    "unit": "N3-U19",
+    "order_index": 270,
+    "readings": {
+      "on": [
+        "キ"
+      ],
+      "kun": [
+        "よろこ.ばす",
+        "よろこ.ぶ"
+      ]
+    },
+    "romaji_readings": [
+      "ki",
+      "yorokobasu",
+      "yorokobu"
+    ],
+    "primary_romaji": [
+      "ki"
+    ],
+    "meanings": [
+      "rejoice",
+      "take pleasure in"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "浮",
+    "jlpt_level": "N3",
+    "unit": "N3-U19",
+    "order_index": 271,
+    "readings": {
+      "on": [
+        "フ"
+      ],
+      "kun": [
+        "う.かぶ",
+        "う.かべる",
+        "う.かれる",
+        "う.く"
+      ]
+    },
+    "romaji_readings": [
+      "fu",
+      "ukabu",
+      "ukaberu",
+      "ukareru",
+      "uku"
+    ],
+    "primary_romaji": [
+      "fu",
+      "ukabu"
+    ],
+    "meanings": [
+      "float",
+      "floating",
+      "rise to surface"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "絶",
+    "jlpt_level": "N3",
+    "unit": "N3-U19",
+    "order_index": 272,
+    "readings": {
+      "on": [
+        "ゼツ"
+      ],
+      "kun": [
+        "た.える",
+        "た.つ",
+        "た.やす"
+      ]
+    },
+    "romaji_readings": [
+      "zetsu",
+      "taeru",
+      "tatsu",
+      "tayasu"
+    ],
+    "primary_romaji": [
+      "zetsu",
+      "taeru"
+    ],
+    "meanings": [
+      "abstain",
+      "be beyond",
+      "cut off",
+      "discontinue",
+      "interrupt",
+      "peerless",
+      "sever",
+      "suppress",
+      "unparalleled",
+      "without match"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "幸",
+    "jlpt_level": "N3",
+    "unit": "N3-U19",
+    "order_index": 273,
+    "readings": {
+      "on": [
+        "コウ"
+      ],
+      "kun": [
+        "さいわ.い",
+        "さち",
+        "しあわ.せ"
+      ]
+    },
+    "romaji_readings": [
+      "kou",
+      "saiwai",
+      "sachi",
+      "shiawase"
+    ],
+    "primary_romaji": [
+      "sachi",
+      "kou"
+    ],
+    "meanings": [
+      "blessing",
+      "fortune",
+      "happiness"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "押",
+    "jlpt_level": "N3",
+    "unit": "N3-U19",
+    "order_index": 274,
+    "readings": {
+      "on": [
+        "オウ"
+      ],
+      "kun": [
+        "お.さえる",
+        "お.し-",
+        "お.す",
+        "お.っ-",
+        "おさ.える"
+      ]
+    },
+    "romaji_readings": [
+      "ou",
+      "osaeru",
+      "oshi",
+      "osu",
+      "otsu"
+    ],
+    "primary_romaji": [
+      "ou",
+      "osaeru"
+    ],
+    "meanings": [
+      "attach",
+      "check",
+      "do in spite of",
+      "press",
+      "push",
+      "seal",
+      "seize",
+      "shove",
+      "stop",
+      "subdue",
+      "weight"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "倒",
+    "jlpt_level": "N3",
+    "unit": "N3-U19",
+    "order_index": 275,
+    "readings": {
+      "on": [
+        "トウ"
+      ],
+      "kun": [
+        "-だお.れ",
+        "さかさ",
+        "さかさま",
+        "さかしま",
+        "たお.す",
+        "たお.れる"
+      ]
+    },
+    "romaji_readings": [
+      "tou",
+      "daore",
+      "sakasa",
+      "sakasama",
+      "sakashima",
+      "taosu",
+      "taoreru"
+    ],
+    "primary_romaji": [
+      "tou"
+    ],
+    "meanings": [
+      "break down",
+      "collapse",
+      "drop",
+      "fall",
+      "overthrow"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "等",
+    "jlpt_level": "N3",
+    "unit": "N3-U19",
+    "order_index": 276,
+    "readings": {
+      "on": [
+        "トウ"
+      ],
+      "kun": [
+        "-ら",
+        "など",
+        "ひと.しい"
+      ]
+    },
+    "romaji_readings": [
+      "tou",
+      "ra",
+      "nado",
+      "hitoshii"
+    ],
+    "primary_romaji": [
+      "tou",
+      "ra"
+    ],
+    "meanings": [
+      "and so forth",
+      "class (first)",
+      "equal",
+      "etc.",
+      "quality",
+      "similar"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "老",
+    "jlpt_level": "N3",
+    "unit": "N3-U19",
+    "order_index": 277,
+    "readings": {
+      "on": [
+        "ロウ"
+      ],
+      "kun": [
+        "お.いる",
+        "ふ.ける"
+      ]
+    },
+    "romaji_readings": [
+      "rou",
+      "oiru",
+      "fukeru"
+    ],
+    "primary_romaji": [
+      "rou"
+    ],
+    "meanings": [
+      "grow old",
+      "old age",
+      "old man"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "曲",
+    "jlpt_level": "N3",
+    "unit": "N3-U19",
+    "order_index": 278,
+    "readings": {
+      "on": [
+        "キョク"
+      ],
+      "kun": [
+        "くま",
+        "ま.がる",
+        "ま.げる"
+      ]
+    },
+    "romaji_readings": [
+      "kyoku",
+      "kuma",
+      "magaru",
+      "mageru"
+    ],
+    "primary_romaji": [
+      "kyoku"
+    ],
+    "meanings": [
+      "bend",
+      "composition",
+      "crooked",
+      "curve",
+      "fault",
+      "injustice",
+      "lean",
+      "melody",
+      "music",
+      "perverse",
+      "pleasure"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "払",
+    "jlpt_level": "N3",
+    "unit": "N3-U19",
+    "order_index": 279,
+    "readings": {
+      "on": [
+        "ヒツ",
+        "フツ",
+        "ホツ"
+      ],
+      "kun": [
+        "-はら.い",
+        "-ばら.い",
+        "はら.う"
+      ]
+    },
+    "romaji_readings": [
+      "hitsu",
+      "futsu",
+      "hotsu",
+      "harai",
+      "barai",
+      "harau"
+    ],
+    "primary_romaji": [
+      "hitsu",
+      "harai"
+    ],
+    "meanings": [
+      "banish",
+      "clear out",
+      "dispose of",
+      "pay",
+      "prune"
+    ],
+    "stroke_count": 5
+  },
+  {
+    "kanji": "庭",
+    "jlpt_level": "N3",
+    "unit": "N3-U19",
+    "order_index": 280,
+    "readings": {
+      "on": [
+        "テイ"
+      ],
+      "kun": [
+        "にわ"
+      ]
+    },
+    "romaji_readings": [
+      "tei",
+      "niwa"
+    ],
+    "primary_romaji": [
+      "niwa"
+    ],
+    "meanings": [
+      "courtyard",
+      "garden",
+      "yard"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "徒",
+    "jlpt_level": "N3",
+    "unit": "N3-U19",
+    "order_index": 281,
+    "readings": {
+      "on": [
+        "ト"
+      ],
+      "kun": [
+        "あだ",
+        "いたずら"
+      ]
+    },
+    "romaji_readings": [
+      "to",
+      "ada",
+      "itazura"
+    ],
+    "primary_romaji": [
+      "to",
+      "ada"
+    ],
+    "meanings": [
+      "emptiness",
+      "ephemeral thing",
+      "futility",
+      "gang",
+      "junior",
+      "on foot",
+      "party",
+      "people",
+      "set",
+      "uselessness",
+      "vanity"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "勤",
+    "jlpt_level": "N3",
+    "unit": "N3-U19",
+    "order_index": 282,
+    "readings": {
+      "on": [
+        "キン",
+        "ゴン"
+      ],
+      "kun": [
+        "-づと.め",
+        "いそ.しむ",
+        "つと.まる",
+        "つと.める"
+      ]
+    },
+    "romaji_readings": [
+      "kin",
+      "gon",
+      "zutome",
+      "isoshimu",
+      "tsutomaru",
+      "tsutomeru"
+    ],
+    "primary_romaji": [
+      "kin"
+    ],
+    "meanings": [
+      "become employed",
+      "diligence",
+      "serve"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "遅",
+    "jlpt_level": "N3",
+    "unit": "N3-U19",
+    "order_index": 283,
+    "readings": {
+      "on": [
+        "チ"
+      ],
+      "kun": [
+        "おく.らす",
+        "おく.れる",
+        "おそ.い"
+      ]
+    },
+    "romaji_readings": [
+      "chi",
+      "okurasu",
+      "okureru",
+      "osoi"
+    ],
+    "primary_romaji": [
+      "chi"
+    ],
+    "meanings": [
+      "back",
+      "late",
+      "later",
+      "slow"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "居",
+    "jlpt_level": "N3",
+    "unit": "N3-U19",
+    "order_index": 284,
+    "readings": {
+      "on": [
+        "キョ",
+        "コ"
+      ],
+      "kun": [
+        "-い",
+        "い.る",
+        "お.る"
+      ]
+    },
+    "romaji_readings": [
+      "kyo",
+      "ko",
+      "i",
+      "iru",
+      "oru"
+    ],
+    "primary_romaji": [
+      "kyo",
+      "i"
+    ],
+    "meanings": [
+      "exist",
+      "live with",
+      "reside",
+      "to be"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "雑",
+    "jlpt_level": "N3",
+    "unit": "N3-U20",
+    "order_index": 285,
+    "readings": {
+      "on": [
+        "ザツ",
+        "ゾウ"
+      ],
+      "kun": [
+        "まじ.える",
+        "まじ.る"
+      ]
+    },
+    "romaji_readings": [
+      "zatsu",
+      "zou",
+      "majieru",
+      "majiru"
+    ],
+    "primary_romaji": [
+      "zatsu",
+      "zou"
+    ],
+    "meanings": [
+      "miscellaneous"
+    ],
+    "stroke_count": 14
+  },
+  {
+    "kanji": "招",
+    "jlpt_level": "N3",
+    "unit": "N3-U20",
+    "order_index": 286,
+    "readings": {
+      "on": [
+        "ショウ"
+      ],
+      "kun": [
+        "まね.く"
+      ]
+    },
+    "romaji_readings": [
+      "shou",
+      "maneku"
+    ],
+    "primary_romaji": [
+      "shou",
+      "maneku"
+    ],
+    "meanings": [
+      "beckon",
+      "engage",
+      "invite",
+      "summon"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "困",
+    "jlpt_level": "N3",
+    "unit": "N3-U20",
+    "order_index": 287,
+    "readings": {
+      "on": [
+        "コン"
+      ],
+      "kun": [
+        "こま.る"
+      ]
+    },
+    "romaji_readings": [
+      "kon",
+      "komaru"
+    ],
+    "primary_romaji": [
+      "kon",
+      "komaru"
+    ],
+    "meanings": [
+      "annoyed",
+      "become distressed",
+      "quandary"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "欠",
+    "jlpt_level": "N3",
+    "unit": "N3-U20",
+    "order_index": 288,
+    "readings": {
+      "on": [
+        "ケツ",
+        "ケン"
+      ],
+      "kun": [
+        "か.く",
+        "か.ける"
+      ]
+    },
+    "romaji_readings": [
+      "ketsu",
+      "ken",
+      "kaku",
+      "kakeru"
+    ],
+    "primary_romaji": [
+      "ketsu"
+    ],
+    "meanings": [
+      "fail",
+      "gap",
+      "lack",
+      "yawning radical (no. 76)"
+    ],
+    "stroke_count": 4
+  },
+  {
+    "kanji": "更",
+    "jlpt_level": "N3",
+    "unit": "N3-U20",
+    "order_index": 289,
+    "readings": {
+      "on": [
+        "コウ"
+      ],
+      "kun": [
+        "さら",
+        "さら.に",
+        "ふ.かす",
+        "ふ.ける"
+      ]
+    },
+    "romaji_readings": [
+      "kou",
+      "sara",
+      "sarani",
+      "fukasu",
+      "fukeru"
+    ],
+    "primary_romaji": [
+      "sara"
+    ],
+    "meanings": [
+      "again",
+      "further",
+      "grow late",
+      "more and more",
+      "night watch",
+      "of course",
+      "renew",
+      "renovate",
+      "sit up late"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "刻",
+    "jlpt_level": "N3",
+    "unit": "N3-U20",
+    "order_index": 290,
+    "readings": {
+      "on": [
+        "コク"
+      ],
+      "kun": [
+        "きざ.み",
+        "きざ.む"
+      ]
+    },
+    "romaji_readings": [
+      "koku",
+      "kizami",
+      "kizamu"
+    ],
+    "primary_romaji": [
+      "koku"
+    ],
+    "meanings": [
+      "carving",
+      "chop",
+      "cut fine",
+      "engrave",
+      "hash",
+      "mince",
+      "time"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "賛",
+    "jlpt_level": "N3",
+    "unit": "N3-U20",
+    "order_index": 291,
+    "readings": {
+      "on": [
+        "サン"
+      ],
+      "kun": [
+        "たす.ける",
+        "たた.える"
+      ]
+    },
+    "romaji_readings": [
+      "san",
+      "tasukeru",
+      "tataeru"
+    ],
+    "primary_romaji": [
+      "san",
+      "tasukeru"
+    ],
+    "meanings": [
+      "agree with",
+      "approve",
+      "assist",
+      "praise",
+      "title or inscription on picture"
+    ],
+    "stroke_count": 15
+  },
+  {
+    "kanji": "抱",
+    "jlpt_level": "N3",
+    "unit": "N3-U20",
+    "order_index": 292,
+    "readings": {
+      "on": [
+        "ホウ"
+      ],
+      "kun": [
+        "いだ.く",
+        "かか.える",
+        "だ.く"
+      ]
+    },
+    "romaji_readings": [
+      "hou",
+      "idaku",
+      "kakaeru",
+      "daku"
+    ],
+    "primary_romaji": [
+      "hou",
+      "idaku"
+    ],
+    "meanings": [
+      "embrace",
+      "hold in arms",
+      "hug"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "犯",
+    "jlpt_level": "N3",
+    "unit": "N3-U20",
+    "order_index": 293,
+    "readings": {
+      "on": [
+        "ハン",
+        "ボン"
+      ],
+      "kun": [
+        "おか.す"
+      ]
+    },
+    "romaji_readings": [
+      "han",
+      "bon",
+      "okasu"
+    ],
+    "primary_romaji": [
+      "han"
+    ],
+    "meanings": [
+      "crime",
+      "offense",
+      "sin"
+    ],
+    "stroke_count": 5
+  },
+  {
+    "kanji": "恐",
+    "jlpt_level": "N3",
+    "unit": "N3-U20",
+    "order_index": 294,
+    "readings": {
+      "on": [
+        "キョウ"
+      ],
+      "kun": [
+        "おそ.る",
+        "おそ.れる",
+        "おそ.ろしい",
+        "こわ.い",
+        "こわ.がる"
+      ]
+    },
+    "romaji_readings": [
+      "kyou",
+      "osoru",
+      "osoreru",
+      "osoroshii",
+      "kowai",
+      "kowagaru"
+    ],
+    "primary_romaji": [
+      "kyou"
+    ],
+    "meanings": [
+      "awe",
+      "dread",
+      "fear"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "息",
+    "jlpt_level": "N3",
+    "unit": "N3-U20",
+    "order_index": 295,
+    "readings": {
+      "on": [
+        "ソク"
+      ],
+      "kun": [
+        "いき"
+      ]
+    },
+    "romaji_readings": [
+      "soku",
+      "iki"
+    ],
+    "primary_romaji": [
+      "iki",
+      "soku"
+    ],
+    "meanings": [
+      "breath",
+      "coming to an end",
+      "interest (on money)",
+      "nuture",
+      "respiration",
+      "rest",
+      "son"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "遠",
+    "jlpt_level": "N3",
+    "unit": "N3-U20",
+    "order_index": 296,
+    "readings": {
+      "on": [
+        "エン",
+        "オン"
+      ],
+      "kun": [
+        "とお.い"
+      ]
+    },
+    "romaji_readings": [
+      "en",
+      "on",
+      "tooi"
+    ],
+    "primary_romaji": [
+      "en"
+    ],
+    "meanings": [
+      "distant",
+      "far"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "戻",
+    "jlpt_level": "N3",
+    "unit": "N3-U20",
+    "order_index": 297,
+    "readings": {
+      "on": [
+        "レイ"
+      ],
+      "kun": [
+        "もど.す",
+        "もど.る"
+      ]
+    },
+    "romaji_readings": [
+      "rei",
+      "modosu",
+      "modoru"
+    ],
+    "primary_romaji": [
+      "rei",
+      "modosu"
+    ],
+    "meanings": [
+      "go backwards",
+      "re-",
+      "restore",
+      "resume",
+      "return",
+      "revert"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "願",
+    "jlpt_level": "N3",
+    "unit": "N3-U20",
+    "order_index": 298,
+    "readings": {
+      "on": [
+        "ガン"
+      ],
+      "kun": [
+        "-ねがい",
+        "ねが.う"
+      ]
+    },
+    "romaji_readings": [
+      "gan",
+      "negai",
+      "negau"
+    ],
+    "primary_romaji": [
+      "gan"
+    ],
+    "meanings": [
+      "hope",
+      "petition",
+      "request",
+      "vow",
+      "wish"
+    ],
+    "stroke_count": 19
+  },
+  {
+    "kanji": "絵",
+    "jlpt_level": "N3",
+    "unit": "N3-U20",
+    "order_index": 299,
+    "readings": {
+      "on": [
+        "エ",
+        "カイ"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "e",
+      "kai"
+    ],
+    "primary_romaji": [
+      "e"
+    ],
+    "meanings": [
+      "drawing",
+      "painting",
+      "picture",
+      "sketch"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "越",
+    "jlpt_level": "N3",
+    "unit": "N3-U21",
+    "order_index": 300,
+    "readings": {
+      "on": [
+        "エツ",
+        "オツ"
+      ],
+      "kun": [
+        "-こ.す",
+        "-ご.え",
+        "-ご.し",
+        "こ.える",
+        "こ.す"
+      ]
+    },
+    "romaji_readings": [
+      "etsu",
+      "otsu",
+      "kosu",
+      "goe",
+      "goshi",
+      "koeru"
+    ],
+    "primary_romaji": [
+      "etsu"
+    ],
+    "meanings": [
+      "Vietnam",
+      "cross over",
+      "exceed",
+      "move to",
+      "surpass"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "欲",
+    "jlpt_level": "N3",
+    "unit": "N3-U21",
+    "order_index": 301,
+    "readings": {
+      "on": [
+        "ヨク"
+      ],
+      "kun": [
+        "ほ.しい",
+        "ほっ.する"
+      ]
+    },
+    "romaji_readings": [
+      "yoku",
+      "hoshii",
+      "hossuru"
+    ],
+    "primary_romaji": [
+      "yoku"
+    ],
+    "meanings": [
+      "covetousness",
+      "craving",
+      "desire",
+      "greed",
+      "longing",
+      "passion"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "痛",
+    "jlpt_level": "N3",
+    "unit": "N3-U21",
+    "order_index": 302,
+    "readings": {
+      "on": [
+        "ツウ"
+      ],
+      "kun": [
+        "いた.い",
+        "いた.ましい",
+        "いた.む",
+        "いた.める"
+      ]
+    },
+    "romaji_readings": [
+      "tsuu",
+      "itai",
+      "itamashii",
+      "itamu",
+      "itameru"
+    ],
+    "primary_romaji": [
+      "tsuu"
+    ],
+    "meanings": [
+      "bruise",
+      "damage",
+      "hurt",
+      "pain"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "笑",
+    "jlpt_level": "N3",
+    "unit": "N3-U21",
+    "order_index": 303,
+    "readings": {
+      "on": [
+        "ショウ"
+      ],
+      "kun": [
+        "え.む",
+        "わら.う"
+      ]
+    },
+    "romaji_readings": [
+      "shou",
+      "emu",
+      "warau"
+    ],
+    "primary_romaji": [
+      "shou",
+      "emu"
+    ],
+    "meanings": [
+      "laugh"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "互",
+    "jlpt_level": "N3",
+    "unit": "N3-U21",
+    "order_index": 304,
+    "readings": {
+      "on": [
+        "ゴ"
+      ],
+      "kun": [
+        "かたみ.に",
+        "たが.い"
+      ]
+    },
+    "romaji_readings": [
+      "go",
+      "katamini",
+      "tagai"
+    ],
+    "primary_romaji": [
+      "go",
+      "katamini"
+    ],
+    "meanings": [
+      "mutually",
+      "reciprocally",
+      "together"
+    ],
+    "stroke_count": 4
+  },
+  {
+    "kanji": "束",
+    "jlpt_level": "N3",
+    "unit": "N3-U21",
+    "order_index": 305,
+    "readings": {
+      "on": [
+        "ソク"
+      ],
+      "kun": [
+        "たば",
+        "たば.ねる",
+        "つか",
+        "つか.ねる"
+      ]
+    },
+    "romaji_readings": [
+      "soku",
+      "taba",
+      "tabaneru",
+      "tsuka",
+      "tsukaneru"
+    ],
+    "primary_romaji": [
+      "taba",
+      "soku"
+    ],
+    "meanings": [
+      "bundle",
+      "control",
+      "govern",
+      "manage",
+      "ream",
+      "sheaf",
+      "tie in bundles"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "似",
+    "jlpt_level": "N3",
+    "unit": "N3-U21",
+    "order_index": 306,
+    "readings": {
+      "on": [
+        "ジ"
+      ],
+      "kun": [
+        "に.る",
+        "ひ.る"
+      ]
+    },
+    "romaji_readings": [
+      "ji",
+      "niru",
+      "hiru"
+    ],
+    "primary_romaji": [
+      "ji",
+      "niru"
+    ],
+    "meanings": [
+      "becoming",
+      "counterfeit",
+      "imitate",
+      "resemble",
+      "suitable"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "列",
+    "jlpt_level": "N3",
+    "unit": "N3-U21",
+    "order_index": 307,
+    "readings": {
+      "on": [
+        "レ",
+        "レツ"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "re",
+      "retsu"
+    ],
+    "primary_romaji": [
+      "retsu"
+    ],
+    "meanings": [
+      "column",
+      "file",
+      "rank",
+      "row",
+      "tier"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "探",
+    "jlpt_level": "N3",
+    "unit": "N3-U21",
+    "order_index": 308,
+    "readings": {
+      "on": [
+        "タン"
+      ],
+      "kun": [
+        "さが.す",
+        "さぐ.る"
+      ]
+    },
+    "romaji_readings": [
+      "tan",
+      "sagasu",
+      "saguru"
+    ],
+    "primary_romaji": [
+      "tan",
+      "sagasu"
+    ],
+    "meanings": [
+      "grope",
+      "look for",
+      "search"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "逃",
+    "jlpt_level": "N3",
+    "unit": "N3-U21",
+    "order_index": 309,
+    "readings": {
+      "on": [
+        "トウ"
+      ],
+      "kun": [
+        "に.がす",
+        "に.げる",
+        "のが.す",
+        "のが.れる"
+      ]
+    },
+    "romaji_readings": [
+      "tou",
+      "nigasu",
+      "nigeru",
+      "nogasu",
+      "nogareru"
+    ],
+    "primary_romaji": [
+      "tou",
+      "nigasu"
+    ],
+    "meanings": [
+      "escape",
+      "evade",
+      "flee",
+      "set free",
+      "shirk"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "遊",
+    "jlpt_level": "N3",
+    "unit": "N3-U21",
+    "order_index": 310,
+    "readings": {
+      "on": [
+        "ユ",
+        "ユウ"
+      ],
+      "kun": [
+        "あそ.ばす",
+        "あそ.ぶ"
+      ]
+    },
+    "romaji_readings": [
+      "yu",
+      "yuu",
+      "asobasu",
+      "asobu"
+    ],
+    "primary_romaji": [
+      "yuu",
+      "asobu"
+    ],
+    "meanings": [
+      "play"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "迷",
+    "jlpt_level": "N3",
+    "unit": "N3-U21",
+    "order_index": 311,
+    "readings": {
+      "on": [
+        "メイ"
+      ],
+      "kun": [
+        "まよ.う"
+      ]
+    },
+    "romaji_readings": [
+      "mei",
+      "mayou"
+    ],
+    "primary_romaji": [
+      "mei"
+    ],
+    "meanings": [
+      "astray",
+      "be perplexed",
+      "err",
+      "illusion",
+      "in doubt",
+      "lost"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "夢",
+    "jlpt_level": "N3",
+    "unit": "N3-U21",
+    "order_index": 312,
+    "readings": {
+      "on": [
+        "ボウ",
+        "ム"
+      ],
+      "kun": [
+        "くら.い",
+        "ゆめ",
+        "ゆめ.みる"
+      ]
+    },
+    "romaji_readings": [
+      "bou",
+      "mu",
+      "kurai",
+      "yume",
+      "yumemiru"
+    ],
+    "primary_romaji": [
+      "yume",
+      "mu"
+    ],
+    "meanings": [
+      "dream",
+      "illusion",
+      "vision"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "君",
+    "jlpt_level": "N3",
+    "unit": "N3-U21",
+    "order_index": 313,
+    "readings": {
+      "on": [
+        "クン"
+      ],
+      "kun": [
+        "-ぎみ",
+        "きみ"
+      ]
+    },
+    "romaji_readings": [
+      "kun",
+      "gimi",
+      "kimi"
+    ],
+    "primary_romaji": [
+      "kun",
+      "kimi"
+    ],
+    "meanings": [
+      "male name suffix",
+      "mister",
+      "ruler",
+      "you"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "閉",
+    "jlpt_level": "N3",
+    "unit": "N3-U21",
+    "order_index": 314,
+    "readings": {
+      "on": [
+        "ヘイ"
+      ],
+      "kun": [
+        "し.まる",
+        "し.める",
+        "た.てる",
+        "と.ざす",
+        "と.じる"
+      ]
+    },
+    "romaji_readings": [
+      "hei",
+      "shimaru",
+      "shimeru",
+      "tateru",
+      "tozasu",
+      "tojiru"
+    ],
+    "primary_romaji": [
+      "hei"
+    ],
+    "meanings": [
+      "closed",
+      "shut"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "緒",
+    "jlpt_level": "N3",
+    "unit": "N3-U22",
+    "order_index": 315,
+    "readings": {
+      "on": [
+        "ショ",
+        "チョ"
+      ],
+      "kun": [
+        "いとぐち",
+        "お"
+      ]
+    },
+    "romaji_readings": [
+      "sho",
+      "cho",
+      "itoguchi",
+      "o"
+    ],
+    "primary_romaji": [
+      "cho",
+      "o"
+    ],
+    "meanings": [
+      "beginning",
+      "cord",
+      "end",
+      "inception",
+      "mental or emotional state",
+      "strap",
+      "thong"
+    ],
+    "stroke_count": 14
+  },
+  {
+    "kanji": "折",
+    "jlpt_level": "N3",
+    "unit": "N3-U22",
+    "order_index": 316,
+    "readings": {
+      "on": [
+        "シャク",
+        "セツ"
+      ],
+      "kun": [
+        "-お.り",
+        "お.り",
+        "お.る",
+        "お.れる",
+        "おり"
+      ]
+    },
+    "romaji_readings": [
+      "shaku",
+      "setsu",
+      "ori",
+      "oru",
+      "oreru"
+    ],
+    "primary_romaji": [
+      "ori"
+    ],
+    "meanings": [
+      "bend",
+      "break",
+      "fold",
+      "fracture",
+      "submit",
+      "yield"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "草",
+    "jlpt_level": "N3",
+    "unit": "N3-U22",
+    "order_index": 317,
+    "readings": {
+      "on": [
+        "ソウ"
+      ],
+      "kun": [
+        "-ぐさ",
+        "くさ",
+        "くさ-"
+      ]
+    },
+    "romaji_readings": [
+      "sou",
+      "gusa",
+      "kusa"
+    ],
+    "primary_romaji": [
+      "kusa",
+      "sou"
+    ],
+    "meanings": [
+      "draft",
+      "grass",
+      "herbs",
+      "pasture",
+      "weeds",
+      "write"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "暮",
+    "jlpt_level": "N3",
+    "unit": "N3-U22",
+    "order_index": 318,
+    "readings": {
+      "on": [
+        "ボ"
+      ],
+      "kun": [
+        "く.らす",
+        "く.れる"
+      ]
+    },
+    "romaji_readings": [
+      "bo",
+      "kurasu",
+      "kureru"
+    ],
+    "primary_romaji": [
+      "bo",
+      "kurasu"
+    ],
+    "meanings": [
+      "evening",
+      "livelihood",
+      "make a living",
+      "season's end",
+      "spend time",
+      "twilight"
+    ],
+    "stroke_count": 14
+  },
+  {
+    "kanji": "酒",
+    "jlpt_level": "N3",
+    "unit": "N3-U22",
+    "order_index": 319,
+    "readings": {
+      "on": [
+        "シュ"
+      ],
+      "kun": [
+        "さか-",
+        "さけ"
+      ]
+    },
+    "romaji_readings": [
+      "shu",
+      "saka",
+      "sake"
+    ],
+    "primary_romaji": [
+      "sake",
+      "shu"
+    ],
+    "meanings": [
+      "alcohol",
+      "sake"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "悲",
+    "jlpt_level": "N3",
+    "unit": "N3-U22",
+    "order_index": 320,
+    "readings": {
+      "on": [
+        "ヒ"
+      ],
+      "kun": [
+        "かな.しい",
+        "かな.しむ"
+      ]
+    },
+    "romaji_readings": [
+      "hi",
+      "kanashii",
+      "kanashimu"
+    ],
+    "primary_romaji": [
+      "hi"
+    ],
+    "meanings": [
+      "deplore",
+      "grieve",
+      "regret",
+      "sad"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "晴",
+    "jlpt_level": "N3",
+    "unit": "N3-U22",
+    "order_index": 321,
+    "readings": {
+      "on": [
+        "セイ"
+      ],
+      "kun": [
+        "-ば.れ",
+        "は.らす",
+        "は.れ",
+        "は.れ-",
+        "は.れる"
+      ]
+    },
+    "romaji_readings": [
+      "sei",
+      "bare",
+      "harasu",
+      "hare",
+      "hareru"
+    ],
+    "primary_romaji": [
+      "hare"
+    ],
+    "meanings": [
+      "clear up"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "掛",
+    "jlpt_level": "N3",
+    "unit": "N3-U22",
+    "order_index": 322,
+    "readings": {
+      "on": [
+        "カイ",
+        "ケイ"
+      ],
+      "kun": [
+        "-か.かる",
+        "-か.け",
+        "-か.ける",
+        "-が.かり",
+        "-が.かる",
+        "-が.け",
+        "-がかり",
+        "か.かり",
+        "か.かる",
+        "か.け",
+        "か.ける",
+        "かかり"
+      ]
+    },
+    "romaji_readings": [
+      "kai",
+      "kei",
+      "kakaru",
+      "kake",
+      "kakeru",
+      "gakari",
+      "gakaru",
+      "gake",
+      "kakari"
+    ],
+    "primary_romaji": [
+      "kai",
+      "kakaru"
+    ],
+    "meanings": [
+      "arrive at",
+      "depend",
+      "hang",
+      "pour",
+      "suspend",
+      "tax"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "到",
+    "jlpt_level": "N3",
+    "unit": "N3-U22",
+    "order_index": 323,
+    "readings": {
+      "on": [
+        "トウ"
+      ],
+      "kun": [
+        "いた.る"
+      ]
+    },
+    "romaji_readings": [
+      "tou",
+      "itaru"
+    ],
+    "primary_romaji": [
+      "itaru"
+    ],
+    "meanings": [
+      "arrival",
+      "attain",
+      "proceed",
+      "reach",
+      "result in"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "寝",
+    "jlpt_level": "N3",
+    "unit": "N3-U22",
+    "order_index": 324,
+    "readings": {
+      "on": [
+        "シン"
+      ],
+      "kun": [
+        "い.ぬ",
+        "ね.かす",
+        "ね.る",
+        "みたまや",
+        "や.める"
+      ]
+    },
+    "romaji_readings": [
+      "shin",
+      "inu",
+      "nekasu",
+      "neru",
+      "mitamaya",
+      "yameru"
+    ],
+    "primary_romaji": [
+      "shin",
+      "inu"
+    ],
+    "meanings": [
+      "bed",
+      "lie down",
+      "remain unsold",
+      "rest",
+      "sleep"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "暗",
+    "jlpt_level": "N3",
+    "unit": "N3-U22",
+    "order_index": 325,
+    "readings": {
+      "on": [
+        "アン"
+      ],
+      "kun": [
+        "くら.い",
+        "くら.む",
+        "くれ.る"
+      ]
+    },
+    "romaji_readings": [
+      "an",
+      "kurai",
+      "kuramu",
+      "kureru"
+    ],
+    "primary_romaji": [
+      "an"
+    ],
+    "meanings": [
+      "be blinded",
+      "darkness",
+      "disappear",
+      "grow dark",
+      "informal",
+      "shade"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "盗",
+    "jlpt_level": "N3",
+    "unit": "N3-U22",
+    "order_index": 326,
+    "readings": {
+      "on": [
+        "トウ"
+      ],
+      "kun": [
+        "ぬす.み",
+        "ぬす.む"
+      ]
+    },
+    "romaji_readings": [
+      "tou",
+      "nusumi",
+      "nusumu"
+    ],
+    "primary_romaji": [
+      "tou"
+    ],
+    "meanings": [
+      "pilfer",
+      "rob",
+      "steal"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "吸",
+    "jlpt_level": "N3",
+    "unit": "N3-U22",
+    "order_index": 327,
+    "readings": {
+      "on": [
+        "キュウ"
+      ],
+      "kun": [
+        "す.う"
+      ]
+    },
+    "romaji_readings": [
+      "kyuu",
+      "suu"
+    ],
+    "primary_romaji": [
+      "kyuu"
+    ],
+    "meanings": [
+      "imbibe",
+      "inhale",
+      "sip",
+      "suck"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "陽",
+    "jlpt_level": "N3",
+    "unit": "N3-U22",
+    "order_index": 328,
+    "readings": {
+      "on": [
+        "ヨウ"
+      ],
+      "kun": [
+        "ひ"
+      ]
+    },
+    "romaji_readings": [
+      "you",
+      "hi"
+    ],
+    "primary_romaji": [
+      "you"
+    ],
+    "meanings": [
+      "daytime",
+      "heaven",
+      "male",
+      "positive",
+      "sunshine",
+      "yang principle"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "御",
+    "jlpt_level": "N3",
+    "unit": "N3-U22",
+    "order_index": 329,
+    "readings": {
+      "on": [
+        "ギョ",
+        "ゴ"
+      ],
+      "kun": [
+        "お-",
+        "おん-",
+        "み-"
+      ]
+    },
+    "romaji_readings": [
+      "gyo",
+      "go",
+      "o",
+      "on",
+      "mi"
+    ],
+    "primary_romaji": [
+      "o",
+      "go"
+    ],
+    "meanings": [
+      "govern",
+      "honorable",
+      "manipulate"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "歯",
+    "jlpt_level": "N3",
+    "unit": "N3-U23",
+    "order_index": 330,
+    "readings": {
+      "on": [
+        "シ"
+      ],
+      "kun": [
+        "は",
+        "よわ.い",
+        "よわい",
+        "よわい.する"
+      ]
+    },
+    "romaji_readings": [
+      "shi",
+      "ha",
+      "yowai",
+      "yowaisuru"
+    ],
+    "primary_romaji": [
+      "ha",
+      "shi"
+    ],
+    "meanings": [
+      "cog",
+      "tooth"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "忘",
+    "jlpt_level": "N3",
+    "unit": "N3-U23",
+    "order_index": 331,
+    "readings": {
+      "on": [
+        "ボウ"
+      ],
+      "kun": [
+        "わす.れる"
+      ]
+    },
+    "romaji_readings": [
+      "bou",
+      "wasureru"
+    ],
+    "primary_romaji": [
+      "bou",
+      "wasureru"
+    ],
+    "meanings": [
+      "forget"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "雪",
+    "jlpt_level": "N3",
+    "unit": "N3-U23",
+    "order_index": 332,
+    "readings": {
+      "on": [
+        "セツ"
+      ],
+      "kun": [
+        "ゆき"
+      ]
+    },
+    "romaji_readings": [
+      "setsu",
+      "yuki"
+    ],
+    "primary_romaji": [
+      "yuki",
+      "setsu"
+    ],
+    "meanings": [
+      "snow"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "吹",
+    "jlpt_level": "N3",
+    "unit": "N3-U23",
+    "order_index": 333,
+    "readings": {
+      "on": [
+        "スイ"
+      ],
+      "kun": [
+        "ふ.く"
+      ]
+    },
+    "romaji_readings": [
+      "sui",
+      "fuku"
+    ],
+    "primary_romaji": [
+      "sui",
+      "fuku"
+    ],
+    "meanings": [
+      "blow",
+      "breathe",
+      "emit",
+      "puff",
+      "smoke"
+    ],
+    "stroke_count": 7
+  },
+  {
+    "kanji": "娘",
+    "jlpt_level": "N3",
+    "unit": "N3-U23",
+    "order_index": 334,
+    "readings": {
+      "on": [
+        "ジョウ"
+      ],
+      "kun": [
+        "こ",
+        "むすめ"
+      ]
+    },
+    "romaji_readings": [
+      "jou",
+      "ko",
+      "musume"
+    ],
+    "primary_romaji": [
+      "musume"
+    ],
+    "meanings": [
+      "daughter",
+      "girl"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "誤",
+    "jlpt_level": "N3",
+    "unit": "N3-U23",
+    "order_index": 335,
+    "readings": {
+      "on": [
+        "ゴ"
+      ],
+      "kun": [
+        "-あやま.る",
+        "あやま.る"
+      ]
+    },
+    "romaji_readings": [
+      "go",
+      "ayamaru"
+    ],
+    "primary_romaji": [
+      "go"
+    ],
+    "meanings": [
+      "do wrong",
+      "err",
+      "mislead",
+      "mistake"
+    ],
+    "stroke_count": 14
+  },
+  {
+    "kanji": "洗",
+    "jlpt_level": "N3",
+    "unit": "N3-U23",
+    "order_index": 336,
+    "readings": {
+      "on": [
+        "セン"
+      ],
+      "kun": [
+        "あら.う"
+      ]
+    },
+    "romaji_readings": [
+      "sen",
+      "arau"
+    ],
+    "primary_romaji": [
+      "sen",
+      "arau"
+    ],
+    "meanings": [
+      "inquire into",
+      "probe",
+      "wash"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "慣",
+    "jlpt_level": "N3",
+    "unit": "N3-U23",
+    "order_index": 337,
+    "readings": {
+      "on": [
+        "カン"
+      ],
+      "kun": [
+        "な.らす",
+        "な.れる"
+      ]
+    },
+    "romaji_readings": [
+      "kan",
+      "narasu",
+      "nareru"
+    ],
+    "primary_romaji": [
+      "kan"
+    ],
+    "meanings": [
+      "accustomed",
+      "become experienced",
+      "get used to"
+    ],
+    "stroke_count": 14
+  },
+  {
+    "kanji": "礼",
+    "jlpt_level": "N3",
+    "unit": "N3-U23",
+    "order_index": 338,
+    "readings": {
+      "on": [
+        "ライ",
+        "レイ"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "rai",
+      "rei"
+    ],
+    "primary_romaji": [
+      "rei"
+    ],
+    "meanings": [
+      "bow",
+      "ceremony",
+      "remuneration",
+      "salute",
+      "thanks"
+    ],
+    "stroke_count": 5
+  },
+  {
+    "kanji": "窓",
+    "jlpt_level": "N3",
+    "unit": "N3-U23",
+    "order_index": 339,
+    "readings": {
+      "on": [
+        "ス",
+        "ソウ"
+      ],
+      "kun": [
+        "けむだし",
+        "てんまど",
+        "まど"
+      ]
+    },
+    "romaji_readings": [
+      "su",
+      "sou",
+      "kemudashi",
+      "tenmado",
+      "mado"
+    ],
+    "primary_romaji": [
+      "mado"
+    ],
+    "meanings": [
+      "pane",
+      "window"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "昔",
+    "jlpt_level": "N3",
+    "unit": "N3-U23",
+    "order_index": 340,
+    "readings": {
+      "on": [
+        "シャク",
+        "セキ"
+      ],
+      "kun": [
+        "むかし"
+      ]
+    },
+    "romaji_readings": [
+      "shaku",
+      "seki",
+      "mukashi"
+    ],
+    "primary_romaji": [
+      "mukashi"
+    ],
+    "meanings": [
+      "antiquity",
+      "old times",
+      "once upon a time"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "貧",
+    "jlpt_level": "N3",
+    "unit": "N3-U23",
+    "order_index": 341,
+    "readings": {
+      "on": [
+        "ヒン",
+        "ビン"
+      ],
+      "kun": [
+        "まず.しい"
+      ]
+    },
+    "romaji_readings": [
+      "hin",
+      "bin",
+      "mazushii"
+    ],
+    "primary_romaji": [
+      "hin"
+    ],
+    "meanings": [
+      "poor",
+      "poverty"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "怒",
+    "jlpt_level": "N3",
+    "unit": "N3-U23",
+    "order_index": 342,
+    "readings": {
+      "on": [
+        "ド",
+        "ヌ"
+      ],
+      "kun": [
+        "いか.る",
+        "おこ.る"
+      ]
+    },
+    "romaji_readings": [
+      "do",
+      "nu",
+      "ikaru",
+      "okoru"
+    ],
+    "primary_romaji": [
+      "do"
+    ],
+    "meanings": [
+      "angry",
+      "be offended"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "泳",
+    "jlpt_level": "N3",
+    "unit": "N3-U23",
+    "order_index": 343,
+    "readings": {
+      "on": [
+        "エイ"
+      ],
+      "kun": [
+        "およ.ぐ"
+      ]
+    },
+    "romaji_readings": [
+      "ei",
+      "oyogu"
+    ],
+    "primary_romaji": [
+      "ei",
+      "oyogu"
+    ],
+    "meanings": [
+      "swim"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "祖",
+    "jlpt_level": "N3",
+    "unit": "N3-U23",
+    "order_index": 344,
+    "readings": {
+      "on": [
+        "ソ"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "so"
+    ],
+    "primary_romaji": [
+      "so"
+    ],
+    "meanings": [
+      "ancestor",
+      "founder",
+      "pioneer"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "杯",
+    "jlpt_level": "N3",
+    "unit": "N3-U24",
+    "order_index": 345,
+    "readings": {
+      "on": [
+        "ハイ"
+      ],
+      "kun": [
+        "さかずき"
+      ]
+    },
+    "romaji_readings": [
+      "hai",
+      "sakazuki"
+    ],
+    "primary_romaji": [
+      "hai",
+      "sakazuki"
+    ],
+    "meanings": [
+      "counter for cupfuls",
+      "glass",
+      "toast",
+      "wine glass"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "疲",
+    "jlpt_level": "N3",
+    "unit": "N3-U24",
+    "order_index": 346,
+    "readings": {
+      "on": [
+        "ヒ"
+      ],
+      "kun": [
+        "-づか.れ",
+        "つか.らす",
+        "つか.れる"
+      ]
+    },
+    "romaji_readings": [
+      "hi",
+      "zukare",
+      "tsukarasu",
+      "tsukareru"
+    ],
+    "primary_romaji": [
+      "hi",
+      "zukare"
+    ],
+    "meanings": [
+      "exhausted",
+      "tire",
+      "weary"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "皆",
+    "jlpt_level": "N3",
+    "unit": "N3-U24",
+    "order_index": 347,
+    "readings": {
+      "on": [
+        "カイ"
+      ],
+      "kun": [
+        "みな",
+        "みんな"
+      ]
+    },
+    "romaji_readings": [
+      "kai",
+      "mina",
+      "minna"
+    ],
+    "primary_romaji": [
+      "mina",
+      "minna"
+    ],
+    "meanings": [
+      "all",
+      "everything"
+    ],
+    "stroke_count": 9
+  },
+  {
+    "kanji": "鳴",
+    "jlpt_level": "N3",
+    "unit": "N3-U24",
+    "order_index": 348,
+    "readings": {
+      "on": [
+        "メイ"
+      ],
+      "kun": [
+        "な.く",
+        "な.らす",
+        "な.る"
+      ]
+    },
+    "romaji_readings": [
+      "mei",
+      "naku",
+      "narasu",
+      "naru"
+    ],
+    "primary_romaji": [
+      "naru"
+    ],
+    "meanings": [
+      "bark",
+      "chirp",
+      "cry",
+      "echo",
+      "honk",
+      "ring",
+      "sound"
+    ],
+    "stroke_count": 14
+  },
+  {
+    "kanji": "腹",
+    "jlpt_level": "N3",
+    "unit": "N3-U24",
+    "order_index": 349,
+    "readings": {
+      "on": [
+        "フク"
+      ],
+      "kun": [
+        "はら"
+      ]
+    },
+    "romaji_readings": [
+      "fuku",
+      "hara"
+    ],
+    "primary_romaji": [
+      "hara"
+    ],
+    "meanings": [
+      "abdomen",
+      "belly",
+      "stomach"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "煙",
+    "jlpt_level": "N3",
+    "unit": "N3-U24",
+    "order_index": 350,
+    "readings": {
+      "on": [
+        "エン"
+      ],
+      "kun": [
+        "けむ.い",
+        "けむ.る",
+        "けむり"
+      ]
+    },
+    "romaji_readings": [
+      "en",
+      "kemui",
+      "kemuru",
+      "kemuri"
+    ],
+    "primary_romaji": [
+      "kemuri",
+      "en"
+    ],
+    "meanings": [
+      "smoke"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "眠",
+    "jlpt_level": "N3",
+    "unit": "N3-U24",
+    "order_index": 351,
+    "readings": {
+      "on": [
+        "ミン"
+      ],
+      "kun": [
+        "ねむ.い",
+        "ねむ.る"
+      ]
+    },
+    "romaji_readings": [
+      "min",
+      "nemui",
+      "nemuru"
+    ],
+    "primary_romaji": [
+      "min",
+      "nemui"
+    ],
+    "meanings": [
+      "die",
+      "sleep",
+      "sleepy"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "怖",
+    "jlpt_level": "N3",
+    "unit": "N3-U24",
+    "order_index": 352,
+    "readings": {
+      "on": [
+        "フ",
+        "ホ"
+      ],
+      "kun": [
+        "お.じる",
+        "おそ.れる",
+        "こわ.い",
+        "こわ.がる"
+      ]
+    },
+    "romaji_readings": [
+      "fu",
+      "ho",
+      "ojiru",
+      "osoreru",
+      "kowai",
+      "kowagaru"
+    ],
+    "primary_romaji": [
+      "fu",
+      "ojiru"
+    ],
+    "meanings": [
+      "be frightened",
+      "dreadful",
+      "fearful"
+    ],
+    "stroke_count": 8
+  },
+  {
+    "kanji": "耳",
+    "jlpt_level": "N3",
+    "unit": "N3-U24",
+    "order_index": 353,
+    "readings": {
+      "on": [
+        "ジ"
+      ],
+      "kun": [
+        "みみ"
+      ]
+    },
+    "romaji_readings": [
+      "ji",
+      "mimi"
+    ],
+    "primary_romaji": [
+      "mimi",
+      "ji"
+    ],
+    "meanings": [
+      "ear"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "頂",
+    "jlpt_level": "N3",
+    "unit": "N3-U24",
+    "order_index": 354,
+    "readings": {
+      "on": [
+        "チョウ"
+      ],
+      "kun": [
+        "いただ.く",
+        "いただき"
+      ]
+    },
+    "romaji_readings": [
+      "chou",
+      "itadaku",
+      "itadaki"
+    ],
+    "primary_romaji": [
+      "itadaki",
+      "chou"
+    ],
+    "meanings": [
+      "peak",
+      "place on the head",
+      "receive",
+      "summit",
+      "top",
+      "top of head"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "箱",
+    "jlpt_level": "N3",
+    "unit": "N3-U24",
+    "order_index": 355,
+    "readings": {
+      "on": [
+        "ソウ"
+      ],
+      "kun": [
+        "はこ"
+      ]
+    },
+    "romaji_readings": [
+      "sou",
+      "hako"
+    ],
+    "primary_romaji": [
+      "hako"
+    ],
+    "meanings": [
+      "bin",
+      "box",
+      "case",
+      "chest",
+      "railway car"
+    ],
+    "stroke_count": 15
+  },
+  {
+    "kanji": "晩",
+    "jlpt_level": "N3",
+    "unit": "N3-U24",
+    "order_index": 356,
+    "readings": {
+      "on": [
+        "バン"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "ban"
+    ],
+    "primary_romaji": [
+      "ban"
+    ],
+    "meanings": [
+      "night",
+      "nightfall"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "寒",
+    "jlpt_level": "N3",
+    "unit": "N3-U24",
+    "order_index": 357,
+    "readings": {
+      "on": [
+        "カン"
+      ],
+      "kun": [
+        "さむ.い"
+      ]
+    },
+    "romaji_readings": [
+      "kan",
+      "samui"
+    ],
+    "primary_romaji": [
+      "kan"
+    ],
+    "meanings": [
+      "cold"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "髪",
+    "jlpt_level": "N3",
+    "unit": "N3-U24",
+    "order_index": 358,
+    "readings": {
+      "on": [
+        "ハツ"
+      ],
+      "kun": [
+        "かみ"
+      ]
+    },
+    "romaji_readings": [
+      "hatsu",
+      "kami"
+    ],
+    "primary_romaji": [
+      "kami",
+      "hatsu"
+    ],
+    "meanings": [
+      "hair of the head"
+    ],
+    "stroke_count": 14
+  },
+  {
+    "kanji": "忙",
+    "jlpt_level": "N3",
+    "unit": "N3-U24",
+    "order_index": 359,
+    "readings": {
+      "on": [
+        "ボウ",
+        "モウ"
+      ],
+      "kun": [
+        "いそが.しい",
+        "うれえるさま",
+        "おそ.れる",
+        "せわ.しい"
+      ]
+    },
+    "romaji_readings": [
+      "bou",
+      "mou",
+      "isogashii",
+      "ureerusama",
+      "osoreru",
+      "sewashii"
+    ],
+    "primary_romaji": [
+      "bou",
+      "isogashii"
+    ],
+    "meanings": [
+      "busy",
+      "occupied",
+      "restless"
+    ],
+    "stroke_count": 6
+  },
+  {
+    "kanji": "才",
+    "jlpt_level": "N3",
+    "unit": "N3-U25",
+    "order_index": 360,
+    "readings": {
+      "on": [
+        "サイ"
+      ],
+      "kun": []
+    },
+    "romaji_readings": [
+      "sai"
+    ],
+    "primary_romaji": [
+      "sai"
+    ],
+    "meanings": [
+      "cubic shaku",
+      "genius",
+      "years old"
+    ],
+    "stroke_count": 3
+  },
+  {
+    "kanji": "靴",
+    "jlpt_level": "N3",
+    "unit": "N3-U25",
+    "order_index": 361,
+    "readings": {
+      "on": [
+        "カ"
+      ],
+      "kun": [
+        "くつ"
+      ]
+    },
+    "romaji_readings": [
+      "ka",
+      "kutsu"
+    ],
+    "primary_romaji": [
+      "kutsu"
+    ],
+    "meanings": [
+      "shoes"
+    ],
+    "stroke_count": 13
+  },
+  {
+    "kanji": "恥",
+    "jlpt_level": "N3",
+    "unit": "N3-U25",
+    "order_index": 362,
+    "readings": {
+      "on": [
+        "チ"
+      ],
+      "kun": [
+        "は.じらう",
+        "は.じる",
+        "は.ずかしい",
+        "はじ"
+      ]
+    },
+    "romaji_readings": [
+      "chi",
+      "hajirau",
+      "hajiru",
+      "hazukashii",
+      "haji"
+    ],
+    "primary_romaji": [
+      "haji"
+    ],
+    "meanings": [
+      "dishonor",
+      "shame"
+    ],
+    "stroke_count": 10
+  },
+  {
+    "kanji": "偶",
+    "jlpt_level": "N3",
+    "unit": "N3-U25",
+    "order_index": 363,
+    "readings": {
+      "on": [
+        "グウ"
+      ],
+      "kun": [
+        "たま"
+      ]
+    },
+    "romaji_readings": [
+      "guu",
+      "tama"
+    ],
+    "primary_romaji": [
+      "tama"
+    ],
+    "meanings": [
+      "accidentally",
+      "couple",
+      "even number",
+      "man & wife",
+      "same kind"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "偉",
+    "jlpt_level": "N3",
+    "unit": "N3-U25",
+    "order_index": 364,
+    "readings": {
+      "on": [
+        "イ"
+      ],
+      "kun": [
+        "えら.い"
+      ]
+    },
+    "romaji_readings": [
+      "i",
+      "erai"
+    ],
+    "primary_romaji": [
+      "i"
+    ],
+    "meanings": [
+      "admirable",
+      "conceited",
+      "excellent",
+      "famous",
+      "greatness",
+      "remarkable"
+    ],
+    "stroke_count": 12
+  },
+  {
+    "kanji": "猫",
+    "jlpt_level": "N3",
+    "unit": "N3-U25",
+    "order_index": 365,
+    "readings": {
+      "on": [
+        "ビョウ"
+      ],
+      "kun": [
+        "ねこ"
+      ]
+    },
+    "romaji_readings": [
+      "byou",
+      "neko"
+    ],
+    "primary_romaji": [
+      "neko"
+    ],
+    "meanings": [
+      "cat"
+    ],
+    "stroke_count": 11
+  },
+  {
+    "kanji": "幾",
+    "jlpt_level": "N3",
+    "unit": "N3-U25",
+    "order_index": 366,
+    "readings": {
+      "on": [
+        "キ"
+      ],
+      "kun": [
+        "いく-",
+        "いく.つ",
+        "いく.ら"
+      ]
+    },
+    "romaji_readings": [
+      "ki",
+      "iku",
+      "ikutsu",
+      "ikura"
+    ],
+    "primary_romaji": [
+      "iku"
+    ],
+    "meanings": [
+      "how far",
+      "how long",
+      "how many",
+      "how much",
+      "several",
+      "some"
+    ],
+    "stroke_count": 12
+  }
+]
