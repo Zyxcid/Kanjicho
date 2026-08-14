@@ -11,6 +11,7 @@ import Quiz from "./components/Quiz.jsx";
 import Result from "./components/Result.jsx";
 import Toast from "./components/Toast.jsx";
 import ThemeToggle from "./components/ThemeToggle.jsx";
+import Browse from "./components/Browse.jsx";
 
 export function unitStatus(state) {
   if (!state || state.stability === null) return "new";
@@ -51,7 +52,7 @@ function computeStreak(attempts) {
 }
 
 export default function App() {
-  const [view, setView] = useState("home"); // home | unitSelect | quiz | result
+  const [view, setView] = useState("home"); // home | unitSelect | quiz | result | browse
   const [progress, setProgress] = useState({}); // unitId -> srsState
   const [streak, setStreak] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -173,7 +174,9 @@ export default function App() {
         </div>
       </div>
 
-      {view === "home" && <Home levelIds={LEVEL_IDS} getLevelMeta={getLevelMeta} onOpenLevel={openLevel} stats={allLevelsStats} />}
+      {view === "home" && <Home levelIds={LEVEL_IDS} getLevelMeta={getLevelMeta} onOpenLevel={openLevel} onBrowse={() => setView("browse")} stats={allLevelsStats} />}
+
+      {view === "browse" && <Browse onBack={() => setView("home")} />}
 
       {view === "unitSelect" && (
         <UnitSelect

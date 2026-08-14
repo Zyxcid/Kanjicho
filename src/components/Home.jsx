@@ -1,6 +1,7 @@
 import React from "react";
+import { BookOpen } from "lucide-react";
 
-export default function Home({ levelIds, getLevelMeta, onOpenLevel, stats }) {
+export default function Home({ levelIds, getLevelMeta, onOpenLevel, onBrowse, stats }) {
   return (
     <>
       <div className="kd-hero">
@@ -18,6 +19,15 @@ export default function Home({ levelIds, getLevelMeta, onOpenLevel, stats }) {
             <div className="kd-stat-label">Mastered</div>
           </div>
         </div>
+      </div>
+
+      {/* Browse entry: jump to the full kanji library (every kanji, all levels). */}
+      <div className="kd-browse-entry-row">
+        <button className="kd-browse-entry" onClick={onBrowse}>
+          <BookOpen size={16} />
+          <span>Browse all kanji</span>
+          <small>Reference library · N5–N1</small>
+        </button>
       </div>
 
       <div className="kd-section-title">Choose a JLPT Level</div>
