@@ -4,7 +4,6 @@ import { LEVEL_IDS, getKanjiForLevel, getUnitsForLevel, getKanjiForUnit, getLeve
 import { createInitialUnitState, reviewUnit } from "./lib/srs.js";
 import { generateQuiz, scoreQuiz } from "./lib/quizGenerator.js";
 import * as storage from "./lib/storage.js";
-import { useRouter } from "./lib/useRouter.js";
 
 import Home from "./components/Home.jsx";
 import UnitSelect from "./components/UnitSelect.jsx";
@@ -53,32 +52,18 @@ function computeStreak(attempts) {
 }
 
 export default function App() {
-  // Screen navigation is driven by the URL hash via useRouter, so the
-  // browser Back button navigates within the app instead of exiting it.
-  const { view, level: routeLevel, unit: routeUnit, navigate } = useRouter();
-
-  // activeLevel/activeUnit lag the route so UnitSelect keeps showing the
-  // right level even when we briefly route home (e.g. Quiz Cancel goes to
-  // the level the quiz was in).
-  const [activeLevel, setActiveLevel] = useState(routeLevel || "N5");
-  const [activeUnit, setActiveUnit] = useState(routeUnit);
-
+  const [view, setView] = useState("home"); // home | unitSelect | quiz | result | browse
   const [progress, setProgress] = useState({}); // unitId -> srsState
   const [streak, setStreak] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [activeLevel, setActiveLevel] = useState("N5");
+  const [activeUnit, setActiveUnit] = useState(null);
   const [quiz, setQuiz] = useState(null);
   const [qIndex, setQIndex] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [selectedChoice, setSelectedChoice] = useState(null);
   const [result, setResult] = useState(null);
   const [toast, setToast] = useState(null);
-
-  // Keep activeLevel / activeUnit in sync with the route as the user
-  // navigates (forward navigation sets them; back navigation restores them).
-  useEffect(() => {
-    if (routeLevel) setActiveLevel(routeLevel);
-    if (routeUnit) setActiveUnit(routeUnit);
-  }, [routeLevel, routeUnit]);
 
   // Load semua progress + riwayat kuis dari IndexedDB sekali saat app dibuka.
   useEffect(() => {
@@ -98,67 +83,32 @@ export default function App() {
     setTimeout(() => setToast(null), 2200);
   }, []);
 
-  // Hitung statistik untuk satu set unit: berapa yang sudah pernah dikuiskan
-  // ("studied"), berapa yang jatuh tempo sekarang ("due"), berapa yang sudah
-  // dikuasai ("mastered"), plus info review terdekat berikutnya (unit + hari).
-  function computeStats(units) {
-    let studied = 0, due = 0, mastered = 0;
-    let soonestAt = null, soonestUnit = null;
-    units.forEach((u) => {
-      const state = progress[u];
-      const status = unitStatus(state);
-      if (status === "due") due++;
-      else if (status === "mastered") mastered++;
-      // "Studied" = pernah dikerjakan minimal sekali (stability sudah terisi).
-      if (state && state.stability !== null) studied++;
-      // Cari nextReviewAt paling dekat di antara unit yang sudah dipelajari.
-      if (state && state.nextReviewAt) {
-        const at = new Date(state.nextReviewAt).getTime();
-        if (soonestAt === null || at < soonestAt) {
-          soonestAt = at;
-          soonestUnit = u;
-        }
-      }
-    });
-    let nextReviewDays = null;
-    if (soonestAt !== null) {
-      nextReviewDays = Math.ceil((soonestAt - Date.now()) / (1000 * 60 * 60 * 24));
-    }
-    return {
-      studied,
-      due,
-      mastered,
-      total: units.length,
-      nextReviewDays,
-      nextReviewUnit: soonestUnit,
-    };
-  }
-
   // Stats agregat SEMUA level (dipakai di Home, sebelum user pilih level tertentu)
-  const allLevelsStats = useMemo(
-    () => computeStats(LEVEL_IDS.flatMap((l) => getUnitsForLevel(l))),
-    [progress]
-  );
-
-  // Stats per-level untuk badge tiap kartu level di Home. Dihitung sekali
-  // dari `progress` tiap kali progress berubah, lalu dipass sebagai lookup.
-  const levelStatsMap = useMemo(() => {
-    const map = {};
-    LEVEL_IDS.forEach((l) => {
-      map[l] = computeStats(getUnitsForLevel(l));
+  const allLevelsStats = useMemo(() => {
+    let due = 0, notStarted = 0, mastered = 0;
+    LEVEL_IDS.forEach((level) => {
+      getUnitsForLevel(level).forEach((u) => {
+        const status = unitStatus(progress[u]);
+        if (status === "due") due++;
+        else if (status === "new") notStarted++;
+        else if (status === "mastered") mastered++;
+      });
     });
-    return map;
+    return { due, notStarted, mastered };
   }, [progress]);
 
   // Stats khusus level yang lagi dibuka (dipakai di layar pilih unit)
-  const levelStats = useMemo(
-    () => computeStats(getUnitsForLevel(activeLevel)),
-    [progress, activeLevel]
-  );
+  const levelStats = useMemo(() => {
+    const units = getUnitsForLevel(activeLevel);
+    const due = units.filter((u) => unitStatus(progress[u]) === "due").length;
+    const notStarted = units.filter((u) => unitStatus(progress[u]) === "new").length;
+    const mastered = units.filter((u) => unitStatus(progress[u]) === "mastered").length;
+    return { due, notStarted, mastered };
+  }, [progress, activeLevel]);
 
   function openLevel(level) {
     setActiveLevel(level);
-    navigate("unitSelect", { level });
+    setView("unitSelect");
   }
 
   function startUnit(unitId) {
@@ -173,7 +123,7 @@ export default function App() {
     setQIndex(0);
     setAnswers([]);
     setSelectedChoice(null);
-    navigate("quiz", { level: activeLevel, unit: unitId });
+    setView("quiz");
   }
 
   function submitAnswer(choice) {
@@ -196,7 +146,7 @@ export default function App() {
 
     setProgress((p) => ({ ...p, [activeUnit]: newState }));
     setResult({ ...finalResult, newState });
-    navigate("result", { level: activeLevel, unit: activeUnit });
+    setView("result");
 
     // Persist ke IndexedDB (tidak perlu ditunggu / await sebelum ganti layar --
     // UI sudah update optimistically dari state React di atas)
@@ -208,14 +158,6 @@ export default function App() {
     return <div className="kd-root kd-loading">Loading your progress…</div>;
   }
 
-  // If the route points at quiz/result but the in-memory state for that screen
-  // isn't there (e.g. after a reload), gracefully fall back to the unit list
-  // instead of rendering a blank screen.
-  const effectiveView =
-    (view === "quiz" && !quiz) || (view === "result" && !result)
-      ? "unitSelect"
-      : view;
-
   return (
     <div className="kd-root">
       <div className="kd-topbar">
@@ -223,7 +165,7 @@ export default function App() {
           漢字ドリル <small>JLPT Kanji Practice</small>
         </div>
         <div className="kd-topbar-right">
-          {effectiveView === "home" && (
+          {view === "home" && (
             <div className="kd-streak">
               <Flame size={14} /> {streak} day{streak === 1 ? "" : "s"} streak
             </div>
@@ -232,41 +174,39 @@ export default function App() {
         </div>
       </div>
 
-      {effectiveView === "home" && <Home levelIds={LEVEL_IDS} getLevelMeta={getLevelMeta} getLevelStats={(level) => levelStatsMap[level]} onOpenLevel={openLevel} onBrowse={() => navigate("browse")} stats={allLevelsStats} />}
+      {view === "home" && <Home levelIds={LEVEL_IDS} getLevelMeta={getLevelMeta} onOpenLevel={openLevel} onBrowse={() => setView("browse")} stats={allLevelsStats} />}
 
-      {effectiveView === "browse" && <Browse onBack={() => navigate("home")} />}
+      {view === "browse" && <Browse onBack={() => setView("home")} />}
 
-      {effectiveView === "unitSelect" && (
+      {view === "unitSelect" && (
         <UnitSelect
           level={activeLevel}
           units={getUnitsForLevel(activeLevel)}
           progress={progress}
           stats={levelStats}
           getKanjiForUnit={getKanjiForUnit}
-          onBack={() => navigate("home")}
+          onBack={() => setView("home")}
           onStartUnit={startUnit}
         />
       )}
 
-      {effectiveView === "quiz" && quiz && (
+      {view === "quiz" && quiz && (
         <Quiz
           quiz={quiz}
           qIndex={qIndex}
           selectedChoice={selectedChoice}
           onSubmitAnswer={submitAnswer}
           onContinue={handleContinue}
-          // Quiz Cancel = browser Back semantics: return to the unit list
-          // the quiz was launched from.
-          onCancel={() => navigate("unitSelect", { level: activeLevel })}
+          onCancel={() => setView("unitSelect")}
         />
       )}
 
-      {effectiveView === "result" && result && (
+      {view === "result" && result && (
         <Result
           result={result}
           activeUnit={activeUnit}
-          onBackToUnits={() => navigate("unitSelect", { level: activeLevel })}
-          onHome={() => navigate("home")}
+          onBackToUnits={() => setView("unitSelect")}
+          onHome={() => setView("home")}
         />
       )}
 

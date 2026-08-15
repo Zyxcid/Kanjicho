@@ -1,9 +1,9 @@
 {
   "会": [
     {
-      "word": "社会",
-      "reading": "しゃかい",
-      "meaning": "society",
+      "word": "会社",
+      "reading": "かいしゃ",
+      "meaning": "company",
       "type": "on"
     },
     {
@@ -29,9 +29,9 @@
   ],
   "事": [
     {
-      "word": "事業",
-      "reading": "じぎょう",
-      "meaning": "business",
+      "word": "事実",
+      "reading": "じじつ",
+      "meaning": "fact",
       "type": "on"
     },
     {
@@ -57,9 +57,9 @@
   ],
   "社": [
     {
-      "word": "社会",
-      "reading": "しゃかい",
-      "meaning": "society",
+      "word": "会社",
+      "reading": "かいしゃ",
+      "meaning": "company",
       "type": "on"
     }
   ],
@@ -101,9 +101,9 @@
   ],
   "業": [
     {
-      "word": "事業",
-      "reading": "じぎょう",
-      "meaning": "business",
+      "word": "企業",
+      "reading": "きぎょう",
+      "meaning": "enterprise",
       "type": "on"
     },
     {
@@ -143,9 +143,9 @@
   ],
   "場": [
     {
-      "word": "市場",
-      "reading": "しじょう",
-      "meaning": "market (financial, stock, domestic, etc.)",
+      "word": "会場",
+      "reading": "かいじょう",
+      "meaning": "assembly hall",
       "type": "on"
     },
     {
@@ -157,9 +157,9 @@
   ],
   "員": [
     {
-      "word": "委員",
-      "reading": "いいん",
-      "meaning": "committee member",
+      "word": "職員",
+      "reading": "しょくいん",
+      "meaning": "staff member",
       "type": "on"
     }
   ],
@@ -207,9 +207,9 @@
   ],
   "力": [
     {
-      "word": "協力",
-      "reading": "きょうりょく",
-      "meaning": "cooperation",
+      "word": "努力",
+      "reading": "どりょく",
+      "meaning": "effort",
       "type": "on"
     },
     {
@@ -313,9 +313,9 @@
   ],
   "言": [
     {
-      "word": "言語",
-      "reading": "げんご",
-      "meaning": "language",
+      "word": "発言",
+      "reading": "はつげん",
+      "meaning": "statement",
       "type": "on"
     },
     {
@@ -335,15 +335,15 @@
   ],
   "体": [
     {
-      "word": "全体",
-      "reading": "ぜんたい",
-      "meaning": "whole",
+      "word": "具体的",
+      "reading": "ぐたいてき",
+      "meaning": "concrete",
       "type": "on"
     },
     {
-      "word": "体付き",
-      "reading": "からだつき",
-      "meaning": "body build",
+      "word": "体作り",
+      "reading": "からだづくり",
+      "meaning": "building up one's body",
       "type": "kun"
     }
   ],
@@ -355,17 +355,17 @@
       "type": "on"
     },
     {
-      "word": "田圃",
-      "reading": "たんぼ",
-      "meaning": "rice field",
+      "word": "田畑",
+      "reading": "たはた",
+      "meaning": "fields (of rice and other crops)",
       "type": "kun"
     }
   ],
   "主": [
     {
-      "word": "主義",
-      "reading": "しゅぎ",
-      "meaning": "doctrine",
+      "word": "主人",
+      "reading": "しゅじん",
+      "meaning": "head (of a household)",
       "type": "on"
     },
     {
@@ -393,9 +393,9 @@
   ],
   "不": [
     {
-      "word": "不安",
-      "reading": "ふあん",
-      "meaning": "anxiety",
+      "word": "不思議",
+      "reading": "ふしぎ",
+      "meaning": "wonderful",
       "type": "on"
     }
   ],
@@ -415,9 +415,9 @@
   ],
   "用": [
     {
-      "word": "利用",
-      "reading": "りよう",
-      "meaning": "use",
+      "word": "費用",
+      "reading": "ひよう",
+      "meaning": "cost",
       "type": "on"
     },
     {
@@ -429,9 +429,9 @@
   ],
   "度": [
     {
-      "word": "年度",
-      "reading": "ねんど",
-      "meaning": "fiscal year (usu. April 1 to March 31 in Japan)",
+      "word": "一度",
+      "reading": "いちど",
+      "meaning": "once",
       "type": "on"
     },
     {
@@ -457,10 +457,16 @@
   ],
   "公": [
     {
-      "word": "公共",
-      "reading": "こうきょう",
-      "meaning": "public (facilities, service, etc.)",
+      "word": "公園",
+      "reading": "こうえん",
+      "meaning": "(public) park",
       "type": "on"
+    },
+    {
+      "word": "公",
+      "reading": "おおやけ",
+      "meaning": "official",
+      "type": "kun"
     }
   ],
   "持": [
@@ -493,9 +499,9 @@
   ],
   "以": [
     {
-      "word": "以上",
-      "reading": "いじょう",
-      "meaning": "not less than ...",
+      "word": "以下",
+      "reading": "いか",
+      "meaning": "not exceeding ...",
       "type": "on"
     },
     {
@@ -563,9 +569,9 @@
   ],
   "正": [
     {
-      "word": "改正",
-      "reading": "かいせい",
-      "meaning": "revision",
+      "word": "正確",
+      "reading": "せいかく",
+      "meaning": "accurate",
       "type": "on"
     },
     {
@@ -577,9 +583,9 @@
   ],
   "安": [
     {
-      "word": "安全",
-      "reading": "あんぜん",
-      "meaning": "safety",
+      "word": "不安",
+      "reading": "ふあん",
+      "meaning": "anxiety",
       "type": "on"
     },
     {
@@ -605,9 +611,9 @@
       "type": "on"
     },
     {
-      "word": "心掛ける",
-      "reading": "こころがける",
-      "meaning": "to keep in mind",
+      "word": "心得る",
+      "reading": "こころえる",
+      "meaning": "to know",
       "type": "kun"
     }
   ],
@@ -705,9 +711,9 @@
   ],
   "画": [
     {
-      "word": "計画",
-      "reading": "けいかく",
-      "meaning": "plan",
+      "word": "映画",
+      "reading": "えいが",
+      "meaning": "movie",
       "type": "on"
     },
     {
@@ -881,15 +887,15 @@
   ],
   "私": [
     {
-      "word": "私達",
-      "reading": "わたくしたち",
-      "meaning": "we",
+      "word": "私的",
+      "reading": "してき",
+      "meaning": "private",
       "type": "on"
     },
     {
-      "word": "私宛て",
-      "reading": "わたくしあて",
-      "meaning": "addressed to me",
+      "word": "私する",
+      "reading": "わたくしする",
+      "meaning": "to use (public property) for personal purposes",
       "type": "kun"
     }
   ],
@@ -901,17 +907,17 @@
       "type": "on"
     },
     {
-      "word": "始める",
-      "reading": "はじめる",
-      "meaning": "to start",
+      "word": "始まる",
+      "reading": "はじまる",
+      "meaning": "to begin",
       "type": "kun"
     }
   ],
   "朝": [
     {
-      "word": "朝鮮",
-      "reading": "ちょうせん",
-      "meaning": "Korea",
+      "word": "北朝鮮",
+      "reading": "きたちょうせん",
+      "meaning": "North Korea",
       "type": "on"
     },
     {
@@ -937,9 +943,9 @@
   ],
   "終": [
     {
-      "word": "最終",
-      "reading": "さいしゅう",
-      "meaning": "last",
+      "word": "最終的",
+      "reading": "さいしゅうてき",
+      "meaning": "final",
       "type": "on"
     },
     {
@@ -973,9 +979,9 @@
   ],
   "住": [
     {
-      "word": "住宅",
-      "reading": "じゅうたく",
-      "meaning": "residence",
+      "word": "住民",
+      "reading": "じゅうみん",
+      "meaning": "inhabitant",
       "type": "on"
     },
     {
@@ -1021,9 +1027,9 @@
       "type": "on"
     },
     {
-      "word": "口振り",
-      "reading": "くちぶり",
-      "meaning": "way of speaking",
+      "word": "切り口",
+      "reading": "きりくち",
+      "meaning": "cut end",
       "type": "kun"
     }
   ],
@@ -1049,9 +1055,9 @@
       "type": "on"
     },
     {
-      "word": "町作り",
-      "reading": "まちづくり",
-      "meaning": "town planning",
+      "word": "町並み",
+      "reading": "まちなみ",
+      "meaning": "townscape",
       "type": "kun"
     }
   ],
@@ -1065,9 +1071,9 @@
   ],
   "工": [
     {
-      "word": "工事",
-      "reading": "こうじ",
-      "meaning": "construction work",
+      "word": "工場",
+      "reading": "こうじょう",
+      "meaning": "factory",
       "type": "on"
     }
   ],
@@ -1093,9 +1099,9 @@
       "type": "on"
     },
     {
-      "word": "空く",
-      "reading": "あく",
-      "meaning": "to open (e.g. doors)",
+      "word": "青空",
+      "reading": "あおぞら",
+      "meaning": "blue sky",
       "type": "kun"
     }
   ],
@@ -1157,9 +1163,9 @@
   ],
   "転": [
     {
-      "word": "運転",
-      "reading": "うんてん",
-      "meaning": "operation (of a machine)",
+      "word": "自転車",
+      "reading": "じてんしゃ",
+      "meaning": "bicycle",
       "type": "on"
     },
     {
@@ -1185,9 +1191,9 @@
   ],
   "足": [
     {
-      "word": "不足",
-      "reading": "ふそく",
-      "meaning": "insufficiency",
+      "word": "発足",
+      "reading": "ほっそく",
+      "meaning": "starting",
       "type": "on"
     },
     {
@@ -1221,9 +1227,9 @@
   ],
   "起": [
     {
-      "word": "起動",
-      "reading": "きどう",
-      "meaning": "startup",
+      "word": "起源",
+      "reading": "きげん",
+      "meaning": "origin",
       "type": "on"
     },
     {
@@ -1235,9 +1241,9 @@
   ],
   "着": [
     {
-      "word": "到着",
-      "reading": "とうちゃく",
-      "meaning": "arrival",
+      "word": "先着",
+      "reading": "せんちゃく",
+      "meaning": "arriving first",
       "type": "on"
     },
     {
@@ -1249,9 +1255,9 @@
   ],
   "店": [
     {
-      "word": "商店",
-      "reading": "しょうてん",
-      "meaning": "shop",
+      "word": "店内",
+      "reading": "てんない",
+      "meaning": "inside of a store (restaurant, café, etc.)",
       "type": "on"
     },
     {
@@ -1281,12 +1287,6 @@
       "reading": "しつもん",
       "meaning": "question",
       "type": "on"
-    },
-    {
-      "word": "問い質す",
-      "reading": "といただす",
-      "meaning": "to inquire (about)",
-      "type": "kun"
     }
   ],
   "待": [
@@ -1305,9 +1305,9 @@
   ],
   "試": [
     {
-      "word": "試験",
-      "reading": "しけん",
-      "meaning": "examination",
+      "word": "試合",
+      "reading": "しあい",
+      "meaning": "match",
       "type": "on"
     },
     {
@@ -1393,23 +1393,23 @@
   ],
   "医": [
     {
-      "word": "医療",
-      "reading": "いりょう",
-      "meaning": "medical treatment",
+      "word": "医師",
+      "reading": "いし",
+      "meaning": "doctor",
       "type": "on"
     },
     {
-      "word": "医療ミス",
-      "reading": "いりょうミス",
-      "meaning": "medical error",
+      "word": "医する",
+      "reading": "いする",
+      "meaning": "to cure",
       "type": "kun"
     }
   ],
   "仕": [
     {
-      "word": "仕舞う",
-      "reading": "しまう",
-      "meaning": "to finish",
+      "word": "仕事",
+      "reading": "しごと",
+      "meaning": "work",
       "type": "on"
     },
     {
@@ -1533,9 +1533,9 @@
   ],
   "帰": [
     {
-      "word": "帰国",
-      "reading": "きこく",
-      "meaning": "return to one's country",
+      "word": "帰宅",
+      "reading": "きたく",
+      "meaning": "returning home",
       "type": "on"
     },
     {
@@ -1603,9 +1603,9 @@
   ],
   "図": [
     {
-      "word": "図書",
-      "reading": "としょ",
-      "meaning": "books",
+      "word": "地図",
+      "reading": "ちず",
+      "meaning": "map",
       "type": "on"
     },
     {
@@ -1617,9 +1617,9 @@
   ],
   "週": [
     {
-      "word": "週間",
-      "reading": "しゅうかん",
-      "meaning": "week",
+      "word": "一週間",
+      "reading": "いっしゅうかん",
+      "meaning": "one week",
       "type": "on"
     }
   ],
@@ -1695,9 +1695,9 @@
   ],
   "花": [
     {
-      "word": "花粉",
-      "reading": "かふん",
-      "meaning": "pollen",
+      "word": "花粉症",
+      "reading": "かふんしょう",
+      "meaning": "hay fever",
       "type": "on"
     },
     {
@@ -1723,9 +1723,9 @@
   ],
   "赤": [
     {
-      "word": "赤外",
-      "reading": "せきがい",
-      "meaning": "infrared",
+      "word": "赤外線",
+      "reading": "せきがいせん",
+      "meaning": "infrared rays",
       "type": "on"
     },
     {
@@ -1755,6 +1755,12 @@
       "reading": "としょかん",
       "meaning": "library",
       "type": "on"
+    },
+    {
+      "word": "館",
+      "reading": "やかた",
+      "meaning": "mansion",
+      "type": "kun"
     }
   ],
   "屋": [
@@ -1787,9 +1793,9 @@
   ],
   "走": [
     {
-      "word": "走行",
-      "reading": "そうこう",
-      "meaning": "running (of a car, bus, etc.)",
+      "word": "滑走路",
+      "reading": "かっそうろ",
+      "meaning": "runway",
       "type": "on"
     },
     {
@@ -1829,9 +1835,9 @@
   ],
   "習": [
     {
-      "word": "学習",
-      "reading": "がくしゅう",
-      "meaning": "learning",
+      "word": "練習",
+      "reading": "れんしゅう",
+      "meaning": "practice",
       "type": "on"
     },
     {
@@ -1851,9 +1857,9 @@
   ],
   "洋": [
     {
-      "word": "西洋",
-      "reading": "せいよう",
-      "meaning": "the West",
+      "word": "洋服",
+      "reading": "ようふく",
+      "meaning": "Western-style clothes (cf. traditional Japanese clothes)",
       "type": "on"
     }
   ],
@@ -1895,9 +1901,9 @@
   ],
   "借": [
     {
-      "word": "貸借",
-      "reading": "たいしゃく",
-      "meaning": "loan",
+      "word": "借家",
+      "reading": "しゃくや",
+      "meaning": "rented house",
       "type": "on"
     },
     {
@@ -1917,9 +1923,9 @@
   ],
   "飲": [
     {
-      "word": "飲食",
-      "reading": "いんしょく",
-      "meaning": "food and drink",
+      "word": "飲食店",
+      "reading": "いんしょくてん",
+      "meaning": "restaurant",
       "type": "on"
     },
     {
@@ -1967,9 +1973,9 @@
   ],
   "鳥": [
     {
-      "word": "鳥獣",
-      "reading": "ちょうじゅう",
-      "meaning": "birds and wild animals",
+      "word": "白鳥",
+      "reading": "はくちょう",
+      "meaning": "swan (Cygnus spp.)",
       "type": "on"
     },
     {
@@ -1981,15 +1987,15 @@
   ],
   "飯": [
     {
-      "word": "御飯",
-      "reading": "ごはん",
-      "meaning": "cooked rice",
+      "word": "夕飯",
+      "reading": "ゆうはん",
+      "meaning": "evening meal",
       "type": "on"
     },
     {
-      "word": "朝飯",
-      "reading": "あさめし",
-      "meaning": "breakfast",
+      "word": "昼飯",
+      "reading": "ひるめし",
+      "meaning": "lunch",
       "type": "kun"
     }
   ],
@@ -2031,9 +2037,9 @@
   ],
   "茶": [
     {
-      "word": "喫茶",
-      "reading": "きっさ",
-      "meaning": "tea drinking",
+      "word": "喫茶店",
+      "reading": "きっさてん",
+      "meaning": "coffee shop",
       "type": "on"
     }
   ],
@@ -2067,15 +2073,15 @@
   ],
   "魚": [
     {
-      "word": "魚介",
-      "reading": "ぎょかい",
-      "meaning": "marine products",
+      "word": "金魚",
+      "reading": "きんぎょ",
+      "meaning": "goldfish (Carassius auratus)",
       "type": "on"
     },
     {
-      "word": "魚屋",
-      "reading": "さかなや",
-      "meaning": "fish market",
+      "word": "小魚",
+      "reading": "こざかな",
+      "meaning": "small fish",
       "type": "kun"
     }
   ],
@@ -2129,9 +2135,9 @@
       "type": "on"
     },
     {
-      "word": "姉さん",
-      "reading": "あねさん",
-      "meaning": "older sister",
+      "word": "姉貴",
+      "reading": "あねき",
+      "meaning": "elder sister",
       "type": "kun"
     }
   ],

@@ -1,7 +1,6 @@
 import React from "react";
 import { ChevronLeft } from "lucide-react";
 import { unitStatus, daysUntil } from "../App.jsx";
-import NextReviewBanner from "./NextReviewBanner.jsx";
 
 const STATUS_LABEL = {
   new: "Not started",
@@ -19,13 +18,13 @@ export default function UnitSelect({ level, units, progress, stats, getKanjiForU
 
       <div className="kd-hero">
         <div className="kd-hero-row">
-          <div className="kd-stat studied">
-            <div className="kd-stat-num">{stats.studied}</div>
-            <div className="kd-stat-label">Studied</div>
-          </div>
           <div className="kd-stat due">
             <div className="kd-stat-num">{stats.due}</div>
             <div className="kd-stat-label">Due now</div>
+          </div>
+          <div className="kd-stat new">
+            <div className="kd-stat-num">{stats.notStarted}</div>
+            <div className="kd-stat-label">Not started</div>
           </div>
           <div className="kd-stat mastered">
             <div className="kd-stat-num">{stats.mastered}</div>
@@ -33,8 +32,6 @@ export default function UnitSelect({ level, units, progress, stats, getKanjiForU
           </div>
         </div>
       </div>
-
-      <NextReviewBanner stats={stats} />
 
       <div className="kd-section-title">{level} Units</div>
       <div className="kd-unit-grid">

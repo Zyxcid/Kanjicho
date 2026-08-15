@@ -53,6 +53,7 @@ export default function Quiz({ quiz, qIndex, selectedChoice, onSubmitAnswer, onC
           <div className="kd-question-label">
             Question {qIndex + 1} of {quiz.length}
           </div>
+          <div className="kd-question-sub">What's the reading?</div>
 
           <div className="kd-choice-grid">
             {current.choices.map((choice, i) => {

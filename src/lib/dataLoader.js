@@ -12,14 +12,9 @@ import n1Examples from "../data/n1_examples.json";
 const RAW_LEVELS = { N5: n5, N4: n4, N3: n3, N2: n2, N1: n1 };
 const EXAMPLES = { N5: n5Examples, N4: n4Examples, N3: n3Examples, N2: n2Examples, N1: n1Examples };
 
-// Merge each kanji entry with its example words (built by build_examples.py
-// from JMdict + BCCWJ). Done once here so other modules don't need to know
-// the data comes from two separate files.
-//
-// NOTE: `primary_romaji` is trusted as-is from the JSON. It was corrected
-// in-place by `scripts/fix_primary_romaji.py` to ensure each kanji has both
-// the most common on'yomi AND the most common kun'yomi (when both exist),
-// ranked by BCCWJ corpus frequency. No runtime override needed.
+// Gabungkan tiap entry kanji dengan contoh katanya (hasil pipeline
+// build_examples.py). Dilakukan sekali di sini supaya komponen lain tidak
+// perlu tahu bahwa data ini berasal dari dua file terpisah.
 const LEVELS = Object.fromEntries(
   Object.entries(RAW_LEVELS).map(([level, kanjiList]) => [
     level,

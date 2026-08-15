@@ -16,10 +16,7 @@ using the kun'yomi. Words are ranked by BCCWJ corpus frequency so the most
 common real-world examples are chosen.
 
 Usage:
-    python scripts/build_examples.py <path_to_jmdict_e.gz> <path_to_bccwj.tsv> [input_dir] [output_dir]
-
-If no args, defaults to ../JMdict_e.gz, ../BCCWJ_frequencylist_luw2_ver1_0.tsv,
-../output/, ../output/ relative to this script.
+    python scripts/build_examples.py <jmdict_e.gz> <bccwj.tsv> [input_dir] [output_dir]
 """
 
 import gzip
@@ -45,7 +42,6 @@ def katakana_to_hiragana(text):
 
 
 def clean_kun(text):
-    """Clean kun'yomi: strip okurigana markers for matching."""
     return text.replace(".", "").strip("-")
 
 
@@ -54,10 +50,6 @@ def clean_kun(text):
 # ============================================================
 
 def parse_jmdict(jmdict_path):
-    """Parse JMdict_e.xml.gz into { term: [(reading, glosses), ...] }.
-
-    Only keeps entries with a kanji element (keb) and length 1-4 chars.
-    """
     print(f"Parsing JMdict from {jmdict_path} ...")
 
     if str(jmdict_path).endswith(".gz"):
@@ -66,39 +58,33 @@ def parse_jmdict(jmdict_path):
         f = open(jmdict_path, encoding="utf-8")
 
     terms = {}
-    count = 0
     context = ET.iterparse(f, events=("end",))
     for _event, entry in context:
         if entry.tag != "entry":
             continue
 
-        # Get kanji element (keb) — the written form with kanji
         keb = entry.find(".//k_ele/keb")
         if keb is None or not keb.text:
             entry.clear()
             continue
         term = keb.text
 
-        # Word length filter
         if not (MIN_WORD_LEN <= len(term) <= MAX_WORD_LEN):
             entry.clear()
             continue
 
-        # Get reading (reb)
         reb = entry.find(".//r_ele/reb")
         if reb is None or not reb.text:
             entry.clear()
             continue
         reading = reb.text
 
-        # Get English glosses
         glosses = [g.text for g in entry.findall(".//sense/gloss") if g.text]
         if not glosses:
             entry.clear()
             continue
 
         terms.setdefault(term, []).append((reading, glosses))
-        count += 1
         entry.clear()
 
     f.close()
@@ -112,7 +98,10 @@ def parse_jmdict(jmdict_path):
 
 def load_bccwj_freq(tsv_path):
     """Load BCCWJ frequency: { term: (frequency, reading) }.
-    Keeps the highest frequency per term (with its reading for matching).
+
+    The BCCWJ TSV column 6 is the frequency COUNT (higher = more common).
+    When a term appears multiple times (different POS), keep the entry with
+    the HIGHEST frequency (most common usage).
     """
     print(f"Loading BCCWJ from {tsv_path} ...")
     import csv
@@ -126,11 +115,13 @@ def load_bccwj_freq(tsv_path):
             lemma = row[2]
             lform = row[1]
             try:
-                f_val = int(row[6])
+                f_val = int(row[6])  # frequency COUNT (higher = more common)
             except (ValueError, IndexError):
                 continue
             reading_hira = katakana_to_hiragana(lform)
-            if lemma not in freq or f_val < freq[lemma][0]:
+            # Keep the HIGHEST frequency for each term (most common usage).
+            # Bug fix: was `<` (kept lowest = rarest), now `>` (keeps highest).
+            if lemma not in freq or f_val > freq[lemma][0]:
                 freq[lemma] = (f_val, reading_hira)
     print(f"  Loaded {len(freq)} BCCWJ frequency entries")
     return freq
@@ -151,7 +142,6 @@ def is_likely_proper_noun(term, gloss):
 
 
 def build_reading_sets(entry):
-    """Build sets of valid on/kun readings (in hiragana) for cross-verification."""
     on_hira = {katakana_to_hiragana(r) for r in entry["readings"]["on"]}
     kun_roots = set()
     for r in entry["readings"]["kun"]:
@@ -166,7 +156,6 @@ def build_reading_sets(entry):
 
 
 def classify_word_shape(term):
-    """Heuristic: all-kanji → 'on', has kana → 'kun'."""
     if all(is_cjk(ch) for ch in term):
         return "on"
     return "kun"
@@ -181,9 +170,8 @@ def build_examples_for_kanji(kanji, jmdict_terms, freq_index, on_hira, kun_roots
             continue
         if term not in freq_index:
             continue
-        rank, bccwj_reading = freq_index[term]
+        freq_val, bccwj_reading = freq_index[term]
 
-        # Match the JMdict entry whose reading matches the BCCWJ reading
         matching_entry = next((e for e in entries if e[0] == bccwj_reading), None)
         if matching_entry is None:
             continue
@@ -193,7 +181,6 @@ def build_examples_for_kanji(kanji, jmdict_terms, freq_index, on_hira, kun_roots
         if is_likely_proper_noun(term, gloss):
             continue
 
-        # Cross-verify: the word's reading must contain a real on/kun reading
         reading_hira = katakana_to_hiragana(reading)
         has_on = any(h in reading_hira for h in on_hira if h)
         has_kun = any(k in reading_hira for k in kun_roots if k)
@@ -205,31 +192,33 @@ def build_examples_for_kanji(kanji, jmdict_terms, freq_index, on_hira, kun_roots
         elif has_kun:
             item_type = "kun"
         else:
-            continue  # doesn't match any real reading — skip
+            continue
 
-        item = (rank, term, reading, gloss)
+        # Store frequency as NEGATIVE so ascending sort = highest frequency first.
+        # Bug fix: was sorting ascending by frequency (lowest first = rarest),
+        # now sorts ascending by -freq (highest first = most common).
+        item = (-freq_val, term, reading, gloss)
         if item_type == "on":
             on_candidates.append(item)
         else:
             kun_candidates.append(item)
 
-    # Prefer multi-char words over single-kanji words (avoids circular
-    # "日 as example for 日"), then sort by frequency
+    # Sort: prefer multi-char words, then by frequency (highest first).
+    # Using -freq_val so ascending sort gives highest frequency first.
     on_candidates.sort(key=lambda x: (0 if len(x[1]) > 1 else 1, x[0]))
     kun_candidates.sort(key=lambda x: (0 if len(x[1]) > 1 else 1, x[0]))
 
     results = []
     if on_candidates:
-        _r, t, r, g = on_candidates[0]
+        _f, t, r, g = on_candidates[0]
         results.append({"word": t, "reading": r, "meaning": g, "type": "on"})
     if kun_candidates:
-        _r, t, r, g = kun_candidates[0]
+        _f, t, r, g = kun_candidates[0]
         results.append({"word": t, "reading": r, "meaning": g, "type": "kun"})
 
-    # Fill second slot from the other category if one is empty
     if len(results) < MAX_EXAMPLES_PER_KANJI:
         pool = on_candidates if kun_candidates and results and results[0]["type"] == "kun" else kun_candidates
-        for _r, t, r, g in pool:
+        for _f, t, r, g in pool:
             if t not in {res["word"] for res in results}:
                 results.append({"word": t, "reading": r, "meaning": g, "type": classify_word_shape(t)})
                 break
@@ -252,7 +241,6 @@ def main():
 
     if not jmdict_path.exists():
         print(f"Error: JMdict file not found: {jmdict_path}", file=sys.stderr)
-        print("Download from: https://www.edrdg.org/jmdict/jmdict.html", file=sys.stderr)
         sys.exit(1)
     if not bccwj_path.exists():
         print(f"Error: BCCWJ file not found: {bccwj_path}", file=sys.stderr)
@@ -261,7 +249,6 @@ def main():
     jmdict_terms = parse_jmdict(jmdict_path)
     freq_index = load_bccwj_freq(bccwj_path)
 
-    # Process each level
     for level_file in sorted(input_dir.glob("n[1-5].json")):
         with open(level_file, encoding="utf-8") as f:
             kanji_list = json.load(f)

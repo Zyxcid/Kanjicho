@@ -29,9 +29,9 @@
   ],
   "保": [
     {
-      "word": "保険",
-      "reading": "ほけん",
-      "meaning": "insurance",
+      "word": "確保",
+      "reading": "かくほ",
+      "meaning": "securing",
       "type": "on"
     },
     {
@@ -65,17 +65,17 @@
   ],
   "派": [
     {
-      "word": "派遣",
-      "reading": "はけん",
-      "meaning": "dispatch",
+      "word": "派手",
+      "reading": "はで",
+      "meaning": "showy",
       "type": "on"
     }
   ],
   "案": [
     {
-      "word": "案内",
-      "reading": "あんない",
-      "meaning": "guidance",
+      "word": "提案",
+      "reading": "ていあん",
+      "meaning": "proposal",
       "type": "on"
     }
   ],
@@ -89,9 +89,9 @@
   ],
   "基": [
     {
-      "word": "基本",
-      "reading": "きほん",
-      "meaning": "basics",
+      "word": "基本的",
+      "reading": "きほんてき",
+      "meaning": "fundamental",
       "type": "on"
     },
     {
@@ -111,9 +111,9 @@
   ],
   "提": [
     {
-      "word": "提供",
-      "reading": "ていきょう",
-      "meaning": "offer",
+      "word": "前提",
+      "reading": "ぜんてい",
+      "meaning": "condition",
       "type": "on"
     },
     {
@@ -139,9 +139,9 @@
   ],
   "応": [
     {
-      "word": "対応",
-      "reading": "たいおう",
-      "meaning": "correspondence (to)",
+      "word": "応ずる",
+      "reading": "おうずる",
+      "meaning": "to answer",
       "type": "on"
     }
   ],
@@ -197,9 +197,9 @@
   ],
   "裁": [
     {
-      "word": "裁判",
-      "reading": "さいばん",
-      "meaning": "trial",
+      "word": "裁判所",
+      "reading": "さいばんしょ",
+      "meaning": "court",
       "type": "on"
     },
     {
@@ -211,16 +211,10 @@
   ],
   "証": [
     {
-      "word": "証明",
-      "reading": "しょうめい",
-      "meaning": "proof",
+      "word": "証拠",
+      "reading": "しょうこ",
+      "meaning": "evidence",
       "type": "on"
-    },
-    {
-      "word": "証し",
-      "reading": "あかし",
-      "meaning": "proof",
-      "type": "kun"
     }
   ],
   "援": [
@@ -233,9 +227,9 @@
   ],
   "施": [
     {
-      "word": "実施",
-      "reading": "じっし",
-      "meaning": "enforcement",
+      "word": "施設",
+      "reading": "しせつ",
+      "meaning": "facility",
       "type": "on"
     },
     {
@@ -261,9 +255,9 @@
   ],
   "護": [
     {
-      "word": "保護",
-      "reading": "ほご",
-      "meaning": "protection",
+      "word": "弁護士",
+      "reading": "べんごし",
+      "meaning": "lawyer",
       "type": "on"
     }
   ],
@@ -291,9 +285,9 @@
   ],
   "鮮": [
     {
-      "word": "朝鮮",
-      "reading": "ちょうせん",
-      "meaning": "Korea",
+      "word": "北朝鮮",
+      "reading": "きたちょうせん",
+      "meaning": "North Korea",
       "type": "on"
     },
     {
@@ -321,9 +315,9 @@
   ],
   "幹": [
     {
-      "word": "幹線",
-      "reading": "かんせん",
-      "meaning": "main line",
+      "word": "新幹線",
+      "reading": "しんかんせん",
+      "meaning": "Shinkansen",
       "type": "on"
     },
     {
@@ -335,9 +329,9 @@
   ],
   "独": [
     {
-      "word": "独立",
-      "reading": "どくりつ",
-      "meaning": "independence",
+      "word": "独自",
+      "reading": "どくじ",
+      "meaning": "original",
       "type": "on"
     },
     {
@@ -349,9 +343,9 @@
   ],
   "宮": [
     {
-      "word": "子宮",
-      "reading": "しきゅう",
-      "meaning": "womb",
+      "word": "宮殿",
+      "reading": "きゅうでん",
+      "meaning": "palace",
       "type": "on"
     },
     {
@@ -363,9 +357,9 @@
   ],
   "率": [
     {
-      "word": "効率",
-      "reading": "こうりつ",
-      "meaning": "efficiency",
+      "word": "比率",
+      "reading": "ひりつ",
+      "meaning": "ratio",
       "type": "on"
     },
     {
@@ -377,9 +371,9 @@
   ],
   "衛": [
     {
-      "word": "防衛",
-      "reading": "ぼうえい",
-      "meaning": "defense",
+      "word": "自衛隊",
+      "reading": "じえいたい",
+      "meaning": "Japan Self-Defense Forces",
       "type": "on"
     }
   ],
@@ -423,9 +417,9 @@
   ],
   "義": [
     {
-      "word": "主義",
-      "reading": "しゅぎ",
-      "meaning": "doctrine",
+      "word": "義務",
+      "reading": "ぎむ",
+      "meaning": "duty",
       "type": "on"
     }
   ],
@@ -445,9 +439,9 @@
   ],
   "株": [
     {
-      "word": "菌株",
-      "reading": "きんしゅ",
-      "meaning": "(bacterial) strain",
+      "word": "雌雄異株",
+      "reading": "しゆういしゅ",
+      "meaning": "dioecy",
       "type": "on"
     },
     {
@@ -511,9 +505,9 @@
   ],
   "松": [
     {
-      "word": "青松",
-      "reading": "せいしょう",
-      "meaning": "green pine",
+      "word": "松竹梅",
+      "reading": "しょうちくばい",
+      "meaning": "pine, bamboo and plum (an auspicious grouping)",
       "type": "on"
     },
     {
@@ -529,12 +523,6 @@
       "reading": "こうげき",
       "meaning": "attack",
       "type": "on"
-    },
-    {
-      "word": "テロ攻撃",
-      "reading": "テロこうげき",
-      "meaning": "terrorist attack",
-      "type": "kun"
     }
   ],
   "佐": [
@@ -547,9 +535,9 @@
   ],
   "核": [
     {
-      "word": "結核",
-      "reading": "けっかく",
-      "meaning": "tuberculosis",
+      "word": "中核",
+      "reading": "ちゅうかく",
+      "meaning": "kernel",
       "type": "on"
     }
   ],
@@ -569,9 +557,9 @@
   ],
   "融": [
     {
-      "word": "金融",
-      "reading": "きんゆう",
-      "meaning": "finance",
+      "word": "金融機関",
+      "reading": "きんゆうきかん",
+      "meaning": "financial institutions",
       "type": "on"
     }
   ],
@@ -629,31 +617,37 @@
   ],
   "請": [
     {
-      "word": "請求",
-      "reading": "せいきゅう",
-      "meaning": "claim",
+      "word": "申請",
+      "reading": "しんせい",
+      "meaning": "application",
       "type": "on"
     },
     {
-      "word": "下請け",
-      "reading": "したうけ",
-      "meaning": "subcontract",
+      "word": "請け負う",
+      "reading": "うけおう",
+      "meaning": "to contract (to do)",
       "type": "kun"
     }
   ],
   "器": [
     {
-      "word": "機器",
-      "reading": "きき",
-      "meaning": "device",
+      "word": "武器",
+      "reading": "ぶき",
+      "meaning": "weapon",
       "type": "on"
+    },
+    {
+      "word": "器",
+      "reading": "うつわ",
+      "meaning": "bowl",
+      "type": "kun"
     }
   ],
   "士": [
     {
-      "word": "同士",
-      "reading": "どうし",
-      "meaning": "fellow",
+      "word": "弁護士",
+      "reading": "べんごし",
+      "meaning": "lawyer",
       "type": "on"
     }
   ],
@@ -665,9 +659,9 @@
       "type": "on"
     },
     {
-      "word": "討ち死に",
-      "reading": "うちじに",
-      "meaning": "death in battle",
+      "word": "仇討ち",
+      "reading": "あだうち",
+      "meaning": "vengeance",
       "type": "kun"
     }
   ],
@@ -703,9 +697,9 @@
   ],
   "授": [
     {
-      "word": "教授",
-      "reading": "きょうじゅ",
-      "meaning": "professor",
+      "word": "授業",
+      "reading": "じゅぎょう",
+      "meaning": "lesson",
       "type": "on"
     },
     {
@@ -833,9 +827,9 @@
   ],
   "盟": [
     {
-      "word": "同盟",
-      "reading": "どうめい",
-      "meaning": "alliance",
+      "word": "加盟国",
+      "reading": "かめいこく",
+      "meaning": "member nation",
       "type": "on"
     }
   ],
@@ -847,9 +841,9 @@
       "type": "on"
     },
     {
-      "word": "従う",
-      "reading": "したがう",
-      "meaning": "to obey (an order, law, etc.)",
+      "word": "従って",
+      "reading": "したがって",
+      "meaning": "therefore",
       "type": "kun"
     }
   ],
@@ -863,9 +857,9 @@
   ],
   "隊": [
     {
-      "word": "部隊",
-      "reading": "ぶたい",
-      "meaning": "force",
+      "word": "軍隊",
+      "reading": "ぐんたい",
+      "meaning": "armed forces",
       "type": "on"
     }
   ],
@@ -877,9 +871,9 @@
       "type": "on"
     },
     {
-      "word": "織物",
-      "reading": "おりもの",
-      "meaning": "textile",
+      "word": "羽織る",
+      "reading": "はおる",
+      "meaning": "to put on (coat, gown, etc.)",
       "type": "kun"
     }
   ],
@@ -899,8 +893,8 @@
       "type": "on"
     },
     {
-      "word": "其れ故",
-      "reading": "それゆえ",
+      "word": "故に",
+      "reading": "ゆえに",
       "meaning": "therefore",
       "type": "kun"
     }
@@ -921,15 +915,15 @@
   ],
   "弁": [
     {
-      "word": "弁護",
-      "reading": "べんご",
-      "meaning": "defense",
+      "word": "弁護士",
+      "reading": "べんごし",
+      "meaning": "lawyer",
       "type": "on"
     },
     {
-      "word": "花弁",
-      "reading": "はなびら",
-      "meaning": "petal",
+      "word": "弁える",
+      "reading": "わきまえる",
+      "meaning": "to discern (e.g. right from wrong)",
       "type": "kun"
     }
   ],
@@ -957,9 +951,9 @@
   ],
   "献": [
     {
-      "word": "貢献",
-      "reading": "こうけん",
-      "meaning": "contribution (furthering a goal or cause)",
+      "word": "文献",
+      "reading": "ぶんけん",
+      "meaning": "literature",
       "type": "on"
     }
   ],
@@ -1001,25 +995,25 @@
   ],
   "遺": [
     {
-      "word": "遺伝",
-      "reading": "いでん",
-      "meaning": "heredity",
+      "word": "遺伝子",
+      "reading": "いでんし",
+      "meaning": "gene",
       "type": "on"
     }
   ],
   "塁": [
     {
-      "word": "本塁",
-      "reading": "ほんるい",
-      "meaning": "base",
+      "word": "本塁打",
+      "reading": "ほんるいだ",
+      "meaning": "home run",
       "type": "on"
     }
   ],
   "邦": [
     {
-      "word": "邦人",
-      "reading": "ほうじん",
-      "meaning": "Japanese national (esp. abroad)",
+      "word": "邦訳",
+      "reading": "ほうやく",
+      "meaning": "translation into Japanese",
       "type": "on"
     }
   ],
@@ -1081,9 +1075,9 @@
       "type": "on"
     },
     {
-      "word": "雄牛",
-      "reading": "おうし",
-      "meaning": "bull",
+      "word": "雄叫び",
+      "reading": "おたけび",
+      "meaning": "roar",
       "type": "kun"
     }
   ],
@@ -1119,9 +1113,9 @@
   ],
   "宣": [
     {
-      "word": "宣言",
-      "reading": "せんげん",
-      "meaning": "declaration",
+      "word": "宣伝",
+      "reading": "せんでん",
+      "meaning": "publicity",
       "type": "on"
     },
     {
@@ -1141,9 +1135,9 @@
   ],
   "廃": [
     {
-      "word": "廃棄",
-      "reading": "はいき",
-      "meaning": "disposal",
+      "word": "廃止",
+      "reading": "はいし",
+      "meaning": "abolition",
       "type": "on"
     },
     {
@@ -1155,9 +1149,9 @@
   ],
   "伊": [
     {
-      "word": "伊呂波",
-      "reading": "いろは",
-      "meaning": "traditional ordering of the Japanese syllabary",
+      "word": "伊勢神宮",
+      "reading": "いせじんぐう",
+      "meaning": "Ise Grand Shrine",
       "type": "on"
     }
   ],
@@ -1199,9 +1193,9 @@
   ],
   "盛": [
     {
-      "word": "旺盛",
-      "reading": "おうせい",
-      "meaning": "lively",
+      "word": "盛大",
+      "reading": "せいだい",
+      "meaning": "grand",
       "type": "on"
     },
     {
@@ -1235,9 +1229,9 @@
   ],
   "踏": [
     {
-      "word": "舞踏",
-      "reading": "ぶとう",
-      "meaning": "dance (esp. Western style)",
+      "word": "雑踏",
+      "reading": "ざっとう",
+      "meaning": "hustle and bustle",
       "type": "on"
     },
     {
@@ -1249,9 +1243,9 @@
   ],
   "壊": [
     {
-      "word": "破壊",
-      "reading": "はかい",
-      "meaning": "destruction",
+      "word": "崩壊",
+      "reading": "ほうかい",
+      "meaning": "collapse",
       "type": "on"
     },
     {
@@ -1263,9 +1257,9 @@
   ],
   "債": [
     {
-      "word": "債権",
-      "reading": "さいけん",
-      "meaning": "credit",
+      "word": "債務",
+      "reading": "さいむ",
+      "meaning": "debt",
       "type": "on"
     }
   ],
@@ -1283,6 +1277,12 @@
       "reading": "しげん",
       "meaning": "resources",
       "type": "on"
+    },
+    {
+      "word": "源",
+      "reading": "みなもと",
+      "meaning": "source (of a river)",
+      "type": "kun"
     }
   ],
   "儀": [
@@ -1375,7 +1375,7 @@
     {
       "word": "避ける",
       "reading": "さける",
-      "meaning": "to avoid (situation)",
+      "meaning": "to avoid (physical contact with)",
       "type": "kun"
     }
   ],
@@ -1409,9 +1409,9 @@
       "type": "on"
     },
     {
-      "word": "善し悪し",
-      "reading": "よしあし",
-      "meaning": "right or wrong",
+      "word": "善がる",
+      "reading": "よがる",
+      "meaning": "to be satisfied",
       "type": "kun"
     }
   ],
@@ -1467,17 +1467,17 @@
   ],
   "紀": [
     {
-      "word": "世紀",
-      "reading": "せいき",
-      "meaning": "century",
+      "word": "紀元前",
+      "reading": "きげんぜん",
+      "meaning": "pre-era",
       "type": "on"
     }
   ],
   "聴": [
     {
-      "word": "視聴",
-      "reading": "しちょう",
-      "meaning": "looking and listening",
+      "word": "視聴者",
+      "reading": "しちょうしゃ",
+      "meaning": "viewer (esp. of television, streaming video content)",
       "type": "on"
     }
   ],
@@ -1497,17 +1497,17 @@
   ],
   "級": [
     {
-      "word": "階級",
-      "reading": "かいきゅう",
-      "meaning": "(social) class",
+      "word": "同級生",
+      "reading": "どうきゅうせい",
+      "meaning": "classmate",
       "type": "on"
     }
   ],
   "博": [
     {
-      "word": "博物",
-      "reading": "はくぶつ",
-      "meaning": "natural history",
+      "word": "博物館",
+      "reading": "はくぶつかん",
+      "meaning": "museum",
       "type": "on"
     }
   ],
@@ -1527,9 +1527,9 @@
   ],
   "救": [
     {
-      "word": "救急",
-      "reading": "きゅうきゅう",
-      "meaning": "first-aid",
+      "word": "救済",
+      "reading": "きゅうさい",
+      "meaning": "relief",
       "type": "on"
     },
     {
@@ -1559,6 +1559,12 @@
       "reading": "にょうぼう",
       "meaning": "wife (esp. one's own wife)",
       "type": "on"
+    },
+    {
+      "word": "房",
+      "reading": "ふさ",
+      "meaning": "tuft (of hair, threads, etc.)",
+      "type": "kun"
     }
   ],
   "撤": [],
@@ -1618,27 +1624,21 @@
       "reading": "きさい",
       "meaning": "mention (in a document)",
       "type": "on"
-    },
-    {
-      "word": "載っける",
-      "reading": "のっける",
-      "meaning": "to place on (something)",
-      "type": "kun"
     }
   ],
   "陣": [
     {
-      "word": "陣営",
-      "reading": "じんえい",
-      "meaning": "camp (supporters of a doctrine, party, etc.)",
+      "word": "陣痛",
+      "reading": "じんつう",
+      "meaning": "labour pains",
       "type": "on"
     }
   ],
   "我": [
     {
-      "word": "我慢",
-      "reading": "がまん",
-      "meaning": "endurance",
+      "word": "怪我",
+      "reading": "けが",
+      "meaning": "injury",
       "type": "on"
     },
     {
@@ -1650,14 +1650,14 @@
   ],
   "為": [
     {
-      "word": "行為",
-      "reading": "こうい",
-      "meaning": "act",
+      "word": "所為",
+      "reading": "せい",
+      "meaning": "consequence",
       "type": "on"
     },
     {
-      "word": "為る",
-      "reading": "する",
+      "word": "為さる",
+      "reading": "なさる",
       "meaning": "to do",
       "type": "kun"
     }
@@ -1680,9 +1680,9 @@
   ],
   "染": [
     {
-      "word": "感染",
-      "reading": "かんせん",
-      "meaning": "infection",
+      "word": "汚染",
+      "reading": "おせん",
+      "meaning": "pollution",
       "type": "on"
     },
     {
@@ -1702,15 +1702,15 @@
   ],
   "傷": [
     {
-      "word": "負傷",
-      "reading": "ふしょう",
-      "meaning": "injury",
+      "word": "損傷",
+      "reading": "そんしょう",
+      "meaning": "damage",
       "type": "on"
     },
     {
-      "word": "傷付ける",
-      "reading": "きずつける",
-      "meaning": "to wound",
+      "word": "傷口",
+      "reading": "きずぐち",
+      "meaning": "(opening of a) wound",
       "type": "kun"
     }
   ],
@@ -1760,8 +1760,8 @@
   ],
   "償": [
     {
-      "word": "賠償",
-      "reading": "ばいしょう",
+      "word": "補償",
+      "reading": "ほしょう",
       "meaning": "compensation",
       "type": "on"
     },
@@ -1860,12 +1860,6 @@
   ],
   "繰": [
     {
-      "word": "繰糸",
-      "reading": "そうし",
-      "meaning": "reeling (silk)",
-      "type": "on"
-    },
-    {
       "word": "繰り返す",
       "reading": "くりかえす",
       "meaning": "to repeat",
@@ -1874,9 +1868,9 @@
   ],
   "尾": [
     {
-      "word": "尾行",
-      "reading": "びこう",
-      "meaning": "shadow",
+      "word": "末尾",
+      "reading": "まつび",
+      "meaning": "end (e.g. of report, document, paragraph, etc.)",
       "type": "on"
     },
     {
@@ -1918,7 +1912,7 @@
     {
       "word": "基盤",
       "reading": "きばん",
-      "meaning": "(circuit) board",
+      "meaning": "base",
       "type": "on"
     }
   ],
@@ -1946,9 +1940,9 @@
   ],
   "伴": [
     {
-      "word": "同伴",
-      "reading": "どうはん",
-      "meaning": "accompanying",
+      "word": "伴奏",
+      "reading": "ばんそう",
+      "meaning": "accompaniment",
       "type": "on"
     },
     {
@@ -1974,29 +1968,29 @@
   ],
   "懸": [
     {
-      "word": "懸命",
-      "reading": "けんめい",
-      "meaning": "eager",
+      "word": "一生懸命",
+      "reading": "いっしょうけんめい",
+      "meaning": "very hard",
       "type": "on"
     },
     {
-      "word": "神懸かり",
-      "reading": "かみがかり",
-      "meaning": "divine possession",
+      "word": "懸け紙",
+      "reading": "かけがみ",
+      "meaning": "wrapping paper",
       "type": "kun"
     }
   ],
   "街": [
     {
-      "word": "市街",
-      "reading": "しがい",
-      "meaning": "urban areas",
+      "word": "商店街",
+      "reading": "しょうてんがい",
+      "meaning": "shopping district",
       "type": "on"
     },
     {
-      "word": "花街",
-      "reading": "はなまち",
-      "meaning": "red-light district",
+      "word": "街々",
+      "reading": "まちまち",
+      "meaning": "streets",
       "type": "kun"
     }
   ],
@@ -2016,9 +2010,9 @@
   ],
   "掲": [
     {
-      "word": "掲載",
-      "reading": "けいさい",
-      "meaning": "publication (e.g. of an article in a newspaper)",
+      "word": "掲示板",
+      "reading": "けいじばん",
+      "meaning": "bulletin board",
       "type": "on"
     },
     {
@@ -2044,17 +2038,17 @@
   ],
   "棄": [
     {
-      "word": "廃棄",
-      "reading": "はいき",
-      "meaning": "disposal",
+      "word": "廃棄物",
+      "reading": "はいきぶつ",
+      "meaning": "waste matter",
       "type": "on"
     }
   ],
   "邸": [
     {
-      "word": "官邸",
-      "reading": "かんてい",
-      "meaning": "official residence (e.g. of the prime minister)",
+      "word": "邸宅",
+      "reading": "ていたく",
+      "meaning": "(large) house",
       "type": "on"
     }
   ],
@@ -2126,37 +2120,37 @@
   ],
   "露": [
     {
-      "word": "披露",
-      "reading": "ひろう",
-      "meaning": "announcement",
+      "word": "披露宴",
+      "reading": "ひろうえん",
+      "meaning": "reception (e.g. wedding)",
       "type": "on"
     },
     {
-      "word": "露草",
-      "reading": "つゆくさ",
-      "meaning": "Asiatic dayflower (Commelina communis)",
+      "word": "夜露",
+      "reading": "よつゆ",
+      "meaning": "evening dew",
       "type": "kun"
     }
   ],
   "沖": [
     {
-      "word": "沖積",
-      "reading": "ちゅうせき",
-      "meaning": "alluvial",
+      "word": "在沖米軍",
+      "reading": "ざいちゅうべいぐん",
+      "meaning": "US troops stationed in Okinawa",
       "type": "on"
     },
     {
-      "word": "沖合い",
-      "reading": "おきあい",
-      "meaning": "off the coast",
+      "word": "沖縄戦",
+      "reading": "おきなわせん",
+      "meaning": "Battle of Okinawa (April, 1945)",
       "type": "kun"
     }
   ],
   "緩": [
     {
-      "word": "緩和",
-      "reading": "かんわ",
-      "meaning": "relief",
+      "word": "規制緩和",
+      "reading": "きせいかんわ",
+      "meaning": "deregulation",
       "type": "on"
     },
     {
@@ -2190,9 +2184,9 @@
   ],
   "射": [
     {
-      "word": "放射",
-      "reading": "ほうしゃ",
-      "meaning": "radiation",
+      "word": "注射",
+      "reading": "ちゅうしゃ",
+      "meaning": "injection",
       "type": "on"
     },
     {
@@ -2212,9 +2206,9 @@
   ],
   "揮": [
     {
-      "word": "発揮",
-      "reading": "はっき",
-      "meaning": "show (of power, ability, etc.)",
+      "word": "指揮",
+      "reading": "しき",
+      "meaning": "command",
       "type": "on"
     }
   ],
@@ -2224,12 +2218,6 @@
       "reading": "じゅうじつ",
       "meaning": "fullness",
       "type": "on"
-    },
-    {
-      "word": "充所",
-      "reading": "あてどころ",
-      "meaning": "address (of a letter, parcel, etc.)",
-      "type": "kun"
     }
   ],
   "貢": [
@@ -2248,9 +2236,9 @@
   ],
   "鹿": [
     {
-      "word": "鹿砦",
-      "reading": "ろくさい",
-      "meaning": "abatis",
+      "word": "鹿茸",
+      "reading": "ろくじょう",
+      "meaning": "pilose antler (used in traditional Chinese medicine)",
       "type": "on"
     },
     {
@@ -2282,9 +2270,9 @@
       "type": "on"
     },
     {
-      "word": "半端",
-      "reading": "はんぱ",
-      "meaning": "remnant",
+      "word": "中途半端",
+      "reading": "ちゅうとはんぱ",
+      "meaning": "halfway",
       "type": "kun"
     }
   ],
@@ -2316,12 +2304,6 @@
       "reading": "ぐんぶ",
       "meaning": "rural districts",
       "type": "on"
-    },
-    {
-      "word": "郡造",
-      "reading": "こおりのみやつこ",
-      "meaning": "director of a district (ritsuryō system)",
-      "type": "kun"
     }
   ],
   "併": [
@@ -2356,9 +2338,9 @@
       "type": "on"
     },
     {
-      "word": "衝立て",
-      "reading": "ついたて",
-      "meaning": "partitioning screen",
+      "word": "衝羽根草",
+      "reading": "つくばねそう",
+      "meaning": "Paris tetraphylla (flowering plant closely related to herb Paris)",
       "type": "kun"
     }
   ],
@@ -2468,12 +2450,6 @@
       "reading": "じゅもく",
       "meaning": "tree",
       "type": "on"
-    },
-    {
-      "word": "百合樹",
-      "reading": "ゆりのき",
-      "meaning": "tulip tree (Liriodendron tulipifera)",
-      "type": "kun"
     }
   ],
   "挑": [
@@ -2492,9 +2468,9 @@
   ],
   "誘": [
     {
-      "word": "誘導",
-      "reading": "ゆうどう",
-      "meaning": "guidance",
+      "word": "誘惑",
+      "reading": "ゆうわく",
+      "meaning": "temptation",
       "type": "on"
     },
     {
@@ -2590,9 +2566,9 @@
   ],
   "智": [
     {
-      "word": "上智",
-      "reading": "じょうち",
-      "meaning": "supreme wisdom",
+      "word": "上智大学",
+      "reading": "じょうちだいがく",
+      "meaning": "Sophia University",
       "type": "on"
     }
   ],
@@ -2706,9 +2682,9 @@
   ],
   "託": [
     {
-      "word": "委託",
-      "reading": "いたく",
-      "meaning": "entrusting (something to a person)",
+      "word": "託する",
+      "reading": "たくする",
+      "meaning": "to entrust (someone) with",
       "type": "on"
     },
     {
@@ -2726,9 +2702,9 @@
       "type": "on"
     },
     {
-      "word": "撮み出す",
-      "reading": "つまみだす",
-      "meaning": "to pick out (with the fingers)",
+      "word": "撮り直す",
+      "reading": "とりなおす",
+      "meaning": "to retake (a photograph)",
       "type": "kun"
     }
   ],
@@ -2742,17 +2718,17 @@
   ],
   "侵": [
     {
-      "word": "侵入",
-      "reading": "しんにゅう",
-      "meaning": "invasion",
+      "word": "侵略",
+      "reading": "しんりゃく",
+      "meaning": "invasion (e.g. of a country)",
       "type": "on"
     }
   ],
   "括": [
     {
-      "word": "包括",
-      "reading": "ほうかつ",
-      "meaning": "inclusion",
+      "word": "包括的",
+      "reading": "ほうかつてき",
+      "meaning": "comprehensive",
       "type": "on"
     },
     {
@@ -2778,9 +2754,9 @@
   ],
   "駆": [
     {
-      "word": "駆使",
-      "reading": "くし",
-      "meaning": "using freely",
+      "word": "駆逐艦",
+      "reading": "くちくかん",
+      "meaning": "destroyer (ship)",
       "type": "on"
     },
     {
@@ -2806,9 +2782,9 @@
   ],
   "津": [
     {
-      "word": "津々",
-      "reading": "しんしん",
-      "meaning": "gushing",
+      "word": "興味津々",
+      "reading": "きょうみしんしん",
+      "meaning": "very interesting",
       "type": "on"
     },
     {
@@ -2840,31 +2816,31 @@
       "type": "on"
     },
     {
-      "word": "稲作",
-      "reading": "いなさく",
-      "meaning": "rice cultivation",
+      "word": "稲妻",
+      "reading": "いなずま",
+      "meaning": "lightning",
       "type": "kun"
     }
   ],
   "仮": [
     {
-      "word": "仮定",
-      "reading": "かてい",
-      "meaning": "assumption",
+      "word": "仮説",
+      "reading": "かせつ",
+      "meaning": "hypothesis",
       "type": "on"
     },
     {
-      "word": "仮払い",
-      "reading": "かりばらい",
-      "meaning": "temporary advance (of money)",
+      "word": "仮住まい",
+      "reading": "かりずまい",
+      "meaning": "temporary residence",
       "type": "kun"
     }
   ],
   "裂": [
     {
-      "word": "分裂",
-      "reading": "ぶんれつ",
-      "meaning": "split",
+      "word": "亀裂",
+      "reading": "きれつ",
+      "meaning": "crack",
       "type": "on"
     },
     {
@@ -2898,9 +2874,9 @@
   ],
   "排": [
     {
-      "word": "排出",
-      "reading": "はいしゅつ",
-      "meaning": "discharge",
+      "word": "排除",
+      "reading": "はいじょ",
+      "meaning": "exclusion",
       "type": "on"
     }
   ],
@@ -2914,9 +2890,9 @@
   ],
   "堅": [
     {
-      "word": "中堅",
-      "reading": "ちゅうけん",
-      "meaning": "nucleus",
+      "word": "堅調",
+      "reading": "けんちょう",
+      "meaning": "firm (market)",
       "type": "on"
     },
     {
@@ -2928,9 +2904,9 @@
   ],
   "訳": [
     {
-      "word": "翻訳",
-      "reading": "ほんやく",
-      "meaning": "translation",
+      "word": "訳す",
+      "reading": "やくす",
+      "meaning": "to translate",
       "type": "on"
     },
     {
@@ -2948,9 +2924,9 @@
       "type": "on"
     },
     {
-      "word": "芝刈り",
-      "reading": "しばかり",
-      "meaning": "lawn mowing",
+      "word": "芝刈り機",
+      "reading": "しばかりき",
+      "meaning": "lawnmower",
       "type": "kun"
     }
   ],
@@ -2970,17 +2946,17 @@
   ],
   "典": [
     {
-      "word": "典型",
-      "reading": "てんけい",
-      "meaning": "type",
+      "word": "典型的",
+      "reading": "てんけいてき",
+      "meaning": "typical",
       "type": "on"
     }
   ],
   "賀": [
     {
-      "word": "年賀",
-      "reading": "ねんが",
-      "meaning": "New Year's greetings",
+      "word": "年賀状",
+      "reading": "ねんがじょう",
+      "meaning": "New Year's card",
       "type": "on"
     }
   ],
@@ -3008,17 +2984,23 @@
   ],
   "弘": [
     {
-      "word": "弘法",
-      "reading": "ぐほう",
-      "meaning": "spreading Buddhist teachings",
+      "word": "弘化",
+      "reading": "こうか",
+      "meaning": "Kōka era (1844.12.2-1848.2.28)",
       "type": "on"
+    },
+    {
+      "word": "弘前大学",
+      "reading": "ひろさきだいがく",
+      "meaning": "Hirosaki University",
+      "type": "kun"
     }
   ],
   "看": [
     {
-      "word": "看護",
-      "reading": "かんご",
-      "meaning": "nursing",
+      "word": "看板",
+      "reading": "かんばん",
+      "meaning": "signboard",
       "type": "on"
     }
   ],
@@ -3058,19 +3040,13 @@
       "reading": "めいよ",
       "meaning": "honor",
       "type": "on"
-    },
-    {
-      "word": "誉め言葉",
-      "reading": "ほめことば",
-      "meaning": "words of praise",
-      "type": "kun"
     }
   ],
   "歓": [
     {
-      "word": "歓迎",
-      "reading": "かんげい",
-      "meaning": "welcome",
+      "word": "歓声",
+      "reading": "かんせい",
+      "meaning": "cheer",
       "type": "on"
     }
   ],
@@ -3126,9 +3102,9 @@
   ],
   "甲": [
     {
-      "word": "甲板",
-      "reading": "かんぱん",
-      "meaning": "deck (of a ship)",
+      "word": "甲高い",
+      "reading": "かんだかい",
+      "meaning": "high-pitched",
       "type": "on"
     },
     {
@@ -3140,9 +3116,9 @@
   ],
   "縄": [
     {
-      "word": "縄文",
-      "reading": "じょうもん",
-      "meaning": "straw-rope pattern pressed into earthenware",
+      "word": "縄文時代",
+      "reading": "じょうもんじだい",
+      "meaning": "Jōmon period (ca. 14000-1000 BCE)",
       "type": "on"
     },
     {
@@ -3180,12 +3156,6 @@
       "reading": "ごめん",
       "meaning": "I'm sorry",
       "type": "on"
-    },
-    {
-      "word": "免れる",
-      "reading": "まぬかれる",
-      "meaning": "to escape (disaster, death, etc.)",
-      "type": "kun"
     }
   ],
   "既": [
@@ -3212,23 +3182,23 @@
   ],
   "隣": [
     {
-      "word": "隣接",
-      "reading": "りんせつ",
-      "meaning": "adjacency",
+      "word": "近隣",
+      "reading": "きんりん",
+      "meaning": "neighbourhood",
       "type": "on"
     },
     {
-      "word": "隣り",
-      "reading": "となり",
-      "meaning": "next (to)",
+      "word": "隣り合う",
+      "reading": "となりあう",
+      "meaning": "to adjoin each other",
       "type": "kun"
     }
   ],
   "華": [
     {
-      "word": "中華",
-      "reading": "ちゅうか",
-      "meaning": "China",
+      "word": "豪華",
+      "reading": "ごうか",
+      "meaning": "extravagant",
       "type": "on"
     },
     {
@@ -3248,9 +3218,9 @@
   ],
   "隠": [
     {
-      "word": "隠居",
-      "reading": "いんきょ",
-      "meaning": "retirement (from work)",
+      "word": "隠元",
+      "reading": "いんげん",
+      "meaning": "common bean",
       "type": "on"
     },
     {
@@ -3344,17 +3314,17 @@
       "type": "on"
     },
     {
-      "word": "熊襲",
-      "reading": "くまそ",
-      "meaning": "Kumaso (ancient Japanese people who lived in southern Kyushu)",
+      "word": "熊笹",
+      "reading": "くまざさ",
+      "meaning": "kuma bamboo grass (Sasa veitchii)",
       "type": "kun"
     }
   ],
   "滞": [
     {
-      "word": "滞在",
-      "reading": "たいざい",
-      "meaning": "stay",
+      "word": "遅滞",
+      "reading": "ちたい",
+      "meaning": "delay",
       "type": "on"
     },
     {
@@ -3396,8 +3366,8 @@
   ],
   "暫": [
     {
-      "word": "暫定",
-      "reading": "ざんてい",
+      "word": "暫定的",
+      "reading": "ざんていてき",
       "meaning": "provisional",
       "type": "on"
     },
@@ -3432,15 +3402,9 @@
   ],
   "彦": [
     {
-      "word": "諸彦",
-      "reading": "しょげん",
-      "meaning": "many accomplished persons",
-      "type": "on"
-    },
-    {
-      "word": "彦星",
-      "reading": "ひこぼし",
-      "meaning": "Altair (star in the constellation Aquila)",
+      "word": "猿田彦",
+      "reading": "さるたひこ",
+      "meaning": "Sarutahiko (deity)",
       "type": "kun"
     }
   ],
@@ -3452,17 +3416,17 @@
       "type": "on"
     },
     {
-      "word": "肝煎り",
-      "reading": "きもいり",
-      "meaning": "good offices",
+      "word": "肝試し",
+      "reading": "きもだめし",
+      "meaning": "test of courage (by going to a frightening place, e.g. a graveyard)",
       "type": "kun"
     }
   ],
   "喚": [
     {
-      "word": "喚起",
-      "reading": "かんき",
-      "meaning": "arousal",
+      "word": "喚声",
+      "reading": "かんせい",
+      "meaning": "shout (of excitement)",
       "type": "on"
     },
     {
@@ -3502,9 +3466,9 @@
   ],
   "唱": [
     {
-      "word": "提唱",
-      "reading": "ていしょう",
-      "meaning": "advocacy",
+      "word": "合唱",
+      "reading": "がっしょう",
+      "meaning": "singing together",
       "type": "on"
     },
     {
@@ -3516,9 +3480,9 @@
   ],
   "阿": [
     {
-      "word": "阿呆",
-      "reading": "あほう",
-      "meaning": "fool",
+      "word": "阿諛",
+      "reading": "あゆ",
+      "meaning": "flattery",
       "type": "on"
     },
     {
@@ -3566,9 +3530,9 @@
   ],
   "懇": [
     {
-      "word": "懇談",
-      "reading": "こんだん",
-      "meaning": "friendly chat",
+      "word": "懇談会",
+      "reading": "こんだんかい",
+      "meaning": "informal meeting",
       "type": "on"
     },
     {
@@ -3602,9 +3566,9 @@
   ],
   "驚": [
     {
-      "word": "驚異",
-      "reading": "きょうい",
-      "meaning": "wonder",
+      "word": "驚愕",
+      "reading": "きょうがく",
+      "meaning": "astonishment",
       "type": "on"
     },
     {
@@ -3616,9 +3580,9 @@
   ],
   "麻": [
     {
-      "word": "胡麻",
-      "reading": "ごま",
-      "meaning": "sesame seeds",
+      "word": "麻薬",
+      "reading": "まやく",
+      "meaning": "narcotic",
       "type": "on"
     },
     {
@@ -3630,9 +3594,9 @@
   ],
   "李": [
     {
-      "word": "李朝",
-      "reading": "りちょう",
-      "meaning": "Joseon dynasty (Korea, 1392-1910)",
+      "word": "行李",
+      "reading": "こうり",
+      "meaning": "wicker trunk",
       "type": "on"
     }
   ],
@@ -3704,8 +3668,8 @@
   ],
   "貫": [
     {
-      "word": "一貫",
-      "reading": "いっかん",
+      "word": "一貫性",
+      "reading": "いっかんせい",
       "meaning": "consistency",
       "type": "on"
     },
@@ -3726,9 +3690,9 @@
   ],
   "慰": [
     {
-      "word": "慰謝",
-      "reading": "いしゃ",
-      "meaning": "consolation",
+      "word": "慰謝料",
+      "reading": "いしゃりょう",
+      "meaning": "consolation money",
       "type": "on"
     },
     {
@@ -3754,17 +3718,17 @@
   ],
   "旬": [
     {
-      "word": "中旬",
-      "reading": "ちゅうじゅん",
-      "meaning": "middle ten days of a month",
+      "word": "下旬",
+      "reading": "げじゅん",
+      "meaning": "last third of a month",
       "type": "on"
     }
   ],
   "兼": [
     {
-      "word": "兼業",
-      "reading": "けんぎょう",
-      "meaning": "pursuing as a side business",
+      "word": "兼業農家",
+      "reading": "けんぎょうのうか",
+      "meaning": "part-time farmer",
       "type": "on"
     },
     {
@@ -3796,9 +3760,9 @@
       "type": "on"
     },
     {
-      "word": "旨い",
-      "reading": "うまい",
-      "meaning": "skillful",
+      "word": "旨み",
+      "reading": "うまみ",
+      "meaning": "good flavor (flavour)",
       "type": "kun"
     }
   ],
@@ -3832,9 +3796,9 @@
   ],
   "舎": [
     {
-      "word": "庁舎",
-      "reading": "ちょうしゃ",
-      "meaning": "government office building",
+      "word": "校舎",
+      "reading": "こうしゃ",
+      "meaning": "school building",
       "type": "on"
     }
   ],
@@ -3854,17 +3818,17 @@
   ],
   "較": [
     {
-      "word": "比較",
-      "reading": "ひかく",
-      "meaning": "comparison",
+      "word": "比較的",
+      "reading": "ひかくてき",
+      "meaning": "comparatively",
       "type": "on"
     }
   ],
   "覇": [
     {
-      "word": "制覇",
-      "reading": "せいは",
-      "meaning": "conquest",
+      "word": "覇権",
+      "reading": "はけん",
+      "meaning": "hegemony",
       "type": "on"
     }
   ],
@@ -4114,9 +4078,9 @@
   ],
   "擁": [
     {
-      "word": "擁護",
-      "reading": "ようご",
-      "meaning": "protection",
+      "word": "擁する",
+      "reading": "ようする",
+      "meaning": "to embrace",
       "type": "on"
     }
   ],
@@ -4130,9 +4094,9 @@
   ],
   "酸": [
     {
-      "word": "酸化",
-      "reading": "さんか",
-      "meaning": "oxidation",
+      "word": "酸素",
+      "reading": "さんそ",
+      "meaning": "oxygen (O)",
       "type": "on"
     },
     {
@@ -4228,9 +4192,9 @@
   ],
   "梅": [
     {
-      "word": "梅毒",
-      "reading": "ばいどく",
-      "meaning": "syphilis",
+      "word": "塩梅",
+      "reading": "あんばい",
+      "meaning": "seasoning",
       "type": "on"
     },
     {
@@ -4242,9 +4206,9 @@
   ],
   "尽": [
     {
-      "word": "尽力",
-      "reading": "じんりょく",
-      "meaning": "efforts",
+      "word": "理不尽",
+      "reading": "りふじん",
+      "meaning": "unreasonable",
       "type": "on"
     },
     {
@@ -4256,9 +4220,9 @@
   ],
   "僕": [
     {
-      "word": "僕達",
-      "reading": "ぼくたち",
-      "meaning": "we",
+      "word": "下僕",
+      "reading": "げぼく",
+      "meaning": "manservant",
       "type": "on"
     }
   ],
@@ -4271,7 +4235,7 @@
     },
     {
       "word": "桜ん坊",
-      "reading": "さくらんぼう",
+      "reading": "さくらんぼ",
       "meaning": "cherry (fruit; esp. of the sweet cherry, Prunus avium)",
       "type": "kun"
     }
@@ -4314,9 +4278,9 @@
   ],
   "賠": [
     {
-      "word": "賠償",
-      "reading": "ばいしょう",
-      "meaning": "compensation",
+      "word": "損害賠償",
+      "reading": "そんがいばいしょう",
+      "meaning": "restitution",
       "type": "on"
     }
   ],
@@ -4400,8 +4364,8 @@
   ],
   "励": [
     {
-      "word": "奨励",
-      "reading": "しょうれい",
+      "word": "激励",
+      "reading": "げきれい",
       "meaning": "encouragement",
       "type": "on"
     },
@@ -4414,9 +4378,9 @@
   ],
   "縦": [
     {
-      "word": "操縦",
-      "reading": "そうじゅう",
-      "meaning": "steering",
+      "word": "縦覧",
+      "reading": "じゅうらん",
+      "meaning": "inspection",
       "type": "on"
     },
     {
@@ -4464,9 +4428,9 @@
   ],
   "巡": [
     {
-      "word": "巡回",
-      "reading": "じゅんかい",
-      "meaning": "going around",
+      "word": "巡査",
+      "reading": "じゅんさ",
+      "meaning": "police officer",
       "type": "on"
     },
     {
@@ -4478,9 +4442,9 @@
   ],
   "稼": [
     {
-      "word": "稼働",
-      "reading": "かどう",
-      "meaning": "operation (of a machine)",
+      "word": "稼働率",
+      "reading": "かどうりつ",
+      "meaning": "operating rate",
       "type": "on"
     },
     {
@@ -4530,9 +4494,9 @@
   ],
   "祥": [
     {
-      "word": "不祥",
-      "reading": "ふしょう",
-      "meaning": "disgraceful",
+      "word": "不祥事",
+      "reading": "ふしょうじ",
+      "meaning": "scandal",
       "type": "on"
     }
   ],
@@ -4554,9 +4518,9 @@
   ],
   "帝": [
     {
-      "word": "帝国",
-      "reading": "ていこく",
-      "meaning": "empire",
+      "word": "皇帝",
+      "reading": "こうてい",
+      "meaning": "emperor",
       "type": "on"
     },
     {
@@ -4568,9 +4532,9 @@
   ],
   "宏": [
     {
-      "word": "宏謨",
-      "reading": "こうぼ",
-      "meaning": "great plan",
+      "word": "宏池会",
+      "reading": "こうちかい",
+      "meaning": "Kōchikai (historically the most liberal faction of the Liberal Democratic Party)",
       "type": "on"
     }
   ],
@@ -4590,8 +4554,8 @@
   ],
   "阻": [
     {
-      "word": "阻害",
-      "reading": "そがい",
+      "word": "阻止",
+      "reading": "そし",
       "meaning": "obstruction",
       "type": "on"
     },
@@ -4626,33 +4590,33 @@
   ],
   "撲": [
     {
-      "word": "撲滅",
-      "reading": "ぼくめつ",
-      "meaning": "eradication",
+      "word": "打撲",
+      "reading": "だぼく",
+      "meaning": "blow",
       "type": "on"
     }
   ],
   "堀": [
     {
-      "word": "堀川",
-      "reading": "ほりかわ",
+      "word": "堀江",
+      "reading": "ほりえ",
       "meaning": "canal",
       "type": "kun"
     }
   ],
   "菊": [
     {
-      "word": "菊科",
-      "reading": "きくか",
-      "meaning": "Asteraceae (family of flowering plants comprising the asters, daisies, sunflowers, etc.)",
+      "word": "菊芋",
+      "reading": "きくいも",
+      "meaning": "Jerusalem artichoke (Helianthus tuberosus)",
       "type": "on"
     }
   ],
   "絞": [
     {
-      "word": "絞首",
-      "reading": "こうしゅ",
-      "meaning": "hanging",
+      "word": "絞首刑",
+      "reading": "こうしゅけい",
+      "meaning": "death by hanging",
       "type": "on"
     },
     {
@@ -4720,9 +4684,9 @@
   ],
   "耐": [
     {
-      "word": "耐震",
-      "reading": "たいしん",
-      "meaning": "resistant to earthquakes",
+      "word": "忍耐",
+      "reading": "にんたい",
+      "meaning": "endurance",
       "type": "on"
     },
     {
@@ -4734,9 +4698,9 @@
   ],
   "塾": [
     {
-      "word": "義塾",
-      "reading": "ぎじゅく",
-      "meaning": "charity school",
+      "word": "学習塾",
+      "reading": "がくしゅうじゅく",
+      "meaning": "cram school",
       "type": "on"
     }
   ],
@@ -4846,9 +4810,9 @@
       "type": "on"
     },
     {
-      "word": "揚げ",
-      "reading": "あげ",
-      "meaning": "deep-frying",
+      "word": "油揚げ",
+      "reading": "あぶらあげ",
+      "meaning": "abura-age",
       "type": "kun"
     }
   ],
@@ -4860,33 +4824,20 @@
       "type": "on"
     }
   ],
-  "之": [
-    {
-      "word": "之繞",
-      "reading": "しんにょう",
-      "meaning": "kanji \"road\" or \"advance\" radical (radical 162)",
-      "type": "on"
-    },
-    {
-      "word": "熊之実",
-      "reading": "くまのみ",
-      "meaning": "clownfish (Amphiprioninae spp., esp. the yellowtail clownfish, Amphiprion clarkii)",
-      "type": "kun"
-    }
-  ],
+  "之": [],
   "倫": [
     {
-      "word": "倫理",
-      "reading": "りんり",
-      "meaning": "ethics",
+      "word": "不倫",
+      "reading": "ふりん",
+      "meaning": "adultery",
       "type": "on"
     }
   ],
   "陳": [
     {
-      "word": "陳述",
-      "reading": "ちんじゅつ",
-      "meaning": "statement",
+      "word": "新陳代謝",
+      "reading": "しんちんたいしゃ",
+      "meaning": "renewal",
       "type": "on"
     },
     {
@@ -4906,9 +4857,9 @@
   ],
   "潜": [
     {
-      "word": "潜在",
-      "reading": "せんざい",
-      "meaning": "potentiality",
+      "word": "潜在的",
+      "reading": "せんざいてき",
+      "meaning": "latent",
       "type": "on"
     },
     {
@@ -4934,9 +4885,9 @@
   ],
   "仁": [
     {
-      "word": "仁王",
-      "reading": "におう",
-      "meaning": "two Deva kings",
+      "word": "御仁",
+      "reading": "ごじん",
+      "meaning": "personage",
       "type": "on"
     }
   ],
@@ -4950,16 +4901,10 @@
   ],
   "岳": [
     {
-      "word": "山岳",
-      "reading": "さんがく",
-      "meaning": "mountain chain",
+      "word": "山岳地帯",
+      "reading": "さんがくちたい",
+      "meaning": "mountain district",
       "type": "on"
-    },
-    {
-      "word": "御岳",
-      "reading": "みたけ",
-      "meaning": "large, high mountain",
-      "type": "kun"
     }
   ],
   "概": [
@@ -4992,9 +4937,9 @@
       "type": "on"
     },
     {
-      "word": "墓石",
-      "reading": "はかいし",
-      "meaning": "tombstone",
+      "word": "墓場",
+      "reading": "はかば",
+      "meaning": "graveyard",
       "type": "kun"
     }
   ],
@@ -5072,9 +5017,9 @@
   ],
   "狭": [
     {
-      "word": "狭窄",
-      "reading": "きょうさく",
-      "meaning": "contraction",
+      "word": "狭義",
+      "reading": "きょうぎ",
+      "meaning": "narrow sense (e.g. of a word)",
       "type": "on"
     },
     {
@@ -5122,9 +5067,9 @@
   ],
   "簿": [
     {
-      "word": "名簿",
-      "reading": "めいぼ",
-      "meaning": "register of names",
+      "word": "帳簿",
+      "reading": "ちょうぼ",
+      "meaning": "account book",
       "type": "on"
     }
   ],
@@ -5174,9 +5119,9 @@
   ],
   "艦": [
     {
-      "word": "艦隊",
-      "reading": "かんたい",
-      "meaning": "(naval) fleet",
+      "word": "潜水艦",
+      "reading": "せんすいかん",
+      "meaning": "submarine",
       "type": "on"
     }
   ],
@@ -5210,9 +5155,9 @@
   ],
   "奇": [
     {
-      "word": "奇麗",
-      "reading": "きれい",
-      "meaning": "pretty",
+      "word": "奇妙",
+      "reading": "きみょう",
+      "meaning": "strange",
       "type": "on"
     },
     {
@@ -5238,17 +5183,17 @@
       "type": "on"
     },
     {
-      "word": "鶴亀",
-      "reading": "つるかめ",
-      "meaning": "crane and tortoise (symbol of longevity, artistic motif)",
+      "word": "鶴嘴",
+      "reading": "つるはし",
+      "meaning": "pickaxe",
       "type": "kun"
     }
   ],
   "謀": [
     {
-      "word": "参謀",
-      "reading": "さんぼう",
-      "meaning": "staff officer",
+      "word": "陰謀",
+      "reading": "いんぼう",
+      "meaning": "plot",
       "type": "on"
     },
     {
@@ -5260,17 +5205,17 @@
   ],
   "暖": [
     {
-      "word": "温暖",
-      "reading": "おんだん",
-      "meaning": "warm",
+      "word": "暖炉",
+      "reading": "だんろ",
+      "meaning": "fireplace",
       "type": "on"
     }
   ],
   "昌": [
     {
-      "word": "隆昌",
-      "reading": "りゅうしょう",
-      "meaning": "prosperity",
+      "word": "南昌",
+      "reading": "なんしょう",
+      "meaning": "Nanchang (China)",
       "type": "on"
     }
   ],
@@ -5362,17 +5307,17 @@
   ],
   "浄": [
     {
-      "word": "浄化",
-      "reading": "じょうか",
-      "meaning": "purification",
+      "word": "浄土",
+      "reading": "じょうど",
+      "meaning": "pure land (esp. the Western Pure Land paradise of Amitabha)",
       "type": "on"
     }
   ],
   "没": [
     {
-      "word": "戦没",
-      "reading": "せんぼつ",
-      "meaning": "death in battle",
+      "word": "日没",
+      "reading": "にちぼつ",
+      "meaning": "sunset",
       "type": "on"
     }
   ],
@@ -5384,9 +5329,9 @@
       "type": "on"
     },
     {
-      "word": "暇潰し",
-      "reading": "ひまつぶし",
-      "meaning": "killing time",
+      "word": "手間暇",
+      "reading": "てまひま",
+      "meaning": "time and effort",
       "type": "kun"
     }
   ],
@@ -5408,17 +5353,17 @@
   ],
   "靖": [
     {
-      "word": "靖国",
-      "reading": "やすくに",
-      "meaning": "Yasukuni (Shrine)",
+      "word": "靖国神社",
+      "reading": "やすくにじんじゃ",
+      "meaning": "Yasukuni Shrine",
       "type": "kun"
     }
   ],
   "鑑": [
     {
-      "word": "鑑定",
-      "reading": "かんてい",
-      "meaning": "judgement",
+      "word": "印鑑",
+      "reading": "いんかん",
+      "meaning": "stamp",
       "type": "on"
     },
     {
@@ -5430,9 +5375,9 @@
   ],
   "飼": [
     {
-      "word": "飼育",
-      "reading": "しいく",
-      "meaning": "breeding",
+      "word": "飼料",
+      "reading": "しりょう",
+      "meaning": "fodder",
       "type": "on"
     },
     {
@@ -5504,23 +5449,23 @@
   ],
   "丹": [
     {
-      "word": "牡丹",
-      "reading": "ぼたん",
-      "meaning": "tree peony (Paeonia suffruticosa)",
+      "word": "丹念",
+      "reading": "たんねん",
+      "meaning": "painstaking",
       "type": "on"
     },
     {
-      "word": "雲丹",
-      "reading": "うに",
-      "meaning": "sea urchin",
+      "word": "丹塗り",
+      "reading": "にぬり",
+      "meaning": "painting red",
       "type": "kun"
     }
   ],
   "啓": [
     {
-      "word": "啓発",
-      "reading": "けいはつ",
-      "meaning": "enlightenment",
+      "word": "拝啓",
+      "reading": "はいけい",
+      "meaning": "Dear (so and so)",
       "type": "on"
     }
   ],
@@ -5533,9 +5478,9 @@
       "type": "on"
     },
     {
-      "word": "丘",
-      "reading": "おか",
-      "meaning": "hill",
+      "word": "嵐が丘",
+      "reading": "あらしがおか",
+      "meaning": "Wuthering Heights (novel by Emily Bronte)",
       "type": "kun"
     }
   ],
@@ -5619,9 +5564,9 @@
   ],
   "舗": [
     {
-      "word": "舗装",
-      "reading": "ほそう",
-      "meaning": "paving (a road)",
+      "word": "舗道",
+      "reading": "ほどう",
+      "meaning": "paved road",
       "type": "on"
     }
   ],
@@ -5635,9 +5580,9 @@
   ],
   "熟": [
     {
-      "word": "成熟",
-      "reading": "せいじゅく",
-      "meaning": "maturity",
+      "word": "未熟",
+      "reading": "みじゅく",
+      "meaning": "unripe",
       "type": "on"
     },
     {
@@ -5649,9 +5594,9 @@
   ],
   "旭": [
     {
-      "word": "旭日",
-      "reading": "きょくじつ",
-      "meaning": "rising sun",
+      "word": "旭日章",
+      "reading": "きょくじつしょう",
+      "meaning": "Order of the Rising Sun",
       "type": "on"
     },
     {
@@ -5671,9 +5616,9 @@
   ],
   "騰": [
     {
-      "word": "沸騰",
-      "reading": "ふっとう",
-      "meaning": "boiling",
+      "word": "高騰",
+      "reading": "こうとう",
+      "meaning": "sharp rise (in prices)",
       "type": "on"
     }
   ],
@@ -5735,9 +5680,9 @@
   ],
   "岐": [
     {
-      "word": "分岐",
-      "reading": "ぶんき",
-      "meaning": "divergence",
+      "word": "多岐",
+      "reading": "たき",
+      "meaning": "diverse",
       "type": "on"
     }
   ],
@@ -5755,12 +5700,6 @@
       "reading": "けいい",
       "meaning": "details",
       "type": "on"
-    },
-    {
-      "word": "緯",
-      "reading": "ぬき",
-      "meaning": "weft",
-      "type": "kun"
     }
   ],
   "培": [
@@ -5845,9 +5784,9 @@
   ],
   "披": [
     {
-      "word": "披露",
-      "reading": "ひろう",
-      "meaning": "announcement",
+      "word": "披露宴",
+      "reading": "ひろうえん",
+      "meaning": "reception (e.g. wedding)",
       "type": "on"
     }
   ],
@@ -5861,9 +5800,9 @@
   ],
   "錦": [
     {
-      "word": "錦旗",
-      "reading": "きんき",
-      "meaning": "pennant",
+      "word": "錦糸卵",
+      "reading": "きんしたまご",
+      "meaning": "thin omelette cut into strips",
       "type": "on"
     },
     {
@@ -5897,17 +5836,17 @@
   ],
   "磯": [
     {
-      "word": "磯辺",
-      "reading": "いそべ",
-      "meaning": "seashore",
+      "word": "磯巾着",
+      "reading": "いそぎんちゃく",
+      "meaning": "sea anemone",
       "type": "kun"
     }
   ],
   "奨": [
     {
-      "word": "奨励",
-      "reading": "しょうれい",
-      "meaning": "encouragement",
+      "word": "奨学金",
+      "reading": "しょうがくきん",
+      "meaning": "scholarship",
       "type": "on"
     }
   ],
@@ -5949,9 +5888,9 @@
   ],
   "繊": [
     {
-      "word": "繊維",
-      "reading": "せんい",
-      "meaning": "fibre",
+      "word": "繊細",
+      "reading": "せんさい",
+      "meaning": "dainty",
       "type": "on"
     }
   ],
@@ -6003,6 +5942,12 @@
       "reading": "てちょう",
       "meaning": "notebook",
       "type": "on"
+    },
+    {
+      "word": "帳",
+      "reading": "とばり",
+      "meaning": "curtain",
+      "type": "kun"
     }
   ],
   "悔": [
@@ -6021,9 +5966,9 @@
   ],
   "諭": [
     {
-      "word": "教諭",
-      "reading": "きょうゆ",
-      "meaning": "(licensed) teacher",
+      "word": "養護教諭",
+      "reading": "ようごきょうゆ",
+      "meaning": "school nurse",
       "type": "on"
     },
     {
@@ -6157,17 +6102,17 @@
       "type": "on"
     },
     {
-      "word": "盾突く",
-      "reading": "たてつく",
-      "meaning": "to defy",
+      "word": "盾",
+      "reading": "たて",
+      "meaning": "shield",
       "type": "kun"
     }
   ],
   "脈": [
     {
-      "word": "動脈",
-      "reading": "どうみゃく",
-      "meaning": "artery",
+      "word": "文脈",
+      "reading": "ぶんみゃく",
+      "meaning": "context (of a passage)",
       "type": "on"
     }
   ],
@@ -6237,9 +6182,9 @@
       "type": "on"
     },
     {
-      "word": "背美鯨",
-      "reading": "せみくじら",
-      "meaning": "North Pacific right whale (Eubalaena japonica)",
+      "word": "座頭鯨",
+      "reading": "ざとうくじら",
+      "meaning": "humpback whale (Megaptera novaeangliae)",
       "type": "kun"
     }
   ],
@@ -6261,9 +6206,9 @@
   ],
   "雷": [
     {
-      "word": "魚雷",
-      "reading": "ぎょらい",
-      "meaning": "torpedo",
+      "word": "雷鳴",
+      "reading": "らいめい",
+      "meaning": "thunder",
       "type": "on"
     },
     {
@@ -6275,9 +6220,9 @@
   ],
   "漂": [
     {
-      "word": "漂流",
-      "reading": "ひょうりゅう",
-      "meaning": "drifting",
+      "word": "漂白剤",
+      "reading": "ひょうはくざい",
+      "meaning": "bleaching agent",
       "type": "on"
     },
     {
@@ -6289,9 +6234,9 @@
   ],
   "懐": [
     {
-      "word": "懐中",
-      "reading": "かいちゅう",
-      "meaning": "one's pocket",
+      "word": "懐中電灯",
+      "reading": "かいちゅうでんとう",
+      "meaning": "(electric) torch",
       "type": "on"
     },
     {
@@ -6335,9 +6280,9 @@
   ],
   "添": [
     {
-      "word": "添付",
-      "reading": "てんぷ",
-      "meaning": "attaching (documents, etc.)",
+      "word": "添加物",
+      "reading": "てんかぶつ",
+      "meaning": "additive",
       "type": "on"
     },
     {
@@ -6377,9 +6322,9 @@
       "type": "on"
     },
     {
-      "word": "手鏡",
-      "reading": "てかがみ",
-      "meaning": "hand-mirror",
+      "word": "鏡餅",
+      "reading": "かがみもち",
+      "meaning": "kagami mochi",
       "type": "kun"
     }
   ],
@@ -6415,9 +6360,9 @@
   ],
   "覧": [
     {
-      "word": "御覧",
-      "reading": "ごらん",
-      "meaning": "(please) try to",
+      "word": "閲覧",
+      "reading": "えつらん",
+      "meaning": "inspection",
       "type": "on"
     }
   ],
@@ -6447,9 +6392,9 @@
   ],
   "魔": [
     {
-      "word": "邪魔",
-      "reading": "じゃま",
-      "meaning": "hindrance",
+      "word": "魔法",
+      "reading": "まほう",
+      "meaning": "magic",
       "type": "on"
     }
   ],
@@ -6483,9 +6428,9 @@
       "type": "on"
     },
     {
-      "word": "曙草",
-      "reading": "あけぼのそう",
-      "meaning": "Swertia bimaculata (species of felwort)",
+      "word": "曙",
+      "reading": "あけぼの",
+      "meaning": "dawn",
       "type": "kun"
     }
   ],
@@ -6505,9 +6450,9 @@
       "type": "on"
     },
     {
-      "word": "卸売り",
-      "reading": "おろしうり",
-      "meaning": "wholesale",
+      "word": "卸売り業",
+      "reading": "おろしうりぎょう",
+      "meaning": "wholesale business",
       "type": "kun"
     }
   ],
@@ -6535,9 +6480,9 @@
   ],
   "逸": [
     {
-      "word": "逸脱",
-      "reading": "いつだつ",
-      "meaning": "deviation",
+      "word": "逸話",
+      "reading": "いつわ",
+      "meaning": "anecdote",
       "type": "on"
     },
     {
@@ -6571,9 +6516,9 @@
       "type": "on"
     },
     {
-      "word": "眼鏡",
-      "reading": "めがね",
-      "meaning": "glasses",
+      "word": "血眼",
+      "reading": "ちまなこ",
+      "meaning": "bloodshot eyes",
       "type": "kun"
     }
   ],
@@ -6717,9 +6662,9 @@
   ],
   "栗": [
     {
-      "word": "栗鼠",
-      "reading": "りす",
-      "meaning": "squirrel (any mammal of family Sciuridae)",
+      "word": "片栗粉",
+      "reading": "かたくりこ",
+      "meaning": "potato starch",
       "type": "on"
     }
   ],
@@ -6751,12 +6696,6 @@
       "reading": "そうぐう",
       "meaning": "encounter",
       "type": "on"
-    },
-    {
-      "word": "遭わす",
-      "reading": "あわす",
-      "meaning": "to make (someone) to meet",
-      "type": "kun"
     }
   ],
   "架": [
@@ -6781,9 +6720,9 @@
       "type": "on"
     },
     {
-      "word": "鬼子",
-      "reading": "おにご",
-      "meaning": "child born with teeth",
+      "word": "鬼ごっこ",
+      "reading": "おにごっこ",
+      "meaning": "tag (children's game)",
       "type": "kun"
     }
   ],
@@ -6797,17 +6736,17 @@
   ],
   "稚": [
     {
-      "word": "幼稚",
-      "reading": "ようち",
-      "meaning": "infancy",
+      "word": "幼稚園",
+      "reading": "ようちえん",
+      "meaning": "kindergarten (in Japan, non-compulsory education from age 3 until primary school)",
       "type": "on"
     }
   ],
   "滋": [
     {
-      "word": "滋養",
-      "reading": "じよう",
-      "meaning": "nourishment",
+      "word": "滋味",
+      "reading": "じみ",
+      "meaning": "nutriment",
       "type": "on"
     }
   ],
@@ -6847,9 +6786,9 @@
       "type": "on"
     },
     {
-      "word": "姫様",
-      "reading": "ひめさま",
-      "meaning": "princess",
+      "word": "篤姫",
+      "reading": "あつひめ",
+      "meaning": "Atsuhime (TV series)",
       "type": "kun"
     }
   ],
@@ -6893,9 +6832,9 @@
   ],
   "疎": [
     {
-      "word": "過疎",
-      "reading": "かそ",
-      "meaning": "underpopulation",
+      "word": "疎遠",
+      "reading": "そえん",
+      "meaning": "estrangement",
       "type": "on"
     },
     {
@@ -6921,9 +6860,9 @@
   ],
   "剛": [
     {
-      "word": "金剛",
-      "reading": "こんごう",
-      "meaning": "vajra (indestructible substance)",
+      "word": "剛性",
+      "reading": "ごうせい",
+      "meaning": "stiffness",
       "type": "on"
     }
   ],
@@ -6937,17 +6876,17 @@
   ],
   "征": [
     {
-      "word": "征服",
-      "reading": "せいふく",
-      "meaning": "conquest",
+      "word": "遠征",
+      "reading": "えんせい",
+      "meaning": "(military) expedition",
       "type": "on"
     }
   ],
   "砕": [
     {
-      "word": "粉砕",
-      "reading": "ふんさい",
-      "meaning": "pulverization",
+      "word": "火砕流",
+      "reading": "かさいりゅう",
+      "meaning": "pyroclastic flow",
       "type": "on"
     },
     {
@@ -6959,23 +6898,17 @@
   ],
   "謡": [
     {
-      "word": "歌謡",
-      "reading": "かよう",
-      "meaning": "song",
+      "word": "民謡",
+      "reading": "みんよう",
+      "meaning": "folk song",
       "type": "on"
-    },
-    {
-      "word": "謡い",
-      "reading": "うたい",
-      "meaning": "noh chanting",
-      "type": "kun"
     }
   ],
   "嫁": [
     {
-      "word": "転嫁",
-      "reading": "てんか",
-      "meaning": "imputation",
+      "word": "嫁する",
+      "reading": "かする",
+      "meaning": "to wed",
       "type": "on"
     },
     {
@@ -6999,12 +6932,6 @@
       "reading": "こうごう",
       "meaning": "empress (consort)",
       "type": "on"
-    },
-    {
-      "word": "后町",
-      "reading": "きさきまち",
-      "meaning": "women's pavilion (of the inner Heian palace)",
-      "type": "kun"
     }
   ],
   "嘆": [
@@ -7045,9 +6972,9 @@
       "type": "on"
     },
     {
-      "word": "空き巣",
-      "reading": "あきす",
-      "meaning": "empty nest",
+      "word": "巣立つ",
+      "reading": "すだつ",
+      "meaning": "to leave the nest",
       "type": "kun"
     }
   ],
@@ -7059,9 +6986,9 @@
       "type": "on"
     },
     {
-      "word": "頻り",
-      "reading": "しきり",
-      "meaning": "frequent",
+      "word": "頻りに",
+      "reading": "しきりに",
+      "meaning": "frequently",
       "type": "kun"
     }
   ],
@@ -7073,9 +7000,9 @@
       "type": "on"
     },
     {
-      "word": "琴座",
-      "reading": "ことざ",
-      "meaning": "Lyra (constellation)",
+      "word": "琴柱",
+      "reading": "ことじ",
+      "meaning": "bridge of a koto",
       "type": "kun"
     }
   ],
@@ -7089,9 +7016,9 @@
   ],
   "棚": [
     {
-      "word": "陸棚",
-      "reading": "りくほう",
-      "meaning": "continental shelf",
+      "word": "氷棚",
+      "reading": "ひょうほう",
+      "meaning": "ice shelf",
       "type": "on"
     },
     {
@@ -7131,9 +7058,9 @@
   ],
   "宰": [
     {
-      "word": "主宰",
-      "reading": "しゅさい",
-      "meaning": "chairmanship",
+      "word": "宰相",
+      "reading": "さいしょう",
+      "meaning": "prime minister",
       "type": "on"
     }
   ],
@@ -7161,9 +7088,9 @@
   ],
   "辰": [
     {
-      "word": "戊辰",
-      "reading": "ぼしん",
-      "meaning": "Earth Dragon (5th term of the sexagenary cycle, e.g. 1928, 1988, 2048)",
+      "word": "戊辰戦争",
+      "reading": "ぼしんせんそう",
+      "meaning": "Boshin War (Japanese civil war between Imperial and shogunate forces; 1868-1869)",
       "type": "on"
     },
     {
@@ -7175,9 +7102,9 @@
   ],
   "霞": [
     {
-      "word": "霞草",
-      "reading": "かすみそう",
-      "meaning": "common gypsophila (Gypsophila elegans)",
+      "word": "雲霞",
+      "reading": "うんか",
+      "meaning": "clouds and haze",
       "type": "on"
     },
     {
@@ -7189,9 +7116,9 @@
   ],
   "伏": [
     {
-      "word": "降伏",
-      "reading": "こうふく",
-      "meaning": "surrender",
+      "word": "起伏",
+      "reading": "きふく",
+      "meaning": "undulation",
       "type": "on"
     },
     {
@@ -7249,9 +7176,9 @@
   ],
   "墨": [
     {
-      "word": "墨書",
-      "reading": "ぼくしょ",
-      "meaning": "writing in India ink",
+      "word": "水墨画",
+      "reading": "すいぼくが",
+      "meaning": "India-ink painting",
       "type": "on"
     },
     {
@@ -7263,9 +7190,9 @@
   ],
   "鎮": [
     {
-      "word": "鎮静",
-      "reading": "ちんせい",
-      "meaning": "calming down",
+      "word": "鎮痛剤",
+      "reading": "ちんつうざい",
+      "meaning": "analgesic",
       "type": "on"
     },
     {
@@ -7291,9 +7218,9 @@
   ],
   "履": [
     {
-      "word": "履行",
-      "reading": "りこう",
-      "meaning": "performance (of a duty)",
+      "word": "履歴書",
+      "reading": "りれきしょ",
+      "meaning": "personal history document",
       "type": "on"
     },
     {
@@ -7349,9 +7276,9 @@
   ],
   "奉": [
     {
-      "word": "奉行",
-      "reading": "ぶぎょう",
-      "meaning": "magistrate",
+      "word": "奉仕",
+      "reading": "ほうし",
+      "meaning": "service",
       "type": "on"
     },
     {
@@ -7414,15 +7341,15 @@
   ],
   "鳩": [
     {
-      "word": "鳩首",
-      "reading": "きゅうしゅ",
-      "meaning": "going into a huddle",
+      "word": "鳩首協議",
+      "reading": "きゅうしゅきょうぎ",
+      "meaning": "put heads together and confer",
       "type": "on"
     },
     {
-      "word": "鳩麦",
-      "reading": "はとむぎ",
-      "meaning": "adlay (Coix lacryma-jobi var. ma-yuen)",
+      "word": "鳩目",
+      "reading": "はとめ",
+      "meaning": "eyelet",
       "type": "kun"
     }
   ],
@@ -7442,9 +7369,9 @@
   ],
   "惜": [
     {
-      "word": "惜敗",
-      "reading": "せきはい",
-      "meaning": "regrettable defeat",
+      "word": "惜別",
+      "reading": "せきべつ",
+      "meaning": "reluctance to part",
       "type": "on"
     },
     {
@@ -7486,9 +7413,9 @@
   ],
   "悼": [
     {
-      "word": "追悼",
-      "reading": "ついとう",
-      "meaning": "mourning",
+      "word": "哀悼",
+      "reading": "あいとう",
+      "meaning": "condolence",
       "type": "on"
     },
     {
@@ -7522,9 +7449,9 @@
   ],
   "赴": [
     {
-      "word": "赴任",
-      "reading": "ふにん",
-      "meaning": "moving to a different location to start a new job",
+      "word": "単身赴任",
+      "reading": "たんしんふにん",
+      "meaning": "taking up a post away from one's family",
       "type": "on"
     },
     {
@@ -7542,8 +7469,8 @@
       "type": "on"
     },
     {
-      "word": "桑原",
-      "reading": "くわばら",
+      "word": "桑畑",
+      "reading": "くわばたけ",
       "meaning": "mulberry field",
       "type": "kun"
     }
@@ -7586,9 +7513,9 @@
   ],
   "盆": [
     {
-      "word": "盆地",
-      "reading": "ぼんち",
-      "meaning": "basin (e.g. between mountains)",
+      "word": "盆栽",
+      "reading": "ぼんさい",
+      "meaning": "bonsai",
       "type": "on"
     }
   ],
@@ -7608,9 +7535,9 @@
       "type": "on"
     },
     {
-      "word": "瑞穂",
-      "reading": "みずほ",
-      "meaning": "fresh, young ears of rice",
+      "word": "穂先",
+      "reading": "ほさき",
+      "meaning": "tip of an ear (of wheat, etc.)",
       "type": "kun"
     }
   ],
@@ -7628,6 +7555,12 @@
       "reading": "ていぼう",
       "meaning": "bank",
       "type": "on"
+    },
+    {
+      "word": "堤",
+      "reading": "つつみ",
+      "meaning": "bank",
+      "type": "kun"
     }
   ],
   "飢": [
@@ -7646,9 +7579,9 @@
   ],
   "傍": [
     {
-      "word": "傍聴",
-      "reading": "ぼうちょう",
-      "meaning": "listening (to a lecture, hearing, parliament session, etc.)",
+      "word": "傍受",
+      "reading": "ぼうじゅ",
+      "meaning": "interception",
       "type": "on"
     },
     {
@@ -7668,17 +7601,17 @@
   ],
   "累": [
     {
-      "word": "累積",
-      "reading": "るいせき",
-      "meaning": "accumulation",
+      "word": "累計",
+      "reading": "るいけい",
+      "meaning": "cumulative total",
       "type": "on"
     }
   ],
   "痴": [
     {
-      "word": "痴呆",
-      "reading": "ちほう",
-      "meaning": "dementia",
+      "word": "愚痴",
+      "reading": "ぐち",
+      "meaning": "idle complaint",
       "type": "on"
     },
     {
@@ -7690,25 +7623,18 @@
   ],
   "搬": [
     {
-      "word": "搬送",
-      "reading": "はんそう",
-      "meaning": "transportation",
+      "word": "搬入",
+      "reading": "はんにゅう",
+      "meaning": "carrying in (esp. heavy objects, artwork, furniture)",
       "type": "on"
     }
   ],
-  "晃": [
-    {
-      "word": "晃々",
-      "reading": "こうこう",
-      "meaning": "brilliant",
-      "type": "on"
-    }
-  ],
+  "晃": [],
   "癒": [
     {
-      "word": "治癒",
-      "reading": "ちゆ",
-      "meaning": "healing",
+      "word": "癒着",
+      "reading": "ゆちゃく",
+      "meaning": "adhesion",
       "type": "on"
     },
     {
@@ -7720,9 +7646,9 @@
   ],
   "桐": [
     {
-      "word": "桐油",
-      "reading": "とうゆ",
-      "meaning": "tung oil",
+      "word": "大阪桐蔭",
+      "reading": "おおさかとういん",
+      "meaning": "Osaka Tōin Junior and Senior High School (abbr)",
       "type": "on"
     },
     {
@@ -7734,9 +7660,9 @@
   ],
   "寸": [
     {
-      "word": "寸前",
-      "reading": "すんぜん",
-      "meaning": "just before",
+      "word": "寸法",
+      "reading": "すんぽう",
+      "meaning": "measurement",
       "type": "on"
     }
   ],
@@ -7746,35 +7672,29 @@
       "reading": "りんかく",
       "meaning": "contour",
       "type": "on"
-    },
-    {
-      "word": "郭言葉",
-      "reading": "くるわことば",
-      "meaning": "sociolect or secret language used by prostitutes in red-light districts (Edo period)",
-      "type": "kun"
     }
   ],
   "尿": [
     {
-      "word": "糖尿",
-      "reading": "とうにょう",
-      "meaning": "glycosuria",
+      "word": "糖尿病",
+      "reading": "とうにょうびょう",
+      "meaning": "diabetes",
       "type": "on"
     }
   ],
   "凶": [
     {
-      "word": "凶悪",
-      "reading": "きょうあく",
-      "meaning": "atrocious",
+      "word": "凶器",
+      "reading": "きょうき",
+      "meaning": "dangerous weapon",
       "type": "on"
     }
   ],
   "吐": [
     {
-      "word": "嘔吐",
-      "reading": "おうと",
-      "meaning": "vomiting",
+      "word": "吐息",
+      "reading": "といき",
+      "meaning": "sigh",
       "type": "on"
     },
     {
@@ -7830,16 +7750,10 @@
   ],
   "陶": [
     {
-      "word": "陶器",
-      "reading": "とうき",
-      "meaning": "pottery",
+      "word": "鬱陶しい",
+      "reading": "うっとうしい",
+      "meaning": "gloomy (e.g. mood)",
       "type": "on"
-    },
-    {
-      "word": "陶皿",
-      "reading": "すえざら",
-      "meaning": "ceramic plate",
-      "type": "kun"
     }
   ],
   "鐘": [
@@ -7850,9 +7764,9 @@
       "type": "on"
     },
     {
-      "word": "鐘撞き",
-      "reading": "かねつき",
-      "meaning": "ringing of a bell",
+      "word": "鐘",
+      "reading": "かね",
+      "meaning": "bell (often a large hanging bell)",
       "type": "kun"
     }
   ],
@@ -7880,25 +7794,25 @@
   ],
   "紘": [
     {
-      "word": "八紘",
-      "reading": "はっこう",
-      "meaning": "the eight directions",
+      "word": "八紘一宇",
+      "reading": "はっこういちう",
+      "meaning": "universal brotherhood",
       "type": "on"
     }
   ],
   "磁": [
     {
-      "word": "電磁",
-      "reading": "でんじ",
-      "meaning": "electromagnetic",
+      "word": "電磁波",
+      "reading": "でんじは",
+      "meaning": "electromagnetic wave",
       "type": "on"
     }
   ],
   "弥": [
     {
-      "word": "阿弥陀",
-      "reading": "あみだ",
-      "meaning": "Amitabha (Buddha)",
+      "word": "弥陀",
+      "reading": "みだ",
+      "meaning": "Amitabha",
       "type": "on"
     },
     {
@@ -7910,9 +7824,9 @@
   ],
   "昆": [
     {
-      "word": "昆布",
-      "reading": "こんぶ",
-      "meaning": "kombu (usu. Saccharina japonica)",
+      "word": "昆虫",
+      "reading": "こんちゅう",
+      "meaning": "insect",
       "type": "on"
     }
   ],
@@ -7974,14 +7888,7 @@
       "type": "kun"
     }
   ],
-  "敦": [
-    {
-      "word": "敦煌",
-      "reading": "とんこう",
-      "meaning": "sincerity and kindheartedness",
-      "type": "on"
-    }
-  ],
+  "敦": [],
   "騎": [
     {
       "word": "騎士",
@@ -8028,9 +7935,9 @@
   ],
   "怠": [
     {
-      "word": "倦怠",
-      "reading": "けんたい",
-      "meaning": "weariness",
+      "word": "倦怠感",
+      "reading": "けんたいかん",
+      "meaning": "physical weariness",
       "type": "on"
     },
     {
@@ -8056,14 +7963,7 @@
       "type": "on"
     }
   ],
-  "祐": [
-    {
-      "word": "祐筆",
-      "reading": "ゆうひつ",
-      "meaning": "private secretary",
-      "type": "on"
-    }
-  ],
+  "祐": [],
   "鵬": [
     {
       "word": "大鵬",
@@ -8124,9 +8024,9 @@
   ],
   "獣": [
     {
-      "word": "鳥獣",
-      "reading": "ちょうじゅう",
-      "meaning": "birds and wild animals",
+      "word": "怪獣",
+      "reading": "かいじゅう",
+      "meaning": "monster",
       "type": "on"
     },
     {
@@ -8222,9 +8122,9 @@
   ],
   "縫": [
     {
-      "word": "縫合",
-      "reading": "ほうごう",
-      "meaning": "sewing together",
+      "word": "裁縫",
+      "reading": "さいほう",
+      "meaning": "sewing",
       "type": "on"
     },
     {
@@ -8259,9 +8159,9 @@
   "亘": [],
   "呉": [
     {
-      "word": "呉服",
-      "reading": "ごふく",
-      "meaning": "cloth (for Japanese clothes)",
+      "word": "呉服屋",
+      "reading": "ごふくや",
+      "meaning": "kimono fabrics shop",
       "type": "on"
     },
     {
@@ -8305,13 +8205,19 @@
       "reading": "さいえん",
       "meaning": "literary woman",
       "type": "on"
+    },
+    {
+      "word": "愛媛県警",
+      "reading": "えひめけんけい",
+      "meaning": "Ehime Prefectural Police (abbr)",
+      "type": "kun"
     }
   ],
   "溝": [
     {
-      "word": "海溝",
-      "reading": "かいこう",
-      "meaning": "oceanic trench",
+      "word": "側溝",
+      "reading": "そっこう",
+      "meaning": "gutter",
       "type": "on"
     },
     {
@@ -8353,9 +8259,9 @@
   ],
   "錯": [
     {
-      "word": "錯誤",
-      "reading": "さくご",
-      "meaning": "mistake",
+      "word": "試行錯誤",
+      "reading": "しこうさくご",
+      "meaning": "trial and error",
       "type": "on"
     }
   ],
@@ -8369,9 +8275,9 @@
   ],
   "笹": [
     {
-      "word": "笹身",
-      "reading": "ささみ",
-      "meaning": "chicken tender",
+      "word": "笹原",
+      "reading": "ささはら",
+      "meaning": "field of bamboo grass",
       "type": "kun"
     }
   ],
@@ -8389,6 +8295,12 @@
       "reading": "きゅうりょう",
       "meaning": "hill",
       "type": "on"
+    },
+    {
+      "word": "陵",
+      "reading": "みささぎ",
+      "meaning": "imperial mausoleum",
+      "type": "kun"
     }
   ],
   "霧": [
@@ -8461,23 +8373,17 @@
   ],
   "掌": [
     {
-      "word": "掌握",
-      "reading": "しょうあく",
-      "meaning": "grasping",
+      "word": "車掌",
+      "reading": "しゃしょう",
+      "meaning": "(train) conductor",
       "type": "on"
-    },
-    {
-      "word": "掌",
-      "reading": "てのひら",
-      "meaning": "palm (of the hand)",
-      "type": "kun"
     }
   ],
   "麗": [
     {
-      "word": "奇麗",
-      "reading": "きれい",
-      "meaning": "pretty",
+      "word": "華麗",
+      "reading": "かれい",
+      "meaning": "splendid",
       "type": "on"
     },
     {
@@ -8511,9 +8417,9 @@
   ],
   "悦": [
     {
-      "word": "満悦",
-      "reading": "まんえつ",
-      "meaning": "great delight",
+      "word": "悦楽",
+      "reading": "えつらく",
+      "meaning": "joy",
       "type": "on"
     }
   ],
@@ -8561,9 +8467,9 @@
   ],
   "宜": [
     {
-      "word": "便宜",
-      "reading": "べんぎ",
-      "meaning": "convenience",
+      "word": "適宜",
+      "reading": "てきぎ",
+      "meaning": "suitable",
       "type": "on"
     },
     {
@@ -8627,29 +8533,29 @@
   ],
   "猿": [
     {
-      "word": "猿人",
-      "reading": "えんじん",
-      "meaning": "ape man",
+      "word": "犬猿",
+      "reading": "けんえん",
+      "meaning": "cats and dogs (as an example of a bad relationship)",
       "type": "on"
     },
     {
-      "word": "猿楽",
-      "reading": "さるがく",
-      "meaning": "sarugaku (form of theatre popular in Japan during the 11th to 14th centuries)",
+      "word": "猿轡",
+      "reading": "さるぐつわ",
+      "meaning": "(mouth) gag",
       "type": "kun"
     }
   ],
   "弦": [
     {
-      "word": "管弦",
-      "reading": "かんげん",
-      "meaning": "wind and string instruments",
+      "word": "弦楽",
+      "reading": "げんがく",
+      "meaning": "music for strings",
       "type": "on"
     },
     {
-      "word": "弦音",
-      "reading": "つるおと",
-      "meaning": "sound of vibrating bowstring",
+      "word": "弦巻",
+      "reading": "つるまき",
+      "meaning": "reel for a spare bowstring",
       "type": "kun"
     }
   ],
@@ -8671,9 +8577,9 @@
   ],
   "炊": [
     {
-      "word": "炊飯",
-      "reading": "すいはん",
-      "meaning": "rice cooking",
+      "word": "炊飯器",
+      "reading": "すいはんき",
+      "meaning": "rice cooker",
       "type": "on"
     },
     {
@@ -8693,17 +8599,17 @@
   ],
   "摂": [
     {
-      "word": "摂政",
-      "reading": "せっしょう",
-      "meaning": "regency",
+      "word": "摂理",
+      "reading": "せつり",
+      "meaning": "laws (of nature)",
       "type": "on"
     }
   ],
   "飽": [
     {
-      "word": "飽和",
-      "reading": "ほうわ",
-      "meaning": "saturation",
+      "word": "飽食",
+      "reading": "ほうしょく",
+      "meaning": "eating until one is full",
       "type": "on"
     },
     {
@@ -8723,9 +8629,9 @@
   ],
   "桃": [
     {
-      "word": "扁桃",
-      "reading": "へんとう",
-      "meaning": "almond",
+      "word": "扁桃腺",
+      "reading": "へんとうせん",
+      "meaning": "tonsil",
       "type": "on"
     },
     {
@@ -8743,9 +8649,9 @@
       "type": "on"
     },
     {
-      "word": "狩り",
-      "reading": "かり",
-      "meaning": "hunting",
+      "word": "狩る",
+      "reading": "かる",
+      "meaning": "to hunt (animals)",
       "type": "kun"
     }
   ],
@@ -8793,13 +8699,19 @@
       "reading": "せきひ",
       "meaning": "stone monument",
       "type": "on"
+    },
+    {
+      "word": "碑",
+      "reading": "いしぶみ",
+      "meaning": "stone monument bearing an inscription (esp. memorial for future generations)",
+      "type": "kun"
     }
   ],
   "鍛": [
     {
-      "word": "鍛練",
-      "reading": "たんれん",
-      "meaning": "tempering (metal)",
+      "word": "鍛造",
+      "reading": "たんぞう",
+      "meaning": "forging",
       "type": "on"
     },
     {
@@ -8845,9 +8757,9 @@
       "type": "on"
     },
     {
-      "word": "丸裸",
-      "reading": "まるはだか",
-      "meaning": "being stark-naked",
+      "word": "上半身裸",
+      "reading": "じょうはんしんはだか",
+      "meaning": "naked above the waist",
       "type": "kun"
     }
   ],
@@ -8857,12 +8769,6 @@
       "reading": "ゆうよ",
       "meaning": "postponement",
       "type": "on"
-    },
-    {
-      "word": "猶々",
-      "reading": "なおなお",
-      "meaning": "all the more",
-      "type": "kun"
     }
   ],
   "塊": [
@@ -8889,9 +8795,9 @@
   ],
   "弓": [
     {
-      "word": "弓道",
-      "reading": "きゅうどう",
-      "meaning": "kyūdō",
+      "word": "胡弓",
+      "reading": "こきゅう",
+      "meaning": "kokyū",
       "type": "on"
     },
     {
@@ -8907,12 +8813,6 @@
       "reading": "かへい",
       "meaning": "money",
       "type": "on"
-    },
-    {
-      "word": "大幣",
-      "reading": "おおぬさ",
-      "meaning": "streamers (made of linen, paper, etc.) attached to a long pole (used as a wand in grand purification ceremonies)",
-      "type": "kun"
     }
   ],
   "膜": [
@@ -8931,24 +8831,18 @@
       "type": "on"
     },
     {
-      "word": "檜扇",
-      "reading": "ひおうぎ",
-      "meaning": "formal folding fan made of hinoki cypress",
+      "word": "舞扇",
+      "reading": "まいおうぎ",
+      "meaning": "dancer's fan",
       "type": "kun"
     }
   ],
   "腸": [
     {
-      "word": "大腸",
-      "reading": "だいちょう",
-      "meaning": "large intestine",
+      "word": "胃腸",
+      "reading": "いちょう",
+      "meaning": "stomach and intestines",
       "type": "on"
-    },
-    {
-      "word": "背腸",
-      "reading": "せわた",
-      "meaning": "vein of a shrimp (prawn)",
-      "type": "kun"
     }
   ],
   "槽": [
@@ -8997,9 +8891,9 @@
   ],
   "駿": [
     {
-      "word": "駿馬",
-      "reading": "しゅんめ",
-      "meaning": "swift horse",
+      "word": "優駿",
+      "reading": "ゆうしゅん",
+      "meaning": "fine racehorse",
       "type": "on"
     }
   ],
@@ -9011,9 +8905,9 @@
       "type": "on"
     },
     {
-      "word": "漬け物",
-      "reading": "つけもの",
-      "meaning": "tsukemono (pickled vegetables)",
+      "word": "塩漬け",
+      "reading": "しおづけ",
+      "meaning": "pickling in salt",
       "type": "kun"
     }
   ],
@@ -9036,9 +8930,9 @@
   ],
   "坪": [
     {
-      "word": "建坪",
-      "reading": "たてつぼ",
-      "meaning": "floor space (esp. of the ground floor only)",
+      "word": "坪庭",
+      "reading": "つぼにわ",
+      "meaning": "inner garden (esp. small, traditional)",
       "type": "kun"
     }
   ],
@@ -9060,15 +8954,9 @@
   ],
   "椿": [
     {
-      "word": "椿事",
-      "reading": "ちんじ",
-      "meaning": "strange incident",
-      "type": "on"
-    },
-    {
-      "word": "椿油",
-      "reading": "つばきあぶら",
-      "meaning": "tea seed oil",
+      "word": "椿姫",
+      "reading": "つばきひめ",
+      "meaning": "The Lady of the Camellias (1848 novel by Alexandre Dumas fils)",
       "type": "kun"
     }
   ],
@@ -9080,17 +8968,17 @@
       "type": "on"
     },
     {
-      "word": "舌打ち",
-      "reading": "したうち",
-      "meaning": "clicking one's tongue",
+      "word": "舌先",
+      "reading": "したさき",
+      "meaning": "tip of tongue",
       "type": "kun"
     }
   ],
   "羅": [
     {
-      "word": "天麩羅",
-      "reading": "てんぷら",
-      "meaning": "tempura",
+      "word": "新羅",
+      "reading": "しらぎ",
+      "meaning": "Silla (ancient Korean kingdom; 57 BCE-935 CE)",
       "type": "on"
     }
   ],
@@ -9112,9 +9000,9 @@
   ],
   "厘": [
     {
-      "word": "七厘",
-      "reading": "しちりん",
-      "meaning": "portable earthen charcoal brazier (for cooking)",
+      "word": "厘",
+      "reading": "りん",
+      "meaning": "one-hundredth",
       "type": "on"
     }
   ],
@@ -9132,18 +9020,11 @@
       "type": "kun"
     }
   ],
-  "圭": [
-    {
-      "word": "尖圭",
-      "reading": "せんけい",
-      "meaning": "pointed",
-      "type": "on"
-    }
-  ],
+  "圭": [],
   "醸": [
     {
-      "word": "醸造",
-      "reading": "じょうぞう",
+      "word": "醸成",
+      "reading": "じょうせい",
       "meaning": "brewing",
       "type": "on"
     },
@@ -9156,9 +9037,9 @@
   ],
   "蓮": [
     {
-      "word": "蓮華",
-      "reading": "れんげ",
-      "meaning": "lotus flower",
+      "word": "蓮根",
+      "reading": "れんこん",
+      "meaning": "lotus root",
       "type": "on"
     },
     {
@@ -9226,8 +9107,8 @@
   ],
   "遍": [
     {
-      "word": "普遍",
-      "reading": "ふへん",
+      "word": "普遍的",
+      "reading": "ふへんてき",
       "meaning": "universal",
       "type": "on"
     },
@@ -9248,9 +9129,9 @@
   ],
   "薫": [
     {
-      "word": "薫製",
-      "reading": "くんせい",
-      "meaning": "smoked food",
+      "word": "薫陶",
+      "reading": "くんとう",
+      "meaning": "education",
       "type": "on"
     }
   ],
@@ -9270,9 +9151,9 @@
       "type": "on"
     },
     {
-      "word": "羊飼い",
-      "reading": "ひつじかい",
-      "meaning": "shepherd",
+      "word": "子羊",
+      "reading": "こひつじ",
+      "meaning": "lamb",
       "type": "kun"
     }
   ],
@@ -9340,9 +9221,9 @@
   ],
   "憤": [
     {
-      "word": "憤慨",
-      "reading": "ふんがい",
-      "meaning": "indignation",
+      "word": "憤然",
+      "reading": "ふんぜん",
+      "meaning": "angry",
       "type": "on"
     },
     {
@@ -9355,7 +9236,7 @@
   "豚": [
     {
       "word": "豚カツ",
-      "reading": "とんカツ",
+      "reading": "とんかつ",
       "meaning": "tonkatsu",
       "type": "on"
     },
@@ -9368,9 +9249,9 @@
   ],
   "遮": [
     {
-      "word": "遮断",
-      "reading": "しゃだん",
-      "meaning": "isolation",
+      "word": "遮二無二",
+      "reading": "しゃにむに",
+      "meaning": "desperately",
       "type": "on"
     },
     {
@@ -9388,9 +9269,9 @@
       "type": "on"
     },
     {
-      "word": "中扉",
-      "reading": "なかとびら",
-      "meaning": "chapter title page",
+      "word": "防火扉",
+      "reading": "ぼうかとびら",
+      "meaning": "fire door",
       "type": "kun"
     }
   ],
@@ -9478,9 +9359,9 @@
   ],
   "恨": [
     {
-      "word": "痛恨",
-      "reading": "つうこん",
-      "meaning": "deep regret",
+      "word": "悔恨",
+      "reading": "かいこん",
+      "meaning": "regret",
       "type": "on"
     },
     {
@@ -9508,9 +9389,9 @@
   ],
   "戯": [
     {
-      "word": "遊戯",
-      "reading": "ゆうぎ",
-      "meaning": "play",
+      "word": "戯曲",
+      "reading": "ぎきょく",
+      "meaning": "drama",
       "type": "on"
     },
     {
@@ -9522,9 +9403,9 @@
   ],
   "伍": [
     {
-      "word": "伍長",
-      "reading": "ごちょう",
-      "meaning": "corporal",
+      "word": "伍する",
+      "reading": "ごする",
+      "meaning": "to rank with",
       "type": "on"
     }
   ],
@@ -9544,9 +9425,9 @@
   ],
   "濁": [
     {
-      "word": "汚濁",
-      "reading": "おだく",
-      "meaning": "pollution",
+      "word": "水質汚濁",
+      "reading": "すいしつおだく",
+      "meaning": "water pollution",
       "type": "on"
     },
     {
@@ -9558,16 +9439,10 @@
   ],
   "奔": [
     {
-      "word": "奔走",
-      "reading": "ほんそう",
-      "meaning": "running about",
+      "word": "奔放",
+      "reading": "ほんぽう",
+      "meaning": "wild",
       "type": "on"
-    },
-    {
-      "word": "奔る",
-      "reading": "はしる",
-      "meaning": "to run",
-      "type": "kun"
     }
   ],
   "斗": [
@@ -9596,8 +9471,8 @@
   ],
   "肖": [
     {
-      "word": "肖像",
-      "reading": "しょうぞう",
+      "word": "肖像画",
+      "reading": "しょうぞうが",
       "meaning": "portrait",
       "type": "on"
     }
@@ -9612,9 +9487,9 @@
   ],
   "朽": [
     {
-      "word": "老朽",
-      "reading": "ろうきゅう",
-      "meaning": "infirmity (due to old age)",
+      "word": "老朽化",
+      "reading": "ろうきゅうか",
+      "meaning": "deterioration",
       "type": "on"
     },
     {
@@ -9640,9 +9515,9 @@
   ],
   "享": [
     {
-      "word": "享受",
-      "reading": "きょうじゅ",
-      "meaning": "enjoyment (of freedom, beauty, etc.)",
+      "word": "享保",
+      "reading": "きょうほう",
+      "meaning": "Kyōhō era (1716.6.22-1736.4.28)",
       "type": "on"
     }
   ],
@@ -9702,9 +9577,9 @@
   ],
   "鶏": [
     {
-      "word": "鶏肉",
-      "reading": "けいにく",
-      "meaning": "chicken meat",
+      "word": "鶏卵",
+      "reading": "けいらん",
+      "meaning": "hen's egg",
       "type": "on"
     },
     {
@@ -9716,9 +9591,9 @@
   ],
   "禅": [
     {
-      "word": "禅師",
-      "reading": "ぜんじ",
-      "meaning": "monk",
+      "word": "座禅",
+      "reading": "ざぜん",
+      "meaning": "zazen (seated Zen meditation, usu. in a cross-legged position)",
       "type": "on"
     }
   ],
@@ -9760,17 +9635,17 @@
       "type": "on"
     },
     {
-      "word": "挿し絵",
-      "reading": "さしえ",
-      "meaning": "illustration (in a book, newspaper, etc.)",
+      "word": "挿し木",
+      "reading": "さしき",
+      "meaning": "cutting",
       "type": "kun"
     }
   ],
   "嵐": [
     {
-      "word": "青嵐",
+      "word": "晴嵐",
       "reading": "せいらん",
-      "meaning": "wind blowing through fresh verdure",
+      "meaning": "mountain vapor",
       "type": "on"
     },
     {
@@ -9790,9 +9665,9 @@
   ],
   "絹": [
     {
-      "word": "絹糸",
-      "reading": "けんし",
-      "meaning": "silk thread",
+      "word": "正絹",
+      "reading": "しょうけん",
+      "meaning": "pure silk",
       "type": "on"
     },
     {
@@ -9804,9 +9679,9 @@
   ],
   "陪": [
     {
-      "word": "陪審",
-      "reading": "ばいしん",
-      "meaning": "jury",
+      "word": "陪審員",
+      "reading": "ばいしんいん",
+      "meaning": "juror",
       "type": "on"
     }
   ],
@@ -9820,9 +9695,9 @@
   ],
   "譜": [
     {
-      "word": "系譜",
-      "reading": "けいふ",
-      "meaning": "genealogy",
+      "word": "楽譜",
+      "reading": "がくふ",
+      "meaning": "score",
       "type": "on"
     }
   ],
@@ -9892,14 +9767,7 @@
       "type": "on"
     }
   ],
-  "楠": [
-    {
-      "word": "楠",
-      "reading": "くすのき",
-      "meaning": "camphor tree (Cinnamomum camphora)",
-      "type": "kun"
-    }
-  ],
+  "楠": [],
   "笛": [
     {
       "word": "汽笛",
@@ -9930,8 +9798,8 @@
       "type": "on"
     },
     {
-      "word": "奴等",
-      "reading": "やつら",
+      "word": "奴原",
+      "reading": "やつばら",
       "meaning": "they",
       "type": "kun"
     }
@@ -10014,6 +9882,12 @@
       "reading": "しゃくど",
       "meaning": "gauge",
       "type": "on"
+    },
+    {
+      "word": "尺",
+      "reading": "さし",
+      "meaning": "ruler",
+      "type": "kun"
     }
   ],
   "峠": [
@@ -10030,6 +9904,12 @@
       "reading": "じゅうとく",
       "meaning": "critical (condition)",
       "type": "on"
+    },
+    {
+      "word": "篤姫",
+      "reading": "あつひめ",
+      "meaning": "Atsuhime (TV series)",
+      "type": "kun"
     }
   ],
   "肇": [
@@ -10050,9 +9930,9 @@
   ],
   "叔": [
     {
-      "word": "叔母",
-      "reading": "しゅくぼ",
-      "meaning": "aunt",
+      "word": "伯叔",
+      "reading": "はくしゅく",
+      "meaning": "brothers",
       "type": "on"
     }
   ],
@@ -10064,9 +9944,9 @@
       "type": "on"
     },
     {
-      "word": "雌犬",
-      "reading": "めすいぬ",
-      "meaning": "bitch",
+      "word": "雌花",
+      "reading": "めばな",
+      "meaning": "female flower",
       "type": "kun"
     }
   ],
@@ -10124,9 +10004,9 @@
   ],
   "逓": [
     {
-      "word": "逓信",
-      "reading": "ていしん",
-      "meaning": "communications (e.g. post, telegraph)",
+      "word": "駅逓",
+      "reading": "えきてい",
+      "meaning": "delivery of packages",
       "type": "on"
     }
   ],
@@ -10162,9 +10042,9 @@
   ],
   "崇": [
     {
-      "word": "崇拝",
-      "reading": "すうはい",
-      "meaning": "worship",
+      "word": "崇高",
+      "reading": "すうこう",
+      "meaning": "lofty",
       "type": "on"
     },
     {
@@ -10204,27 +10084,21 @@
       "type": "on"
     },
     {
-      "word": "癖毛",
-      "reading": "くせげ",
-      "meaning": "kinky hair",
+      "word": "難癖",
+      "reading": "なんくせ",
+      "meaning": "fault",
       "type": "kun"
     }
   ],
   "愉": [
     {
-      "word": "愉快",
-      "reading": "ゆかい",
-      "meaning": "pleasant",
+      "word": "不愉快",
+      "reading": "ふゆかい",
+      "meaning": "unpleasant",
       "type": "on"
     }
   ],
   "寅": [
-    {
-      "word": "壬寅",
-      "reading": "じんいん",
-      "meaning": "Water Tiger (39th term of the sexagenary cycle, e.g. 1962, 2022, 2082)",
-      "type": "on"
-    },
     {
       "word": "丑寅",
       "reading": "うしとら",
@@ -10234,9 +10108,9 @@
   ],
   "礁": [
     {
-      "word": "珊瑚礁",
-      "reading": "さんごしょう",
-      "meaning": "coral reef",
+      "word": "岩礁",
+      "reading": "がんしょう",
+      "meaning": "reef",
       "type": "on"
     }
   ],
@@ -10250,23 +10124,17 @@
   ],
   "洲": [
     {
-      "word": "満洲",
-      "reading": "まんしゅう",
-      "meaning": "Manchuria",
+      "word": "川洲",
+      "reading": "かわす",
+      "meaning": "sandbank in a river",
       "type": "on"
-    },
-    {
-      "word": "秋津洲",
-      "reading": "あきつしま",
-      "meaning": "Japan",
-      "type": "kun"
     }
   ],
   "屯": [
     {
-      "word": "駐屯",
-      "reading": "ちゅうとん",
-      "meaning": "stationing (troops)",
+      "word": "駐屯地",
+      "reading": "ちゅうとんち",
+      "meaning": "garrison",
       "type": "on"
     },
     {
@@ -10322,15 +10190,15 @@
   ],
   "擬": [
     {
-      "word": "擬装",
-      "reading": "ぎそう",
-      "meaning": "camouflage",
+      "word": "模擬店",
+      "reading": "もぎてん",
+      "meaning": "refreshment booth",
       "type": "on"
     },
     {
-      "word": "擬き",
-      "reading": "もどき",
-      "meaning": "-like",
+      "word": "雁擬き",
+      "reading": "がんもどき",
+      "meaning": "ganmodoki",
       "type": "kun"
     }
   ],
@@ -10380,9 +10248,9 @@
   ],
   "胡": [
     {
-      "word": "胡麻",
-      "reading": "ごま",
-      "meaning": "sesame seeds",
+      "word": "胡瓜",
+      "reading": "きゅうり",
+      "meaning": "cucumber (Cucumis sativus)",
       "type": "on"
     }
   ],
@@ -10396,17 +10264,17 @@
   ],
   "峻": [
     {
-      "word": "峻別",
-      "reading": "しゅんべつ",
-      "meaning": "rigorous distinction",
+      "word": "急峻",
+      "reading": "きゅうしゅん",
+      "meaning": "steep",
       "type": "on"
     }
   ],
   "曹": [
     {
-      "word": "軍曹",
-      "reading": "ぐんそう",
-      "meaning": "sergeant",
+      "word": "重曹",
+      "reading": "じゅうそう",
+      "meaning": "baking soda",
       "type": "on"
     }
   ],
@@ -10454,9 +10322,9 @@
   ],
   "鋳": [
     {
-      "word": "鋳造",
-      "reading": "ちゅうぞう",
-      "meaning": "casting",
+      "word": "鋳型",
+      "reading": "いがた",
+      "meaning": "mold",
       "type": "on"
     },
     {
@@ -10482,14 +10350,7 @@
       "type": "on"
     }
   ],
-  "槻": [
-    {
-      "word": "槻",
-      "reading": "つき",
-      "meaning": "Japanese zelkova (Zelkova serrata)",
-      "type": "on"
-    }
-  ],
+  "槻": [],
   "隷": [
     {
       "word": "奴隷",
@@ -10508,9 +10369,9 @@
   ],
   "蝶": [
     {
-      "word": "胡蝶",
-      "reading": "こちょう",
-      "meaning": "butterfly",
+      "word": "蝶番",
+      "reading": "ちょうつがい",
+      "meaning": "hinge",
       "type": "on"
     }
   ],
@@ -10530,17 +10391,17 @@
       "type": "on"
     },
     {
-      "word": "水茎",
-      "reading": "みずくき",
-      "meaning": "writing brush",
+      "word": "茎茶",
+      "reading": "くきちゃ",
+      "meaning": "twig tea",
       "type": "kun"
     }
   ],
   "帥": [
     {
-      "word": "元帥",
-      "reading": "げんすい",
-      "meaning": "(field) marshal",
+      "word": "総帥",
+      "reading": "そうすい",
+      "meaning": "commander-in-chief",
       "type": "on"
     }
   ],
@@ -10590,9 +10451,9 @@
   ],
   "襟": [
     {
-      "word": "開襟",
-      "reading": "かいきん",
-      "meaning": "unbuttoning a collar",
+      "word": "胸襟",
+      "reading": "きょうきん",
+      "meaning": "one's heart",
       "type": "on"
     },
     {
@@ -10604,15 +10465,15 @@
   ],
   "蛍": [
     {
-      "word": "蛍光",
-      "reading": "けいこう",
-      "meaning": "fluorescence",
+      "word": "蛍光灯",
+      "reading": "けいこうとう",
+      "meaning": "fluorescent lamp",
       "type": "on"
     },
     {
-      "word": "海蛍",
-      "reading": "うみほたる",
-      "meaning": "sea firefly (Vargula hilgendorfii)",
+      "word": "蛍袋",
+      "reading": "ほたるぶくろ",
+      "meaning": "bellflower",
       "type": "kun"
     }
   ],
@@ -10658,17 +10519,17 @@
   ],
   "朋": [
     {
-      "word": "朋友",
-      "reading": "ほうゆう",
-      "meaning": "friend",
+      "word": "朋輩",
+      "reading": "ほうばい",
+      "meaning": "comrade",
       "type": "on"
     }
   ],
   "坑": [
     {
-      "word": "坑内",
-      "reading": "こうない",
-      "meaning": "within a pit or (mine) shaft",
+      "word": "坑道",
+      "reading": "こうどう",
+      "meaning": "tunnel",
       "type": "on"
     }
   ],
@@ -10702,9 +10563,9 @@
       "type": "on"
     },
     {
-      "word": "搾り汁",
-      "reading": "しぼりじる",
-      "meaning": "squeezed juice (e.g. of a lemon)",
+      "word": "乳搾り",
+      "reading": "ちちしぼり",
+      "meaning": "milking",
       "type": "kun"
     }
   ],
@@ -10718,19 +10579,13 @@
   ],
   "遼": [
     {
-      "word": "遼遠",
-      "reading": "りょうえん",
-      "meaning": "remote",
+      "word": "遼寧省",
+      "reading": "りょうねいしょう",
+      "meaning": "Liaoning Province (China)",
       "type": "on"
     }
   ],
   "唄": [
-    {
-      "word": "梵唄",
-      "reading": "ぼんばい",
-      "meaning": "song praising the virtues of the Buddha",
-      "type": "on"
-    },
     {
       "word": "長唄",
       "reading": "ながうた",
@@ -10744,12 +10599,6 @@
       "reading": "こうし",
       "meaning": "Confucius",
       "type": "on"
-    },
-    {
-      "word": "鰓孔",
-      "reading": "えらあな",
-      "meaning": "gill slit",
-      "type": "kun"
     }
   ],
   "橘": [
@@ -10793,20 +10642,13 @@
   ],
   "苑": [
     {
-      "word": "紫苑",
-      "reading": "しおん",
-      "meaning": "aster (Aster tataricus)",
+      "word": "広辞苑",
+      "reading": "こうじえん",
+      "meaning": "Kōjien (Japanese dictionary published by Iwanami Shoten)",
       "type": "on"
     }
   ],
-  "巽": [
-    {
-      "word": "巽",
-      "reading": "たつみ",
-      "meaning": "southeast",
-      "type": "kun"
-    }
-  ],
+  "巽": [],
   "杜": [
     {
       "word": "杜撰",
@@ -10831,9 +10673,9 @@
       "type": "on"
     },
     {
-      "word": "翁草",
-      "reading": "おきなぐさ",
-      "meaning": "nodding anemone (Anemone cernua)",
+      "word": "翁",
+      "reading": "おきな",
+      "meaning": "old man",
       "type": "kun"
     }
   ],
@@ -10847,9 +10689,9 @@
   ],
   "謹": [
     {
-      "word": "謹慎",
-      "reading": "きんしん",
-      "meaning": "self restraint",
+      "word": "不謹慎",
+      "reading": "ふきんしん",
+      "meaning": "imprudent",
       "type": "on"
     }
   ],
@@ -10883,9 +10725,9 @@
   ],
   "欣": [
     {
-      "word": "欣喜",
-      "reading": "きんき",
-      "meaning": "pleasure",
+      "word": "欣喜雀躍",
+      "reading": "きんきじゃくやく",
+      "meaning": "jump up for joy",
       "type": "on"
     }
   ],
@@ -10939,9 +10781,9 @@
       "type": "on"
     },
     {
-      "word": "升酒",
-      "reading": "ますざけ",
-      "meaning": "alcohol (esp. sake) served in a small wooden box",
+      "word": "升形",
+      "reading": "ますがた",
+      "meaning": "square (shape)",
       "type": "kun"
     }
   ],
@@ -10975,9 +10817,9 @@
       "type": "on"
     },
     {
-      "word": "巴戦",
-      "reading": "ともえせん",
-      "meaning": "dogfight",
+      "word": "巴投げ",
+      "reading": "ともえなげ",
+      "meaning": "tomoe nage (judo throw)",
       "type": "kun"
     }
   ],
@@ -11035,12 +10877,6 @@
       "reading": "わこく",
       "meaning": "Japan",
       "type": "on"
-    },
-    {
-      "word": "倭絵",
-      "reading": "やまとえ",
-      "meaning": "Yamato-e (classical Japan decorative paintings)",
-      "type": "kun"
     }
   ],
   "婿": [
@@ -11073,9 +10909,9 @@
   ],
   "斐": [
     {
-      "word": "生き甲斐",
-      "reading": "いきがい",
-      "meaning": "reason for living",
+      "word": "甲斐",
+      "reading": "かい",
+      "meaning": "result (that makes an act worthwhile)",
       "type": "on"
     }
   ],
@@ -11087,9 +10923,9 @@
       "type": "on"
     },
     {
-      "word": "罷り通る",
-      "reading": "まかりとおる",
-      "meaning": "to go unpunished",
+      "word": "身罷る",
+      "reading": "みまかる",
+      "meaning": "to pass away",
       "type": "kun"
     }
   ],
@@ -11113,6 +10949,12 @@
       "reading": "ぼうしょ",
       "meaning": "certain place",
       "type": "on"
+    },
+    {
+      "word": "某",
+      "reading": "それがし",
+      "meaning": "someone",
+      "type": "kun"
     }
   ],
   "囚": [
@@ -11161,9 +11003,9 @@
   ],
   "泌": [
     {
-      "word": "泌尿",
-      "reading": "ひにょう",
-      "meaning": "urination",
+      "word": "泌尿器科",
+      "reading": "ひにょうきか",
+      "meaning": "urology",
       "type": "on"
     }
   ],
@@ -11252,9 +11094,9 @@
   ],
   "嫡": [
     {
-      "word": "嫡出",
-      "reading": "ちゃくしゅつ",
-      "meaning": "legitimate birth",
+      "word": "嫡子",
+      "reading": "ちゃくし",
+      "meaning": "heir",
       "type": "on"
     }
   ],
@@ -11319,25 +11161,25 @@
       "type": "on"
     },
     {
-      "word": "霜降り",
-      "reading": "しもふり",
-      "meaning": "speckled with white",
+      "word": "霜柱",
+      "reading": "しもばしら",
+      "meaning": "frost columns",
       "type": "kun"
     }
   ],
   "硝": [
     {
-      "word": "硝酸",
-      "reading": "しょうさん",
-      "meaning": "nitric acid",
+      "word": "硝煙",
+      "reading": "しょうえん",
+      "meaning": "gunpowder smoke",
       "type": "on"
     }
   ],
   "勅": [
     {
-      "word": "勅令",
-      "reading": "ちょくれい",
-      "meaning": "(imperial) edict",
+      "word": "勅命",
+      "reading": "ちょくめい",
+      "meaning": "imperial command",
       "type": "on"
     }
   ],
@@ -11351,17 +11193,17 @@
   ],
   "杏": [
     {
-      "word": "杏子",
-      "reading": "あんず",
-      "meaning": "apricot (Prunus armeniaca)",
+      "word": "杏仁",
+      "reading": "きょうにん",
+      "meaning": "apricot seed",
       "type": "on"
     }
   ],
   "棺": [
     {
-      "word": "甕棺",
-      "reading": "かめかん",
-      "meaning": "burial urn (often two-storey)",
+      "word": "棺桶",
+      "reading": "かんおけ",
+      "meaning": "coffin",
       "type": "on"
     }
   ],
@@ -11407,9 +11249,9 @@
   ],
   "楼": [
     {
-      "word": "鐘楼",
-      "reading": "しょうろう",
-      "meaning": "belfry",
+      "word": "蜃気楼",
+      "reading": "しんきろう",
+      "meaning": "mirage",
       "type": "on"
     }
   ],
@@ -11438,9 +11280,9 @@
   ],
   "欽": [
     {
-      "word": "欽定",
-      "reading": "きんてい",
-      "meaning": "authorized (by imperial or royal order)",
+      "word": "欽定憲法",
+      "reading": "きんていけんぽう",
+      "meaning": "constitution granted by the Emperor",
       "type": "on"
     }
   ],
@@ -11452,24 +11294,24 @@
       "type": "on"
     },
     {
-      "word": "薪能",
-      "reading": "たきぎのう",
-      "meaning": "noh theater performed at night by a fire",
+      "word": "薪割り",
+      "reading": "まきわり",
+      "meaning": "hatchet",
       "type": "kun"
     }
   ],
   "褐": [],
   "賜": [
     {
-      "word": "下賜",
-      "reading": "かし",
-      "meaning": "grant",
+      "word": "恩賜",
+      "reading": "おんし",
+      "meaning": "Imperial gift",
       "type": "on"
     },
     {
-      "word": "賜わる",
-      "reading": "たまわる",
-      "meaning": "to be given",
+      "word": "賜物",
+      "reading": "たまもの",
+      "meaning": "gift",
       "type": "kun"
     }
   ],
@@ -11517,12 +11359,6 @@
       "reading": "ひすい",
       "meaning": "jade (stone)",
       "type": "on"
-    },
-    {
-      "word": "笑翡翠",
-      "reading": "わらいかわせみ",
-      "meaning": "laughing kookaburra (Dacelo novaeguineae)",
-      "type": "kun"
     }
   ],
   "鮎": [
@@ -11534,6 +11370,12 @@
     }
   ],
   "榛": [
+    {
+      "word": "榛の木",
+      "reading": "はんのき",
+      "meaning": "Japanese alder (Alnus japonica)",
+      "type": "on"
+    },
     {
       "word": "榛",
       "reading": "はしばみ",
@@ -11579,17 +11421,17 @@
   ],
   "蔦": [
     {
-      "word": "蔦葛",
-      "reading": "つたかずら",
-      "meaning": "ivy and vines",
+      "word": "蔦漆",
+      "reading": "つたうるし",
+      "meaning": "Asian poison ivy (Rhus ambigua)",
       "type": "kun"
     }
   ],
   "錬": [
     {
-      "word": "製錬",
-      "reading": "せいれん",
-      "meaning": "refining",
+      "word": "錬金術",
+      "reading": "れんきんじゅつ",
+      "meaning": "alchemy",
       "type": "on"
     }
   ],
@@ -11611,17 +11453,17 @@
   ],
   "衷": [
     {
-      "word": "折衷",
-      "reading": "せっちゅう",
-      "meaning": "compromise",
+      "word": "和洋折衷",
+      "reading": "わようせっちゅう",
+      "meaning": "blending of Japanese and Western styles",
       "type": "on"
     }
   ],
   "逐": [
     {
-      "word": "駆逐",
-      "reading": "くちく",
-      "meaning": "expulsion",
+      "word": "逐次",
+      "reading": "ちくじ",
+      "meaning": "successively",
       "type": "on"
     }
   ],
@@ -11641,8 +11483,8 @@
       "type": "on"
     },
     {
-      "word": "類い稀",
-      "reading": "たぐいまれ",
+      "word": "稀",
+      "reading": "まれ",
       "meaning": "rare",
       "type": "kun"
     }
@@ -11672,15 +11514,15 @@
   "皐": [],
   "雛": [
     {
-      "word": "育雛",
-      "reading": "いくすう",
-      "meaning": "brooding",
+      "word": "雛妓",
+      "reading": "すうぎ",
+      "meaning": "child geisha",
       "type": "on"
     },
     {
-      "word": "雛祭り",
-      "reading": "ひなまつり",
-      "meaning": "Hinamatsuri (March 3)",
+      "word": "雛形",
+      "reading": "ひながた",
+      "meaning": "model",
       "type": "kun"
     }
   ],
@@ -11690,12 +11532,6 @@
       "reading": "しい",
       "meaning": "thought",
       "type": "on"
-    },
-    {
-      "word": "惟る",
-      "reading": "おもんみる",
-      "meaning": "to reflect carefully",
-      "type": "kun"
     }
   ],
   "佑": [
@@ -11708,9 +11544,9 @@
   ],
   "耀": [
     {
-      "word": "栄耀",
-      "reading": "えいよう",
-      "meaning": "luxury",
+      "word": "栄耀栄華",
+      "reading": "えいようえいが",
+      "meaning": "wealth, prosperity, and arrogant splendor (splendour)",
       "type": "on"
     }
   ],
@@ -11718,7 +11554,7 @@
     {
       "word": "翠黛",
       "reading": "すいたい",
-      "meaning": "green eyebrow pencil",
+      "meaning": "green eyebrow makeup",
       "type": "on"
     }
   ],
@@ -11739,9 +11575,9 @@
   ],
   "宵": [
     {
-      "word": "元宵",
-      "reading": "げんしょう",
-      "meaning": "night of the 15th day of the first month in the lunar calendar",
+      "word": "春宵",
+      "reading": "しゅんしょう",
+      "meaning": "spring evening",
       "type": "on"
     },
     {
@@ -11757,12 +11593,6 @@
       "reading": "もうそう",
       "meaning": "delusion",
       "type": "on"
-    },
-    {
-      "word": "妄り",
-      "reading": "みだり",
-      "meaning": "selfish",
-      "type": "kun"
     }
   ],
   "惇": [],
@@ -11819,9 +11649,9 @@
   ],
   "蒼": [
     {
-      "word": "蒼白",
-      "reading": "そうはく",
-      "meaning": "pale",
+      "word": "鬱蒼",
+      "reading": "うっそう",
+      "meaning": "thick",
       "type": "on"
     }
   ],
@@ -11866,9 +11696,9 @@
   ],
   "凱": [
     {
-      "word": "凱旋",
-      "reading": "がいせん",
-      "meaning": "triumphant return",
+      "word": "凱旋門",
+      "reading": "がいせんもん",
+      "meaning": "arch of triumph",
       "type": "on"
     }
   ],
@@ -11904,12 +11734,6 @@
   ],
   "丑": [
     {
-      "word": "癸丑",
-      "reading": "きちゅう",
-      "meaning": "Water Ox (50th term of the sexagenary cycle, e.g. 1913, 1973, 2033)",
-      "type": "on"
-    },
-    {
       "word": "丑寅",
       "reading": "うしとら",
       "meaning": "northeast",
@@ -11938,12 +11762,6 @@
       "reading": "ちょうせき",
       "meaning": "tide",
       "type": "on"
-    },
-    {
-      "word": "汐風",
-      "reading": "しおかぜ",
-      "meaning": "sea breeze",
-      "type": "kun"
     }
   ],
   "絢": [
@@ -11956,17 +11774,17 @@
   ],
   "朔": [
     {
-      "word": "朔日",
-      "reading": "さくじつ",
-      "meaning": "first day of the month (in the lunar calendar)",
+      "word": "八朔",
+      "reading": "はっさく",
+      "meaning": "Hassaku orange (Citrus hassaku)",
       "type": "on"
     }
   ],
   "伽": [
     {
-      "word": "伽藍",
-      "reading": "がらん",
-      "meaning": "temple (esp. large one)",
+      "word": "伽羅",
+      "reading": "きゃら",
+      "meaning": "aloes wood (Taxus cuspidata var. nana)",
       "type": "on"
     },
     {
@@ -11994,9 +11812,9 @@
   ],
   "爽": [
     {
-      "word": "爽快",
-      "reading": "そうかい",
-      "meaning": "refreshing",
+      "word": "颯爽",
+      "reading": "さっそう",
+      "meaning": "gallant",
       "type": "on"
     },
     {
@@ -12008,17 +11826,17 @@
   ],
   "黎": [
     {
-      "word": "黎明",
-      "reading": "れいめい",
-      "meaning": "daybreak",
+      "word": "黎明期",
+      "reading": "れいめいき",
+      "meaning": "dawn (of a new era, civilization, etc.)",
       "type": "on"
     }
   ],
   "惰": [
     {
-      "word": "怠惰",
-      "reading": "たいだ",
-      "meaning": "lazy",
+      "word": "惰性",
+      "reading": "だせい",
+      "meaning": "force of habit",
       "type": "on"
     }
   ],
@@ -12103,12 +11921,6 @@
   ],
   "鯉": [
     {
-      "word": "鯉幟",
-      "reading": "こいのぼり",
-      "meaning": "koinobori",
-      "type": "on"
-    },
-    {
       "word": "鯉口",
       "reading": "こいぐち",
       "meaning": "opening of a scabbard",
@@ -12139,26 +11951,13 @@
   ],
   "舜": [],
   "瑛": [],
-  "附": [
-    {
-      "word": "見附",
-      "reading": "みつけ",
-      "meaning": "approach (to a castle gate)",
-      "type": "kun"
-    }
-  ],
+  "附": [],
   "彪": [],
   "卯": [
     {
-      "word": "癸卯",
-      "reading": "きぼう",
-      "meaning": "Water Rabbit (40th term of the sexagenary cycle, e.g. 1963, 2023, 2083)",
-      "type": "on"
-    },
-    {
-      "word": "卯年",
-      "reading": "うどし",
-      "meaning": "year of the Hare",
+      "word": "卯の花",
+      "reading": "うのはな",
+      "meaning": "bean curd lees",
       "type": "kun"
     }
   ],
@@ -12180,9 +11979,9 @@
   ],
   "芋": [
     {
-      "word": "海芋",
-      "reading": "かいう",
-      "meaning": "calla (Zantedeschia aethiopica)",
+      "word": "安納芋",
+      "reading": "あんのういも",
+      "meaning": "orange fleshed yam",
       "type": "on"
     },
     {
@@ -12202,9 +12001,9 @@
   ],
   "凌": [
     {
-      "word": "凌駕",
-      "reading": "りょうが",
-      "meaning": "excelling",
+      "word": "凌雲",
+      "reading": "りょううん",
+      "meaning": "skyscraping",
       "type": "on"
     },
     {
@@ -12239,9 +12038,9 @@
       "type": "on"
     },
     {
-      "word": "婆あ",
-      "reading": "ばばあ",
-      "meaning": "old woman",
+      "word": "婆や",
+      "reading": "ばあや",
+      "meaning": "elderly housekeeper",
       "type": "kun"
     }
   ],
@@ -12255,9 +12054,9 @@
   ],
   "鯛": [
     {
-      "word": "鯛焼き",
-      "reading": "たいやき",
-      "meaning": "fish-shaped pancake filled with bean jam",
+      "word": "鯛茶漬け",
+      "reading": "たいちゃづけ",
+      "meaning": "tai chazuke",
       "type": "kun"
     }
   ],
@@ -12307,27 +12106,21 @@
       "type": "on"
     },
     {
-      "word": "啄む",
-      "reading": "ついばむ",
-      "meaning": "to pick at",
+      "word": "啄木鳥",
+      "reading": "きつつき",
+      "meaning": "woodpecker",
       "type": "kun"
     }
   ],
   "穣": [
     {
-      "word": "豊穣",
-      "reading": "ほうじょう",
-      "meaning": "abundant (grain) crop",
+      "word": "五穀豊穣",
+      "reading": "ごこくほうじょう",
+      "meaning": "huge harvest (of the five grains)",
       "type": "on"
     }
   ],
   "酉": [
-    {
-      "word": "辛酉",
-      "reading": "しんゆう",
-      "meaning": "Metal Rooster (58th term of the sexagenary cycle, e.g. 1921, 1981, 2041)",
-      "type": "on"
-    },
     {
       "word": "酉年",
       "reading": "とりどし",
@@ -12337,9 +12130,9 @@
   ],
   "悌": [
     {
-      "word": "孝悌",
-      "reading": "こうてい",
-      "meaning": "filial piety",
+      "word": "悌",
+      "reading": "てい",
+      "meaning": "respect for one's elders",
       "type": "on"
     }
   ],
@@ -12367,26 +12160,13 @@
   ],
   "繭": [
     {
-      "word": "繭糸",
-      "reading": "けんし",
-      "meaning": "silk thread",
-      "type": "on"
-    },
-    {
       "word": "繭玉",
       "reading": "まゆだま",
       "meaning": "New Year's decoration with cocoon-shaped cakes",
       "type": "kun"
     }
   ],
-  "勺": [
-    {
-      "word": "勺",
-      "reading": "しゃく",
-      "meaning": "shaku",
-      "type": "on"
-    }
-  ],
+  "勺": [],
   "匁": [
     {
       "word": "百匁",
@@ -12397,9 +12177,9 @@
   ],
   "斤": [
     {
-      "word": "斤量",
-      "reading": "きんりょう",
-      "meaning": "impost",
+      "word": "一斤",
+      "reading": "いっきん",
+      "meaning": "1 kin (approx. 0.6 kg)",
       "type": "on"
     }
   ],
@@ -12443,9 +12223,9 @@
   ],
   "亥": [
     {
-      "word": "辛亥",
-      "reading": "しんがい",
-      "meaning": "Metal Boar (48th term of the sexagenary cycle, e.g. 1911, 1971, 2031)",
+      "word": "辛亥革命",
+      "reading": "しんがいかくめい",
+      "meaning": "Xinhai Revolution (of China; 1911)",
       "type": "on"
     },
     {
@@ -12491,9 +12271,9 @@
   ],
   "冶": [
     {
-      "word": "鍛冶",
-      "reading": "たんや",
-      "meaning": "blacksmithing",
+      "word": "鍛冶屋",
+      "reading": "かじや",
+      "meaning": "smith",
       "type": "on"
     }
   ],
@@ -12517,17 +12297,17 @@
   "侑": [],
   "昂": [
     {
-      "word": "昂進",
-      "reading": "こうしん",
-      "meaning": "rising",
+      "word": "昂然",
+      "reading": "こうぜん",
+      "meaning": "elated",
       "type": "on"
     }
   ],
   "茄": [
     {
-      "word": "茄子科",
-      "reading": "なすか",
-      "meaning": "Solanaceae (nightshade family of plants)",
+      "word": "賀茂茄子",
+      "reading": "かもなす",
+      "meaning": "Kamo eggplant (Solanum melongena; round variety originally grown in Kyoto)",
       "type": "on"
     }
   ],
@@ -12539,27 +12319,20 @@
       "type": "on"
     }
   ],
-  "迪": [
-    {
-      "word": "啓迪",
-      "reading": "けいてき",
-      "meaning": "edification",
-      "type": "on"
-    }
-  ],
+  "迪": [],
   "采": [
     {
-      "word": "喝采",
-      "reading": "かっさい",
-      "meaning": "cheers",
+      "word": "采配",
+      "reading": "さいはい",
+      "meaning": "baton (of command)",
       "type": "on"
     }
   ],
   "勁": [
     {
-      "word": "勁草",
-      "reading": "けいそう",
-      "meaning": "wind-resistant blade of grass",
+      "word": "雄勁",
+      "reading": "ゆうけい",
+      "meaning": "vigorous",
       "type": "on"
     }
   ],
@@ -12601,8 +12374,8 @@
   ],
   "昴": [
     {
-      "word": "昴星",
-      "reading": "すばるぼし",
+      "word": "昴",
+      "reading": "すばる",
       "meaning": "Chinese \"Hairy Head\" constellation (one of the 28 mansions)",
       "type": "kun"
     }
@@ -12623,14 +12396,7 @@
       "type": "kun"
     }
   ],
-  "洵": [
-    {
-      "word": "洵美",
-      "reading": "じゅんび",
-      "meaning": "exquisite",
-      "type": "on"
-    }
-  ],
+  "洵": [],
   "耶": [
     {
       "word": "有耶無耶",
@@ -12658,20 +12424,13 @@
   ],
   "恕": [
     {
-      "word": "寛恕",
-      "reading": "かんじょ",
-      "meaning": "magnanimity",
+      "word": "恕する",
+      "reading": "じょする",
+      "meaning": "to forgive",
       "type": "on"
     }
   ],
-  "晏": [
-    {
-      "word": "晏然",
-      "reading": "あんぜん",
-      "meaning": "calm",
-      "type": "on"
-    }
-  ],
+  "晏": [],
   "晟": [],
   "朕": [
     {
@@ -12699,9 +12458,9 @@
   ],
   "耗": [
     {
-      "word": "消耗",
-      "reading": "しょうもう",
-      "meaning": "exhaustion",
+      "word": "消耗品",
+      "reading": "しょうもうひん",
+      "meaning": "consumable goods",
       "type": "on"
     }
   ],
@@ -12732,9 +12491,9 @@
   ],
   "捺": [
     {
-      "word": "捺印",
-      "reading": "なついん",
-      "meaning": "affixing a seal (to)",
+      "word": "指紋押捺",
+      "reading": "しもんおうなつ",
+      "meaning": "fingerprinting",
       "type": "on"
     }
   ],
@@ -12760,12 +12519,6 @@
       "reading": "そうぼう",
       "meaning": "one's eyes",
       "type": "on"
-    },
-    {
-      "word": "眸",
-      "reading": "ひとみ",
-      "meaning": "pupil (of the eye)",
-      "type": "kun"
     }
   ],
   "笙": [
@@ -12777,12 +12530,6 @@
     }
   ],
   "紬": [
-    {
-      "word": "絹紬",
-      "reading": "けんちゅう",
-      "meaning": "pongee (unbleached silk)",
-      "type": "on"
-    },
     {
       "word": "結城紬",
       "reading": "ゆうきつむぎ",
@@ -12801,9 +12548,9 @@
   ],
   "菫": [
     {
-      "word": "菫色",
-      "reading": "すみれいろ",
-      "meaning": "violet (colour)",
+      "word": "菫",
+      "reading": "すみれ",
+      "meaning": "violet (any flower of genus Viola, esp. the Fuji dawn, Viola mandshurica)",
       "type": "kun"
     }
   ],
@@ -12839,33 +12586,20 @@
       "type": "on"
     }
   ],
-  "竣": [
-    {
-      "word": "竣功",
-      "reading": "しゅんこう",
-      "meaning": "completion of construction",
-      "type": "on"
-    }
-  ],
+  "竣": [],
   "脹": [
     {
       "word": "腫脹",
       "reading": "しゅちょう",
       "meaning": "swelling",
       "type": "on"
-    },
-    {
-      "word": "脹らか",
-      "reading": "ふくらか",
-      "meaning": "plump",
-      "type": "kun"
     }
   ],
   "塑": [
     {
-      "word": "可塑",
-      "reading": "かそ",
-      "meaning": "moldable",
+      "word": "可塑性",
+      "reading": "かそせい",
+      "meaning": "plasticity",
       "type": "on"
     }
   ],
@@ -12883,12 +12617,6 @@
       "reading": "やし",
       "meaning": "palm tree (any tree of family Arecaceae)",
       "type": "on"
-    },
-    {
-      "word": "ココ椰子",
-      "reading": "ココやし",
-      "meaning": "coconut palm (Cocos nucifera)",
-      "type": "kun"
     }
   ],
   "楓": [
@@ -12899,9 +12627,9 @@
       "type": "on"
     },
     {
-      "word": "伊呂波楓",
-      "reading": "いろはかえで",
-      "meaning": "Japanese maple (Acer palmatum)",
+      "word": "板屋楓",
+      "reading": "いたやかえで",
+      "meaning": "painted maple (Acer mono)",
       "type": "kun"
     }
   ],
@@ -12925,17 +12653,17 @@
   ],
   "虞": [
     {
-      "word": "虞犯",
-      "reading": "ぐはん",
-      "meaning": "being likely to commit a crime",
+      "word": "虞犯少年",
+      "reading": "ぐはんしょうねん",
+      "meaning": "juvenile deemed likely to commit a crime",
       "type": "on"
     }
   ],
   "裟": [
     {
-      "word": "大袈裟",
-      "reading": "おおげさ",
-      "meaning": "exaggerated",
+      "word": "袈裟",
+      "reading": "けさ",
+      "meaning": "kasaya",
       "type": "on"
     }
   ],
@@ -12974,9 +12702,9 @@
   ],
   "箇": [
     {
-      "word": "箇月",
-      "reading": "かげつ",
-      "meaning": "counter for months",
+      "word": "箇所",
+      "reading": "かしょ",
+      "meaning": "place",
       "type": "on"
     }
   ],
@@ -13029,8 +12757,8 @@
   ],
   "誼": [
     {
-      "word": "友誼",
-      "reading": "ゆうぎ",
+      "word": "交誼",
+      "reading": "こうぎ",
       "meaning": "friendship",
       "type": "on"
     }
@@ -13062,9 +12790,9 @@
   ],
   "遵": [
     {
-      "word": "遵法",
-      "reading": "じゅんぽう",
-      "meaning": "law observance",
+      "word": "遵法精神",
+      "reading": "じゅんぽうせいしん",
+      "meaning": "law-abiding spirit",
       "type": "on"
     }
   ],
@@ -13110,16 +12838,10 @@
   ],
   "錘": [
     {
-      "word": "紡錘",
-      "reading": "ぼうすい",
-      "meaning": "spindle",
+      "word": "紡錘形",
+      "reading": "ぼうすいけい",
+      "meaning": "spindle-shaped",
       "type": "on"
-    },
-    {
-      "word": "錘",
-      "reading": "つむ",
-      "meaning": "spindle",
-      "type": "kun"
     }
   ],
   "燦": [
@@ -13154,9 +12876,9 @@
   ],
   "鞠": [
     {
-      "word": "手鞠",
-      "reading": "てまり",
-      "meaning": "traditional Japanese handball (game)",
+      "word": "蹴鞠",
+      "reading": "けまり",
+      "meaning": "kemari",
       "type": "kun"
     }
   ],

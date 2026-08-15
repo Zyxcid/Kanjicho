@@ -1,41 +1,18 @@
 import React from "react";
 import { BookOpen } from "lucide-react";
-import NextReviewBanner from "./NextReviewBanner.jsx";
 
-/**
- * Badge tiap kartu level di Home. Dulu selalu "Ready" statis; sekarang
- * mencerminkan progres nyata user terhadap level itu:
- *   - mastered == total → "Mastered" (gold)
- *   - due > 0           → "N due" (seal)
- *   - studied > 0       → "studied/total" (indigo)
- *   - else              → "New" (muted)
- */
-function levelBadge(stats) {
-  if (!stats) return { label: "New", variant: "muted" };
-  if (stats.total > 0 && stats.mastered === stats.total) {
-    return { label: "Mastered", variant: "gold" };
-  }
-  if (stats.due > 0) {
-    return { label: `${stats.due} due`, variant: "seal" };
-  }
-  if (stats.studied > 0) {
-    return { label: `${stats.studied}/${stats.total}`, variant: "indigo" };
-  }
-  return { label: "New", variant: "muted" };
-}
-
-export default function Home({ levelIds, getLevelMeta, getLevelStats, onOpenLevel, onBrowse, stats }) {
+export default function Home({ levelIds, getLevelMeta, onOpenLevel, onBrowse, stats }) {
   return (
     <>
       <div className="kd-hero">
         <div className="kd-hero-row">
-          <div className="kd-stat studied">
-            <div className="kd-stat-num">{stats.studied}</div>
-            <div className="kd-stat-label">Studied</div>
-          </div>
           <div className="kd-stat due">
             <div className="kd-stat-num">{stats.due}</div>
             <div className="kd-stat-label">Due now</div>
+          </div>
+          <div className="kd-stat new">
+            <div className="kd-stat-num">{stats.notStarted}</div>
+            <div className="kd-stat-label">Not started</div>
           </div>
           <div className="kd-stat mastered">
             <div className="kd-stat-num">{stats.mastered}</div>
@@ -43,8 +20,6 @@ export default function Home({ levelIds, getLevelMeta, getLevelStats, onOpenLeve
           </div>
         </div>
       </div>
-
-      <NextReviewBanner stats={stats} />
 
       {/* Browse entry: jump to the full kanji library (every kanji, all levels). */}
       <div className="kd-browse-entry-row">
@@ -59,10 +34,9 @@ export default function Home({ levelIds, getLevelMeta, getLevelStats, onOpenLeve
       <div className="kd-level-grid">
         {levelIds.map((level) => {
           const meta = getLevelMeta(level);
-          const badge = levelBadge(getLevelStats ? getLevelStats(level) : null);
           return (
             <button key={level} className="kd-level-card ready" onClick={() => onOpenLevel(level)}>
-              <span className={`kd-level-badge ${badge.variant}`}>{badge.label}</span>
+              <span className="kd-level-badge">Ready</span>
               <div className="kd-level-name">{level}</div>
               <div className="kd-level-count">
                 {meta.total} kanji · {meta.units} units

@@ -6,8 +6,8 @@
     "order_index": 0,
     "readings": {
       "on": [
-        "エ",
-        "カイ"
+        "カイ",
+        "エ"
       ],
       "kun": [
         "あ.う",
@@ -16,8 +16,8 @@
       ]
     },
     "romaji_readings": [
-      "e",
       "kai",
+      "e",
       "au",
       "awaseru",
       "atsumaru"
@@ -27,12 +27,12 @@
       "au"
     ],
     "meanings": [
+      "meeting",
+      "meet",
+      "party",
       "association",
       "interview",
-      "join",
-      "meet",
-      "meeting",
-      "party"
+      "join"
     ],
     "stroke_count": 6
   },
@@ -58,9 +58,9 @@
       "onaji"
     ],
     "meanings": [
+      "same",
       "agree",
-      "equal",
-      "same"
+      "equal"
     ],
     "stroke_count": 6
   },
@@ -92,12 +92,12 @@
       "koto"
     ],
     "meanings": [
-      "business",
-      "fact",
       "matter",
-      "possibly",
+      "thing",
+      "fact",
+      "business",
       "reason",
-      "thing"
+      "possibly"
     ],
     "stroke_count": 8
   },
@@ -108,21 +108,21 @@
     "order_index": 3,
     "readings": {
       "on": [
-        "シ",
-        "ジ"
+        "ジ",
+        "シ"
       ],
       "kun": [
+        "みずか.ら",
         "おの.ずから",
-        "おの.ずと",
-        "みずか.ら"
+        "おの.ずと"
       ]
     },
     "romaji_readings": [
-      "shi",
       "ji",
+      "shi",
+      "mizukara",
       "onozukara",
-      "onozuto",
-      "mizukara"
+      "onozuto"
     ],
     "primary_romaji": [
       "ji",
@@ -155,10 +155,10 @@
       "yashiro"
     ],
     "meanings": [
-      "association",
       "company",
       "firm",
       "office",
+      "association",
       "shrine"
     ],
     "stroke_count": 7
@@ -174,9 +174,9 @@
         "ホツ"
       ],
       "kun": [
+        "た.つ",
         "あば.く",
         "おこ.る",
-        "た.つ",
         "つか.わす",
         "はな.つ"
       ]
@@ -184,9 +184,9 @@
     "romaji_readings": [
       "hatsu",
       "hotsu",
+      "tatsu",
       "abaku",
       "okoru",
-      "tatsu",
       "tsukawasu",
       "hanatsu"
     ],
@@ -195,13 +195,13 @@
       "tatsu"
     ],
     "meanings": [
-      "counter for gunshots",
       "departure",
       "discharge",
-      "disclose",
-      "emit",
       "publish",
-      "start from"
+      "emit",
+      "start from",
+      "disclose",
+      "counter for gunshots"
     ],
     "stroke_count": 9
   },
@@ -227,8 +227,8 @@
       "mono"
     ],
     "meanings": [
-      "person",
-      "someone"
+      "someone",
+      "person"
     ],
     "stroke_count": 8
   },
@@ -239,21 +239,21 @@
     "order_index": 7,
     "readings": {
       "on": [
-        "ジ",
-        "チ"
+        "チ",
+        "ジ"
       ],
       "kun": []
     },
     "romaji_readings": [
-      "ji",
-      "chi"
+      "chi",
+      "ji"
     ],
     "primary_romaji": [
       "chi"
     ],
     "meanings": [
-      "earth",
-      "ground"
+      "ground",
+      "earth"
     ],
     "stroke_count": 6
   },
@@ -281,10 +281,10 @@
       "waza"
     ],
     "meanings": [
-      "arts",
       "business",
-      "performance",
-      "vocation"
+      "vocation",
+      "arts",
+      "performance"
     ],
     "stroke_count": 13
   },
@@ -298,9 +298,9 @@
         "ホウ"
       ],
       "kun": [
+        "かた",
         "-かた",
-        "-がた",
-        "かた"
+        "-がた"
       ]
     },
     "romaji_readings": [
@@ -313,9 +313,9 @@
       "kata"
     ],
     "meanings": [
-      "alternative",
       "direction",
-      "person"
+      "person",
+      "alternative"
     ],
     "stroke_count": 4
   },
@@ -330,16 +330,16 @@
       ],
       "kun": [
         "あたら.しい",
-        "あら-",
         "あら.た",
+        "あら-",
         "にい-"
       ]
     },
     "romaji_readings": [
       "shin",
       "atarashii",
-      "ara",
       "arata",
+      "ara",
       "nii"
     ],
     "primary_romaji": [
@@ -412,43 +412,43 @@
     "order_index": 13,
     "readings": {
       "on": [
-        "リットル",
         "リツ",
-        "リュウ"
+        "リュウ",
+        "リットル"
       ],
       "kun": [
-        "-た.つ",
-        "-た.て",
-        "-た.てる",
-        "-だ.て",
-        "-だ.てる",
-        "た.ち-",
         "た.つ",
-        "た.て-",
+        "-た.つ",
+        "た.ち-",
         "た.てる",
-        "たて-"
+        "-た.てる",
+        "た.て-",
+        "たて-",
+        "-た.て",
+        "-だ.て",
+        "-だ.てる"
       ]
     },
     "romaji_readings": [
-      "rittoru",
       "ritsu",
       "ryuu",
+      "rittoru",
       "tatsu",
-      "tate",
+      "tachi",
       "tateru",
+      "tate",
       "date",
-      "dateru",
-      "tachi"
+      "dateru"
     ],
     "primary_romaji": [
       "ritsu",
       "tachi"
     ],
     "meanings": [
-      "erect",
+      "stand up",
       "rise",
       "set up",
-      "stand up"
+      "erect"
     ],
     "stroke_count": 5
   },
@@ -462,22 +462,22 @@
         "カイ"
       ],
       "kun": [
-        "-びら.き",
-        "あ.く",
-        "あ.ける",
-        "ひら.き",
         "ひら.く",
-        "ひら.ける"
+        "ひら.き",
+        "-びら.き",
+        "ひら.ける",
+        "あ.く",
+        "あ.ける"
       ]
     },
     "romaji_readings": [
       "kai",
-      "biraki",
-      "aku",
-      "akeru",
-      "hiraki",
       "hiraku",
-      "hirakeru"
+      "hiraki",
+      "biraki",
+      "hirakeru",
+      "aku",
+      "akeru"
     ],
     "primary_romaji": [
       "kai",
@@ -501,10 +501,10 @@
         "ズ"
       ],
       "kun": [
-        "-て",
-        "た-",
         "て",
-        "て-"
+        "て-",
+        "-て",
+        "た-"
       ]
     },
     "romaji_readings": [
@@ -529,18 +529,18 @@
     "order_index": 16,
     "readings": {
       "on": [
-        "リイ",
+        "リョク",
         "リキ",
-        "リョク"
+        "リイ"
       ],
       "kun": [
         "ちから"
       ]
     },
     "romaji_readings": [
-      "rii",
-      "riki",
       "ryoku",
+      "riki",
+      "rii",
       "chikara"
     ],
     "primary_romaji": [
@@ -548,12 +548,12 @@
       "chikara"
     ],
     "meanings": [
-      "bear up",
-      "exert",
       "power",
-      "strain",
       "strength",
-      "strong"
+      "strong",
+      "strain",
+      "bear up",
+      "exert"
     ],
     "stroke_count": 2
   },
@@ -567,15 +567,15 @@
         "モン"
       ],
       "kun": [
-        "と.い",
         "と.う",
+        "と.い",
         "とん"
       ]
     },
     "romaji_readings": [
       "mon",
-      "toi",
       "tou",
+      "toi",
       "ton"
     ],
     "primary_romaji": [
@@ -583,9 +583,9 @@
       "toi"
     ],
     "meanings": [
+      "question",
       "ask",
-      "problem",
-      "question"
+      "problem"
     ],
     "stroke_count": 11
   },
@@ -596,47 +596,47 @@
     "order_index": 18,
     "readings": {
       "on": [
-        "タイ",
-        "ダイ"
+        "ダイ",
+        "タイ"
       ],
       "kun": [
-        "-が.わり",
-        "-がわ.り",
-        "か.える",
-        "か.わり",
         "か.わる",
-        "かわ.り",
         "かわ.る",
-        "しろ",
-        "よ"
+        "かわ.り",
+        "か.わり",
+        "-がわ.り",
+        "-が.わり",
+        "か.える",
+        "よ",
+        "しろ"
       ]
     },
     "romaji_readings": [
-      "tai",
       "dai",
+      "tai",
+      "kawaru",
+      "kawari",
       "gawari",
       "kaeru",
-      "kawari",
-      "kawaru",
-      "shiro",
-      "yo"
+      "yo",
+      "shiro"
     ],
     "primary_romaji": [
       "dai",
       "kawari"
     ],
     "meanings": [
-      "age",
+      "substitute",
       "change",
-      "charge",
       "convert",
-      "counter for decades of ages, eras, etc.",
-      "fee",
-      "generation",
-      "period",
-      "rate",
       "replace",
-      "substitute"
+      "period",
+      "age",
+      "counter for decades of ages, eras, etc.",
+      "generation",
+      "charge",
+      "rate",
+      "fee"
     ],
     "stroke_count": 5
   },
@@ -647,37 +647,37 @@
     "order_index": 19,
     "readings": {
       "on": [
+        "メイ",
         "ミョウ",
-        "ミン",
-        "メイ"
+        "ミン"
       ],
       "kun": [
-        "-あ.け",
-        "あ.かす",
         "あ.かり",
-        "あ.く",
-        "あ.くる",
-        "あ.ける",
-        "あか.らむ",
         "あか.るい",
         "あか.るむ",
-        "あき.らか"
+        "あか.らむ",
+        "あき.らか",
+        "あ.ける",
+        "-あ.け",
+        "あ.く",
+        "あ.くる",
+        "あ.かす"
       ]
     },
     "romaji_readings": [
+      "mei",
       "myou",
       "min",
-      "mei",
-      "ake",
-      "akasu",
       "akari",
-      "aku",
-      "akuru",
-      "akeru",
-      "akaramu",
       "akarui",
       "akarumu",
-      "akiraka"
+      "akaramu",
+      "akiraka",
+      "akeru",
+      "ake",
+      "aku",
+      "akuru",
+      "akasu"
     ],
     "primary_romaji": [
       "mei",
@@ -699,26 +699,26 @@
         "ドウ"
       ],
       "kun": [
-        "うご.かす",
-        "うご.く"
+        "うご.く",
+        "うご.かす"
       ]
     },
     "romaji_readings": [
       "dou",
-      "ugokasu",
-      "ugoku"
+      "ugoku",
+      "ugokasu"
     ],
     "primary_romaji": [
       "dou",
       "ugoku"
     ],
     "meanings": [
+      "move",
+      "motion",
       "change",
       "confusion",
-      "motion",
-      "move",
-      "shake",
-      "shift"
+      "shift",
+      "shake"
     ],
     "stroke_count": 11
   },
@@ -730,8 +730,8 @@
     "readings": {
       "on": [
         "キョウ",
-        "キン",
-        "ケイ"
+        "ケイ",
+        "キン"
       ],
       "kun": [
         "みやこ"
@@ -739,8 +739,8 @@
     },
     "romaji_readings": [
       "kyou",
-      "kin",
       "kei",
+      "kin",
       "miyako"
     ],
     "primary_romaji": [
@@ -748,8 +748,8 @@
       "miyako"
     ],
     "meanings": [
-      "10**16",
-      "capital"
+      "capital",
+      "10**16"
     ],
     "stroke_count": 8
   },
@@ -760,18 +760,18 @@
     "order_index": 22,
     "readings": {
       "on": [
-        "ボク",
-        "モク"
+        "モク",
+        "ボク"
       ],
       "kun": [
+        "め",
         "-め",
-        "ま-",
-        "め"
+        "ま-"
       ]
     },
     "romaji_readings": [
-      "boku",
       "moku",
+      "boku",
       "me",
       "ma"
     ],
@@ -780,13 +780,13 @@
       "me"
     ],
     "meanings": [
-      "care",
-      "class",
-      "experience",
       "eye",
-      "favor",
+      "class",
+      "look",
       "insight",
-      "look"
+      "experience",
+      "care",
+      "favor"
     ],
     "stroke_count": 5
   },
@@ -797,41 +797,41 @@
     "order_index": 23,
     "readings": {
       "on": [
-        "ツ",
-        "ツウ"
+        "ツウ",
+        "ツ"
       ],
       "kun": [
-        "-とお.り",
-        "-どお.し",
-        "-どお.り",
-        "かよ.う",
-        "とお.し",
-        "とお.す",
+        "とお.る",
         "とお.り",
-        "とお.る"
+        "-とお.り",
+        "-どお.り",
+        "とお.す",
+        "とお.し",
+        "-どお.し",
+        "かよ.う"
       ]
     },
     "romaji_readings": [
-      "tsu",
       "tsuu",
+      "tsu",
+      "tooru",
       "toori",
-      "dooshi",
       "doori",
-      "kayou",
-      "tooshi",
       "toosu",
-      "tooru"
+      "tooshi",
+      "dooshi",
+      "kayou"
     ],
     "primary_romaji": [
-      "tsu",
+      "tsuu",
       "toori"
     ],
     "meanings": [
+      "traffic",
+      "pass through",
       "avenue",
       "commute",
-      "counter for letters, notes, documents, etc.",
-      "pass through",
-      "traffic"
+      "counter for letters, notes, documents, etc."
     ],
     "stroke_count": 10
   },
@@ -888,10 +888,10 @@
       "kotowari"
     ],
     "meanings": [
-      "arrangement",
-      "justice",
       "logic",
+      "arrangement",
       "reason",
+      "justice",
       "truth"
     ],
     "stroke_count": 11
@@ -907,15 +907,15 @@
         "テイ"
       ],
       "kun": [
-        "かたち",
-        "からだ"
+        "からだ",
+        "かたち"
       ]
     },
     "romaji_readings": [
       "tai",
       "tei",
-      "katachi",
-      "karada"
+      "karada",
+      "katachi"
     ],
     "primary_romaji": [
       "tai",
@@ -923,10 +923,10 @@
     ],
     "meanings": [
       "body",
-      "counter for images",
+      "substance",
       "object",
       "reality",
-      "substance"
+      "counter for images"
     ],
     "stroke_count": 7
   },
@@ -965,32 +965,32 @@
     "readings": {
       "on": [
         "シュ",
-        "シュウ",
-        "ス"
+        "ス",
+        "シュウ"
       ],
       "kun": [
-        "あるじ",
+        "ぬし",
         "おも",
-        "ぬし"
+        "あるじ"
       ]
     },
     "romaji_readings": [
       "shu",
-      "shuu",
       "su",
-      "aruji",
+      "shuu",
+      "nushi",
       "omo",
-      "nushi"
+      "aruji"
     ],
     "primary_romaji": [
       "shu",
       "nushi"
     ],
     "meanings": [
-      "chief",
       "lord",
-      "main thing",
+      "chief",
       "master",
+      "main thing",
       "principal"
     ],
     "stroke_count": 5
@@ -1013,8 +1013,8 @@
       "dai"
     ],
     "meanings": [
-      "subject",
-      "topic"
+      "topic",
+      "subject"
     ],
     "stroke_count": 18
   },
@@ -1036,14 +1036,14 @@
       "i"
     ],
     "meanings": [
-      "care",
-      "desire",
-      "heart",
       "idea",
-      "liking",
       "mind",
+      "heart",
       "taste",
-      "thought"
+      "thought",
+      "desire",
+      "care",
+      "liking"
     ],
     "stroke_count": 13
   },
@@ -1067,11 +1067,11 @@
       "fu"
     ],
     "meanings": [
-      "bad",
-      "clumsy",
       "negative",
       "non-",
-      "ugly"
+      "bad",
+      "ugly",
+      "clumsy"
     ],
     "stroke_count": 4
   },
@@ -1082,31 +1082,31 @@
     "order_index": 32,
     "readings": {
       "on": [
-        "サ",
-        "サク"
+        "サク",
+        "サ"
       ],
       "kun": [
-        "-づく.り",
+        "つく.る",
         "つく.り",
-        "つく.る"
+        "-づく.り"
       ]
     },
     "romaji_readings": [
-      "sa",
       "saku",
-      "zukuri",
+      "sa",
+      "tsukuru",
       "tsukuri",
-      "tsukuru"
+      "zukuri"
     ],
     "primary_romaji": [
-      "sa",
+      "saku",
       "tsukuru"
     ],
     "meanings": [
-      "build",
       "make",
+      "production",
       "prepare",
-      "production"
+      "build"
     ],
     "stroke_count": 7
   },
@@ -1132,11 +1132,11 @@
       "mochiiru"
     ],
     "meanings": [
+      "utilize",
       "business",
-      "employ",
       "service",
       "use",
-      "utilize"
+      "employ"
     ],
     "stroke_count": 5
   },
@@ -1147,33 +1147,33 @@
     "order_index": 34,
     "readings": {
       "on": [
-        "タク",
+        "ド",
         "ト",
-        "ド"
+        "タク"
       ],
       "kun": [
-        "-た.い",
-        "たび"
+        "たび",
+        "-た.い"
       ]
     },
     "romaji_readings": [
-      "taku",
-      "to",
       "do",
-      "tai",
-      "tabi"
+      "to",
+      "taku",
+      "tabi",
+      "tai"
     ],
     "primary_romaji": [
       "do",
       "tabi"
     ],
     "meanings": [
-      "attitude",
-      "consider",
-      "counter for occurrences",
       "degrees",
       "occurrence",
-      "time"
+      "time",
+      "counter for occurrences",
+      "consider",
+      "attitude"
     ],
     "stroke_count": 9
   },
@@ -1188,21 +1188,21 @@
         "ゴウ"
       ],
       "kun": [
-        "こわ.い",
-        "し.いる",
         "つよ.い",
         "つよ.まる",
-        "つよ.める"
+        "つよ.める",
+        "し.いる",
+        "こわ.い"
       ]
     },
     "romaji_readings": [
       "kyou",
       "gou",
-      "kowai",
-      "shiiru",
       "tsuyoi",
       "tsuyomaru",
-      "tsuyomeru"
+      "tsuyomeru",
+      "shiiru",
+      "kowai"
     ],
     "primary_romaji": [
       "kyou",
@@ -1220,16 +1220,16 @@
     "order_index": 36,
     "readings": {
       "on": [
-        "ク",
-        "コウ"
+        "コウ",
+        "ク"
       ],
       "kun": [
         "おおやけ"
       ]
     },
     "romaji_readings": [
-      "ku",
       "kou",
+      "ku",
       "ooyake"
     ],
     "primary_romaji": [
@@ -1237,10 +1237,10 @@
       "ooyake"
     ],
     "meanings": [
-      "governmental",
-      "official",
+      "public",
       "prince",
-      "public"
+      "official",
+      "governmental"
     ],
     "stroke_count": 4
   },
@@ -1254,15 +1254,15 @@
         "ジ"
       ],
       "kun": [
-        "-も.ち",
         "も.つ",
+        "-も.ち",
         "も.てる"
       ]
     },
     "romaji_readings": [
       "ji",
-      "mochi",
       "motsu",
+      "mochi",
       "moteru"
     ],
     "primary_romaji": [
@@ -1270,8 +1270,8 @@
       "motsu"
     ],
     "meanings": [
-      "have",
-      "hold"
+      "hold",
+      "have"
     ],
     "stroke_count": 9
   },
@@ -1282,8 +1282,8 @@
     "order_index": 38,
     "readings": {
       "on": [
-        "ショ",
-        "ヤ"
+        "ヤ",
+        "ショ"
       ],
       "kun": [
         "の",
@@ -1291,8 +1291,8 @@
       ]
     },
     "romaji_readings": [
-      "sho",
       "ya",
+      "sho",
       "no"
     ],
     "primary_romaji": [
@@ -1300,10 +1300,10 @@
       "no"
     ],
     "meanings": [
-      "civilian life",
-      "field",
       "plains",
-      "rustic"
+      "field",
+      "rustic",
+      "civilian life"
     ],
     "stroke_count": 11
   },
@@ -1329,10 +1329,10 @@
       "motte"
     ],
     "meanings": [
-      "because",
       "by means of",
-      "compared with",
-      "in view of"
+      "because",
+      "in view of",
+      "compared with"
     ],
     "stroke_count": 5
   },
@@ -1346,16 +1346,16 @@
         "シ"
       ],
       "kun": [
-        "おぼ.す",
         "おも.う",
-        "おもえら.く"
+        "おもえら.く",
+        "おぼ.す"
       ]
     },
     "romaji_readings": [
       "shi",
-      "obosu",
       "omou",
-      "omoeraku"
+      "omoeraku",
+      "obosu"
     ],
     "primary_romaji": [
       "shi",
@@ -1378,28 +1378,28 @@
       ],
       "kun": [
         "いえ",
-        "うち",
-        "や"
+        "や",
+        "うち"
       ]
     },
     "romaji_readings": [
       "ka",
       "ke",
       "ie",
-      "uchi",
-      "ya"
+      "ya",
+      "uchi"
     ],
     "primary_romaji": [
       "ka",
       "ie"
     ],
     "meanings": [
-      "expert",
-      "family",
-      "home",
       "house",
-      "performer",
-      "professional"
+      "home",
+      "family",
+      "professional",
+      "expert",
+      "performer"
     ],
     "stroke_count": 10
   },
@@ -1410,8 +1410,8 @@
     "order_index": 42,
     "readings": {
       "on": [
-        "セ",
         "セイ",
+        "セ",
         "ソウ"
       ],
       "kun": [
@@ -1419,8 +1419,8 @@
       ]
     },
     "romaji_readings": [
-      "se",
       "sei",
+      "se",
       "sou",
       "yo"
     ],
@@ -1430,9 +1430,9 @@
     ],
     "meanings": [
       "generation",
-      "public",
+      "world",
       "society",
-      "world"
+      "public"
     ],
     "stroke_count": 5
   },
@@ -1462,8 +1462,8 @@
       "ooi"
     ],
     "meanings": [
-      "frequent",
       "many",
+      "frequent",
       "much"
     ],
     "stroke_count": 6
@@ -1475,8 +1475,8 @@
     "order_index": 44,
     "readings": {
       "on": [
-        "ショウ",
-        "セイ"
+        "セイ",
+        "ショウ"
       ],
       "kun": [
         "ただ.しい",
@@ -1486,8 +1486,8 @@
       ]
     },
     "romaji_readings": [
-      "shou",
       "sei",
+      "shou",
       "tadashii",
       "tadasu",
       "masa",
@@ -1498,10 +1498,10 @@
       "masa"
     ],
     "meanings": [
-      "10**40",
       "correct",
       "justice",
-      "righteous"
+      "righteous",
+      "10**40"
     ],
     "stroke_count": 5
   },
@@ -1515,31 +1515,31 @@
         "アン"
       ],
       "kun": [
-        "やす",
         "やす.い",
         "やす.まる",
+        "やす",
         "やす.らか"
       ]
     },
     "romaji_readings": [
       "an",
-      "yasu",
       "yasui",
       "yasumaru",
+      "yasu",
       "yasuraka"
     ],
     "primary_romaji": [
       "an",
-      "yasu"
+      "yasui"
     ],
     "meanings": [
-      "cheap",
-      "contented",
-      "low",
-      "peaceful",
-      "quiet",
       "relax",
-      "rested"
+      "cheap",
+      "low",
+      "quiet",
+      "rested",
+      "contented",
+      "peaceful"
     ],
     "stroke_count": 6
   },
@@ -1563,9 +1563,9 @@
     "meanings": [
       "Inst.",
       "institution",
+      "temple",
       "mansion",
-      "school",
-      "temple"
+      "school"
     ],
     "stroke_count": 10
   },
@@ -1579,14 +1579,14 @@
         "シン"
       ],
       "kun": [
-        "-ごころ",
-        "こころ"
+        "こころ",
+        "-ごころ"
       ]
     },
     "romaji_readings": [
       "shin",
-      "gokoro",
-      "kokoro"
+      "kokoro",
+      "gokoro"
     ],
     "primary_romaji": [
       "shin",
@@ -1594,9 +1594,9 @@
     ],
     "meanings": [
       "heart",
-      "heart radical (no. 61)",
       "mind",
-      "spirit"
+      "spirit",
+      "heart radical (no. 61)"
     ],
     "stroke_count": 4
   },
@@ -1618,8 +1618,8 @@
       "kai"
     ],
     "meanings": [
-      "boundary",
-      "world"
+      "world",
+      "boundary"
     ],
     "stroke_count": 9
   },
@@ -1647,9 +1647,9 @@
       "oshieru"
     ],
     "meanings": [
-      "doctrine",
+      "teach",
       "faith",
-      "teach"
+      "doctrine"
     ],
     "stroke_count": 11
   },
@@ -1664,29 +1664,29 @@
         "モン"
       ],
       "kun": [
-        "あや",
-        "ふみ"
+        "ふみ",
+        "あや"
       ]
     },
     "romaji_readings": [
       "bun",
       "mon",
-      "aya",
-      "fumi"
+      "fumi",
+      "aya"
     ],
     "primary_romaji": [
       "bun",
       "fumi"
     ],
     "meanings": [
+      "sentence",
+      "literature",
+      "style",
       "art",
       "decoration",
       "figures",
-      "literary radical (no. 67)",
-      "literature",
       "plan",
-      "sentence",
-      "style"
+      "literary radical (no. 67)"
     ],
     "stroke_count": 4
   },
@@ -1697,16 +1697,16 @@
     "order_index": 51,
     "readings": {
       "on": [
-        "ガン",
-        "ゲン"
+        "ゲン",
+        "ガン"
       ],
       "kun": [
         "もと"
       ]
     },
     "romaji_readings": [
-      "gan",
       "gen",
+      "gan",
       "moto"
     ],
     "primary_romaji": [
@@ -1732,38 +1732,38 @@
       ],
       "kun": [
         "え",
-        "おも",
         "おも.い",
-        "おも.なう",
         "おも.り",
+        "おも.なう",
+        "かさ.ねる",
         "かさ.なる",
-        "かさ.ねる"
+        "おも"
       ]
     },
     "romaji_readings": [
       "juu",
       "chou",
       "e",
-      "omo",
       "omoi",
-      "omonau",
       "omori",
+      "omonau",
+      "kasaneru",
       "kasanaru",
-      "kasaneru"
+      "omo"
     ],
     "primary_romaji": [
       "juu",
-      "omo"
+      "omoi"
     ],
     "meanings": [
-      "-fold",
-      "esteem",
-      "heap up",
       "heavy",
       "important",
-      "nest of boxes",
+      "esteem",
+      "respect",
+      "heap up",
       "pile up",
-      "respect"
+      "nest of boxes",
+      "-fold"
     ],
     "stroke_count": 9
   },
@@ -1791,9 +1791,9 @@
       "chikai"
     ],
     "meanings": [
-      "akin",
-      "early",
       "near",
+      "early",
+      "akin",
       "tantamount"
     ],
     "stroke_count": 7
@@ -1808,18 +1808,18 @@
         "コウ"
       ],
       "kun": [
-        "かんが.え",
-        "かんが.える"
+        "かんが.える",
+        "かんが.え"
       ]
     },
     "romaji_readings": [
       "kou",
-      "kangae",
-      "kangaeru"
+      "kangaeru",
+      "kangae"
     ],
     "primary_romaji": [
       "kou",
-      "kangae"
+      "kangaeru"
     ],
     "meanings": [
       "consider",
@@ -1834,32 +1834,32 @@
     "order_index": 55,
     "readings": {
       "on": [
-        "エ",
-        "カイ",
+        "ガ",
         "カク",
-        "ガ"
+        "エ",
+        "カイ"
       ],
       "kun": [
         "えが.く",
-        "かぎ.る",
         "かく.する",
-        "はか.る",
-        "はかりごと"
+        "かぎ.る",
+        "はかりごと",
+        "はか.る"
       ]
     },
     "romaji_readings": [
+      "ga",
+      "kaku",
       "e",
       "kai",
-      "kaku",
-      "ga",
       "egaku",
-      "kagiru",
       "kakusuru",
-      "hakaru",
-      "hakarigoto"
+      "kagiru",
+      "hakarigoto",
+      "hakaru"
     ],
     "primary_romaji": [
-      "kaku",
+      "ga",
       "kakusuru"
     ],
     "meanings": [
@@ -1890,8 +1890,8 @@
       "umi"
     ],
     "meanings": [
-      "ocean",
-      "sea"
+      "sea",
+      "ocean"
     ],
     "stroke_count": 9
   },
@@ -1933,14 +1933,14 @@
         "チ"
       ],
       "kun": [
-        "し.らせる",
-        "し.る"
+        "し.る",
+        "し.らせる"
       ]
     },
     "romaji_readings": [
       "chi",
-      "shiraseru",
-      "shiru"
+      "shiru",
+      "shiraseru"
     ],
     "primary_romaji": [
       "chi",
@@ -1959,31 +1959,31 @@
     "order_index": 59,
     "readings": {
       "on": [
-        "トウ",
-        "ドウ"
+        "ドウ",
+        "トウ"
       ],
       "kun": [
-        "いう",
-        "みち"
+        "みち",
+        "いう"
       ]
     },
     "romaji_readings": [
-      "tou",
       "dou",
-      "iu",
-      "michi"
+      "tou",
+      "michi",
+      "iu"
     ],
     "primary_romaji": [
       "dou",
       "michi"
     ],
     "meanings": [
-      "course",
-      "district",
-      "journey",
-      "moral",
       "road-way",
       "street",
+      "district",
+      "journey",
+      "course",
+      "moral",
       "teachings"
     ],
     "stroke_count": 12
@@ -2014,11 +2014,11 @@
       "atsumeru"
     ],
     "meanings": [
-      "congregate",
-      "flock",
       "gather",
       "meet",
-      "swarm"
+      "congregate",
+      "swarm",
+      "flock"
     ],
     "stroke_count": 12
   },
@@ -2032,26 +2032,26 @@
         "ベツ"
       ],
       "kun": [
-        "わ.ける",
-        "わか.れる"
+        "わか.れる",
+        "わ.ける"
       ]
     },
     "romaji_readings": [
       "betsu",
-      "wakeru",
-      "wakareru"
+      "wakareru",
+      "wakeru"
     ],
     "primary_romaji": [
       "betsu",
       "wakareru"
     ],
     "meanings": [
-      "another",
+      "separate",
       "branch off",
       "diverge",
-      "extra",
       "fork",
-      "separate",
+      "another",
+      "extra",
       "specially"
     ],
     "stroke_count": 7
@@ -2081,9 +2081,9 @@
       "mono"
     ],
     "meanings": [
-      "matter",
+      "thing",
       "object",
-      "thing"
+      "matter"
     ],
     "stroke_count": 8
   },
@@ -2097,30 +2097,30 @@
         "シ"
       ],
       "kun": [
-        "-つか.い",
-        "-づか.い",
+        "つか.う",
         "つか.い",
-        "つか.う"
+        "-つか.い",
+        "-づか.い"
       ]
     },
     "romaji_readings": [
       "shi",
+      "tsukau",
       "tsukai",
-      "zukai",
-      "tsukau"
+      "zukai"
     ],
     "primary_romaji": [
       "shi",
       "tsukau"
     ],
     "meanings": [
-      "ambassador",
-      "cause",
-      "envoy",
-      "messenger",
-      "order",
+      "use",
       "send on a mission",
-      "use"
+      "order",
+      "messenger",
+      "envoy",
+      "ambassador",
+      "cause"
     ],
     "stroke_count": 8
   },
@@ -2148,11 +2148,11 @@
       "shina"
     ],
     "meanings": [
-      "article",
-      "counter for meal courses",
-      "dignity",
       "goods",
-      "refinement"
+      "refinement",
+      "dignity",
+      "article",
+      "counter for meal courses"
     ],
     "stroke_count": 9
   },
@@ -2166,24 +2166,24 @@
         "ケイ"
       ],
       "kun": [
-        "はか.らう",
-        "はか.る"
+        "はか.る",
+        "はか.らう"
       ]
     },
     "romaji_readings": [
       "kei",
-      "hakarau",
-      "hakaru"
+      "hakaru",
+      "hakarau"
     ],
     "primary_romaji": [
       "kei",
       "hakarau"
     ],
     "meanings": [
-      "measure",
-      "plan",
       "plot",
-      "scheme"
+      "plan",
+      "scheme",
+      "measure"
     ],
     "stroke_count": 9
   },
@@ -2197,14 +2197,14 @@
         "シ"
       ],
       "kun": [
-        "し.に-",
-        "し.ぬ"
+        "し.ぬ",
+        "し.に-"
       ]
     },
     "romaji_readings": [
       "shi",
-      "shini",
-      "shinu"
+      "shinu",
+      "shini"
     ],
     "primary_romaji": [
       "shi",
@@ -2262,9 +2262,9 @@
       "watakushi"
     ],
     "meanings": [
+      "private",
       "I",
-      "me",
-      "private"
+      "me"
     ],
     "stroke_count": 7
   },
@@ -2278,9 +2278,9 @@
         "シ"
       ],
       "kun": [
+        "はじ.める",
         "-はじ.める",
-        "はじ.まる",
-        "はじ.める"
+        "はじ.まる"
       ]
     },
     "romaji_readings": [
@@ -2293,8 +2293,8 @@
       "hajimeru"
     ],
     "meanings": [
-      "begin",
-      "commence"
+      "commence",
+      "begin"
     ],
     "stroke_count": 8
   },
@@ -2320,12 +2320,12 @@
       "asa"
     ],
     "meanings": [
-      "(North) Korea",
-      "dynasty",
-      "epoch",
       "morning",
+      "dynasty",
+      "regime",
+      "epoch",
       "period",
-      "regime"
+      "(North) Korea"
     ],
     "stroke_count": 12
   },
@@ -2351,14 +2351,14 @@
       "hakobu"
     ],
     "meanings": [
-      "advance",
       "carry",
+      "luck",
       "destiny",
       "fate",
       "lot",
-      "luck",
+      "transport",
       "progress",
-      "transport"
+      "advance"
     ],
     "stroke_count": 12
   },
@@ -2372,10 +2372,10 @@
         "シュウ"
       ],
       "kun": [
-        "-お.わる",
-        "お.える",
         "お.わる",
+        "-お.わる",
         "おわ.る",
+        "お.える",
         "つい",
         "つい.に"
       ]
@@ -2404,30 +2404,30 @@
     "order_index": 73,
     "readings": {
       "on": [
-        "タイ",
-        "ダイ"
+        "ダイ",
+        "タイ"
       ],
       "kun": [
         "うてな",
-        "つかさ",
-        "われ"
+        "われ",
+        "つかさ"
       ]
     },
     "romaji_readings": [
-      "tai",
       "dai",
+      "tai",
       "utena",
-      "tsukasa",
-      "ware"
+      "ware",
+      "tsukasa"
     ],
     "primary_romaji": [
       "dai",
       "utena"
     ],
     "meanings": [
+      "pedestal",
       "a stand",
-      "counter for machines and vehicles",
-      "pedestal"
+      "counter for machines and vehicles"
     ],
     "stroke_count": 5
   },
@@ -2442,28 +2442,28 @@
       ],
       "kun": [
         "ひろ.い",
-        "ひろ.がる",
-        "ひろ.げる",
         "ひろ.まる",
-        "ひろ.める"
+        "ひろ.める",
+        "ひろ.がる",
+        "ひろ.げる"
       ]
     },
     "romaji_readings": [
       "kou",
       "hiroi",
-      "hirogaru",
-      "hirogeru",
       "hiromaru",
-      "hiromeru"
+      "hiromeru",
+      "hirogaru",
+      "hirogeru"
     ],
     "primary_romaji": [
       "kou",
       "hiroi"
     ],
     "meanings": [
+      "wide",
       "broad",
-      "spacious",
-      "wide"
+      "spacious"
     ],
     "stroke_count": 5
   },
@@ -2475,21 +2475,21 @@
     "readings": {
       "on": [
         "ジュウ",
-        "チュウ",
-        "ヂュウ"
+        "ヂュウ",
+        "チュウ"
       ],
       "kun": [
-        "-ず.まい",
+        "す.む",
         "す.まう",
-        "す.む"
+        "-ず.まい"
       ]
     },
     "romaji_readings": [
       "juu",
       "chuu",
-      "zumai",
+      "sumu",
       "sumau",
-      "sumu"
+      "zumai"
     ],
     "primary_romaji": [
       "juu",
@@ -2497,9 +2497,9 @@
     ],
     "meanings": [
       "dwell",
-      "inhabit",
+      "reside",
       "live",
-      "reside"
+      "inhabit"
     ],
     "stroke_count": 7
   },
@@ -2528,9 +2528,9 @@
       "ma"
     ],
     "meanings": [
-      "Buddhist sect",
+      "true",
       "reality",
-      "true"
+      "Buddhist sect"
     ],
     "stroke_count": 10
   },
@@ -2541,29 +2541,29 @@
     "order_index": 77,
     "readings": {
       "on": [
-        "ウ",
-        "ユウ"
+        "ユウ",
+        "ウ"
       ],
       "kun": [
         "あ.る"
       ]
     },
     "romaji_readings": [
-      "u",
       "yuu",
+      "u",
       "aru"
     ],
     "primary_romaji": [
-      "u",
+      "yuu",
       "aru"
     ],
     "meanings": [
-      "approx",
+      "possess",
+      "have",
       "exist",
       "happen",
-      "have",
       "occur",
-      "possess"
+      "approx"
     ],
     "stroke_count": 6
   },
@@ -2574,16 +2574,16 @@
     "order_index": 78,
     "readings": {
       "on": [
-        "ク",
-        "コウ"
+        "コウ",
+        "ク"
       ],
       "kun": [
         "くち"
       ]
     },
     "romaji_readings": [
-      "ku",
       "kou",
+      "ku",
       "kuchi"
     ],
     "primary_romaji": [
@@ -2646,10 +2646,10 @@
       "machi"
     ],
     "meanings": [
-      "block",
-      "street",
       "town",
-      "village"
+      "village",
+      "block",
+      "street"
     ],
     "stroke_count": 7
   },
@@ -2683,23 +2683,23 @@
     "order_index": 82,
     "readings": {
       "on": [
+        "コウ",
         "ク",
-        "グ",
-        "コウ"
+        "グ"
       ],
       "kun": []
     },
     "romaji_readings": [
+      "kou",
       "ku",
-      "gu",
-      "kou"
+      "gu"
     ],
     "primary_romaji": [
       "kou"
     ],
     "meanings": [
-      "construction",
       "craft",
+      "construction",
       "katakana e radical (no. 48)"
     ],
     "stroke_count": 3
@@ -2715,19 +2715,19 @@
         "コン"
       ],
       "kun": [
-        "-だ.て",
-        "た.つ",
+        "た.てる",
         "た.て",
-        "た.てる"
+        "-だ.て",
+        "た.つ"
       ]
     },
     "romaji_readings": [
       "ken",
       "kon",
-      "date",
-      "tatsu",
+      "tateru",
       "tate",
-      "tateru"
+      "date",
+      "tatsu"
     ],
     "primary_romaji": [
       "ken",
@@ -2748,25 +2748,25 @@
         "クウ"
       ],
       "kun": [
-        "あ.き",
+        "そら",
         "あ.く",
+        "あ.き",
         "あ.ける",
         "から",
-        "す.かす",
         "す.く",
-        "そら",
+        "す.かす",
         "むな.しい"
       ]
     },
     "romaji_readings": [
       "kuu",
-      "aki",
+      "sora",
       "aku",
+      "aki",
       "akeru",
       "kara",
-      "sukasu",
       "suku",
-      "sora",
+      "sukasu",
       "munashii"
     ],
     "primary_romaji": [
@@ -2776,9 +2776,9 @@
     "meanings": [
       "empty",
       "sky",
+      "void",
       "vacant",
-      "vacuum",
-      "void"
+      "vacuum"
     ],
     "stroke_count": 8
   },
@@ -2792,15 +2792,15 @@
         "キュウ"
       ],
       "kun": [
-        "いそ.ぎ",
         "いそ.ぐ",
+        "いそ.ぎ",
         "せ.く"
       ]
     },
     "romaji_readings": [
       "kyuu",
-      "isogi",
       "isogu",
+      "isogi",
       "seku"
     ],
     "primary_romaji": [
@@ -2808,10 +2808,10 @@
       "isogu"
     ],
     "meanings": [
-      "emergency",
       "hurry",
-      "steep",
-      "sudden"
+      "emergency",
+      "sudden",
+      "steep"
     ],
     "stroke_count": 9
   },
@@ -2825,44 +2825,44 @@
         "シ"
       ],
       "kun": [
-        "-さ.し",
-        "-さ.す",
-        "-と.める",
-        "-ど.まり",
-        "-ど.め",
-        "-や.む",
         "と.まる",
+        "-ど.まり",
         "と.める",
-        "とど.まる",
-        "とど.め",
+        "-と.める",
+        "-ど.め",
         "とど.める",
-        "や.む",
+        "とど.め",
+        "とど.まる",
         "や.める",
-        "よ.す"
+        "や.む",
+        "-や.む",
+        "よ.す",
+        "-さ.す",
+        "-さ.し"
       ]
     },
     "romaji_readings": [
       "shi",
-      "sashi",
-      "sasu",
-      "tomeru",
-      "domari",
-      "dome",
-      "yamu",
       "tomaru",
-      "todomaru",
-      "todome",
+      "domari",
+      "tomeru",
+      "dome",
       "todomeru",
+      "todome",
+      "todomaru",
       "yameru",
-      "yosu"
+      "yamu",
+      "yosu",
+      "sasu",
+      "sashi"
     ],
     "primary_romaji": [
       "shi",
       "tomeru"
     ],
     "meanings": [
-      "halt",
-      "stop"
+      "stop",
+      "halt"
     ],
     "stroke_count": 4
   },
@@ -2900,30 +2900,30 @@
     "order_index": 88,
     "readings": {
       "on": [
-        "サイ",
-        "セツ"
+        "セツ",
+        "サイ"
       ],
       "kun": [
-        "-き.り",
-        "-き.る",
-        "-き.れ",
-        "-き.れる",
-        "-ぎ.り",
-        "-ぎ.れ",
-        "き.り",
         "き.る",
+        "-き.る",
+        "き.り",
+        "-き.り",
+        "-ぎ.り",
+        "き.れる",
+        "-き.れる",
         "き.れ",
-        "き.れる"
+        "-き.れ",
+        "-ぎ.れ"
       ]
     },
     "romaji_readings": [
-      "sai",
       "setsu",
-      "kiri",
+      "sai",
       "kiru",
-      "kire",
-      "kireru",
+      "kiri",
       "giri",
+      "kireru",
+      "kire",
       "gire"
     ],
     "primary_romaji": [
@@ -2931,9 +2931,9 @@
       "kiru"
     ],
     "meanings": [
-      "be sharp",
       "cut",
-      "cutoff"
+      "cutoff",
+      "be sharp"
     ],
     "stroke_count": 4
   },
@@ -2947,35 +2947,35 @@
         "テン"
       ],
       "kun": [
-        "うたた",
-        "うつ.る",
-        "くる.めく",
-        "ころ.がす",
         "ころ.がる",
         "ころ.げる",
+        "ころ.がす",
         "ころ.ぶ",
-        "まろ.ぶ"
+        "まろ.ぶ",
+        "うたた",
+        "うつ.る",
+        "くる.めく"
       ]
     },
     "romaji_readings": [
       "ten",
-      "utata",
-      "utsuru",
-      "kurumeku",
-      "korogasu",
       "korogaru",
       "korogeru",
+      "korogasu",
       "korobu",
-      "marobu"
+      "marobu",
+      "utata",
+      "utsuru",
+      "kurumeku"
     ],
     "primary_romaji": [
       "ten",
       "korogaru"
     ],
     "meanings": [
-      "change",
       "revolve",
-      "turn around"
+      "turn around",
+      "change"
     ],
     "stroke_count": 11
   },
@@ -3002,8 +3002,8 @@
     ],
     "meanings": [
       "polish",
-      "sharpen",
-      "study of"
+      "study of",
+      "sharpen"
     ],
     "stroke_count": 9
   },
@@ -3018,27 +3018,27 @@
       ],
       "kun": [
         "あし",
-        "た.す",
         "た.りる",
-        "た.る"
+        "た.る",
+        "た.す"
       ]
     },
     "romaji_readings": [
       "soku",
       "ashi",
-      "tasu",
       "tariru",
-      "taru"
+      "taru",
+      "tasu"
     ],
     "primary_romaji": [
       "soku",
       "ashi"
     ],
     "meanings": [
-      "be sufficient",
-      "counter for pairs of footwear",
+      "leg",
       "foot",
-      "leg"
+      "be sufficient",
+      "counter for pairs of footwear"
     ],
     "stroke_count": 7
   },
@@ -3078,31 +3078,31 @@
     "readings": {
       "on": [
         "ガク",
-        "ゴウ",
-        "ラク"
+        "ラク",
+        "ゴウ"
       ],
       "kun": [
-        "この.む",
         "たの.しい",
-        "たの.しむ"
+        "たの.しむ",
+        "この.む"
       ]
     },
     "romaji_readings": [
       "gaku",
-      "gou",
       "raku",
-      "konomu",
+      "gou",
       "tanoshii",
-      "tanoshimu"
+      "tanoshimu",
+      "konomu"
     ],
     "primary_romaji": [
       "gaku",
       "tanoshii"
     ],
     "meanings": [
+      "music",
       "comfort",
-      "ease",
-      "music"
+      "ease"
     ],
     "stroke_count": 13
   },
@@ -3117,8 +3117,8 @@
       ],
       "kun": [
         "お.きる",
-        "お.こす",
         "お.こる",
+        "お.こす",
         "おこ.す",
         "た.つ"
       ]
@@ -3126,8 +3126,8 @@
     "romaji_readings": [
       "ki",
       "okiru",
-      "okosu",
       "okoru",
+      "okosu",
       "tatsu"
     ],
     "primary_romaji": [
@@ -3135,9 +3135,9 @@
       "okoru"
     ],
     "meanings": [
-      "get up",
       "rouse",
-      "wake up"
+      "wake up",
+      "get up"
     ],
     "stroke_count": 10
   },
@@ -3148,21 +3148,21 @@
     "order_index": 95,
     "readings": {
       "on": [
-        "ジャク",
-        "チャク"
+        "チャク",
+        "ジャク"
       ],
       "kun": [
-        "き.せる",
         "き.る",
+        "き.せる",
         "つ.く",
         "つ.ける"
       ]
     },
     "romaji_readings": [
-      "jaku",
       "chaku",
-      "kiseru",
+      "jaku",
       "kiru",
+      "kiseru",
       "tsuku",
       "tsukeru"
     ],
@@ -3171,10 +3171,10 @@
       "tsuku"
     ],
     "meanings": [
-      "arrive",
-      "counter for suits of clothing",
       "don",
-      "wear"
+      "arrive",
+      "wear",
+      "counter for suits of clothing"
     ],
     "stroke_count": 12
   },
@@ -3188,22 +3188,22 @@
         "テン"
       ],
       "kun": [
-        "たな",
-        "みせ"
+        "みせ",
+        "たな"
       ]
     },
     "romaji_readings": [
       "ten",
-      "tana",
-      "mise"
+      "mise",
+      "tana"
     ],
     "primary_romaji": [
       "ten",
       "mise"
     ],
     "meanings": [
-      "shop",
-      "store"
+      "store",
+      "shop"
     ],
     "stroke_count": 8
   },
@@ -3218,16 +3218,16 @@
         "ヘイ"
       ],
       "kun": [
-        "-や.み",
         "や.む",
+        "-や.み",
         "やまい"
       ]
     },
     "romaji_readings": [
       "byou",
       "hei",
-      "yami",
       "yamu",
+      "yami",
       "yamai"
     ],
     "primary_romaji": [
@@ -3247,23 +3247,23 @@
     "order_index": 98,
     "readings": {
       "on": [
-        "シチ",
         "シツ",
+        "シチ",
         "チ"
       ],
       "kun": [
-        "ただ.す",
         "たち",
+        "ただ.す",
         "もと",
         "わりふ"
       ]
     },
     "romaji_readings": [
-      "shichi",
       "shitsu",
+      "shichi",
       "chi",
-      "tadasu",
       "tachi",
+      "tadasu",
       "moto",
       "warifu"
     ],
@@ -3272,9 +3272,9 @@
       "tadasu"
     ],
     "meanings": [
-      "matter",
-      "quality",
       "substance",
+      "quality",
+      "matter",
       "temperament"
     ],
     "stroke_count": 15
@@ -3289,22 +3289,22 @@
         "タイ"
       ],
       "kun": [
-        "-ま.ち",
-        "ま.つ"
+        "ま.つ",
+        "-ま.ち"
       ]
     },
     "romaji_readings": [
       "tai",
-      "machi",
-      "matsu"
+      "matsu",
+      "machi"
     ],
     "primary_romaji": [
       "tai",
       "matsu"
     ],
     "meanings": [
-      "depend on",
-      "wait"
+      "wait",
+      "depend on"
     ],
     "stroke_count": 9
   },
@@ -3332,11 +3332,11 @@
       "tamesu"
     ],
     "meanings": [
+      "test",
+      "try",
       "attempt",
       "experiment",
-      "ordeal",
-      "test",
-      "try"
+      "ordeal"
     ],
     "stroke_count": 13
   },
@@ -3358,8 +3358,8 @@
       "zoku"
     ],
     "meanings": [
-      "family",
-      "tribe"
+      "tribe",
+      "family"
     ],
     "stroke_count": 11
   },
@@ -3396,30 +3396,30 @@
     "order_index": 103,
     "readings": {
       "on": [
-        "サッ",
-        "ソウ"
+        "ソウ",
+        "サッ"
       ],
       "kun": [
-        "さ-",
+        "はや.い",
         "はや",
         "はや-",
-        "はや.い",
         "はや.まる",
-        "はや.める"
+        "はや.める",
+        "さ-"
       ]
     },
     "romaji_readings": [
-      "satsu",
       "sou",
-      "sa",
-      "haya",
+      "satsu",
       "hayai",
+      "haya",
       "hayamaru",
-      "hayameru"
+      "hayameru",
+      "sa"
     ],
     "primary_romaji": [
       "sou",
-      "haya"
+      "hayai"
     ],
     "meanings": [
       "early",
@@ -3437,27 +3437,27 @@
         "エイ"
       ],
       "kun": [
-        "-ば.え",
-        "うつ.す",
         "うつ.る",
-        "は.える"
+        "うつ.す",
+        "は.える",
+        "-ば.え"
       ]
     },
     "romaji_readings": [
       "ei",
-      "bae",
-      "utsusu",
       "utsuru",
-      "haeru"
+      "utsusu",
+      "haeru",
+      "bae"
     ],
     "primary_romaji": [
       "ei",
       "utsuru"
     ],
     "meanings": [
-      "projection",
       "reflect",
-      "reflection"
+      "reflection",
+      "projection"
     ],
     "stroke_count": 9
   },
@@ -3488,11 +3488,11 @@
       "oya"
     ],
     "meanings": [
-      "dealer (cards)",
-      "familiarity",
-      "intimacy",
       "parent",
-      "relative"
+      "intimacy",
+      "relative",
+      "familiarity",
+      "dealer (cards)"
     ],
     "stroke_count": 16
   },
@@ -3526,9 +3526,9 @@
       "shirushi"
     ],
     "meanings": [
+      "verification",
       "effect",
-      "testing",
-      "verification"
+      "testing"
     ],
     "stroke_count": 18
   },
@@ -3556,9 +3556,9 @@
     "meanings": [
       "England",
       "English",
-      "calyx",
       "hero",
-      "outstanding"
+      "outstanding",
+      "calyx"
     ],
     "stroke_count": 8
   },
@@ -3572,15 +3572,15 @@
         "イ"
       ],
       "kun": [
-        "い.する",
         "い.やす",
+        "い.する",
         "くすし"
       ]
     },
     "romaji_readings": [
       "i",
-      "isuru",
       "iyasu",
+      "isuru",
       "kusushi"
     ],
     "primary_romaji": [
@@ -3635,8 +3635,8 @@
         "コ"
       ],
       "kun": [
-        "-さ.る",
-        "さ.る"
+        "さ.る",
+        "-さ.る"
       ]
     },
     "romaji_readings": [
@@ -3649,13 +3649,13 @@
       "saru"
     ],
     "meanings": [
-      "divorce",
+      "gone",
+      "past",
+      "quit",
+      "leave",
       "elapse",
       "eliminate",
-      "gone",
-      "leave",
-      "past",
-      "quit"
+      "divorce"
     ],
     "stroke_count": 5
   },
@@ -3699,27 +3699,27 @@
         "ジャ"
       ],
       "kun": [
-        "うつ-",
-        "うつ.し",
         "うつ.す",
-        "うつ.る"
+        "うつ.る",
+        "うつ-",
+        "うつ.し"
       ]
     },
     "romaji_readings": [
       "sha",
       "ja",
-      "utsu",
-      "utsushi",
       "utsusu",
-      "utsuru"
+      "utsuru",
+      "utsu",
+      "utsushi"
     ],
     "primary_romaji": [
       "sha",
-      "utsu"
+      "utsuru"
     ],
     "meanings": [
-      "be photographed",
       "copy",
+      "be photographed",
       "describe"
     ],
     "stroke_count": 5
@@ -3734,16 +3734,16 @@
         "ジ"
       ],
       "kun": [
-        "-な",
         "あざ",
-        "あざな"
+        "あざな",
+        "-な"
       ]
     },
     "romaji_readings": [
       "ji",
-      "na",
       "aza",
-      "azana"
+      "azana",
+      "na"
     ],
     "primary_romaji": [
       "ji",
@@ -3752,8 +3752,8 @@
     "meanings": [
       "character",
       "letter",
-      "section of village",
-      "word"
+      "word",
+      "section of village"
     ],
     "stroke_count": 6
   },
@@ -3767,22 +3767,22 @@
         "トウ"
       ],
       "kun": [
-        "こた.え",
-        "こた.える"
+        "こた.える",
+        "こた.え"
       ]
     },
     "romaji_readings": [
       "tou",
-      "kotae",
-      "kotaeru"
+      "kotaeru",
+      "kotae"
     ],
     "primary_romaji": [
       "tou",
-      "kotae"
+      "kotaeru"
     ],
     "meanings": [
-      "answer",
-      "solution"
+      "solution",
+      "answer"
     ],
     "stroke_count": 12
   },
@@ -3810,8 +3810,8 @@
       "yo"
     ],
     "meanings": [
-      "evening",
-      "night"
+      "night",
+      "evening"
     ],
     "stroke_count": 8
   },
@@ -3822,9 +3822,9 @@
     "order_index": 116,
     "readings": {
       "on": [
-        "-ノン",
+        "オン",
         "イン",
-        "オン"
+        "-ノン"
       ],
       "kun": [
         "おと",
@@ -3832,9 +3832,9 @@
       ]
     },
     "romaji_readings": [
-      "non",
-      "in",
       "on",
+      "in",
+      "non",
       "oto",
       "ne"
     ],
@@ -3843,8 +3843,8 @@
       "oto"
     ],
     "meanings": [
-      "noise",
-      "sound"
+      "sound",
+      "noise"
     ],
     "stroke_count": 9
   },
@@ -3858,15 +3858,15 @@
         "チュウ"
       ],
       "kun": [
-        "さ.す",
         "そそ.ぐ",
+        "さ.す",
         "つ.ぐ"
       ]
     },
     "romaji_readings": [
       "chuu",
-      "sasu",
       "sosogu",
+      "sasu",
       "tsugu"
     ],
     "primary_romaji": [
@@ -3874,14 +3874,14 @@
       "sosogu"
     ],
     "meanings": [
-      "annotate",
-      "comment",
-      "concentrate on",
-      "flow into",
-      "irrigate",
-      "notes",
       "pour",
-      "shed (tears)"
+      "irrigate",
+      "shed (tears)",
+      "flow into",
+      "concentrate on",
+      "notes",
+      "comment",
+      "annotate"
     ],
     "stroke_count": 8
   },
@@ -3895,17 +3895,17 @@
         "キ"
       ],
       "kun": [
-        "おく.る",
-        "かえ.す",
         "かえ.る",
+        "かえ.す",
+        "おく.る",
         "とつ.ぐ"
       ]
     },
     "romaji_readings": [
       "ki",
-      "okuru",
-      "kaesu",
       "kaeru",
+      "kaesu",
+      "okuru",
       "totsugu"
     ],
     "primary_romaji": [
@@ -3913,8 +3913,8 @@
       "kaeru"
     ],
     "meanings": [
-      "arrive at",
       "homecoming",
+      "arrive at",
       "lead to",
       "result in"
     ],
@@ -3930,20 +3930,20 @@
         "コ"
       ],
       "kun": [
-        "-ふる.す",
+        "ふる.い",
         "ふる-",
-        "ふる.い"
+        "-ふる.す"
       ]
     },
     "romaji_readings": [
       "ko",
-      "furusu",
+      "furui",
       "furu",
-      "furui"
+      "furusu"
     ],
     "primary_romaji": [
       "ko",
-      "furu"
+      "furui"
     ],
     "meanings": [
       "old"
@@ -3974,8 +3974,8 @@
       "uta"
     ],
     "meanings": [
-      "sing",
-      "song"
+      "song",
+      "sing"
     ],
     "stroke_count": 14
   },
@@ -4016,39 +4016,39 @@
         "オ"
       ],
       "kun": [
-        "-にく.い",
+        "わる.い",
+        "わる-",
         "あ.し",
+        "にく.い",
+        "-にく.い",
         "ああ",
         "いずくに",
         "いずくんぞ",
-        "にく.い",
-        "にく.む",
-        "わる-",
-        "わる.い"
+        "にく.む"
       ]
     },
     "romaji_readings": [
       "aku",
       "o",
-      "nikui",
+      "warui",
+      "waru",
       "ashi",
+      "nikui",
       "aa",
       "izukuni",
       "izukunzo",
-      "nikumu",
-      "waru",
-      "warui"
+      "nikumu"
     ],
     "primary_romaji": [
       "aku",
-      "waru"
+      "warui"
     ],
     "meanings": [
       "bad",
-      "evil",
-      "false",
-      "rascal",
       "vice",
+      "rascal",
+      "false",
+      "evil",
       "wrong"
     ],
     "stroke_count": 11
@@ -4079,11 +4079,11 @@
       "hakaru"
     ],
     "meanings": [
-      "audacious",
-      "drawing",
-      "extraordinary",
       "map",
-      "plan"
+      "drawing",
+      "plan",
+      "extraordinary",
+      "audacious"
     ],
     "stroke_count": 7
   },
@@ -4131,11 +4131,11 @@
       "muro"
     ],
     "meanings": [
+      "room",
       "apartment",
-      "cellar",
       "chamber",
       "greenhouse",
-      "room"
+      "cellar"
     ],
     "stroke_count": 9
   },
@@ -4146,29 +4146,29 @@
     "order_index": 126,
     "readings": {
       "on": [
-        "フ",
+        "ホ",
         "ブ",
-        "ホ"
+        "フ"
       ],
       "kun": [
-        "あゆ.む",
-        "ある.く"
+        "ある.く",
+        "あゆ.む"
       ]
     },
     "romaji_readings": [
-      "fu",
-      "bu",
       "ho",
-      "ayumu",
-      "aruku"
+      "bu",
+      "fu",
+      "aruku",
+      "ayumu"
     ],
     "primary_romaji": [
       "ho",
       "aruku"
     ],
     "meanings": [
-      "counter for steps",
-      "walk"
+      "walk",
+      "counter for steps"
     ],
     "stroke_count": 8
   },
@@ -4179,29 +4179,29 @@
     "order_index": 127,
     "readings": {
       "on": [
-        "フ",
-        "フウ"
+        "フウ",
+        "フ"
       ],
       "kun": [
-        "かざ-",
-        "かぜ"
+        "かぜ",
+        "かざ-"
       ]
     },
     "romaji_readings": [
-      "fu",
       "fuu",
-      "kaza",
-      "kaze"
+      "fu",
+      "kaze",
+      "kaza"
     ],
     "primary_romaji": [
-      "fu",
+      "fuu",
       "kaze"
     ],
     "meanings": [
+      "wind",
       "air",
-      "manner",
       "style",
-      "wind"
+      "manner"
     ],
     "stroke_count": 9
   },
@@ -4242,15 +4242,15 @@
       ],
       "kun": [
         "くろ",
-        "くろ.い",
-        "くろ.ずむ"
+        "くろ.ずむ",
+        "くろ.い"
       ]
     },
     "romaji_readings": [
       "koku",
       "kuro",
-      "kuroi",
-      "kurozumu"
+      "kurozumu",
+      "kuroi"
     ],
     "primary_romaji": [
       "koku",
@@ -4311,8 +4311,8 @@
       "haru"
     ],
     "meanings": [
-      "spring (season)",
-      "springtime"
+      "springtime",
+      "spring (season)"
     ],
     "stroke_count": 9
   },
@@ -4323,8 +4323,8 @@
     "order_index": 132,
     "readings": {
       "on": [
-        "シャク",
-        "セキ"
+        "セキ",
+        "シャク"
       ],
       "kun": [
         "あか",
@@ -4335,8 +4335,8 @@
       ]
     },
     "romaji_readings": [
-      "shaku",
       "seki",
+      "shaku",
       "aka",
       "akai",
       "akaramu",
@@ -4358,8 +4358,8 @@
     "order_index": 133,
     "readings": {
       "on": [
-        "ショウ",
-        "セイ"
+        "セイ",
+        "ショウ"
       ],
       "kun": [
         "あお",
@@ -4368,8 +4368,8 @@
       ]
     },
     "romaji_readings": [
-      "shou",
       "sei",
+      "shou",
       "ao",
       "aoi"
     ],
@@ -4393,14 +4393,14 @@
         "カン"
       ],
       "kun": [
-        "たて",
-        "やかた"
+        "やかた",
+        "たて"
       ]
     },
     "romaji_readings": [
       "kan",
-      "tate",
-      "yakata"
+      "yakata",
+      "tate"
     ],
     "primary_romaji": [
       "kan",
@@ -4408,8 +4408,8 @@
     ],
     "meanings": [
       "building",
-      "large building",
       "mansion",
+      "large building",
       "palace"
     ],
     "stroke_count": 16
@@ -4436,11 +4436,11 @@
       "ya"
     ],
     "meanings": [
-      "dealer",
-      "house",
       "roof",
-      "seller",
-      "shop"
+      "house",
+      "shop",
+      "dealer",
+      "seller"
     ],
     "stroke_count": 9
   },
@@ -4451,16 +4451,16 @@
     "order_index": 136,
     "readings": {
       "on": [
-        "シキ",
-        "ショク"
+        "ショク",
+        "シキ"
       ],
       "kun": [
         "いろ"
       ]
     },
     "romaji_readings": [
-      "shiki",
       "shoku",
+      "shiki",
       "iro"
     ],
     "primary_romaji": [
@@ -4567,15 +4567,15 @@
         "ジュ"
       ],
       "kun": [
-        "なら.い",
-        "なら.う"
+        "なら.う",
+        "なら.い"
       ]
     },
     "romaji_readings": [
       "shuu",
       "ju",
-      "narai",
-      "narau"
+      "narau",
+      "narai"
     ],
     "primary_romaji": [
       "shuu",
@@ -4626,10 +4626,10 @@
       "you"
     ],
     "meanings": [
-      "Western style",
-      "foreign",
       "ocean",
-      "sea"
+      "sea",
+      "foreign",
+      "Western style"
     ],
     "stroke_count": 9
   },
@@ -4655,8 +4655,8 @@
       "tabi"
     ],
     "meanings": [
-      "travel",
-      "trip"
+      "trip",
+      "travel"
     ],
     "stroke_count": 10
   },
@@ -4678,10 +4678,10 @@
       "fuku"
     ],
     "meanings": [
-      "admit",
       "clothing",
-      "discharge",
-      "obey"
+      "admit",
+      "obey",
+      "discharge"
     ],
     "stroke_count": 8
   },
@@ -4771,15 +4771,15 @@
         "オン"
       ],
       "kun": [
-        "-の.み",
-        "の.む"
+        "の.む",
+        "-の.み"
       ]
     },
     "romaji_readings": [
       "in",
       "on",
-      "nomi",
-      "nomu"
+      "nomu",
+      "nomi"
     ],
     "primary_romaji": [
       "in",
@@ -4828,15 +4828,15 @@
         "タイ"
       ],
       "kun": [
-        "か.し-",
         "か.す",
+        "か.し-",
         "かし-"
       ]
     },
     "romaji_readings": [
       "tai",
-      "kashi",
-      "kasu"
+      "kasu",
+      "kashi"
     ],
     "primary_romaji": [
       "tai",
@@ -4865,8 +4865,8 @@
       "dou"
     ],
     "meanings": [
-      "hall",
-      "public chamber"
+      "public chamber",
+      "hall"
     ],
     "stroke_count": 11
   },
@@ -4919,8 +4919,8 @@
       "meshi"
     ],
     "meanings": [
-      "boiled rice",
-      "meal"
+      "meal",
+      "boiled rice"
     ],
     "stroke_count": 12
   },
@@ -4945,12 +4945,12 @@
       "ben"
     ],
     "meanings": [
-      "diligent",
-      "encourage",
-      "endeavour",
       "exertion",
+      "endeavour",
+      "encourage",
+      "strive",
       "make effort",
-      "strive"
+      "diligent"
     ],
     "stroke_count": 10
   },
@@ -5014,14 +5014,14 @@
     "order_index": 157,
     "readings": {
       "on": [
-        "サ",
-        "チャ"
+        "チャ",
+        "サ"
       ],
       "kun": []
     },
     "romaji_readings": [
-      "sa",
-      "cha"
+      "cha",
+      "sa"
     ],
     "primary_romaji": [
       "cha"
@@ -5038,8 +5038,8 @@
     "order_index": 158,
     "readings": {
       "on": [
-        "ダイ",
         "テイ",
+        "ダイ",
         "デ"
       ],
       "kun": [
@@ -5047,8 +5047,8 @@
       ]
     },
     "romaji_readings": [
-      "dai",
       "tei",
+      "dai",
       "de",
       "otouto"
     ],
@@ -5057,8 +5057,8 @@
       "otouto"
     ],
     "meanings": [
-      "faithful service to elders",
-      "younger brother"
+      "younger brother",
+      "faithful service to elders"
     ],
     "stroke_count": 7
   },
@@ -5098,16 +5098,16 @@
         "ギョ"
       ],
       "kun": [
-        "-ざかな",
         "うお",
-        "さかな"
+        "さかな",
+        "-ざかな"
       ]
     },
     "romaji_readings": [
       "gyo",
-      "zakana",
       "uo",
-      "sakana"
+      "sakana",
+      "zakana"
     ],
     "primary_romaji": [
       "gyo",
@@ -5125,16 +5125,16 @@
     "order_index": 161,
     "readings": {
       "on": [
-        "キョウ",
-        "ケイ"
+        "ケイ",
+        "キョウ"
       ],
       "kun": [
         "あに"
       ]
     },
     "romaji_readings": [
-      "kyou",
       "kei",
+      "kyou",
       "ani"
     ],
     "primary_romaji": [
@@ -5142,8 +5142,8 @@
       "ani"
     ],
     "meanings": [
-      "big brother",
-      "elder brother"
+      "elder brother",
+      "big brother"
     ],
     "stroke_count": 5
   },
@@ -5246,8 +5246,8 @@
       "kan"
     ],
     "meanings": [
-      "China",
-      "Sino-"
+      "Sino-",
+      "China"
     ],
     "stroke_count": 13
   }
