@@ -48,7 +48,8 @@
       "hobiru"
     ],
     "primary_romaji": [
-      "tou"
+      "tou",
+      "suberu"
     ],
     "meanings": [
       "governing",
@@ -78,7 +79,8 @@
       "tamotsu"
     ],
     "primary_romaji": [
-      "ho"
+      "ho",
+      "tamotsu"
     ],
     "meanings": [
       "guarantee",
@@ -139,7 +141,8 @@
       "yuwaeru"
     ],
     "primary_romaji": [
-      "ketsu"
+      "ketsu",
+      "musubu"
     ],
     "meanings": [
       "bind",
@@ -260,8 +263,8 @@
       "motoi"
     ],
     "primary_romaji": [
-      "moto",
-      "ki"
+      "ki",
+      "moto"
     ],
     "meanings": [
       "counter for machines",
@@ -321,8 +324,7 @@
       "sageru"
     ],
     "primary_romaji": [
-      "dai",
-      "sageru"
+      "tei"
     ],
     "meanings": [
       "carry in hand",
@@ -353,7 +355,8 @@
       "kozoru"
     ],
     "primary_romaji": [
-      "kyo"
+      "kyo",
+      "kozoru"
     ],
     "meanings": [
       "actions",
@@ -480,6 +483,7 @@
       "fuji"
     ],
     "primary_romaji": [
+      "tou",
       "fuji"
     ],
     "meanings": [
@@ -511,8 +515,8 @@
       "tsuya"
     ],
     "primary_romaji": [
-      "sawa",
-      "taku"
+      "taku",
+      "sawa"
     ],
     "meanings": [
       "brilliance",
@@ -542,7 +546,8 @@
       "tatsu"
     ],
     "primary_romaji": [
-      "sai"
+      "sai",
+      "sabaku"
     ],
     "meanings": [
       "cut out (pattern)",
@@ -570,7 +575,8 @@
       "akashi"
     ],
     "primary_romaji": [
-      "shou"
+      "shou",
+      "akashi"
     ],
     "meanings": [
       "certificate",
@@ -623,7 +629,8 @@
       "hodokosu"
     ],
     "primary_romaji": [
-      "se"
+      "shi",
+      "hodokosu"
     ],
     "meanings": [
       "alms",
@@ -653,6 +660,7 @@
       "i"
     ],
     "primary_romaji": [
+      "sei",
       "i"
     ],
     "meanings": [
@@ -681,6 +689,7 @@
       "mamoru"
     ],
     "primary_romaji": [
+      "go",
       "mamoru"
     ],
     "meanings": [
@@ -730,7 +739,8 @@
       "wazato"
     ],
     "primary_romaji": [
-      "tai"
+      "tai",
+      "wazato"
     ],
     "meanings": [
       "appearance",
@@ -759,7 +769,8 @@
       "azayaka"
     ],
     "primary_romaji": [
-      "sen"
+      "sen",
+      "azayaka"
     ],
     "meanings": [
       "Korea",
@@ -822,7 +833,8 @@
       "suji"
     ],
     "primary_romaji": [
-      "jou"
+      "jou",
+      "suji"
     ],
     "meanings": [
       "article",
@@ -853,8 +865,8 @@
       "miki"
     ],
     "primary_romaji": [
-      "miki",
-      "kan"
+      "kan",
+      "miki"
     ],
     "meanings": [
       "capability",
@@ -884,7 +896,8 @@
       "hitori"
     ],
     "primary_romaji": [
-      "doku"
+      "doku",
+      "hitori"
     ],
     "meanings": [
       "Germany",
@@ -918,7 +931,7 @@
       "miya"
     ],
     "primary_romaji": [
-      "guu",
+      "kyuu",
       "miya"
     ],
     "meanings": [
@@ -951,7 +964,8 @@
       "hikiiru"
     ],
     "primary_romaji": [
-      "ritsu"
+      "ritsu",
+      "hikiiru"
     ],
     "meanings": [
       "%",
@@ -982,7 +996,7 @@
       "ei"
     ],
     "primary_romaji": [
-      "ei"
+      "e"
     ],
     "meanings": [
       "defense",
@@ -1012,7 +1026,8 @@
       "haru"
     ],
     "primary_romaji": [
-      "chou"
+      "chou",
+      "hari"
     ],
     "meanings": [
       "counter for bows & stringed instruments",
@@ -1066,7 +1081,8 @@
       "wa"
     ],
     "primary_romaji": [
-      "kan"
+      "kan",
+      "wa"
     ],
     "meanings": [
       "circle",
@@ -1178,8 +1194,8 @@
       "kabu"
     ],
     "primary_romaji": [
-      "kabu",
-      "shu"
+      "shu",
+      "kabu"
     ],
     "meanings": [
       "counter for small plants",
@@ -1208,6 +1224,7 @@
       "sugata"
     ],
     "primary_romaji": [
+      "shi",
       "sugata"
     ],
     "meanings": [
@@ -1261,7 +1278,7 @@
       "ooi"
     ],
     "primary_romaji": [
-      "shuu"
+      "shu"
     ],
     "meanings": [
       "great numbers",
@@ -1313,8 +1330,8 @@
       "kage"
     ],
     "primary_romaji": [
-      "kage",
-      "ei"
+      "ei",
+      "kage"
     ],
     "meanings": [
       "phantom",
@@ -1341,8 +1358,8 @@
       "matsu"
     ],
     "primary_romaji": [
-      "matsu",
-      "shou"
+      "shou",
+      "matsu"
     ],
     "meanings": [
       "pine tree"
@@ -1444,7 +1461,8 @@
       "totonoeru"
     ],
     "primary_romaji": [
-      "sei"
+      "sei",
+      "totonoeru"
     ],
     "meanings": [
       "arranging",
@@ -1476,8 +1494,7 @@
       "tokeru"
     ],
     "primary_romaji": [
-      "yuu",
-      "tokasu"
+      "yuu"
     ],
     "meanings": [
       "dissolve",
@@ -1551,6 +1568,7 @@
       "wataru"
     ],
     "primary_romaji": [
+      "shou",
       "wataru"
     ],
     "meanings": [
@@ -1581,7 +1599,8 @@
       "hibiku"
     ],
     "primary_romaji": [
-      "kyou"
+      "kyou",
+      "hibiku"
     ],
     "meanings": [
       "echo",
@@ -1610,8 +1629,7 @@
       "osu"
     ],
     "primary_romaji": [
-      "sui",
-      "osu"
+      "sui"
     ],
     "meanings": [
       "conjecture",
@@ -1647,8 +1665,8 @@
       "kou"
     ],
     "primary_romaji": [
-      "shou",
-      "ukeru"
+      "sei",
+      "kou"
     ],
     "meanings": [
       "ask",
@@ -1709,7 +1727,8 @@
       "samurai"
     ],
     "primary_romaji": [
-      "shi"
+      "shi",
+      "samurai"
     ],
     "meanings": [
       "gentleman",
@@ -1767,7 +1786,8 @@
       "semeru"
     ],
     "primary_romaji": [
-      "kou"
+      "kou",
+      "semeru"
     ],
     "meanings": [
       "aggression",
@@ -1799,6 +1819,7 @@
       "misaki"
     ],
     "primary_romaji": [
+      "ki",
       "saki"
     ],
     "meanings": [
@@ -1854,7 +1875,8 @@
       "sazukeru"
     ],
     "primary_romaji": [
-      "ju"
+      "ju",
+      "sazukeru"
     ],
     "meanings": [
       "confer",
@@ -1884,7 +1906,8 @@
       "moyoosu"
     ],
     "primary_romaji": [
-      "sai"
+      "sai",
+      "moyoosu"
     ],
     "meanings": [
       "give (a dinner)",
@@ -1970,7 +1993,8 @@
       "hanareru"
     ],
     "primary_romaji": [
-      "ri"
+      "ri",
+      "hanareru"
     ],
     "meanings": [
       "detach",
@@ -1998,7 +2022,8 @@
       "hageshii"
     ],
     "primary_romaji": [
-      "geki"
+      "geki",
+      "hageshii"
     ],
     "meanings": [
       "chafe",
@@ -2106,7 +2131,8 @@
       "otoko"
     ],
     "primary_romaji": [
-      "rou"
+      "rou",
+      "otoko"
     ],
     "meanings": [
       "counter for sons",
@@ -2132,7 +2158,8 @@
       "sukoyaka"
     ],
     "primary_romaji": [
-      "ken"
+      "ken",
+      "sukoyaka"
     ],
     "meanings": [
       "health",
@@ -2192,7 +2219,7 @@
     ],
     "primary_romaji": [
       "ju",
-      "juu"
+      "shitagau"
     ],
     "meanings": [
       "accompany",
@@ -2288,7 +2315,8 @@
       "oru"
     ],
     "primary_romaji": [
-      "shiki"
+      "shiki",
+      "ori"
     ],
     "meanings": [
       "fabric",
@@ -2320,8 +2348,7 @@
       "hiromeru"
     ],
     "primary_romaji": [
-      "kaku",
-      "hirogaru"
+      "kaku"
     ],
     "meanings": [
       "broaden",
@@ -2353,8 +2380,8 @@
       "yue"
     ],
     "primary_romaji": [
-      "yue",
-      "ko"
+      "ko",
+      "yue"
     ],
     "meanings": [
       "cause",
@@ -2430,7 +2457,8 @@
       "wakimaeru"
     ],
     "primary_romaji": [
-      "ben"
+      "ben",
+      "hanabira"
     ],
     "meanings": [
       "braid",
@@ -2467,8 +2495,7 @@
       "tsukeru"
     ],
     "primary_romaji": [
-      "shuu",
-      "tsuku"
+      "shuu"
     ],
     "meanings": [
       "concerning",
@@ -2536,7 +2563,7 @@
       "tatematsuru"
     ],
     "primary_romaji": [
-      "kon"
+      "ken"
     ],
     "meanings": [
       "counter for drinks",
@@ -2572,7 +2599,8 @@
       "kibishii"
     ],
     "primary_romaji": [
-      "gen"
+      "gen",
+      "kibishii"
     ],
     "meanings": [
       "rigidity",
@@ -2624,6 +2652,7 @@
       "hama"
     ],
     "primary_romaji": [
+      "hin",
       "hama"
     ],
     "meanings": [
@@ -2781,7 +2810,7 @@
     ],
     "primary_romaji": [
       "ken",
-      "tsukai"
+      "yaru"
     ],
     "meanings": [
       "despatch",
@@ -2812,7 +2841,8 @@
       "aragau"
     ],
     "primary_romaji": [
-      "kou"
+      "kou",
+      "aragau"
     ],
     "meanings": [
       "confront",
@@ -2870,8 +2900,8 @@
       "on"
     ],
     "primary_romaji": [
-      "osu",
-      "yuu"
+      "yuu",
+      "o"
     ],
     "meanings": [
       "excellence",
@@ -2903,7 +2933,8 @@
       "masu"
     ],
     "primary_romaji": [
-      "eki"
+      "eki",
+      "masu"
     ],
     "meanings": [
       "advantage",
@@ -2933,8 +2964,7 @@
       "shimeru"
     ],
     "primary_romaji": [
-      "kin",
-      "shimaru"
+      "kin"
     ],
     "meanings": [
       "hard",
@@ -3000,7 +3030,8 @@
       "notamau"
     ],
     "primary_romaji": [
-      "sen"
+      "sen",
+      "notamau"
     ],
     "meanings": [
       "announce",
@@ -3052,7 +3083,8 @@
       "sutareru"
     ],
     "primary_romaji": [
-      "hai"
+      "hai",
+      "sutareru"
     ],
     "meanings": [
       "abandon",
@@ -3195,7 +3227,8 @@
       "moru"
     ],
     "primary_romaji": [
-      "sei"
+      "sei",
+      "sakan"
     ],
     "meanings": [
       "boom",
@@ -3246,7 +3279,8 @@
       "nozomu"
     ],
     "primary_romaji": [
-      "rin"
+      "rin",
+      "nozomu"
     ],
     "meanings": [
       "attend",
@@ -3314,7 +3348,8 @@
       "yaburu"
     ],
     "primary_romaji": [
-      "kai"
+      "kai",
+      "kowareru"
     ],
     "meanings": [
       "break",
@@ -3369,7 +3404,7 @@
       "okoru"
     ],
     "primary_romaji": [
-      "kyou"
+      "kou"
     ],
     "meanings": [
       "entertain",
@@ -3489,7 +3524,8 @@
       "sawaru"
     ],
     "primary_romaji": [
-      "shou"
+      "shou",
+      "sawaru"
     ],
     "meanings": [
       "harm",
@@ -3548,8 +3584,8 @@
       "suji"
     ],
     "primary_romaji": [
-      "suji",
-      "kin"
+      "kin",
+      "suji"
     ],
     "meanings": [
       "descent",
@@ -3582,8 +3618,7 @@
       "tatakau"
     ],
     "primary_romaji": [
-      "tou",
-      "arasou"
+      "tou"
     ],
     "meanings": [
       "fight",
@@ -3609,7 +3644,8 @@
       "houmuru"
     ],
     "primary_romaji": [
-      "sou"
+      "sou",
+      "houmuru"
     ],
     "meanings": [
       "bury",
@@ -3638,7 +3674,8 @@
       "yokeru"
     ],
     "primary_romaji": [
-      "hi"
+      "hi",
+      "sakeru"
     ],
     "meanings": [
       "avert",
@@ -3668,7 +3705,8 @@
       "tsukasadoru"
     ],
     "primary_romaji": [
-      "shi"
+      "shi",
+      "tsukasadoru"
     ],
     "meanings": [
       "administer",
@@ -3726,7 +3764,8 @@
       "yoshitosuru"
     ],
     "primary_romaji": [
-      "zen"
+      "zen",
+      "ii"
     ],
     "meanings": [
       "good",
@@ -3927,7 +3966,8 @@
       "nugeru"
     ],
     "primary_romaji": [
-      "datsu"
+      "datsu",
+      "nugu"
     ],
     "meanings": [
       "be left out",
@@ -4081,7 +4121,7 @@
       "toru"
     ],
     "primary_romaji": [
-      "shuu"
+      "shitsu"
     ],
     "meanings": [
       "grasp",
@@ -4203,7 +4243,8 @@
       "hisoka"
     ],
     "primary_romaji": [
-      "mitsu"
+      "mitsu",
+      "hisoka"
     ],
     "meanings": [
       "carefulness",
@@ -4231,8 +4272,7 @@
       "oku"
     ],
     "primary_romaji": [
-      "so",
-      "oku"
+      "so"
     ],
     "meanings": [
       "discontinue",
@@ -4266,8 +4306,8 @@
       "shiringu"
     ],
     "primary_romaji": [
-      "kokorozashi",
-      "shi"
+      "shi",
+      "kokorozashi"
     ],
     "meanings": [
       "aspire",
@@ -4300,8 +4340,7 @@
       "noru"
     ],
     "primary_romaji": [
-      "sai",
-      "noseru"
+      "sai"
     ],
     "meanings": [
       "10**44",
@@ -4365,8 +4404,8 @@
       "ware"
     ],
     "primary_romaji": [
-      "ware",
-      "ga"
+      "ga",
+      "wa"
     ],
     "meanings": [
       "I",
@@ -4407,8 +4446,8 @@
       "nari"
     ],
     "primary_romaji": [
-      "tame",
-      "i"
+      "i",
+      "tame"
     ],
     "meanings": [
       "advantage",
@@ -4446,8 +4485,7 @@
       "osaeru"
     ],
     "primary_romaji": [
-      "yoku",
-      "osaeru"
+      "yoku"
     ],
     "meanings": [
       "do in spite of",
@@ -4482,7 +4520,7 @@
       "tobari"
     ],
     "primary_romaji": [
-      "maku"
+      "baku"
     ],
     "meanings": [
       "act of play",
@@ -4551,7 +4589,8 @@
       "karanashi"
     ],
     "primary_romaji": [
-      "na"
+      "na",
+      "ikan"
     ],
     "meanings": [
       "Nara",
@@ -4581,8 +4620,8 @@
       "kizu"
     ],
     "primary_romaji": [
-      "kizu",
-      "shou"
+      "shou",
+      "kizu"
     ],
     "meanings": [
       "cut",
@@ -4644,7 +4683,8 @@
       "hiideru"
     ],
     "primary_romaji": [
-      "shuu"
+      "shuu",
+      "hiideru"
     ],
     "meanings": [
       "beauty",
@@ -4674,8 +4714,7 @@
       "shirushi"
     ],
     "primary_romaji": [
-      "chi",
-      "shirushi"
+      "chi"
     ],
     "meanings": [
       "collect",
@@ -4724,7 +4763,7 @@
     ],
     "primary_romaji": [
       "dan",
-      "tama"
+      "hiku"
     ],
     "meanings": [
       "bullet",
@@ -4815,8 +4854,7 @@
       "yoru"
     ],
     "primary_romaji": [
-      "kyo",
-      "yoru"
+      "kyo"
     ],
     "meanings": [
       "based on",
@@ -4848,7 +4886,8 @@
       "hisoka"
     ],
     "primary_romaji": [
-      "hi"
+      "hi",
+      "himeru"
     ],
     "meanings": [
       "conceal",
@@ -4932,7 +4971,7 @@
       "tsuka"
     ],
     "primary_romaji": [
-      "tsuka",
+      "chou",
       "zuka"
     ],
     "meanings": [
@@ -5023,8 +5062,8 @@
       "o"
     ],
     "primary_romaji": [
-      "o",
-      "bi"
+      "bi",
+      "o"
     ],
     "meanings": [
       "counter for fish",
@@ -5086,8 +5125,8 @@
       "suzu"
     ],
     "primary_romaji": [
-      "suzu",
-      "rin"
+      "rin",
+      "suzu"
     ],
     "meanings": [
       "buzzer",
@@ -5170,6 +5209,7 @@
       "mo"
     ],
     "primary_romaji": [
+      "sou",
       "mo"
     ],
     "meanings": [
@@ -5229,7 +5269,8 @@
       "yashinau"
     ],
     "primary_romaji": [
-      "you"
+      "you",
+      "yashinau"
     ],
     "meanings": [
       "bring up",
@@ -5295,8 +5336,8 @@
       "machi"
     ],
     "primary_romaji": [
-      "machi",
-      "gai"
+      "gai",
+      "machi"
     ],
     "meanings": [
       "boulevard",
@@ -5383,8 +5424,7 @@
       "odoru"
     ],
     "primary_romaji": [
-      "yaku",
-      "odoru"
+      "yaku"
     ],
     "meanings": [
       "dance",
@@ -5411,8 +5451,7 @@
       "suteru"
     ],
     "primary_romaji": [
-      "ki",
-      "suteru"
+      "ki"
     ],
     "meanings": [
       "abandon",
@@ -5477,7 +5516,7 @@
     ],
     "primary_romaji": [
       "shuku",
-      "chijimaru"
+      "chijimeru"
     ],
     "meanings": [
       "contract",
@@ -5538,7 +5577,8 @@
       "yakara"
     ],
     "primary_romaji": [
-      "zoku"
+      "zoku",
+      "tsuku"
     ],
     "meanings": [
       "affiliated",
@@ -5630,8 +5670,8 @@
       "megumu"
     ],
     "primary_romaji": [
-      "megumi",
-      "e"
+      "e",
+      "megumi"
     ],
     "meanings": [
       "blessing",
@@ -5696,6 +5736,7 @@
       "waku"
     ],
     "primary_romaji": [
+      "chuu",
       "oki"
     ],
     "meanings": [
@@ -5729,7 +5770,8 @@
       "yuruyaka"
     ],
     "primary_romaji": [
-      "kan"
+      "kan",
+      "yuruyaka"
     ],
     "meanings": [
       "be moderate",
@@ -5832,7 +5874,8 @@
       "sasu"
     ],
     "primary_romaji": [
-      "sha"
+      "sha",
+      "iru"
     ],
     "meanings": [
       "archery",
@@ -5883,8 +5926,7 @@
       "furuu"
     ],
     "primary_romaji": [
-      "ki",
-      "furuu"
+      "ki"
     ],
     "meanings": [
       "brandish",
@@ -5915,8 +5957,7 @@
       "mitasu"
     ],
     "primary_romaji": [
-      "juu",
-      "ateru"
+      "juu"
     ],
     "meanings": [
       "allot",
@@ -5944,6 +5985,7 @@
       "mitsugu"
     ],
     "primary_romaji": [
+      "kou",
       "mitsugu"
     ],
     "meanings": [
@@ -5973,7 +6015,8 @@
       "shika"
     ],
     "primary_romaji": [
-      "shika"
+      "roku",
+      "ka"
     ],
     "meanings": [
       "deer"
@@ -6041,8 +6084,8 @@
       "hana"
     ],
     "primary_romaji": [
-      "hashi",
-      "tan"
+      "tan",
+      "ha"
     ],
     "meanings": [
       "border",
@@ -6160,8 +6203,7 @@
       "awaseru"
     ],
     "primary_romaji": [
-      "hei",
-      "awaseru"
+      "hei"
     ],
     "meanings": [
       "collective",
@@ -6250,7 +6292,8 @@
       "tsuku"
     ],
     "primary_romaji": [
-      "shou"
+      "shou",
+      "tsuku"
     ],
     "meanings": [
       "brunt",
@@ -6292,7 +6335,8 @@
       "jireru"
     ],
     "primary_romaji": [
-      "shou"
+      "shou",
+      "aseru"
     ],
     "meanings": [
       "burn",
@@ -6323,7 +6367,8 @@
       "ubau"
     ],
     "primary_romaji": [
-      "datsu"
+      "datsu",
+      "ubau"
     ],
     "meanings": [
       "dispossess",
@@ -6353,7 +6398,8 @@
       "wazawai"
     ],
     "primary_romaji": [
-      "sai"
+      "sai",
+      "wazawai"
     ],
     "meanings": [
       "calamity",
@@ -6438,8 +6484,8 @@
       "yuzuru"
     ],
     "primary_romaji": [
-      "yuzuru",
-      "jou"
+      "jou",
+      "yuzuru"
     ],
     "meanings": [
       "convey",
@@ -6479,7 +6525,8 @@
       "homeru"
     ],
     "primary_romaji": [
-      "shou"
+      "shou",
+      "tataeru"
     ],
     "meanings": [
       "admire",
@@ -6520,8 +6567,7 @@
       "osamaru"
     ],
     "primary_romaji": [
-      "tou",
-      "osameru"
+      "nou"
     ],
     "meanings": [
       "obtain",
@@ -6551,7 +6597,8 @@
       "ki"
     ],
     "primary_romaji": [
-      "ju"
+      "ju",
+      "ki"
     ],
     "meanings": [
       "establish",
@@ -6611,7 +6658,7 @@
     ],
     "primary_romaji": [
       "yuu",
-      "izanau"
+      "sasou"
     ],
     "meanings": [
       "allure",
@@ -6680,6 +6727,7 @@
       "itaru"
     ],
     "primary_romaji": [
+      "shi",
       "itaru"
     ],
     "meanings": [
@@ -6713,7 +6761,7 @@
     ],
     "primary_romaji": [
       "shuu",
-      "sou"
+      "mune"
     ],
     "meanings": [
       "denomination",
@@ -6743,7 +6791,8 @@
       "unagasu"
     ],
     "primary_romaji": [
-      "soku"
+      "soku",
+      "unagasu"
     ],
     "meanings": [
       "demand",
@@ -6778,7 +6827,8 @@
       "tsutsushimu"
     ],
     "primary_romaji": [
-      "shin"
+      "shin",
+      "tsutsushi"
     ],
     "meanings": [
       "be careful",
@@ -6980,6 +7030,7 @@
       "shiburu"
     ],
     "primary_romaji": [
+      "juu",
       "shibu"
     ],
     "meanings": [
@@ -7008,7 +7059,8 @@
       "tsutsu"
     ],
     "primary_romaji": [
-      "juu"
+      "juu",
+      "tsutsu"
     ],
     "meanings": [
       "arms",
@@ -7038,7 +7090,8 @@
       "misao"
     ],
     "primary_romaji": [
-      "misao"
+      "sou",
+      "ayatsuru"
     ],
     "meanings": [
       "chastity",
@@ -7072,7 +7125,7 @@
     ],
     "primary_romaji": [
       "kei",
-      "tazusaeru"
+      "tazusawaru"
     ],
     "meanings": [
       "armed with",
@@ -7218,8 +7271,7 @@
       "okasu"
     ],
     "primary_romaji": [
-      "shin",
-      "okasu"
+      "shin"
     ],
     "meanings": [
       "encroach",
@@ -7277,7 +7329,8 @@
       "ayamaru"
     ],
     "primary_romaji": [
-      "sha"
+      "sha",
+      "ayamaru"
     ],
     "meanings": [
       "apologize",
@@ -7307,7 +7360,7 @@
     ],
     "primary_romaji": [
       "ku",
-      "kakeru"
+      "karu"
     ],
     "meanings": [
       "advance",
@@ -7346,7 +7399,7 @@
     ],
     "primary_romaji": [
       "tou",
-      "sukasu"
+      "tousu"
     ],
     "meanings": [
       "filter",
@@ -7374,8 +7427,8 @@
       "tsu"
     ],
     "primary_romaji": [
-      "tsu",
-      "shin"
+      "shin",
+      "tsu"
     ],
     "meanings": [
       "ferry",
@@ -7403,8 +7456,8 @@
       "kabe"
     ],
     "primary_romaji": [
-      "kabe",
-      "heki"
+      "heki",
+      "kabe"
     ],
     "meanings": [
       "fence",
@@ -7435,8 +7488,8 @@
       "ine"
     ],
     "primary_romaji": [
-      "ine",
-      "tou"
+      "tou",
+      "ina"
     ],
     "meanings": [
       "rice plant"
@@ -7464,8 +7517,8 @@
       "kari"
     ],
     "primary_romaji": [
-      "kari",
-      "ka"
+      "ka",
+      "kari"
     ],
     "meanings": [
       "assumed (name)",
@@ -7499,7 +7552,7 @@
     ],
     "primary_romaji": [
       "retsu",
-      "gire"
+      "saku"
     ],
     "meanings": [
       "rend",
@@ -7559,7 +7612,8 @@
       "kore"
     ],
     "primary_romaji": [
-      "ze"
+      "ze",
+      "kore"
     ],
     "meanings": [
       "just so",
@@ -7640,7 +7694,8 @@
       "katai"
     ],
     "primary_romaji": [
-      "ken"
+      "ken",
+      "gatai"
     ],
     "meanings": [
       "hard",
@@ -7670,8 +7725,8 @@
       "wake"
     ],
     "primary_romaji": [
-      "wake",
-      "yaku"
+      "yaku",
+      "wake"
     ],
     "meanings": [
       "case",
@@ -7699,6 +7754,7 @@
       "shiba"
     ],
     "primary_romaji": [
+      "shi",
       "shiba"
     ],
     "meanings": [
@@ -7725,8 +7781,8 @@
       "tsuna"
     ],
     "primary_romaji": [
-      "tsuna",
-      "kou"
+      "kou",
+      "tsuna"
     ],
     "meanings": [
       "cable",
@@ -7819,8 +7875,7 @@
       "koku"
     ],
     "primary_romaji": [
-      "kyuu",
-      "atsukai"
+      "atsukau"
     ],
     "meanings": [
       "entertain",
@@ -7848,7 +7903,8 @@
       "kaerimiru"
     ],
     "primary_romaji": [
-      "ko"
+      "ko",
+      "kaerimiru"
     ],
     "meanings": [
       "examine oneself",
@@ -7878,8 +7934,7 @@
       "hiroi"
     ],
     "primary_romaji": [
-      "gu",
-      "hiroi"
+      "kou"
     ],
     "meanings": [
       "broad",
@@ -7906,8 +7961,7 @@
       "miru"
     ],
     "primary_romaji": [
-      "kan",
-      "miru"
+      "kan"
     ],
     "meanings": [
       "see",
@@ -7956,7 +8010,8 @@
       "imashimeru"
     ],
     "primary_romaji": [
-      "kai"
+      "kai",
+      "imashimeru"
     ],
     "meanings": [
       "commandment"
@@ -8006,6 +8061,7 @@
       "homare"
     ],
     "primary_romaji": [
+      "yo",
       "homare"
     ],
     "meanings": [
@@ -8060,7 +8116,8 @@
       "kanaderu"
     ],
     "primary_romaji": [
-      "sou"
+      "sou",
+      "kanaderu"
     ],
     "meanings": [
       "complete",
@@ -8124,7 +8181,7 @@
     ],
     "primary_romaji": [
       "sou",
-      "urei"
+      "sawagu"
     ],
     "meanings": [
       "boisterous",
@@ -8215,6 +8272,7 @@
       "nawa"
     ],
     "primary_romaji": [
+      "jou",
       "nawa"
     ],
     "meanings": [
@@ -8243,8 +8301,8 @@
       "sato"
     ],
     "primary_romaji": [
-      "gou",
-      "kyou"
+      "kyou",
+      "sato"
     ],
     "meanings": [
       "district",
@@ -8287,7 +8345,7 @@
     ],
     "primary_romaji": [
       "you",
-      "ugoku"
+      "yureru"
     ],
     "meanings": [
       "rock",
@@ -8319,7 +8377,8 @@
       "manugareru"
     ],
     "primary_romaji": [
-      "men"
+      "men",
+      "manukareru"
     ],
     "meanings": [
       "dismissal",
@@ -8345,7 +8404,8 @@
       "sudeni"
     ],
     "primary_romaji": [
-      "ki"
+      "ki",
+      "sudeni"
     ],
     "meanings": [
       "already",
@@ -8372,8 +8432,7 @@
       "susumeru"
     ],
     "primary_romaji": [
-      "sen",
-      "susumeru"
+      "sen"
     ],
     "meanings": [
       "advise",
@@ -8405,7 +8464,7 @@
     ],
     "primary_romaji": [
       "rin",
-      "tonaru"
+      "tonari"
     ],
     "meanings": [
       "neighboring"
@@ -8432,6 +8491,7 @@
       "hana"
     ],
     "primary_romaji": [
+      "ka",
       "hana"
     ],
     "meanings": [
@@ -8497,7 +8557,8 @@
       "yoru"
     ],
     "primary_romaji": [
-      "in"
+      "in",
+      "kakusu"
     ],
     "meanings": [
       "conceal",
@@ -8577,6 +8638,7 @@
       "sugi"
     ],
     "primary_romaji": [
+      "san",
       "sugi"
     ],
     "meanings": [
@@ -8640,8 +8702,8 @@
       "na"
     ],
     "primary_romaji": [
-      "onore",
-      "tsuchinoto"
+      "ko",
+      "onore"
     ],
     "meanings": [
       "self"
@@ -8694,7 +8756,8 @@
       "odosu"
     ],
     "primary_romaji": [
-      "i"
+      "i",
+      "odoshi"
     ],
     "meanings": [
       "dignity",
@@ -8752,6 +8815,7 @@
       "kuma"
     ],
     "primary_romaji": [
+      "yuu",
       "kuma"
     ],
     "meanings": [
@@ -8808,7 +8872,8 @@
       "kasuka"
     ],
     "primary_romaji": [
-      "bi"
+      "bi",
+      "kasuka"
     ],
     "meanings": [
       "delicate",
@@ -8936,7 +9001,8 @@
       "kura"
     ],
     "primary_romaji": [
-      "sou"
+      "sou",
+      "kura"
     ],
     "meanings": [
       "cellar",
@@ -8965,6 +9031,7 @@
       "hiko"
     ],
     "primary_romaji": [
+      "gen",
       "hiko"
     ],
     "meanings": [
@@ -8991,8 +9058,8 @@
       "kimo"
     ],
     "primary_romaji": [
-      "kimo",
-      "kan"
+      "kan",
+      "kimo"
     ],
     "meanings": [
       "chutzpah",
@@ -9053,7 +9120,7 @@
     ],
     "primary_romaji": [
       "en",
-      "zoi"
+      "sou"
     ],
     "meanings": [
       "follow along",
@@ -9116,7 +9183,8 @@
       "tonaeru"
     ],
     "primary_romaji": [
-      "shou"
+      "shou",
+      "tonaeru"
     ],
     "meanings": [
       "call upon",
@@ -9204,8 +9272,8 @@
       "makoto"
     ],
     "primary_romaji": [
-      "makoto",
-      "sei"
+      "sei",
+      "makoto"
     ],
     "meanings": [
       "admonish",
@@ -9237,7 +9305,8 @@
       "kasane"
     ],
     "primary_romaji": [
-      "shuu"
+      "shuu",
+      "osou"
     ],
     "meanings": [
       "advance on",
@@ -9266,7 +9335,8 @@
       "nengoro"
     ],
     "primary_romaji": [
-      "kon"
+      "kon",
+      "nengoro"
     ],
     "meanings": [
       "cordial",
@@ -9322,8 +9392,8 @@
       "tsuka"
     ],
     "primary_romaji": [
-      "gara",
-      "e"
+      "hei",
+      "gara"
     ],
     "meanings": [
       "build",
@@ -9360,7 +9430,7 @@
     ],
     "primary_romaji": [
       "kyou",
-      "odorokasu"
+      "odoroku"
     ],
     "meanings": [
       "amazed",
@@ -9390,6 +9460,7 @@
       "asa"
     ],
     "primary_romaji": [
+      "ma",
       "asa"
     ],
     "meanings": [
@@ -9445,8 +9516,7 @@
       "hiroi"
     ],
     "primary_romaji": [
-      "kou",
-      "ookii"
+      "kou"
     ],
     "meanings": [
       "abundance",
@@ -9479,7 +9549,8 @@
       "kezuru"
     ],
     "primary_romaji": [
-      "zai"
+      "zai",
+      "karu"
     ],
     "meanings": [
       "dose",
@@ -9506,6 +9577,7 @@
       "se"
     ],
     "primary_romaji": [
+      "rai",
       "se"
     ],
     "meanings": [
@@ -9537,6 +9609,7 @@
       "omomuki"
     ],
     "primary_romaji": [
+      "shu",
       "omomuki"
     ],
     "meanings": [
@@ -9646,7 +9719,7 @@
     ],
     "primary_romaji": [
       "kan",
-      "nuki"
+      "tsuranuku"
     ],
     "meanings": [
       "8 1/3lbs",
@@ -9703,7 +9776,7 @@
     ],
     "primary_romaji": [
       "i",
-      "nagusamu"
+      "nagusameru"
     ],
     "meanings": [
       "amusement",
@@ -9735,7 +9808,8 @@
       "tsuide"
     ],
     "primary_romaji": [
-      "jo"
+      "jo",
+      "tsuide"
     ],
     "meanings": [
       "beginning",
@@ -9765,7 +9839,7 @@
       "jun"
     ],
     "primary_romaji": [
-      "shun"
+      "jun"
     ],
     "meanings": [
       "decameron",
@@ -9793,7 +9867,8 @@
       "kaneru"
     ],
     "primary_romaji": [
-      "ken"
+      "ken",
+      "kaneru"
     ],
     "meanings": [
       "and",
@@ -9855,7 +9930,8 @@
       "mune"
     ],
     "primary_romaji": [
-      "mune"
+      "shi",
+      "umai"
     ],
     "meanings": [
       "clever",
@@ -9890,7 +9966,8 @@
       "tsukeru"
     ],
     "primary_romaji": [
-      "soku"
+      "soku",
+      "sunawachi"
     ],
     "meanings": [
       "adapt",
@@ -9920,8 +9997,8 @@
       "yanagi"
     ],
     "primary_romaji": [
-      "yanagi",
-      "ryuu"
+      "ryuu",
+      "yanagi"
     ],
     "meanings": [
       "willow"
@@ -9983,8 +10060,8 @@
       "nise"
     ],
     "primary_romaji": [
-      "nise",
-      "gi"
+      "gi",
+      "nise"
     ],
     "meanings": [
       "counterfeit",
@@ -10016,8 +10093,7 @@
       "kuraberu"
     ],
     "primary_romaji": [
-      "kaku",
-      "kuraberu"
+      "kaku"
     ],
     "meanings": [
       "compare",
@@ -10134,7 +10210,7 @@
     ],
     "primary_romaji": [
       "kyou",
-      "odokasu"
+      "obiyakasu"
     ],
     "meanings": [
       "coerce",
@@ -10160,6 +10236,7 @@
       "shigeru"
     ],
     "primary_romaji": [
+      "mo",
       "shigeru"
     ],
     "meanings": [
@@ -10189,8 +10266,7 @@
       "ikenie"
     ],
     "primary_romaji": [
-      "ki",
-      "ikenie"
+      "gi"
     ],
     "meanings": [
       "sacrifice"
@@ -10215,8 +10291,8 @@
       "hata"
     ],
     "primary_romaji": [
-      "hata",
-      "ki"
+      "ki",
+      "hata"
     ],
     "meanings": [
       "banner",
@@ -10272,8 +10348,8 @@
       "miyabi"
     ],
     "primary_romaji": [
-      "miyabi",
-      "ga"
+      "ga",
+      "miyabi"
     ],
     "meanings": [
       "elegant",
@@ -10303,7 +10379,8 @@
       "kazaru"
     ],
     "primary_romaji": [
-      "shoku"
+      "shoku",
+      "kazaru"
     ],
     "meanings": [
       "adorn",
@@ -10364,7 +10441,8 @@
       "tatsu"
     ],
     "primary_romaji": [
-      "ryuu"
+      "ryuu",
+      "tatsu"
     ],
     "meanings": [
       "dragon",
@@ -10390,7 +10468,8 @@
       "uta"
     ],
     "primary_romaji": [
-      "shi"
+      "shi",
+      "uta"
     ],
     "meanings": [
       "poem",
@@ -10418,8 +10497,8 @@
       "shigeru"
     ],
     "primary_romaji": [
-      "shigeru",
-      "han"
+      "han",
+      "shigeku"
     ],
     "meanings": [
       "complexity",
@@ -10449,8 +10528,8 @@
       "tsubasa"
     ],
     "primary_romaji": [
-      "tsubasa",
-      "yoku"
+      "yoku",
+      "tsubasa"
     ],
     "meanings": [
       "flank",
@@ -10479,7 +10558,8 @@
       "kata"
     ],
     "primary_romaji": [
-      "kata"
+      "seki",
+      "gata"
     ],
     "meanings": [
       "lagoon"
@@ -10509,7 +10589,7 @@
     ],
     "primary_romaji": [
       "teki",
-      "kataki"
+      "kanau"
     ],
     "meanings": [
       "enemy",
@@ -10566,6 +10646,7 @@
       "kirau"
     ],
     "primary_romaji": [
+      "gen",
       "iya"
     ],
     "meanings": [
@@ -10603,8 +10684,7 @@
       "hitoshiku"
     ],
     "primary_romaji": [
-      "sei",
-      "sai"
+      "sei"
     ],
     "meanings": [
       "adjusted",
@@ -10634,6 +10714,7 @@
       "shiku"
     ],
     "primary_romaji": [
+      "fu",
       "shiki"
     ],
     "meanings": [
@@ -10716,7 +10797,8 @@
       "sui"
     ],
     "primary_romaji": [
-      "san"
+      "san",
+      "sui"
     ],
     "meanings": [
       "acid",
@@ -10748,7 +10830,8 @@
       "bassuru"
     ],
     "primary_romaji": [
-      "batsu"
+      "batsu",
+      "bassuru"
     ],
     "meanings": [
       "penalty",
@@ -10779,7 +10862,7 @@
     ],
     "primary_romaji": [
       "metsu",
-      "horobiru"
+      "horobosu"
     ],
     "meanings": [
       "destroy",
@@ -10807,6 +10890,7 @@
       "ishizue"
     ],
     "primary_romaji": [
+      "so",
       "ishizue"
     ],
     "meanings": [
@@ -10842,7 +10926,8 @@
       "kusareru"
     ],
     "primary_romaji": [
-      "fu"
+      "fu",
+      "kusaru"
     ],
     "meanings": [
       "decay",
@@ -10873,8 +10958,8 @@
       "ashi"
     ],
     "primary_romaji": [
-      "ashi",
-      "kyaku"
+      "kya",
+      "ashi"
     ],
     "meanings": [
       "base",
@@ -10905,8 +10990,8 @@
       "shio"
     ],
     "primary_romaji": [
-      "shio",
-      "ushio"
+      "chou",
+      "shio"
     ],
     "meanings": [
       "opportunity",
@@ -10933,8 +11018,8 @@
       "ume"
     ],
     "primary_romaji": [
-      "ume",
-      "bai"
+      "bai",
+      "ume"
     ],
     "meanings": [
       "plum"
@@ -10970,7 +11055,8 @@
       "tsukusu"
     ],
     "primary_romaji": [
-      "jin"
+      "jin",
+      "tsukusu"
     ],
     "meanings": [
       "befriend",
@@ -11031,8 +11117,8 @@
       "sakura"
     ],
     "primary_romaji": [
-      "sakura",
-      "ou"
+      "ou",
+      "sakura"
     ],
     "meanings": [
       "cherry"
@@ -11113,8 +11199,8 @@
       "honoo"
     ],
     "primary_romaji": [
-      "honoo",
-      "en"
+      "en",
+      "honoo"
     ],
     "meanings": [
       "blaze",
@@ -11217,7 +11303,8 @@
       "katakuna"
     ],
     "primary_romaji": [
-      "gan"
+      "gan",
+      "katakuna"
     ],
     "meanings": [
       "firmly",
@@ -11246,8 +11333,8 @@
       "tozasu"
     ],
     "primary_romaji": [
-      "kusari",
-      "sa"
+      "sa",
+      "kusari"
     ],
     "meanings": [
       "chain",
@@ -11274,7 +11361,8 @@
       "irodoru"
     ],
     "primary_romaji": [
-      "sai"
+      "sai",
+      "irodoru"
     ],
     "meanings": [
       "coloring",
@@ -11365,6 +11453,7 @@
       "tate"
     ],
     "primary_romaji": [
+      "juu",
       "tate"
     ],
     "meanings": [
@@ -11481,7 +11570,8 @@
       "meguru"
     ],
     "primary_romaji": [
-      "jun"
+      "jun",
+      "meguru"
     ],
     "meanings": [
       "circumference",
@@ -11538,7 +11628,8 @@
       "matataku"
     ],
     "primary_romaji": [
-      "shun"
+      "shun",
+      "matataku"
     ],
     "meanings": [
       "blink",
@@ -11588,8 +11679,7 @@
       "fuku"
     ],
     "primary_romaji": [
-      "fun",
-      "fuku"
+      "fun"
     ],
     "meanings": [
       "emit",
@@ -11652,8 +11742,7 @@
       "yoi"
     ],
     "primary_romaji": [
-      "shou",
-      "kizashi"
+      "shou"
     ],
     "meanings": [
       "auspicious",
@@ -11729,8 +11818,8 @@
       "mikado"
     ],
     "primary_romaji": [
-      "mikado",
-      "tei"
+      "tei",
+      "mikado"
     ],
     "meanings": [
       "creator",
@@ -11758,8 +11847,7 @@
       "hiroi"
     ],
     "primary_romaji": [
-      "kou",
-      "hiroi"
+      "kou"
     ],
     "meanings": [
       "large",
@@ -11788,7 +11876,7 @@
     ],
     "primary_romaji": [
       "sa",
-      "sosoru"
+      "sosonokasu"
     ],
     "meanings": [
       "instigate",
@@ -11986,7 +12074,7 @@
     ],
     "primary_romaji": [
       "kou",
-      "shimaru"
+      "shiboru"
     ],
     "meanings": [
       "constrict",
@@ -12026,7 +12114,7 @@
     ],
     "primary_romaji": [
       "en",
-      "yukari"
+      "fuchi"
     ],
     "meanings": [
       "affinity",
@@ -12059,6 +12147,7 @@
       "tada"
     ],
     "primary_romaji": [
+      "i",
       "tada"
     ],
     "meanings": [
@@ -12117,6 +12206,7 @@
       "ya"
     ],
     "primary_romaji": [
+      "shi",
       "ya"
     ],
     "meanings": [
@@ -12143,7 +12233,8 @@
       "taeru"
     ],
     "primary_romaji": [
-      "tai"
+      "tai",
+      "taeru"
     ],
     "meanings": [
       "-proof",
@@ -12196,7 +12287,8 @@
       "moreru"
     ],
     "primary_romaji": [
-      "rou"
+      "rou",
+      "morasu"
     ],
     "meanings": [
       "escape",
@@ -12223,7 +12315,8 @@
       "yorokobi"
     ],
     "primary_romaji": [
-      "kei"
+      "kei",
+      "yorokobi"
     ],
     "meanings": [
       "be happy",
@@ -12312,7 +12405,7 @@
     ],
     "primary_romaji": [
       "chou",
-      "korashimeru"
+      "koriru"
     ],
     "meanings": [
       "chastise",
@@ -12428,8 +12521,8 @@
       "hinoto"
     ],
     "primary_romaji": [
-      "chou",
-      "tei"
+      "chi",
+      "hinoto"
     ],
     "meanings": [
       "4th calendar sign",
@@ -12461,7 +12554,8 @@
       "tsuneni"
     ],
     "primary_romaji": [
-      "kou"
+      "kou",
+      "tsune"
     ],
     "meanings": [
       "always",
@@ -12491,7 +12585,8 @@
       "ageru"
     ],
     "primary_romaji": [
-      "you"
+      "you",
+      "age"
     ],
     "meanings": [
       "elevate",
@@ -12521,8 +12616,7 @@
       "okasu"
     ],
     "primary_romaji": [
-      "bou",
-      "okasu"
+      "bou"
     ],
     "meanings": [
       "assume (a name)",
@@ -12559,7 +12653,7 @@
     ],
     "primary_romaji": [
       "shi",
-      "kono"
+      "no"
     ],
     "meanings": [
       "of",
@@ -12608,7 +12702,8 @@
       "hineru"
     ],
     "primary_romaji": [
-      "chin"
+      "chin",
+      "hineru"
     ],
     "meanings": [
       "exhibit",
@@ -12668,7 +12763,8 @@
       "moguru"
     ],
     "primary_romaji": [
-      "sen"
+      "sen",
+      "hisomu"
     ],
     "meanings": [
       "conceal",
@@ -12697,6 +12793,7 @@
       "nashi"
     ],
     "primary_romaji": [
+      "ri",
       "nashi"
     ],
     "meanings": [
@@ -12723,8 +12820,7 @@
       "nin"
     ],
     "primary_romaji": [
-      "jin",
-      "nin"
+      "ni"
     ],
     "meanings": [
       "benevolence",
@@ -12754,6 +12850,7 @@
       "katsu"
     ],
     "primary_romaji": [
+      "koku",
       "katsu"
     ],
     "meanings": [
@@ -12781,6 +12878,7 @@
       "take"
     ],
     "primary_romaji": [
+      "gaku",
       "take"
     ],
     "meanings": [
@@ -12837,8 +12935,7 @@
       "kakawaru"
     ],
     "primary_romaji": [
-      "kou",
-      "kakawaru"
+      "kou"
     ],
     "meanings": [
       "adhere to",
@@ -12867,8 +12964,8 @@
       "haka"
     ],
     "primary_romaji": [
-      "haka",
-      "bo"
+      "bo",
+      "haka"
     ],
     "meanings": [
       "grave",
@@ -12898,7 +12995,8 @@
       "modasu"
     ],
     "primary_romaji": [
-      "moku"
+      "moku",
+      "damaru"
     ],
     "meanings": [
       "become silent",
@@ -12938,7 +13036,8 @@
       "motomeru"
     ],
     "primary_romaji": [
-      "shu"
+      "su",
+      "subekaraku"
     ],
     "meanings": [
       "by all means",
@@ -12965,7 +13064,8 @@
       "katayoru"
     ],
     "primary_romaji": [
-      "hen"
+      "hen",
+      "katayoru"
     ],
     "meanings": [
       "biased",
@@ -13017,8 +13117,7 @@
       "au"
     ],
     "primary_romaji": [
-      "guu",
-      "au"
+      "guu"
     ],
     "meanings": [
       "deal with",
@@ -13083,7 +13182,8 @@
       "semai"
     ],
     "primary_romaji": [
-      "kyou"
+      "kyou",
+      "semai"
     ],
     "meanings": [
       "contract",
@@ -13140,6 +13240,7 @@
       "kame"
     ],
     "primary_romaji": [
+      "ki",
       "kame"
     ],
     "meanings": [
@@ -13168,8 +13269,8 @@
       "kate"
     ],
     "primary_romaji": [
-      "kate",
-      "ryou"
+      "ryou",
+      "kate"
     ],
     "meanings": [
       "bread",
@@ -13219,7 +13320,8 @@
       "irori"
     ],
     "primary_romaji": [
-      "ro"
+      "ro",
+      "irori"
     ],
     "meanings": [
       "furnace",
@@ -13247,8 +13349,8 @@
       "maki"
     ],
     "primary_romaji": [
-      "maki",
-      "boku"
+      "boku",
+      "maki"
     ],
     "meanings": [
       "breed",
@@ -13363,8 +13465,8 @@
       "yakara"
     ],
     "primary_romaji": [
-      "yakara",
-      "bara"
+      "hai",
+      "yakara"
     ],
     "meanings": [
       "companions",
@@ -13392,8 +13494,8 @@
       "ana"
     ],
     "primary_romaji": [
-      "ana",
-      "ketsu"
+      "ketsu",
+      "ana"
     ],
     "meanings": [
       "aperture",
@@ -13428,7 +13530,8 @@
       "mezurashii"
     ],
     "primary_romaji": [
-      "ki"
+      "ki",
+      "kushi"
     ],
     "meanings": [
       "curiosity",
@@ -13478,6 +13581,7 @@
       "tsuru"
     ],
     "primary_romaji": [
+      "kaku",
       "tsuru"
     ],
     "meanings": [
@@ -13510,6 +13614,7 @@
       "hakarigoto"
     ],
     "primary_romaji": [
+      "bou",
       "hakarigoto"
     ],
     "meanings": [
@@ -13629,7 +13734,8 @@
       "hogaraka"
     ],
     "primary_romaji": [
-      "rou"
+      "rou",
+      "hogaraka"
     ],
     "meanings": [
       "bright",
@@ -13662,7 +13768,8 @@
       "yuruyaka"
     ],
     "primary_romaji": [
-      "kan"
+      "kan",
+      "kutsurogu"
     ],
     "meanings": [
       "be at ease",
@@ -13782,7 +13889,7 @@
     ],
     "primary_romaji": [
       "kaku",
-      "hedataru"
+      "hedateru"
     ],
     "meanings": [
       "alternate",
@@ -13882,8 +13989,8 @@
       "hima"
     ],
     "primary_romaji": [
-      "hima",
-      "itoma"
+      "ka",
+      "hima"
     ],
     "meanings": [
       "leave of absence",
@@ -13938,7 +14045,8 @@
       "tadashii"
     ],
     "primary_romaji": [
-      "tei"
+      "tei",
+      "sada"
     ],
     "meanings": [
       "chastity",
@@ -13968,8 +14076,7 @@
       "yasunjiru"
     ],
     "primary_romaji": [
-      "jou",
-      "yasunjiru"
+      "sei"
     ],
     "meanings": [
       "peaceful"
@@ -13996,7 +14103,8 @@
       "kangamiru"
     ],
     "primary_romaji": [
-      "kan"
+      "kan",
+      "kangamiru"
     ],
     "meanings": [
       "learn from",
@@ -14054,8 +14162,8 @@
       "kageru"
     ],
     "primary_romaji": [
-      "kage",
-      "in"
+      "in",
+      "kage"
     ],
     "meanings": [
       "negative",
@@ -14110,8 +14218,7 @@
       "manimani"
     ],
     "primary_romaji": [
-      "zui",
-      "shitagau"
+      "zui"
     ],
     "meanings": [
       "all",
@@ -14178,7 +14285,8 @@
       "hiro"
     ],
     "primary_romaji": [
-      "hiro"
+      "jin",
+      "tazuneru"
     ],
     "meanings": [
       "fathom",
@@ -14267,7 +14375,8 @@
       "hiraku"
     ],
     "primary_romaji": [
-      "kei"
+      "kei",
+      "hiraku"
     ],
     "meanings": [
       "disclose",
@@ -14300,7 +14409,7 @@
       "mata"
     ],
     "primary_romaji": [
-      "e",
+      "ya",
       "ka"
     ],
     "meanings": [
@@ -14326,8 +14435,8 @@
       "oka"
     ],
     "primary_romaji": [
-      "oka",
-      "kyuu"
+      "kyuu",
+      "oka"
     ],
     "meanings": [
       "hill",
@@ -14355,8 +14464,8 @@
       "mune"
     ],
     "primary_romaji": [
-      "mune",
-      "tou"
+      "tou",
+      "mune"
     ],
     "meanings": [
       "ridge",
@@ -14382,8 +14491,7 @@
       "tsuchi"
     ],
     "primary_romaji": [
-      "jou",
-      "tsuchi"
+      "jou"
     ],
     "meanings": [
       "earth",
@@ -14444,7 +14552,8 @@
       "kuroi"
     ],
     "primary_romaji": [
-      "gen"
+      "gen",
+      "kuro"
     ],
     "meanings": [
       "black",
@@ -14473,7 +14582,8 @@
       "nebaru"
     ],
     "primary_romaji": [
-      "nen"
+      "nen",
+      "nebaru"
     ],
     "meanings": [
       "glutinous",
@@ -14501,8 +14611,8 @@
       "satoru"
     ],
     "primary_romaji": [
-      "satoru",
-      "go"
+      "go",
+      "satoru"
     ],
     "meanings": [
       "discern",
@@ -14559,8 +14669,7 @@
       "migomoru"
     ],
     "primary_romaji": [
-      "jin",
-      "haramu"
+      "nin"
     ],
     "meanings": [
       "pregnancy"
@@ -14585,7 +14694,8 @@
       "ureru"
     ],
     "primary_romaji": [
-      "juku"
+      "juku",
+      "ureru"
     ],
     "meanings": [
       "acquire skill",
@@ -14613,6 +14723,7 @@
       "asahi"
     ],
     "primary_romaji": [
+      "kyoku",
       "asahi"
     ],
     "meanings": [
@@ -14669,8 +14780,7 @@
       "noboru"
     ],
     "primary_romaji": [
-      "tou",
-      "agaru"
+      "tou"
     ],
     "meanings": [
       "advancing",
@@ -14705,8 +14815,7 @@
       "yuku"
     ],
     "primary_romaji": [
-      "ou",
-      "iku"
+      "ou"
     ],
     "meanings": [
       "before",
@@ -14740,6 +14849,7 @@
       "mame"
     ],
     "primary_romaji": [
+      "tou",
       "mame"
     ],
     "meanings": [
@@ -14769,7 +14879,8 @@
       "togeru"
     ],
     "primary_romaji": [
-      "sui"
+      "sui",
+      "tsuini"
     ],
     "meanings": [
       "accomplish",
@@ -14800,7 +14911,8 @@
       "kuruoshii"
     ],
     "primary_romaji": [
-      "kyou"
+      "kyou",
+      "kuruu"
     ],
     "meanings": [
       "confuse",
@@ -14881,6 +14993,7 @@
       "yokoito"
     ],
     "primary_romaji": [
+      "i",
       "nuki"
     ],
     "meanings": [
@@ -14991,7 +15104,7 @@
     ],
     "primary_romaji": [
       "kutsu",
-      "kagamu"
+      "kagameru"
     ],
     "meanings": [
       "bend",
@@ -15025,7 +15138,8 @@
       "michi"
     ],
     "primary_romaji": [
-      "kei"
+      "kei",
+      "michi"
     ],
     "meanings": [
       "diameter",
@@ -15081,8 +15195,7 @@
       "hiki"
     ],
     "primary_romaji": [
-      "chuu",
-      "hiki"
+      "chuu"
     ],
     "meanings": [
       "excel",
@@ -15157,8 +15270,8 @@
       "nishiki"
     ],
     "primary_romaji": [
-      "nishiki",
-      "kin"
+      "kin",
+      "nishiki"
     ],
     "meanings": [
       "brocade",
@@ -15209,7 +15322,8 @@
       "atsui"
     ],
     "primary_romaji": [
-      "sho"
+      "sho",
+      "atsui"
     ],
     "meanings": [
       "hot",
@@ -15236,6 +15350,7 @@
       "iso"
     ],
     "primary_romaji": [
+      "ki",
       "iso"
     ],
     "meanings": [
@@ -15264,8 +15379,7 @@
       "susumeru"
     ],
     "primary_romaji": [
-      "shou",
-      "susumeru"
+      "shou"
     ],
     "meanings": [
       "encourage",
@@ -15333,7 +15447,7 @@
     ],
     "primary_romaji": [
       "jou",
-      "amari"
+      "amatsusae"
     ],
     "meanings": [
       "besides",
@@ -15411,6 +15525,7 @@
       "koma"
     ],
     "primary_romaji": [
+      "ku",
       "koma"
     ],
     "meanings": [
@@ -15442,7 +15557,8 @@
       "munashii"
     ],
     "primary_romaji": [
-      "kyo"
+      "kyo",
+      "utsuro"
     ],
     "meanings": [
       "crack",
@@ -15475,7 +15591,7 @@
     ],
     "primary_romaji": [
       "rei",
-      "ryou"
+      "tama"
     ],
     "meanings": [
       "soul",
@@ -15537,7 +15653,8 @@
       "kuyashii"
     ],
     "primary_romaji": [
-      "kai"
+      "kai",
+      "kuyashii"
     ],
     "meanings": [
       "regret",
@@ -15599,7 +15716,8 @@
       "mugoi"
     ],
     "primary_romaji": [
-      "san"
+      "san",
+      "mijime"
     ],
     "meanings": [
       "cruelty",
@@ -15658,7 +15776,7 @@
       "hirugaeru"
     ],
     "primary_romaji": [
-      "han",
+      "hon",
       "hirugaesu"
     ],
     "meanings": [
@@ -15690,8 +15808,7 @@
       "otsu"
     ],
     "primary_romaji": [
-      "tsui",
-      "ochiru"
+      "tsui"
     ],
     "meanings": [
       "crash",
@@ -15717,6 +15834,7 @@
       "numa"
     ],
     "primary_romaji": [
+      "shou",
       "numa"
     ],
     "meanings": [
@@ -15748,7 +15866,6 @@
       "suwaru"
     ],
     "primary_romaji": [
-      "kyo",
       "sueru"
     ],
     "meanings": [
@@ -15787,7 +15904,8 @@
       "futoru"
     ],
     "primary_romaji": [
-      "koe"
+      "hi",
+      "koeru"
     ],
     "meanings": [
       "fertile",
@@ -15816,7 +15934,8 @@
       "omomuroni"
     ],
     "primary_romaji": [
-      "jo"
+      "jo",
+      "omomuroni"
     ],
     "meanings": [
       "deliberately",
@@ -15890,6 +16009,7 @@
       "tate"
     ],
     "primary_romaji": [
+      "jun",
       "tate"
     ],
     "meanings": [
@@ -15946,6 +16066,7 @@
       "taki"
     ],
     "primary_romaji": [
+      "rou",
       "taki"
     ],
     "meanings": [
@@ -16066,7 +16187,7 @@
     ],
     "primary_romaji": [
       "satsu",
-      "zure"
+      "suru"
     ],
     "meanings": [
       "chafe",
@@ -16096,6 +16217,7 @@
       "kujira"
     ],
     "primary_romaji": [
+      "gei",
       "kujira"
     ],
     "meanings": [
@@ -16128,7 +16250,7 @@
     ],
     "primary_romaji": [
       "sou",
-      "shou"
+      "houki"
     ],
     "meanings": [
       "cottage",
@@ -16185,8 +16307,8 @@
       "kaminari"
     ],
     "primary_romaji": [
-      "kaminari",
-      "rai"
+      "rai",
+      "kaminari"
     ],
     "meanings": [
       "lightning bolt",
@@ -16255,7 +16377,8 @@
       "futokoro"
     ],
     "primary_romaji": [
-      "futokoro"
+      "kai",
+      "natsukashii"
     ],
     "meanings": [
       "become attached to",
@@ -16391,7 +16514,7 @@
     ],
     "primary_romaji": [
       "ten",
-      "sou"
+      "soeru"
     ],
     "meanings": [
       "accompany",
@@ -16425,8 +16548,8 @@
       "kanmuri"
     ],
     "primary_romaji": [
-      "kanmuri",
-      "kan"
+      "kan",
+      "kanmuri"
     ],
     "meanings": [
       "best",
@@ -16456,7 +16579,7 @@
     ],
     "primary_romaji": [
       "sha",
-      "hasu"
+      "naname"
     ],
     "meanings": [
       "diagonal",
@@ -16485,8 +16608,8 @@
       "kagami"
     ],
     "primary_romaji": [
-      "kagami",
-      "kyou"
+      "kyou",
+      "kagami"
     ],
     "meanings": [
       "barrel-head",
@@ -16623,8 +16746,7 @@
       "itsuwaru"
     ],
     "primary_romaji": [
-      "sa",
-      "itsuwaru"
+      "sa"
     ],
     "meanings": [
       "deceive",
@@ -16734,8 +16856,7 @@
       "mukuiru"
     ],
     "primary_romaji": [
-      "shu",
-      "mukuiru"
+      "shu"
     ],
     "meanings": [
       "repay",
@@ -16762,8 +16883,8 @@
       "murasaki"
     ],
     "primary_romaji": [
-      "murasaki",
-      "shi"
+      "shi",
+      "murasaki"
     ],
     "meanings": [
       "purple",
@@ -16789,6 +16910,7 @@
       "akebono"
     ],
     "primary_romaji": [
+      "sho",
       "akebono"
     ],
     "meanings": [
@@ -16841,7 +16963,6 @@
       "orosu"
     ],
     "primary_romaji": [
-      "sha",
       "oroshi"
     ],
     "meanings": [
@@ -16867,8 +16988,7 @@
       "furuu"
     ],
     "primary_romaji": [
-      "fun",
-      "furuu"
+      "fun"
     ],
     "meanings": [
       "be invigorated",
@@ -16927,7 +17047,8 @@
       "hagureru"
     ],
     "primary_romaji": [
-      "itsu"
+      "itsu",
+      "sorasu"
     ],
     "meanings": [
       "deviate",
@@ -16959,8 +17080,7 @@
       "hate"
     ],
     "primary_romaji": [
-      "gai",
-      "hate"
+      "gai"
     ],
     "meanings": [
       "bound",
@@ -17020,7 +17140,7 @@
     ],
     "primary_romaji": [
       "gan",
-      "manako"
+      "me"
     ],
     "meanings": [
       "eyeball"
@@ -17068,6 +17188,7 @@
       "nao"
     ],
     "primary_romaji": [
+      "shou",
       "nao"
     ],
     "meanings": [
@@ -17186,8 +17307,8 @@
       "takumu"
     ],
     "primary_romaji": [
-      "takumi",
-      "kou"
+      "kou",
+      "takumi"
     ],
     "meanings": [
       "adroit",
@@ -17216,6 +17337,7 @@
       "hoko"
     ],
     "primary_romaji": [
+      "mu",
       "hoko"
     ],
     "meanings": [
@@ -17243,6 +17365,7 @@
       "kaki"
     ],
     "primary_romaji": [
+      "en",
       "kaki"
     ],
     "meanings": [
@@ -17389,6 +17512,7 @@
       "kuri"
     ],
     "primary_romaji": [
+      "ri",
       "kuri"
     ],
     "meanings": [
@@ -17414,7 +17538,8 @@
       "oroka"
     ],
     "primary_romaji": [
-      "gu"
+      "gu",
+      "oroka"
     ],
     "meanings": [
       "absurdity",
@@ -17475,8 +17600,7 @@
       "awaseru"
     ],
     "primary_romaji": [
-      "sou",
-      "au"
+      "sou"
     ],
     "meanings": [
       "association",
@@ -17539,8 +17663,8 @@
       "oni"
     ],
     "primary_romaji": [
-      "oni",
-      "ki"
+      "ki",
+      "oni"
     ],
     "meanings": [
       "devil",
@@ -17652,8 +17776,8 @@
       "maboroshi"
     ],
     "primary_romaji": [
-      "maboroshi",
-      "gen"
+      "gen",
+      "maboroshi"
     ],
     "meanings": [
       "apparition",
@@ -17688,6 +17812,7 @@
       "niru"
     ],
     "primary_romaji": [
+      "sha",
       "ni"
     ],
     "meanings": [
@@ -17715,8 +17840,8 @@
       "hime"
     ],
     "primary_romaji": [
-      "hime",
-      "ki"
+      "ki",
+      "hime"
     ],
     "meanings": [
       "princess"
@@ -17768,7 +17893,7 @@
       "wa"
     ],
     "primary_romaji": [
-      "wa"
+      "ha"
     ],
     "meanings": [
       "bunch",
@@ -17796,8 +17921,7 @@
       "fumu"
     ],
     "primary_romaji": [
-      "sen",
-      "fumu"
+      "sen"
     ],
     "meanings": [
       "carry through",
@@ -17858,7 +17982,8 @@
       "mabara"
     ],
     "primary_romaji": [
-      "so"
+      "so",
+      "mabara"
     ],
     "meanings": [
       "alienate",
@@ -17895,8 +18020,8 @@
       "oose"
     ],
     "primary_romaji": [
-      "gyou",
-      "aogu"
+      "kou",
+      "ossharu"
     ],
     "meanings": [
       "depend",
@@ -18002,7 +18127,8 @@
       "kudakeru"
     ],
     "primary_romaji": [
-      "sai"
+      "sai",
+      "kudaku"
     ],
     "meanings": [
       "break",
@@ -18068,6 +18194,7 @@
       "yome"
     ],
     "primary_romaji": [
+      "ka",
       "yome"
     ],
     "meanings": [
@@ -18157,7 +18284,8 @@
       "nageku"
     ],
     "primary_romaji": [
-      "tan"
+      "tan",
+      "nageku"
     ],
     "meanings": [
       "grieve",
@@ -18212,6 +18340,7 @@
       "kama"
     ],
     "primary_romaji": [
+      "ken",
       "kama"
     ],
     "meanings": [
@@ -18241,8 +18370,8 @@
       "sukuu"
     ],
     "primary_romaji": [
-      "su",
-      "sou"
+      "sou",
+      "su"
     ],
     "meanings": [
       "cobweb",
@@ -18271,7 +18400,8 @@
       "shikirini"
     ],
     "primary_romaji": [
-      "hin"
+      "hin",
+      "shikirini"
     ],
     "meanings": [
       "recur",
@@ -18299,8 +18429,8 @@
       "koto"
     ],
     "primary_romaji": [
-      "koto",
-      "kin"
+      "kin",
+      "koto"
     ],
     "meanings": [
       "harp",
@@ -18353,8 +18483,8 @@
       "tana"
     ],
     "primary_romaji": [
-      "tana",
-      "dana"
+      "hou",
+      "tana"
     ],
     "meanings": [
       "ledge",
@@ -18414,7 +18544,8 @@
       "hidoi"
     ],
     "primary_romaji": [
-      "koku"
+      "koku",
+      "hidoi"
     ],
     "meanings": [
       "atrocious",
@@ -18498,8 +18629,8 @@
       "samishii"
     ],
     "primary_romaji": [
-      "sabi",
-      "seki"
+      "jaku",
+      "sabi"
     ],
     "meanings": [
       "death of a priest",
@@ -18530,6 +18661,7 @@
       "tatsu"
     ],
     "primary_romaji": [
+      "shin",
       "tatsu"
     ],
     "meanings": [
@@ -18562,6 +18694,7 @@
       "kasumi"
     ],
     "primary_romaji": [
+      "ka",
       "kasumi"
     ],
     "meanings": [
@@ -18591,7 +18724,8 @@
       "fuseru"
     ],
     "primary_romaji": [
-      "fuku"
+      "fuku",
+      "fuseru"
     ],
     "meanings": [
       "bend down",
@@ -18693,8 +18827,8 @@
       "yokoshima"
     ],
     "primary_romaji": [
-      "yokoshima",
-      "ja"
+      "ja",
+      "yokoshima"
     ],
     "meanings": [
       "injustice",
@@ -18745,6 +18879,7 @@
       "sumi"
     ],
     "primary_romaji": [
+      "boku",
       "sumi"
     ],
     "meanings": [
@@ -18896,7 +19031,8 @@
       "nanzo"
     ],
     "primary_romaji": [
-      "na"
+      "da",
+      "nani"
     ],
     "meanings": [
       "what?"
@@ -18979,7 +19115,7 @@
       "matsuru"
     ],
     "primary_romaji": [
-      "bu",
+      "hou",
       "tatematsuru"
     ],
     "meanings": [
@@ -19015,7 +19151,7 @@
     ],
     "primary_romaji": [
       "yuu",
-      "ui"
+      "urei"
     ],
     "meanings": [
       "be anxious",
@@ -19049,8 +19185,8 @@
       "hoo"
     ],
     "primary_romaji": [
-      "hoo",
-      "boku"
+      "boku",
+      "hoo"
     ],
     "meanings": [
       "crude",
@@ -19077,8 +19213,7 @@
       "tei"
     ],
     "primary_romaji": [
-      "tei",
-      "chin"
+      "tei"
     ],
     "meanings": [
       "arbor",
@@ -19141,7 +19276,8 @@
       "ayashimu"
     ],
     "primary_romaji": [
-      "kai"
+      "ke",
+      "ayashii"
     ],
     "meanings": [
       "apparition",
@@ -19172,6 +19308,7 @@
       "hato"
     ],
     "primary_romaji": [
+      "kyuu",
       "hato"
     ],
     "meanings": [
@@ -19317,7 +19454,8 @@
       "uruosu"
     ],
     "primary_romaji": [
-      "jun"
+      "jun",
+      "urumu"
     ],
     "meanings": [
       "be watered",
@@ -19458,8 +19596,8 @@
       "kuwa"
     ],
     "primary_romaji": [
-      "kuwa",
-      "sou"
+      "sou",
+      "kuwa"
     ],
     "meanings": [
       "mulberry"
@@ -19484,8 +19622,8 @@
       "katsura"
     ],
     "primary_romaji": [
-      "katsura",
-      "kei"
+      "kei",
+      "katsura"
     ],
     "meanings": [
       "Japanese Judas-tree",
@@ -19535,6 +19673,7 @@
       "tora"
     ],
     "primary_romaji": [
+      "ko",
       "tora"
     ],
     "meanings": [
@@ -19611,6 +19750,7 @@
       "ho"
     ],
     "primary_romaji": [
+      "sui",
       "ho"
     ],
     "meanings": [
@@ -19729,8 +19869,8 @@
       "waki"
     ],
     "primary_romaji": [
-      "hata",
-      "bou"
+      "bou",
+      "katawara"
     ],
     "meanings": [
       "besides",
@@ -19812,7 +19952,8 @@
       "shireru"
     ],
     "primary_romaji": [
-      "chi"
+      "chi",
+      "shireru"
     ],
     "meanings": [
       "foolish",
@@ -19862,8 +20003,7 @@
       "akiraka"
     ],
     "primary_romaji": [
-      "kou",
-      "akiraka"
+      "kou"
     ],
     "meanings": [
       "clear"
@@ -19892,7 +20032,7 @@
     ],
     "primary_romaji": [
       "yu",
-      "ieru"
+      "iyasu"
     ],
     "meanings": [
       "cure",
@@ -19922,6 +20062,7 @@
       "kiri"
     ],
     "primary_romaji": [
+      "tou",
       "kiri"
     ],
     "meanings": [
@@ -19972,8 +20113,8 @@
       "kuruwa"
     ],
     "primary_romaji": [
-      "kuruwa",
-      "kaku"
+      "kaku",
+      "kuruwa"
     ],
     "meanings": [
       "enclosure",
@@ -20005,7 +20146,8 @@
       "yubari"
     ],
     "primary_romaji": [
-      "nyou"
+      "nyou",
+      "shito"
     ],
     "meanings": [
       "urine"
@@ -20058,7 +20200,7 @@
     ],
     "primary_romaji": [
       "to",
-      "tsuku"
+      "haku"
     ],
     "meanings": [
       "belch",
@@ -20117,6 +20259,7 @@
       "taka"
     ],
     "primary_romaji": [
+      "ou",
       "taka"
     ],
     "meanings": [
@@ -20169,6 +20312,7 @@
       "toriko"
     ],
     "primary_romaji": [
+      "ryo",
       "toriko"
     ],
     "meanings": [
@@ -20196,7 +20340,8 @@
       "sue"
     ],
     "primary_romaji": [
-      "tou"
+      "tou",
+      "sue"
     ],
     "meanings": [
       "porcelain",
@@ -20222,8 +20367,8 @@
       "kane"
     ],
     "primary_romaji": [
-      "kane",
-      "shou"
+      "shou",
+      "kane"
     ],
     "meanings": [
       "bell",
@@ -20250,8 +20395,7 @@
       "uramu"
     ],
     "primary_romaji": [
-      "kan",
-      "uramu"
+      "kan"
     ],
     "meanings": [
       "be sorry",
@@ -20280,7 +20424,8 @@
       "inoshishi"
     ],
     "primary_romaji": [
-      "inoshishi"
+      "cho",
+      "i"
     ],
     "meanings": [
       "boar"
@@ -20309,8 +20454,7 @@
       "tsunagu"
     ],
     "primary_romaji": [
-      "kou",
-      "oozuna"
+      "kou"
     ],
     "meanings": [
       "large"
@@ -20366,8 +20510,8 @@
       "wataru"
     ],
     "primary_romaji": [
-      "iya",
-      "wataru"
+      "mi",
+      "ya"
     ],
     "meanings": [
       "all the more",
@@ -20474,6 +20618,7 @@
       "me"
     ],
     "primary_romaji": [
+      "ga",
       "me"
     ],
     "meanings": [
@@ -20534,8 +20679,8 @@
       "kasa"
     ],
     "primary_romaji": [
-      "kasa",
-      "san"
+      "san",
+      "kasa"
     ],
     "meanings": [
       "umbrella"
@@ -20566,8 +20711,7 @@
       "atsui"
     ],
     "primary_romaji": [
-      "tai",
-      "atsui"
+      "ton"
     ],
     "meanings": [
       "industry",
@@ -20617,7 +20761,8 @@
       "mushiro"
     ],
     "primary_romaji": [
-      "nei"
+      "nei",
+      "mushiro"
     ],
     "meanings": [
       "peaceful",
@@ -20671,8 +20816,8 @@
       "shinobu"
     ],
     "primary_romaji": [
-      "shinobu",
-      "nin"
+      "nin",
+      "shinobu"
     ],
     "meanings": [
       "bear",
@@ -20734,7 +20879,7 @@
       "gotoshi"
     ],
     "primary_romaji": [
-      "jo",
+      "nyo",
       "gotoshi"
     ],
     "meanings": [
@@ -20793,7 +20938,7 @@
       "tasukeru"
     ],
     "primary_romaji": [
-      "yuu"
+      "u"
     ],
     "meanings": [
       "help"
@@ -20843,6 +20988,7 @@
       "namari"
     ],
     "primary_romaji": [
+      "en",
       "namari"
     ],
     "meanings": [
@@ -20868,7 +21014,8 @@
       "tama"
     ],
     "primary_romaji": [
-      "shu"
+      "shu",
+      "tama"
     ],
     "meanings": [
       "gem",
@@ -20936,6 +21083,7 @@
       "nawa"
     ],
     "primary_romaji": [
+      "byou",
       "nae"
     ],
     "meanings": [
@@ -20965,8 +21113,8 @@
       "kemono"
     ],
     "primary_romaji": [
-      "kemono",
-      "juu"
+      "juu",
+      "kemono"
     ],
     "meanings": [
       "animal",
@@ -20996,7 +21144,8 @@
       "kanashii"
     ],
     "primary_romaji": [
-      "ai"
+      "ai",
+      "aware"
     ],
     "meanings": [
       "grief",
@@ -21064,6 +21213,7 @@
       "takumi"
     ],
     "primary_romaji": [
+      "shou",
       "takumi"
     ],
     "meanings": [
@@ -21098,7 +21248,8 @@
       "nannantosu"
     ],
     "primary_romaji": [
-      "sui"
+      "sui",
+      "tare"
     ],
     "meanings": [
       "droop",
@@ -21132,8 +21283,8 @@
       "hebi"
     ],
     "primary_romaji": [
-      "hebi",
-      "ja"
+      "ja",
+      "hebi"
     ],
     "meanings": [
       "hard drinker",
@@ -21282,6 +21433,7 @@
       "wataru"
     ],
     "primary_romaji": [
+      "kan",
       "wataru"
     ],
     "meanings": [
@@ -21311,8 +21463,8 @@
       "kure"
     ],
     "primary_romaji": [
-      "kure",
-      "go"
+      "go",
+      "kureru"
     ],
     "meanings": [
       "do something for",
@@ -21345,7 +21497,8 @@
       "subete"
     ],
     "primary_romaji": [
-      "bon"
+      "bon",
+      "oyoso"
     ],
     "meanings": [
       "commonplace",
@@ -21430,8 +21583,8 @@
       "mizo"
     ],
     "primary_romaji": [
-      "mizo",
-      "kou"
+      "kou",
+      "mizo"
     ],
     "meanings": [
       "10**32",
@@ -21460,7 +21613,8 @@
       "uyauyashii"
     ],
     "primary_romaji": [
-      "kyou"
+      "kyou",
+      "uyauyashii"
     ],
     "meanings": [
       "respect",
@@ -21488,7 +21642,6 @@
       "karu"
     ],
     "primary_romaji": [
-      "kai",
       "karu"
     ],
     "meanings": [
@@ -21520,8 +21673,7 @@
       "nemuru"
     ],
     "primary_romaji": [
-      "sui",
-      "nemui"
+      "sui"
     ],
     "meanings": [
       "die",
@@ -21679,6 +21831,7 @@
       "kiri"
     ],
     "primary_romaji": [
+      "mu",
       "kiri"
     ],
     "meanings": [
@@ -21707,7 +21860,7 @@
       "tamashii"
     ],
     "primary_romaji": [
-      "tamashii",
+      "kon",
       "tama"
     ],
     "meanings": [
@@ -21759,7 +21912,8 @@
       "kisaki"
     ],
     "primary_romaji": [
-      "hi"
+      "hi",
+      "kisaki"
     ],
     "meanings": [
       "princess",
@@ -21808,8 +21962,7 @@
       "ueru"
     ],
     "primary_romaji": [
-      "ga",
-      "ueru"
+      "ga"
     ],
     "meanings": [
       "hungry",
@@ -21875,8 +22028,8 @@
       "tenohira"
     ],
     "primary_romaji": [
-      "tenohira",
-      "tanagokoro"
+      "shou",
+      "tenohira"
     ],
     "meanings": [
       "administer",
@@ -21907,7 +22060,8 @@
       "uruwashii"
     ],
     "primary_romaji": [
-      "rei"
+      "rei",
+      "uruwashii"
     ],
     "meanings": [
       "beautiful",
@@ -21967,7 +22121,8 @@
       "niou"
     ],
     "primary_romaji": [
-      "shuu"
+      "shuu",
+      "kusai"
     ],
     "meanings": [
       "be bright",
@@ -22036,8 +22191,8 @@
       "yaiba"
     ],
     "primary_romaji": [
-      "ha",
-      "jin"
+      "jin",
+      "ha"
     ],
     "meanings": [
       "blade",
@@ -22064,7 +22219,8 @@
       "shibaru"
     ],
     "primary_romaji": [
-      "baku"
+      "baku",
+      "shibaru"
     ],
     "meanings": [
       "arrest",
@@ -22095,8 +22251,8 @@
       "koyomi"
     ],
     "primary_romaji": [
-      "koyomi",
-      "reki"
+      "reki",
+      "koyomi"
     ],
     "meanings": [
       "almanac",
@@ -22125,7 +22281,7 @@
     ],
     "primary_romaji": [
       "gi",
-      "yoroshii"
+      "yoroshiku"
     ],
     "meanings": [
       "best regards",
@@ -22179,8 +22335,8 @@
       "iki"
     ],
     "primary_romaji": [
-      "iki",
-      "sui"
+      "sui",
+      "iki"
     ],
     "meanings": [
       "chic",
@@ -22242,8 +22398,7 @@
       "tsuyoi"
     ],
     "primary_romaji": [
-      "ki",
-      "tsuyoi"
+      "ki"
     ],
     "meanings": [
       "strong"
@@ -22268,8 +22423,7 @@
       "kusabi"
     ],
     "primary_romaji": [
-      "katsu",
-      "kusabi"
+      "katsu"
     ],
     "meanings": [
       "control",
@@ -22295,8 +22449,8 @@
       "saru"
     ],
     "primary_romaji": [
-      "saru",
-      "en"
+      "en",
+      "saru"
     ],
     "meanings": [
       "monkey"
@@ -22355,6 +22509,7 @@
       "minori"
     ],
     "primary_romaji": [
+      "nen",
       "minoru"
     ],
     "meanings": [
@@ -22407,7 +22562,7 @@
     ],
     "primary_romaji": [
       "sui",
-      "daki"
+      "taku"
     ],
     "meanings": [
       "boil",
@@ -22463,8 +22618,7 @@
       "toru"
     ],
     "primary_romaji": [
-      "shou",
-      "osameru"
+      "shou"
     ],
     "meanings": [
       "absorb",
@@ -22498,7 +22652,7 @@
     ],
     "primary_romaji": [
       "hou",
-      "akasu"
+      "aku"
     ],
     "meanings": [
       "bored",
@@ -22549,8 +22703,8 @@
       "momo"
     ],
     "primary_romaji": [
-      "momo",
-      "tou"
+      "tou",
+      "momo"
     ],
     "meanings": [
       "peach"
@@ -22607,7 +22761,8 @@
       "ake"
     ],
     "primary_romaji": [
-      "shu"
+      "shu",
+      "ake"
     ],
     "meanings": [
       "bloody",
@@ -22636,6 +22791,7 @@
       "uzu"
     ],
     "primary_romaji": [
+      "ka",
       "uzu"
     ],
     "meanings": [
@@ -22691,6 +22847,7 @@
       "toboso"
     ],
     "primary_romaji": [
+      "suu",
       "toboso"
     ],
     "meanings": [
@@ -22776,8 +22933,8 @@
       "sori"
     ],
     "primary_romaji": [
-      "katana",
-      "tou"
+      "tou",
+      "katana"
     ],
     "meanings": [
       "knife",
@@ -22804,6 +22961,7 @@
       "tsuzumi"
     ],
     "primary_romaji": [
+      "ko",
       "tsuzumi"
     ],
     "meanings": [
@@ -22832,6 +22990,7 @@
       "hadaka"
     ],
     "primary_romaji": [
+      "ra",
       "hadaka"
     ],
     "meanings": [
@@ -22862,6 +23021,7 @@
       "nao"
     ],
     "primary_romaji": [
+      "yu",
       "nao"
     ],
     "meanings": [
@@ -22893,7 +23053,8 @@
       "tsuchikure"
     ],
     "primary_romaji": [
-      "kai"
+      "kai",
+      "tsuchikure"
     ],
     "meanings": [
       "chunk",
@@ -22924,8 +23085,7 @@
       "meguru"
     ],
     "primary_romaji": [
-      "sen",
-      "ibari"
+      "sen"
     ],
     "meanings": [
       "go around",
@@ -22951,6 +23111,7 @@
       "yumi"
     ],
     "primary_romaji": [
+      "kyuu",
       "yumi"
     ],
     "meanings": [
@@ -23031,8 +23192,8 @@
       "ougi"
     ],
     "primary_romaji": [
-      "ougi",
-      "sen"
+      "sen",
+      "ougi"
     ],
     "meanings": [
       "fan",
@@ -23116,7 +23277,8 @@
       "itsukushimu"
     ],
     "primary_romaji": [
-      "ji"
+      "ji",
+      "itsukushimu"
     ],
     "meanings": [
       "mercy"
@@ -23141,7 +23303,8 @@
       "yanagi"
     ],
     "primary_romaji": [
-      "you"
+      "you",
+      "yanagi"
     ],
     "meanings": [
       "willow"
@@ -23176,7 +23339,8 @@
       "somuku"
     ],
     "primary_romaji": [
-      "batsu"
+      "batsu",
+      "kiru"
     ],
     "meanings": [
       "attack",
@@ -23206,7 +23370,6 @@
       "sugureru"
     ],
     "primary_romaji": [
-      "shun",
       "sun"
     ],
     "meanings": [
@@ -23345,6 +23508,7 @@
       "tsubo"
     ],
     "primary_romaji": [
+      "hei",
       "tsubo"
     ],
     "meanings": [
@@ -23419,6 +23583,7 @@
       "tsubaki"
     ],
     "primary_romaji": [
+      "chin",
       "tsubaki"
     ],
     "meanings": [
@@ -23444,8 +23609,8 @@
       "shita"
     ],
     "primary_romaji": [
-      "shita",
-      "zetsu"
+      "zetsu",
+      "shita"
     ],
     "meanings": [
       "clapper",
@@ -23579,7 +23744,7 @@
     ],
     "primary_romaji": [
       "hou",
-      "mine"
+      "ne"
     ],
     "meanings": [
       "peak",
@@ -23604,7 +23769,7 @@
       "kei"
     ],
     "primary_romaji": [
-      "kei"
+      "ke"
     ],
     "meanings": [
       "angle",
@@ -23661,8 +23826,8 @@
       "hachisu"
     ],
     "primary_romaji": [
-      "hasu",
-      "ren"
+      "ren",
+      "hasu"
     ],
     "meanings": [
       "lotus"
@@ -23690,7 +23855,7 @@
     ],
     "primary_romaji": [
       "chou",
-      "toburau"
+      "tomurau"
     ],
     "meanings": [
       "condolences",
@@ -23722,7 +23887,7 @@
     ],
     "primary_romaji": [
       "otsu",
-      "kinoto"
+      "oto"
     ],
     "meanings": [
       "duplicate",
@@ -23754,8 +23919,8 @@
       "tsuyu"
     ],
     "primary_romaji": [
-      "shiru",
-      "tsuyu"
+      "juu",
+      "shiru"
     ],
     "meanings": [
       "broth",
@@ -23811,7 +23976,8 @@
       "amaneku"
     ],
     "primary_romaji": [
-      "hen"
+      "hen",
+      "amaneku"
     ],
     "meanings": [
       "everywhere",
@@ -23863,6 +24029,7 @@
       "kaoru"
     ],
     "primary_romaji": [
+      "kun",
       "kaoru"
     ],
     "meanings": [
@@ -23893,7 +24060,8 @@
       "kari"
     ],
     "primary_romaji": [
-      "ryou"
+      "ryou",
+      "kari"
     ],
     "meanings": [
       "bag",
@@ -23921,8 +24089,8 @@
       "hitsuji"
     ],
     "primary_romaji": [
-      "hitsuji",
-      "you"
+      "you",
+      "hitsuji"
     ],
     "meanings": [
       "sheep"
@@ -24154,8 +24322,8 @@
       "buta"
     ],
     "primary_romaji": [
-      "buta",
-      "ton"
+      "ton",
+      "buta"
     ],
     "meanings": [
       "pig",
@@ -24209,6 +24377,7 @@
       "tobira"
     ],
     "primary_romaji": [
+      "hi",
       "tobira"
     ],
     "meanings": [
@@ -24283,8 +24452,7 @@
       "hisoka"
     ],
     "primary_romaji": [
-      "setsu",
-      "nusumu"
+      "setsu"
     ],
     "meanings": [
       "hushed",
@@ -24313,8 +24481,8 @@
       "awa"
     ],
     "primary_romaji": [
-      "awa",
-      "hou"
+      "hou",
+      "awa"
     ],
     "meanings": [
       "bubbles",
@@ -24346,7 +24514,8 @@
       "mizu"
     ],
     "primary_romaji": [
-      "zui"
+      "zui",
+      "mizu"
     ],
     "meanings": [
       "congratulations"
@@ -24374,6 +24543,7 @@
       "matano"
     ],
     "primary_romaji": [
+      "yuu",
       "mata"
     ],
     "meanings": [
@@ -24429,7 +24599,8 @@
       "tsumugu"
     ],
     "primary_romaji": [
-      "bou"
+      "bou",
+      "tsumugu"
     ],
     "meanings": [
       "spinning"
@@ -24542,7 +24713,8 @@
       "tawamureru"
     ],
     "primary_romaji": [
-      "gi"
+      "gi",
+      "tawamureru"
     ],
     "meanings": [
       "frolic",
@@ -24601,7 +24773,8 @@
       "imu"
     ],
     "primary_romaji": [
-      "ki"
+      "ki",
+      "imi"
     ],
     "meanings": [
       "abhor",
@@ -24633,7 +24806,8 @@
       "nigoru"
     ],
     "primary_romaji": [
-      "joku"
+      "daku",
+      "nigoru"
     ],
     "meanings": [
       "impurity",
@@ -24715,7 +24889,7 @@
       "ran"
     ],
     "primary_romaji": [
-      "ran"
+      "ra"
     ],
     "meanings": [
       "Holland",
@@ -24764,8 +24938,7 @@
       "ayakaru"
     ],
     "primary_romaji": [
-      "shou",
-      "ayakaru"
+      "shou"
     ],
     "meanings": [
       "resemblance"
@@ -24817,7 +24990,8 @@
       "kuchiru"
     ],
     "primary_romaji": [
-      "kyuu"
+      "kyuu",
+      "kuchiru"
     ],
     "meanings": [
       "decay",
@@ -24850,8 +25024,8 @@
       "gara"
     ],
     "primary_romaji": [
-      "kara",
-      "kaku"
+      "kaku",
+      "kara"
     ],
     "meanings": [
       "husk",
@@ -24879,8 +25053,7 @@
       "ukeru"
     ],
     "primary_romaji": [
-      "kyou",
-      "ukeru"
+      "kyou"
     ],
     "meanings": [
       "answer (phone)",
@@ -24942,8 +25115,8 @@
       "chigaya"
     ],
     "primary_romaji": [
-      "kaya",
-      "chigaya"
+      "bou",
+      "kaya"
     ],
     "meanings": [
       "miscanthus reed"
@@ -24995,8 +25168,7 @@
       "yonageru"
     ],
     "primary_romaji": [
-      "sa",
-      "suna"
+      "sa"
     ],
     "meanings": [
       "sand"
@@ -25023,8 +25195,7 @@
       "tasukeru"
     ],
     "primary_romaji": [
-      "fu",
-      "tasukeru"
+      "fu"
     ],
     "meanings": [
       "help"
@@ -25049,8 +25220,7 @@
       "nakoudo"
     ],
     "primary_romaji": [
-      "bai",
-      "nakoudo"
+      "bai"
     ],
     "meanings": [
       "go-between",
@@ -25078,8 +25248,8 @@
       "niwatori"
     ],
     "primary_romaji": [
-      "niwatori",
-      "kei"
+      "kei",
+      "tori"
     ],
     "meanings": [
       "chicken"
@@ -25214,8 +25384,7 @@
       "hasamu"
     ],
     "primary_romaji": [
-      "sou",
-      "sasu"
+      "sou"
     ],
     "meanings": [
       "graft",
@@ -25243,8 +25412,8 @@
       "arashi"
     ],
     "primary_romaji": [
-      "arashi",
-      "ran"
+      "ran",
+      "arashi"
     ],
     "meanings": [
       "storm",
@@ -25274,7 +25443,7 @@
       "tsuchi"
     ],
     "primary_romaji": [
-      "sui",
+      "tsui",
       "utsu"
     ],
     "meanings": [
@@ -25302,6 +25471,7 @@
       "kinu"
     ],
     "primary_romaji": [
+      "ken",
       "kinu"
     ],
     "meanings": [
@@ -25449,7 +25619,8 @@
       "shitoyaka"
     ],
     "primary_romaji": [
-      "shuku"
+      "shuku",
+      "shitoyaka"
     ],
     "meanings": [
       "gentle",
@@ -25476,8 +25647,8 @@
       "ho"
     ],
     "primary_romaji": [
-      "ho",
-      "han"
+      "han",
+      "ho"
     ],
     "meanings": [
       "sail"
@@ -25506,6 +25677,7 @@
       "satoru"
     ],
     "primary_romaji": [
+      "gyou",
       "akatsuki"
     ],
     "meanings": [
@@ -25567,7 +25739,8 @@
       "kusunoki"
     ],
     "primary_romaji": [
-      "kusunoki"
+      "nan",
+      "kusu"
     ],
     "meanings": [
       "camphor tree"
@@ -25592,6 +25765,7 @@
       "fue"
     ],
     "primary_romaji": [
+      "teki",
       "fue"
     ],
     "meanings": [
@@ -25646,8 +25820,8 @@
       "yatsu"
     ],
     "primary_romaji": [
-      "yatsu",
-      "yakko"
+      "do",
+      "yatsu"
     ],
     "meanings": [
       "fellow",
@@ -25701,8 +25875,8 @@
       "kobushi"
     ],
     "primary_romaji": [
-      "kobushi",
-      "ken"
+      "ken",
+      "kobushi"
     ],
     "meanings": [
       "fist"
@@ -25819,6 +25993,7 @@
       "haberu"
     ],
     "primary_romaji": [
+      "ji",
       "samurai"
     ],
     "meanings": [
@@ -25905,8 +26080,7 @@
       "atsui"
     ],
     "primary_romaji": [
-      "toku",
-      "atsui"
+      "toku"
     ],
     "meanings": [
       "cordial",
@@ -25941,6 +26115,7 @@
       "hajime"
     ],
     "primary_romaji": [
+      "chou",
       "hajime"
     ],
     "meanings": [
@@ -26020,7 +26195,8 @@
       "men"
     ],
     "primary_romaji": [
-      "mesu"
+      "shi",
+      "me"
     ],
     "meanings": [
       "female",
@@ -26050,6 +26226,7 @@
       "tooru"
     ],
     "primary_romaji": [
+      "kou",
       "tooru"
     ],
     "meanings": [
@@ -26084,8 +26261,8 @@
       "tamaru"
     ],
     "primary_romaji": [
-      "kan",
-      "kotaeru"
+      "tan",
+      "tamaru"
     ],
     "meanings": [
       "endure",
@@ -26143,6 +26320,7 @@
       "su"
     ],
     "primary_romaji": [
+      "saku",
       "su"
     ],
     "meanings": [
@@ -26197,8 +26375,7 @@
       "tagaini"
     ],
     "primary_romaji": [
-      "tei",
-      "kawaru"
+      "tei"
     ],
     "meanings": [
       "in turn",
@@ -26227,7 +26404,8 @@
       "mine"
     ],
     "primary_romaji": [
-      "rei"
+      "rei",
+      "mine"
     ],
     "meanings": [
       "peak",
@@ -26255,7 +26433,8 @@
       "hanahadashii"
     ],
     "primary_romaji": [
-      "jin"
+      "jin",
+      "hanahada"
     ],
     "meanings": [
       "exceedingly",
@@ -26338,8 +26517,8 @@
       "urushi"
     ],
     "primary_romaji": [
-      "urushi",
-      "shitsu"
+      "shitsu",
+      "urushi"
     ],
     "meanings": [
       "lacquer",
@@ -26366,6 +26545,7 @@
       "misaki"
     ],
     "primary_romaji": [
+      "kou",
       "misaki"
     ],
     "meanings": [
@@ -26396,8 +26576,8 @@
       "kuseni"
     ],
     "primary_romaji": [
-      "kuse",
-      "heki"
+      "heki",
+      "kuse"
     ],
     "meanings": [
       "fault",
@@ -26429,8 +26609,7 @@
       "tanoshimu"
     ],
     "primary_romaji": [
-      "yu",
-      "tanoshii"
+      "yu"
     ],
     "meanings": [
       "happy",
@@ -26457,6 +26636,7 @@
       "tora"
     ],
     "primary_romaji": [
+      "in",
       "tora"
     ],
     "meanings": [
@@ -26516,8 +26696,8 @@
       "nanji"
     ],
     "primary_romaji": [
-      "ai",
-      "sunawachi"
+      "nai",
+      "no"
     ],
     "meanings": [
       "accordingly",
@@ -26547,7 +26727,8 @@
       "shima"
     ],
     "primary_romaji": [
-      "su"
+      "su",
+      "shima"
     ],
     "meanings": [
       "continent",
@@ -26575,8 +26756,8 @@
       "tamuro"
     ],
     "primary_romaji": [
-      "tamuro",
-      "ton"
+      "ton",
+      "tamuro"
     ],
     "meanings": [
       "barracks",
@@ -26606,6 +26787,7 @@
       "kanba"
     ],
     "primary_romaji": [
+      "ka",
       "kaba"
     ],
     "meanings": [
@@ -26636,6 +26818,7 @@
       "maki"
     ],
     "primary_romaji": [
+      "shin",
       "maki"
     ],
     "meanings": [
@@ -26689,7 +26872,8 @@
       "kewashii"
     ],
     "primary_romaji": [
-      "iwao"
+      "gan",
+      "iwa"
     ],
     "meanings": [
       "boulder",
@@ -26718,7 +26902,8 @@
       "modoki"
     ],
     "primary_romaji": [
-      "gi"
+      "gi",
+      "modoki"
     ],
     "meanings": [
       "aim (a gun) at",
@@ -26745,8 +26930,7 @@
       "bei"
     ],
     "primary_romaji": [
-      "hei",
-      "bei"
+      "hei"
     ],
     "meanings": [
       "(kokuji)",
@@ -26773,6 +26957,7 @@
       "kuchibiru"
     ],
     "primary_romaji": [
+      "shin",
       "kuchibiru"
     ],
     "meanings": [
@@ -26804,7 +26989,8 @@
       "mutsumu"
     ],
     "primary_romaji": [
-      "boku"
+      "boku",
+      "mutsumajii"
     ],
     "meanings": [
       "friendly",
@@ -26857,7 +27043,7 @@
       "nanzo"
     ],
     "primary_romaji": [
-      "ko"
+      "u"
     ],
     "meanings": [
       "barbarian",
@@ -27011,7 +27197,8 @@
       "iyashimeru"
     ],
     "primary_romaji": [
-      "hi"
+      "hi",
+      "iyashii"
     ],
     "meanings": [
       "base",
@@ -27043,7 +27230,7 @@
     ],
     "primary_romaji": [
       "bu",
-      "anazuru"
+      "anadoru"
     ],
     "meanings": [
       "contempt",
@@ -27127,7 +27314,6 @@
       "jou"
     ],
     "primary_romaji": [
-      "jou",
       "i"
     ],
     "meanings": [
@@ -27156,6 +27342,7 @@
       "tsuki"
     ],
     "primary_romaji": [
+      "ki",
       "tsuki"
     ],
     "meanings": [
@@ -27289,8 +27476,8 @@
       "kuki"
     ],
     "primary_romaji": [
-      "kuki",
-      "kei"
+      "kei",
+      "kuki"
     ],
     "meanings": [
       "stalk",
@@ -27445,6 +27632,7 @@
       "eri"
     ],
     "primary_romaji": [
+      "kin",
       "eri"
     ],
     "meanings": [
@@ -27473,6 +27661,7 @@
       "hotaru"
     ],
     "primary_romaji": [
+      "kei",
       "hotaru"
     ],
     "meanings": [
@@ -27668,8 +27857,8 @@
       "ai"
     ],
     "primary_romaji": [
-      "ai",
-      "ran"
+      "ran",
+      "ai"
     ],
     "meanings": [
       "indigo"
@@ -27719,8 +27908,7 @@
       "shiboru"
     ],
     "primary_romaji": [
-      "saku",
-      "shiboru"
+      "saku"
     ],
     "meanings": [
       "squeeze"
@@ -27750,7 +27938,7 @@
     ],
     "primary_romaji": [
       "han",
-      "kuro"
+      "aze"
     ],
     "meanings": [
       "levee",
@@ -27859,6 +28047,7 @@
       "tachibana"
     ],
     "primary_romaji": [
+      "kitsu",
       "tachibana"
     ],
     "meanings": [
@@ -27894,8 +28083,7 @@
       "susugu"
     ],
     "primary_romaji": [
-      "shuu",
-      "ugai"
+      "sou"
     ],
     "meanings": [
       "gargle",
@@ -27923,7 +28111,7 @@
       "sebone"
     ],
     "primary_romaji": [
-      "ryo"
+      "ro"
     ],
     "meanings": [
       "backbone",
@@ -28004,7 +28192,8 @@
       "sono"
     ],
     "primary_romaji": [
-      "en"
+      "en",
+      "sono"
     ],
     "meanings": [
       "farm",
@@ -28031,8 +28220,7 @@
       "tatsumi"
     ],
     "primary_romaji": [
-      "tatsumi",
-      "son"
+      "tatsumi"
     ],
     "meanings": [
       "southeast"
@@ -28065,8 +28253,8 @@
       "yamanashi"
     ],
     "primary_romaji": [
-      "zu",
-      "fusagu"
+      "to",
+      "mori"
     ],
     "meanings": [
       "grove",
@@ -28094,7 +28282,8 @@
       "tanigawa"
     ],
     "primary_romaji": [
-      "kei"
+      "kei",
+      "tani"
     ],
     "meanings": [
       "mountain stream",
@@ -28120,8 +28309,8 @@
       "okina"
     ],
     "primary_romaji": [
-      "okina",
-      "ou"
+      "ou",
+      "okina"
     ],
     "meanings": [
       "venerable old man"
@@ -28180,8 +28369,7 @@
       "tsutsushimu"
     ],
     "primary_romaji": [
-      "kin",
-      "tsutsushimu"
+      "kin"
     ],
     "meanings": [
       "discreet",
@@ -28210,6 +28398,7 @@
       "hitomi"
     ],
     "primary_romaji": [
+      "dou",
       "hitomi"
     ],
     "meanings": [
@@ -28239,7 +28428,8 @@
       "waku"
     ],
     "primary_romaji": [
-      "yuu"
+      "yu",
+      "waku"
     ],
     "meanings": [
       "boil",
@@ -28300,8 +28490,8 @@
       "kama"
     ],
     "primary_romaji": [
-      "kama",
-      "you"
+      "you",
+      "kama"
     ],
     "meanings": [
       "furnace",
@@ -28357,7 +28547,8 @@
       "minikui"
     ],
     "primary_romaji": [
-      "shuu"
+      "shuu",
+      "minikui"
     ],
     "meanings": [
       "bad looking",
@@ -28443,7 +28634,8 @@
       "wazurawasu"
     ],
     "primary_romaji": [
-      "han"
+      "bon",
+      "urusai"
     ],
     "meanings": [
       "annoy",
@@ -28477,6 +28669,7 @@
       "tomoe"
     ],
     "primary_romaji": [
+      "ha",
       "tomoe"
     ],
     "meanings": [
@@ -28502,8 +28695,7 @@
       "saiwai"
     ],
     "primary_romaji": [
-      "tei",
-      "saiwai"
+      "tei"
     ],
     "meanings": [
       "auspicious",
@@ -28613,7 +28805,8 @@
       "kado"
     ],
     "primary_romaji": [
-      "ryou"
+      "ryou",
+      "itsu"
     ],
     "meanings": [
       "angle",
@@ -28704,6 +28897,7 @@
       "muko"
     ],
     "primary_romaji": [
+      "sei",
       "muko"
     ],
     "meanings": [
@@ -28910,8 +29104,7 @@
       "sakigake"
     ],
     "primary_romaji": [
-      "kai",
-      "kashira"
+      "kai"
     ],
     "meanings": [
       "charging ahead of others"
@@ -28936,6 +29129,7 @@
       "niji"
     ],
     "primary_romaji": [
+      "kou",
       "niji"
     ],
     "meanings": [
@@ -28967,6 +29161,7 @@
       "hishikui"
     ],
     "primary_romaji": [
+      "kou",
       "ootori"
     ],
     "meanings": [
@@ -29034,7 +29229,7 @@
     ],
     "primary_romaji": [
       "o",
-      "aa"
+      "okeru"
     ],
     "meanings": [
       "as for",
@@ -29090,7 +29285,8 @@
       "youyou"
     ],
     "primary_romaji": [
-      "susumu"
+      "zen",
+      "youyaku"
     ],
     "meanings": [
       "barely",
@@ -29118,6 +29314,7 @@
       "ka"
     ],
     "primary_romaji": [
+      "bun",
       "ka"
     ],
     "meanings": [
@@ -29143,6 +29340,7 @@
       "aoi"
     ],
     "primary_romaji": [
+      "ki",
       "aoi"
     ],
     "meanings": [
@@ -29193,6 +29391,7 @@
       "mo"
     ],
     "primary_romaji": [
+      "sou",
       "mo"
     ],
     "meanings": [
@@ -29331,8 +29530,7 @@
       "odosu"
     ],
     "primary_romaji": [
-      "kaku",
-      "odosu"
+      "kaku"
     ],
     "meanings": [
       "dignity",
@@ -29360,6 +29558,7 @@
       "mi"
     ],
     "primary_romaji": [
+      "shi",
       "mi"
     ],
     "meanings": [
@@ -29387,7 +29586,8 @@
       "deko"
     ],
     "primary_romaji": [
-      "totsu"
+      "totsu",
+      "deko"
     ],
     "meanings": [
       "beetle brow",
@@ -29414,8 +29614,7 @@
       "nobiru"
     ],
     "primary_romaji": [
-      "chou",
-      "nobiru"
+      "chou"
     ],
     "meanings": [
       "stretch"
@@ -29464,8 +29663,8 @@
       "shimo"
     ],
     "primary_romaji": [
-      "shimo",
-      "sou"
+      "sou",
+      "shimo"
     ],
     "meanings": [
       "frost"
@@ -29540,6 +29739,7 @@
       "seri"
     ],
     "primary_romaji": [
+      "kin",
       "seri"
     ],
     "meanings": [
@@ -29569,7 +29769,8 @@
       "anzu"
     ],
     "primary_romaji": [
-      "kyou"
+      "an",
+      "anzu"
     ],
     "meanings": [
       "apricot"
@@ -29667,8 +29868,8 @@
       "kaori"
     ],
     "primary_romaji": [
-      "kaoru",
-      "kei"
+      "kei",
+      "kaoru"
     ],
     "meanings": [
       "balmy",
@@ -29697,7 +29898,7 @@
       "satoi"
     ],
     "primary_romaji": [
-      "kei"
+      "e"
     ],
     "meanings": [
       "wise"
@@ -29724,8 +29925,7 @@
       "ureeru"
     ],
     "primary_romaji": [
-      "shuu",
-      "urei"
+      "shuu"
     ],
     "meanings": [
       "be anxious",
@@ -29784,8 +29984,7 @@
       "uruwashii"
     ],
     "primary_romaji": [
-      "hin",
-      "akiraka"
+      "hin"
     ],
     "meanings": [
       "gentle",
@@ -29815,8 +30014,7 @@
       "tadasu"
     ],
     "primary_romaji": [
-      "ou",
-      "sukuu"
+      "kyou"
     ],
     "meanings": [
       "assist",
@@ -29845,6 +30043,7 @@
       "mayu"
     ],
     "primary_romaji": [
+      "mi",
       "mayu"
     ],
     "meanings": [
@@ -29901,8 +30100,8 @@
       "maki"
     ],
     "primary_romaji": [
-      "takigi",
-      "maki"
+      "shin",
+      "takigi"
     ],
     "meanings": [
       "firewood",
@@ -29957,7 +30156,7 @@
     ],
     "primary_romaji": [
       "shi",
-      "tamau"
+      "tamawaru"
     ],
     "meanings": [
       "boon",
@@ -30013,8 +30212,7 @@
       "suberu"
     ],
     "primary_romaji": [
-      "sou",
-      "osameru"
+      "sou"
     ],
     "meanings": [
       "rule",
@@ -30130,6 +30328,7 @@
       "namazu"
     ],
     "primary_romaji": [
+      "nen",
       "ayu"
     ],
     "meanings": [
@@ -30160,8 +30359,8 @@
       "hari"
     ],
     "primary_romaji": [
-      "hashibami",
-      "han"
+      "han",
+      "hashibami"
     ],
     "meanings": [
       "filbert",
@@ -30191,7 +30390,8 @@
       "boko"
     ],
     "primary_romaji": [
-      "ou"
+      "ou",
+      "hekomu"
     ],
     "meanings": [
       "concave",
@@ -30226,8 +30426,8 @@
       "namameku"
     ],
     "primary_romaji": [
-      "tsuya",
-      "en"
+      "en",
+      "tsuya"
     ],
     "meanings": [
       "captivating",
@@ -30340,8 +30540,8 @@
       "hayabusa"
     ],
     "primary_romaji": [
-      "hayabusa",
-      "shun"
+      "shun",
+      "hayabusa"
     ],
     "meanings": [
       "falcon"
@@ -30366,6 +30566,7 @@
       "nagisa"
     ],
     "primary_romaji": [
+      "sho",
       "nagisa"
     ],
     "meanings": [
@@ -30479,6 +30680,7 @@
       "mare"
     ],
     "primary_romaji": [
+      "ki",
       "mare"
     ],
     "meanings": [
@@ -30529,8 +30731,8 @@
       "mikotonori"
     ],
     "primary_romaji": [
-      "mikotonori",
-      "shou"
+      "shou",
+      "mikotonori"
     ],
     "meanings": [
       "imperial edict"
@@ -30588,8 +30790,8 @@
       "hiyoko"
     ],
     "primary_romaji": [
-      "hina",
-      "hiyoko"
+      "su",
+      "hina"
     ],
     "meanings": [
       "chick",
@@ -30624,7 +30826,7 @@
     ],
     "primary_romaji": [
       "i",
-      "omouni"
+      "kore"
     ],
     "meanings": [
       "consider",
@@ -30653,8 +30855,7 @@
       "tasukeru"
     ],
     "primary_romaji": [
-      "u",
-      "tasukeru"
+      "u"
     ],
     "meanings": [
       "assist",
@@ -30682,8 +30883,7 @@
       "hikari"
     ],
     "primary_romaji": [
-      "you",
-      "kagayaku"
+      "you"
     ],
     "meanings": [
       "gleam",
@@ -30739,8 +30939,7 @@
       "uruou"
     ],
     "primary_romaji": [
-      "aku",
-      "atsui"
+      "aku"
     ],
     "meanings": [
       "kindness",
@@ -30770,7 +30969,7 @@
       "akogareru"
     ],
     "primary_romaji": [
-      "shou",
+      "dou",
       "akogareru"
     ],
     "meanings": [
@@ -30800,6 +30999,7 @@
       "yoi"
     ],
     "primary_romaji": [
+      "shou",
       "yoi"
     ],
     "meanings": [
@@ -30829,8 +31029,7 @@
       "midarini"
     ],
     "primary_romaji": [
-      "bou",
-      "midarini"
+      "mou"
     ],
     "meanings": [
       "delusion",
@@ -30921,8 +31120,7 @@
       "hajimete"
     ],
     "primary_romaji": [
-      "fu",
-      "hajimete"
+      "ho"
     ],
     "meanings": [
       "for the first time",
@@ -30983,8 +31181,8 @@
       "ko"
     ],
     "primary_romaji": [
-      "kaiko",
-      "san"
+      "san",
+      "kaiko"
     ],
     "meanings": [
       "silkworm"
@@ -31039,6 +31237,7 @@
       "aoi"
     ],
     "primary_romaji": [
+      "sou",
       "aoi"
     ],
     "meanings": [
@@ -31065,8 +31264,7 @@
       "kagayaku"
     ],
     "primary_romaji": [
-      "ki",
-      "kagayaku"
+      "ki"
     ],
     "meanings": [
       "light",
@@ -31094,8 +31292,7 @@
       "wakeru"
     ],
     "primary_romaji": [
-      "han",
-      "wakatsu"
+      "han"
     ],
     "meanings": [
       "disseminate",
@@ -31123,6 +31320,7 @@
       "tada"
     ],
     "primary_romaji": [
+      "shi",
       "tada"
     ],
     "meanings": [
@@ -31175,8 +31373,8 @@
       "mayumi"
     ],
     "primary_romaji": [
-      "mayumi",
-      "dan"
+      "dan",
+      "mayumi"
     ],
     "meanings": [
       "cedar",
@@ -31238,8 +31436,7 @@
       "houki"
     ],
     "primary_romaji": [
-      "e",
-      "houki"
+      "sui"
     ],
     "meanings": [
       "comet"
@@ -31287,8 +31484,8 @@
       "azusa"
     ],
     "primary_romaji": [
-      "azusa",
-      "shi"
+      "shi",
+      "azusa"
     ],
     "meanings": [
       "catalpa tree",
@@ -31314,6 +31511,7 @@
       "ushi"
     ],
     "primary_romaji": [
+      "chuu",
       "ushi"
     ],
     "meanings": [
@@ -31398,7 +31596,7 @@
     ],
     "primary_romaji": [
       "seki",
-      "ushio"
+      "shio"
     ],
     "meanings": [
       "eventide",
@@ -31448,8 +31646,7 @@
       "tsuitachi"
     ],
     "primary_romaji": [
-      "saku",
-      "tsuitachi"
+      "saku"
     ],
     "meanings": [
       "conjunction (astronomy)",
@@ -31482,6 +31679,7 @@
       "togi"
     ],
     "primary_romaji": [
+      "ka",
       "togi"
     ],
     "meanings": [
@@ -31517,8 +31715,8 @@
       "se"
     ],
     "primary_romaji": [
-      "une",
-      "se"
+      "ho",
+      "une"
     ],
     "meanings": [
       "furrow",
@@ -31576,7 +31774,8 @@
       "tagau"
     ],
     "primary_romaji": [
-      "sou"
+      "sou",
+      "sawayaka"
     ],
     "meanings": [
       "bracing",
@@ -31607,8 +31806,7 @@
       "kuroi"
     ],
     "primary_romaji": [
-      "ri",
-      "kuroi"
+      "rei"
     ],
     "meanings": [
       "black",
@@ -31690,7 +31888,7 @@
     ],
     "primary_romaji": [
       "ko",
-      "kooru"
+      "saeru"
     ],
     "meanings": [
       "be clear",
@@ -31726,8 +31924,7 @@
       "sakan"
     ],
     "primary_romaji": [
-      "ou",
-      "utsukushii"
+      "ou"
     ],
     "meanings": [
       "beautiful",
@@ -31762,7 +31959,7 @@
     ],
     "primary_romaji": [
       "hou",
-      "kizashi"
+      "moeru"
     ],
     "meanings": [
       "bud",
@@ -31792,7 +31989,7 @@
       "shinobu"
     ],
     "primary_romaji": [
-      "sai",
+      "shi",
       "shinobu"
     ],
     "meanings": [
@@ -31821,8 +32018,7 @@
       "hitotsu"
     ],
     "primary_romaji": [
-      "ichi",
-      "hitotsu"
+      "ichi"
     ],
     "meanings": [
       "one (in documents)"
@@ -31846,7 +32042,7 @@
       "ru"
     ],
     "primary_romaji": [
-      "ryuu"
+      "ru"
     ],
     "meanings": [
       "lapis lazuli"
@@ -31932,7 +32128,7 @@
     ],
     "primary_romaji": [
       "shi",
-      "ueru"
+      "maku"
     ],
     "meanings": [
       "sow (seeds)"
@@ -31957,6 +32153,7 @@
       "koi"
     ],
     "primary_romaji": [
+      "ri",
       "koi"
     ],
     "meanings": [
@@ -32006,6 +32203,7 @@
       "haruka"
     ],
     "primary_romaji": [
+      "you",
       "haruka"
     ],
     "meanings": [
@@ -32082,8 +32280,7 @@
       "tsukeru"
     ],
     "primary_romaji": [
-      "fu",
-      "tsuku"
+      "fu"
     ],
     "meanings": [
       "affixed",
@@ -32143,6 +32340,7 @@
       "u"
     ],
     "primary_romaji": [
+      "bou",
       "u"
     ],
     "meanings": [
@@ -32310,8 +32508,7 @@
       "hikaru"
     ],
     "primary_romaji": [
-      "kou",
-      "shiroi"
+      "kou"
     ],
     "meanings": [
       "clear",
@@ -32361,6 +32558,7 @@
       "mari"
     ],
     "primary_romaji": [
+      "kyuu",
       "iga"
     ],
     "meanings": [
@@ -32389,6 +32587,7 @@
       "baba"
     ],
     "primary_romaji": [
+      "ba",
       "baba"
     ],
     "meanings": [
@@ -32501,7 +32700,8 @@
       "mura"
     ],
     "primary_romaji": [
-      "yuu"
+      "yuu",
+      "mura"
     ],
     "meanings": [
       "right village radical (no. 163)",
@@ -32642,6 +32842,7 @@
       "tori"
     ],
     "primary_romaji": [
+      "yuu",
       "tori"
     ],
     "meanings": [
@@ -32699,7 +32900,7 @@
     ],
     "primary_romaji": [
       "ken",
-      "tsuzumayaka"
+      "tsumashii"
     ],
     "meanings": [
       "economy",
@@ -32730,7 +32931,8 @@
       "yuzu"
     ],
     "primary_romaji": [
-      "yu"
+      "yu",
+      "yuzu"
     ],
     "meanings": [
       "citron"
@@ -32757,6 +32959,7 @@
       "mayu"
     ],
     "primary_romaji": [
+      "ken",
       "mayu"
     ],
     "meanings": [
@@ -32805,7 +33008,7 @@
       "monme"
     ],
     "primary_romaji": [
-      "monme"
+      "me"
     ],
     "meanings": [
       "(kokuji)",
@@ -32862,7 +33065,6 @@
       "katsu"
     ],
     "primary_romaji": [
-      "sho",
       "katsu"
     ],
     "meanings": [
@@ -32890,7 +33092,8 @@
       "hinoe"
     ],
     "primary_romaji": [
-      "hei"
+      "hei",
+      "hinoe"
     ],
     "meanings": [
       "3rd",
@@ -32927,7 +33130,7 @@
       "tadashi"
     ],
     "primary_romaji": [
-      "tan"
+      "dan"
     ],
     "meanings": [
       "dawn",
@@ -32958,8 +33161,7 @@
       "tasukeru"
     ],
     "primary_romaji": [
-      "shou",
-      "sukuu"
+      "jou"
     ],
     "meanings": [
       "help"
@@ -32986,6 +33188,7 @@
       "i"
     ],
     "primary_romaji": [
+      "gai",
       "i"
     ],
     "meanings": [
@@ -33015,7 +33218,6 @@
       "mata"
     ],
     "primary_romaji": [
-      "eki",
       "mata"
     ],
     "meanings": [
@@ -33125,8 +33327,7 @@
       "futatsu"
     ],
     "primary_romaji": [
-      "ji",
-      "soe"
+      "ni"
     ],
     "meanings": [
       "II",
@@ -33155,8 +33356,7 @@
       "wazaogi"
     ],
     "primary_romaji": [
-      "ryou",
-      "wazaogi"
+      "rei"
     ],
     "meanings": [
       "actor"
@@ -33181,8 +33381,7 @@
       "iru"
     ],
     "primary_romaji": [
-      "ya",
-      "iru"
+      "ya"
     ],
     "meanings": [
       "melting",
@@ -33214,8 +33413,7 @@
       "yonageru"
     ],
     "primary_romaji": [
-      "ta",
-      "ogoru"
+      "ta"
     ],
     "meanings": [
       "filtering",
@@ -33243,7 +33441,7 @@
       "ku"
     ],
     "primary_romaji": [
-      "kyuu"
+      "ku"
     ],
     "meanings": [
       "beautiful black jewel",
@@ -33301,7 +33499,7 @@
       "tasukeru"
     ],
     "primary_romaji": [
-      "yuu"
+      "u"
     ],
     "meanings": [
       "urge to eat"
@@ -33332,8 +33530,7 @@
       "takaburu"
     ],
     "primary_romaji": [
-      "kou",
-      "agaru"
+      "kou"
     ],
     "meanings": [
       "rise"
@@ -33381,7 +33578,7 @@
       "matsu"
     ],
     "primary_romaji": [
-      "batsu"
+      "ma"
     ],
     "meanings": [
       "jasmine"
@@ -33412,7 +33609,8 @@
       "michibiku"
     ],
     "primary_romaji": [
-      "susumu"
+      "teki",
+      "michi"
     ],
     "meanings": [
       "edify",
@@ -33441,8 +33639,7 @@
       "toru"
     ],
     "primary_romaji": [
-      "sai",
-      "irodori"
+      "sai"
     ],
     "meanings": [
       "appearance",
@@ -33472,8 +33669,7 @@
       "tsuyoi"
     ],
     "primary_romaji": [
-      "kei",
-      "tsuyoi"
+      "kei"
     ],
     "meanings": [
       "strong"
@@ -33500,7 +33696,8 @@
       "ya"
     ],
     "primary_romaji": [
-      "kana"
+      "sai",
+      "ya"
     ],
     "meanings": [
       "alas",
@@ -33613,6 +33810,7 @@
       "hiiragi"
     ],
     "primary_romaji": [
+      "shu",
       "hiiragi"
     ],
     "meanings": [
@@ -33699,7 +33897,7 @@
       "ka"
     ],
     "primary_romaji": [
-      "ja",
+      "ya",
       "ka"
     ],
     "meanings": [
@@ -33755,7 +33953,6 @@
       "eri"
     ],
     "primary_romaji": [
-      "kin",
       "eri"
     ],
     "meanings": [
@@ -33785,8 +33982,7 @@
       "shiawase"
     ],
     "primary_romaji": [
-      "kou",
-      "saiwai"
+      "kou"
     ],
     "meanings": [
       "happiness",
@@ -33947,7 +34143,7 @@
       "usuginu"
     ],
     "primary_romaji": [
-      "sha"
+      "sa"
     ],
     "meanings": [
       "gauze",
@@ -33972,7 +34168,7 @@
       "mou"
     ],
     "primary_romaji": [
-      "kou"
+      "mou"
     ],
     "meanings": [
       "decrease"
@@ -34023,8 +34219,7 @@
       "i"
     ],
     "primary_romaji": [
-      "kan",
-      "i"
+      "kan"
     ],
     "meanings": [
       "reed used to cover tatami",
@@ -34074,8 +34269,7 @@
       "hayai"
     ],
     "primary_romaji": [
-      "shou",
-      "hayai"
+      "shou"
     ],
     "meanings": [
       "fast",
@@ -34105,8 +34299,7 @@
       "sasu"
     ],
     "primary_romaji": [
-      "datsu",
-      "osu"
+      "natsu"
     ],
     "meanings": [
       "affix a seal",
@@ -34138,8 +34331,7 @@
       "toki"
     ],
     "primary_romaji": [
-      "shin",
-      "asa"
+      "shin"
     ],
     "meanings": [
       "early",
@@ -34167,6 +34359,7 @@
       "kozue"
     ],
     "primary_romaji": [
+      "shou",
       "kozue"
     ],
     "meanings": [
@@ -34193,8 +34386,7 @@
       "aogiri"
     ],
     "primary_romaji": [
-      "go",
-      "aogiri"
+      "go"
     ],
     "meanings": [
       "Chinese parasol tree",
@@ -34222,6 +34414,7 @@
       "hitomi"
     ],
     "primary_romaji": [
+      "bou",
       "hitomi"
     ],
     "meanings": [
@@ -34375,7 +34568,7 @@
       "ke"
     ],
     "primary_romaji": [
-      "ka"
+      "ke"
     ],
     "meanings": [
       "a coarse camlet"
@@ -34478,8 +34671,7 @@
       "warawa"
     ],
     "primary_romaji": [
-      "shun",
-      "owaru"
+      "shun"
     ],
     "meanings": [
       "end",
@@ -34509,8 +34701,7 @@
       "fukureru"
     ],
     "primary_romaji": [
-      "chou",
-      "hareru"
+      "chou"
     ],
     "meanings": [
       "bulge",
@@ -34539,8 +34730,7 @@
       "deku"
     ],
     "primary_romaji": [
-      "so",
-      "deku"
+      "so"
     ],
     "meanings": [
       "model",
@@ -34572,6 +34762,7 @@
       "takai"
     ],
     "primary_romaji": [
+      "suu",
       "kasa"
     ],
     "meanings": [
@@ -34600,7 +34791,6 @@
       "yashi"
     ],
     "primary_romaji": [
-      "ya",
       "yashi"
     ],
     "meanings": [
@@ -34626,8 +34816,8 @@
       "kaede"
     ],
     "primary_romaji": [
-      "kaede",
-      "fuu"
+      "fuu",
+      "kaede"
     ],
     "meanings": [
       "maple"
@@ -34652,8 +34842,7 @@
       "hiroi"
     ],
     "primary_romaji": [
-      "kou",
-      "hiroi"
+      "kou"
     ],
     "meanings": [
       "deep and broad (water)"
@@ -34677,7 +34866,7 @@
       "go"
     ],
     "primary_romaji": [
-      "ko"
+      "go"
     ],
     "meanings": [
       "ancestral offering receptacle",
@@ -34764,8 +34953,7 @@
       "hakaru"
     ],
     "primary_romaji": [
-      "gu",
-      "azamuku"
+      "gu"
     ],
     "meanings": [
       "anxiety",
@@ -34823,8 +35011,7 @@
       "makoto"
     ],
     "primary_romaji": [
-      "shun",
-      "hakaru"
+      "jun"
     ],
     "meanings": [
       "consult with"
@@ -34857,8 +35044,7 @@
       "homeru"
     ],
     "primary_romaji": [
-      "shou",
-      "ju"
+      "shou"
     ],
     "meanings": [
       "eulogy"
@@ -34896,7 +35082,7 @@
     ],
     "primary_romaji": [
       "ji",
-      "ore"
+      "shika"
     ],
     "meanings": [
       "second person",
@@ -34923,8 +35109,7 @@
       "migaku"
     ],
     "primary_romaji": [
-      "sa",
-      "migaku"
+      "sa"
     ],
     "meanings": [
       "artful smile",
@@ -34951,8 +35136,7 @@
       "ookii"
     ],
     "primary_romaji": [
-      "seki",
-      "ookii"
+      "seki"
     ],
     "meanings": [
       "eminent",
@@ -35005,8 +35189,7 @@
       "ito"
     ],
     "primary_romaji": [
-      "kan",
-      "ito"
+      "rin"
     ],
     "meanings": [
       "silk cloth",
@@ -35056,8 +35239,7 @@
       "satto"
     ],
     "primary_romaji": [
-      "satsu",
-      "satto"
+      "sou"
     ],
     "meanings": [
       "quick",
@@ -35084,8 +35266,7 @@
       "kibishii"
     ],
     "primary_romaji": [
-      "rin",
-      "kibishii"
+      "rin"
     ],
     "meanings": [
       "cold",
@@ -35126,8 +35307,7 @@
       "yorokobu"
     ],
     "primary_romaji": [
-      "ki",
-      "akiraka"
+      "ki"
     ],
     "meanings": [
       "bright",
@@ -35180,8 +35360,7 @@
       "yoshimi"
     ],
     "primary_romaji": [
-      "gi",
-      "yoi"
+      "gi"
     ],
     "meanings": [
       "friendship",
@@ -35346,8 +35525,7 @@
       "akiraka"
     ],
     "primary_romaji": [
-      "ei",
-      "akiraka"
+      "ei"
     ],
     "meanings": [
       "imperial",
@@ -35428,8 +35606,7 @@
       "kagaribi"
     ],
     "primary_romaji": [
-      "ryou",
-      "kagaribi"
+      "ryou"
     ],
     "meanings": [
       "bonfire",
@@ -35457,6 +35634,7 @@
       "fuki"
     ],
     "primary_romaji": [
+      "ru",
       "fuki"
     ],
     "meanings": [
@@ -35485,6 +35663,7 @@
       "tsumu"
     ],
     "primary_romaji": [
+      "sui",
       "tsumu"
     ],
     "meanings": [
@@ -35567,8 +35746,7 @@
       "akiraka"
     ],
     "primary_romaji": [
-      "ryou",
-      "akiraka"
+      "ryou"
     ],
     "meanings": [
       "clear"
@@ -35595,6 +35773,7 @@
       "mari"
     ],
     "primary_romaji": [
+      "kyuu",
       "mari"
     ],
     "meanings": [
@@ -35652,8 +35831,7 @@
       "hikari"
     ],
     "primary_romaji": [
-      "you",
-      "kagayaku"
+      "you"
     ],
     "meanings": [
       "shine"

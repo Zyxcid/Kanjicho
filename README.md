@@ -36,7 +36,7 @@ src/
   main.jsx                 entry point
   App.jsx                  state machine + router wiring + SRS flow
   lib/
-    dataLoader.js          loads JSON, merges examples, re-derives primary_romaji
+    dataLoader.js          loads JSON, merges examples (primary_romaji trusted from JSON)
     quizGenerator.js       generates multiple-choice questions (pure function)
     srs.js                 spaced-repetition engine (pure function)
     storage.js             IndexedDB persistence via Dexie (the only storage module)
@@ -61,6 +61,10 @@ public/
   icons/                   PWA icons (192, 512, maskable)
 
 vite.config.js             Vite + PWA config (manifest + service worker)
+
+scripts/
+  fix_primary_romaji.py    surgical fix (no BCCWJ needed, less accurate)
+  rerank_readings.py       proper re-ranking using BCCWJ multi-char word freq
 ```
 
 ## Data sources
@@ -73,38 +77,63 @@ pipeline described below):
 | Field in JSON | Source | What it is |
 |---------------|--------|------------|
 | `kanji`, `jlpt_level`, `stroke_count` | **KANJIDIC2** (via kanjiapi.dev) | The kanji, its JLPT level, stroke count |
-| `readings.on`, `readings.kun` | **KANJIDIC2** | On'yomi and kun'yomi as kana, in frequency order (most common first) |
+| `readings.on`, `readings.kun` | **KANJIDIC2** | On'yomi and kun'yomi as kana |
 | `meanings` | **KANJIDIC2** | English meanings |
 | `romaji_readings` | Derived (kana→romaji) | All readings romanized |
-| `primary_romaji` | Derived — **overridden at runtime** (see below) | Originally a pipeline heuristic; now re-derived in `dataLoader.js` |
+| `primary_romaji` | **BCCWJ corpus** (corrected — see below) | The most common on'yomi AND most common kun'yomi |
 | `unit`, `order_index` | Pipeline grouping | Kanji grouped into units of 15, ordered by Mainichi newspaper frequency |
 | `examples` (merged from `*_examples.json`) | **JMdict** (words) + **BCCWJ** (frequency) | Real example words using the kanji, ranked by corpus frequency |
 
 ### Where "most common reading" comes from
 
-Two layers:
+`primary_romaji` is ranked by **real BCCWJ multi-character word frequency**.
+For each kanji, the re-ranking script (`scripts/rerank_readings.py`) looks at
+all BCCWJ corpus *words* containing that kanji (e.g. 時代, 代わり, 世代 for
+代), matches each word's reading back to one of the kanji's on/kun readings,
+and sums the word frequencies per reading. The most frequent on'yomi becomes
+`primary_romaji[0]`; the most frequent kun'yomi becomes `primary_romaji[1]`.
 
-1. **KANJIDIC2 reading order (what the app relies on)** — KANJIDIC2 lists each
-   kanji's readings with the most common/important first. So `readings.on[0]`
-   is the common on'yomi and `readings.kun[0]` is the common kun'yomi. No
-   separate frequency file is needed for this.
-2. **BCCWJ corpus frequency (used by the pipeline, for examples)** — ranks
-   which real *words* are most common, so example words aren't obscure.
+This is the **correct** signal for reading frequency — it reflects how often
+each reading appears in real Japanese text. Example for 代:
+- `dai` (ダイ) wins on'yomi — from 時代 (jidai), 世代 (sedai), 代金 (daikin), etc.
+- `kawari` (かわり) wins kun'yomi — from 代わり (substitute), a very common word.
+- The old broken data had `shiro` (しろ) — a rare reading that only appears in
+  standalone 代 as "generation/ruler" — because the original pipeline used
+  single-character frequency only.
 
-### Why `primary_romaji` is overridden at runtime
+### The `primary_romaji` re-ranking
 
-The pipeline pre-computed a `primary_romaji` field using a heuristic that
-turned out to be unreliable — it often dropped the kun'yomi (e.g. 言 had
-`["gen","gon"]` but was missing `iu`, its most common reading). Rather than
-regenerate the JSON, `dataLoader.js` now **re-derives** it at load time:
+The original pipeline (`convert_kanji.py`) used BCCWJ **single-character**
+frequency (kanji standing alone as a word) to rank readings. This was flawed:
+for many kanji, the common readings only appear in **multi-character words**
+(e.g. 代's kun'yomi `kawaru` appears in 代わる, never standalone). The old
+pipeline missed these and picked rare standalone readings instead (代 →
+`shiro` instead of `kawari`).
 
+This was fixed properly by `scripts/rerank_readings.py`, which uses the raw
+BCCWJ frequency list (`BCCWJ_frequencylist_luw2_ver1_0.tsv`) to aggregate
+real multi-character word frequencies per reading. 1,227 of 2,211 kanji were
+re-ranked. The JSON is now the single source of truth — no runtime override.
+
+**Key results:**
+- 代: `["dai","shiro"]` → `["dai","kawari"]` (shiro was rare)
+- 言: `["gen","gon"]` → `["gen","iu"]` (iu is the common kun)
+- 行: `["an","iki"]` → `["kou","iku"]` (iku is the common verb 行く)
+
+To re-run the re-ranking (needs the raw BCCWJ TSV):
+
+```bash
+# Extract the BCCWJ TSV from the zip first
+unzip BCCWJ_frequencylist_luw2_ver1_0.zip   # → BCCWJ_frequencylist_luw2_ver1_0.tsv
+
+python scripts/rerank_readings.py BCCWJ_frequencylist_luw2_ver1_0.tsv
 ```
-primary_romaji = [ romaji(readings.on[0]), romaji(readings.kun[0]) ]
-```
 
-i.e. the most common on'yomi **and** the most common kun'yomi. The quiz
-accepts either as a correct answer. (See `derivePrimaryRomaji()` in
-`dataLoader.js`.)
+There is also `scripts/fix_primary_romaji.py` — a simpler surgical fix that
+doesn't need the BCCWJ file (uses KANJIDIC2's `kun[0]`/`on[0]` as a fallback).
+It's less accurate (KANJIDIC2 doesn't order readings by frequency) but
+works without external data. Prefer `rerank_readings.py` when possible.
+
 
 ## Data build pipeline (regenerating the JSON)
 
