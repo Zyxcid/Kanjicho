@@ -67,16 +67,31 @@ function getAnswerForKanji(kanjiEntry, questionType) {
 function generateQuestion(targetKanji, distractorPool, questionType) {
   const correctAnswer = getAnswerForKanji(targetKanji, questionType);
 
-  // Kandidat distractor: kanji lain yang BUKAN targetKanji, dan jawabannya
-  // untuk questionType ini beda dari correctAnswer (menghindari distractor
-  // yang kebetulan sama persis, misal dua kanji homofon).
+  // Kandidat distractor: kanji lain yang BUKAN targetKanji.
   const candidates = distractorPool.filter((k) => k.kanji !== targetKanji.kanji);
 
+  // ── Distractor exclusion (corrected) ──
+  // A distractor must not be ANY valid reading/meaning of the TARGET kanji,
+  // not just the single chosen correctAnswer. Otherwise the user could pick
+  // a real alternate reading of the asked kanji and get marked wrong — e.g.
+  // for 言 (readings: gen/gon/iu/koto), if the correct answer is "iu" but
+  // "gon" appears as a distractor (drawn from another kanji's on'yomi), the
+  // user picking "gon" would be marked wrong even though it's a valid
+  // reading of 言. Excluding the target's full romaji_readings fixes this.
+  const targetInvalid = new Set(
+    questionType === "reading"
+      ? targetKanji.romaji_readings || []
+      : targetKanji.meanings || []
+  );
+  // Also exclude the chosen answer itself.
+  targetInvalid.add(correctAnswer);
+
   const distractorAnswers = [];
-  const usedAnswers = new Set([correctAnswer]);
+  const usedAnswers = new Set(targetInvalid);
 
   // Ambil distractor satu-satu dari kandidat yang sudah diacak, skip
-  // kalau jawabannya duplikat dengan yang sudah dipakai.
+  // kalau jawabannya duplikat dengan yang sudah dipakai ATAU termasuk
+  // bacaan/arti sah dari kanji yang ditanyakan.
   for (const candidate of shuffle(candidates)) {
     if (distractorAnswers.length >= CHOICE_COUNT - 1) break;
     const candidateAnswer = getAnswerForKanji(candidate, questionType);
