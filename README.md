@@ -62,9 +62,12 @@ public/
 
 vite.config.js             Vite + PWA config (manifest + service worker)
 
+jlpt_levels.json          modern N1-N5 JLPT levels (included, from kanjiapi.dev)
+
 scripts/
-  fix_primary_romaji.py    surgical fix (no BCCWJ needed, less accurate)
-  rerank_readings.py       proper re-ranking using BCCWJ multi-char word freq
+  convert_kanji.py        Step 1: kanjidic2.xml.gz → n*.json (kanji data)
+  build_examples.py       Step 2: JMdict + BCCWJ → n*_examples.json
+  rerank_readings.py      Step 3: re-rank primary_romaji by BCCWJ word freq
 ```
 
 ## Data sources
@@ -137,20 +140,26 @@ the pipeline if you want to regenerate the data (e.g. to change unit sizes,
 add new kanji, or pull fresh dictionary updates). The committed JSON is
 already correct.
 
-### Required raw sources (3 files)
+### Required raw sources (3 files + 1 included)
 
 | File | What it is | Download from |
 |------|------------|---------------|
 | `kanjidic2.xml.gz` | KANJIDIC2 — kanji readings, meanings, stroke counts, (old) JLPT levels, newspaper frequency | https://www.edrdg.org/kanjidic/kanjidic2.xml.gz |
 | `JMdict_e.gz` | JMdict (English) — Japanese→English dictionary entries | https://www.edrdg.org/JMdict/JMdict_e.gz |
 | `BCCWJ_frequencylist_luw2_ver1_0.tsv` | BCCWJ word frequency list (Balanced Corpus of Contemporary Written Japanese) | https://pj.ninjal.ac.jp/corpus_center/bccwj/ |
-| `jlpt_levels.json` (optional) | Modern N1-N5 JLPT levels (overrides KANJIDIC2's old levels). Format: `{"日": 5, "言": 4, ...}` | kanjiapi.dev |
+| `jlpt_levels.json` **(included)** | Modern N1-N5 JLPT levels — already in the project root | sourced from [Bluskyo/JLPT_Vocabulary](https://github.com/Bluskyo/JLPT_Vocabulary) (`JLPT_kanji_ALL.json`) |
 
 **Note on JLPT levels:** KANJIDIC2 uses the **old** pre-2010 JLPT system
-(levels 1-4, no N5). The modern N1-N5 system (which this app uses) is
-available from [kanjiapi.dev](https://kanjiapi.dev). If `jlpt_levels.json`
-is present, `convert_kanji.py` uses it; otherwise it falls back to
-KANJIDIC2's old levels (which will misclassify some kanji).
+(levels 1-4, no N5). The modern N1-N5 system (which this app uses) comes
+from the [Bluskyo/JLPT_Vocabulary](https://github.com/Bluskyo/JLPT_Vocabulary)
+GitHub repo, which is based on the official JLPT kanji specifications. The
+`jlpt_levels.json` file (2,211 kanji → level 1-5, ~17 KB) is **included
+in the project root** so the pipeline works out of the box. `convert_kanji.py`
+reads it automatically.
+
+**Verification:** The Bluskyo list was cross-checked against the kanjiapi.dev
+levels — both sources have identical N1-N5 assignments for all 2,211 kanji
+(0 mismatches), so either source is valid.
 
 ### Pipeline overview (3 steps)
 
