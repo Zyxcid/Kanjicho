@@ -129,72 +129,119 @@ unzip BCCWJ_frequencylist_luw2_ver1_0.zip   # → BCCWJ_frequencylist_luw2_ver1_
 python scripts/rerank_readings.py BCCWJ_frequencylist_luw2_ver1_0.tsv
 ```
 
-There is also `scripts/fix_primary_romaji.py` — a simpler surgical fix that
-doesn't need the BCCWJ file (uses KANJIDIC2's `kun[0]`/`on[0]` as a fallback).
-It's less accurate (KANJIDIC2 doesn't order readings by frequency) but
-works without external data. Prefer `rerank_readings.py` when possible.
-
-
 ## Data build pipeline (regenerating the JSON)
 
-The pipeline scripts live **outside** this project (they're build-time tools).
-To regenerate the data, place them alongside the raw sources and run:
+The pipeline scripts are in `scripts/`. They read from three public raw
+source files and produce the `src/data/*.json` files. You only need to run
+the pipeline if you want to regenerate the data (e.g. to change unit sizes,
+add new kanji, or pull fresh dictionary updates). The committed JSON is
+already correct.
+
+### Required raw sources (3 files)
+
+| File | What it is | Download from |
+|------|------------|---------------|
+| `kanjidic2.xml.gz` | KANJIDIC2 — kanji readings, meanings, stroke counts, (old) JLPT levels, newspaper frequency | https://www.edrdg.org/kanjidic/kanjidic2.xml.gz |
+| `JMdict_e.gz` | JMdict (English) — Japanese→English dictionary entries | https://www.edrdg.org/JMdict/JMdict_e.gz |
+| `BCCWJ_frequencylist_luw2_ver1_0.tsv` | BCCWJ word frequency list (Balanced Corpus of Contemporary Written Japanese) | https://pj.ninjal.ac.jp/corpus_center/bccwj/ |
+| `jlpt_levels.json` (optional) | Modern N1-N5 JLPT levels (overrides KANJIDIC2's old levels). Format: `{"日": 5, "言": 4, ...}` | kanjiapi.dev |
+
+**Note on JLPT levels:** KANJIDIC2 uses the **old** pre-2010 JLPT system
+(levels 1-4, no N5). The modern N1-N5 system (which this app uses) is
+available from [kanjiapi.dev](https://kanjiapi.dev). If `jlpt_levels.json`
+is present, `convert_kanji.py` uses it; otherwise it falls back to
+KANJIDIC2's old levels (which will misclassify some kanji).
+
+### Pipeline overview (3 steps)
 
 ```
-convert_kanji.py   →  output/n5.json ... n1.json, all_kanji.json
-build_examples.py  →  output/n5_examples.json ... (per level)
+kanjidic2.xml.gz  ─┐
+                    ├─→ convert_kanji.py  ──→ output/n5.json ... n1.json
+jlpt_levels.json  ─┘                      (kanji entries, units, readings)
+
+output/n*.json    ─┐
+JMdict_e.gz       ─┼─→ build_examples.py ──→ output/n5_examples.json ...
+BCCWJ TSV         ─┘                        (example words per kanji)
+
+output/n*.json    ─┐
+BCCWJ TSV         ─┴─→ rerank_readings.py ──→ output/n*.json (updated)
+                         (re-ranks primary_romaji by real word freq)
 ```
 
-Then copy the `output/*.json` files into `src/data/`.
+Then copy `output/*.json` into `src/data/`.
 
-### Required inputs (raw sources)
+### Step 1: `scripts/convert_kanji.py`
 
-| File | Used by | What it is |
-|------|---------|------------|
-| `kanji_jlpt_only.json` | `convert_kanji.py` | kanjiapi.dev export: kanji + JLPT level + readings + meanings + stroke count + Mainichi freq |
-| `term_meta_bank_1.json` | both scripts | Yomichan-format BCCWJ frequency bank: `[term, tag, {reading, frequency}]` |
-| `jmdict_legacy/term_bank_*.json` | `build_examples.py` | Yomichan-format JMdict (52 bank files): Japanese→English dictionary entries |
-| `overrides.json` (optional) | `convert_kanji.py` | Manual `primary_romaji` corrections: `{ "言": ["gen","iu"], ... }` |
+Parses `kanjidic2.xml.gz` and builds the per-level kanji JSON files.
 
-### `convert_kanji.py` — how it works
-
-1. Loads `kanji_jlpt_only.json` and groups kanji by JLPT level.
-2. **Sorts each level** by `freq_mainichi_shinun` (newspaper frequency), then
+1. Parses the KANJIDIC2 XML, extracting each kanji's: literal (the character),
+   `ja_on`/`ja_kun` readings, English meanings, stroke count, JLPT level,
+   and newspaper frequency.
+2. Groups by JLPT level (using `jlpt_levels.json` overrides if available).
+3. **Sorts each level** by newspaper frequency (common kanji first), then
    stroke count, then the kanji itself — so common kanji are taught first.
-3. **Groups into units of 15** (`UNIT_SIZE`), giving each a `{level}-U{n}` id.
-4. For each kanji, builds `romaji_readings` (all readings, romanized via
-   `pykakasi`) and `primary_romaji` (the "common readings" set — see the
-   priority below).
-5. Writes one JSON per level + an `all_kanji.json` combined file.
+4. **Groups into units of 15** (`UNIT_SIZE`), giving each a `{level}-U{n}` id.
+5. For each kanji, builds `romaji_readings` (all readings romanized via the
+   built-in kana→romaji converter) and `primary_romaji` (a placeholder:
+   `on[0]` + `kun[0]` — re-ranked properly by step 3).
+6. Writes `output/n5.json` ... `output/n1.json` + `output/all_kanji.json`.
 
-`primary_romaji` priority (in `determine_primary_romaji()`):
-1. **`overrides.json`** — if the kanji has a manual correction, use it.
-2. **BCCWJ corpus** — if the kanji appears as a single-character word in the
-   corpus, rank its readings by real-world frequency and take the top 2.
-3. **Fallback** — `on_readings[0]` + `kun_readings[0]` (KANJIDIC2's order).
+Includes a self-contained Hepburn kana→romaji converter (handles katakana,
+long vowels ー, palatal combinations, gemination っ, okurigana markers).
 
-It also prints a per-level summary: how many kanji came from each source
-(override / corpus / fallback).
+### Step 2: `scripts/build_examples.py`
 
-### `build_examples.py` — how it works
+Parses `JMdict_e.gz` + BCCWJ TSV and builds example-word lists per kanji.
 
-For each kanji (currently N5), it finds up to 2 example words:
-
-1. Loads all JMdict `term_bank_*.json` files, keeping words of length 1–4 with
-   at least one English gloss.
-2. Loads the BCCWJ frequency index (all word lengths this time).
+1. Parses JMdict XML, keeping entries with a kanji element (keb) of length 1-4
+   and at least one English gloss.
+2. Loads the BCCWJ frequency index (word → frequency + reading).
 3. For each kanji, finds JMdict words **containing** that kanji **and** present
    in the BCCWJ frequency index.
 4. **Cross-verifies the reading** — the word's JMdict reading must match the
-   BCCWJ reading (so an archaic/rare reading of a common word is rejected).
+   BCCWJ reading (rejects archaic readings of common words).
 5. **Classifies as on or kun** by checking whether the word's reading contains
-   one of the kanji's real on'yomi or kun'yomi (not just by word shape — this
+   one of the kanji's real on'yomi or kun'yomi (not just by word shape —
    correctly handles cases like 母 = はは, a single-kanji kun'yomi word).
-6. Prefers multi-character words over single-kanji words (showing just "日" as
-   an example for 日 feels circular), then sorts by frequency.
-7. Picks the top on'yomi word + top kun'yomi word (filling the second slot
+6. Prefers multi-character words over single-kanji words (avoids circular
+   "日 as example for 日"), then sorts by frequency.
+7. Picks the top on'yomi word + top kun'yomi word (fills the second slot
    from either category if one is empty).
-8. Writes `{ kanji: [{word, reading, meaning, type}, ...] }` per level.
+8. Writes `output/n5_examples.json` ... `output/n1_examples.json`.
+
+### Step 3: `scripts/rerank_readings.py`
+
+Re-ranks `primary_romaji` using real BCCWJ multi-character word frequency.
+
+1. Loads the BCCWJ TSV (all words with kanji in their lemma).
+2. Indexes words by the kanji they contain.
+3. For each kanji, matches each BCCWJ word's reading against the kanji's
+   on/kun readings (substring match in hiragana) and sums word frequencies
+   per reading.
+4. The most frequent on'yomi → `primary_romaji[0]`; most frequent kun'yomi →
+   `primary_romaji[1]`.
+5. Writes back to the same JSON files (only `primary_romaji` is updated).
+
+This is the key fix: instead of using single-character frequency (which misses
+common readings that only appear in multi-character words like 代わる), it
+aggregates the frequency of ALL words using each reading.
+
+### Running the full pipeline
+
+```bash
+# Place the raw files in the project root (or pass paths as args)
+# Then run all 3 steps:
+
+python scripts/convert_kanji.py kanjidic2.xml.gz output jlpt_levels.json
+python scripts/build_examples.py JMdict_e.gz BCCWJ_frequencylist_luw2_ver1_0.tsv output output
+python scripts/rerank_readings.py BCCWJ_frequencylist_luw2_ver1_0.tsv output
+
+# Then copy the output to src/data/
+cp output/n*.json src/data/
+```
+
+All scripts take paths as CLI args (with sensible defaults relative to the
+project root). Run `python scripts/<script>.py` with no args to see usage.
 
 ## Spaced repetition model
 
