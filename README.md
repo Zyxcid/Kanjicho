@@ -2,8 +2,8 @@
 
 A JLPT kanji practice app (N5–N1) with a forgetting-curve-based spaced
 repetition scheduler, a reading quiz, a full kanji library, light & dark
-themes, and proper browser back-button navigation. Works fully offline as
-an installable PWA.
+themes, and proper browser back-button navigation. Works fully offline as an
+installable PWA.
 
 ## Run the app
 
@@ -28,6 +28,9 @@ npm run preview   # preview the production build locally
 - **History-aware navigation** — the browser Back button navigates within the
   app (Home ↔ Browse ↔ Unit Select ↔ Quiz ↔ Result) instead of exiting.
 - **Offline PWA** — installable, caches all data + assets, auto-updates.
+- **Lazy-loaded kanji data** — each JLPT level's full data (readings,
+  meanings, example words) loads on demand the first time it's opened, not
+  upfront. Keeps the initial bundle small on slower connections.
 
 ## Project structure
 
@@ -36,183 +39,179 @@ src/
   main.jsx                 entry point
   App.jsx                  state machine + router wiring + SRS flow
   lib/
-    dataLoader.js          loads JSON, merges examples (primary_romaji trusted from JSON)
-    quizGenerator.js       generates multiple-choice questions (pure function)
-    srs.js                 spaced-repetition engine (pure function)
-    storage.js             IndexedDB persistence via Dexie (the only storage module)
-    useTheme.js            light/dark theme hook (localStorage)
-    useRouter.js           hash-based router (browser Back/Forward support)
+    dataLoader.js           loads level data on demand, merges examples
+    quizGenerator.js        generates multiple-choice questions (pure function)
+    srs.js                  spaced-repetition engine (pure function)
+    storage.js               IndexedDB persistence via Dexie (the only storage module)
+    useTheme.js              light/dark theme hook (localStorage)
+    useRouter.js             hash-based router (browser Back/Forward support)
   components/
-    Home.jsx, UnitSelect.jsx, Quiz.jsx, Result.jsx, Browse.jsx
-    NextReviewBanner.jsx, ThemeToggle.jsx, Toast.jsx
+    Home.jsx                stats hero + next-review banner + level grid + browse entry
+    UnitSelect.jsx           per-level unit cards
+    Quiz.jsx                 quiz screen (kanji box + choices + reveal panel)
+    Result.jsx               score stamp + breakdown + next-review schedule
+    Browse.jsx               full kanji library (filter pills, search, modal)
+    NextReviewBanner.jsx     "next review in N days / N due" banner
+    ThemeToggle.jsx          Sun/Moon dark-mode switch
+    Toast.jsx                transient message
   data/
-    n5.json ... n1.json              kanji entries per JLPT level
-    n5_examples.json ... n1_examples.json  example words per kanji
+    manifest.json                    unit ids + kanji counts per level (small, loaded upfront)
+    n5.json ... n1.json               full kanji entries per level (loaded on demand)
+    n5_examples.json ... n1_examples.json   example words per kanji (loaded on demand)
   styles/
-    global.css             genkouyoushi design system (light + dark tokens)
+    global.css               genkouyoushi design system (light + dark tokens)
 
 public/
-  icons/                   PWA icons (192, 512, maskable)
+  icons/                    PWA icons (192, 512, maskable)
 
-vite.config.js             Vite + PWA config (manifest + service worker)
-
-jlpt_levels.json          modern N1-N5 JLPT levels (included, from Bluskyo)
+vite.config.js              Vite + PWA config (manifest + service worker)
 
 scripts/
-  convert_kanji.py        Step 1: kanjidic2.xml.gz → n*.json (kanji data)
-  build_examples.py       Step 2: JMdict + BCCWJ → n*_examples.json
-  rerank_readings.py      Step 3: re-rank primary_romaji by BCCWJ word freq
+  convert_kanji.py          Step 1: kanjidic2.xml.gz → n*.json (kanji data)
+  build_examples.py         Step 2: JMdict + BCCWJ → n*_examples.json
+  rerank_readings.py        Step 3: re-rank primary_romaji by BCCWJ word frequency
+  build_manifest.py        Step 4: generate manifest.json (level summaries for Home)
 ```
 
 ## Data sources
 
-The 10 JSON files in `src/data/` are a **static, pre-built snapshot**. At
-runtime the app makes **no network requests** for kanji data — everything is
-bundled. Three public datasets contributed to the snapshot (via the build
-pipeline described below):
+The JSON files in `src/data/` are a **static, pre-built snapshot** — at
+runtime the app makes no network requests for kanji data, everything is
+bundled and loaded from disk. Three public datasets feed the build pipeline:
 
-| Field in JSON | Source | What it is |
-|---------------|--------|------------|
-| `kanji`, `jlpt_level`, `stroke_count` | **KANJIDIC2** (via kanjidic2.xml.gz) | The kanji, its JLPT level, stroke count |
-| `readings.on`, `readings.kun` | **KANJIDIC2** | On'yomi and kun'yomi as kana |
-| `meanings` | **KANJIDIC2** | English meanings |
-| `romaji_readings` | Derived (kana→romaji) | All readings romanized |
-| `primary_romaji` | **BCCWJ corpus** (re-ranked) | The most common on'yomi AND most common kun'yomi |
-| `unit`, `order_index` | Pipeline grouping | Kanji grouped into units of 15, ordered by newspaper frequency |
-| `examples` (merged from `*_examples.json`) | **JMdict** (words) + **BCCWJ** (frequency) | Real example words using the kanji, ranked by corpus frequency |
+| Source | Provides | Project page |
+|---|---|---|
+| **KANJIDIC2** | Kanji, on'yomi/kun'yomi, English meanings, stroke count, newspaper frequency | https://www.edrdg.org/wiki/KANJIDIC_Project.html |
+| **BCCWJ** (Balanced Corpus of Contemporary Written Japanese) | Word frequency — which readings and example words are actually common | https://clrd.ninjal.ac.jp/bccwj/en/freq-list.html |
+| **JMdict** | English glosses for example words | https://www.edrdg.org/jmdict/edict_doc_depr.html |
 
-### Where "most common reading" comes from
+| Field in JSON | Built from |
+|---|---|
+| `kanji`, `stroke_count` | KANJIDIC2 |
+| `readings.on`, `readings.kun`, `meanings` | KANJIDIC2 |
+| `jlpt_level` | `JLPT_kanji_ALL.json` (see note below) |
+| `romaji_readings` | Derived — all readings romanized |
+| `primary_romaji` | KANJIDIC2 candidates, ranked by BCCWJ word frequency (see below) |
+| `unit`, `order_index` | Pipeline grouping — 15 kanji per unit, ordered by newspaper frequency |
+| `examples` | JMdict words containing the kanji, ranked by BCCWJ frequency |
 
-`primary_romaji` is ranked by **real BCCWJ multi-character word frequency**.
-For each kanji, `scripts/rerank_readings.py` looks at all BCCWJ corpus
-*words* containing that kanji (e.g. 時代, 代わり, 世代 for 代), matches each
-word's reading back to one of the kanji's on/kun readings, and sums the word
-frequencies per reading. The most frequent on'yomi becomes `primary_romaji[0]`;
-the most frequent kun'yomi becomes `primary_romaji[1]`.
+**JLPT levels:** KANJIDIC2 only carries the pre-2010 JLPT system (4 levels,
+no N5). `JLPT_kanji_ALL.json` maps each kanji to the modern N1–N5 system and is
+included in the project root so the pipeline works out of the box.
 
-**Key results:**
-- 代: `["dai","kawari"]` — kawari from 代わり (substitute), very common
-- 言: `["gen","iu"]` — iu is the common kun (from 言う = to say)
-- 行: `["kou","iku"]` — iku from 行く (the common verb "to go")
+**Most common reading (`primary_romaji`):** for each kanji, `rerank_readings.py`
+looks at every BCCWJ corpus word containing it (e.g. 時代, 代わり, 世代 for
+代), matches each word's reading to one of the kanji's on'yomi/kun'yomi, and
+sums word frequency per reading. The most frequent on'yomi and the most
+frequent kun'yomi become `primary_romaji`. This reflects real usage — reading
+frequency in isolation (a kanji standing alone) is a poor proxy, since many
+common kun'yomi (verbs, adjectives) only occur with okurigana attached.
+
+**Example words:** for each kanji, `build_examples.py` finds JMdict words
+containing it that also appear in the BCCWJ frequency list, cross-verifies
+the reading against BCCWJ (to reject archaic/rare alternate readings), and
+picks the most frequent on'yomi word and the most frequent kun'yomi word.
 
 ## Data build pipeline (regenerating the JSON)
 
-The pipeline scripts are in `scripts/`. They read from three public raw
-source files and produce the `src/data/*.json` files. You only need to run
-the pipeline if you want to regenerate the data. The committed JSON is
-already correct.
+Only needed if you want to regenerate the data (change unit size, pull fresh
+dictionary updates, etc.) — the committed JSON in `src/data/` is already
+built.
 
-### Required raw sources (3 files + 1 included)
+### Required raw sources
 
-| File | What it is | Download from |
-|------|------------|---------------|
-| `kanjidic2.xml.gz` | KANJIDIC2 — kanji readings, meanings, stroke counts, newspaper frequency | https://www.edrdg.org/kanjidic/kanjidic2.xml.gz |
-| `JMdict_e.gz` | JMdict (English) — Japanese→English dictionary entries | https://www.edrdg.org/JMdict/JMdict_e.gz |
-| `BCCWJ_frequencylist_luw2_ver1_0.tsv` | BCCWJ word frequency list | https://pj.ninjal.ac.jp/corpus_center/bccwj/ |
-| `jlpt_levels.json` **(included)** | Modern N1-N5 JLPT levels | [Bluskyo/JLPT_Vocabulary](https://github.com/Bluskyo/JLPT_Vocabulary) |
+| File | Get it from |
+|---|---|
+| `kanjidic2.xml.gz` | https://www.edrdg.org/wiki/KANJIDIC_Project.html (see "download" link) |
+| `JMdict_e.gz` | https://www.edrdg.org/jmdict/edict_doc_depr.html (see "CURRENT VERSION & DOWNLOAD") |
+| `BCCWJ_frequencylist_luw2_ver1_0.tsv` | https://clrd.ninjal.ac.jp/bccwj/en/freq-list.html ("Long Unit Word list data (v2)") |
+| `JLPT_kanji_ALL.json` | [Bluskyo/JLPT_Vocabulary](https://github.com/Bluskyo/JLPT_Vocabulary/releases) — modern N1–N5 levels |
 
-**Note on JLPT levels:** KANJIDIC2 uses the **old** pre-2010 JLPT system
-(levels 1-4, no N5). The modern N1-N5 system comes from the
-[Bluskyo/JLPT_Vocabulary](https://github.com/Bluskyo/JLPT_Vocabulary) repo.
-The `jlpt_levels.json` file (2,211 kanji → level 1-5) is **included in the
-project root**. `convert_kanji.py` only keeps kanji present in this file,
-ensuring the JLPT levels are the modern N1-N5 system.
+> `JLPT_kanji_ALL.json` is **not** included in the project — download it
+> from the Bluskyo releases page when running the pipeline. The committed
+> `src/data/n*.json` already has correct JLPT levels baked in, so you only
+> need this file if you're regenerating from raw sources.
 
-### Pipeline overview (3 steps)
+### Pipeline
 
 ```
 kanjidic2.xml.gz  ─┐
-                    ├─→ convert_kanji.py  ──→ output/n5.json ... n1.json
-jlpt_levels.json  ─┘                       (kanji entries, units, readings)
+                    ├─→ convert_kanji.py  ──→ n5.json ... n1.json
+JLPT_kanji_ALL.json  ─┘                      (kanji entries, units, readings)
 
-output/n*.json    ─┐
-JMdict_e.gz       ─┼─→ build_examples.py ──→ output/n5_examples.json ...
+n*.json           ─┐
+JMdict_e.gz       ─┼─→ build_examples.py ──→ n5_examples.json ...
 BCCWJ TSV         ─┘                        (example words per kanji)
 
-output/n*.json    ─┐
-BCCWJ TSV         ─┴─→ rerank_readings.py ──→ output/n*.json (updated)
-                         (re-ranks primary_romaji by real word freq)
+n*.json           ─┐
+BCCWJ TSV         ─┴─→ rerank_readings.py ──→ n*.json (primary_romaji updated)
+
+n*.json           ───→ build_manifest.py    ──→ manifest.json
+                           (small summary: totals + unit ids for Home)
 ```
 
-Then copy `output/*.json` into `src/data/`.
-
-### Step 1: `scripts/convert_kanji.py`
-
-Parses `kanjidic2.xml.gz` and builds the per-level kanji JSON files.
-
-1. Parses the KANJIDIC2 XML, extracting each kanji's readings, meanings,
-   stroke count, and newspaper frequency.
-2. **Only keeps kanji present in `jlpt_levels.json`** (modern N1-N5). This
-   filters out kanji with only old KANJIDIC2 JLPT tags.
-3. Groups by JLPT level, sorts by newspaper frequency (common first).
-4. Groups into units of 15, builds `romaji_readings` and a placeholder
-   `primary_romaji` (re-ranked by step 3).
-5. Writes `output/n5.json` ... `output/n1.json` + `output/all_kanji.json`.
-
-### Step 2: `scripts/build_examples.py`
-
-Parses `JMdict_e.gz` + BCCWJ TSV and builds example-word lists per kanji.
-
-1. Parses JMdict XML, keeping entries with kanji (length 1-4) + English glosses.
-2. Loads the BCCWJ frequency index. For each term, keeps the **highest**
-   frequency entry (most common usage).
-3. For each kanji, finds JMdict words containing that kanji AND in BCCWJ.
-4. Cross-verifies the reading (JMdict reading must match BCCWJ reading).
-5. Classifies as on/kun by matching against the kanji's real readings.
-6. Sorts by frequency (**highest first** = most common words first).
-7. Picks the top on'yomi word + top kun'yomi word.
-
-### Step 3: `scripts/rerank_readings.py`
-
-Re-ranks `primary_romaji` using real BCCWJ multi-character word frequency.
-
-1. Loads the BCCWJ TSV (all words with kanji in their lemma).
-2. Indexes words by the kanji they contain.
-3. For each kanji, matches each BCCWJ word's reading against the kanji's
-   on/kun readings and sums word frequencies per reading.
-4. The most frequent on'yomi → `primary_romaji[0]`; most frequent kun'yomi →
-   `primary_romaji[1]`.
-
-### Running the full pipeline
-
 ```bash
-python scripts/convert_kanji.py kanjidic2.xml.gz output jlpt_levels.json
+python scripts/convert_kanji.py kanjidic2.xml.gz output JLPT_kanji_ALL.json
 python scripts/build_examples.py JMdict_e.gz BCCWJ_frequencylist_luw2_ver1_0.tsv output output
 python scripts/rerank_readings.py BCCWJ_frequencylist_luw2_ver1_0.tsv output
 
-# Then copy the output to src/data/
-cp output/n*.json src/data/
+python scripts/build_manifest.py output
+
+# then copy into src/data/
+cp output/*.json src/data/
 ```
+
+All scripts take paths as CLI args (with sensible defaults relative to the
+project root). Run `python scripts/<script>.py` with no args for usage.
+
+## Spaced repetition model
+
+`srs.js` uses a forgetting-curve model:
+
+```
+retention(t) = target_retention ^ (t / stability)
+```
+
+`stability` = days until retention drops to the target (default 85%). On each
+quiz, stability is updated from the score (0–1): high scores extend the
+interval, low scores reset it (`reviewUnit()`). `next_review_at =
+last_reviewed_at + stability days`. Pure function — all state lives in
+IndexedDB via `storage.js`.
 
 ## Quiz algorithm
 
 `quizGenerator.js` (pure function, no state):
 
 1. For each kanji in the unit, pick a **correct answer** from `primary_romaji`
-   (so it's either the most common on'yomi or kun'yomi).
-2. Build **distractors** from other kanji in the same level, **excluding** the
+   (the most common on'yomi or kun'yomi).
+2. Build **distractors** from other kanji in the same level, excluding the
    target kanji's full `romaji_readings` — so no distractor is ever a valid
-   reading of the asked kanji (prevents "right answer marked wrong").
+   reading of the asked kanji.
 3. Shuffle choices; the UI adds a separate "Don't know" button.
-
-## Spaced repetition model
-
-`srs.js` uses a forgetting-curve model: `retention(t) = target_retention ^ (t / stability)`.
-`stability` = days until retention drops to the target (default 85%). On each
-quiz, stability is updated from the score. This is a pure function — all state
-lives in IndexedDB via `storage.js`.
 
 ## Browser history / navigation
 
-`useRouter.js` encodes each screen in the URL hash. Forward navigation pushes
-a history entry; browser Back/Forward fires `popstate` and restores the screen.
+`useRouter.js` encodes each screen in the URL hash (`#/`, `#/browse`,
+`#/level/N5`, `#/quiz/N5-U1`, `#/result/N5-U1`). Forward navigation pushes a
+history entry; browser Back/Forward fires `popstate` and restores the screen.
+Deep-linking / reload on a quiz/result hash falls back to Unit Select
+(in-memory quiz state is lost on reload).
 
 ## Progress storage
 
-All progress lives in the browser's IndexedDB via Dexie (`src/lib/storage.js`).
-Data is local per-device — no sync (would need a backend).
+All progress lives in the browser's IndexedDB via Dexie
+(`src/lib/storage.js`), in two tables:
+- `unitProgress` — one row per unit (current SRS state, keyed by `unitId`).
+- `quizAttempts` — log of every completed quiz (for streak stats).
+
+Local per-device only — no sync (would need a backend).
 
 ## Progressive Web App
 
-Configured via `vite-plugin-pwa`: installable, offline-capable, auto-updating.
-Test with `npm run build && npm run preview`.
+Configured via `vite-plugin-pwa`:
+- Installable to the home screen (Android/iOS/desktop).
+- Runs offline after first load (all data + assets precached).
+- Auto-updates the service worker on new deploys.
+
+Test PWA features with `npm run build && npm run preview` (PWA behavior is
+limited in `npm run dev`).

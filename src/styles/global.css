@@ -161,6 +161,22 @@ body {
 .kd-stat.due .kd-stat-num { color: var(--seal); }
 .kd-stat.mastered .kd-stat-num { color: var(--gold); }
 .kd-stat.new .kd-stat-num { color: var(--indigo-soft); }
+.kd-stat.studied .kd-stat-num { color: var(--indigo-soft); }
+
+/* Next-review banner: shows the review schedule under the stats hero.
+   Replaces the old static "Not started" number with actionable timing. */
+.kd-next-review-banner {
+  max-width: 640px; margin: 12px auto 0;
+  display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap;
+  background: var(--surface); border: 1px dashed var(--paper-line); border-radius: 4px;
+  padding: 12px 14px; text-align: center;
+  font-family: 'DM Mono', monospace; font-size: 13px; color: var(--ink-soft);
+}
+.kd-next-review-banner.due { border-color: var(--seal); border-style: solid; }
+.kd-nrb-label { color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.04em; font-size: 11px; }
+.kd-nrb-unit { color: var(--indigo); font-weight: 700; }
+.kd-nrb-when { color: var(--ink-soft); }
+.kd-nrb-strong { color: var(--seal); font-weight: 700; }
 
 .kd-level-grid { max-width: 640px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
 .kd-level-card {
@@ -175,8 +191,13 @@ body {
 .kd-level-badge {
   position: absolute; top: 10px; right: 10px; font-size: 9.5px; letter-spacing: 0.05em;
   background: var(--indigo); color: #fff; padding: 2px 6px; border-radius: 2px; text-transform: uppercase;
+  white-space: nowrap;
 }
 .kd-level-badge.locked { background: var(--ink-soft); }
+/* Per-level progress variants (replaces the static "Ready" label). */
+.kd-level-badge.muted { background: var(--ink-soft); }
+.kd-level-badge.gold { background: var(--gold); }
+.kd-level-badge.seal { background: var(--seal); }
 
 .kd-unit-grid { max-width: 640px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
 .kd-unit-card {
@@ -184,6 +205,8 @@ body {
   position: relative; text-align: left; transition: transform 0.15s, box-shadow 0.2s; color: var(--ink);
 }
 .kd-unit-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px var(--shadow); }
+.kd-unit-card:disabled { cursor: default; opacity: 0.6; }
+.kd-unit-card:disabled:hover { transform: none; box-shadow: none; }
 .kd-unit-card.due { border-color: var(--seal); }
 .kd-unit-card.mastered { border-color: var(--gold); }
 .kd-unit-title { font-family: 'Shippori Mincho', serif; font-weight: 700; font-size: 16px; }
@@ -214,7 +237,7 @@ body {
 .kd-genkou::after { top: 50%; left: 0; right: 0; height: 1px; }
 .kd-genkou-glyph { font-family: 'Shippori Mincho', serif; font-size: 92px; font-weight: 600; position: relative; z-index: 1; color: var(--ink); }
 
-.kd-question-label { text-align: center; font-size: 14.5px; color: var(--ink-soft); margin-bottom: 4px; }
+.kd-question-label { text-align: center; font-size: 14.5px; color: var(--ink-soft); margin-bottom: 20px; }
 .kd-question-sub { text-align: center; font-family: 'Shippori Mincho', serif; font-size: 17px; font-weight: 700; margin-bottom: 20px; color: var(--indigo); }
 
 .kd-choice-grid { max-width: 460px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -324,7 +347,8 @@ body {
   .kd-root { padding: 36px 32px 80px; }
 
   .kd-topbar, .kd-section-title, .kd-hero,
-  .kd-level-grid, .kd-unit-grid, .kd-progress-dots {
+  .kd-level-grid, .kd-unit-grid, .kd-progress-dots,
+  .kd-next-review-banner {
     max-width: 880px;
   }
 

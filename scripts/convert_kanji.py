@@ -4,18 +4,18 @@ convert_kanji.py — Build the per-level kanji JSON files from raw sources.
 
 Reads:
   - kanjidic2.xml.gz   (KANJIDIC2 XML — kanji, readings, meanings, strokes, freq)
-  - jlpt_levels.json   (modern N1-N5 levels from Bluskyo/JLPT_Vocabulary)
+  - JLPT_kanji_ALL.json   (modern N1-N5 levels from Bluskyo/JLPT_Vocabulary)
 
 Writes:
   - output/n5.json, output/n4.json, ..., output/n1.json
   - output/all_kanji.json (combined)
 
-Only kanji present in jlpt_levels.json are kept — this ensures the JLPT
+Only kanji present in JLPT_kanji_ALL.json are kept — this ensures the JLPT
 levels are the modern N1-N5 system (KANJIDIC2's own <jlpt> tag uses the
 old pre-2010 4-level system which doesn't map 1:1 to modern levels).
 
 Usage:
-    python scripts/convert_kanji.py [kanjidic2.xml.gz] [output_dir] [jlpt_levels.json]
+    python scripts/convert_kanji.py [kanjidic2.xml.gz] [output_dir] [JLPT_kanji_ALL.json]
 """
 
 import gzip
@@ -245,13 +245,13 @@ def main():
     output_dir = Path(sys.argv[2]) if len(sys.argv) > 2 else \
         Path(__file__).resolve().parent.parent / "output"
     jlpt_path = Path(sys.argv[3]) if len(sys.argv) > 3 else \
-        Path(__file__).resolve().parent.parent / "jlpt_levels.json"
+        Path(__file__).resolve().parent.parent / "JLPT_kanji_ALL.json"
 
     if not kanjidic_path.exists():
         print(f"Error: KANJIDIC2 file not found: {kanjidic_path}", file=sys.stderr)
         sys.exit(1)
     if not jlpt_path.exists():
-        print(f"Error: jlpt_levels.json not found: {jlpt_path}", file=sys.stderr)
+        print(f"Error: JLPT_kanji_ALL.json not found: {jlpt_path}", file=sys.stderr)
         sys.exit(1)
 
     with open(jlpt_path, encoding="utf-8") as f:

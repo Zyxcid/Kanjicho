@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect, useCallback } from "react";
 import { ChevronLeft, Search, X, BookOpen } from "lucide-react";
-import { LEVEL_IDS, getKanjiForLevel } from "../lib/dataLoader.js";
+import { LEVEL_IDS, loadLevelKanji, loadAllKanji } from "../lib/dataLoader.js";
 
 // "All" + N5..N1. Default selection is N5 so the first paint stays light
 // (N1 alone has 1232 entries — fine, but N5 is a friendlier landing).
@@ -16,14 +16,28 @@ export default function Browse({ onBack }) {
   const [visibleCount, setVisibleCount] = useState(VISIBLE_STEP);
   const [selected, setSelected] = useState(null); // kanji entry shown in modal
 
+  // Data for the active level (or every level, for "All") is loaded on
+  // demand -- null while in flight. "All" loads all 5 levels at once (the
+  // one case where the lazy-loading win doesn't apply, since browsing
+  // everything genuinely needs everything), everything else loads just
+  // that one level's JSON.
+  const [pool, setPool] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    setPool(null);
+    const loader = activeLevel === "All" ? loadAllKanji() : loadLevelKanji(activeLevel);
+    loader.then((data) => {
+      if (!cancelled) setPool(data);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [activeLevel]);
+
   // Build the list for the active level (+ optional search filter).
   const list = useMemo(() => {
-    let pool;
-    if (activeLevel === "All") {
-      pool = LEVEL_IDS.flatMap((l) => getKanjiForLevel(l));
-    } else {
-      pool = getKanjiForLevel(activeLevel);
-    }
+    if (!pool) return [];
     const q = query.trim().toLowerCase();
     if (!q) return pool;
     return pool.filter(
@@ -34,7 +48,7 @@ export default function Browse({ onBack }) {
         k.readings.on.some((r) => r.includes(q)) ||
         k.readings.kun.some((r) => r.includes(q))
     );
-  }, [activeLevel, query]);
+  }, [pool, query]);
 
   // Handlers that also reset the render cap, so changing the filter always
   // starts from the top of the new result set (no effect / no ref-in-render).
@@ -69,7 +83,7 @@ export default function Browse({ onBack }) {
       <div className="kd-section-title kd-section-title-row">
         <span>kanji Library</span>
         <small className="kd-browse-count-inline">
-          {list.length} kanji{activeLevel !== "All" ? ` in ${activeLevel}` : ""}
+          {pool === null ? "Loading…" : `${list.length} kanji${activeLevel !== "All" ? ` in ${activeLevel}` : ""}`}
         </small>
       </div>
 
@@ -125,7 +139,9 @@ export default function Browse({ onBack }) {
         ))}
       </div>
 
-      {list.length === 0 && (
+      {pool === null && <div className="kd-empty-note">Loading {activeLevel}…</div>}
+
+      {pool !== null && list.length === 0 && (
         <div className="kd-empty-note">No kanji match “{query}”.</div>
       )}
 
