@@ -55,7 +55,7 @@ export default function Quiz({ quiz, qIndex, selectedChoice, onSubmitAnswer, onC
           </div>
 
           <div className="kd-choice-grid">
-            {current.choices.map((choice, i) => {
+            {current.choices.map((choice) => {
               let cls = "kd-choice-btn";
               if (selectedChoice) {
                 if (choice === current.correctAnswer) cls += " correct";
@@ -63,7 +63,6 @@ export default function Quiz({ quiz, qIndex, selectedChoice, onSubmitAnswer, onC
               }
               return (
                 <button key={choice} className={cls} disabled={!!selectedChoice} onClick={() => onSubmitAnswer(choice)}>
-                  <span className="kd-key-hint">{i + 1}</span>
                   {choice}
                 </button>
               );
@@ -72,7 +71,6 @@ export default function Quiz({ quiz, qIndex, selectedChoice, onSubmitAnswer, onC
 
           {!selectedChoice && (
             <button className="kd-dontknow" onClick={() => onSubmitAnswer(DONT_KNOW)}>
-              <span className="kd-key-hint muted">5</span>
               <HelpCircle size={15} /> Don't know
             </button>
           )}
@@ -111,7 +109,6 @@ export default function Quiz({ quiz, qIndex, selectedChoice, onSubmitAnswer, onC
               </div>
               <button className="kd-btn primary kd-continue-btn" onClick={onContinue}>
                 {qIndex + 1 < quiz.length ? "Continue" : "See Results"}
-                <span className="kd-key-hint on-primary">↵</span>
               </button>
             </>
           )}

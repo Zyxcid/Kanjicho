@@ -10,8 +10,8 @@ export default defineConfig({
       registerType: "autoUpdate", // service worker otomatis update tanpa perlu user hapus-install ulang
       includeAssets: ["icons/icon-192.png", "icons/icon-512.png"],
       manifest: {
-        name: "Kanji Drill — JLPT Kanji Practice",
-        short_name: "Kanji Drill",
+        name: "Kanjichō — JLPT Kanji Practice",
+        short_name: "Kanjichō",
         description: "Latihan kanji JLPT dengan spaced repetition, dari N5 sampai N1.",
         theme_color: "#1F3C5C", // --indigo, dipakai browser Android untuk warna status bar
         background_color: "#F5F1E8", // --paper, dipakai sebagai splash screen background

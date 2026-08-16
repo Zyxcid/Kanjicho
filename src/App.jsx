@@ -13,6 +13,7 @@ import Result from "./components/Result.jsx";
 import Toast from "./components/Toast.jsx";
 import ThemeToggle from "./components/ThemeToggle.jsx";
 import Browse from "./components/Browse.jsx";
+import HelpButton from "./components/HelpButton.jsx";
 
 export function unitStatus(state) {
   if (!state || state.stability === null) return "new";
@@ -223,13 +224,16 @@ export default function App() {
     <div className="kd-root">
       <div className="kd-topbar">
         <div className="kd-brand">
-          漢字ドリル <small>JLPT Kanji Practice</small>
+          漢字帳 <small>Kanjichō · JLPT Kanji Practice</small>
         </div>
         <div className="kd-topbar-right">
           {effectiveView === "home" && (
-            <div className="kd-streak">
-              <Flame size={14} /> {streak} day{streak === 1 ? "" : "s"} streak
-            </div>
+            <>
+              <div className="kd-streak">
+                <Flame size={14} /> {streak} day{streak === 1 ? "" : "s"} streak
+              </div>
+              <HelpButton />
+            </>
           )}
           <ThemeToggle />
         </div>

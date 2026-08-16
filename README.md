@@ -1,4 +1,4 @@
-# Kanji Drill — JLPT Kanji Practice PWA
+# Kanjichō (漢字帳) — JLPT Kanji Practice PWA
 
 A JLPT kanji practice app (N5–N1) with a forgetting-curve-based spaced
 repetition scheduler, a reading quiz, a full kanji library, light & dark
