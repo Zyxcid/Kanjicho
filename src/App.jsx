@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react";
-import { Flame } from "lucide-react";
 import { LEVEL_IDS, getUnitsForLevel, getLevelMeta, loadLevelKanji } from "./lib/dataLoader.js";
 import { createInitialUnitState, reviewUnit } from "./lib/srs.js";
 import { generateQuiz, scoreQuiz } from "./lib/quizGenerator.js";
@@ -37,20 +36,26 @@ function toDateStr(date) {
  * mengerjakan minimal satu kuis, dihitung mundur dari hari ini. Kalau hari
  * ini belum ada aktivitas, streak tetap dihitung dari kemarin (belum
  * "putus" sampai hari ini benar-benar lewat tanpa aktivitas).
+ *
+ * Return { streak, doneToday } -- doneToday dipakai UI (Home.jsx) untuk
+ * bedakan visual "hari ini sudah aman" vs "belum", supaya user tidak cuma
+ * mengandalkan baca angka untuk tahu statusnya.
  */
 function computeStreak(attempts) {
   const dateSet = new Set(attempts.map((a) => a.timestamp.slice(0, 10)));
+  const doneToday = dateSet.has(toDateStr(new Date()));
+
   const cursor = new Date();
-  if (!dateSet.has(toDateStr(cursor))) {
+  if (!doneToday) {
     cursor.setDate(cursor.getDate() - 1);
-    if (!dateSet.has(toDateStr(cursor))) return 0;
+    if (!dateSet.has(toDateStr(cursor))) return { streak: 0, doneToday: false };
   }
   let streak = 0;
   while (dateSet.has(toDateStr(cursor))) {
     streak++;
     cursor.setDate(cursor.getDate() - 1);
   }
-  return streak;
+  return { streak, doneToday };
 }
 
 export default function App() {
@@ -66,6 +71,7 @@ export default function App() {
 
   const [progress, setProgress] = useState({}); // unitId -> srsState
   const [streak, setStreak] = useState(0);
+  const [streakDoneToday, setStreakDoneToday] = useState(false);
   const [loading, setLoading] = useState(true);
   const [quiz, setQuiz] = useState(null);
   const [qIndex, setQIndex] = useState(0);
@@ -89,7 +95,9 @@ export default function App() {
         map[r.unitId] = r;
       });
       setProgress(map);
-      setStreak(computeStreak(attempts));
+      const { streak: s, doneToday } = computeStreak(attempts);
+      setStreak(s);
+      setStreakDoneToday(doneToday);
       setLoading(false);
     });
   }, []);
@@ -206,6 +214,14 @@ export default function App() {
     // UI sudah update optimistically dari state React di atas)
     await storage.saveUnitProgress(activeUnit, activeLevel, newState);
     await storage.logQuizAttempt(activeUnit, finalResult);
+
+    // Recompute streak SEKARANG, bukan cuma sekali pas app dibuka -- kalau
+    // tidak, kuis pertama hari itu tidak langsung kelihatan nambah
+    // streak-nya di Home sampai halaman di-reload.
+    const attempts = await storage.getAllQuizAttempts();
+    const { streak: s, doneToday } = computeStreak(attempts);
+    setStreak(s);
+    setStreakDoneToday(doneToday);
   }
 
   if (loading) {
@@ -227,19 +243,12 @@ export default function App() {
           漢字帳 <small>Kanjichō · JLPT Kanji Practice</small>
         </div>
         <div className="kd-topbar-right">
-          {effectiveView === "home" && (
-            <>
-              <div className="kd-streak">
-                <Flame size={14} /> {streak} day{streak === 1 ? "" : "s"} streak
-              </div>
-              <HelpButton />
-            </>
-          )}
+          <HelpButton />
           <ThemeToggle />
         </div>
       </div>
 
-      {effectiveView === "home" && <Home levelIds={LEVEL_IDS} getLevelMeta={getLevelMeta} getLevelStats={(level) => levelStatsMap[level]} onOpenLevel={openLevel} onBrowse={() => navigate("browse")} stats={allLevelsStats} />}
+      {effectiveView === "home" && <Home levelIds={LEVEL_IDS} getLevelMeta={getLevelMeta} getLevelStats={(level) => levelStatsMap[level]} onOpenLevel={openLevel} onBrowse={() => navigate("browse")} stats={allLevelsStats} streak={streak} streakDoneToday={streakDoneToday} />}
 
       {effectiveView === "browse" && <Browse onBack={() => navigate("home")} />}
 

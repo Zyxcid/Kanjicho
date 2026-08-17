@@ -1,5 +1,5 @@
 import React from "react";
-import { BookOpen } from "lucide-react";
+import { BookOpen, Flame } from "lucide-react";
 import NextReviewBanner from "./NextReviewBanner.jsx";
 
 /**
@@ -24,11 +24,20 @@ function levelBadge(stats) {
   return { label: "New", variant: "muted" };
 }
 
-export default function Home({ levelIds, getLevelMeta, getLevelStats, onOpenLevel, onBrowse, stats }) {
+export default function Home({ levelIds, getLevelMeta, getLevelStats, onOpenLevel, onBrowse, stats, streak, streakDoneToday }) {
+  const atRisk = streak > 0 && !streakDoneToday; // ada streak nyata & belum kuis hari ini
   return (
     <>
       <div className="kd-hero">
         <div className="kd-hero-row">
+          <div className={`kd-stat streak ${streakDoneToday ? "lit" : atRisk ? "at-risk" : ""}`}>
+            <div className="kd-stat-num">
+              <Flame size={18} className="kd-stat-flame" fill={streakDoneToday ? "currentColor" : "none"} /> {streak}
+            </div>
+            <div className="kd-stat-label">
+              {streakDoneToday ? "Today done" : atRisk ? "Quiz today to keep it" : "Day streak"}
+            </div>
+          </div>
           <div className="kd-stat studied">
             <div className="kd-stat-num">{stats.studied}</div>
             <div className="kd-stat-label">Studied</div>
