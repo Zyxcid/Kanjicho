@@ -215,3 +215,19 @@ Configured via `vite-plugin-pwa`:
 
 Test PWA features with `npm run build && npm run preview` (PWA behavior is
 limited in `npm run dev`).
+
+### Notifications (or lack thereof)
+
+There is **no push notification system** — no background reminders, no OS
+notifications when a review becomes due while the app is closed. This is a
+frontend-only PWA with no backend, and real push notifications need a server
+to trigger them (or the still-experimental Notification Triggers API,
+Chromium-only, not a broad standard yet).
+
+What *is* implemented: the app icon shows a badge with the current "due"
+count via the [Badging API](https://developer.mozilla.org/en-US/docs/Web/API/Badging_API)
+(`navigator.setAppBadge()`), for installed PWAs on browsers that support it
+(Chromium-based; not Safari/iOS). This only updates **while the app is open**
+— it reflects the due count as of the last time it ran, not a live
+background count. All "you have N due" signals (the badge, the Home stats,
+`NextReviewBanner`) are pull-based: you have to open the app to see them.

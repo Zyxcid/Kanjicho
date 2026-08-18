@@ -159,6 +159,21 @@ export default function App() {
     return map;
   }, [progress]);
 
+  // Badging API -- taruh angka "due" di icon app (kalau PWA sudah di-install
+  // & browser dukung). Cuma bisa update pas app kebuka; TIDAK jalan di
+  // background kalau app tertutup (bukan push notification sungguhan,
+  // lihat catatan di README). Feature-detect supaya aman di browser yang
+  // belum dukung (mis. Safari/iOS).
+  useEffect(() => {
+    if (!("setAppBadge" in navigator)) return;
+    const due = allLevelsStats.due;
+    if (due > 0) {
+      navigator.setAppBadge(due).catch(() => {});
+    } else {
+      navigator.clearAppBadge().catch(() => {});
+    }
+  }, [allLevelsStats.due]);
+
   // Stats khusus level yang lagi dibuka (dipakai di layar pilih unit)
   const levelStats = useMemo(
     () => computeStats(getUnitsForLevel(activeLevel)),
