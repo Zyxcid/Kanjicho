@@ -21,6 +21,12 @@
       "reading": "そうごうてき",
       "meaning": "comprehensive",
       "type": "on"
+    },
+    {
+      "word": "総トン数",
+      "reading": "そうトンすう",
+      "meaning": "gross tonnage",
+      "type": "kun"
     }
   ],
   "区": [
@@ -69,9 +75,9 @@
       "type": "on"
     },
     {
-      "word": "改めて",
-      "reading": "あらためて",
-      "meaning": "another time",
+      "word": "改める",
+      "reading": "あらためる",
+      "meaning": "to change",
       "type": "kun"
     }
   ],
@@ -379,10 +385,16 @@
   ],
   "州": [
     {
-      "word": "九州",
-      "reading": "きゅうしゅう",
-      "meaning": "Kyūshū (southernmost of the four main islands of Japan)",
+      "word": "砂州",
+      "reading": "さす",
+      "meaning": "sandbar",
       "type": "on"
+    },
+    {
+      "word": "お白州",
+      "reading": "おしらす",
+      "meaning": "court of law in the Edo period, in which the parties sat on white sand",
+      "type": "kun"
     }
   ],
   "武": [
@@ -393,9 +405,9 @@
       "type": "on"
     },
     {
-      "word": "武富士",
-      "reading": "たけふじ",
-      "meaning": "Takefuji Corporation",
+      "word": "日本武尊",
+      "reading": "やまとたける",
+      "meaning": "Yamato Takeru",
       "type": "kun"
     }
   ],
@@ -617,9 +629,9 @@
       "type": "on"
     },
     {
-      "word": "極めて",
-      "reading": "きわめて",
-      "meaning": "exceedingly",
+      "word": "極める",
+      "reading": "きわめる",
+      "meaning": "to carry to extremes",
       "type": "kun"
     }
   ],
@@ -653,9 +665,9 @@
   ],
   "量": [
     {
-      "word": "大量",
+      "word": "体量",
       "reading": "たいりょう",
-      "meaning": "large quantity",
+      "meaning": "body weight",
       "type": "on"
     },
     {
@@ -765,9 +777,9 @@
       "type": "on"
     },
     {
-      "word": "手管",
-      "reading": "てくだ",
-      "meaning": "artifice",
+      "word": "手練手管",
+      "reading": "てれんてくだ",
+      "meaning": "wiles",
       "type": "kun"
     }
   ],
@@ -893,9 +905,9 @@
       "type": "on"
     },
     {
-      "word": "大橋",
-      "reading": "おおはし",
-      "meaning": "large bridge",
+      "word": "懸け橋",
+      "reading": "かけはし",
+      "meaning": "temporary (suspension) bridge",
       "type": "kun"
     }
   ],
@@ -973,9 +985,9 @@
       "type": "on"
     },
     {
-      "word": "編む",
-      "reading": "あむ",
-      "meaning": "to knit",
+      "word": "編み出す",
+      "reading": "あみだす",
+      "meaning": "to think up",
       "type": "kun"
     }
   ],
@@ -1055,9 +1067,9 @@
   ],
   "競": [
     {
-      "word": "競争",
+      "word": "競漕",
       "reading": "きょうそう",
-      "meaning": "competition",
+      "meaning": "regatta",
       "type": "on"
     },
     {
@@ -1099,9 +1111,9 @@
   ],
   "歴": [
     {
-      "word": "歴史",
+      "word": "歴仕",
       "reading": "れきし",
-      "meaning": "history",
+      "meaning": "(successive lords) using the same retainers",
       "type": "on"
     }
   ],
@@ -1303,15 +1315,15 @@
   ],
   "久": [
     {
-      "word": "永久",
-      "reading": "えいきゅう",
-      "meaning": "eternity",
+      "word": "持久力",
+      "reading": "じきゅうりょく",
+      "meaning": "stamina",
       "type": "on"
     },
     {
-      "word": "久々",
-      "reading": "ひさびさ",
-      "meaning": "(in a) long time",
+      "word": "久しい",
+      "reading": "ひさしい",
+      "meaning": "long (time that has passed)",
       "type": "kun"
     }
   ],
@@ -1457,6 +1469,12 @@
       "reading": "げいじゅつ",
       "meaning": "art",
       "type": "on"
+    },
+    {
+      "word": "芸能プロ",
+      "reading": "げいのうプロ",
+      "meaning": "talent agency",
+      "type": "kun"
     }
   ],
   "署": [
@@ -1525,9 +1543,9 @@
       "type": "on"
     },
     {
-      "word": "目玉",
-      "reading": "めだま",
-      "meaning": "eyeball",
+      "word": "玉ねぎ",
+      "reading": "たまねぎ",
+      "meaning": "onion (Allium cepa)",
       "type": "kun"
     }
   ],
@@ -1773,9 +1791,9 @@
       "type": "on"
     },
     {
-      "word": "練る",
-      "reading": "ねる",
-      "meaning": "to knead",
+      "word": "練り込む",
+      "reading": "ねりこむ",
+      "meaning": "to knead into",
       "type": "kun"
     }
   ],
@@ -1817,9 +1835,9 @@
       "type": "on"
     },
     {
-      "word": "城攻め",
-      "reading": "しろぜめ",
-      "meaning": "attacking a castle",
+      "word": "城跡",
+      "reading": "しろあと",
+      "meaning": "castle site",
       "type": "kun"
     }
   ],
@@ -1869,9 +1887,9 @@
       "type": "on"
     },
     {
-      "word": "曲がり角",
-      "reading": "まがりかど",
-      "meaning": "(street) corner",
+      "word": "街角",
+      "reading": "まちかど",
+      "meaning": "street corner",
       "type": "kun"
     }
   ],
@@ -1939,9 +1957,9 @@
       "type": "on"
     },
     {
-      "word": "御仏",
-      "reading": "みほとけ",
-      "meaning": "Lord Buddha",
+      "word": "仏様",
+      "reading": "ほとけさま",
+      "meaning": "(a) Buddha",
       "type": "kun"
     }
   ],
@@ -2005,9 +2023,9 @@
       "type": "on"
     },
     {
-      "word": "蓮池",
-      "reading": "はすいけ",
-      "meaning": "lotus pond",
+      "word": "溜池",
+      "reading": "ためいけ",
+      "meaning": "reservoir",
       "type": "kun"
     }
   ],
@@ -2137,9 +2155,9 @@
   ],
   "坂": [
     {
-      "word": "坂路",
-      "reading": "はんろ",
-      "meaning": "ramp",
+      "word": "急坂",
+      "reading": "きゅうはん",
+      "meaning": "steep slope",
       "type": "on"
     },
     {
@@ -2185,9 +2203,9 @@
       "type": "on"
     },
     {
-      "word": "寺子屋",
-      "reading": "てらこや",
-      "meaning": "temple elementary school (Edo period)",
+      "word": "お寺",
+      "reading": "おてら",
+      "meaning": "temple",
       "type": "kun"
     }
   ],
@@ -2359,9 +2377,9 @@
       "type": "on"
     },
     {
-      "word": "板の間",
-      "reading": "いたのま",
-      "meaning": "wooden floor",
+      "word": "スキー板",
+      "reading": "スキーいた",
+      "meaning": "ski",
       "type": "kun"
     }
   ],
@@ -2409,9 +2427,9 @@
       "type": "on"
     },
     {
-      "word": "巻く",
-      "reading": "まく",
-      "meaning": "to wind",
+      "word": "巻き込む",
+      "reading": "まきこむ",
+      "meaning": "to roll up",
       "type": "kun"
     }
   ],
@@ -2509,9 +2527,9 @@
       "type": "on"
     },
     {
-      "word": "切り替え",
-      "reading": "きりかえ",
-      "meaning": "exchange",
+      "word": "仕替える",
+      "reading": "しかえる",
+      "meaning": "to do over",
       "type": "kun"
     }
   ],
@@ -2537,9 +2555,9 @@
       "type": "on"
     },
     {
-      "word": "焼く",
-      "reading": "やく",
-      "meaning": "to burn",
+      "word": "焼肉",
+      "reading": "やきにく",
+      "meaning": "yakiniku",
       "type": "kun"
     }
   ],
@@ -2661,9 +2679,9 @@
       "type": "on"
     },
     {
-      "word": "詰まり",
-      "reading": "つまり",
-      "meaning": "that is to say",
+      "word": "詰める",
+      "reading": "つめる",
+      "meaning": "to stuff into",
       "type": "kun"
     }
   ],
@@ -2689,9 +2707,9 @@
       "type": "on"
     },
     {
-      "word": "突き刺す",
-      "reading": "つきさす",
-      "meaning": "to stab",
+      "word": "刺し殺す",
+      "reading": "さしころす",
+      "meaning": "to stab to death",
       "type": "kun"
     }
   ],
@@ -2861,9 +2879,9 @@
       "type": "on"
     },
     {
-      "word": "柱間",
-      "reading": "はしらま",
-      "meaning": "bay (space or distance between two pillars)",
+      "word": "柱時計",
+      "reading": "はしらどけい",
+      "meaning": "wall clock",
       "type": "kun"
     }
   ],
@@ -2883,15 +2901,15 @@
   ],
   "袋": [
     {
-      "word": "有袋類",
-      "reading": "ゆうたいるい",
-      "meaning": "marsupial",
+      "word": "袋状",
+      "reading": "たいじょう",
+      "meaning": "bag-shaped",
       "type": "on"
     },
     {
-      "word": "袋小路",
-      "reading": "ふくろこうじ",
-      "meaning": "blind alley",
+      "word": "お袋",
+      "reading": "おふくろ",
+      "meaning": "(one's) mother",
       "type": "kun"
     }
   ],
@@ -2917,9 +2935,9 @@
       "type": "on"
     },
     {
-      "word": "訓読み",
-      "reading": "くんよみ",
-      "meaning": "kun reading",
+      "word": "訓ずる",
+      "reading": "くんずる",
+      "meaning": "to read kanji using its native Japanese pronunciation",
       "type": "kun"
     }
   ],
@@ -2981,9 +2999,9 @@
       "type": "on"
     },
     {
-      "word": "胸元",
-      "reading": "むなもと",
-      "meaning": "breast",
+      "word": "胸肉",
+      "reading": "むねにく",
+      "meaning": "breast meat (usu. of chicken)",
       "type": "kun"
     }
   ],
@@ -3065,9 +3083,9 @@
       "type": "on"
     },
     {
-      "word": "床の間",
-      "reading": "とこのま",
-      "meaning": "tokonoma",
+      "word": "床下",
+      "reading": "ゆかした",
+      "meaning": "under the floor",
       "type": "kun"
     }
   ],
@@ -3149,9 +3167,9 @@
       "type": "on"
     },
     {
-      "word": "殿様",
-      "reading": "とのさま",
-      "meaning": "nobleman",
+      "word": "湯殿",
+      "reading": "ゆどの",
+      "meaning": "bathroom",
       "type": "kun"
     }
   ],
@@ -3497,9 +3515,9 @@
   ],
   "冊": [
     {
-      "word": "数冊",
-      "reading": "すうさつ",
-      "meaning": "several volumes (books)",
+      "word": "一冊",
+      "reading": "いっさつ",
+      "meaning": "one copy (of a book, magazine, etc.)",
       "type": "on"
     }
   ],
@@ -3511,9 +3529,9 @@
       "type": "on"
     },
     {
-      "word": "勇ましい",
-      "reading": "いさましい",
-      "meaning": "brave",
+      "word": "勇む",
+      "reading": "いさむ",
+      "meaning": "to be in high spirits",
       "type": "kun"
     }
   ],
@@ -3561,9 +3579,9 @@
       "type": "on"
     },
     {
-      "word": "卵焼き",
-      "reading": "たまごやき",
-      "meaning": "rolled egg",
+      "word": "ゆで卵",
+      "reading": "ゆでたまご",
+      "meaning": "boiled egg",
       "type": "kun"
     }
   ],
@@ -3639,9 +3657,9 @@
       "type": "on"
     },
     {
-      "word": "湯気",
-      "reading": "ゆげ",
-      "meaning": "steam",
+      "word": "お湯",
+      "reading": "おゆ",
+      "meaning": "hot water",
       "type": "kun"
     }
   ],
@@ -3753,9 +3771,9 @@
   ],
   "軒": [
     {
-      "word": "数軒",
-      "reading": "すうけん",
-      "meaning": "several houses",
+      "word": "一軒",
+      "reading": "いっけん",
+      "meaning": "one house",
       "type": "on"
     },
     {
@@ -3873,9 +3891,9 @@
       "type": "on"
     },
     {
-      "word": "片栗粉",
-      "reading": "かたくりこ",
-      "meaning": "potato starch",
+      "word": "小麦粉",
+      "reading": "こむぎこ",
+      "meaning": "wheat flour",
       "type": "kun"
     }
   ],
@@ -3975,9 +3993,9 @@
   ],
   "缶": [
     {
-      "word": "空き缶",
-      "reading": "あきかん",
-      "meaning": "empty can",
+      "word": "缶詰",
+      "reading": "かんづめ",
+      "meaning": "canned food",
       "type": "on"
     }
   ],
@@ -4137,17 +4155,17 @@
       "type": "on"
     },
     {
-      "word": "小麦",
-      "reading": "こむぎ",
-      "meaning": "wheat",
+      "word": "小麦粉",
+      "reading": "こむぎこ",
+      "meaning": "wheat flour",
       "type": "kun"
     }
   ],
   "姓": [
     {
-      "word": "百姓",
-      "reading": "ひゃくしょう",
-      "meaning": "farmer",
+      "word": "旧姓",
+      "reading": "きゅうせい",
+      "meaning": "one's original family name",
       "type": "on"
     }
   ],
@@ -4209,23 +4227,23 @@
   ],
   "胃": [
     {
-      "word": "胃腸",
-      "reading": "いちょう",
-      "meaning": "stomach and intestines",
+      "word": "胃がん",
+      "reading": "いがん",
+      "meaning": "stomach cancer",
       "type": "on"
     }
   ],
   "畳": [
     {
-      "word": "一畳",
-      "reading": "いちじょう",
-      "meaning": "one mat",
+      "word": "四畳半",
+      "reading": "よじょうはん",
+      "meaning": "four and a half tatami mats",
       "type": "on"
     },
     {
-      "word": "畳む",
-      "reading": "たたむ",
-      "meaning": "to fold (clothes, umbrella)",
+      "word": "畳敷き",
+      "reading": "たたみじき",
+      "meaning": "tatami-matted",
       "type": "kun"
     }
   ],
@@ -4303,9 +4321,9 @@
   ],
   "菓": [
     {
-      "word": "菓子",
-      "reading": "かし",
-      "meaning": "confectionery",
+      "word": "お菓子",
+      "reading": "おかし",
+      "meaning": "confections",
       "type": "on"
     }
   ],
@@ -4353,9 +4371,9 @@
       "type": "on"
     },
     {
-      "word": "舟歌",
-      "reading": "ふなうた",
-      "meaning": "sailor's song",
+      "word": "丸木舟",
+      "reading": "まるきぶね",
+      "meaning": "dugout canoe",
       "type": "kun"
     }
   ],
@@ -4397,9 +4415,9 @@
   ],
   "皿": [
     {
-      "word": "一皿",
-      "reading": "ひとさら",
-      "meaning": "one plate (of food)",
+      "word": "お皿",
+      "reading": "おさら",
+      "meaning": "plate",
       "type": "kun"
     }
   ],
@@ -4469,9 +4487,9 @@
       "type": "on"
     },
     {
-      "word": "滴る",
-      "reading": "したたる",
-      "meaning": "to drip",
+      "word": "滴",
+      "reading": "しずく",
+      "meaning": "drop (e.g. of water)",
       "type": "kun"
     }
   ],

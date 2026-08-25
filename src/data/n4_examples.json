@@ -171,9 +171,9 @@
       "type": "on"
     },
     {
-      "word": "立つ",
-      "reading": "たつ",
-      "meaning": "to stand (up)",
+      "word": "立場",
+      "reading": "たちば",
+      "meaning": "position",
       "type": "kun"
     }
   ],
@@ -227,9 +227,9 @@
       "type": "on"
     },
     {
-      "word": "問う",
-      "reading": "とう",
-      "meaning": "to ask",
+      "word": "問い",
+      "reading": "とい",
+      "meaning": "question",
       "type": "kun"
     }
   ],
@@ -269,9 +269,9 @@
       "type": "on"
     },
     {
-      "word": "動き",
-      "reading": "うごき",
-      "meaning": "movement",
+      "word": "動く",
+      "reading": "うごく",
+      "meaning": "to move",
       "type": "kun"
     }
   ],
@@ -341,23 +341,23 @@
       "type": "on"
     },
     {
-      "word": "体作り",
-      "reading": "からだづくり",
-      "meaning": "building up one's body",
+      "word": "体中",
+      "reading": "からだじゅう",
+      "meaning": "all over the body",
       "type": "kun"
     }
   ],
   "田": [
     {
-      "word": "水田",
-      "reading": "すいでん",
-      "meaning": "(water-filled) paddy field",
+      "word": "本田",
+      "reading": "ほんでん",
+      "meaning": "rice paddy",
       "type": "on"
     },
     {
-      "word": "田畑",
-      "reading": "たはた",
-      "meaning": "fields (of rice and other crops)",
+      "word": "田んぼ",
+      "reading": "たんぼ",
+      "meaning": "rice field",
       "type": "kun"
     }
   ],
@@ -369,9 +369,9 @@
       "type": "on"
     },
     {
-      "word": "主な",
-      "reading": "おもな",
-      "meaning": "chief",
+      "word": "株主",
+      "reading": "かぶぬし",
+      "meaning": "shareholder",
       "type": "kun"
     }
   ],
@@ -463,9 +463,9 @@
       "type": "on"
     },
     {
-      "word": "公",
-      "reading": "おおやけ",
-      "meaning": "official",
+      "word": "公所",
+      "reading": "おおやけどころ",
+      "meaning": "imperial court",
       "type": "kun"
     }
   ],
@@ -533,9 +533,9 @@
       "type": "on"
     },
     {
-      "word": "我が家",
-      "reading": "わがや",
-      "meaning": "one's house",
+      "word": "お家",
+      "reading": "おいえ",
+      "meaning": "noble family",
       "type": "kun"
     }
   ],
@@ -575,9 +575,9 @@
       "type": "on"
     },
     {
-      "word": "正しい",
-      "reading": "ただしい",
-      "meaning": "right",
+      "word": "正に",
+      "reading": "まさに",
+      "meaning": "exactly",
       "type": "kun"
     }
   ],
@@ -611,9 +611,9 @@
       "type": "on"
     },
     {
-      "word": "心得る",
-      "reading": "こころえる",
-      "meaning": "to know",
+      "word": "心がける",
+      "reading": "こころがける",
+      "meaning": "to keep in mind",
       "type": "kun"
     }
   ],
@@ -647,9 +647,9 @@
       "type": "on"
     },
     {
-      "word": "文月",
-      "reading": "ふみづき",
-      "meaning": "seventh month of the lunar calendar",
+      "word": "御文",
+      "reading": "おふみ",
+      "meaning": "Gobunsho (The Epistles, a collection of letters written by Rennyo)",
       "type": "kun"
     }
   ],
@@ -887,15 +887,15 @@
   ],
   "私": [
     {
-      "word": "私的",
-      "reading": "してき",
-      "meaning": "private",
+      "word": "私自身",
+      "reading": "わたしじしん",
+      "meaning": "myself",
       "type": "on"
     },
     {
-      "word": "私する",
-      "reading": "わたくしする",
-      "meaning": "to use (public property) for personal purposes",
+      "word": "私ども",
+      "reading": "わたくしども",
+      "meaning": "we",
       "type": "kun"
     }
   ],
@@ -907,9 +907,9 @@
       "type": "on"
     },
     {
-      "word": "始まる",
-      "reading": "はじまる",
-      "meaning": "to begin",
+      "word": "始める",
+      "reading": "はじめる",
+      "meaning": "to start",
       "type": "kun"
     }
   ],
@@ -957,9 +957,9 @@
   ],
   "台": [
     {
-      "word": "舞台",
-      "reading": "ぶたい",
-      "meaning": "stage (of a theatre, concert hall, etc.)",
+      "word": "台所",
+      "reading": "だいどころ",
+      "meaning": "kitchen",
       "type": "on"
     }
   ],
@@ -1027,9 +1027,9 @@
       "type": "on"
     },
     {
-      "word": "切り口",
-      "reading": "きりくち",
-      "meaning": "cut end",
+      "word": "口ぶり",
+      "reading": "くちぶり",
+      "meaning": "way of speaking",
       "type": "kun"
     }
   ],
@@ -1099,9 +1099,9 @@
       "type": "on"
     },
     {
-      "word": "青空",
-      "reading": "あおぞら",
-      "meaning": "blue sky",
+      "word": "上の空",
+      "reading": "うわのそら",
+      "meaning": "inattention",
       "type": "kun"
     }
   ],
@@ -1127,17 +1127,17 @@
       "type": "on"
     },
     {
-      "word": "止める",
-      "reading": "やめる",
-      "meaning": "to stop (an activity)",
+      "word": "射止める",
+      "reading": "いとめる",
+      "meaning": "to shoot dead",
       "type": "kun"
     }
   ],
   "送": [
     {
-      "word": "放送",
+      "word": "奉送",
       "reading": "ほうそう",
-      "meaning": "broadcasting",
+      "meaning": "seeing an emperor off",
       "type": "on"
     },
     {
@@ -1191,15 +1191,15 @@
   ],
   "足": [
     {
-      "word": "発足",
-      "reading": "ほっそく",
-      "meaning": "starting",
+      "word": "不足",
+      "reading": "ふそく",
+      "meaning": "insufficiency",
       "type": "on"
     },
     {
-      "word": "足りる",
-      "reading": "たりる",
-      "meaning": "to be sufficient",
+      "word": "足元",
+      "reading": "あしもと",
+      "meaning": "at one's feet",
       "type": "kun"
     }
   ],
@@ -1247,9 +1247,9 @@
       "type": "on"
     },
     {
-      "word": "着る",
-      "reading": "きる",
-      "meaning": "to wear (from the shoulders down)",
+      "word": "着く",
+      "reading": "つく",
+      "meaning": "to arrive at",
       "type": "kun"
     }
   ],
@@ -1261,9 +1261,9 @@
       "type": "on"
     },
     {
-      "word": "店先",
-      "reading": "みせさき",
-      "meaning": "storefront",
+      "word": "お店",
+      "reading": "おみせ",
+      "meaning": "store",
       "type": "kun"
     }
   ],
@@ -1275,9 +1275,9 @@
       "type": "on"
     },
     {
-      "word": "病む",
-      "reading": "やむ",
-      "meaning": "to fall ill",
+      "word": "病垂れ",
+      "reading": "やまいだれ",
+      "meaning": "illness radical",
       "type": "kun"
     }
   ],
@@ -1335,9 +1335,9 @@
   ],
   "早": [
     {
-      "word": "早速",
-      "reading": "さっそく",
-      "meaning": "at once",
+      "word": "早期",
+      "reading": "そうき",
+      "meaning": "early stage",
       "type": "on"
     },
     {
@@ -1469,9 +1469,9 @@
       "type": "on"
     },
     {
-      "word": "大字",
-      "reading": "おおあざ",
-      "meaning": "larger section (of village)",
+      "word": "活字離れ",
+      "reading": "かつじばなれ",
+      "meaning": "aliteracy",
       "type": "kun"
     }
   ],
@@ -1511,9 +1511,9 @@
       "type": "on"
     },
     {
-      "word": "本音",
-      "reading": "ほんね",
-      "meaning": "real intention",
+      "word": "足音",
+      "reading": "あしおと",
+      "meaning": "(sound of) footsteps",
       "type": "kun"
     }
   ],
@@ -1539,9 +1539,9 @@
       "type": "on"
     },
     {
-      "word": "帰り",
-      "reading": "かえり",
-      "meaning": "return",
+      "word": "持ち帰る",
+      "reading": "もちかえる",
+      "meaning": "to take home",
       "type": "kun"
     }
   ],
@@ -1695,9 +1695,9 @@
   ],
   "花": [
     {
-      "word": "花粉症",
-      "reading": "かふんしょう",
-      "meaning": "hay fever",
+      "word": "花弁",
+      "reading": "かべん",
+      "meaning": "petal",
       "type": "on"
     },
     {
@@ -1757,9 +1757,9 @@
       "type": "on"
     },
     {
-      "word": "館",
-      "reading": "やかた",
-      "meaning": "mansion",
+      "word": "お館様",
+      "reading": "おやかたさま",
+      "meaning": "nobleman",
       "type": "kun"
     }
   ],
@@ -1779,9 +1779,9 @@
   ],
   "色": [
     {
-      "word": "景色",
-      "reading": "けしき",
-      "meaning": "scenery",
+      "word": "特色",
+      "reading": "とくしょく",
+      "meaning": "characteristic",
       "type": "on"
     },
     {
@@ -1793,9 +1793,9 @@
   ],
   "走": [
     {
-      "word": "滑走路",
-      "reading": "かっそうろ",
-      "meaning": "runway",
+      "word": "ご馳走",
+      "reading": "ごちそう",
+      "meaning": "treat (esp. food and drink)",
       "type": "on"
     },
     {
@@ -1915,8 +1915,8 @@
   ],
   "曜": [
     {
-      "word": "日曜",
-      "reading": "にちよう",
+      "word": "日曜日",
+      "reading": "にちようび",
       "meaning": "Sunday",
       "type": "on"
     }
@@ -1957,9 +1957,9 @@
       "type": "on"
     },
     {
-      "word": "貸す",
-      "reading": "かす",
-      "meaning": "to lend",
+      "word": "貸付",
+      "reading": "かしつけ",
+      "meaning": "loan",
       "type": "kun"
     }
   ],
@@ -1987,9 +1987,9 @@
   ],
   "飯": [
     {
-      "word": "夕飯",
-      "reading": "ゆうはん",
-      "meaning": "evening meal",
+      "word": "ご飯",
+      "reading": "ごはん",
+      "meaning": "cooked rice",
       "type": "on"
     },
     {
@@ -2037,9 +2037,9 @@
   ],
   "茶": [
     {
-      "word": "喫茶店",
-      "reading": "きっさてん",
-      "meaning": "coffee shop",
+      "word": "お茶",
+      "reading": "おちゃ",
+      "meaning": "tea (esp. green or barley)",
       "type": "on"
     }
   ],
@@ -2079,9 +2079,9 @@
       "type": "on"
     },
     {
-      "word": "小魚",
-      "reading": "こざかな",
-      "meaning": "small fish",
+      "word": "魚屋",
+      "reading": "さかなや",
+      "meaning": "fish market",
       "type": "kun"
     }
   ],

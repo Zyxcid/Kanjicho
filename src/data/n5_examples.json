@@ -43,15 +43,15 @@
   ],
   "人": [
     {
-      "word": "人間",
-      "reading": "にんげん",
-      "meaning": "human being",
+      "word": "日本人",
+      "reading": "にほんじん",
+      "meaning": "Japanese person",
       "type": "on"
     },
     {
-      "word": "二人",
-      "reading": "ふたり",
-      "meaning": "two persons",
+      "word": "一人",
+      "reading": "ひとり",
+      "meaning": "one person",
       "type": "kun"
     }
   ],
@@ -71,9 +71,9 @@
   ],
   "大": [
     {
-      "word": "大切",
-      "reading": "たいせつ",
-      "meaning": "important",
+      "word": "大丈夫",
+      "reading": "だいじょうぶ",
+      "meaning": "safe",
       "type": "on"
     },
     {
@@ -91,9 +91,9 @@
       "type": "on"
     },
     {
-      "word": "三十路",
-      "reading": "みそじ",
-      "meaning": "age thirty",
+      "word": "五十日",
+      "reading": "ごとおび",
+      "meaning": "days of the month ending in 5 or 0 (when payments are often due)",
       "type": "kun"
     }
   ],
@@ -113,9 +113,9 @@
   ],
   "本": [
     {
-      "word": "本当",
-      "reading": "ほんとう",
-      "meaning": "truth",
+      "word": "日本",
+      "reading": "にほん",
+      "meaning": "Japan",
       "type": "on"
     },
     {
@@ -175,9 +175,9 @@
       "type": "on"
     },
     {
-      "word": "三つ",
-      "reading": "みっつ",
-      "meaning": "three",
+      "word": "三月",
+      "reading": "みつき",
+      "meaning": "three months",
       "type": "kun"
     }
   ],
@@ -225,15 +225,15 @@
   ],
   "月": [
     {
-      "word": "今月",
-      "reading": "こんげつ",
-      "meaning": "this month",
+      "word": "３月",
+      "reading": "さんがつ",
+      "meaning": "March",
       "type": "on"
     },
     {
-      "word": "毎月",
-      "reading": "まいつき",
-      "meaning": "every month",
+      "word": "三月",
+      "reading": "みつき",
+      "meaning": "three months",
       "type": "kun"
     }
   ],
@@ -245,17 +245,17 @@
       "type": "on"
     },
     {
-      "word": "後ろ",
-      "reading": "うしろ",
-      "meaning": "back",
+      "word": "後書き",
+      "reading": "あとがき",
+      "meaning": "afterword",
       "type": "kun"
     }
   ],
   "前": [
     {
-      "word": "午前",
+      "word": "御前",
       "reading": "ごぜん",
-      "meaning": "morning",
+      "meaning": "presence (of a nobleman, the emperor, etc.)",
       "type": "on"
     },
     {
@@ -337,15 +337,15 @@
   ],
   "四": [
     {
-      "word": "四国",
-      "reading": "しこく",
-      "meaning": "Shikoku (smallest of the four main islands of Japan)",
+      "word": "十四",
+      "reading": "じゅうし",
+      "meaning": "fourteen",
       "type": "on"
     },
     {
-      "word": "四年",
-      "reading": "よねん",
-      "meaning": "four years",
+      "word": "四月",
+      "reading": "よつき",
+      "meaning": "four months",
       "type": "kun"
     }
   ],
@@ -371,9 +371,9 @@
       "type": "on"
     },
     {
-      "word": "金持ち",
-      "reading": "かねもち",
-      "meaning": "rich person",
+      "word": "お金",
+      "reading": "おかね",
+      "meaning": "money",
       "type": "kun"
     }
   ],
@@ -449,9 +449,9 @@
   ],
   "子": [
     {
-      "word": "様子",
-      "reading": "ようす",
-      "meaning": "state (of affairs)",
+      "word": "調子",
+      "reading": "ちょうし",
+      "meaning": "tune",
       "type": "on"
     },
     {
@@ -469,9 +469,9 @@
       "type": "on"
     },
     {
-      "word": "外す",
-      "reading": "はずす",
-      "meaning": "to remove",
+      "word": "外側",
+      "reading": "そとがわ",
+      "meaning": "exterior",
       "type": "kun"
     }
   ],
@@ -483,9 +483,9 @@
       "type": "on"
     },
     {
-      "word": "八つ",
-      "reading": "やっつ",
-      "meaning": "eight",
+      "word": "お八つ",
+      "reading": "おやつ",
+      "meaning": "between-meal snack",
       "type": "kun"
     }
   ],
@@ -511,9 +511,9 @@
       "type": "on"
     },
     {
-      "word": "下さる",
-      "reading": "くださる",
-      "meaning": "to give",
+      "word": "下回る",
+      "reading": "したまわる",
+      "meaning": "to fall below (esp. figures: profits, unemployment rate, etc.)",
       "type": "kun"
     }
   ],
@@ -525,9 +525,9 @@
       "type": "on"
     },
     {
-      "word": "来る",
-      "reading": "くる",
-      "meaning": "to come (spatially or temporally)",
+      "word": "出来る",
+      "reading": "できる",
+      "meaning": "to be able to do",
       "type": "kun"
     }
   ],
@@ -553,17 +553,17 @@
       "type": "on"
     },
     {
-      "word": "小さな",
-      "reading": "ちいさな",
-      "meaning": "small",
+      "word": "小屋",
+      "reading": "こや",
+      "meaning": "hut",
       "type": "kun"
     }
   ],
   "七": [
     {
-      "word": "七五三",
-      "reading": "しちごさん",
-      "meaning": "shichi-go-san",
+      "word": "七事",
+      "reading": "しちじ",
+      "meaning": "seven tea ceremony procedures of the Senke school",
       "type": "on"
     },
     {
@@ -595,9 +595,9 @@
       "type": "on"
     },
     {
-      "word": "話す",
-      "reading": "はなす",
-      "meaning": "to talk",
+      "word": "お話",
+      "reading": "おはなし",
+      "meaning": "story",
       "type": "kun"
     }
   ],
@@ -649,6 +649,12 @@
       "reading": "ひゃくねん",
       "meaning": "century",
       "type": "on"
+    },
+    {
+      "word": "百重",
+      "reading": "ももえ",
+      "meaning": "piling up highly",
+      "type": "kun"
     }
   ],
   "書": [
@@ -673,9 +679,9 @@
       "type": "on"
     },
     {
-      "word": "先ず",
-      "reading": "まず",
-      "meaning": "first (of all)",
+      "word": "先ほど",
+      "reading": "さきほど",
+      "meaning": "a short while ago",
       "type": "kun"
     }
   ],
@@ -809,9 +815,9 @@
   ],
   "土": [
     {
-      "word": "土地",
-      "reading": "とち",
-      "meaning": "plot of land",
+      "word": "土曜日",
+      "reading": "どようび",
+      "meaning": "Saturday",
       "type": "on"
     },
     {
@@ -911,6 +917,12 @@
       "reading": "いちまんえん",
       "meaning": "10,000 yen",
       "type": "on"
+    },
+    {
+      "word": "八百万",
+      "reading": "やおよろず",
+      "meaning": "myriad",
+      "type": "kun"
     }
   ],
   "毎": [
@@ -977,9 +989,9 @@
       "type": "on"
     },
     {
-      "word": "花火",
-      "reading": "はなび",
-      "meaning": "fireworks",
+      "word": "火花",
+      "reading": "ひばな",
+      "meaning": "spark",
       "type": "kun"
     }
   ],

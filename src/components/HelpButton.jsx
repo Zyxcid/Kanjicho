@@ -4,7 +4,7 @@ import pkg from "../../package.json";
 
 // GitHub sudah link asli, Instagram tinggal ganti ke handle Anda.
 const GITHUB_URL = "https://github.com/Zyxcid/Kanji-Drill";
-const INSTAGRAM_URL = "https://instagram.com/syahidnrhdyt";
+const INSTAGRAM_URL = "https://instagram.com/your-handle"; // TODO: ganti ke handle asli
 
 export default function HelpButton() {
   const [open, setOpen] = React.useState(false);

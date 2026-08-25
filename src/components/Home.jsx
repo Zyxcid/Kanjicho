@@ -24,7 +24,7 @@ function levelBadge(stats) {
   return { label: "New", variant: "muted" };
 }
 
-export default function Home({ levelIds, getLevelMeta, getLevelStats, onOpenLevel, onBrowse, stats, streak, streakDoneToday }) {
+export default function Home({ levelIds, getLevelMeta, getLevelStats, onOpenLevel, onBrowse, stats, onJumpToNextReview, streak, streakDoneToday }) {
   const atRisk = streak > 0 && !streakDoneToday; // ada streak nyata & belum kuis hari ini
   return (
     <>
@@ -53,7 +53,7 @@ export default function Home({ levelIds, getLevelMeta, getLevelStats, onOpenLeve
         </div>
       </div>
 
-      <NextReviewBanner stats={stats} />
+      <NextReviewBanner stats={stats} onJump={onJumpToNextReview} />
 
       {/* Browse entry: jump to the full kanji library (every kanji, all levels). */}
       <div className="kd-browse-entry-row">

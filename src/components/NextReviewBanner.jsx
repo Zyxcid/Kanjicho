@@ -1,5 +1,5 @@
 import React from "react";
-import { Clock, CalendarClock, Sparkles } from "lucide-react";
+import { Clock, CalendarClock, Sparkles, ChevronRight } from "lucide-react";
 
 /**
  * NextReviewBanner — shows the user's review schedule at a glance.
@@ -10,8 +10,14 @@ import { Clock, CalendarClock, Sparkles } from "lucide-react";
  *   - reviews scheduled      → "Next review: <unit> · in N days"
  *
  * This replaces the old static "Not started" number with actionable timing.
+ *
+ * The "due" and "scheduled" states are CLICKABLE (via onJump) -- they jump
+ * straight into the quiz for `nextReviewUnit`, i.e. whichever started unit
+ * has the EARLIEST next_review_at (the one closest to being forgotten if
+ * already due, or the very next one coming up otherwise). The "nothing
+ * studied yet" state has no unit to jump to, so it stays a plain message.
  */
-export default function NextReviewBanner({ stats }) {
+export default function NextReviewBanner({ stats, onJump }) {
   const { studied, due, nextReviewDays, nextReviewUnit } = stats;
 
   if (studied === 0) {
@@ -23,14 +29,21 @@ export default function NextReviewBanner({ stats }) {
     );
   }
 
+  const canJump = typeof onJump === "function" && !!nextReviewUnit;
+
   if (due > 0) {
     return (
-      <div className="kd-next-review-banner due">
+      <button
+        className="kd-next-review-banner due kd-nrb-clickable"
+        onClick={canJump ? () => onJump(nextReviewUnit) : undefined}
+        disabled={!canJump}
+      >
         <Clock size={14} />
         <span className="kd-nrb-strong">
           {due} unit{due === 1 ? "" : "s"} ready to review now
         </span>
-      </div>
+        {canJump && <ChevronRight size={14} className="kd-nrb-chevron" />}
+      </button>
     );
   }
 
@@ -42,12 +55,17 @@ export default function NextReviewBanner({ stats }) {
           ? "tomorrow"
           : `in ${nextReviewDays} days`;
     return (
-      <div className="kd-next-review-banner">
+      <button
+        className="kd-next-review-banner kd-nrb-clickable"
+        onClick={canJump ? () => onJump(nextReviewUnit) : undefined}
+        disabled={!canJump}
+      >
         <CalendarClock size={14} />
         <span className="kd-nrb-label">Next review</span>
         <span className="kd-nrb-unit">{nextReviewUnit}</span>
         <span className="kd-nrb-when">· {label}</span>
-      </div>
+        {canJump && <ChevronRight size={14} className="kd-nrb-chevron" />}
+      </button>
     );
   }
 

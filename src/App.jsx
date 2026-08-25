@@ -185,22 +185,37 @@ export default function App() {
     navigate("unitSelect", { level });
   }
 
-  async function startUnit(unitId) {
+  // level (parameter kedua, opsional) dipakai kalau unit yang mau dibuka
+  // BUKAN dari activeLevel saat ini -- mis. klik banner "next review" di
+  // Home yang bisa nunjuk ke unit di level manapun. Kalau tidak dikasih,
+  // fallback ke activeLevel seperti biasa (dipakai UnitSelect).
+  async function startUnit(unitId, level = activeLevel) {
     // loadLevelKanji() sudah di-cache -- kalau UnitSelect sudah lebih dulu
     // load level ini (biasanya sudah, karena preview strip butuh itu juga),
     // baris ini langsung resolve dari cache, tidak fetch ulang.
-    const pool = await loadLevelKanji(activeLevel);
+    const pool = await loadLevelKanji(level);
     if (pool.length < 4) {
       showToast("This level doesn't have enough kanji to generate distractors.");
       return;
     }
     const kanjiInUnit = pool.filter((k) => k.unit === unitId);
+    setActiveLevel(level);
     setActiveUnit(unitId);
     setQuiz(generateQuiz(kanjiInUnit, pool));
     setQIndex(0);
     setAnswers([]);
     setSelectedChoice(null);
-    navigate("quiz", { level: activeLevel, unit: unitId });
+    navigate("quiz", { level, unit: unitId });
+  }
+
+  // Dipanggil dari klik banner "next review" (Home & UnitSelect) -- level
+  // unit itu di-derive dari progress-nya sendiri (jlptLevel tersimpan per
+  // record, lihat storage.js), TIDAK diasumsikan sama dengan activeLevel.
+  function jumpToNextReview(unitId) {
+    if (!unitId) return;
+    const level = progress[unitId]?.jlptLevel;
+    if (!level) return;
+    startUnit(unitId, level);
   }
 
   function submitAnswer(choice) {
@@ -263,7 +278,7 @@ export default function App() {
         </div>
       </div>
 
-      {effectiveView === "home" && <Home levelIds={LEVEL_IDS} getLevelMeta={getLevelMeta} getLevelStats={(level) => levelStatsMap[level]} onOpenLevel={openLevel} onBrowse={() => navigate("browse")} stats={allLevelsStats} streak={streak} streakDoneToday={streakDoneToday} />}
+      {effectiveView === "home" && <Home levelIds={LEVEL_IDS} getLevelMeta={getLevelMeta} getLevelStats={(level) => levelStatsMap[level]} onOpenLevel={openLevel} onBrowse={() => navigate("browse")} stats={allLevelsStats} onJumpToNextReview={jumpToNextReview} streak={streak} streakDoneToday={streakDoneToday} />}
 
       {effectiveView === "browse" && <Browse onBack={() => navigate("home")} />}
 
@@ -275,6 +290,7 @@ export default function App() {
           stats={levelStats}
           onBack={() => navigate("home")}
           onStartUnit={startUnit}
+          onJumpToNextReview={jumpToNextReview}
         />
       )}
 

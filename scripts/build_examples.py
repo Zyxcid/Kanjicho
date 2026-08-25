@@ -98,6 +98,9 @@ def parse_jmdict(jmdict_path):
 
 def load_bccwj_freq(tsv_path):
     """Load BCCWJ frequency: { term: (frequency, reading) }.
+    Also builds a reading-based index: { reading_hira: (frequency, term) }
+    so we can find frequency by reading when the written form differs
+    (e.g. JMdict has 現れる but BCCWJ has 現われる — same reading あらわれる).
 
     The BCCWJ TSV column 6 is the frequency COUNT (higher = more common).
     When a term appears multiple times (different POS), keep the entry with
@@ -106,6 +109,7 @@ def load_bccwj_freq(tsv_path):
     print(f"Loading BCCWJ from {tsv_path} ...")
     import csv
     freq = {}
+    freq_by_reading = {}  # reading_hira -> (frequency, term)
     with open(tsv_path, encoding="utf-8") as f:
         reader = csv.reader(f, delimiter="\t")
         next(reader)  # header
@@ -120,11 +124,13 @@ def load_bccwj_freq(tsv_path):
                 continue
             reading_hira = katakana_to_hiragana(lform)
             # Keep the HIGHEST frequency for each term (most common usage).
-            # Bug fix: was `<` (kept lowest = rarest), now `>` (keeps highest).
             if lemma not in freq or f_val > freq[lemma][0]:
                 freq[lemma] = (f_val, reading_hira)
-    print(f"  Loaded {len(freq)} BCCWJ frequency entries")
-    return freq
+            # Also index by reading (for spelling-variant lookups)
+            if reading_hira not in freq_by_reading or f_val > freq_by_reading[reading_hira][0]:
+                freq_by_reading[reading_hira] = (f_val, lemma)
+    print(f"  Loaded {len(freq)} BCCWJ frequency entries ({len(freq_by_reading)} by reading)")
+    return freq, freq_by_reading
 
 
 # ============================================================
@@ -161,20 +167,127 @@ def classify_word_shape(term):
     return "kun"
 
 
-def build_examples_for_kanji(kanji, jmdict_terms, freq_index, on_hira, kun_roots):
+# --- Minimal kana→romaji for matching primary_romaji against kana readings ---
+# (Only needs to be "good enough" to identify which reading a romaji string
+# came from — not a full converter.)
+_KANA_TO_ROMAJI_MIN = {
+    "あ":"a","い":"i","う":"u","え":"e","お":"o",
+    "か":"ka","き":"ki","く":"ku","け":"ke","こ":"ko",
+    "さ":"sa","し":"shi","す":"su","せ":"se","そ":"so",
+    "た":"ta","ち":"chi","つ":"tsu","て":"te","と":"to",
+    "な":"na","に":"ni","ぬ":"nu","ね":"ne","の":"no",
+    "は":"ha","ひ":"hi","ふ":"fu","へ":"he","ほ":"ho",
+    "ま":"ma","み":"mi","む":"mu","め":"me","も":"mo",
+    "や":"ya","ゆ":"yu","よ":"yo",
+    "ら":"ra","り":"ri","る":"ru","れ":"re","ろ":"ro",
+    "わ":"wa","を":"wo","ん":"n",
+    "が":"ga","ぎ":"gi","ぐ":"gu","げ":"ge","ご":"go",
+    "ざ":"za","じ":"ji","ず":"zu","ぜ":"ze","ぞ":"zo",
+    "だ":"da","ぢ":"ji","づ":"zu","で":"de","ど":"do",
+    "ば":"ba","び":"bi","ぶ":"bu","べ":"be","ぼ":"bo",
+    "ぱ":"pa","ぴ":"pi","ぷ":"pu","ぺ":"pe","ぽ":"po",
+    "ぁ":"a","ぃ":"i","ぅ":"u","ぇ":"e","ぉ":"o",
+    "ゃ":"ya","ゅ":"yu","ょ":"yo","っ":"",
+}
+_PALATAL_MIN = {
+    "ki":{"ya":"kya","yu":"kyu","yo":"kyo"},
+    "gi":{"ya":"gya","yu":"gyu","yo":"gyo"},
+    "shi":{"ya":"sha","yu":"shu","yo":"sho"},
+    "ji":{"ya":"ja","yu":"ju","yo":"jo"},
+    "chi":{"ya":"cha","yu":"chu","yo":"cho"},
+    "ni":{"ya":"nya","yu":"nyu","yo":"nyo"},
+    "hi":{"ya":"hya","yu":"hyu","yo":"hyo"},
+    "bi":{"ya":"bya","yu":"byu","yo":"byo"},
+    "pi":{"ya":"pya","yu":"pyu","yo":"pyo"},
+    "mi":{"ya":"mya","yu":"myu","yo":"myo"},
+    "ri":{"ya":"rya","yu":"ryu","yo":"ryo"},
+}
+
+
+def _kana_to_romaji_minimal(kana):
+    """Minimal kana→romaji for reading-matching. Handles the common cases."""
+    s = katakana_to_hiragana(kana).replace(".", "").strip("-")
+    out = ""
+    i = 0
+    while i < len(s):
+        ch = s[i]
+        nxt = s[i+1] if i+1 < len(s) else ""
+        if ch == "ー":
+            if out and out[-1] in "aeiou":
+                out += out[-1]
+            i += 1
+            continue
+        base = _KANA_TO_ROMAJI_MIN.get(ch, ch)
+        if nxt in ("ゃ","ゅ","ょ"):
+            y = _KANA_TO_ROMAJI_MIN.get(nxt, "")
+            if base in _PALATAL_MIN and y in _PALATAL_MIN[base]:
+                out += _PALATAL_MIN[base][y]
+                i += 2
+                continue
+        out += base
+        i += 1
+    return out
+
+
+def romaji_matches_reading(romaji, kana_reading):
+    """Check if a romaji string (e.g. 'too') corresponds to a kana reading
+    (e.g. 'とお'). Used to find which on/kun reading the primary_romaji
+    came from, so we can prefer example words using that reading."""
+    converted = _kana_to_romaji_minimal(kana_reading)
+    return romaji == converted
+
+
+def build_examples_for_kanji(kanji, jmdict_terms, freq_index, on_hira, kun_roots,
+                              primary_on_hira=None, primary_kun_hira=None,
+                              freq_by_reading=None):
+    """Build example words for one kanji.
+
+    If primary_on_hira / primary_kun_hira are provided (the readings that
+    rerank_readings.py determined are most common), example words whose
+    reading CONTAINS that primary reading are strongly preferred — so the
+    quiz answer and the shown example always use the same reading.
+
+    freq_by_reading allows looking up BCCWJ frequency by reading (not just
+    by written form), so spelling variants are found (e.g. JMdict 現れる
+    matches BCCWJ 現われる, both read あらわれる).
+    """
     on_candidates = []
     kun_candidates = []
 
     for term, entries in jmdict_terms.items():
         if kanji not in term:
             continue
-        if term not in freq_index:
-            continue
-        freq_val, bccwj_reading = freq_index[term]
 
+        # Look up BCCWJ frequency. Try by written form first, then by
+        # each JMdict reading (handles spelling variants like 現れる/現われる).
+        # CRITICAL: when looking up by reading, verify the BCCWJ lemma ALSO
+        # contains this kanji — otherwise we'd match unrelated words that
+        # happen to share a reading (e.g. 正割 reading せいかつ would match
+        # BCCWJ's 生活 せいかつ, a completely different word).
+        freq_val = None
+        bccwj_reading = None
+        if term in freq_index:
+            freq_val, bccwj_reading = freq_index[term]
+        elif freq_by_reading:
+            for reading, _glosses in entries:
+                reading_hira = katakana_to_hiragana(reading)
+                if reading_hira in freq_by_reading:
+                    f_val, lemma = freq_by_reading[reading_hira]
+                    # Verify the BCCWJ word actually contains THIS kanji.
+                    # This prevents false matches like 正割(せいかつ) → 生活(せいかつ).
+                    if kanji in lemma:
+                        freq_val = f_val
+                        bccwj_reading = reading
+                        break
+
+        if freq_val is None:
+            continue
+
+        # Find the JMdict entry whose reading matches the BCCWJ reading
         matching_entry = next((e for e in entries if e[0] == bccwj_reading), None)
         if matching_entry is None:
-            continue
+            # If no exact reading match, use the first entry
+            matching_entry = entries[0]
 
         reading, glosses = matching_entry
         gloss = glosses[0]
@@ -194,31 +307,40 @@ def build_examples_for_kanji(kanji, jmdict_terms, freq_index, on_hira, kun_roots
         else:
             continue
 
-        # Store frequency as NEGATIVE so ascending sort = highest frequency first.
-        # Bug fix: was sorting ascending by frequency (lowest first = rarest),
-        # now sorts ascending by -freq (highest first = most common).
-        item = (-freq_val, term, reading, gloss)
+        # Check if this word's reading contains the PRIMARY reading
+        # (the one rerank_readings.py determined is most common). If so,
+        # this word is a much better example — the quiz and reveal will
+        # show the same reading.
+        matches_primary = False
+        if item_type == "on" and primary_on_hira and primary_on_hira in reading_hira:
+            matches_primary = True
+        if item_type == "kun" and primary_kun_hira and primary_kun_hira in reading_hira:
+            matches_primary = True
+
+        # Store: (matches_primary_flag, -freq, term, reading, gloss)
+        # Sort key: prefer matches_primary=True (0 < 1), then multi-char,
+        # then highest frequency.
+        item = (0 if matches_primary else 1, -freq_val, term, reading, gloss)
         if item_type == "on":
             on_candidates.append(item)
         else:
             kun_candidates.append(item)
 
-    # Sort: prefer multi-char words, then by frequency (highest first).
-    # Using -freq_val so ascending sort gives highest frequency first.
-    on_candidates.sort(key=lambda x: (0 if len(x[1]) > 1 else 1, x[0]))
-    kun_candidates.sort(key=lambda x: (0 if len(x[1]) > 1 else 1, x[0]))
+    # Sort: prefer primary-reading match, then multi-char, then frequency.
+    on_candidates.sort(key=lambda x: (x[0], 0 if len(x[2]) > 1 else 1, x[1]))
+    kun_candidates.sort(key=lambda x: (x[0], 0 if len(x[2]) > 1 else 1, x[1]))
 
     results = []
     if on_candidates:
-        _f, t, r, g = on_candidates[0]
+        _p, _f, t, r, g = on_candidates[0]
         results.append({"word": t, "reading": r, "meaning": g, "type": "on"})
     if kun_candidates:
-        _f, t, r, g = kun_candidates[0]
+        _p, _f, t, r, g = kun_candidates[0]
         results.append({"word": t, "reading": r, "meaning": g, "type": "kun"})
 
     if len(results) < MAX_EXAMPLES_PER_KANJI:
         pool = on_candidates if kun_candidates and results and results[0]["type"] == "kun" else kun_candidates
-        for _f, t, r, g in pool:
+        for _p, _f, t, r, g in pool:
             if t not in {res["word"] for res in results}:
                 results.append({"word": t, "reading": r, "meaning": g, "type": classify_word_shape(t)})
                 break
@@ -247,7 +369,22 @@ def main():
         sys.exit(1)
 
     jmdict_terms = parse_jmdict(jmdict_path)
-    freq_index = load_bccwj_freq(bccwj_path)
+    freq_index, freq_by_reading = load_bccwj_freq(bccwj_path)
+
+    # Check if primary_romaji has been set by rerank_readings.py yet.
+    # If so, we'll prefer example words whose reading matches it.
+    # (This is why build_examples.py runs AFTER rerank_readings.py in the pipeline.)
+    has_primary = False
+    first_file = input_dir / "n5.json"
+    if first_file.exists():
+        with open(first_file, encoding="utf-8") as f:
+            sample = json.load(f)
+        if sample and sample[0].get("primary_romaji"):
+            has_primary = True
+    if has_primary:
+        print("  (primary_romaji detected — preferring examples that match the quiz reading)")
+    else:
+        print("  (primary_romaji not set yet — run rerank_readings.py first for best results)")
 
     for level_file in sorted(input_dir.glob("n[1-5].json")):
         with open(level_file, encoding="utf-8") as f:
@@ -258,7 +395,27 @@ def main():
         for entry in kanji_list:
             kanji = entry["kanji"]
             on_hira, kun_roots = build_reading_sets(entry)
-            examples = build_examples_for_kanji(kanji, jmdict_terms, freq_index, on_hira, kun_roots)
+
+            # Extract the primary readings (set by rerank_readings.py) as
+            # hiragana, so we can prefer example words that use them.
+            primary_on_hira = None
+            primary_kun_hira = None
+            pr = entry.get("primary_romaji", [])
+            for romaji in pr:
+                # Find which of the kanji's on/kun readings matches this romaji
+                for r in entry.get("readings", {}).get("on", []):
+                    if romaji_matches_reading(romaji, r):
+                        primary_on_hira = katakana_to_hiragana(clean_kun(r))
+                        break
+                for r in entry.get("readings", {}).get("kun", []):
+                    if romaji_matches_reading(romaji, r):
+                        primary_kun_hira = katakana_to_hiragana(clean_kun(r))
+                        break
+
+            examples = build_examples_for_kanji(
+                kanji, jmdict_terms, freq_index, on_hira, kun_roots,
+                primary_on_hira, primary_kun_hira, freq_by_reading
+            )
             result[kanji] = examples
             if not examples:
                 no_example += 1

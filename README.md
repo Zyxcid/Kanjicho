@@ -69,7 +69,7 @@ vite.config.js              Vite + PWA config (manifest + service worker)
 scripts/
   convert_kanji.py          Step 1: kanjidic2.xml.gz → n*.json (kanji data)
   build_examples.py         Step 2: JMdict + BCCWJ → n*_examples.json
-  rerank_readings.py        Step 3: re-rank primary_romaji by BCCWJ word frequency
+  rerank_readings.py        Step 3: rank primary_romaji by BCCWJ word frequency (fallback for kanji without qualifying examples)
   build_manifest.py        Step 4: generate manifest.json (level summaries for Home)
 ```
 
@@ -91,7 +91,7 @@ bundled and loaded from disk. Three public datasets feed the build pipeline:
 | `readings.on`, `readings.kun`, `meanings` | KANJIDIC2 |
 | `jlpt_level` | `JLPT_kanji_ALL.json` (see note below) |
 | `romaji_readings` | Derived — all readings romanized |
-| `primary_romaji` | KANJIDIC2 candidates, ranked by BCCWJ word frequency (see below) |
+| `primary_romaji` | KANJIDIC2 candidates, made consistent with the example word shown for each kanji (see below) |
 | `unit`, `order_index` | Pipeline grouping — 15 kanji per unit, ordered by newspaper frequency |
 | `examples` | JMdict words containing the kanji, ranked by BCCWJ frequency |
 
@@ -99,18 +99,18 @@ bundled and loaded from disk. Three public datasets feed the build pipeline:
 no N5). `JLPT_kanji_ALL.json` maps each kanji to the modern N1–N5 system and is
 included in the project root so the pipeline works out of the box.
 
-**Most common reading (`primary_romaji`):** for each kanji, `rerank_readings.py`
-looks at every BCCWJ corpus word containing it (e.g. 時代, 代わり, 世代 for
-代), matches each word's reading to one of the kanji's on'yomi/kun'yomi, and
-sums word frequency per reading. The most frequent on'yomi and the most
-frequent kun'yomi become `primary_romaji`. This reflects real usage — reading
-frequency in isolation (a kanji standing alone) is a poor proxy, since many
-common kun'yomi (verbs, adjectives) only occur with okurigana attached.
-
 **Example words:** for each kanji, `build_examples.py` finds JMdict words
 containing it that also appear in the BCCWJ frequency list, cross-verifies
 the reading against BCCWJ (to reject archaic/rare alternate readings), and
 picks the most frequent on'yomi word and the most frequent kun'yomi word.
+
+**Most common reading (`primary_romaji`):** determined by
+`rerank_readings.py`, which ranks candidate readings by BCCWJ corpus
+frequency (looking at every word containing the kanji, e.g. 時代, 代わり,
+世代 for 代). The most frequent on'yomi becomes `primary_romaji[0]` and the
+most frequent kun'yomi becomes `primary_romaji[1]`. This aggregates
+frequency across ALL BCCWJ words using each reading, so it correctly
+identifies the common readings (e.g. 十 → `too`, not the rare `so`).
 
 ## Data build pipeline (regenerating the JSON)
 
@@ -144,7 +144,7 @@ JMdict_e.gz       ─┼─→ build_examples.py ──→ n5_examples.json ...
 BCCWJ TSV         ─┘                        (example words per kanji)
 
 n*.json           ─┐
-BCCWJ TSV         ─┴─→ rerank_readings.py ──→ n*.json (primary_romaji updated)
+BCCWJ TSV         ─┴─→ rerank_readings.py ──→ n*.json (primary_romaji: frequency-ranked default)
 
 n*.json           ───→ build_manifest.py    ──→ manifest.json
                            (small summary: totals + unit ids for Home)
@@ -152,9 +152,8 @@ n*.json           ───→ build_manifest.py    ──→ manifest.json
 
 ```bash
 python scripts/convert_kanji.py kanjidic2.xml.gz output JLPT_kanji_ALL.json
-python scripts/build_examples.py JMdict_e.gz BCCWJ_frequencylist_luw2_ver1_0.tsv output output
 python scripts/rerank_readings.py BCCWJ_frequencylist_luw2_ver1_0.tsv output
-
+python scripts/build_examples.py JMdict_e.gz BCCWJ_frequencylist_luw2_ver1_0.tsv output output
 python scripts/build_manifest.py output
 
 # then copy into src/data/

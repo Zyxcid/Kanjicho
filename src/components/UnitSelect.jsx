@@ -11,7 +11,7 @@ const STATUS_LABEL = {
   mastered: "Mastered",
 };
 
-export default function UnitSelect({ level, units, progress, stats, onBack, onStartUnit }) {
+export default function UnitSelect({ level, units, progress, stats, onBack, onStartUnit, onJumpToNextReview }) {
   // Kanji data lengkap untuk level ini di-load di sini (bukan di App.jsx),
   // karena preview strip tiap unit card butuh isi kanjinya. loadLevelKanji()
   // sudah di-cache secara internal, jadi berpindah-pindah unit/kembali ke
@@ -61,7 +61,7 @@ export default function UnitSelect({ level, units, progress, stats, onBack, onSt
         </div>
       </div>
 
-      <NextReviewBanner stats={stats} />
+      <NextReviewBanner stats={stats} onJump={onJumpToNextReview} />
 
       <div className="kd-section-title">{level} Units</div>
       <div className="kd-unit-grid">
