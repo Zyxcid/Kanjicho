@@ -1,6 +1,7 @@
 import React from "react";
 import { HelpCircle, X, Github } from "lucide-react";
 import pkg from "../../package.json";
+import BackupControls from "./BackupControls";
 
 const GITHUB_URL = "https://github.com/Zyxcid/Kanjicho";
 
@@ -86,6 +87,11 @@ export default function HelpButton() {
                   <Github size={15} /> GitHub
                 </a>
               </div>
+            </div>
+
+            <div className="kd-help-section">
+              <div className="kd-help-heading">Progress backup</div>
+              <BackupControls />
             </div>
           </div>
         </div>

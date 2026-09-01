@@ -77,6 +77,12 @@ npm run preview   # preview the production build locally
 - **Daily streak** — a flame + number on Home (no label text; gold border
   when today's quiz is done, red when the streak is at risk). Hover for the
   full status in a tooltip.
+- **Progress backup** — Export/Import progress buttons in the help modal
+  (`src/lib/backup.js`): a full snapshot of the three IndexedDB tables plus
+  the two localStorage settings, saved as one versioned JSON file. Import
+  replaces all current progress (after a confirmation dialog) — the only
+  way to survive clearing site data or move progress to another
+  device/browser.
 - **History-aware navigation** — the browser Back button navigates within the
   app (Home ↔ Browse ↔ Unit Select ↔ Quiz ↔ Result) instead of exiting.
 - **Keyboard-friendly quiz** — W/E/S/D select an answer, F = "don't know",
@@ -360,7 +366,13 @@ All progress lives in the browser's IndexedDB via Dexie
   Free practice (not-due units) logs nothing.
 - `kanjiStats` — per-kanji right/wrong tallies powering weak review.
 
-Local per-device only — no sync (would need a backend).
+Local per-device only — no sync (would need a backend). Because of that,
+the help modal offers **Export / Import progress** (`src/lib/backup.js`):
+a full snapshot of the three tables (plus the two localStorage display
+settings) as one versioned JSON file. Import is replace-all behind a
+confirmation dialog; the backup format carries a version number with a
+step-by-step migration chain, so backups made by older app versions keep
+importing after the storage format changes.
 
 ## Progressive Web App
 
