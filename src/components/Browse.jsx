@@ -1,26 +1,25 @@
 import React, { useState, useMemo, useEffect, useCallback } from "react";
 import { ChevronLeft, Search, X, BookOpen } from "lucide-react";
 import { LEVEL_IDS, loadLevelKanji, loadAllKanji } from "../lib/dataLoader.js";
+import { ReadingList } from "./Readings.jsx";
 
-// "All" + N5..N1. Default selection is N5 so the first paint stays light
-// (N1 alone has 1232 entries — fine, but N5 is a friendlier landing).
+// "All" + N5..N1. Default N5 supaya paint pertama ringan (N1 sendiri
+// berisi 1.232 entri; N5 lebih ramah sebagai halaman mula).
 const LEVELS = ["All", ...LEVEL_IDS];
 
-// Render cap so grids of 1000+ cards stay smooth on scroll. "Show more"
-// increases the cap in steps.
+// Batas render per step supaya grid 1000+ kartu tetap mulus saat scroll.
+// "Show more" menaikkan batas bertahap.
 const VISIBLE_STEP = 400;
 
 export default function Browse({ onBack }) {
   const [activeLevel, setActiveLevel] = useState("N5");
   const [query, setQuery] = useState("");
   const [visibleCount, setVisibleCount] = useState(VISIBLE_STEP);
-  const [selected, setSelected] = useState(null); // kanji entry shown in modal
+  const [selected, setSelected] = useState(null); // kanji yang ditampilkan di modal
 
-  // Data for the active level (or every level, for "All") is loaded on
-  // demand -- null while in flight. "All" loads all 5 levels at once (the
-  // one case where the lazy-loading win doesn't apply, since browsing
-  // everything genuinely needs everything), everything else loads just
-  // that one level's JSON.
+  // Data level aktif (atau semua level untuk "All") dimuat on-demand —
+  // null selagi proses. "All" memuat 5 level sekaligus (satu-satunya kasus
+  // yang memang butuh semuanya); selain itu hanya JSON level itu.
   const [pool, setPool] = useState(null);
 
   useEffect(() => {
@@ -35,7 +34,7 @@ export default function Browse({ onBack }) {
     };
   }, [activeLevel]);
 
-  // Build the list for the active level (+ optional search filter).
+  // Susun daftar level aktif (+ filter pencarian bila ada).
   const list = useMemo(() => {
     if (!pool) return [];
     const q = query.trim().toLowerCase();
@@ -50,8 +49,8 @@ export default function Browse({ onBack }) {
     );
   }, [pool, query]);
 
-  // Handlers that also reset the render cap, so changing the filter always
-  // starts from the top of the new result set (no effect / no ref-in-render).
+  // Ganti level/query sekaligus reset batas render supaya selalu mulai
+  // dari awal hasil baru.
   const selectLevel = useCallback((lv) => {
     setActiveLevel(lv);
     setVisibleCount(VISIBLE_STEP);
@@ -62,7 +61,7 @@ export default function Browse({ onBack }) {
     setVisibleCount(VISIBLE_STEP);
   }, []);
 
-  // Close the detail modal on Escape.
+  // Tutup modal detail dengan Escape.
   useEffect(() => {
     function onKey(e) {
       if (e.key === "Escape") setSelected(null);
@@ -156,7 +155,7 @@ export default function Browse({ onBack }) {
         </div>
       )}
 
-      {/* Detail modal — reuses the kd-reveal aesthetic from the quiz screen. */}
+      {/* Modal detail — pakai estetika kd-reveal dari layar kuis. */}
       {selected && (
         <div className="kd-modal-overlay" onClick={() => setSelected(null)}>
           <div className="kd-modal" onClick={(e) => e.stopPropagation()}>
@@ -176,20 +175,20 @@ export default function Browse({ onBack }) {
             <div className="kd-reveal-yomi">
               {selected.readings.on.length > 0 && (
                 <div className="kd-yomi-row">
-                  <span className="kd-yomi-tag on">On&apos;yomi</span>{" "}
-                  {selected.readings.on.join("、")}
+                  <span className="kd-yomi-tag on">On&apos;yomi</span>
+                  <ReadingList readings={selected.readings.on} primaryReadings={selected.primary_readings} type="on" />
                 </div>
               )}
               {selected.readings.kun.length > 0 && (
                 <div className="kd-yomi-row">
-                  <span className="kd-yomi-tag kun">Kun&apos;yomi</span>{" "}
-                  {selected.readings.kun.join("、")}
+                  <span className="kd-yomi-tag kun">Kun&apos;yomi</span>
+                  <ReadingList readings={selected.readings.kun} primaryReadings={selected.primary_readings} type="kun" />
                 </div>
               )}
               {selected.romaji_readings.length > 0 && (
                 <div className="kd-yomi-row">
-                  <span className="kd-yomi-tag kd-yomi-tag-neutral">Romaji</span>{" "}
-                  {selected.romaji_readings.join("、")}
+                  <span className="kd-yomi-tag kd-yomi-tag-neutral">Romaji</span>
+                  <span className="kd-yomi-value">{selected.romaji_readings.join(", ")}</span>
                 </div>
               )}
             </div>

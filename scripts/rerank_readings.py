@@ -1,22 +1,21 @@
 #!/usr/bin/env python3
 """
-rerank_readings.py — Re-rank each kanji's `primary_romaji` using REAL
-multi-character word frequency from the BCCWJ Balanced Corpus.
+rerank_readings.py — Langkah 2 pipeline: rank ulang `primary_romaji` tiap
+kanji memakai frekuensi kata MULTI-KARAKTER nyata dari korpus BCCWJ.
 
-For each kanji, looks at all BCCWJ corpus WORDS containing that kanji (e.g.
-時代, 代わり, 世代 for 代), matches each word's reading back to one of the
-kanji's on/kun readings, and sums the word frequencies per reading. The
-most-frequent on'yomi becomes primary_romaji[0]; the most-frequent kun'yomi
-becomes primary_romaji[1].
+Untuk tiap kanji, lihat semua KATA korpus yang memuat kanji itu (mis.
+時代, 代わり, 世代 untuk 代), cocokkan reading tiap kata dengan salah satu
+bacaan on/kun kanji, lalu jumlahkan frekuensi per bacaan. On'yomi paling
+sering jadi primary_romaji[0]; kun'yomi paling sering jadi primary_romaji[1].
 
-Inputs:
-  - output/n*.json or src/data/n*.json  (existing kanji data)
-  - BCCWJ_frequencylist_luw2_ver1_0.tsv  (raw BCCWJ frequency list)
+Input:
+  - output/n*.json atau src/data/n*.json  (data kanji yang ada)
+  - BCCWJ_frequencylist_luw2_ver1_0.tsv  (daftar frekuensi BCCWJ)
 
 Output:
-  - updates the JSON files in place (only `primary_romaji` is re-graded)
+  - file JSON di-update in place (hanya `primary_romaji` yang di-rank ulang)
 
-Usage:
+Pemakaian:
     python scripts/rerank_readings.py <bccwj.tsv> [path/to/data]
 """
 
@@ -25,7 +24,7 @@ import sys
 from pathlib import Path
 
 # ============================================================
-# Kana utilities (same as convert_kanji.py)
+# Util kana (sama dengan convert_kanji.py)
 # ============================================================
 
 KATA_TO_HIRA_SMALL = {
@@ -136,12 +135,12 @@ def clean_reading(kana):
 
 
 # ============================================================
-# BCCWJ loading
+# Pemuatan BCCWJ
 # ============================================================
 
 def load_bccwj(tsv_path):
-    """Load BCCWJ TSV. Returns [(lemma, reading_hiragana, freq), ...].
-    Only keeps lemmas containing at least one kanji."""
+    """Muat TSV BCCWJ → [(lemma, reading_hiragana, freq), ...].
+    Hanya simpan lemma yang memuat minimal satu kanji."""
     print(f"Loading BCCWJ from {tsv_path} ...")
     import csv
     words = []
@@ -154,7 +153,7 @@ def load_bccwj(tsv_path):
             lemma = row[2]
             lform = row[1]
             try:
-                freq = int(row[6])  # frequency COUNT (higher = more common)
+                freq = int(row[6])  # jumlah kemunculan (lebih besar = makin umum)
             except (ValueError, IndexError):
                 continue
             if not any("\u4e00" <= ch <= "\u9fff" for ch in lemma):
@@ -166,7 +165,7 @@ def load_bccwj(tsv_path):
 
 
 def build_kanji_word_index(bccwj_words):
-    """Build { kanji_char: [(lemma, reading, freq), ...] }."""
+    """Susun { kanji_char: [(lemma, reading, freq), ...] }."""
     print("Indexing BCCWJ words by kanji ...")
     index = {}
     for lemma, reading, freq in bccwj_words:
@@ -181,11 +180,11 @@ def build_kanji_word_index(bccwj_words):
 
 
 # ============================================================
-# Reading ranking
+# Ranking bacaan
 # ============================================================
 
 def rank_readings(kanji, on_readings, kun_readings, bccwj_words):
-    """Rank readings by total BCCWJ word frequency."""
+    """Rank bacaan berdasarkan total frekuensi kata BCCWJ."""
     on_clean = {}
     kun_clean = {}
     for r in on_readings:

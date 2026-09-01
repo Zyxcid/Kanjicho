@@ -1,25 +1,26 @@
 /**
- * quiz-generator.js — Generate soal pilihan ganda dari data kanji.
+ * quizGenerator.js — generate soal pilihan ganda dari data kanji.
  *
  * Dua jenis soal:
- *   - "reading" : ditampilkan kanji, user pilih bacaan romaji yang benar
- *   - "meaning" : ditampilkan kanji, user pilih arti bahasa Inggris yang benar
+ *   - "reading" : tampilkan kanji, pilih bacaan yang benar. Tiap pilihan
+ *                 adalah objek {kana, romaji} — UI menampilkan salah
+ *                 satunya sesuai toggle kana/romaji (Quiz.jsx), dan toggle
+ *                 bisa KAPAN PUN tanpa regenerate kuis karena keduanya
+ *                 sudah tersimpan di soal.
+ *   - "meaning" : tampilkan kanji, pilih arti Inggris yang benar (string).
  *
- * Distractor (pilihan salah) diambil dari kanji lain di LEVEL YANG SAMA
- * (bukan cuma unit yang sama), supaya soal tetap related/masuk akal tapi
- * tidak terlalu mudah ditebak dari konteks unit.
+ * Jawaban benar ditandai `correctIndex` — penilaian membandingkan INDEKS
+ * pilihan user, bukan labelnya, jadi skrip tampilan tidak memengaruhi skor.
  *
- * "Tidak tahu" SENGAJA tidak dimasukkan ke dalam array choices di sini —
- * itu ditangani di layer UI sebagai tombol terpisah di luar pilihan ganda
- * (sesuai rancangan awal). Modul ini hanya menghasilkan soal +
- * pilihan-pilihan yang valid; UI yang menambahkan tombol "Tidak tahu".
+ * Distractor diambil dari kanji lain di LEVEL YANG SAMA (bukan cuma unit)
+ * supaya soal tetap masuk akal tapi tidak mudah ditebak dari konteks unit.
+ * Tombol "Tidak tahu" ditangani layer UI sebagai tombol terpisah di luar
+ * pilihan ganda — modul ini hanya menghasilkan soal + pilihan yang valid.
  *
- * Modul ini murni (pure function): tidak ada random seed tersembunyi
- * yang tidak bisa dikontrol dari luar (Math.random dipakai langsung,
- * tapi seluruh fungsi tidak menyentuh storage/state luar).
+ * Modul murni: tidak menyentuh storage/state luar.
  */
 
-const CHOICE_COUNT = 4; // termasuk 1 jawaban benar + 3 distractor
+const CHOICE_COUNT = 4; // 1 benar + 3 distractor
 
 // ---- Util internal ----
 
@@ -36,23 +37,40 @@ function pickRandom(array) {
   return array[Math.floor(Math.random() * array.length)];
 }
 
-function sampleWithoutReplacement(array, count) {
-  return shuffle(array).slice(0, count);
+/**
+ * Pasangan {kana, romaji} semua bacaan PRIMARY satu kanji — sumber jawaban
+ * benar & distractor soal bacaan.
+ *
+ * Sumber utama: `primary_readings` dari pipeline (sudah difilter agar
+ * selalu ditopang contoh kata). Fallback data lama tanpa field ini:
+ * pasangkan readings.on + .kun dengan romaji_readings per indeks HANYA
+ * kalau jumlahnya pas (pipeline me-dedupe romaji_readings, jadi kalau
+ * jumlahnya beda, pairing per indeks bisa salah — lebih aman pakai kana
+ * untuk kedua skrip).
+ */
+function readingPairs(kanjiEntry) {
+  const primary = kanjiEntry.primary_readings || [];
+  if (primary.length > 0) {
+    return primary.map((p) => ({ kana: p.kana, romaji: p.romaji }));
+  }
+  const on = kanjiEntry.readings?.on || [];
+  const kun = kanjiEntry.readings?.kun || [];
+  const allKana = [...on, ...kun];
+  const romaji = kanjiEntry.romaji_readings || [];
+  if (romaji.length === allKana.length) {
+    return allKana.map((kana, i) => ({ kana, romaji: romaji[i] }));
+  }
+  return allKana.map((kana) => ({ kana, romaji: kana }));
 }
 
 /**
- * Ambil satu jawaban "benar" representatif dari satu kanji, tergantung
- * questionType. Kalau kanji punya beberapa romaji/meaning, pilih satu
- * secara random supaya variatif setiap kali quiz dibuat.
+ * Satu jawaban "benar" representatif dari satu kanji sesuai questionType.
+ * Kalau ada beberapa kandidat, pilih acak supaya variatif antar kuis.
+ * Reading → {kana, romaji} (primary); meaning → string.
  */
 function getAnswerForKanji(kanjiEntry, questionType) {
   if (questionType === "reading") {
-    // Pakai primary_romaji (bacaan paling umum) supaya soal tidak
-    // menguji variasi bacaan langka yang membingungkan pemula.
-    // Fallback ke romaji_readings kalau primary_romaji tidak ada
-    // (misal dipakai dengan data lama sebelum field ini ditambahkan).
-    const pool = kanjiEntry.primary_romaji?.length ? kanjiEntry.primary_romaji : kanjiEntry.romaji_readings;
-    return pickRandom(pool);
+    return pickRandom(readingPairs(kanjiEntry));
   }
   return pickRandom(kanjiEntry.meanings);
 }
@@ -60,71 +78,102 @@ function getAnswerForKanji(kanjiEntry, questionType) {
 /**
  * Generate satu soal untuk satu kanji.
  *
- * @param {object} targetKanji - entry kanji yang ditanyakan (dari file n5.json dkk)
- * @param {Array<object>} distractorPool - kanji lain (biasanya 1 level penuh) untuk sumber distractor
+ * @param {object} targetKanji - entry kanji yang ditanyakan (dari n5.json dkk)
+ * @param {Array<object>} distractorPool - kanji lain (biasanya 1 level) untuk sumber distractor
  * @param {"reading"|"meaning"} questionType
  */
 function generateQuestion(targetKanji, distractorPool, questionType) {
   const correctAnswer = getAnswerForKanji(targetKanji, questionType);
+  const isReading = questionType === "reading";
 
-  // Kandidat distractor: kanji lain yang BUKAN targetKanji.
+  // Kandidat distractor: kanji lain yang bukan target.
   const candidates = distractorPool.filter((k) => k.kanji !== targetKanji.kanji);
 
-  // ── Distractor exclusion (corrected) ──
-  // A distractor must not be ANY valid reading/meaning of the TARGET kanji,
-  // not just the single chosen correctAnswer. Otherwise the user could pick
-  // a real alternate reading of the asked kanji and get marked wrong — e.g.
-  // for 言 (readings: gen/gon/iu/koto), if the correct answer is "iu" but
-  // "gon" appears as a distractor (drawn from another kanji's on'yomi), the
-  // user picking "gon" would be marked wrong even though it's a valid
-  // reading of 言. Excluding the target's full romaji_readings fixes this.
-  const targetInvalid = new Set(
-    questionType === "reading"
-      ? targetKanji.romaji_readings || []
-      : targetKanji.meanings || []
-  );
-  // Also exclude the chosen answer itself.
-  targetInvalid.add(correctAnswer);
+  // ── Distractor exclusion (per SKRIP, untuk soal bacaan) ──
+  // Distractor tidak boleh bacaan sah dari kanji yang ditanyakan — di KEDUA
+  // skrip sekaligus. Kalau hanya label yang tampil yang dicek, user bisa
+  // memilih bacaan sah lain dan dianggap salah (mis. 言: jawaban "iu",
+  // distractor "gon" — "gon" bacaan sah 言). Karena pilihan menyimpan
+  // kana+romaji, keduanya harus dikecualikan sekaligus supaya aturan ini
+  // tetap berlaku setelah toggle skrip mid-sesi.
+  const targetInvalid = new Set();
+  const targetKana = new Set();
+  if (isReading) {
+    (targetKanji.romaji_readings || []).forEach((r) => targetInvalid.add("r:" + r));
+    [...(targetKanji.readings?.on || []), ...(targetKanji.readings?.kun || [])]
+      .forEach((r) => {
+        targetInvalid.add("k:" + r);
+        targetKana.add(r);
+      });
+  } else {
+    (targetKanji.meanings || []).forEach((m) => targetInvalid.add("m:" + m));
+  }
+  // Juga exclude jawaban terpilih itu sendiri.
+  targetInvalid.add(isReading ? "r:" + correctAnswer.romaji : "m:" + correctAnswer);
+  if (isReading) targetInvalid.add("k:" + correctAnswer.kana);
 
   const distractorAnswers = [];
   const usedAnswers = new Set(targetInvalid);
+  if (isReading) {
+    usedAnswers.add("r:" + correctAnswer.romaji);
+    usedAnswers.add("k:" + correctAnswer.kana);
+  }
 
-  // Ambil distractor satu-satu dari kandidat yang sudah diacak, skip
-  // kalau jawabannya duplikat dengan yang sudah dipakai ATAU termasuk
-  // bacaan/arti sah dari kanji yang ditanyakan.
+  // Ambil distractor satu-satu dari kandidat yang diacak, skip yang
+  // duplikat (kana MAUPUN romaji — dua distractor tidak boleh tampil
+  // kembar di salah satu skrip) atau bacaan/arti sah dari kanji target.
   for (const candidate of shuffle(candidates)) {
     if (distractorAnswers.length >= CHOICE_COUNT - 1) break;
     const candidateAnswer = getAnswerForKanji(candidate, questionType);
-    if (!usedAnswers.has(candidateAnswer)) {
-      distractorAnswers.push(candidateAnswer);
-      usedAnswers.add(candidateAnswer);
+    if (isReading) {
+      if (
+        usedAnswers.has("r:" + candidateAnswer.romaji) ||
+        usedAnswers.has("k:" + candidateAnswer.kana)
+      ) {
+        continue;
+      }
+      usedAnswers.add("r:" + candidateAnswer.romaji);
+      usedAnswers.add("k:" + candidateAnswer.kana);
+    } else {
+      if (usedAnswers.has("m:" + candidateAnswer)) continue;
+      usedAnswers.add("m:" + candidateAnswer);
     }
+    distractorAnswers.push(candidateAnswer);
   }
 
   const choices = shuffle([correctAnswer, ...distractorAnswers]);
+  const correctIndex = choices.indexOf(correctAnswer);
 
   return {
     kanji: targetKanji.kanji,
     questionType, // "reading" | "meaning"
     choices,
+    correctIndex,
     correctAnswer,
-    // Data untuk panel "reveal" setelah user menjawab (lihat App.jsx/Quiz.jsx).
-    // Bukan bagian dari logic kuis itu sendiri, cuma numpang lewat supaya UI
-    // tidak perlu lookup ulang ke data source di tempat lain.
+    // Data untuk panel "reveal" setelah menjawab — bukan bagian logika
+    // kuis, cuma numpang lewat supaya UI tidak perlu lookup ulang ke
+    // data source.
     meanings: targetKanji.meanings,
     on: targetKanji.readings.on,
     kun: targetKanji.readings.kun,
+    // Bacaan primary (yang di-bold di UI & sumber jawaban kuis), kana +
+    // romaji — lihat scripts/build_examples.py.
+    primaryReadings: targetKanji.primary_readings || [],
     examples: targetKanji.examples || [],
+    // Identitas kanji (untuk update kanjiStats di storage.js dan
+    // menyusun kuis weak review lintas level).
+    level: targetKanji.jlpt_level,
+    unit: targetKanji.unit,
   };
 }
 
 /**
- * Generate satu set soal kuis untuk satu unit.
+ * Generate satu set soal untuk satu unit.
  *
- * @param {Array<object>} unitKanjiList - daftar kanji dalam unit yang mau dikuiskan
- * @param {Array<object>} distractorPool - kanji satu level (biasanya seluruh level, termasuk unit ini) untuk sumber distractor
+ * @param {Array<object>} unitKanjiList - kanji dalam unit yang mau dikuiskan
+ * @param {Array<object>} distractorPool - kanji satu level untuk sumber distractor
  * @param {object} options
- * @param {("reading"|"meaning"|"mixed")} [options.questionType="reading"] - default "reading": kuis cuma tanya bacaan, arti muncul di panel reveal setelah dijawab
+ * @param {("reading"|"meaning"|"mixed")} [options.questionType="reading"] - default: cuma tanya bacaan, arti muncul di panel reveal
  * @param {boolean} [options.shuffleQuestionOrder=true]
  */
 function generateQuiz(unitKanjiList, distractorPool, options = {}) {
@@ -145,19 +194,45 @@ function generateQuiz(unitKanjiList, distractorPool, options = {}) {
   });
 }
 
+/**
+ * Generate kuis "missed kanji review" dari kanji yang pernah dijawab salah
+ * (dikumpulkan App.jsx dari storage.getWeakKanji).
+ *
+ * Beda generateQuiz: soalnya bisa berasal dari beberapa level sekaligus,
+ * jadi distractor pool diberikan per-level (map level → daftar kanji)
+ * supaya tiap soal tetap distractor dari level yang sama dengan kanjinya.
+ *
+ * @param {Array<object>} weakKanjiEntries - entry kanji lengkap (hasil loadLevelKanji)
+ * @param {Object<string, Array<object>>} poolByLevel - distractor pool per level
+ */
+function generateWeakQuiz(weakKanjiEntries, poolByLevel) {
+  if (!weakKanjiEntries.length) {
+    throw new Error("weakKanjiEntries kosong — tidak ada kanji untuk dibuat kuis.");
+  }
+  return shuffle(weakKanjiEntries).map((entry) => {
+    const pool = poolByLevel[entry.jlpt_level] || [];
+    if (pool.length < CHOICE_COUNT) {
+      throw new Error(
+        `Distractor pool untuk ${entry.jlpt_level} terlalu kecil (${pool.length} kanji).`
+      );
+    }
+    return generateQuestion(entry, pool, "reading");
+  });
+}
+
 // ---- Scoring ----
 
-// Jawaban user untuk satu soal: string (jawaban yang dipilih) atau
-// simbol khusus DONT_KNOW.
+// Jawaban user per soal: INDEKS pilihan (0..choices.length-1) atau simbol
+// DONT_KNOW. Indeks (bukan label) supaya penilaian tidak terpengaruh
+// toggle kana/romaji yang bisa berganti mid-sesi.
 const DONT_KNOW = "__DONT_KNOW__";
 
 /**
- * Hitung skor dari satu sesi kuis.
+ * Hitung skor satu sesi kuis.
  *
- * @param {Array<object>} questions - hasil dari generateQuiz()
- * @param {Array<string>} userAnswers - array jawaban user, urutan sejajar dengan `questions`.
- *        Isi tiap elemen: jawaban yang dipilih (harus persis salah satu dari choices),
- *        atau DONT_KNOW kalau user pilih "Tidak tahu".
+ * @param {Array<object>} questions - hasil generateQuiz()
+ * @param {Array<number|string>} userAnswers - sejajar dengan `questions`;
+ *        tiap elemen: indeks pilihan yang dipilih, atau DONT_KNOW
  */
 function scoreQuiz(questions, userAnswers) {
   if (questions.length !== userAnswers.length) {
@@ -167,10 +242,11 @@ function scoreQuiz(questions, userAnswers) {
   const details = questions.map((q, i) => {
     const userAnswer = userAnswers[i];
     const isDontKnow = userAnswer === DONT_KNOW;
-    const isCorrect = !isDontKnow && userAnswer === q.correctAnswer;
+    const isCorrect = !isDontKnow && userAnswer === q.correctIndex;
     return {
       kanji: q.kanji,
       questionType: q.questionType,
+      level: q.level, // untuk update kanjiStats per-kanji (weak review)
       correctAnswer: q.correctAnswer,
       userAnswer,
       isCorrect,
@@ -180,7 +256,7 @@ function scoreQuiz(questions, userAnswers) {
 
   const correctCount = details.filter((d) => d.isCorrect).length;
   const dontKnowCount = details.filter((d) => d.isDontKnow).length;
-  const score = correctCount / questions.length; // 0..1, dipakai langsung sebagai input reviewUnit() di srs.js
+  const score = correctCount / questions.length; // 0..1 — input langsung reviewUnit() di srs.js
 
   return {
     score,
@@ -195,6 +271,7 @@ function scoreQuiz(questions, userAnswers) {
 export {
   generateQuiz,
   generateQuestion,
+  generateWeakQuiz,
   scoreQuiz,
   DONT_KNOW,
   CHOICE_COUNT,

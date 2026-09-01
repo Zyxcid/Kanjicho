@@ -2,15 +2,14 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "../lib/useTheme.js";
 
 /**
- * Dark mode switch. A compact icon button that matches the genkouyoushi
- * aesthetic (surface card with paper-line border). Uses the useTheme hook,
- * which persists the choice to localStorage and toggles the `dark` class
- * on <html>.
+ * Tombol dark mode — ikon kecil yang serasi dengan estetika genkouyoushi.
+ * Logika tema ada di hook useTheme (persist ke localStorage, toggle class
+ * `dark` di <html>).
  */
 export default function ThemeToggle() {
   const { isDark, toggle } = useTheme();
 
-  // Show Moon in light mode (click → go dark), Sun in dark mode (click → go light).
+  // Tampilkan Moon saat light (klik → gelap), Sun saat dark (klik → terang).
   return (
     <button
       type="button"

@@ -2,9 +2,9 @@ import manifest from "../data/manifest.json";
 
 export const LEVEL_IDS = ["N5", "N4", "N3", "N2", "N1"];
 
-// Per-level dynamic loader. Vite code-splits each import() into its own
-// chunk at build time, so e.g. n1.json (1,232 kanji, the biggest level)
-// never ends up in the initial bundle unless the user actually opens N1.
+// Loader per level. Vite memecah tiap import() jadi chunk terpisah saat
+// build, jadi file JSON besar (mis. n1.json, 1.232 kanji) hanya dimuat
+// kalau levelnya benar-benar dibuka.
 const LOADERS = {
   N5: () => Promise.all([import("../data/n5.json"), import("../data/n5_examples.json")]),
   N4: () => Promise.all([import("../data/n4.json"), import("../data/n4_examples.json")]),
@@ -13,16 +13,14 @@ const LOADERS = {
   N1: () => Promise.all([import("../data/n1.json"), import("../data/n1_examples.json")]),
 };
 
-// Caches the in-flight/resolved Promise per level, so re-opening a level
-// already visited this session doesn't redo the merge-with-examples work
-// (the browser already caches the underlying dynamic import() itself, this
-// cache is just for the merged result).
+// Cache Promise per level: membuka ulang level yang sudah pernah dibuka
+// tidak mengulang proses merge kanji + contoh kata.
 const levelCache = new Map(); // level -> Promise<kanji[]>
 
 /**
- * Load one level's full kanji data (readings, meanings, example words),
- * merged into single objects. Async — call this when the user actually
- * opens a level, not eagerly on app start.
+ * Muat data kanji satu level (bacaan, arti, contoh kata), sudah di-merge
+ * jadi objek tunggal per kanji. Async — panggil saat level dibuka, bukan
+ * saat app start.
  */
 export function loadLevelKanji(level) {
   if (!levelCache.has(level)) {
@@ -41,14 +39,13 @@ export async function getKanjiForUnit(level, unitId) {
   return kanjiList.filter((k) => k.unit === unitId);
 }
 
-/** Load every level at once — used by Browse.jsx's "All" filter. */
+/** Muat semua level sekaligus — dipakai filter "All" di Browse.jsx. */
 export function loadAllKanji() {
   return Promise.all(LEVEL_IDS.map(loadLevelKanji)).then((lists) => lists.flat());
 }
 
-// --- Lightweight data (from manifest.json, available synchronously) ---
-// Home's stats/level cards only need unit ids + counts, not full kanji
-// data, so these stay sync and don't trigger any level's heavy JSON to load.
+// --- Data ringan dari manifest.json (sinkron, tanpa memuat JSON level) ---
+// Statistik Home cuma butuh daftar unit + jumlah, jadi tetap sinkron.
 
 export function getUnitsForLevel(level) {
   return manifest[level]?.units || [];

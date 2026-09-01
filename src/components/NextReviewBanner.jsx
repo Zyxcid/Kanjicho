@@ -2,20 +2,16 @@ import React from "react";
 import { Clock, CalendarClock, Sparkles, ChevronRight } from "lucide-react";
 
 /**
- * NextReviewBanner — shows the user's review schedule at a glance.
+ * NextReviewBanner — ringkasan jadwal review user dalam satu baris banner.
  *
- * Three states:
- *   - nothing studied yet → "Start a unit to schedule your first review"
- *   - units are due now      → "N units ready to review now"
- *   - reviews scheduled      → "Next review: <unit> · in N days"
+ * Tiga state:
+ *   - belum belajar apa pun → "Start a unit to schedule your first review"
+ *   - ada unit due          → "N units ready to review now"
+ *   - ada jadwal            → "Next review: <unit> · in N days"
  *
- * This replaces the old static "Not started" number with actionable timing.
- *
- * The "due" and "scheduled" states are CLICKABLE (via onJump) -- they jump
- * straight into the quiz for `nextReviewUnit`, i.e. whichever started unit
- * has the EARLIEST next_review_at (the one closest to being forgotten if
- * already due, or the very next one coming up otherwise). The "nothing
- * studied yet" state has no unit to jump to, so it stays a plain message.
+ * State "due" dan "scheduled" BISA DIKLIK (via onJump) — langsung membuka
+ * kuis untuk unit dengan nextReviewAt paling dekat (paling mendesak
+ * direview). State "belum belajar" tidak punya unit untuk dibuka.
  */
 export default function NextReviewBanner({ stats, onJump }) {
   const { studied, due, nextReviewDays, nextReviewUnit } = stats;

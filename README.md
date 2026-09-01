@@ -16,17 +16,76 @@ npm run preview   # preview the production build locally
 
 ## Features
 
-- **JLPT drill (N5–N1)** — multiple-choice reading quizzes, one unit at a time.
+- **JLPT practice (N5–N1)** — multiple-choice reading quizzes, one unit at a time.
+- **Free practice on non-due units** — scheduled units appear slightly
+  **dimmed** in the unit list. Clicking one shows a short confirm ("practice
+  won't change your review schedule") and then runs freely — nothing
+  is written: no schedule, streak or stats changes. The result screen
+  still shows the unit's next review date, with a small "schedule
+  unchanged" note so it can't be mistaken for a real
+  schedule change. Mastered units open directly. New/due units stay fully
+  visible because they're the ones to work on, and due reviews stay the
+  only thing that moves progress. **Practice is gated behind the missed
+  review**: a scheduled/mastered unit that still has missed kanji opens a
+  two-line dialog instead ("This unit still has N missed kanji" /
+  "practice opens again once they're cleared") with a single Review
+  action — practice unlocks once the missed list is clear, so mistakes
+  get fixed before extra practice.
+- **Missed kanji review (per unit)** — every wrong / "don't know" answer is
+  tracked per kanji (IndexedDB `kanjiStats`). Units with missed kanji show
+  a compact **✕-icon badge with the missed count** next to the unit title
+  (hover for an explanation); the quiz
+  covers ALL of that unit's missed kanji (no artificial cap). A kanji
+  leaves the missed list after ONE correct answer — the result screen
+  shows how many are still missed ("N kanji missed"). Missed sessions
+  update kanji stats (and the streak) but never unit schedules, and "Back
+  to Units" returns to the level the session started from.
 - **Spaced repetition** — a decay-based forgetting curve schedules each unit's
   next review (see `src/lib/srs.js`). Home shows studied / due / mastered counts
-  and a "next review in N days" banner.
+  and a "next review in N days" banner. Only reviews of due units (and
+  first-time quizzes) touch the schedule — opening a not-yet-due unit is a
+  free practice session that writes nothing, so mastery can't be rushed by repetition.
+  (The scheduler also dampens early reviews — growth bonus scaled by elapsed
+  time — as a defensive measure.)
 - **Per-level progress badges** — each level card shows live status (New /
   N due / studied-of-total / Mastered) instead of a static label.
+- **Primary readings are the quiz source** — quiz answers come only from each
+  kanji's *primary reading*: the most common reading that is backed by a real
+  example word (validated by `scripts/build_examples.py`). Primary readings
+  are shown **bold** (in kana *and* in romaji mode) in the quiz answer panel,
+  and bold in kana in the kanji library, and the help overlay explains this,
+  so you don't waste effort memorizing rarely-used readings.
+- **Kana / romaji display toggle** — reading answers carry both their kana
+  and romaji form; the **あ / Aa** button on the quiz screen switches which
+  one is displayed, instantly, even mid-quiz (scoring is index-based, so
+  the script choice never affects grading). The preference persists in
+  `localStorage`. The toggle governs the **whole quiz screen**: answer
+  choices, the On/Kun reading panel after each answer, and the example
+  words' readings all switch together. Non-primary readings and example
+  readings are romanized at runtime by `src/lib/kana.js` — a faithful JS
+  port of the pipeline's Hepburn converter (verified identical on all
+  3,531 primary readings). The kanji Library always shows both scripts.
+- **Level-appropriate example words** — each kanji's example words are
+  matched against a JLPT vocabulary list (same source as the kanji levels):
+  a word at the kanji's own level or easier always wins over harder/unlisted
+  words, so an N3 kanji like 平 shows 平和/平ら (both N3) instead of 平成
+  (not a JLPT word) or 平たい (N1). When no easier word exists for a reading,
+  the most frequent word is still used.
 - **Kanji Library** — browse all 2,211 kanji across every level with filter
   pills, live search, and a detail modal (readings, romaji, strokes, examples).
 - **Dark mode** — a Sun/Moon toggle; persists to `localStorage`.
+- **Daily streak** — a flame + number on Home (no label text; gold border
+  when today's quiz is done, red when the streak is at risk). Hover for the
+  full status in a tooltip.
 - **History-aware navigation** — the browser Back button navigates within the
   app (Home ↔ Browse ↔ Unit Select ↔ Quiz ↔ Result) instead of exiting.
+- **Keyboard-friendly quiz** — W/E/S/D select an answer, F = "don't know",
+  R toggles kana ↔ romaji (works before and after answering), Q triggers
+  the back button (Cancel / Home), Enter **or Space** continues to the next
+  question. Leaving a quiz with progress first asks for confirmation
+  (Enter = leave, Esc = keep studying — for Q and mouse clicks alike). The
+  key layout is only shown in the help overlay (as a 2-row
+  grid matching the answer grid), so the quiz screen itself stays clean.
 - **Offline PWA** — installable, caches all data + assets, auto-updates.
 - **Lazy-loaded kanji data** — each JLPT level's full data (readings,
   meanings, example words) loads on demand the first time it's opened, not
@@ -45,11 +104,13 @@ src/
     storage.js               IndexedDB persistence via Dexie (the only storage module)
     useTheme.js              light/dark theme hook (localStorage)
     useRouter.js             hash-based router (browser Back/Forward support)
+    kana.js                  kana → romaji Hepburn converter (JS port of the pipeline's, powers the romaji display)
   components/
-    Home.jsx                stats hero + next-review banner + level grid + browse entry
-    UnitSelect.jsx           per-level unit cards
-    Quiz.jsx                 quiz screen (kanji box + choices + reveal panel)
-    Result.jsx               score stamp + breakdown + next-review schedule
+    Home.jsx                stats hero + next-review banner + weak-review & browse entries + level grid
+    UnitSelect.jsx           per-level unit cards (dimmed = free practice) + weak review entry
+    Quiz.jsx                 quiz screen (kanji box + choices + reveal panel + weak-review badge)
+    Readings.jsx             shared On/Kun rendering with primary bolding, kana or romaji
+    Result.jsx               score stamp + breakdown + mode-aware next-review panel
     Browse.jsx               full kanji library (filter pills, search, modal)
     NextReviewBanner.jsx     "next review in N days / N due" banner
     ThemeToggle.jsx          Sun/Moon dark-mode switch
@@ -68,9 +129,14 @@ vite.config.js              Vite + PWA config (manifest + service worker)
 
 scripts/
   convert_kanji.py          Step 1: kanjidic2.xml.gz → n*.json (kanji data)
-  build_examples.py         Step 2: JMdict + BCCWJ → n*_examples.json
-  rerank_readings.py        Step 3: rank primary_romaji by BCCWJ word frequency (fallback for kanji without qualifying examples)
-  build_manifest.py        Step 4: generate manifest.json (level summaries for Home)
+  rerank_readings.py        Step 2: rank primary_romaji (pipeline-internal
+                            working list) by BCCWJ word frequency
+  build_examples.py         Step 3: JMdict + BCCWJ → n*_examples.json; also
+                            filters the primaries to example-backed readings
+                            and writes them as `primary_readings`
+                            (kana + romaji + type) — the only primary field
+                            in the final data
+  build_manifest.py         Step 4: generate manifest.json (level summaries for Home)
 ```
 
 ## Data sources
@@ -84,6 +150,8 @@ bundled and loaded from disk. Three public datasets feed the build pipeline:
 | **KANJIDIC2** | Kanji, on'yomi/kun'yomi, English meanings, stroke count, newspaper frequency | https://www.edrdg.org/wiki/KANJIDIC_Project.html |
 | **BCCWJ** (Balanced Corpus of Contemporary Written Japanese) | Word frequency — which readings and example words are actually common | https://clrd.ninjal.ac.jp/bccwj/en/freq-list.html |
 | **JMdict** | English glosses for example words | https://www.edrdg.org/jmdict/edict_doc_depr.html |
+| **JLPT vocabulary list** | JLPT level (N1–N5) of each example word — same-level-or-easier words are preferred | [Bluskyo/JLPT_Vocabulary](https://github.com/Bluskyo/JLPT_Vocabulary) (`data/vocab/results/JLPT_vocab_ALL.json`) |
+
 
 | Field in JSON | Built from |
 |---|---|
@@ -91,26 +159,69 @@ bundled and loaded from disk. Three public datasets feed the build pipeline:
 | `readings.on`, `readings.kun`, `meanings` | KANJIDIC2 |
 | `jlpt_level` | `JLPT_kanji_ALL.json` (see note below) |
 | `romaji_readings` | Derived — all readings romanized |
-| `primary_romaji` | KANJIDIC2 candidates, made consistent with the example word shown for each kanji (see below) |
+| `primary_readings` | The primary readings as `{kana, romaji, type}` — ranked by BCCWJ frequency, then filtered to readings backed by an example word (see below). The quiz answer pool and the UI bolding both come from this one field |
 | `unit`, `order_index` | Pipeline grouping — 15 kanji per unit, ordered by newspaper frequency |
-| `examples` | JMdict words containing the kanji, ranked by BCCWJ frequency |
+| `examples` | JMdict words containing the kanji, ranked by BCCWJ frequency with a preference for words at the kanji's JLPT level or easier |
 
 **JLPT levels:** KANJIDIC2 only carries the pre-2010 JLPT system (4 levels,
-no N5). `JLPT_kanji_ALL.json` maps each kanji to the modern N1–N5 system and is
-included in the project root so the pipeline works out of the box.
+no N5). `JLPT_kanji_ALL.json` maps each kanji to the modern N1–N5 system.
+Like every other raw source, it is not included in the project — see the
+note under "Required raw sources" below.
 
 **Example words:** for each kanji, `build_examples.py` finds JMdict words
 containing it that also appear in the BCCWJ frequency list, cross-verifies
 the reading against BCCWJ (to reject archaic/rare alternate readings), and
 picks the most frequent on'yomi word and the most frequent kun'yomi word.
+Words are first matched by JLPT level (via the required `JLPT_vocab_ALL.json`):
+a word listed at the kanji's own level **or easier** is preferred
+over everything else (multi-char words first, then the level tier, then
+primary-reading match, then frequency). 平 (N3) therefore shows 平和 and
+平ら (both N3 vocabulary) instead of 平成 (not a JLPT word — era name) or
+平たい (N1 — two levels above the kanji). Harder and unlisted words keep
+the plain primary-match + frequency order, so common easy words that
+simply aren't in the vocabulary list (何度, 東京, 三人) are not displaced by
+rarer harder "listed" words. Example level is a preference, never a filter
+— when nothing easier exists for a reading, the most frequent word wins.
 
-**Most common reading (`primary_romaji`):** determined by
-`rerank_readings.py`, which ranks candidate readings by BCCWJ corpus
+Words whose kanji spelling is not the normal written form are never picked:
+  - JMdict sense flagged "usually written using kana alone" (e.g. 平仮名 is
+    normally written ひらがな — it used to be picked as THE kun example for
+    平), and
+  - kanji forms flagged "rare kanji form" (`ke_inf &rK;`).
+
+Frequency attribution is also guarded: a BCCWJ frequency is only used when
+the BCCWJ reading matches one of the term's JMdict readings (BCCWJ stores
+貴方 with the reading あなた, but the kanji entry is 貴方【きほう】 — without
+this guard a rare reading would inherit あなた's big frequency), and the
+by-reading fallback only accepts the same word (or a spelling variant with
+the same kanji sequence, like 現れる/現われる) — otherwise 本盗【ほんとう】
+would inherit 本当's frequency.
+
+**Most common readings (`primary_readings`):** ranked by
+`rerank_readings.py`, which scores candidate readings by BCCWJ corpus
 frequency (looking at every word containing the kanji, e.g. 時代, 代わり,
-世代 for 代). The most frequent on'yomi becomes `primary_romaji[0]` and the
-most frequent kun'yomi becomes `primary_romaji[1]`. This aggregates
+世代 for 代). The most frequent on'yomi and kun'yomi win. This aggregates
 frequency across ALL BCCWJ words using each reading, so it correctly
 identifies the common readings (e.g. 十 → `too`, not the rare `so`).
+`primary_romaji` — a plain romaji list of the same information — exists only
+as the pipeline's internal working field (seeded by convert_kanji.py, ranked
+by rerank_readings.py); `build_examples.py` drops it from the final files
+because each `primary_readings` item already carries the romaji.
+
+**Example-backed primaries:** `build_examples.py` (after picking examples)
+drops any primary reading that is not exercised by one of the kanji's
+example words (matched type-aware: on-examples back on-readings,
+kun-examples back kun-readings via their stem) and writes the survivors
+as `primary_readings`. Rationale: quizzing readings the learner
+never sees in a real word trains memorization of trivia. Example: 対 has
+primary readings `tai`/`aite` but only the on-example に対する — so `aite`
+is dropped and only `tai` is ever quizzed. Kanji with no example words at
+all keep their primary readings unchanged (the quiz would otherwise fall
+back to the full reading list). When a type's primary reading is not backed
+but that type's example word exercises another reading of the same type,
+the primary is re-derived from the example — e.g. 平's kun example 平ら【たいら】
+backs たいら, so the kun primary is `taira` (not the unbacked `hira`): the
+quiz and the shown example always agree.
 
 ## Data build pipeline (regenerating the JSON)
 
@@ -126,11 +237,14 @@ built.
 | `JMdict_e.gz` | https://www.edrdg.org/jmdict/edict_doc_depr.html (see "CURRENT VERSION & DOWNLOAD") |
 | `BCCWJ_frequencylist_luw2_ver1_0.tsv` | https://clrd.ninjal.ac.jp/bccwj/en/freq-list.html ("Long Unit Word list data (v2)") |
 | `JLPT_kanji_ALL.json` | [Bluskyo/JLPT_Vocabulary](https://github.com/Bluskyo/JLPT_Vocabulary/releases) — modern N1–N5 levels |
+| `JLPT_vocab_ALL.json` | [Bluskyo/JLPT_Vocabulary](https://github.com/Bluskyo/JLPT_Vocabulary) — `data/vocab/results/JLPT_vocab_ALL.json` (vocabulary levels; required — `build_examples.py` exits with an error when it's missing, rather than silently falling back to frequency-only ranking) |
 
-> `JLPT_kanji_ALL.json` is **not** included in the project — download it
-> from the Bluskyo releases page when running the pipeline. The committed
-> `src/data/n*.json` already has correct JLPT levels baked in, so you only
-> need this file if you're regenerating from raw sources.
+> Raw sources are **not** included in the project — download them when
+> running the pipeline. In particular, grab the two Bluskyo JSON files:
+> `JLPT_kanji_ALL.json` from the releases page and `JLPT_vocab_ALL.json`
+> from `data/vocab/results/`. The committed `src/data/n*.json` already has
+> correct JLPT levels baked in, so you only need these files when
+> regenerating from raw sources.
 
 ### Pipeline
 
@@ -140,11 +254,16 @@ kanjidic2.xml.gz  ─┐
 JLPT_kanji_ALL.json  ─┘                      (kanji entries, units, readings)
 
 n*.json           ─┐
-JMdict_e.gz       ─┼─→ build_examples.py ──→ n5_examples.json ...
-BCCWJ TSV         ─┘                        (example words per kanji)
+BCCWJ TSV         ─┴─→ rerank_readings.py ──→ n*.json (primary_romaji working list:
+                                           frequency-ranked default)
 
 n*.json           ─┐
-BCCWJ TSV         ─┴─→ rerank_readings.py ──→ n*.json (primary_romaji: frequency-ranked default)
+JMdict_e.gz       ─┼─→ build_examples.py ──→ n*_examples.json (example words per kanji)
+BCCWJ TSV         ─┤   │                    + n*.json updated (primaries filtered to
+JLPT_vocab_ALL.json ┘   └→                     example-backed readings, written as
+                                                primary_readings {kana, romaji, type};
+                                                the primary_romaji working field is
+                                                dropped from the final files)
 
 n*.json           ───→ build_manifest.py    ──→ manifest.json
                            (small summary: totals + unit ids for Home)
@@ -153,11 +272,15 @@ n*.json           ───→ build_manifest.py    ──→ manifest.json
 ```bash
 python scripts/convert_kanji.py kanjidic2.xml.gz output JLPT_kanji_ALL.json
 python scripts/rerank_readings.py BCCWJ_frequencylist_luw2_ver1_0.tsv output
+# JLPT_vocab_ALL.json is required — auto-detected next to JMdict_e.gz
+# (or pass it explicitly as a 5th arg); build_examples.py errors out if
+# it can't be found
 python scripts/build_examples.py JMdict_e.gz BCCWJ_frequencylist_luw2_ver1_0.tsv output output
 python scripts/build_manifest.py output
 
-# then copy into src/data/
-cp output/*.json src/data/
+# then copy the files the app actually imports into src/data/
+# (all_kanji.json is a convert-stage intermediate — the app doesn't use it)
+cp output/n[1-5].json output/n[1-5]_examples.json output/manifest.json src/data/
 ```
 
 All scripts take paths as CLI args (with sensible defaults relative to the
@@ -177,16 +300,48 @@ interval, low scores reset it (`reviewUnit()`). `next_review_at =
 last_reviewed_at + stability days`. Pure function — all state lives in
 IndexedDB via `storage.js`.
 
+**Early-review dampening:** when a unit is re-taken long before its
+schedule (elapsed < 50% of the current stability), the growth bonus is
+scaled down proportionally — an instant perfect re-take leaves stability
+almost unchanged, a review at/after half the interval gets the full bonus.
+Penalties (score < 0.5) are never dampened. The UI no longer offers early
+SRS reviews at all — opening a not-yet-due unit is a free practice session
+that writes nothing — so this stays purely as a defensive property of the scheduler
+(and keeps the "grind one unit until Mastered" loophole closed).
+
+**Quiz modes** (derived from the unit's status in `startUnit()`, never chosen
+by the user): a **new** or **due** unit runs an `srs` session (updates unit
+SRS + per-kanji stats + streak — the only thing that moves progress); a
+**scheduled/mastered** unit runs a `practice` session (updates nothing, no
+badge in the UI; the result screen shows the unit's current next-review
+date with an explicit "schedule unchanged" note); `weak` sessions re-quiz
+missed kanji (updates per-kanji stats + streak, never unit SRS). Per-kanji
+stats live in the `kanjiStats` table: `wrongCount`, `correctCount`,
+`correctSinceWrong`, `lastWrongAt`. A kanji is missed while `wrongCount > 0`
+and `correctSinceWrong < 1` — i.e. ONE correct answer since the last miss
+clears it. Missed review is offered per unit (the ✕-count badge on
+the unit card) and covers all of that unit's missed kanji.
+
 ## Quiz algorithm
 
 `quizGenerator.js` (pure function, no state):
 
-1. For each kanji in the unit, pick a **correct answer** from `primary_romaji`
-   (the most common on'yomi or kun'yomi).
+1. For each kanji in the unit, pick a **correct answer** from its primary
+   readings (`primary_readings` — the most common on'yomi or kun'yomi,
+   filtered to example-backed readings by the data pipeline, so rare
+   readings are never asked). Reading choices carry BOTH scripts
+   (`{kana, romaji}`); the あ/Aa toggle on the quiz screen only changes
+   which one is displayed, live, even mid-quiz. Scoring compares the
+   chosen **index**, so the display script can never affect grading.
 2. Build **distractors** from other kanji in the same level, excluding the
-   target kanji's full `romaji_readings` — so no distractor is ever a valid
-   reading of the asked kanji.
+   target kanji's full readings — in **both kana and romaji** — so no
+   distractor is ever a valid reading of the asked kanji, in either
+   display script.
 3. Shuffle choices; the UI adds a separate "Don't know" button.
+
+For missed-kanji review, `generateWeakQuiz()` applies the same per-question
+logic; sessions are scoped to a single unit, so the distractor pool is that
+unit's level.
 
 ## Browser history / navigation
 
@@ -199,9 +354,11 @@ Deep-linking / reload on a quiz/result hash falls back to Unit Select
 ## Progress storage
 
 All progress lives in the browser's IndexedDB via Dexie
-(`src/lib/storage.js`), in two tables:
+(`src/lib/storage.js`), in three tables:
 - `unitProgress` — one row per unit (current SRS state, keyed by `unitId`).
-- `quizAttempts` — log of every completed quiz (for streak stats).
+- `quizAttempts` — log of every completed graded quiz (for streak stats).
+  Free practice (not-due units) logs nothing.
+- `kanjiStats` — per-kanji right/wrong tallies powering weak review.
 
 Local per-device only — no sync (would need a backend).
 

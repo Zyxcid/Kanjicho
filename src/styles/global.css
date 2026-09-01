@@ -1,6 +1,6 @@
 /* Design system: tema genkouyoushi (kertas latihan kanji) */
 
-/* Reset dasar -- tanpa ini, min-height: 100% di .kd-root tidak ada acuan
+/* Reset dasar — tanpa ini, min-height: 100% di .kd-root tidak ada acuan
    (html/body defaultnya tidak punya height eksplisit), jadi background
    grid genkouyoushi berhenti duluan sebelum akhir layar kalau konten
    pendek. */
@@ -12,11 +12,11 @@ body {
   min-height: 100vh;
 }
 
-/* ===== Theme tokens =====
-   Light (default) = cream genkouyoushi paper.
-   Dark (.dark on <html>) = warm "night study" theme.
-   Everything reads these via var(--...), so toggling the class on <html>
-   re-themes the whole app. */
+/* ===== Token tema =====
+   Light (default) = kertas genkouyoushi krem.
+   Dark (.dark di <html>) = tema "belajar malam" hangat.
+   Semua elemen membaca via var(--...), jadi toggle class di <html>
+   mengubah tema seluruh app. */
 .kd-root {
   --paper: #F5F1E8;
   --paper-line: #DDD5C3;
@@ -41,14 +41,11 @@ body {
   font-family: 'Zen Kaku Gothic New', sans-serif;
   color: var(--ink);
 
-  /* Genkouyoushi grid: drawn as an inline SVG pattern instead of
-     repeating-linear-gradient. Two reasons:
-       1) `shape-rendering="crispEdges"` snaps the 1px lines to device
-          pixels so they don't anti-alias differently per row/column —
-          which was causing a "shimmer / moving background" effect
-          (classic 1px-gradient sub-pixel artifact, worse on HiDPI).
-       2) `background-attachment: fixed` pins the grid to the viewport so
-          it stays rock-steady while scrolling, instead of boiling. */
+  /* Grid genkouyoushi: pola SVG inline (bukan repeating-linear-gradient)
+     karena shape-rendering="crispEdges" mengunci garis 1px ke piksel
+     perangkat (mencegah artefak sub-piksel "shimmer", parah di HiDPI),
+     dan background-attachment: fixed mengunci grid ke viewport supaya
+     stabil saat scroll. */
   background-color: var(--paper);
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='34' shape-rendering='crispEdges'><path d='M34 0.5H0.5V34' fill='none' stroke='%23DDD5C3' stroke-width='1'/></svg>");
   background-size: 34px 34px;
@@ -62,8 +59,9 @@ body {
 .kd-root * { box-sizing: border-box; }
 .kd-root::before { content: none; }
 
-/* Dark theme overrides. SVG data-URI strokes can't read CSS variables,
-   so the whole background-image is re-issued here with the dark stroke. */
+/* Override tema gelap. Stroke SVG data-URI tidak bisa membaca variabel
+   CSS, jadi seluruh background-image diterbitkan ulang dengan stroke
+   gelap. */
 .dark .kd-root {
   --paper: #161310;
   --paper-line: #2b2620;
@@ -88,8 +86,8 @@ body {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='34' shape-rendering='crispEdges'><path d='M34 0.5H0.5V34' fill='none' stroke='%232b2620' stroke-width='1'/></svg>");
 }
 
-/* Smooth theme transitions on the major surfaces (so flipping dark/light
-   doesn't snap harshly). */
+/* Transisi tema halus di permukaan utama (ganti dark/light tidak
+   berubah mendadak). */
 .kd-root,
 .kd-root .kd-hero,
 .kd-root .kd-level-card,
@@ -117,7 +115,8 @@ body {
 }
 .kd-brand small { font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 500; font-size: 12.5px; color: var(--ink-soft); }
 
-/* Tombol ikon generik di topbar (Help, dst) -- netral, konsisten dengan ThemeToggle. */
+/* Tombol ikon generik di topbar (Help, dst) — netral, konsisten dengan
+   ThemeToggle. */
 .kd-icon-btn {
   display: flex; align-items: center; justify-content: center; width: 32px; height: 32px;
   border-radius: 50%; border: 1px solid var(--paper-line); background: var(--surface);
@@ -125,7 +124,7 @@ body {
 }
 .kd-icon-btn:hover { color: var(--indigo); border-color: var(--indigo-soft); }
 
-/* ---- Dark mode switch ---- */
+/* ---- Tombol dark mode ---- */
 .kd-theme-toggle {
   display: inline-flex; align-items: center; gap: 6px;
   background: var(--surface); border: 1px solid var(--paper-line); color: var(--ink-soft);
@@ -140,9 +139,15 @@ body {
 }
 
 .kd-back {
-  display: inline-flex; align-items: center; gap: 4px; background: none; border: none;
+  /* width:100% PENTING: elemen <button> ber-perilaku shrink-to-fit walau
+     display:flex, jadi tanpa ini margin-auto malah men-CENTER tombolnya.
+     Dengan width:100% + max-width + margin-auto, kotaknya selebar kolom
+     konten (880px, sama dengan topbar/grids) dan kontennya rata kiri —
+     tombol back menempel ke tepi kiri kolom konten, bukan tepi kiri layar
+     penuh (sebelumnya tampak "terpisah jauh" di desktop lebar). */
+  display: flex; align-items: center; gap: 4px; background: none; border: none;
   color: var(--indigo-soft); font-family: 'Zen Kaku Gothic New'; font-size: 14px; font-weight: 700;
-  cursor: pointer; padding: 6px 0; margin-bottom: 6px;
+  cursor: pointer; padding: 6px 0; margin: 0 auto 6px; width: 100%; max-width: 880px;
 }
 .kd-back:hover { color: var(--indigo); }
 
@@ -166,8 +171,10 @@ body {
 .kd-stat.new .kd-stat-num { color: var(--indigo-soft); }
 .kd-stat.studied .kd-stat-num { color: var(--indigo-soft); }
 .kd-stat.streak .kd-stat-num { color: var(--gold); }
+/* Streak kini hanya api + angka (tanpa label teks) — angka di-center
+   vertikal supaya kotaknya sejajar dengan stat lain yang punya label. */
+.kd-stat.streak { display: flex; align-items: center; justify-content: center; }
 .kd-stat.streak.at-risk .kd-stat-num { color: var(--ink-soft); }
-.kd-stat.streak.at-risk .kd-stat-label { color: var(--seal); font-weight: 700; }
 .kd-stat.streak.at-risk { border-color: var(--seal); }
 .kd-stat.streak.lit { border-color: var(--gold); border-style: solid; }
 .kd-stat-flame { flex-shrink: 0; }
@@ -178,8 +185,7 @@ body {
   .kd-stat-flame { width: 14px; height: 14px; }
 }
 
-/* Next-review banner: shows the review schedule under the stats hero.
-   Replaces the old static "Not started" number with actionable timing. */
+/* Banner next-review: ringkasan jadwal di bawah stats hero. */
 .kd-next-review-banner {
   max-width: 640px; margin: 12px auto 0;
   display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap;
@@ -193,9 +199,9 @@ body {
 .kd-nrb-when { color: var(--ink-soft); }
 .kd-nrb-strong { color: var(--seal); font-weight: 700; }
 
-/* Banner ini sekarang bisa berupa <button> (state "due"/"scheduled" yang
-   bisa diklik untuk lompat ke kuis) -- reset default styling tombol
-   browser supaya tetap terlihat identik dengan versi <div> non-klik. */
+/* Banner bisa berupa <button> (state "due"/"scheduled" yang bisa diklik
+   untuk lompat ke kuis) — reset styling tombol default browser supaya
+   tetap terlihat identik dengan versi <div> non-klik. */
 .kd-nrb-clickable {
   width: 100%; font-family: inherit; cursor: pointer;
   transition: border-color 0.15s, transform 0.1s;
@@ -222,25 +228,61 @@ body {
   white-space: nowrap;
 }
 .kd-level-badge.locked { background: var(--ink-soft); }
-/* Per-level progress variants (replaces the static "Ready" label). */
+/* Varian badge progres per level. */
 .kd-level-badge.muted { background: var(--ink-soft); }
 .kd-level-badge.gold { background: var(--gold); }
 .kd-level-badge.seal { background: var(--seal); }
 
 .kd-unit-grid { max-width: 640px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+/* Kartu unit = <div> pembungkus SATU tombol penuh (kd-unit-main). Div
+   diperlukan karena hanko 要/済 diposisikan absolut relatif ke kartu. */
 .kd-unit-card {
-  background: var(--surface); border: 1.5px solid var(--paper-line); border-radius: 4px; padding: 14px; cursor: pointer;
-  position: relative; text-align: left; transition: transform 0.15s, box-shadow 0.2s; color: var(--ink);
+  background: var(--surface); border: 1.5px solid var(--paper-line); border-radius: 4px; padding: 14px;
+  position: relative; text-align: left; transition: transform 0.15s, box-shadow 0.2s, opacity 0.15s; color: var(--ink);
+  display: flex; flex-direction: column; gap: 6px;
 }
 .kd-unit-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px var(--shadow); }
-.kd-unit-card:disabled { cursor: default; opacity: 0.6; }
-.kd-unit-card:disabled:hover { transform: none; box-shadow: none; }
 .kd-unit-card.due { border-color: var(--seal); }
 .kd-unit-card.mastered { border-color: var(--gold); }
-.kd-unit-title { font-family: 'Shippori Mincho', serif; font-weight: 700; font-size: 16px; }
-.kd-unit-status { font-size: 11px; color: var(--ink-soft); margin-top: 4px; }
+/* Baris judul kartu: judul unit KIRI + pill "✕ N" di ujung KANAN kartu
+   (space-between — badge di ujung kanan menandai kartu). Pill tombol
+   terpisah dari kd-unit-main (tombol tidak boleh nested); min-height
+   menjaga baris tetap sejajar antar kartu. Kartu sangat sempit: pill
+   melipat ke baris kedua (gap 10px jadi jarak minimum saat wrap). */
+.kd-unit-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; min-height: 23px; }
+.kd-unit-title { font-family: 'Shippori Mincho', serif; font-weight: 700; font-size: 16px; line-height: 1.25; }
+/* Unit "scheduled" dim: judul + tombol utama di-redupkan (bukan kartu)
+   supaya pill "✕ N" di baris judul tetap terbaca jelas (opacity parent
+   tidak bisa dibatalkan child). Saat hover kembali terang supaya tetap
+   terasa bisa diklik. */
+.kd-unit-card.dim .kd-unit-main,
+.kd-unit-card.dim .kd-unit-title { opacity: 0.55; }
+.kd-unit-card.dim:hover .kd-unit-main,
+.kd-unit-card.dim:hover .kd-unit-title { opacity: 1; }
+.kd-unit-main {
+  background: none; border: none; padding: 0; margin: 0; cursor: pointer; text-align: left;
+  color: inherit; font: inherit; display: block; width: 100%;
+  transition: opacity 0.15s;
+}
+.kd-unit-main:disabled { cursor: default; opacity: 0.6; }
+.kd-unit-status { font-size: 11px; color: var(--ink-soft); }
 .kd-unit-card.due .kd-unit-status { color: var(--seal); font-weight: 700; }
 .kd-unit-preview { font-size: 20px; margin-top: 10px; letter-spacing: 2px; color: var(--ink); opacity: 0.75; }
+/* Pill "✕ N" — badge compact di baris judul: ikon salah + angka missed,
+   tanpa kata (tooltip tombol menjelaskan maknanya). Ikon dalam lingkaran
+   (bukan X telanjang) supaya tidak terbaca sebagai tombol close; chip
+   solid radius penuh, melipat ke baris berikutnya di kartu sempit
+   (flex-wrap). */
+.kd-unit-missed {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: var(--wrong-bg); color: var(--seal);
+  border: 1px solid var(--seal); border-radius: 999px;
+  padding: 2px 7px; font-size: 11px; font-weight: 700; line-height: 1.4;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  cursor: pointer; transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.kd-unit-missed:hover { background: var(--seal); color: #fff; border-color: var(--seal); }
+.kd-unit-missed svg { flex-shrink: 0; }
 .kd-hanko {
   position: absolute; top: -8px; right: -8px; width: 34px; height: 34px; border-radius: 50%;
   border: 2px solid var(--seal); color: var(--seal); display: flex; align-items: center; justify-content: center;
@@ -265,8 +307,33 @@ body {
 .kd-genkou::after { top: 50%; left: 0; right: 0; height: 1px; }
 .kd-genkou-glyph { font-family: 'Shippori Mincho', serif; font-size: 92px; font-weight: 600; position: relative; z-index: 1; color: var(--ink); }
 
-.kd-question-label { text-align: center; font-size: 14.5px; color: var(--ink-soft); margin-bottom: 20px; }
+.kd-question-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  max-width: 460px; margin: 0 auto 20px;
+}
+.kd-question-label { text-align: center; font-size: 14.5px; color: var(--ink-soft); margin-bottom: 0; }
+/* Toggle skrip jawaban soal bacaan (kana ↔ romaji) — tombol kecil kanan-atas
+   area soal. Aktif = kana (warna indigo). */
+.kd-script-toggle {
+  flex-shrink: 0; min-width: 34px; padding: 4px 9px;
+  background: var(--surface); border: 1.5px solid var(--paper-line); border-radius: 3px;
+  font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 13px; font-weight: 700; color: var(--ink-soft);
+  cursor: pointer; transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.kd-script-toggle:hover { border-color: var(--indigo-soft); }
+.kd-script-toggle.kana { border-color: var(--indigo); color: var(--indigo); background: var(--correct-bg); }
 .kd-question-sub { text-align: center; font-family: 'Shippori Mincho', serif; font-size: 17px; font-weight: 700; margin-bottom: 20px; color: var(--indigo); }
+
+/* Badge mode sesi di atas soal — hanya untuk missed-kanji review (sesi
+   khusus, jelas berbeda). Sesi latihan bebas dari unit dim sengaja TIDAK
+   dibadge (penjelasannya cukup di popup konfirmasi saat unit dim diklik
+   & Help). */
+.kd-mode-badge {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  max-width: 460px; margin: 0 auto 16px; padding: 7px 12px; border-radius: 4px;
+  font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 12px; font-weight: 700;
+}
+.kd-mode-badge.weak { background: var(--wrong-bg); color: var(--seal); border: 1px solid var(--seal); }
 
 .kd-choice-grid { max-width: 460px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .kd-choice-btn {
@@ -275,6 +342,9 @@ body {
   transition: border-color 0.15s, background 0.15s; position: relative; color: var(--ink);
 }
 .kd-choice-btn:hover:not(:disabled) { border-color: var(--indigo-soft); }
+/* Jawaban berupa kana: pakai font JAPANESE (DM Mono tidak punya glyph
+   kana — fallback sistem terlihat tidak serasi). */
+.kd-choice-btn.kana { font-family: 'Zen Kaku Gothic New', sans-serif; letter-spacing: 0.03em; }
 .kd-choice-btn.correct { border-color: var(--indigo); background: var(--correct-bg); color: var(--indigo); font-weight: 700; }
 .kd-choice-btn.wrong { border-color: var(--seal); background: var(--wrong-bg); color: var(--seal); font-weight: 700; }
 .kd-choice-btn:disabled { cursor: default; }
@@ -295,6 +365,12 @@ body {
 }
 .kd-key-hint.muted { position: static; margin-right: 2px; }
 .kd-key-hint.wide { width: auto; min-width: 16px; padding: 0 4px; }
+/* Cluster tombol jawaban di help overlay: ditumpuk 2 baris (w e / s d)
+   persis seperti grid jawaban di layar kuis — lebih mudah dipahami
+   daripada deretan huruf rata. */
+.kd-key-cluster { display: inline-flex; flex-direction: column; gap: 4px; margin-right: 4px; flex-shrink: 0; }
+.kd-key-row { display: flex; gap: 4px; }
+.kd-key-row .kd-key-hint.muted { margin-right: 0; }
 .kd-continue-btn { display: flex; align-items: center; justify-content: center; }
 
 .kd-reveal {
@@ -309,6 +385,13 @@ body {
 .kd-meaning-text { font-size: 14px; color: var(--ink); }
 .kd-reveal-yomi { display: flex; flex-direction: column; gap: 6px; margin-bottom: 4px; }
 .kd-yomi-row { font-size: 13.5px; color: var(--ink); display: flex; align-items: baseline; gap: 8px; }
+/* Wadah daftar bacaan: SATU item flex (bukan fragment lepas per bacaan).
+   Tanpa ini tiap bacaan + separator "、" menjadi item flex sendiri yang
+   menyusut ke lebar 1 karakter di baris sempit → kana ditumpuk vertikal.
+   flex:1 + min-width:0 supaya teks mengalir & wrap di sisa lebar baris. */
+.kd-yomi-value {
+  flex: 1 1 auto; min-width: 0; line-height: 1.8; overflow-wrap: break-word;
+}
 .kd-yomi-tag {
   font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.04em;
   padding: 2px 6px; border-radius: 2px; flex-shrink: 0;
@@ -316,10 +399,17 @@ body {
 .kd-yomi-tag.on { background: var(--on-tag-bg); color: var(--indigo); }
 .kd-yomi-tag.kun { background: var(--kun-tag-bg); color: var(--gold); }
 .kd-yomi-tag.small { font-size: 9px; padding: 1px 5px; }
+/* Bacaan primary (sumber soal kuis) — hanya ditebalkan, tanpa romaji.
+   Lihat scripts/build_examples.py (primary_readings) & Readings.jsx. */
+.kd-yomi-primary { font-weight: 800; color: var(--ink); }
 .kd-examples { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--paper-line); display: flex; flex-direction: column; gap: 8px; }
 .kd-example-item { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; font-size: 13px; }
 .kd-example-word { font-family: 'Shippori Mincho', serif; font-size: 16px; color: var(--ink); }
-.kd-example-reading { font-family: 'DM Mono', monospace; font-size: 11.5px; color: var(--indigo-soft); }
+/* Reading kana contoh kata: font JAPANESE, bukan DM Mono — DM Mono tidak
+   punya glyph kana, kana jatuh ke fallback sistem yang tampak tidak
+   serasi. Zen Kaku Gothic New punya kana rapi dan sudah di-load sebagai
+   webfont. */
+.kd-example-reading { font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 12px; color: var(--indigo-soft); letter-spacing: 0.01em; }
 .kd-example-meaning { font-size: 12.5px; color: var(--ink-soft); }
 .kd-continue-btn { max-width: 460px; margin: 12px auto 0; width: 100%; display: block; }
 
@@ -342,6 +432,13 @@ body {
   border: 1px dashed var(--paper-line); border-radius: 4px; padding: 14px;
 }
 .kd-next-review-num { font-family: 'DM Mono', monospace; font-size: 22px; color: var(--indigo); }
+/* Catatan kecil di panel next-review hasil sesi practice: menegaskan
+   tanggal itu TIDAK digeser oleh sesi barusan (tanpa ini panelnya
+   identik dengan hasil review sungguhan dan terkesan jadwal berubah). */
+.kd-next-review-note {
+  margin-top: 6px; font-size: 11px; font-style: italic; color: var(--ink-soft);
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+}
 
 .kd-btn-row { max-width: 420px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; }
 .kd-btn {
@@ -366,8 +463,8 @@ body {
   .kd-choice-grid { grid-template-columns: 1fr; }
 }
 
-/* ===== Desktop (>=900px): container lebih lebar, layout tidak
-   cuma kolom sempit di tengah layar kosong ===== */
+/* ===== Desktop (>=900px): container lebih lebar, bukan cuma kolom
+   sempit di tengah layar kosong ===== */
 @media (min-width: 900px) {
   .kd-root { padding: 36px 32px 80px; }
 
@@ -391,9 +488,7 @@ body {
 }
 
 /* Kuis: kanji di kiri, soal + pilihan jawaban di kanan (2 kolom).
-   Mobile (default, di luar media query ini) tetap ditumpuk vertikal
-   seperti sebelumnya -- kd-quiz-left/right tidak override apa pun
-   di luar sini. */
+   Mobile (default, di luar media query ini) tetap ditumpuk vertikal. */
 @media (min-width: 900px) {
   .kd-quiz-layout {
     display: flex; flex-direction: row; align-items: flex-start; justify-content: center;
@@ -408,6 +503,7 @@ body {
 
   .kd-quiz-right { flex: 1 1 420px; max-width: 440px; }
   .kd-quiz-right .kd-question-sub { font-size: 19px; }
+  .kd-quiz-right .kd-mode-badge { max-width: none; }
   .kd-quiz-right .kd-choice-grid { max-width: none; margin: 0; grid-template-columns: 1fr 1fr; gap: 12px; }
   .kd-quiz-right .kd-choice-btn { padding: 18px 10px; font-size: 15.5px; }
   .kd-quiz-right .kd-dontknow { max-width: none; }
@@ -426,10 +522,10 @@ body {
 }
 
 /* ============================================================
-   Kanji Library (browse every kanji, all levels)
+   Perpustakaan kanji (browse semua level)
    ============================================================ */
 
-/* Entry button on the home screen */
+/* Tombol entry di Home */
 .kd-browse-entry-row { max-width: 640px; margin: 0 auto; }
 .kd-browse-entry {
   width: 100%; display: flex; align-items: center; gap: 10px;
@@ -446,8 +542,7 @@ body {
 .kd-browse-entry small {
   font-family: 'DM Mono', monospace; font-weight: 400; font-size: 11.5px; color: var(--ink-soft);
 }
-
-/* Section title row with inline count */
+/* Judul seksi + jumlah inline */
 .kd-section-title-row {
   display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
 }
@@ -455,7 +550,7 @@ body {
   font-family: 'DM Mono', monospace; font-size: 12px; color: var(--ink-soft); font-weight: 400;
 }
 
-/* Controls: level pills + search */
+/* Kontrol: pill level + pencarian */
 .kd-browse-controls {
   max-width: 640px; margin: 0 auto 18px; display: flex; flex-direction: column; gap: 10px;
 }
@@ -485,7 +580,7 @@ body {
 }
 .kd-search-clear:hover { color: var(--ink); }
 
-/* Grid of compact kanji cards */
+/* Grid kartu kanji compact */
 .kd-browse-grid {
   max-width: 640px; margin: 0 auto; display: grid;
   grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 10px;
@@ -511,11 +606,11 @@ body {
   font-family: 'DM Mono', monospace; font-size: 10px; color: var(--ink-soft); opacity: 0.8;
 }
 
-/* Show-more button row */
+/* Baris tombol show-more */
 .kd-showmore-row { max-width: 640px; margin: 20px auto 0; }
 .kd-showmore-btn { width: 100%; }
 
-/* Detail modal overlay */
+/* Overlay modal detail */
 .kd-modal-overlay {
   position: fixed; inset: 0; z-index: 60;
   background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(2px);
@@ -535,6 +630,11 @@ body {
 .kd-modal-close:hover { color: var(--ink); background: var(--paper); }
 
 .kd-help-modal { max-width: 420px; }
+/* Popup konfirmasi singkat saat klik unit dim (scheduled) — satu kalimat
+   + dua tombol, tanpa judul/ikon (UnitSelect.jsx). */
+.kd-drill-confirm { max-width: 340px; }
+.kd-drill-confirm-text { font-size: 13.5px; color: var(--ink); line-height: 1.7; margin: 4px 0 0; }
+.kd-drill-confirm .kd-btn-row { margin-top: 16px; }
 .kd-help-title { font-family: 'Shippori Mincho', serif; font-size: 22px; font-weight: 800; color: var(--indigo); }
 .kd-help-version { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink-soft); margin-top: 2px; margin-bottom: 18px; }
 .kd-help-section { margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--paper-line); }
@@ -562,7 +662,7 @@ body {
 @keyframes kd-fade-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes kd-pop-in { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
 
-/* Desktop widening for the library */
+/* Desktop: perlebar perpustakaan */
 @media (min-width: 900px) {
   .kd-browse-entry-row,
   .kd-browse-controls,

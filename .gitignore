@@ -6,3 +6,4 @@ dist-ssr/
 .vscode/*
 .vite
 !.vscode/extensions.json
+scripts\test_logic.mjs

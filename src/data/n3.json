@@ -20,15 +20,23 @@
       "matsurigoto",
       "man"
     ],
-    "primary_romaji": [
-      "sei",
-      "man"
-    ],
     "meanings": [
       "politics",
       "government"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "セイ",
+        "romaji": "sei",
+        "type": "on"
+      },
+      {
+        "kana": "まん",
+        "romaji": "man",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "議",
@@ -44,16 +52,20 @@
     "romaji_readings": [
       "gi"
     ],
-    "primary_romaji": [
-      "gi"
-    ],
     "meanings": [
       "deliberation",
       "consultation",
       "debate",
       "consideration"
     ],
-    "stroke_count": 20
+    "stroke_count": 20,
+    "primary_readings": [
+      {
+        "kana": "ギ",
+        "romaji": "gi",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "民",
@@ -72,16 +84,19 @@
       "min",
       "tami"
     ],
-    "primary_romaji": [
-      "min",
-      "tami"
-    ],
     "meanings": [
       "people",
       "nation",
       "subjects"
     ],
-    "stroke_count": 5
+    "stroke_count": 5,
+    "primary_readings": [
+      {
+        "kana": "ミン",
+        "romaji": "min",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "連",
@@ -106,10 +121,6 @@
       "tsureru",
       "zure"
     ],
-    "primary_romaji": [
-      "ren",
-      "tsureru"
-    ],
     "meanings": [
       "take along",
       "lead",
@@ -119,7 +130,19 @@
       "gang",
       "clique"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "レン",
+        "romaji": "ren",
+        "type": "on"
+      },
+      {
+        "kana": "つ.れる",
+        "romaji": "tsureru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "対",
@@ -150,10 +173,6 @@
       "narabu",
       "mukau"
     ],
-    "primary_romaji": [
-      "tai",
-      "aite"
-    ],
     "meanings": [
       "vis-a-vis",
       "opposite",
@@ -163,7 +182,14 @@
       "anti-",
       "compare"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "タイ",
+        "romaji": "tai",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "部",
@@ -182,10 +208,6 @@
       "bu",
       "be"
     ],
-    "primary_romaji": [
-      "bu",
-      "be"
-    ],
     "meanings": [
       "section",
       "bureau",
@@ -196,7 +218,19 @@
       "portion",
       "counter for copies of a newspaper or magazine"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "ブ",
+        "romaji": "bu",
+        "type": "on"
+      },
+      {
+        "kana": "-べ",
+        "romaji": "be",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "合",
@@ -230,17 +264,25 @@
       "awasu",
       "awaseru"
     ],
-    "primary_romaji": [
-      "gou",
-      "ai"
-    ],
     "meanings": [
       "fit",
       "suit",
       "join",
       "0.1"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "ゴウ",
+        "romaji": "gou",
+        "type": "on"
+      },
+      {
+        "kana": "あ.い",
+        "romaji": "ai",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "市",
@@ -259,16 +301,24 @@
       "shi",
       "ichi"
     ],
-    "primary_romaji": [
-      "shi",
-      "ichi"
-    ],
     "meanings": [
       "market",
       "city",
       "town"
     ],
-    "stroke_count": 5
+    "stroke_count": 5,
+    "primary_readings": [
+      {
+        "kana": "シ",
+        "romaji": "shi",
+        "type": "on"
+      },
+      {
+        "kana": "いち",
+        "romaji": "ichi",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "内",
@@ -289,10 +339,6 @@
       "dai",
       "uchi"
     ],
-    "primary_romaji": [
-      "nai",
-      "uchi"
-    ],
     "meanings": [
       "inside",
       "within",
@@ -301,7 +347,19 @@
       "house",
       "home"
     ],
-    "stroke_count": 4
+    "stroke_count": 4,
+    "primary_readings": [
+      {
+        "kana": "ナイ",
+        "romaji": "nai",
+        "type": "on"
+      },
+      {
+        "kana": "うち",
+        "romaji": "uchi",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "相",
@@ -322,10 +380,6 @@
       "shou",
       "ai"
     ],
-    "primary_romaji": [
-      "sou",
-      "ai"
-    ],
     "meanings": [
       "inter-",
       "mutual",
@@ -337,7 +391,19 @@
       "phase",
       "physiognomy"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "ソウ",
+        "romaji": "sou",
+        "type": "on"
+      },
+      {
+        "kana": "あい-",
+        "romaji": "ai",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "定",
@@ -362,17 +428,25 @@
       "sadamaru",
       "sadaka"
     ],
-    "primary_romaji": [
-      "tei",
-      "sadameru"
-    ],
     "meanings": [
       "determine",
       "fix",
       "establish",
       "decide"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "テイ",
+        "romaji": "tei",
+        "type": "on"
+      },
+      {
+        "kana": "さだ.める",
+        "romaji": "sadameru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "回",
@@ -406,10 +480,6 @@
       "motooru",
       "kaeru"
     ],
-    "primary_romaji": [
-      "kai",
-      "mawaru"
-    ],
     "meanings": [
       "-times",
       "round",
@@ -417,7 +487,19 @@
       "revolve",
       "counter for occurrences"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "カイ",
+        "romaji": "kai",
+        "type": "on"
+      },
+      {
+        "kana": "まわ.る",
+        "romaji": "mawaru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "選",
@@ -440,17 +522,25 @@
       "eru",
       "yoru"
     ],
-    "primary_romaji": [
-      "sen",
-      "erabu"
-    ],
     "meanings": [
       "elect",
       "select",
       "choose",
       "prefer"
     ],
-    "stroke_count": 15
+    "stroke_count": 15,
+    "primary_readings": [
+      {
+        "kana": "セン",
+        "romaji": "sen",
+        "type": "on"
+      },
+      {
+        "kana": "えら.ぶ",
+        "romaji": "erabu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "米",
@@ -475,16 +565,24 @@
       "kome",
       "yone"
     ],
-    "primary_romaji": [
-      "bei",
-      "kome"
-    ],
     "meanings": [
       "rice",
       "USA",
       "metre"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "ベイ",
+        "romaji": "bei",
+        "type": "on"
+      },
+      {
+        "kana": "こめ",
+        "romaji": "kome",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "実",
@@ -513,10 +611,6 @@
       "mino",
       "michiru"
     ],
-    "primary_romaji": [
-      "jitsu",
-      "mi"
-    ],
     "meanings": [
       "reality",
       "truth",
@@ -524,7 +618,19 @@
       "fruit",
       "nut"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "ジツ",
+        "romaji": "jitsu",
+        "type": "on"
+      },
+      {
+        "kana": "み",
+        "romaji": "mi",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "関",
@@ -551,10 +657,6 @@
       "karakuri",
       "kannuki"
     ],
-    "primary_romaji": [
-      "kan",
-      "kakawaru"
-    ],
     "meanings": [
       "connection",
       "barrier",
@@ -562,7 +664,19 @@
       "involve",
       "concerning"
     ],
-    "stroke_count": 14
+    "stroke_count": 14,
+    "primary_readings": [
+      {
+        "kana": "カン",
+        "romaji": "kan",
+        "type": "on"
+      },
+      {
+        "kana": "かか.わる",
+        "romaji": "kakawaru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "決",
@@ -587,17 +701,25 @@
       "kimaru",
       "saku"
     ],
-    "primary_romaji": [
-      "ketsu",
-      "kimeru"
-    ],
     "meanings": [
       "decide",
       "fix",
       "agree upon",
       "appoint"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "ケツ",
+        "romaji": "ketsu",
+        "type": "on"
+      },
+      {
+        "kana": "き.める",
+        "romaji": "kimeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "全",
@@ -618,10 +740,6 @@
       "mattaku",
       "subete"
     ],
-    "primary_romaji": [
-      "zen",
-      "subete"
-    ],
     "meanings": [
       "whole",
       "entire",
@@ -629,7 +747,19 @@
       "complete",
       "fulfill"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "ゼン",
+        "romaji": "zen",
+        "type": "on"
+      },
+      {
+        "kana": "まった.く",
+        "romaji": "mattaku",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "表",
@@ -654,17 +784,25 @@
       "arawasu",
       "arawareru"
     ],
-    "primary_romaji": [
-      "hyou",
-      "arawasu"
-    ],
     "meanings": [
       "surface",
       "table",
       "chart",
       "diagram"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "ヒョウ",
+        "romaji": "hyou",
+        "type": "on"
+      },
+      {
+        "kana": "あらわ.す",
+        "romaji": "arawasu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "戦",
@@ -691,16 +829,24 @@
       "soyogu",
       "wananaku"
     ],
-    "primary_romaji": [
-      "sen",
-      "tatakau"
-    ],
     "meanings": [
       "war",
       "battle",
       "match"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "セン",
+        "romaji": "sen",
+        "type": "on"
+      },
+      {
+        "kana": "たたか.う",
+        "romaji": "tatakau",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "経",
@@ -731,10 +877,6 @@
       "hakaru",
       "nori"
     ],
-    "primary_romaji": [
-      "kei",
-      "tatsu"
-    ],
     "meanings": [
       "sutra",
       "longitude",
@@ -742,7 +884,19 @@
       "expire",
       "warp"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "ケイ",
+        "romaji": "kei",
+        "type": "on"
+      },
+      {
+        "kana": "た.つ",
+        "romaji": "tatsu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "最",
@@ -765,16 +919,24 @@
       "mottomo",
       "tsuma"
     ],
-    "primary_romaji": [
-      "sai",
-      "mottomo"
-    ],
     "meanings": [
       "utmost",
       "most",
       "extreme"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "サイ",
+        "romaji": "sai",
+        "type": "on"
+      },
+      {
+        "kana": "もっと.も",
+        "romaji": "mottomo",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "現",
@@ -798,16 +960,24 @@
       "arawasu",
       "utsutsu"
     ],
-    "primary_romaji": [
-      "gen",
-      "arawareru"
-    ],
     "meanings": [
       "present",
       "existing",
       "actual"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "ゲン",
+        "romaji": "gen",
+        "type": "on"
+      },
+      {
+        "kana": "あらわ.れる",
+        "romaji": "arawareru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "調",
@@ -832,10 +1002,6 @@
       "totonou",
       "totonoeru"
     ],
-    "primary_romaji": [
-      "chou",
-      "shiraberu"
-    ],
     "meanings": [
       "tune",
       "tone",
@@ -848,7 +1014,19 @@
       "harmonize",
       "mediate"
     ],
-    "stroke_count": 15
+    "stroke_count": 15,
+    "primary_readings": [
+      {
+        "kana": "チョウ",
+        "romaji": "chou",
+        "type": "on"
+      },
+      {
+        "kana": "しら.べる",
+        "romaji": "shiraberu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "化",
@@ -875,10 +1053,6 @@
       "fukeru",
       "kesuru"
     ],
-    "primary_romaji": [
-      "ka",
-      "bakeru"
-    ],
     "meanings": [
       "change",
       "take the form of",
@@ -887,7 +1061,19 @@
       "delude",
       "-ization"
     ],
-    "stroke_count": 4
+    "stroke_count": 4,
+    "primary_readings": [
+      {
+        "kana": "カ",
+        "romaji": "ka",
+        "type": "on"
+      },
+      {
+        "kana": "ば.ける",
+        "romaji": "bakeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "当",
@@ -916,17 +1102,25 @@
       "masani",
       "masanibeshi"
     ],
-    "primary_romaji": [
-      "tou",
-      "ataru"
-    ],
     "meanings": [
       "hit",
       "right",
       "appropriate",
       "himself"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "トウ",
+        "romaji": "tou",
+        "type": "on"
+      },
+      {
+        "kana": "あ.たる",
+        "romaji": "ataru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "約",
@@ -949,16 +1143,24 @@
       "tsuzumeru",
       "tsuzumayaka"
     ],
-    "primary_romaji": [
-      "yaku",
-      "tsuzumeru"
-    ],
     "meanings": [
       "promise",
       "approximately",
       "shrink"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "ヤク",
+        "romaji": "yaku",
+        "type": "on"
+      },
+      {
+        "kana": "つづ.める",
+        "romaji": "tsuzumeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "首",
@@ -977,15 +1179,23 @@
       "shu",
       "kubi"
     ],
-    "primary_romaji": [
-      "shu",
-      "kubi"
-    ],
     "meanings": [
       "neck",
       "counter for songs and poems"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "シュ",
+        "romaji": "shu",
+        "type": "on"
+      },
+      {
+        "kana": "くび",
+        "romaji": "kubi",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "法",
@@ -1010,10 +1220,6 @@
       "furan",
       "nori"
     ],
-    "primary_romaji": [
-      "hou",
-      "nori"
-    ],
     "meanings": [
       "method",
       "law",
@@ -1022,7 +1228,19 @@
       "model",
       "system"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "ホウ",
+        "romaji": "hou",
+        "type": "on"
+      },
+      {
+        "kana": "のり",
+        "romaji": "nori",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "性",
@@ -1043,16 +1261,19 @@
       "shou",
       "saga"
     ],
-    "primary_romaji": [
-      "sei",
-      "saga"
-    ],
     "meanings": [
       "sex",
       "gender",
       "nature"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "セイ",
+        "romaji": "sei",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "要",
@@ -1073,10 +1294,6 @@
       "iru",
       "kaname"
     ],
-    "primary_romaji": [
-      "you",
-      "iru"
-    ],
     "meanings": [
       "need",
       "main point",
@@ -1084,7 +1301,19 @@
       "pivot",
       "key to"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "ヨウ",
+        "romaji": "you",
+        "type": "on"
+      },
+      {
+        "kana": "い.る",
+        "romaji": "iru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "制",
@@ -1100,15 +1329,19 @@
     "romaji_readings": [
       "sei"
     ],
-    "primary_romaji": [
-      "sei"
-    ],
     "meanings": [
       "system",
       "law",
       "rule"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "セイ",
+        "romaji": "sei",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "治",
@@ -1135,9 +1368,6 @@
       "naoru",
       "naosu"
     ],
-    "primary_romaji": [
-      "ji"
-    ],
     "meanings": [
       "reign",
       "be at peace",
@@ -1150,7 +1380,19 @@
       "rule",
       "conserve"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "ジ",
+        "romaji": "ji",
+        "type": "on"
+      },
+      {
+        "kana": "おさ.める",
+        "romaji": "osameru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "務",
@@ -1169,14 +1411,18 @@
       "mu",
       "tsutomeru"
     ],
-    "primary_romaji": [
-      "mu"
-    ],
     "meanings": [
       "task",
       "duties"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "ム",
+        "romaji": "mu",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "成",
@@ -1200,10 +1446,6 @@
       "naru",
       "nasu"
     ],
-    "primary_romaji": [
-      "sei",
-      "naru"
-    ],
     "meanings": [
       "turn into",
       "become",
@@ -1212,7 +1454,19 @@
       "elapse",
       "reach"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "セイ",
+        "romaji": "sei",
+        "type": "on"
+      },
+      {
+        "kana": "な.る",
+        "romaji": "naru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "期",
@@ -1230,16 +1484,20 @@
       "ki",
       "go"
     ],
-    "primary_romaji": [
-      "ki"
-    ],
     "meanings": [
       "period",
       "time",
       "date",
       "term"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "キ",
+        "romaji": "ki",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "取",
@@ -1264,16 +1522,24 @@
       "tori",
       "dori"
     ],
-    "primary_romaji": [
-      "shu",
-      "tori"
-    ],
     "meanings": [
       "take",
       "fetch",
       "take up"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "シュ",
+        "romaji": "shu",
+        "type": "on"
+      },
+      {
+        "kana": "と.り",
+        "romaji": "tori",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "都",
@@ -1294,17 +1560,25 @@
       "tsu",
       "miyako"
     ],
-    "primary_romaji": [
-      "to",
-      "miyako"
-    ],
     "meanings": [
       "metropolis",
       "capital",
       "all",
       "everything"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "ト",
+        "romaji": "to",
+        "type": "on"
+      },
+      {
+        "kana": "みやこ",
+        "romaji": "miyako",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "和",
@@ -1335,10 +1609,6 @@
       "nagoyaka",
       "aeru"
     ],
-    "primary_romaji": [
-      "wa",
-      "yawarageru"
-    ],
     "meanings": [
       "harmony",
       "Japanese style",
@@ -1346,7 +1616,19 @@
       "soften",
       "Japan"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "ワ",
+        "romaji": "wa",
+        "type": "on"
+      },
+      {
+        "kana": "やわ.らげる",
+        "romaji": "yawarageru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "機",
@@ -1365,10 +1647,6 @@
       "ki",
       "hata"
     ],
-    "primary_romaji": [
-      "ki",
-      "hata"
-    ],
     "meanings": [
       "loom",
       "mechanism",
@@ -1379,7 +1657,19 @@
       "efficacy",
       "occasion"
     ],
-    "stroke_count": 16
+    "stroke_count": 16,
+    "primary_readings": [
+      {
+        "kana": "キ",
+        "romaji": "ki",
+        "type": "on"
+      },
+      {
+        "kana": "はた",
+        "romaji": "hata",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "平",
@@ -1406,16 +1696,24 @@
       "tairageru",
       "hira"
     ],
-    "primary_romaji": [
-      "hei",
-      "hira"
-    ],
     "meanings": [
       "even",
       "flat",
       "peace"
     ],
-    "stroke_count": 5
+    "stroke_count": 5,
+    "primary_readings": [
+      {
+        "kana": "ヘイ",
+        "romaji": "hei",
+        "type": "on"
+      },
+      {
+        "kana": "たい.ら",
+        "romaji": "taira",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "加",
@@ -1436,10 +1734,6 @@
       "kuwaeru",
       "kuwawaru"
     ],
-    "primary_romaji": [
-      "ka",
-      "kuwaeru"
-    ],
     "meanings": [
       "add",
       "addition",
@@ -1448,7 +1742,19 @@
       "include",
       "Canada"
     ],
-    "stroke_count": 5
+    "stroke_count": 5,
+    "primary_readings": [
+      {
+        "kana": "カ",
+        "romaji": "ka",
+        "type": "on"
+      },
+      {
+        "kana": "くわ.える",
+        "romaji": "kuwaeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "受",
@@ -1471,10 +1777,6 @@
       "uke",
       "ukaru"
     ],
-    "primary_romaji": [
-      "ju",
-      "ukeru"
-    ],
     "meanings": [
       "accept",
       "undergo",
@@ -1484,7 +1786,19 @@
       "catch",
       "receive"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "ジュ",
+        "romaji": "ju",
+        "type": "on"
+      },
+      {
+        "kana": "う.ける",
+        "romaji": "ukeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "続",
@@ -1513,16 +1827,24 @@
       "tsuzukeru",
       "tsugunai"
     ],
-    "primary_romaji": [
-      "zoku",
-      "tsuzukeru"
-    ],
     "meanings": [
       "continue",
       "series",
       "sequel"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "ゾク",
+        "romaji": "zoku",
+        "type": "on"
+      },
+      {
+        "kana": "つづ.ける",
+        "romaji": "tsuzukeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "進",
@@ -1543,17 +1865,25 @@
       "susumu",
       "susumeru"
     ],
-    "primary_romaji": [
-      "shin",
-      "susumu"
-    ],
     "meanings": [
       "advance",
       "proceed",
       "progress",
       "promote"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "シン",
+        "romaji": "shin",
+        "type": "on"
+      },
+      {
+        "kana": "すす.む",
+        "romaji": "susumu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "数",
@@ -1588,10 +1918,6 @@
       "semeru",
       "wazurawashii"
     ],
-    "primary_romaji": [
-      "suu",
-      "kazu"
-    ],
     "meanings": [
       "number",
       "strength",
@@ -1599,7 +1925,19 @@
       "law",
       "figures"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "スウ",
+        "romaji": "suu",
+        "type": "on"
+      },
+      {
+        "kana": "かぞ.える",
+        "romaji": "kazoeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "記",
@@ -1618,16 +1956,24 @@
       "ki",
       "shirusu"
     ],
-    "primary_romaji": [
-      "ki",
-      "shirusu"
-    ],
     "meanings": [
       "scribe",
       "account",
       "narrative"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "キ",
+        "romaji": "ki",
+        "type": "on"
+      },
+      {
+        "kana": "しる.す",
+        "romaji": "shirusu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "初",
@@ -1657,15 +2003,23 @@
       "someru",
       "zome"
     ],
-    "primary_romaji": [
-      "sho",
-      "hajime"
-    ],
     "meanings": [
       "first time",
       "beginning"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "ショ",
+        "romaji": "sho",
+        "type": "on"
+      },
+      {
+        "kana": "はじ.め",
+        "romaji": "hajime",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "指",
@@ -1688,10 +2042,6 @@
       "sasu",
       "sashi"
     ],
-    "primary_romaji": [
-      "shi",
-      "yubi"
-    ],
     "meanings": [
       "finger",
       "point to",
@@ -1700,7 +2050,19 @@
       "play (chess)",
       "measure (ruler)"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "シ",
+        "romaji": "shi",
+        "type": "on"
+      },
+      {
+        "kana": "ゆび",
+        "romaji": "yubi",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "権",
@@ -1725,16 +2087,19 @@
       "kari",
       "hakaru"
     ],
-    "primary_romaji": [
-      "ken",
-      "kari"
-    ],
     "meanings": [
       "authority",
       "power",
       "rights"
     ],
-    "stroke_count": 15
+    "stroke_count": 15,
+    "primary_readings": [
+      {
+        "kana": "ケン",
+        "romaji": "ken",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "支",
@@ -1757,17 +2122,25 @@
       "tsukaeru",
       "kau"
     ],
-    "primary_romaji": [
-      "shi",
-      "sasaeru"
-    ],
     "meanings": [
       "branch",
       "support",
       "sustain",
       "branch radical (no. 65)"
     ],
-    "stroke_count": 4
+    "stroke_count": 4,
+    "primary_readings": [
+      {
+        "kana": "シ",
+        "romaji": "shi",
+        "type": "on"
+      },
+      {
+        "kana": "ささ.える",
+        "romaji": "sasaeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "産",
@@ -1792,10 +2165,6 @@
       "ubu",
       "musu"
     ],
-    "primary_romaji": [
-      "san",
-      "ubu"
-    ],
     "meanings": [
       "products",
       "bear",
@@ -1805,7 +2174,19 @@
       "native",
       "property"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "サン",
+        "romaji": "san",
+        "type": "on"
+      },
+      {
+        "kana": "うぶ-",
+        "romaji": "ubu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "点",
@@ -1836,10 +2217,6 @@
       "tomosu",
       "bochi"
     ],
-    "primary_romaji": [
-      "ten",
-      "tateru"
-    ],
     "meanings": [
       "spot",
       "point",
@@ -1847,7 +2224,19 @@
       "speck",
       "decimal point"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "テン",
+        "romaji": "ten",
+        "type": "on"
+      },
+      {
+        "kana": "た.てる",
+        "romaji": "tateru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "報",
@@ -1866,17 +2255,25 @@
       "hou",
       "mukuiru"
     ],
-    "primary_romaji": [
-      "hou",
-      "mukuiru"
-    ],
     "meanings": [
       "report",
       "news",
       "reward",
       "retribution"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "ホウ",
+        "romaji": "hou",
+        "type": "on"
+      },
+      {
+        "kana": "むく.いる",
+        "romaji": "mukuiru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "済",
@@ -1913,10 +2310,6 @@
       "watashi",
       "wataru"
     ],
-    "primary_romaji": [
-      "sai",
-      "sumu"
-    ],
     "meanings": [
       "settle (debt, etc.)",
       "relieve (burden)",
@@ -1925,7 +2318,19 @@
       "excusable",
       "need not"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "サイ",
+        "romaji": "sai",
+        "type": "on"
+      },
+      {
+        "kana": "す.む",
+        "romaji": "sumu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "活",
@@ -1948,17 +2353,25 @@
       "ikasu",
       "ikeru"
     ],
-    "primary_romaji": [
-      "katsu",
-      "ikasu"
-    ],
     "meanings": [
       "lively",
       "resuscitation",
       "being helped",
       "living"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "カツ",
+        "romaji": "katsu",
+        "type": "on"
+      },
+      {
+        "kana": "い.かす",
+        "romaji": "ikasu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "原",
@@ -1977,10 +2390,6 @@
       "gen",
       "hara"
     ],
-    "primary_romaji": [
-      "gen",
-      "hara"
-    ],
     "meanings": [
       "meadow",
       "original",
@@ -1991,7 +2400,19 @@
       "tundra",
       "wilderness"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "ゲン",
+        "romaji": "gen",
+        "type": "on"
+      },
+      {
+        "kana": "はら",
+        "romaji": "hara",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "共",
@@ -2014,10 +2435,6 @@
       "tomoni",
       "domo"
     ],
-    "primary_romaji": [
-      "kyou",
-      "tomo"
-    ],
     "meanings": [
       "together",
       "both",
@@ -2027,7 +2444,19 @@
       "alike",
       "with"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "キョウ",
+        "romaji": "kyou",
+        "type": "on"
+      },
+      {
+        "kana": "とも",
+        "romaji": "tomo",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "得",
@@ -2048,10 +2477,6 @@
       "eru",
       "uru"
     ],
-    "primary_romaji": [
-      "toku",
-      "eru"
-    ],
     "meanings": [
       "gain",
       "get",
@@ -2065,7 +2490,19 @@
       "advantage",
       "benefit"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "トク",
+        "romaji": "toku",
+        "type": "on"
+      },
+      {
+        "kana": "え.る",
+        "romaji": "eru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "解",
@@ -2098,10 +2535,6 @@
       "wakaru",
       "satoru"
     ],
-    "primary_romaji": [
-      "kai",
-      "toku"
-    ],
     "meanings": [
       "unravel",
       "notes",
@@ -2117,7 +2550,19 @@
       "explain",
       "minute"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "カイ",
+        "romaji": "kai",
+        "type": "on"
+      },
+      {
+        "kana": "と.く",
+        "romaji": "toku",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "交",
@@ -2152,17 +2597,25 @@
       "kawasu",
       "komogomo"
     ],
-    "primary_romaji": [
-      "kou",
-      "mazeru"
-    ],
     "meanings": [
       "mingle",
       "mixing",
       "association",
       "coming & going"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "コウ",
+        "romaji": "kou",
+        "type": "on"
+      },
+      {
+        "kana": "か.わす",
+        "romaji": "kawasu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "資",
@@ -2178,9 +2631,6 @@
     "romaji_readings": [
       "shi"
     ],
-    "primary_romaji": [
-      "shi"
-    ],
     "meanings": [
       "assets",
       "resources",
@@ -2190,7 +2640,14 @@
       "be conducive to",
       "contribute to"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "シ",
+        "romaji": "shi",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "予",
@@ -2211,17 +2668,20 @@
       "sha",
       "arakajime"
     ],
-    "primary_romaji": [
-      "yo",
-      "arakajime"
-    ],
     "meanings": [
       "beforehand",
       "previous",
       "myself",
       "I"
     ],
-    "stroke_count": 4
+    "stroke_count": 4,
+    "primary_readings": [
+      {
+        "kana": "ヨ",
+        "romaji": "yo",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "向",
@@ -2258,10 +2718,6 @@
       "mukou",
       "muko"
     ],
-    "primary_romaji": [
-      "kou",
-      "mukau"
-    ],
     "meanings": [
       "yonder",
       "facing",
@@ -2271,7 +2727,19 @@
       "tend toward",
       "approach"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "コウ",
+        "romaji": "kou",
+        "type": "on"
+      },
+      {
+        "kana": "む.かう",
+        "romaji": "mukau",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "際",
@@ -2292,10 +2760,6 @@
       "kiwa",
       "giwa"
     ],
-    "primary_romaji": [
-      "sai",
-      "giwa"
-    ],
     "meanings": [
       "occasion",
       "side",
@@ -2307,7 +2771,19 @@
       "time",
       "when"
     ],
-    "stroke_count": 14
+    "stroke_count": 14,
+    "primary_readings": [
+      {
+        "kana": "サイ",
+        "romaji": "sai",
+        "type": "on"
+      },
+      {
+        "kana": "-ぎわ",
+        "romaji": "giwa",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "勝",
@@ -2333,17 +2809,25 @@
       "masaru",
       "sugureru"
     ],
-    "primary_romaji": [
-      "shou",
-      "katsu"
-    ],
     "meanings": [
       "victory",
       "win",
       "prevail",
       "excel"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "ショウ",
+        "romaji": "shou",
+        "type": "on"
+      },
+      {
+        "kana": "か.つ",
+        "romaji": "katsu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "面",
@@ -2368,17 +2852,25 @@
       "omote",
       "tsura"
     ],
-    "primary_romaji": [
-      "men",
-      "omo"
-    ],
     "meanings": [
       "mask",
       "face",
       "features",
       "surface"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "メン",
+        "romaji": "men",
+        "type": "on"
+      },
+      {
+        "kana": "おも",
+        "romaji": "omo",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "告",
@@ -2397,17 +2889,25 @@
       "koku",
       "tsugeru"
     ],
-    "primary_romaji": [
-      "koku",
-      "tsugeru"
-    ],
     "meanings": [
       "revelation",
       "tell",
       "inform",
       "announce"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "コク",
+        "romaji": "koku",
+        "type": "on"
+      },
+      {
+        "kana": "つ.げる",
+        "romaji": "tsugeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "反",
@@ -2439,14 +2939,22 @@
       "kaesu",
       "kaeru"
     ],
-    "primary_romaji": [
-      "han",
-      "soru"
-    ],
     "meanings": [
       "anti-"
     ],
-    "stroke_count": 4
+    "stroke_count": 4,
+    "primary_readings": [
+      {
+        "kana": "ハン",
+        "romaji": "han",
+        "type": "on"
+      },
+      {
+        "kana": "そ.る",
+        "romaji": "soru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "判",
@@ -2467,9 +2975,6 @@
       "ban",
       "wakaru"
     ],
-    "primary_romaji": [
-      "han"
-    ],
     "meanings": [
       "judgement",
       "judgment",
@@ -2477,7 +2982,14 @@
       "stamp",
       "seal"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "ハン",
+        "romaji": "han",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "認",
@@ -2498,10 +3010,6 @@
       "mitomeru",
       "shitatameru"
     ],
-    "primary_romaji": [
-      "nin",
-      "mitomeru"
-    ],
     "meanings": [
       "acknowledge",
       "witness",
@@ -2510,7 +3018,19 @@
       "appreciate",
       "believe"
     ],
-    "stroke_count": 14
+    "stroke_count": 14,
+    "primary_readings": [
+      {
+        "kana": "ニン",
+        "romaji": "nin",
+        "type": "on"
+      },
+      {
+        "kana": "みと.める",
+        "romaji": "mitomeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "参",
@@ -2537,10 +3057,6 @@
       "majiwaru",
       "mitsu"
     ],
-    "primary_romaji": [
-      "san",
-      "mairu"
-    ],
     "meanings": [
       "nonplussed",
       "three (in documents)",
@@ -2554,7 +3070,19 @@
       "participate",
       "take part in"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "サン",
+        "romaji": "san",
+        "type": "on"
+      },
+      {
+        "kana": "まい.る",
+        "romaji": "mairu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "利",
@@ -2573,16 +3101,24 @@
       "ri",
       "kiku"
     ],
-    "primary_romaji": [
-      "ri",
-      "kiku"
-    ],
     "meanings": [
       "profit",
       "advantage",
       "benefit"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "リ",
+        "romaji": "ri",
+        "type": "on"
+      },
+      {
+        "kana": "き.く",
+        "romaji": "kiku",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "組",
@@ -2605,10 +3141,6 @@
       "kumi",
       "gumi"
     ],
-    "primary_romaji": [
-      "so",
-      "kumi"
-    ],
     "meanings": [
       "association",
       "braid",
@@ -2619,7 +3151,19 @@
       "cooperate",
       "grapple"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "ソ",
+        "romaji": "so",
+        "type": "on"
+      },
+      {
+        "kana": "くみ",
+        "romaji": "kumi",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "信",
@@ -2635,16 +3179,20 @@
     "romaji_readings": [
       "shin"
     ],
-    "primary_romaji": [
-      "shin"
-    ],
     "meanings": [
       "faith",
       "truth",
       "fidelity",
       "trust"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "シン",
+        "romaji": "shin",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "在",
@@ -2663,17 +3211,25 @@
       "zai",
       "aru"
     ],
-    "primary_romaji": [
-      "zai",
-      "aru"
-    ],
     "meanings": [
       "exist",
       "outskirts",
       "suburbs",
       "located in"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "ザイ",
+        "romaji": "zai",
+        "type": "on"
+      },
+      {
+        "kana": "あ.る",
+        "romaji": "aru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "件",
@@ -2692,17 +3248,20 @@
       "ken",
       "kudan"
     ],
-    "primary_romaji": [
-      "ken",
-      "kudan"
-    ],
     "meanings": [
       "affair",
       "case",
       "matter",
       "item"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "ケン",
+        "romaji": "ken",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "側",
@@ -2725,17 +3284,25 @@
       "gawa",
       "soba"
     ],
-    "primary_romaji": [
-      "soku",
-      "gawa"
-    ],
     "meanings": [
       "side",
       "lean",
       "oppose",
       "regret"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "ソク",
+        "romaji": "soku",
+        "type": "on"
+      },
+      {
+        "kana": "がわ",
+        "romaji": "gawa",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "任",
@@ -2756,10 +3323,6 @@
       "makaseru",
       "makasu"
     ],
-    "primary_romaji": [
-      "nin",
-      "makaseru"
-    ],
     "meanings": [
       "responsibility",
       "duty",
@@ -2767,7 +3330,19 @@
       "entrust to",
       "appoint"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "ニン",
+        "romaji": "nin",
+        "type": "on"
+      },
+      {
+        "kana": "まか.せる",
+        "romaji": "makaseru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "引",
@@ -2788,10 +3363,6 @@
       "hiku",
       "hikeru"
     ],
-    "primary_romaji": [
-      "in",
-      "hiku"
-    ],
     "meanings": [
       "pull",
       "tug",
@@ -2801,7 +3372,19 @@
       "quote",
       "refer to"
     ],
-    "stroke_count": 4
+    "stroke_count": 4,
+    "primary_readings": [
+      {
+        "kana": "イン",
+        "romaji": "in",
+        "type": "on"
+      },
+      {
+        "kana": "ひ.く",
+        "romaji": "hiku",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "求",
@@ -2822,10 +3405,6 @@
       "gu",
       "motomeru"
     ],
-    "primary_romaji": [
-      "kyuu",
-      "motomeru"
-    ],
     "meanings": [
       "request",
       "want",
@@ -2833,7 +3412,19 @@
       "require",
       "demand"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "キュウ",
+        "romaji": "kyuu",
+        "type": "on"
+      },
+      {
+        "kana": "もと.める",
+        "romaji": "motomeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "所",
@@ -2857,15 +3448,23 @@
       "dokoro",
       "toko"
     ],
-    "primary_romaji": [
-      "sho",
-      "tokoro"
-    ],
     "meanings": [
       "place",
       "extent"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "ショ",
+        "romaji": "sho",
+        "type": "on"
+      },
+      {
+        "kana": "どころ",
+        "romaji": "dokoro",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "次",
@@ -2888,16 +3487,24 @@
       "tsugu",
       "tsugi"
     ],
-    "primary_romaji": [
-      "ji",
-      "tsugi"
-    ],
     "meanings": [
       "next",
       "order",
       "sequence"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "つぎ",
+        "romaji": "tsugi",
+        "type": "kun"
+      },
+      {
+        "kana": "シ",
+        "romaji": "shi",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "昨",
@@ -2913,14 +3520,18 @@
     "romaji_readings": [
       "saku"
     ],
-    "primary_romaji": [
-      "saku"
-    ],
     "meanings": [
       "yesterday",
       "previous"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "サク",
+        "romaji": "saku",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "論",
@@ -2939,15 +3550,18 @@
       "ron",
       "agetsurau"
     ],
-    "primary_romaji": [
-      "ron",
-      "agetsurau"
-    ],
     "meanings": [
       "argument",
       "discourse"
     ],
-    "stroke_count": 15
+    "stroke_count": 15,
+    "primary_readings": [
+      {
+        "kana": "ロン",
+        "romaji": "ron",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "官",
@@ -2963,15 +3577,19 @@
     "romaji_readings": [
       "kan"
     ],
-    "primary_romaji": [
-      "kan"
-    ],
     "meanings": [
       "bureaucrat",
       "the government",
       "organ"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "カン",
+        "romaji": "kan",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "増",
@@ -2996,10 +3614,6 @@
       "fueru",
       "fuyasu"
     ],
-    "primary_romaji": [
-      "zou",
-      "fueru"
-    ],
     "meanings": [
       "increase",
       "add",
@@ -3007,7 +3621,19 @@
       "gain",
       "promote"
     ],
-    "stroke_count": 14
+    "stroke_count": 14,
+    "primary_readings": [
+      {
+        "kana": "ゾウ",
+        "romaji": "zou",
+        "type": "on"
+      },
+      {
+        "kana": "ふ.える",
+        "romaji": "fueru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "係",
@@ -3032,17 +3658,25 @@
       "gakari",
       "kakawaru"
     ],
-    "primary_romaji": [
-      "kei",
-      "gakari"
-    ],
     "meanings": [
       "person in charge",
       "connection",
       "duty",
       "concern oneself"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "ケイ",
+        "romaji": "kei",
+        "type": "on"
+      },
+      {
+        "kana": "-がかり",
+        "romaji": "gakari",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "感",
@@ -3058,15 +3692,19 @@
     "romaji_readings": [
       "kan"
     ],
-    "primary_romaji": [
-      "kan"
-    ],
     "meanings": [
       "emotion",
       "feeling",
       "sensation"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "カン",
+        "romaji": "kan",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "情",
@@ -3087,10 +3725,6 @@
       "sei",
       "nasake"
     ],
-    "primary_romaji": [
-      "jou",
-      "nasake"
-    ],
     "meanings": [
       "feelings",
       "emotion",
@@ -3099,7 +3733,19 @@
       "circumstances",
       "facts"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "ジョウ",
+        "romaji": "jou",
+        "type": "on"
+      },
+      {
+        "kana": "なさ.け",
+        "romaji": "nasake",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "投",
@@ -3120,10 +3766,6 @@
       "nageru",
       "nage"
     ],
-    "primary_romaji": [
-      "tou",
-      "nage"
-    ],
     "meanings": [
       "throw",
       "discard",
@@ -3135,7 +3777,19 @@
       "give up",
       "sell at a loss"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "トウ",
+        "romaji": "tou",
+        "type": "on"
+      },
+      {
+        "kana": "-な.げ",
+        "romaji": "nage",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "示",
@@ -3156,10 +3810,6 @@
       "shi",
       "shimesu"
     ],
-    "primary_romaji": [
-      "ji",
-      "shimesu"
-    ],
     "meanings": [
       "show",
       "indicate",
@@ -3167,7 +3817,19 @@
       "express",
       "display"
     ],
-    "stroke_count": 5
+    "stroke_count": 5,
+    "primary_readings": [
+      {
+        "kana": "ジ",
+        "romaji": "ji",
+        "type": "on"
+      },
+      {
+        "kana": "しめ.す",
+        "romaji": "shimesu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "変",
@@ -3190,16 +3852,24 @@
       "kawari",
       "kaeru"
     ],
-    "primary_romaji": [
-      "hen",
-      "kawaru"
-    ],
     "meanings": [
       "unusual",
       "change",
       "strange"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "ヘン",
+        "romaji": "hen",
+        "type": "on"
+      },
+      {
+        "kana": "か.わる",
+        "romaji": "kawaru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "打",
@@ -3224,10 +3894,6 @@
       "uchi",
       "butsu"
     ],
-    "primary_romaji": [
-      "da",
-      "uchi"
-    ],
     "meanings": [
       "strike",
       "hit",
@@ -3235,7 +3901,19 @@
       "pound",
       "dozen"
     ],
-    "stroke_count": 5
+    "stroke_count": 5,
+    "primary_readings": [
+      {
+        "kana": "ダ",
+        "romaji": "da",
+        "type": "on"
+      },
+      {
+        "kana": "う.ち-",
+        "romaji": "uchi",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "直",
@@ -3267,10 +3945,6 @@
       "naoki",
       "sugu"
     ],
-    "primary_romaji": [
-      "choku",
-      "sugu"
-    ],
     "meanings": [
       "straightaway",
       "honesty",
@@ -3278,7 +3952,19 @@
       "fix",
       "repair"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "チョク",
+        "romaji": "choku",
+        "type": "on"
+      },
+      {
+        "kana": "なお.す",
+        "romaji": "naosu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "両",
@@ -3299,16 +3985,20 @@
       "teru",
       "futatsu"
     ],
-    "primary_romaji": [
-      "ryou"
-    ],
     "meanings": [
       "both",
       "old Japanese coin",
       "counter for carriages (e.g., in a train)",
       "two"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "リョウ",
+        "romaji": "ryou",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "式",
@@ -3324,9 +4014,6 @@
     "romaji_readings": [
       "shiki"
     ],
-    "primary_romaji": [
-      "shiki"
-    ],
     "meanings": [
       "style",
       "ceremony",
@@ -3337,7 +4024,14 @@
       "form",
       "expression"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "シキ",
+        "romaji": "shiki",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "確",
@@ -3360,10 +4054,6 @@
       "tashika",
       "tashikameru"
     ],
-    "primary_romaji": [
-      "kaku",
-      "tashika"
-    ],
     "meanings": [
       "assurance",
       "firm",
@@ -3374,7 +4064,19 @@
       "clear",
       "evident"
     ],
-    "stroke_count": 15
+    "stroke_count": 15,
+    "primary_readings": [
+      {
+        "kana": "カク",
+        "romaji": "kaku",
+        "type": "on"
+      },
+      {
+        "kana": "たし.か",
+        "romaji": "tashika",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "果",
@@ -3400,10 +4102,6 @@
       "hateru",
       "hate"
     ],
-    "primary_romaji": [
-      "ka",
-      "hatasu"
-    ],
     "meanings": [
       "fruit",
       "reward",
@@ -3414,7 +4112,19 @@
       "finish",
       "succeed"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "カ",
+        "romaji": "ka",
+        "type": "on"
+      },
+      {
+        "kana": "は.たす",
+        "romaji": "hatasu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "容",
@@ -3433,16 +4143,24 @@
       "you",
       "ireru"
     ],
-    "primary_romaji": [
-      "you",
-      "ireru"
-    ],
     "meanings": [
       "contain",
       "form",
       "looks"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "ヨウ",
+        "romaji": "you",
+        "type": "on"
+      },
+      {
+        "kana": "い.れる",
+        "romaji": "ireru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "必",
@@ -3461,16 +4179,24 @@
       "hitsu",
       "kanarazu"
     ],
-    "primary_romaji": [
-      "hitsu",
-      "kanarazu"
-    ],
     "meanings": [
       "invariably",
       "certain",
       "inevitable"
     ],
-    "stroke_count": 5
+    "stroke_count": 5,
+    "primary_readings": [
+      {
+        "kana": "ヒツ",
+        "romaji": "hitsu",
+        "type": "on"
+      },
+      {
+        "kana": "かなら.ず",
+        "romaji": "kanarazu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "演",
@@ -3486,9 +4212,6 @@
     "romaji_readings": [
       "en"
     ],
-    "primary_romaji": [
-      "en"
-    ],
     "meanings": [
       "performance",
       "act",
@@ -3496,7 +4219,14 @@
       "render",
       "stage"
     ],
-    "stroke_count": 14
+    "stroke_count": 14,
+    "primary_readings": [
+      {
+        "kana": "エン",
+        "romaji": "en",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "歳",
@@ -3521,17 +4251,25 @@
       "tose",
       "yowai"
     ],
-    "primary_romaji": [
-      "sai",
-      "toshi"
-    ],
     "meanings": [
       "year-end",
       "age",
       "occasion",
       "opportunity"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "サイ",
+        "romaji": "sai",
+        "type": "on"
+      },
+      {
+        "kana": "とし",
+        "romaji": "toshi",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "争",
@@ -3552,16 +4290,24 @@
       "arasou",
       "ikadeka"
     ],
-    "primary_romaji": [
-      "sou",
-      "arasou"
-    ],
     "meanings": [
       "contend",
       "dispute",
       "argue"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "ソウ",
+        "romaji": "sou",
+        "type": "on"
+      },
+      {
+        "kana": "あらそ.う",
+        "romaji": "arasou",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "談",
@@ -3577,14 +4323,18 @@
     "romaji_readings": [
       "dan"
     ],
-    "primary_romaji": [
-      "dan"
-    ],
     "meanings": [
       "discuss",
       "talk"
     ],
-    "stroke_count": 15
+    "stroke_count": 15,
+    "primary_readings": [
+      {
+        "kana": "ダン",
+        "romaji": "dan",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "能",
@@ -3605,17 +4355,25 @@
       "yoku",
       "atau"
     ],
-    "primary_romaji": [
-      "nou",
-      "atau"
-    ],
     "meanings": [
       "ability",
       "talent",
       "skill",
       "capacity"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "ノウ",
+        "romaji": "nou",
+        "type": "on"
+      },
+      {
+        "kana": "あた.う",
+        "romaji": "atau",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "位",
@@ -3636,10 +4394,6 @@
       "kurai",
       "gurai"
     ],
-    "primary_romaji": [
-      "i",
-      "kurai"
-    ],
     "meanings": [
       "rank",
       "grade",
@@ -3648,7 +4402,19 @@
       "about",
       "some"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "イ",
+        "romaji": "i",
+        "type": "on"
+      },
+      {
+        "kana": "くらい",
+        "romaji": "kurai",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "置",
@@ -3669,10 +4435,6 @@
       "oku",
       "oki"
     ],
-    "primary_romaji": [
-      "chi",
-      "oku"
-    ],
     "meanings": [
       "placement",
       "put",
@@ -3683,7 +4445,19 @@
       "employ",
       "pawn"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "チ",
+        "romaji": "chi",
+        "type": "on"
+      },
+      {
+        "kana": "お.く",
+        "romaji": "oku",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "流",
@@ -3709,17 +4483,25 @@
       "nagare",
       "nagasu"
     ],
-    "primary_romaji": [
-      "ryuu",
-      "nagare"
-    ],
     "meanings": [
       "current",
       "a sink",
       "flow",
       "forfeit"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "リュウ",
+        "romaji": "ryuu",
+        "type": "on"
+      },
+      {
+        "kana": "なが.れ",
+        "romaji": "nagare",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "格",
@@ -3741,9 +4523,6 @@
       "kyaku",
       "gou"
     ],
-    "primary_romaji": [
-      "kaku"
-    ],
     "meanings": [
       "status",
       "rank",
@@ -3751,7 +4530,14 @@
       "character",
       "case (law, grammar)"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "カク",
+        "romaji": "kaku",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "疑",
@@ -3770,17 +4556,25 @@
       "gi",
       "utagau"
     ],
-    "primary_romaji": [
-      "gi",
-      "utagau"
-    ],
     "meanings": [
       "doubt",
       "distrust",
       "be suspicious",
       "question"
     ],
-    "stroke_count": 14
+    "stroke_count": 14,
+    "primary_readings": [
+      {
+        "kana": "ギ",
+        "romaji": "gi",
+        "type": "on"
+      },
+      {
+        "kana": "うたが.う",
+        "romaji": "utagau",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "過",
@@ -3808,17 +4602,25 @@
       "ayamatsu",
       "yogiru"
     ],
-    "primary_romaji": [
-      "ka",
-      "sugiru"
-    ],
     "meanings": [
       "overdo",
       "exceed",
       "go beyond",
       "error"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "カ",
+        "romaji": "ka",
+        "type": "on"
+      },
+      {
+        "kana": "す.ぎる",
+        "romaji": "sugiru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "局",
@@ -3837,10 +4639,6 @@
       "kyoku",
       "tsubone"
     ],
-    "primary_romaji": [
-      "kyoku",
-      "tsubone"
-    ],
     "meanings": [
       "bureau",
       "board",
@@ -3851,7 +4649,19 @@
       "lady-in-waiting",
       "her apartment"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "キョク",
+        "romaji": "kyoku",
+        "type": "on"
+      },
+      {
+        "kana": "つぼね",
+        "romaji": "tsubone",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "放",
@@ -3880,10 +4690,6 @@
       "koku",
       "houru"
     ],
-    "primary_romaji": [
-      "hou",
-      "hanatsu"
-    ],
     "meanings": [
       "set free",
       "release",
@@ -3893,7 +4699,19 @@
       "banish",
       "liberate"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "ホウ",
+        "romaji": "hou",
+        "type": "on"
+      },
+      {
+        "kana": "はな.つ",
+        "romaji": "hanatsu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "常",
@@ -3914,10 +4732,6 @@
       "tsune",
       "toko"
     ],
-    "primary_romaji": [
-      "jou",
-      "tsune"
-    ],
     "meanings": [
       "usual",
       "ordinary",
@@ -3928,7 +4742,19 @@
       "always",
       "long-lasting"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "ジョウ",
+        "romaji": "jou",
+        "type": "on"
+      },
+      {
+        "kana": "つね",
+        "romaji": "tsune",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "状",
@@ -3944,9 +4770,6 @@
     "romaji_readings": [
       "jou"
     ],
-    "primary_romaji": [
-      "jou"
-    ],
     "meanings": [
       "status quo",
       "conditions",
@@ -3954,7 +4777,14 @@
       "form",
       "appearance"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "ジョウ",
+        "romaji": "jou",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "球",
@@ -3973,15 +4803,23 @@
       "kyuu",
       "tama"
     ],
-    "primary_romaji": [
-      "kyuu",
-      "tama"
-    ],
     "meanings": [
       "ball",
       "sphere"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "キュウ",
+        "romaji": "kyuu",
+        "type": "on"
+      },
+      {
+        "kana": "たま",
+        "romaji": "tama",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "職",
@@ -3999,15 +4837,19 @@
       "shoku",
       "soku"
     ],
-    "primary_romaji": [
-      "shoku"
-    ],
     "meanings": [
       "post",
       "employment",
       "work"
     ],
-    "stroke_count": 18
+    "stroke_count": 18,
+    "primary_readings": [
+      {
+        "kana": "ショク",
+        "romaji": "shoku",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "与",
@@ -4032,10 +4874,6 @@
       "kumisuru",
       "tomoni"
     ],
-    "primary_romaji": [
-      "yo",
-      "ataeru"
-    ],
     "meanings": [
       "bestow",
       "participate in",
@@ -4047,7 +4885,19 @@
       "gift",
       "godsend"
     ],
-    "stroke_count": 3
+    "stroke_count": 3,
+    "primary_readings": [
+      {
+        "kana": "ヨ",
+        "romaji": "yo",
+        "type": "on"
+      },
+      {
+        "kana": "あた.える",
+        "romaji": "ataeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "供",
@@ -4076,10 +4926,6 @@
       "tomo",
       "domo"
     ],
-    "primary_romaji": [
-      "kyou",
-      "domo"
-    ],
     "meanings": [
       "submit",
       "offer",
@@ -4087,7 +4933,19 @@
       "serve (meal)",
       "accompany"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "キョウ",
+        "romaji": "kyou",
+        "type": "on"
+      },
+      {
+        "kana": "-ども",
+        "romaji": "domo",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "役",
@@ -4105,9 +4963,6 @@
       "yaku",
       "eki"
     ],
-    "primary_romaji": [
-      "yaku"
-    ],
     "meanings": [
       "duty",
       "war",
@@ -4117,7 +4972,14 @@
       "service",
       "role"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "ヤク",
+        "romaji": "yaku",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "構",
@@ -4138,10 +5000,6 @@
       "kamaeru",
       "kamau"
     ],
-    "primary_romaji": [
-      "kou",
-      "kamau"
-    ],
     "meanings": [
       "posture",
       "stance",
@@ -4149,7 +5007,19 @@
       "build",
       "set up"
     ],
-    "stroke_count": 14
+    "stroke_count": 14,
+    "primary_readings": [
+      {
+        "kana": "コウ",
+        "romaji": "kou",
+        "type": "on"
+      },
+      {
+        "kana": "かま.う",
+        "romaji": "kamau",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "割",
@@ -4175,10 +5045,6 @@
       "wareru",
       "saku"
     ],
-    "primary_romaji": [
-      "katsu",
-      "wari"
-    ],
     "meanings": [
       "proportion",
       "comparatively",
@@ -4187,7 +5053,19 @@
       "separate",
       "split"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "カツ",
+        "romaji": "katsu",
+        "type": "on"
+      },
+      {
+        "kana": "わり",
+        "romaji": "wari",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "費",
@@ -4208,10 +5086,6 @@
       "tsuiyasu",
       "tsuieru"
     ],
-    "primary_romaji": [
-      "hi",
-      "tsuiyasu"
-    ],
     "meanings": [
       "expense",
       "cost",
@@ -4219,7 +5093,19 @@
       "consume",
       "waste"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "ヒ",
+        "romaji": "hi",
+        "type": "on"
+      },
+      {
+        "kana": "つい.やす",
+        "romaji": "tsuiyasu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "付",
@@ -4259,17 +5145,25 @@
       "tsuki",
       "zuki"
     ],
-    "primary_romaji": [
-      "fu",
-      "tsukeru"
-    ],
     "meanings": [
       "adhere",
       "attach",
       "refer to",
       "append"
     ],
-    "stroke_count": 5
+    "stroke_count": 5,
+    "primary_readings": [
+      {
+        "kana": "フ",
+        "romaji": "fu",
+        "type": "on"
+      },
+      {
+        "kana": "つ.ける",
+        "romaji": "tsukeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "由",
@@ -4294,15 +5188,23 @@
       "yoshi",
       "yoru"
     ],
-    "primary_romaji": [
-      "yu",
-      "yoshi"
-    ],
     "meanings": [
       "wherefore",
       "a reason"
     ],
-    "stroke_count": 5
+    "stroke_count": 5,
+    "primary_readings": [
+      {
+        "kana": "ユ",
+        "romaji": "yu",
+        "type": "on"
+      },
+      {
+        "kana": "よし",
+        "romaji": "yoshi",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "説",
@@ -4323,17 +5225,25 @@
       "zei",
       "toku"
     ],
-    "primary_romaji": [
-      "setsu",
-      "toku"
-    ],
     "meanings": [
       "opinion",
       "theory",
       "explanation",
       "rumor"
     ],
-    "stroke_count": 14
+    "stroke_count": 14,
+    "primary_readings": [
+      {
+        "kana": "セツ",
+        "romaji": "setsu",
+        "type": "on"
+      },
+      {
+        "kana": "と.く",
+        "romaji": "toku",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "難",
@@ -4361,10 +5271,6 @@
       "mutsukashii",
       "nikui"
     ],
-    "primary_romaji": [
-      "nan",
-      "muzukashii"
-    ],
     "meanings": [
       "difficult",
       "impossible",
@@ -4372,7 +5278,19 @@
       "accident",
       "defect"
     ],
-    "stroke_count": 18
+    "stroke_count": 18,
+    "primary_readings": [
+      {
+        "kana": "ナン",
+        "romaji": "nan",
+        "type": "on"
+      },
+      {
+        "kana": "むずか.しい",
+        "romaji": "muzukashii",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "優",
@@ -4397,10 +5315,6 @@
       "sugureru",
       "masaru"
     ],
-    "primary_romaji": [
-      "yuu",
-      "yasashii"
-    ],
     "meanings": [
       "tenderness",
       "excel",
@@ -4409,7 +5323,19 @@
       "superiority",
       "gentleness"
     ],
-    "stroke_count": 17
+    "stroke_count": 17,
+    "primary_readings": [
+      {
+        "kana": "ユウ",
+        "romaji": "yuu",
+        "type": "on"
+      },
+      {
+        "kana": "やさ.しい",
+        "romaji": "yasashii",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "夫",
@@ -4434,15 +5360,23 @@
       "otto",
       "sore"
     ],
-    "primary_romaji": [
-      "fu",
-      "otto"
-    ],
     "meanings": [
       "husband",
       "man"
     ],
-    "stroke_count": 4
+    "stroke_count": 4,
+    "primary_readings": [
+      {
+        "kana": "フ",
+        "romaji": "fu",
+        "type": "on"
+      },
+      {
+        "kana": "おっと",
+        "romaji": "otto",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "収",
@@ -4463,10 +5397,6 @@
       "osameru",
       "osamaru"
     ],
-    "primary_romaji": [
-      "shuu",
-      "osameru"
-    ],
     "meanings": [
       "income",
       "obtain",
@@ -4475,7 +5405,19 @@
       "supply",
       "store"
     ],
-    "stroke_count": 4
+    "stroke_count": 4,
+    "primary_readings": [
+      {
+        "kana": "シュウ",
+        "romaji": "shuu",
+        "type": "on"
+      },
+      {
+        "kana": "おさ.める",
+        "romaji": "osameru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "断",
@@ -4498,10 +5440,6 @@
       "kotowaru",
       "sadameru"
     ],
-    "primary_romaji": [
-      "dan",
-      "kotowaru"
-    ],
     "meanings": [
       "severance",
       "decline",
@@ -4514,7 +5452,19 @@
       "judgement",
       "cutting"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "ダン",
+        "romaji": "dan",
+        "type": "on"
+      },
+      {
+        "kana": "ことわ.る",
+        "romaji": "kotowaru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "石",
@@ -4537,14 +5487,22 @@
       "koku",
       "ishi"
     ],
-    "primary_romaji": [
-      "seki",
-      "ishi"
-    ],
     "meanings": [
       "stone"
     ],
-    "stroke_count": 5
+    "stroke_count": 5,
+    "primary_readings": [
+      {
+        "kana": "セキ",
+        "romaji": "seki",
+        "type": "on"
+      },
+      {
+        "kana": "いし",
+        "romaji": "ishi",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "違",
@@ -4572,15 +5530,23 @@
       "tagau",
       "tagaeru"
     ],
-    "primary_romaji": [
-      "i",
-      "chigau"
-    ],
     "meanings": [
       "difference",
       "differ"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "イ",
+        "romaji": "i",
+        "type": "on"
+      },
+      {
+        "kana": "ちが.う",
+        "romaji": "chigau",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "消",
@@ -4601,10 +5567,6 @@
       "kieru",
       "kesu"
     ],
-    "primary_romaji": [
-      "shou",
-      "kieru"
-    ],
     "meanings": [
       "extinguish",
       "blow out",
@@ -4612,7 +5574,19 @@
       "neutralize",
       "cancel"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "ショウ",
+        "romaji": "shou",
+        "type": "on"
+      },
+      {
+        "kana": "き.える",
+        "romaji": "kieru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "神",
@@ -4637,16 +5611,24 @@
       "kan",
       "kou"
     ],
-    "primary_romaji": [
-      "shin",
-      "kami"
-    ],
     "meanings": [
       "gods",
       "mind",
       "soul"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "シン",
+        "romaji": "shin",
+        "type": "on"
+      },
+      {
+        "kana": "かみ",
+        "romaji": "kami",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "番",
@@ -4665,15 +5647,23 @@
       "ban",
       "tsugai"
     ],
-    "primary_romaji": [
-      "ban",
-      "tsugai"
-    ],
     "meanings": [
       "turn",
       "number in a series"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "バン",
+        "romaji": "ban",
+        "type": "on"
+      },
+      {
+        "kana": "つが.い",
+        "romaji": "tsugai",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "規",
@@ -4689,14 +5679,18 @@
     "romaji_readings": [
       "ki"
     ],
-    "primary_romaji": [
-      "ki"
-    ],
     "meanings": [
       "standard",
       "measure"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "キ",
+        "romaji": "ki",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "術",
@@ -4715,10 +5709,6 @@
       "jutsu",
       "sube"
     ],
-    "primary_romaji": [
-      "jutsu",
-      "sube"
-    ],
     "meanings": [
       "art",
       "technique",
@@ -4728,7 +5718,14 @@
       "resources",
       "magic"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "ジュツ",
+        "romaji": "jutsu",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "備",
@@ -4751,16 +5748,24 @@
       "sonawaru",
       "tsubusani"
     ],
-    "primary_romaji": [
-      "bi",
-      "sonaeru"
-    ],
     "meanings": [
       "equip",
       "provision",
       "preparation"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "ビ",
+        "romaji": "bi",
+        "type": "on"
+      },
+      {
+        "kana": "そな.える",
+        "romaji": "sonaeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "宅",
@@ -4776,9 +5781,6 @@
     "romaji_readings": [
       "taku"
     ],
-    "primary_romaji": [
-      "taku"
-    ],
     "meanings": [
       "home",
       "house",
@@ -4786,7 +5788,14 @@
       "our house",
       "my husband"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "タク",
+        "romaji": "taku",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "害",
@@ -4802,14 +5811,18 @@
     "romaji_readings": [
       "gai"
     ],
-    "primary_romaji": [
-      "gai"
-    ],
     "meanings": [
       "harm",
       "injury"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "ガイ",
+        "romaji": "gai",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "配",
@@ -4828,17 +5841,25 @@
       "hai",
       "kubaru"
     ],
-    "primary_romaji": [
-      "hai",
-      "kubaru"
-    ],
     "meanings": [
       "distribute",
       "spouse",
       "exile",
       "rationing"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "ハイ",
+        "romaji": "hai",
+        "type": "on"
+      },
+      {
+        "kana": "くば.る",
+        "romaji": "kubaru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "警",
@@ -4857,14 +5878,18 @@
       "kei",
       "imashimeru"
     ],
-    "primary_romaji": [
-      "kei"
-    ],
     "meanings": [
       "admonish",
       "commandment"
     ],
-    "stroke_count": 19
+    "stroke_count": 19,
+    "primary_readings": [
+      {
+        "kana": "ケイ",
+        "romaji": "kei",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "育",
@@ -4889,17 +5914,25 @@
       "sodateru",
       "hagukumu"
     ],
-    "primary_romaji": [
-      "iku",
-      "sodateru"
-    ],
     "meanings": [
       "bring up",
       "grow up",
       "raise",
       "rear"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "イク",
+        "romaji": "iku",
+        "type": "on"
+      },
+      {
+        "kana": "そだ.てる",
+        "romaji": "sodateru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "席",
@@ -4918,16 +5951,20 @@
       "seki",
       "mushiro"
     ],
-    "primary_romaji": [
-      "seki"
-    ],
     "meanings": [
       "seat",
       "mat",
       "occasion",
       "place"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "セキ",
+        "romaji": "seki",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "訪",
@@ -4950,17 +5987,25 @@
       "tazuneru",
       "tou"
     ],
-    "primary_romaji": [
-      "hou",
-      "otozureru"
-    ],
     "meanings": [
       "call on",
       "visit",
       "look up",
       "offer sympathy"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "ホウ",
+        "romaji": "hou",
+        "type": "on"
+      },
+      {
+        "kana": "たず.ねる",
+        "romaji": "tazuneru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "乗",
@@ -4985,10 +6030,6 @@
       "nori",
       "noseru"
     ],
-    "primary_romaji": [
-      "jou",
-      "noru"
-    ],
     "meanings": [
       "ride",
       "power",
@@ -4999,7 +6040,19 @@
       "mount",
       "join"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "ジョウ",
+        "romaji": "jou",
+        "type": "on"
+      },
+      {
+        "kana": "の.る",
+        "romaji": "noru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "残",
@@ -5026,16 +6079,24 @@
       "sokonau",
       "nokori"
     ],
-    "primary_romaji": [
-      "zan",
-      "nokoru"
-    ],
     "meanings": [
       "remainder",
       "leftover",
       "balance"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "ザン",
+        "romaji": "zan",
+        "type": "on"
+      },
+      {
+        "kana": "のこ.る",
+        "romaji": "nokoru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "想",
@@ -5056,16 +6117,20 @@
       "so",
       "omou"
     ],
-    "primary_romaji": [
-      "sou"
-    ],
     "meanings": [
       "idea",
       "thought",
       "conception",
       "think"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "ソウ",
+        "romaji": "sou",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "声",
@@ -5088,14 +6153,22 @@
       "koe",
       "kowa"
     ],
-    "primary_romaji": [
-      "sei",
-      "koe"
-    ],
     "meanings": [
       "voice"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "セイ",
+        "romaji": "sei",
+        "type": "on"
+      },
+      {
+        "kana": "こえ",
+        "romaji": "koe",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "念",
@@ -5111,9 +6184,6 @@
     "romaji_readings": [
       "nen"
     ],
-    "primary_romaji": [
-      "nen"
-    ],
     "meanings": [
       "wish",
       "sense",
@@ -5123,7 +6193,14 @@
       "desire",
       "attention"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "ネン",
+        "romaji": "nen",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "助",
@@ -5148,16 +6225,24 @@
       "sukeru",
       "suke"
     ],
-    "primary_romaji": [
-      "jo",
-      "suke"
-    ],
     "meanings": [
       "help",
       "rescue",
       "assist"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "ジョ",
+        "romaji": "jo",
+        "type": "on"
+      },
+      {
+        "kana": "すけ",
+        "romaji": "suke",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "労",
@@ -5186,10 +6271,6 @@
       "tsukareru",
       "negirau"
     ],
-    "primary_romaji": [
-      "rou",
-      "rousuru"
-    ],
     "meanings": [
       "labor",
       "thank for",
@@ -5197,7 +6278,19 @@
       "toil",
       "trouble"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "ロウ",
+        "romaji": "rou",
+        "type": "on"
+      },
+      {
+        "kana": "ろう.する",
+        "romaji": "rousuru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "例",
@@ -5216,17 +6309,25 @@
       "rei",
       "tatoeru"
     ],
-    "primary_romaji": [
-      "rei",
-      "tatoeru"
-    ],
     "meanings": [
       "example",
       "custom",
       "usage",
       "precedent"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "レイ",
+        "romaji": "rei",
+        "type": "on"
+      },
+      {
+        "kana": "たと.える",
+        "romaji": "tatoeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "然",
@@ -5253,10 +6354,6 @@
       "shikashi",
       "sa"
     ],
-    "primary_romaji": [
-      "zen",
-      "shika"
-    ],
     "meanings": [
       "sort of thing",
       "so",
@@ -5264,7 +6361,19 @@
       "in that case",
       "well"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "ゼン",
+        "romaji": "zen",
+        "type": "on"
+      },
+      {
+        "kana": "しか",
+        "romaji": "shika",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "限",
@@ -5286,16 +6395,24 @@
       "kagiru",
       "kagiri"
     ],
-    "primary_romaji": [
-      "gen",
-      "kagiri"
-    ],
     "meanings": [
       "limit",
       "restrict",
       "to best of ability"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "ゲン",
+        "romaji": "gen",
+        "type": "on"
+      },
+      {
+        "kana": "かぎ.り",
+        "romaji": "kagiri",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "追",
@@ -5314,10 +6431,6 @@
       "tsui",
       "ou"
     ],
-    "primary_romaji": [
-      "tsui",
-      "ou"
-    ],
     "meanings": [
       "chase",
       "drive away",
@@ -5325,7 +6438,19 @@
       "pursue",
       "meanwhile"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "ツイ",
+        "romaji": "tsui",
+        "type": "on"
+      },
+      {
+        "kana": "お.う",
+        "romaji": "ou",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "商",
@@ -5344,17 +6469,25 @@
       "shou",
       "akinau"
     ],
-    "primary_romaji": [
-      "shou",
-      "akinau"
-    ],
     "meanings": [
       "make a deal",
       "selling",
       "dealing in",
       "merchant"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "ショウ",
+        "romaji": "shou",
+        "type": "on"
+      },
+      {
+        "kana": "あきな.う",
+        "romaji": "akinau",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "葉",
@@ -5373,10 +6506,6 @@
       "you",
       "ha"
     ],
-    "primary_romaji": [
-      "you",
-      "ha"
-    ],
     "meanings": [
       "leaf",
       "plane",
@@ -5388,7 +6517,19 @@
       "fragment",
       "piece"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "ヨウ",
+        "romaji": "you",
+        "type": "on"
+      },
+      {
+        "kana": "は",
+        "romaji": "ha",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "伝",
@@ -5419,10 +6560,6 @@
       "zutai",
       "tsute"
     ],
-    "primary_romaji": [
-      "den",
-      "tsutaeru"
-    ],
     "meanings": [
       "transmit",
       "go along",
@@ -5433,7 +6570,19 @@
       "legend",
       "tradition"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "デン",
+        "romaji": "den",
+        "type": "on"
+      },
+      {
+        "kana": "つた.える",
+        "romaji": "tsutaeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "働",
@@ -5452,15 +6601,23 @@
       "dou",
       "hataraku"
     ],
-    "primary_romaji": [
-      "dou",
-      "hataraku"
-    ],
     "meanings": [
       "work",
       "(kokuji)"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "ドウ",
+        "romaji": "dou",
+        "type": "on"
+      },
+      {
+        "kana": "はたら.く",
+        "romaji": "hataraku",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "形",
@@ -5487,16 +6644,24 @@
       "katachi",
       "nari"
     ],
-    "primary_romaji": [
-      "kei",
-      "kata"
-    ],
     "meanings": [
       "shape",
       "form",
       "style"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "かた",
+        "romaji": "kata",
+        "type": "kun"
+      },
+      {
+        "kana": "ギョウ",
+        "romaji": "gyou",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "景",
@@ -5512,14 +6677,18 @@
     "romaji_readings": [
       "kei"
     ],
-    "primary_romaji": [
-      "kei"
-    ],
     "meanings": [
       "scenery",
       "view"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "ケイ",
+        "romaji": "kei",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "落",
@@ -5542,10 +6711,6 @@
       "ochi",
       "otosu"
     ],
-    "primary_romaji": [
-      "raku",
-      "ochiru"
-    ],
     "meanings": [
       "fall",
       "drop",
@@ -5553,7 +6718,19 @@
       "village",
       "hamlet"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "ラク",
+        "romaji": "raku",
+        "type": "on"
+      },
+      {
+        "kana": "お.ちる",
+        "romaji": "ochiru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "好",
@@ -5578,16 +6755,24 @@
       "yoi",
       "ii"
     ],
-    "primary_romaji": [
-      "kou",
-      "konomu"
-    ],
     "meanings": [
       "fond",
       "pleasing",
       "like something"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "コウ",
+        "romaji": "kou",
+        "type": "on"
+      },
+      {
+        "kana": "この.む",
+        "romaji": "konomu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "退",
@@ -5616,10 +6801,6 @@
       "nokeru",
       "doku"
     ],
-    "primary_romaji": [
-      "tai",
-      "shirizoku"
-    ],
     "meanings": [
       "retreat",
       "withdraw",
@@ -5629,7 +6810,19 @@
       "expel",
       "reject"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "タイ",
+        "romaji": "tai",
+        "type": "on"
+      },
+      {
+        "kana": "しりぞ.く",
+        "romaji": "shirizoku",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "頭",
@@ -5658,15 +6851,23 @@
       "gashira",
       "kaburi"
     ],
-    "primary_romaji": [
-      "tou",
-      "atama"
-    ],
     "meanings": [
       "head",
       "counter for large animals"
     ],
-    "stroke_count": 16
+    "stroke_count": 16,
+    "primary_readings": [
+      {
+        "kana": "あたま",
+        "romaji": "atama",
+        "type": "kun"
+      },
+      {
+        "kana": "ズ",
+        "romaji": "zu",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "負",
@@ -5689,10 +6890,6 @@
       "makasu",
       "ou"
     ],
-    "primary_romaji": [
-      "fu",
-      "ou"
-    ],
     "meanings": [
       "defeat",
       "negative",
@@ -5702,7 +6899,19 @@
       "owe",
       "assume a responsibility"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "フ",
+        "romaji": "fu",
+        "type": "on"
+      },
+      {
+        "kana": "ま.ける",
+        "romaji": "makeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "渡",
@@ -5724,10 +6933,6 @@
       "wataru",
       "watasu"
     ],
-    "primary_romaji": [
-      "to",
-      "watasu"
-    ],
     "meanings": [
       "transit",
       "ford",
@@ -5738,7 +6943,19 @@
       "diameter",
       "migrate"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "ト",
+        "romaji": "to",
+        "type": "on"
+      },
+      {
+        "kana": "わた.す",
+        "romaji": "watasu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "失",
@@ -5759,10 +6976,6 @@
       "ushinau",
       "useru"
     ],
-    "primary_romaji": [
-      "shitsu",
-      "ushinau"
-    ],
     "meanings": [
       "lose",
       "error",
@@ -5770,7 +6983,19 @@
       "disadvantage",
       "loss"
     ],
-    "stroke_count": 5
+    "stroke_count": 5,
+    "primary_readings": [
+      {
+        "kana": "シツ",
+        "romaji": "shitsu",
+        "type": "on"
+      },
+      {
+        "kana": "うしな.う",
+        "romaji": "ushinau",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "差",
@@ -5791,10 +7016,6 @@
       "sasu",
       "sashi"
     ],
-    "primary_romaji": [
-      "sa",
-      "sashi"
-    ],
     "meanings": [
       "distinction",
       "difference",
@@ -5803,7 +7024,19 @@
       "margin",
       "balance"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "サ",
+        "romaji": "sa",
+        "type": "on"
+      },
+      {
+        "kana": "さ.し",
+        "romaji": "sashi",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "末",
@@ -5828,10 +7061,6 @@
       "ura",
       "ure"
     ],
-    "primary_romaji": [
-      "matsu",
-      "sue"
-    ],
     "meanings": [
       "end",
       "close",
@@ -5839,7 +7068,19 @@
       "powder",
       "posterity"
     ],
-    "stroke_count": 5
+    "stroke_count": 5,
+    "primary_readings": [
+      {
+        "kana": "マツ",
+        "romaji": "matsu",
+        "type": "on"
+      },
+      {
+        "kana": "すえ",
+        "romaji": "sue",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "守",
@@ -5867,17 +7108,25 @@
       "mori",
       "kami"
     ],
-    "primary_romaji": [
-      "shu",
-      "mamoru"
-    ],
     "meanings": [
       "guard",
       "protect",
       "defend",
       "obey"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "まも.る",
+        "romaji": "mamoru",
+        "type": "kun"
+      },
+      {
+        "kana": "ス",
+        "romaji": "su",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "若",
@@ -5910,10 +7159,6 @@
       "moshikuha",
       "gotoshi"
     ],
-    "primary_romaji": [
-      "jaku",
-      "moshi"
-    ],
     "meanings": [
       "young",
       "if",
@@ -5922,7 +7167,19 @@
       "low number",
       "immature"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "ジャク",
+        "romaji": "jaku",
+        "type": "on"
+      },
+      {
+        "kana": "わか.い",
+        "romaji": "wakai",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "種",
@@ -5943,10 +7200,6 @@
       "tane",
       "gusa"
     ],
-    "primary_romaji": [
-      "shu",
-      "tane"
-    ],
     "meanings": [
       "species",
       "kind",
@@ -5954,7 +7207,19 @@
       "variety",
       "seed"
     ],
-    "stroke_count": 14
+    "stroke_count": 14,
+    "primary_readings": [
+      {
+        "kana": "シュ",
+        "romaji": "shu",
+        "type": "on"
+      },
+      {
+        "kana": "たね",
+        "romaji": "tane",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "美",
@@ -5975,15 +7240,23 @@
       "mi",
       "utsukushii"
     ],
-    "primary_romaji": [
-      "bi",
-      "utsukushii"
-    ],
     "meanings": [
       "beauty",
       "beautiful"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "ビ",
+        "romaji": "bi",
+        "type": "on"
+      },
+      {
+        "kana": "うつく.しい",
+        "romaji": "utsukushii",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "命",
@@ -6004,10 +7277,6 @@
       "myou",
       "inochi"
     ],
-    "primary_romaji": [
-      "mei",
-      "inochi"
-    ],
     "meanings": [
       "fate",
       "command",
@@ -6016,7 +7285,19 @@
       "life",
       "appoint"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "メイ",
+        "romaji": "mei",
+        "type": "on"
+      },
+      {
+        "kana": "いのち",
+        "romaji": "inochi",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "福",
@@ -6032,16 +7313,20 @@
     "romaji_readings": [
       "fuku"
     ],
-    "primary_romaji": [
-      "fuku"
-    ],
     "meanings": [
       "blessing",
       "fortune",
       "luck",
       "wealth"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "フク",
+        "romaji": "fuku",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "望",
@@ -6064,10 +7349,6 @@
       "nozomu",
       "mochi"
     ],
-    "primary_romaji": [
-      "bou",
-      "nozomu"
-    ],
     "meanings": [
       "ambition",
       "full moon",
@@ -6076,7 +7357,19 @@
       "aspire to",
       "expect"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "ボウ",
+        "romaji": "bou",
+        "type": "on"
+      },
+      {
+        "kana": "のぞ.む",
+        "romaji": "nozomu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "非",
@@ -6095,10 +7388,6 @@
       "hi",
       "arazu"
     ],
-    "primary_romaji": [
-      "hi",
-      "arazu"
-    ],
     "meanings": [
       "un-",
       "mistake",
@@ -6106,7 +7395,14 @@
       "injustice",
       "non-"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "ヒ",
+        "romaji": "hi",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "観",
@@ -6127,9 +7423,6 @@
       "miru",
       "shimesu"
     ],
-    "primary_romaji": [
-      "kan"
-    ],
     "meanings": [
       "outlook",
       "look",
@@ -6137,7 +7430,14 @@
       "condition",
       "view"
     ],
-    "stroke_count": 18
+    "stroke_count": 18,
+    "primary_readings": [
+      {
+        "kana": "カン",
+        "romaji": "kan",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "察",
@@ -6153,9 +7453,6 @@
     "romaji_readings": [
       "satsu"
     ],
-    "primary_romaji": [
-      "satsu"
-    ],
     "meanings": [
       "guess",
       "presume",
@@ -6163,7 +7460,14 @@
       "judge",
       "understand"
     ],
-    "stroke_count": 14
+    "stroke_count": 14,
+    "primary_readings": [
+      {
+        "kana": "サツ",
+        "romaji": "satsu",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "段",
@@ -6181,15 +7485,19 @@
       "dan",
       "tan"
     ],
-    "primary_romaji": [
-      "dan"
-    ],
     "meanings": [
       "grade",
       "steps",
       "stairs"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "ダン",
+        "romaji": "dan",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "横",
@@ -6208,10 +7516,6 @@
       "ou",
       "yoko"
     ],
-    "primary_romaji": [
-      "ou",
-      "yoko"
-    ],
     "meanings": [
       "sideways",
       "side",
@@ -6221,7 +7525,19 @@
       "unreasonable",
       "perverse"
     ],
-    "stroke_count": 15
+    "stroke_count": 15,
+    "primary_readings": [
+      {
+        "kana": "オウ",
+        "romaji": "ou",
+        "type": "on"
+      },
+      {
+        "kana": "よこ",
+        "romaji": "yoko",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "深",
@@ -6248,17 +7564,25 @@
       "fukameru",
       "mi"
     ],
-    "primary_romaji": [
-      "shin",
-      "fukai"
-    ],
     "meanings": [
       "deep",
       "heighten",
       "intensify",
       "strengthen"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "シン",
+        "romaji": "shin",
+        "type": "on"
+      },
+      {
+        "kana": "ふか.い",
+        "romaji": "fukai",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "申",
@@ -6281,17 +7605,25 @@
       "moushi",
       "saru"
     ],
-    "primary_romaji": [
-      "shin",
-      "moushi"
-    ],
     "meanings": [
       "have the honor to",
       "sign of the monkey",
       "3-5PM",
       "ninth sign of Chinese zodiac"
     ],
-    "stroke_count": 5
+    "stroke_count": 5,
+    "primary_readings": [
+      {
+        "kana": "シン",
+        "romaji": "shin",
+        "type": "on"
+      },
+      {
+        "kana": "もう.し-",
+        "romaji": "moushi",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "様",
@@ -6314,10 +7646,6 @@
       "sama",
       "san"
     ],
-    "primary_romaji": [
-      "you",
-      "sama"
-    ],
     "meanings": [
       "Esq.",
       "way",
@@ -6325,7 +7653,19 @@
       "situation",
       "polite suffix"
     ],
-    "stroke_count": 14
+    "stroke_count": 14,
+    "primary_readings": [
+      {
+        "kana": "ヨウ",
+        "romaji": "you",
+        "type": "on"
+      },
+      {
+        "kana": "さま",
+        "romaji": "sama",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "財",
@@ -6348,17 +7688,20 @@
       "zoku",
       "takara"
     ],
-    "primary_romaji": [
-      "zai",
-      "takara"
-    ],
     "meanings": [
       "property",
       "money",
       "wealth",
       "assets"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "ザイ",
+        "romaji": "zai",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "港",
@@ -6377,14 +7720,22 @@
       "kou",
       "minato"
     ],
-    "primary_romaji": [
-      "kou",
-      "minato"
-    ],
     "meanings": [
       "harbor"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "コウ",
+        "romaji": "kou",
+        "type": "on"
+      },
+      {
+        "kana": "みなと",
+        "romaji": "minato",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "識",
@@ -6405,15 +7756,24 @@
       "shiru",
       "shirusu"
     ],
-    "primary_romaji": [
-      "shiki"
-    ],
     "meanings": [
       "discriminating",
       "know",
       "write"
     ],
-    "stroke_count": 19
+    "stroke_count": 19,
+    "primary_readings": [
+      {
+        "kana": "シキ",
+        "romaji": "shiki",
+        "type": "on"
+      },
+      {
+        "kana": "し.る",
+        "romaji": "shiru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "呼",
@@ -6432,16 +7792,24 @@
       "ko",
       "yobu"
     ],
-    "primary_romaji": [
-      "ko",
-      "yobu"
-    ],
     "meanings": [
       "call",
       "call out to",
       "invite"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "コ",
+        "romaji": "ko",
+        "type": "on"
+      },
+      {
+        "kana": "よ.ぶ",
+        "romaji": "yobu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "達",
@@ -6462,17 +7830,25 @@
       "da",
       "tachi"
     ],
-    "primary_romaji": [
-      "tatsu",
-      "tachi"
-    ],
     "meanings": [
       "accomplished",
       "reach",
       "arrive",
       "attain"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "タツ",
+        "romaji": "tatsu",
+        "type": "on"
+      },
+      {
+        "kana": "-たち",
+        "romaji": "tachi",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "良",
@@ -6495,16 +7871,24 @@
       "yoi",
       "ii"
     ],
-    "primary_romaji": [
-      "ryou",
-      "ii"
-    ],
     "meanings": [
       "good",
       "pleasing",
       "skilled"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "リョウ",
+        "romaji": "ryou",
+        "type": "on"
+      },
+      {
+        "kana": "い.い",
+        "romaji": "ii",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "候",
@@ -6523,10 +7907,6 @@
       "kou",
       "sourou"
     ],
-    "primary_romaji": [
-      "kou",
-      "sourou"
-    ],
     "meanings": [
       "climate",
       "season",
@@ -6534,7 +7914,19 @@
       "wait for",
       "expect"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "コウ",
+        "romaji": "kou",
+        "type": "on"
+      },
+      {
+        "kana": "そうろう",
+        "romaji": "sourou",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "程",
@@ -6554,10 +7946,6 @@
       "tei",
       "hodo"
     ],
-    "primary_romaji": [
-      "tei",
-      "hodo"
-    ],
     "meanings": [
       "extent",
       "degree",
@@ -6567,7 +7955,19 @@
       "limits",
       "amount"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "テイ",
+        "romaji": "tei",
+        "type": "on"
+      },
+      {
+        "kana": "ほど",
+        "romaji": "hodo",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "満",
@@ -6592,17 +7992,25 @@
       "mitsu",
       "mitasu"
     ],
-    "primary_romaji": [
-      "man",
-      "mitasu"
-    ],
     "meanings": [
       "full",
       "fullness",
       "enough",
       "satisfy"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "マン",
+        "romaji": "man",
+        "type": "on"
+      },
+      {
+        "kana": "み.たす",
+        "romaji": "mitasu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "敗",
@@ -6621,16 +8029,24 @@
       "hai",
       "yabureru"
     ],
-    "primary_romaji": [
-      "hai",
-      "yabureru"
-    ],
     "meanings": [
       "failure",
       "defeat",
       "reversal"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "ハイ",
+        "romaji": "hai",
+        "type": "on"
+      },
+      {
+        "kana": "やぶ.れる",
+        "romaji": "yabureru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "値",
@@ -6651,16 +8067,24 @@
       "ne",
       "atai"
     ],
-    "primary_romaji": [
-      "chi",
-      "ne"
-    ],
     "meanings": [
       "price",
       "cost",
       "value"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "チ",
+        "romaji": "chi",
+        "type": "on"
+      },
+      {
+        "kana": "ね",
+        "romaji": "ne",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "突",
@@ -6681,10 +8105,6 @@
       "ka",
       "tsuku"
     ],
-    "primary_romaji": [
-      "totsu",
-      "tsuku"
-    ],
     "meanings": [
       "stab",
       "protruding",
@@ -6694,7 +8114,19 @@
       "collision",
       "sudden"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "トツ",
+        "romaji": "totsu",
+        "type": "on"
+      },
+      {
+        "kana": "つ.く",
+        "romaji": "tsuku",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "光",
@@ -6715,15 +8147,23 @@
       "hikaru",
       "hikari"
     ],
-    "primary_romaji": [
-      "kou",
-      "hikari"
-    ],
     "meanings": [
       "ray",
       "light"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "コウ",
+        "romaji": "kou",
+        "type": "on"
+      },
+      {
+        "kana": "ひか.る",
+        "romaji": "hikaru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "路",
@@ -6746,17 +8186,25 @@
       "ji",
       "michi"
     ],
-    "primary_romaji": [
-      "ro",
-      "ji"
-    ],
     "meanings": [
       "path",
       "route",
       "road",
       "distance"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "ロ",
+        "romaji": "ro",
+        "type": "on"
+      },
+      {
+        "kana": "-じ",
+        "romaji": "ji",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "科",
@@ -6772,15 +8220,19 @@
     "romaji_readings": [
       "ka"
     ],
-    "primary_romaji": [
-      "ka"
-    ],
     "meanings": [
       "department",
       "course",
       "section"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "カ",
+        "romaji": "ka",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "積",
@@ -6805,10 +8257,6 @@
       "tsumoru",
       "tsumori"
     ],
-    "primary_romaji": [
-      "seki",
-      "tsumori"
-    ],
     "meanings": [
       "volume",
       "product (x*y)",
@@ -6819,7 +8267,19 @@
       "load",
       "amass"
     ],
-    "stroke_count": 16
+    "stroke_count": 16,
+    "primary_readings": [
+      {
+        "kana": "セキ",
+        "romaji": "seki",
+        "type": "on"
+      },
+      {
+        "kana": "つ.もり",
+        "romaji": "tsumori",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "他",
@@ -6838,16 +8298,24 @@
       "ta",
       "hoka"
     ],
-    "primary_romaji": [
-      "ta",
-      "hoka"
-    ],
     "meanings": [
       "other",
       "another",
       "the others"
     ],
-    "stroke_count": 5
+    "stroke_count": 5,
+    "primary_readings": [
+      {
+        "kana": "タ",
+        "romaji": "ta",
+        "type": "on"
+      },
+      {
+        "kana": "ほか",
+        "romaji": "hoka",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "処",
@@ -6870,10 +8338,6 @@
       "ko",
       "oru"
     ],
-    "primary_romaji": [
-      "sho",
-      "ko"
-    ],
     "meanings": [
       "dispose",
       "manage",
@@ -6884,7 +8348,19 @@
       "behave",
       "place"
     ],
-    "stroke_count": 5
+    "stroke_count": 5,
+    "primary_readings": [
+      {
+        "kana": "ショ",
+        "romaji": "sho",
+        "type": "on"
+      },
+      {
+        "kana": "-こ",
+        "romaji": "ko",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "太",
@@ -6907,16 +8383,24 @@
       "futoi",
       "futoru"
     ],
-    "primary_romaji": [
-      "ta",
-      "futoi"
-    ],
     "meanings": [
       "plump",
       "thick",
       "big around"
     ],
-    "stroke_count": 4
+    "stroke_count": 4,
+    "primary_readings": [
+      {
+        "kana": "タ",
+        "romaji": "ta",
+        "type": "on"
+      },
+      {
+        "kana": "ふと.い",
+        "romaji": "futoi",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "客",
@@ -6934,16 +8418,20 @@
       "kyaku",
       "kaku"
     ],
-    "primary_romaji": [
-      "kyaku"
-    ],
     "meanings": [
       "guest",
       "visitor",
       "customer",
       "client"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "キャク",
+        "romaji": "kyaku",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "否",
@@ -6964,10 +8452,6 @@
       "ina",
       "iya"
     ],
-    "primary_romaji": [
-      "hi",
-      "iya"
-    ],
     "meanings": [
       "negate",
       "no",
@@ -6976,7 +8460,19 @@
       "decline",
       "deny"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "ヒ",
+        "romaji": "hi",
+        "type": "on"
+      },
+      {
+        "kana": "いや",
+        "romaji": "iya",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "師",
@@ -6995,9 +8491,6 @@
       "shi",
       "ikusa"
     ],
-    "primary_romaji": [
-      "shi"
-    ],
     "meanings": [
       "expert",
       "teacher",
@@ -7007,7 +8500,14 @@
       "army (incl. counter)",
       "war"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "シ",
+        "romaji": "shi",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "登",
@@ -7036,15 +8536,23 @@
       "noboru",
       "agaru"
     ],
-    "primary_romaji": [
-      "tou",
-      "noboru"
-    ],
     "meanings": [
       "ascend",
       "climb up"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "のぼ.る",
+        "romaji": "noboru",
+        "type": "kun"
+      },
+      {
+        "kana": "ト",
+        "romaji": "to",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "易",
@@ -7067,10 +8575,6 @@
       "yasashii",
       "yasui"
     ],
-    "primary_romaji": [
-      "eki",
-      "yasui"
-    ],
     "meanings": [
       "easy",
       "ready to",
@@ -7078,7 +8582,19 @@
       "fortune-telling",
       "divination"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "エキ",
+        "romaji": "eki",
+        "type": "on"
+      },
+      {
+        "kana": "やす.い",
+        "romaji": "yasui",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "速",
@@ -7103,15 +8619,23 @@
       "hayameru",
       "sumiyaka"
     ],
-    "primary_romaji": [
-      "soku",
-      "sumiyaka"
-    ],
     "meanings": [
       "quick",
       "fast"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "ソク",
+        "romaji": "soku",
+        "type": "on"
+      },
+      {
+        "kana": "すみ.やか",
+        "romaji": "sumiyaka",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "存",
@@ -7138,10 +8662,6 @@
       "tamotsu",
       "tou"
     ],
-    "primary_romaji": [
-      "son",
-      "tou"
-    ],
     "meanings": [
       "exist",
       "suppose",
@@ -7149,7 +8669,14 @@
       "believe",
       "feel"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "ソン",
+        "romaji": "son",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "飛",
@@ -7171,16 +8698,24 @@
       "tobu",
       "tobasu"
     ],
-    "primary_romaji": [
-      "hi",
-      "tobu"
-    ],
     "meanings": [
       "fly",
       "skip (pages)",
       "scatter"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "ヒ",
+        "romaji": "hi",
+        "type": "on"
+      },
+      {
+        "kana": "と.ぶ",
+        "romaji": "tobu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "殺",
@@ -7209,10 +8744,6 @@
       "sogu",
       "ayameru"
     ],
-    "primary_romaji": [
-      "satsu",
-      "korosu"
-    ],
     "meanings": [
       "kill",
       "murder",
@@ -7223,7 +8754,19 @@
       "reduce",
       "spoil"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "サツ",
+        "romaji": "satsu",
+        "type": "on"
+      },
+      {
+        "kana": "ころ.す",
+        "romaji": "korosu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "号",
@@ -7244,9 +8787,6 @@
       "sakebu",
       "yobina"
     ],
-    "primary_romaji": [
-      "gou"
-    ],
     "meanings": [
       "nickname",
       "number",
@@ -7256,7 +8796,14 @@
       "name",
       "call"
     ],
-    "stroke_count": 5
+    "stroke_count": 5,
+    "primary_readings": [
+      {
+        "kana": "ゴウ",
+        "romaji": "gou",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "単",
@@ -7275,17 +8822,25 @@
       "tan",
       "hitoe"
     ],
-    "primary_romaji": [
-      "tan",
-      "hitoe"
-    ],
     "meanings": [
       "simple",
       "one",
       "single",
       "merely"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "タン",
+        "romaji": "tan",
+        "type": "on"
+      },
+      {
+        "kana": "ひとえ",
+        "romaji": "hitoe",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "座",
@@ -7304,10 +8859,6 @@
       "za",
       "suwaru"
     ],
-    "primary_romaji": [
-      "za",
-      "suwaru"
-    ],
     "meanings": [
       "squat",
       "seat",
@@ -7315,7 +8866,19 @@
       "gathering",
       "sit"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "ザ",
+        "romaji": "za",
+        "type": "on"
+      },
+      {
+        "kana": "すわ.る",
+        "romaji": "suwaru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "破",
@@ -7338,10 +8901,6 @@
       "yabureru",
       "wareru"
     ],
-    "primary_romaji": [
-      "ha",
-      "yaburu"
-    ],
     "meanings": [
       "rend",
       "rip",
@@ -7351,7 +8910,19 @@
       "defeat",
       "frustrate"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "ハ",
+        "romaji": "ha",
+        "type": "on"
+      },
+      {
+        "kana": "やぶ.る",
+        "romaji": "yaburu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "除",
@@ -7374,10 +8945,6 @@
       "nozoku",
       "yoke"
     ],
-    "primary_romaji": [
-      "jo",
-      "nozoku"
-    ],
     "meanings": [
       "exclude",
       "division (x/3)",
@@ -7386,7 +8953,19 @@
       "cancel",
       "except"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "のぞ.く",
+        "romaji": "nozoku",
+        "type": "kun"
+      },
+      {
+        "kana": "ジ",
+        "romaji": "ji",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "完",
@@ -7402,15 +8981,19 @@
     "romaji_readings": [
       "kan"
     ],
-    "primary_romaji": [
-      "kan"
-    ],
     "meanings": [
       "perfect",
       "completion",
       "end"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "カン",
+        "romaji": "kan",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "降",
@@ -7441,17 +9024,25 @@
       "kudaru",
       "kudasu"
     ],
-    "primary_romaji": [
-      "kou",
-      "furu"
-    ],
     "meanings": [
       "descend",
       "precipitate",
       "fall",
       "surrender"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "コウ",
+        "romaji": "kou",
+        "type": "on"
+      },
+      {
+        "kana": "ふ.る",
+        "romaji": "furu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "責",
@@ -7470,16 +9061,24 @@
       "seki",
       "semeru"
     ],
-    "primary_romaji": [
-      "seki",
-      "semeru"
-    ],
     "meanings": [
       "blame",
       "condemn",
       "censure"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "セキ",
+        "romaji": "seki",
+        "type": "on"
+      },
+      {
+        "kana": "せ.める",
+        "romaji": "semeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "捕",
@@ -7508,15 +9107,23 @@
       "tsukamaeru",
       "tsukamaru"
     ],
-    "primary_romaji": [
-      "ho",
-      "toraeru"
-    ],
     "meanings": [
       "catch",
       "capture"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "ホ",
+        "romaji": "ho",
+        "type": "on"
+      },
+      {
+        "kana": "つか.まえる",
+        "romaji": "tsukamaeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "危",
@@ -7539,16 +9146,24 @@
       "ayaui",
       "ayabumu"
     ],
-    "primary_romaji": [
-      "ki",
-      "abunai"
-    ],
     "meanings": [
       "dangerous",
       "fear",
       "uneasy"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "キ",
+        "romaji": "ki",
+        "type": "on"
+      },
+      {
+        "kana": "あぶ.ない",
+        "romaji": "abunai",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "給",
@@ -7571,10 +9186,6 @@
       "tamou",
       "tamae"
     ],
-    "primary_romaji": [
-      "kyuu",
-      "tamau"
-    ],
     "meanings": [
       "salary",
       "wage",
@@ -7583,7 +9194,19 @@
       "grant",
       "bestow on"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "キュウ",
+        "romaji": "kyuu",
+        "type": "on"
+      },
+      {
+        "kana": "たま.う",
+        "romaji": "tamau",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "苦",
@@ -7612,10 +9235,6 @@
       "nigai",
       "nigaru"
     ],
-    "primary_romaji": [
-      "ku",
-      "kurushii"
-    ],
     "meanings": [
       "suffering",
       "trial",
@@ -7624,7 +9243,19 @@
       "feel bitter",
       "scowl"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "ク",
+        "romaji": "ku",
+        "type": "on"
+      },
+      {
+        "kana": "くる.しい",
+        "romaji": "kurushii",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "迎",
@@ -7643,16 +9274,24 @@
       "gei",
       "mukaeru"
     ],
-    "primary_romaji": [
-      "gei",
-      "mukaeru"
-    ],
     "meanings": [
       "welcome",
       "meet",
       "greet"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "ゲイ",
+        "romaji": "gei",
+        "type": "on"
+      },
+      {
+        "kana": "むか.える",
+        "romaji": "mukaeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "園",
@@ -7671,17 +9310,25 @@
       "en",
       "sono"
     ],
-    "primary_romaji": [
-      "en",
-      "sono"
-    ],
     "meanings": [
       "park",
       "garden",
       "yard",
       "farm"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "エン",
+        "romaji": "en",
+        "type": "on"
+      },
+      {
+        "kana": "その",
+        "romaji": "sono",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "具",
@@ -7702,10 +9349,6 @@
       "sonaeru",
       "tsubusani"
     ],
-    "primary_romaji": [
-      "gu",
-      "tsubusani"
-    ],
     "meanings": [
       "tool",
       "utensil",
@@ -7714,7 +9357,14 @@
       "ingredients",
       "counter for armor, suits, sets of furniture"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "グ",
+        "romaji": "gu",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "辞",
@@ -7735,16 +9385,20 @@
       "yameru",
       "inamu"
     ],
-    "primary_romaji": [
-      "ji"
-    ],
     "meanings": [
       "resign",
       "word",
       "term",
       "expression"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "ジ",
+        "romaji": "ji",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "因",
@@ -7765,10 +9419,6 @@
       "yoru",
       "chinamu"
     ],
-    "primary_romaji": [
-      "in",
-      "yoru"
-    ],
     "meanings": [
       "cause",
       "factor",
@@ -7776,7 +9426,19 @@
       "depend on",
       "be limited to"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "イン",
+        "romaji": "in",
+        "type": "on"
+      },
+      {
+        "kana": "ちな.む",
+        "romaji": "chinamu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "馬",
@@ -7804,14 +9466,22 @@
       "mo",
       "uma"
     ],
-    "primary_romaji": [
-      "ba",
-      "uma"
-    ],
     "meanings": [
       "horse"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "バ",
+        "romaji": "ba",
+        "type": "on"
+      },
+      {
+        "kana": "うま",
+        "romaji": "uma",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "愛",
@@ -7838,16 +9508,24 @@
       "oshimu",
       "mana"
     ],
-    "primary_romaji": [
-      "ai",
-      "itoshii"
-    ],
     "meanings": [
       "love",
       "affection",
       "favourite"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "アイ",
+        "romaji": "ai",
+        "type": "on"
+      },
+      {
+        "kana": "いと.しい",
+        "romaji": "itoshii",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "富",
@@ -7870,16 +9548,24 @@
       "tomu",
       "tomi"
     ],
-    "primary_romaji": [
-      "fu",
-      "tomi"
-    ],
     "meanings": [
       "wealth",
       "enrich",
       "abundant"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "フ",
+        "romaji": "fu",
+        "type": "on"
+      },
+      {
+        "kana": "と.む",
+        "romaji": "tomu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "彼",
@@ -7901,16 +9587,24 @@
       "kare",
       "kano"
     ],
-    "primary_romaji": [
-      "hi",
-      "kare"
-    ],
     "meanings": [
       "he",
       "that",
       "the"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "ヒ",
+        "romaji": "hi",
+        "type": "on"
+      },
+      {
+        "kana": "かの",
+        "romaji": "kano",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "未",
@@ -7935,10 +9629,6 @@
       "mada",
       "hitsuji"
     ],
-    "primary_romaji": [
-      "mi",
-      "mada"
-    ],
     "meanings": [
       "un-",
       "not yet",
@@ -7949,7 +9639,19 @@
       "1-3PM",
       "eighth sign of Chinese zodiac"
     ],
-    "stroke_count": 5
+    "stroke_count": 5,
+    "primary_readings": [
+      {
+        "kana": "ミ",
+        "romaji": "mi",
+        "type": "on"
+      },
+      {
+        "kana": "ひつじ",
+        "romaji": "hitsuji",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "舞",
@@ -7971,17 +9673,25 @@
       "mau",
       "mai"
     ],
-    "primary_romaji": [
-      "bu",
-      "mau"
-    ],
     "meanings": [
       "dance",
       "flit",
       "circle",
       "wheel"
     ],
-    "stroke_count": 15
+    "stroke_count": 15,
+    "primary_readings": [
+      {
+        "kana": "ブ",
+        "romaji": "bu",
+        "type": "on"
+      },
+      {
+        "kana": "ま.う",
+        "romaji": "mau",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "亡",
@@ -8010,17 +9720,25 @@
       "horobu",
       "horobosu"
     ],
-    "primary_romaji": [
-      "bou",
-      "naki"
-    ],
     "meanings": [
       "deceased",
       "the late",
       "dying",
       "perish"
     ],
-    "stroke_count": 3
+    "stroke_count": 3,
+    "primary_readings": [
+      {
+        "kana": "ボウ",
+        "romaji": "bou",
+        "type": "on"
+      },
+      {
+        "kana": "な.き-",
+        "romaji": "naki",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "冷",
@@ -8053,16 +9771,24 @@
       "sameru",
       "samasu"
     ],
-    "primary_romaji": [
-      "rei",
-      "tsumetai"
-    ],
     "meanings": [
       "cool",
       "cold (beer, person)",
       "chill"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "レイ",
+        "romaji": "rei",
+        "type": "on"
+      },
+      {
+        "kana": "つめ.たい",
+        "romaji": "tsumetai",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "適",
@@ -8081,10 +9807,6 @@
       "teki",
       "kanau"
     ],
-    "primary_romaji": [
-      "teki",
-      "kanau"
-    ],
     "meanings": [
       "suitable",
       "occasional",
@@ -8092,7 +9814,19 @@
       "qualified",
       "capable"
     ],
-    "stroke_count": 14
+    "stroke_count": 14,
+    "primary_readings": [
+      {
+        "kana": "テキ",
+        "romaji": "teki",
+        "type": "on"
+      },
+      {
+        "kana": "かな.う",
+        "romaji": "kanau",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "婦",
@@ -8111,16 +9845,20 @@
       "fu",
       "yome"
     ],
-    "primary_romaji": [
-      "fu"
-    ],
     "meanings": [
       "lady",
       "woman",
       "wife",
       "bride"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "フ",
+        "romaji": "fu",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "寄",
@@ -8143,10 +9881,6 @@
       "yori",
       "yoseru"
     ],
-    "primary_romaji": [
-      "ki",
-      "yoru"
-    ],
     "meanings": [
       "draw near",
       "stop in",
@@ -8156,7 +9890,19 @@
       "send",
       "forward"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "キ",
+        "romaji": "ki",
+        "type": "on"
+      },
+      {
+        "kana": "よ.る",
+        "romaji": "yoru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "込",
@@ -8178,9 +9924,6 @@
       "komi",
       "komeru"
     ],
-    "primary_romaji": [
-      "komu"
-    ],
     "meanings": [
       "crowded",
       "mixture",
@@ -8188,7 +9931,14 @@
       "included",
       "(kokuji)"
     ],
-    "stroke_count": 5
+    "stroke_count": 5,
+    "primary_readings": [
+      {
+        "kana": "-こ.む",
+        "romaji": "komu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "顔",
@@ -8207,15 +9957,23 @@
       "gan",
       "kao"
     ],
-    "primary_romaji": [
-      "gan",
-      "kao"
-    ],
     "meanings": [
       "face",
       "expression"
     ],
-    "stroke_count": 18
+    "stroke_count": 18,
+    "primary_readings": [
+      {
+        "kana": "ガン",
+        "romaji": "gan",
+        "type": "on"
+      },
+      {
+        "kana": "かお",
+        "romaji": "kao",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "類",
@@ -8234,10 +9992,6 @@
       "rui",
       "tagui"
     ],
-    "primary_romaji": [
-      "rui",
-      "tagui"
-    ],
     "meanings": [
       "sort",
       "kind",
@@ -8245,7 +9999,19 @@
       "class",
       "genus"
     ],
-    "stroke_count": 18
+    "stroke_count": 18,
+    "primary_readings": [
+      {
+        "kana": "ルイ",
+        "romaji": "rui",
+        "type": "on"
+      },
+      {
+        "kana": "たぐ.い",
+        "romaji": "tagui",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "余",
@@ -8270,10 +10036,6 @@
       "amasu",
       "anmari"
     ],
-    "primary_romaji": [
-      "yo",
-      "amari"
-    ],
     "meanings": [
       "too much",
       "myself",
@@ -8281,7 +10043,19 @@
       "other",
       "remainder"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "ヨ",
+        "romaji": "yo",
+        "type": "on"
+      },
+      {
+        "kana": "あま.り",
+        "romaji": "amari",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "王",
@@ -8299,15 +10073,19 @@
       "ou",
       "nou"
     ],
-    "primary_romaji": [
-      "ou"
-    ],
     "meanings": [
       "king",
       "rule",
       "magnate"
     ],
-    "stroke_count": 4
+    "stroke_count": 4,
+    "primary_readings": [
+      {
+        "kana": "オウ",
+        "romaji": "ou",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "返",
@@ -8330,17 +10108,25 @@
       "kaesu",
       "kaeru"
     ],
-    "primary_romaji": [
-      "hen",
-      "kaeru"
-    ],
     "meanings": [
       "return",
       "answer",
       "fade",
       "repay"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "ヘン",
+        "romaji": "hen",
+        "type": "on"
+      },
+      {
+        "kana": "かえ.る",
+        "romaji": "kaeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "妻",
@@ -8359,15 +10145,23 @@
       "sai",
       "tsuma"
     ],
-    "primary_romaji": [
-      "sai",
-      "tsuma"
-    ],
     "meanings": [
       "wife",
       "spouse"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "サイ",
+        "romaji": "sai",
+        "type": "on"
+      },
+      {
+        "kana": "つま",
+        "romaji": "tsuma",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "背",
@@ -8392,10 +10186,6 @@
       "somuku",
       "somukeru"
     ],
-    "primary_romaji": [
-      "hai",
-      "se"
-    ],
     "meanings": [
       "stature",
       "height",
@@ -8406,7 +10196,19 @@
       "go back on",
       "rebel"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "ハイ",
+        "romaji": "hai",
+        "type": "on"
+      },
+      {
+        "kana": "せ",
+        "romaji": "se",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "熱",
@@ -8425,10 +10227,6 @@
       "netsu",
       "atsui"
     ],
-    "primary_romaji": [
-      "netsu",
-      "atsui"
-    ],
     "meanings": [
       "heat",
       "temperature",
@@ -8436,7 +10234,19 @@
       "mania",
       "passion"
     ],
-    "stroke_count": 15
+    "stroke_count": 15,
+    "primary_readings": [
+      {
+        "kana": "ネツ",
+        "romaji": "netsu",
+        "type": "on"
+      },
+      {
+        "kana": "あつ.い",
+        "romaji": "atsui",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "宿",
@@ -8459,10 +10269,6 @@
       "yadoru",
       "yadosu"
     ],
-    "primary_romaji": [
-      "shuku",
-      "yado"
-    ],
     "meanings": [
       "inn",
       "lodging",
@@ -8473,7 +10279,19 @@
       "home",
       "dwelling"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "シュク",
+        "romaji": "shuku",
+        "type": "on"
+      },
+      {
+        "kana": "やど",
+        "romaji": "yado",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "薬",
@@ -8492,10 +10310,6 @@
       "yaku",
       "kusuri"
     ],
-    "primary_romaji": [
-      "yaku",
-      "kusuri"
-    ],
     "meanings": [
       "medicine",
       "chemical",
@@ -8503,7 +10317,19 @@
       "gunpowder",
       "benefit"
     ],
-    "stroke_count": 16
+    "stroke_count": 16,
+    "primary_readings": [
+      {
+        "kana": "ヤク",
+        "romaji": "yaku",
+        "type": "on"
+      },
+      {
+        "kana": "くすり",
+        "romaji": "kusuri",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "険",
@@ -8522,10 +10348,6 @@
       "ken",
       "kewashii"
     ],
-    "primary_romaji": [
-      "ken",
-      "kewashii"
-    ],
     "meanings": [
       "precipitous",
       "inaccessible place",
@@ -8533,7 +10355,19 @@
       "steep place",
       "sharp eyes"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "ケン",
+        "romaji": "ken",
+        "type": "on"
+      },
+      {
+        "kana": "けわ.しい",
+        "romaji": "kewashii",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "頼",
@@ -8556,15 +10390,23 @@
       "tanomoshii",
       "tayoru"
     ],
-    "primary_romaji": [
-      "rai",
-      "tanomu"
-    ],
     "meanings": [
       "trust",
       "request"
     ],
-    "stroke_count": 16
+    "stroke_count": 16,
+    "primary_readings": [
+      {
+        "kana": "ライ",
+        "romaji": "rai",
+        "type": "on"
+      },
+      {
+        "kana": "たの.む",
+        "romaji": "tanomu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "覚",
@@ -8589,10 +10431,6 @@
       "sameru",
       "satoru"
     ],
-    "primary_romaji": [
-      "kaku",
-      "oboeru"
-    ],
     "meanings": [
       "memorize",
       "learn",
@@ -8600,7 +10438,19 @@
       "awake",
       "sober up"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "カク",
+        "romaji": "kaku",
+        "type": "on"
+      },
+      {
+        "kana": "おぼ.える",
+        "romaji": "oboeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "船",
@@ -8621,15 +10471,23 @@
       "fune",
       "funa"
     ],
-    "primary_romaji": [
-      "sen",
-      "fune"
-    ],
     "meanings": [
       "ship",
       "boat"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "セン",
+        "romaji": "sen",
+        "type": "on"
+      },
+      {
+        "kana": "ふね",
+        "romaji": "fune",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "途",
@@ -8648,15 +10506,19 @@
       "to",
       "michi"
     ],
-    "primary_romaji": [
-      "to"
-    ],
     "meanings": [
       "route",
       "way",
       "road"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "ト",
+        "romaji": "to",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "許",
@@ -8677,15 +10539,23 @@
       "yurusu",
       "moto"
     ],
-    "primary_romaji": [
-      "kyo",
-      "yurusu"
-    ],
     "meanings": [
       "permit",
       "approve"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "キョ",
+        "romaji": "kyo",
+        "type": "on"
+      },
+      {
+        "kana": "ゆる.す",
+        "romaji": "yurusu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "抜",
@@ -8717,10 +10587,6 @@
       "nukasu",
       "nukaru"
     ],
-    "primary_romaji": [
-      "batsu",
-      "nuku"
-    ],
     "meanings": [
       "slip out",
       "extract",
@@ -8730,7 +10596,19 @@
       "remove",
       "omit"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "バツ",
+        "romaji": "batsu",
+        "type": "on"
+      },
+      {
+        "kana": "ぬ.く",
+        "romaji": "nuku",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "便",
@@ -8751,10 +10629,6 @@
       "bin",
       "tayori"
     ],
-    "primary_romaji": [
-      "ben",
-      "tayori"
-    ],
     "meanings": [
       "convenience",
       "facility",
@@ -8763,7 +10637,19 @@
       "letter",
       "chance"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "ベン",
+        "romaji": "ben",
+        "type": "on"
+      },
+      {
+        "kana": "たよ.り",
+        "romaji": "tayori",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "留",
@@ -8792,17 +10678,25 @@
       "todomaru",
       "ruuburu"
     ],
-    "primary_romaji": [
-      "ryuu",
-      "todomaru"
-    ],
     "meanings": [
       "detain",
       "fasten",
       "halt",
       "stop"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "リュウ",
+        "romaji": "ryuu",
+        "type": "on"
+      },
+      {
+        "kana": "とど.まる",
+        "romaji": "todomaru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "罪",
@@ -8821,10 +10715,6 @@
       "zai",
       "tsumi"
     ],
-    "primary_romaji": [
-      "zai",
-      "tsumi"
-    ],
     "meanings": [
       "guilt",
       "sin",
@@ -8833,7 +10723,19 @@
       "blame",
       "offense"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "ザイ",
+        "romaji": "zai",
+        "type": "on"
+      },
+      {
+        "kana": "つみ",
+        "romaji": "tsumi",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "努",
@@ -8852,16 +10754,24 @@
       "do",
       "tsutomeru"
     ],
-    "primary_romaji": [
-      "do",
-      "tsutomeru"
-    ],
     "meanings": [
       "toil",
       "diligent",
       "as much as possible"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "ド",
+        "romaji": "do",
+        "type": "on"
+      },
+      {
+        "kana": "つと.める",
+        "romaji": "tsutomeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "精",
@@ -8884,9 +10794,6 @@
       "shirageru",
       "kuwashii"
     ],
-    "primary_romaji": [
-      "sei"
-    ],
     "meanings": [
       "refined",
       "ghost",
@@ -8898,7 +10805,14 @@
       "purity",
       "skill"
     ],
-    "stroke_count": 14
+    "stroke_count": 14,
+    "primary_readings": [
+      {
+        "kana": "セイ",
+        "romaji": "sei",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "散",
@@ -8930,17 +10844,25 @@
       "bara",
       "barakeru"
     ],
-    "primary_romaji": [
-      "san",
-      "chiru"
-    ],
     "meanings": [
       "scatter",
       "disperse",
       "spend",
       "squander"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "サン",
+        "romaji": "san",
+        "type": "on"
+      },
+      {
+        "kana": "ち.る",
+        "romaji": "chiru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "静",
@@ -8967,14 +10889,22 @@
       "shizumaru",
       "shizumeru"
     ],
-    "primary_romaji": [
-      "sei",
-      "shizu"
-    ],
     "meanings": [
       "quiet"
     ],
-    "stroke_count": 14
+    "stroke_count": 14,
+    "primary_readings": [
+      {
+        "kana": "セイ",
+        "romaji": "sei",
+        "type": "on"
+      },
+      {
+        "kana": "しず-",
+        "romaji": "shizu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "婚",
@@ -8990,13 +10920,17 @@
     "romaji_readings": [
       "kon"
     ],
-    "primary_romaji": [
-      "kon"
-    ],
     "meanings": [
       "marriage"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "コン",
+        "romaji": "kon",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "喜",
@@ -9017,15 +10951,23 @@
       "yorokobu",
       "yorokobasu"
     ],
-    "primary_romaji": [
-      "ki",
-      "yorokobu"
-    ],
     "meanings": [
       "rejoice",
       "take pleasure in"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "キ",
+        "romaji": "ki",
+        "type": "on"
+      },
+      {
+        "kana": "よろこ.ぶ",
+        "romaji": "yorokobu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "浮",
@@ -9050,16 +10992,24 @@
       "ukabu",
       "ukaberu"
     ],
-    "primary_romaji": [
-      "fu",
-      "ukabu"
-    ],
     "meanings": [
       "floating",
       "float",
       "rise to surface"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "フ",
+        "romaji": "fu",
+        "type": "on"
+      },
+      {
+        "kana": "う.かぶ",
+        "romaji": "ukabu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "絶",
@@ -9082,10 +11032,6 @@
       "tayasu",
       "tatsu"
     ],
-    "primary_romaji": [
-      "zetsu",
-      "taeru"
-    ],
     "meanings": [
       "discontinue",
       "sever",
@@ -9098,7 +11044,19 @@
       "peerless",
       "unparalleled"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "ゼツ",
+        "romaji": "zetsu",
+        "type": "on"
+      },
+      {
+        "kana": "た.える",
+        "romaji": "taeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "幸",
@@ -9121,16 +11079,24 @@
       "sachi",
       "shiawase"
     ],
-    "primary_romaji": [
-      "kou",
-      "shiawase"
-    ],
     "meanings": [
       "happiness",
       "blessing",
       "fortune"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "コウ",
+        "romaji": "kou",
+        "type": "on"
+      },
+      {
+        "kana": "しあわ.せ",
+        "romaji": "shiawase",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "押",
@@ -9156,10 +11122,6 @@
       "otsu",
       "osaeru"
     ],
-    "primary_romaji": [
-      "ou",
-      "oshi"
-    ],
     "meanings": [
       "push",
       "stop",
@@ -9173,7 +11135,19 @@
       "seal",
       "do in spite of"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "オウ",
+        "romaji": "ou",
+        "type": "on"
+      },
+      {
+        "kana": "お.し-",
+        "romaji": "oshi",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "倒",
@@ -9202,10 +11176,6 @@
       "sakasa",
       "sakashima"
     ],
-    "primary_romaji": [
-      "tou",
-      "taoreru"
-    ],
     "meanings": [
       "overthrow",
       "fall",
@@ -9213,7 +11183,19 @@
       "drop",
       "break down"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "トウ",
+        "romaji": "tou",
+        "type": "on"
+      },
+      {
+        "kana": "たお.れる",
+        "romaji": "taoreru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "等",
@@ -9236,10 +11218,6 @@
       "nado",
       "ra"
     ],
-    "primary_romaji": [
-      "tou",
-      "ra"
-    ],
     "meanings": [
       "etc.",
       "and so forth",
@@ -9248,7 +11226,19 @@
       "equal",
       "similar"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "トウ",
+        "romaji": "tou",
+        "type": "on"
+      },
+      {
+        "kana": "-ら",
+        "romaji": "ra",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "老",
@@ -9269,16 +11259,24 @@
       "oiru",
       "fukeru"
     ],
-    "primary_romaji": [
-      "rou",
-      "oiru"
-    ],
     "meanings": [
       "old man",
       "old age",
       "grow old"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "ロウ",
+        "romaji": "rou",
+        "type": "on"
+      },
+      {
+        "kana": "お.いる",
+        "romaji": "oiru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "曲",
@@ -9301,10 +11299,6 @@
       "mageru",
       "kuma"
     ],
-    "primary_romaji": [
-      "kyoku",
-      "magaru"
-    ],
     "meanings": [
       "bend",
       "music",
@@ -9318,7 +11312,19 @@
       "perverse",
       "lean"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "キョク",
+        "romaji": "kyoku",
+        "type": "on"
+      },
+      {
+        "kana": "ま.がる",
+        "romaji": "magaru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "払",
@@ -9345,10 +11351,6 @@
       "harai",
       "barai"
     ],
-    "primary_romaji": [
-      "futsu",
-      "harau"
-    ],
     "meanings": [
       "pay",
       "clear out",
@@ -9356,7 +11358,19 @@
       "banish",
       "dispose of"
     ],
-    "stroke_count": 5
+    "stroke_count": 5,
+    "primary_readings": [
+      {
+        "kana": "フツ",
+        "romaji": "futsu",
+        "type": "on"
+      },
+      {
+        "kana": "はら.う",
+        "romaji": "harau",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "庭",
@@ -9375,16 +11389,24 @@
       "tei",
       "niwa"
     ],
-    "primary_romaji": [
-      "tei",
-      "niwa"
-    ],
     "meanings": [
       "courtyard",
       "garden",
       "yard"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "テイ",
+        "romaji": "tei",
+        "type": "on"
+      },
+      {
+        "kana": "にわ",
+        "romaji": "niwa",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "徒",
@@ -9405,10 +11427,6 @@
       "itazura",
       "ada"
     ],
-    "primary_romaji": [
-      "to",
-      "itazura"
-    ],
     "meanings": [
       "on foot",
       "junior",
@@ -9422,7 +11440,19 @@
       "party",
       "people"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "ト",
+        "romaji": "to",
+        "type": "on"
+      },
+      {
+        "kana": "あだ",
+        "romaji": "ada",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "勤",
@@ -9449,16 +11479,24 @@
       "tsutomaru",
       "isoshimu"
     ],
-    "primary_romaji": [
-      "kin",
-      "tsutomeru"
-    ],
     "meanings": [
       "diligence",
       "become employed",
       "serve"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "キン",
+        "romaji": "kin",
+        "type": "on"
+      },
+      {
+        "kana": "つと.める",
+        "romaji": "tsutomeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "遅",
@@ -9481,17 +11519,25 @@
       "okurasu",
       "osoi"
     ],
-    "primary_romaji": [
-      "chi",
-      "osoi"
-    ],
     "meanings": [
       "slow",
       "late",
       "back",
       "later"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "チ",
+        "romaji": "chi",
+        "type": "on"
+      },
+      {
+        "kana": "おそ.い",
+        "romaji": "osoi",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "居",
@@ -9516,17 +11562,25 @@
       "i",
       "oru"
     ],
-    "primary_romaji": [
-      "kyo",
-      "iru"
-    ],
     "meanings": [
       "reside",
       "to be",
       "exist",
       "live with"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "キョ",
+        "romaji": "kyo",
+        "type": "on"
+      },
+      {
+        "kana": "お.る",
+        "romaji": "oru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "雑",
@@ -9549,13 +11603,17 @@
       "majieru",
       "majiru"
     ],
-    "primary_romaji": [
-      "zatsu"
-    ],
     "meanings": [
       "miscellaneous"
     ],
-    "stroke_count": 14
+    "stroke_count": 14,
+    "primary_readings": [
+      {
+        "kana": "ザツ",
+        "romaji": "zatsu",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "招",
@@ -9574,17 +11632,25 @@
       "shou",
       "maneku"
     ],
-    "primary_romaji": [
-      "shou",
-      "maneku"
-    ],
     "meanings": [
       "beckon",
       "invite",
       "summon",
       "engage"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "ショウ",
+        "romaji": "shou",
+        "type": "on"
+      },
+      {
+        "kana": "まね.く",
+        "romaji": "maneku",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "困",
@@ -9603,16 +11669,24 @@
       "kon",
       "komaru"
     ],
-    "primary_romaji": [
-      "kon",
-      "komaru"
-    ],
     "meanings": [
       "quandary",
       "become distressed",
       "annoyed"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "コン",
+        "romaji": "kon",
+        "type": "on"
+      },
+      {
+        "kana": "こま.る",
+        "romaji": "komaru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "欠",
@@ -9635,17 +11709,25 @@
       "kakeru",
       "kaku"
     ],
-    "primary_romaji": [
-      "ketsu",
-      "kakeru"
-    ],
     "meanings": [
       "lack",
       "gap",
       "fail",
       "yawning radical (no. 76)"
     ],
-    "stroke_count": 4
+    "stroke_count": 4,
+    "primary_readings": [
+      {
+        "kana": "ケツ",
+        "romaji": "ketsu",
+        "type": "on"
+      },
+      {
+        "kana": "か.ける",
+        "romaji": "kakeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "更",
@@ -9670,10 +11752,6 @@
       "fukeru",
       "fukasu"
     ],
-    "primary_romaji": [
-      "kou",
-      "sara"
-    ],
     "meanings": [
       "grow late",
       "night watch",
@@ -9685,7 +11763,19 @@
       "more and more",
       "further"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "コウ",
+        "romaji": "kou",
+        "type": "on"
+      },
+      {
+        "kana": "さら",
+        "romaji": "sara",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "刻",
@@ -9706,10 +11796,6 @@
       "kizamu",
       "kizami"
     ],
-    "primary_romaji": [
-      "koku",
-      "kizamu"
-    ],
     "meanings": [
       "engrave",
       "cut fine",
@@ -9719,7 +11805,19 @@
       "time",
       "carving"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "コク",
+        "romaji": "koku",
+        "type": "on"
+      },
+      {
+        "kana": "きざ.む",
+        "romaji": "kizamu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "賛",
@@ -9740,9 +11838,6 @@
       "tasukeru",
       "tataeru"
     ],
-    "primary_romaji": [
-      "san"
-    ],
     "meanings": [
       "approve",
       "praise",
@@ -9750,7 +11845,14 @@
       "assist",
       "agree with"
     ],
-    "stroke_count": 15
+    "stroke_count": 15,
+    "primary_readings": [
+      {
+        "kana": "サン",
+        "romaji": "san",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "抱",
@@ -9773,16 +11875,24 @@
       "idaku",
       "kakaeru"
     ],
-    "primary_romaji": [
-      "hou",
-      "daku"
-    ],
     "meanings": [
       "embrace",
       "hug",
       "hold in arms"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "ホウ",
+        "romaji": "hou",
+        "type": "on"
+      },
+      {
+        "kana": "だ.く",
+        "romaji": "daku",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "犯",
@@ -9803,16 +11913,24 @@
       "bon",
       "okasu"
     ],
-    "primary_romaji": [
-      "han",
-      "okasu"
-    ],
     "meanings": [
       "crime",
       "sin",
       "offense"
     ],
-    "stroke_count": 5
+    "stroke_count": 5,
+    "primary_readings": [
+      {
+        "kana": "ハン",
+        "romaji": "han",
+        "type": "on"
+      },
+      {
+        "kana": "おか.す",
+        "romaji": "okasu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "恐",
@@ -9839,16 +11957,24 @@
       "kowai",
       "kowagaru"
     ],
-    "primary_romaji": [
-      "kyou",
-      "osoroshii"
-    ],
     "meanings": [
       "fear",
       "dread",
       "awe"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "キョウ",
+        "romaji": "kyou",
+        "type": "on"
+      },
+      {
+        "kana": "おそ.ろしい",
+        "romaji": "osoroshii",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "息",
@@ -9867,10 +11993,6 @@
       "soku",
       "iki"
     ],
-    "primary_romaji": [
-      "soku",
-      "iki"
-    ],
     "meanings": [
       "breath",
       "respiration",
@@ -9879,7 +12001,19 @@
       "rest",
       "coming to an end"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "ソク",
+        "romaji": "soku",
+        "type": "on"
+      },
+      {
+        "kana": "いき",
+        "romaji": "iki",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "遠",
@@ -9900,15 +12034,23 @@
       "on",
       "tooi"
     ],
-    "primary_romaji": [
-      "en",
-      "tooi"
-    ],
     "meanings": [
       "distant",
       "far"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "エン",
+        "romaji": "en",
+        "type": "on"
+      },
+      {
+        "kana": "とお.い",
+        "romaji": "tooi",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "戻",
@@ -9929,10 +12071,6 @@
       "modosu",
       "modoru"
     ],
-    "primary_romaji": [
-      "rei",
-      "modoru"
-    ],
     "meanings": [
       "re-",
       "return",
@@ -9941,7 +12079,19 @@
       "restore",
       "go backwards"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "レイ",
+        "romaji": "rei",
+        "type": "on"
+      },
+      {
+        "kana": "もど.る",
+        "romaji": "modoru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "願",
@@ -9962,10 +12112,6 @@
       "negau",
       "negai"
     ],
-    "primary_romaji": [
-      "gan",
-      "negai"
-    ],
     "meanings": [
       "petition",
       "request",
@@ -9973,7 +12119,19 @@
       "wish",
       "hope"
     ],
-    "stroke_count": 19
+    "stroke_count": 19,
+    "primary_readings": [
+      {
+        "kana": "ガン",
+        "romaji": "gan",
+        "type": "on"
+      },
+      {
+        "kana": "-ねがい",
+        "romaji": "negai",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "絵",
@@ -9991,16 +12149,20 @@
       "kai",
       "e"
     ],
-    "primary_romaji": [
-      "e"
-    ],
     "meanings": [
       "picture",
       "drawing",
       "painting",
       "sketch"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "カイ",
+        "romaji": "kai",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "越",
@@ -10028,10 +12190,6 @@
       "koeru",
       "goe"
     ],
-    "primary_romaji": [
-      "etsu",
-      "koeru"
-    ],
     "meanings": [
       "surpass",
       "cross over",
@@ -10039,7 +12197,19 @@
       "exceed",
       "Vietnam"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "エツ",
+        "romaji": "etsu",
+        "type": "on"
+      },
+      {
+        "kana": "こ.える",
+        "romaji": "koeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "欲",
@@ -10060,10 +12230,6 @@
       "hossuru",
       "hoshii"
     ],
-    "primary_romaji": [
-      "yoku",
-      "hoshii"
-    ],
     "meanings": [
       "longing",
       "covetousness",
@@ -10072,7 +12238,19 @@
       "desire",
       "craving"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "ヨク",
+        "romaji": "yoku",
+        "type": "on"
+      },
+      {
+        "kana": "ほ.しい",
+        "romaji": "hoshii",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "痛",
@@ -10097,17 +12275,25 @@
       "itamashii",
       "itameru"
     ],
-    "primary_romaji": [
-      "tsuu",
-      "itai"
-    ],
     "meanings": [
       "pain",
       "hurt",
       "damage",
       "bruise"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "ツウ",
+        "romaji": "tsuu",
+        "type": "on"
+      },
+      {
+        "kana": "いた.い",
+        "romaji": "itai",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "笑",
@@ -10128,14 +12314,22 @@
       "warau",
       "emu"
     ],
-    "primary_romaji": [
-      "shou",
-      "warau"
-    ],
     "meanings": [
       "laugh"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "ショウ",
+        "romaji": "shou",
+        "type": "on"
+      },
+      {
+        "kana": "わら.う",
+        "romaji": "warau",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "互",
@@ -10156,16 +12350,24 @@
       "tagai",
       "katamini"
     ],
-    "primary_romaji": [
-      "go",
-      "tagai"
-    ],
     "meanings": [
       "mutually",
       "reciprocally",
       "together"
     ],
-    "stroke_count": 4
+    "stroke_count": 4,
+    "primary_readings": [
+      {
+        "kana": "ゴ",
+        "romaji": "go",
+        "type": "on"
+      },
+      {
+        "kana": "たが.い",
+        "romaji": "tagai",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "束",
@@ -10190,10 +12392,6 @@
       "tsuka",
       "tsukaneru"
     ],
-    "primary_romaji": [
-      "soku",
-      "taba"
-    ],
     "meanings": [
       "bundle",
       "sheaf",
@@ -10203,7 +12401,19 @@
       "manage",
       "control"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "ソク",
+        "romaji": "soku",
+        "type": "on"
+      },
+      {
+        "kana": "たば",
+        "romaji": "taba",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "似",
@@ -10224,10 +12434,6 @@
       "niru",
       "hiru"
     ],
-    "primary_romaji": [
-      "ji",
-      "niru"
-    ],
     "meanings": [
       "becoming",
       "resemble",
@@ -10235,7 +12441,19 @@
       "imitate",
       "suitable"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "ジ",
+        "romaji": "ji",
+        "type": "on"
+      },
+      {
+        "kana": "に.る",
+        "romaji": "niru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "列",
@@ -10253,9 +12471,6 @@
       "retsu",
       "re"
     ],
-    "primary_romaji": [
-      "retsu"
-    ],
     "meanings": [
       "file",
       "row",
@@ -10263,7 +12478,14 @@
       "tier",
       "column"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "レ",
+        "romaji": "re",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "探",
@@ -10284,16 +12506,24 @@
       "saguru",
       "sagasu"
     ],
-    "primary_romaji": [
-      "tan",
-      "sagasu"
-    ],
     "meanings": [
       "grope",
       "search",
       "look for"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "タン",
+        "romaji": "tan",
+        "type": "on"
+      },
+      {
+        "kana": "さが.す",
+        "romaji": "sagasu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "逃",
@@ -10318,10 +12548,6 @@
       "nogasu",
       "nogareru"
     ],
-    "primary_romaji": [
-      "tou",
-      "nigeru"
-    ],
     "meanings": [
       "escape",
       "flee",
@@ -10329,7 +12555,19 @@
       "evade",
       "set free"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "トウ",
+        "romaji": "tou",
+        "type": "on"
+      },
+      {
+        "kana": "に.げる",
+        "romaji": "nigeru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "遊",
@@ -10352,14 +12590,22 @@
       "asobu",
       "asobasu"
     ],
-    "primary_romaji": [
-      "yuu",
-      "asobu"
-    ],
     "meanings": [
       "play"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "ユウ",
+        "romaji": "yuu",
+        "type": "on"
+      },
+      {
+        "kana": "あそ.ぶ",
+        "romaji": "asobu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "迷",
@@ -10378,10 +12624,6 @@
       "mei",
       "mayou"
     ],
-    "primary_romaji": [
-      "mei",
-      "mayou"
-    ],
     "meanings": [
       "astray",
       "be perplexed",
@@ -10390,7 +12632,19 @@
       "err",
       "illusion"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "メイ",
+        "romaji": "mei",
+        "type": "on"
+      },
+      {
+        "kana": "まよ.う",
+        "romaji": "mayou",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "夢",
@@ -10415,16 +12669,24 @@
       "yumemiru",
       "kurai"
     ],
-    "primary_romaji": [
-      "mu",
-      "yume"
-    ],
     "meanings": [
       "dream",
       "vision",
       "illusion"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "ム",
+        "romaji": "mu",
+        "type": "on"
+      },
+      {
+        "kana": "ゆめ",
+        "romaji": "yume",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "君",
@@ -10445,17 +12707,25 @@
       "kimi",
       "gimi"
     ],
-    "primary_romaji": [
-      "kun",
-      "kimi"
-    ],
     "meanings": [
       "mister",
       "you",
       "ruler",
       "male name suffix"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "クン",
+        "romaji": "kun",
+        "type": "on"
+      },
+      {
+        "kana": "きみ",
+        "romaji": "kimi",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "閉",
@@ -10482,15 +12752,23 @@
       "shimaru",
       "tateru"
     ],
-    "primary_romaji": [
-      "hei",
-      "tojiru"
-    ],
     "meanings": [
       "closed",
       "shut"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "ヘイ",
+        "romaji": "hei",
+        "type": "on"
+      },
+      {
+        "kana": "と.じる",
+        "romaji": "tojiru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "緒",
@@ -10513,10 +12791,6 @@
       "o",
       "itoguchi"
     ],
-    "primary_romaji": [
-      "sho",
-      "o"
-    ],
     "meanings": [
       "thong",
       "beginning",
@@ -10526,7 +12800,19 @@
       "strap",
       "mental or emotional state"
     ],
-    "stroke_count": 14
+    "stroke_count": 14,
+    "primary_readings": [
+      {
+        "kana": "ショ",
+        "romaji": "sho",
+        "type": "on"
+      },
+      {
+        "kana": "お",
+        "romaji": "o",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "折",
@@ -10553,10 +12839,6 @@
       "ori",
       "oreru"
     ],
-    "primary_romaji": [
-      "setsu",
-      "ori"
-    ],
     "meanings": [
       "fold",
       "break",
@@ -10565,7 +12847,19 @@
       "yield",
       "submit"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "セツ",
+        "romaji": "setsu",
+        "type": "on"
+      },
+      {
+        "kana": "お.り",
+        "romaji": "ori",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "草",
@@ -10587,10 +12881,6 @@
       "kusa",
       "gusa"
     ],
-    "primary_romaji": [
-      "sou",
-      "kusa"
-    ],
     "meanings": [
       "grass",
       "weeds",
@@ -10599,7 +12889,19 @@
       "write",
       "draft"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "ソウ",
+        "romaji": "sou",
+        "type": "on"
+      },
+      {
+        "kana": "くさ",
+        "romaji": "kusa",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "暮",
@@ -10620,10 +12922,6 @@
       "kureru",
       "kurasu"
     ],
-    "primary_romaji": [
-      "bo",
-      "kurasu"
-    ],
     "meanings": [
       "evening",
       "twilight",
@@ -10632,7 +12930,19 @@
       "make a living",
       "spend time"
     ],
-    "stroke_count": 14
+    "stroke_count": 14,
+    "primary_readings": [
+      {
+        "kana": "ボ",
+        "romaji": "bo",
+        "type": "on"
+      },
+      {
+        "kana": "く.らす",
+        "romaji": "kurasu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "酒",
@@ -10653,15 +12963,23 @@
       "sake",
       "saka"
     ],
-    "primary_romaji": [
-      "shu",
-      "sake"
-    ],
     "meanings": [
       "sake",
       "alcohol"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "シュ",
+        "romaji": "shu",
+        "type": "on"
+      },
+      {
+        "kana": "さけ",
+        "romaji": "sake",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "悲",
@@ -10682,17 +13000,25 @@
       "kanashii",
       "kanashimu"
     ],
-    "primary_romaji": [
-      "hi",
-      "kanashii"
-    ],
     "meanings": [
       "grieve",
       "sad",
       "deplore",
       "regret"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "ヒ",
+        "romaji": "hi",
+        "type": "on"
+      },
+      {
+        "kana": "かな.しい",
+        "romaji": "kanashii",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "晴",
@@ -10718,14 +13044,22 @@
       "bare",
       "harasu"
     ],
-    "primary_romaji": [
-      "sei",
-      "hare"
-    ],
     "meanings": [
       "clear up"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "セイ",
+        "romaji": "sei",
+        "type": "on"
+      },
+      {
+        "kana": "は.れ",
+        "romaji": "hare",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "掛",
@@ -10763,10 +13097,6 @@
       "kakari",
       "gakari"
     ],
-    "primary_romaji": [
-      "kei",
-      "kakeru"
-    ],
     "meanings": [
       "hang",
       "suspend",
@@ -10775,7 +13105,19 @@
       "tax",
       "pour"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "か.ける",
+        "romaji": "kakeru",
+        "type": "kun"
+      },
+      {
+        "kana": "カイ",
+        "romaji": "kai",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "到",
@@ -10794,10 +13136,6 @@
       "tou",
       "itaru"
     ],
-    "primary_romaji": [
-      "tou",
-      "itaru"
-    ],
     "meanings": [
       "arrival",
       "proceed",
@@ -10805,7 +13143,14 @@
       "attain",
       "result in"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "トウ",
+        "romaji": "tou",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "寝",
@@ -10832,10 +13177,6 @@
       "mitamaya",
       "yameru"
     ],
-    "primary_romaji": [
-      "shin",
-      "neru"
-    ],
     "meanings": [
       "lie down",
       "sleep",
@@ -10843,7 +13184,19 @@
       "bed",
       "remain unsold"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "シン",
+        "romaji": "shin",
+        "type": "on"
+      },
+      {
+        "kana": "ね.る",
+        "romaji": "neru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "暗",
@@ -10866,10 +13219,6 @@
       "kuramu",
       "kureru"
     ],
-    "primary_romaji": [
-      "an",
-      "kurai"
-    ],
     "meanings": [
       "darkness",
       "disappear",
@@ -10878,7 +13227,19 @@
       "grow dark",
       "be blinded"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "アン",
+        "romaji": "an",
+        "type": "on"
+      },
+      {
+        "kana": "くら.い",
+        "romaji": "kurai",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "盗",
@@ -10899,16 +13260,24 @@
       "nusumu",
       "nusumi"
     ],
-    "primary_romaji": [
-      "tou",
-      "nusumu"
-    ],
     "meanings": [
       "steal",
       "rob",
       "pilfer"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "トウ",
+        "romaji": "tou",
+        "type": "on"
+      },
+      {
+        "kana": "ぬす.む",
+        "romaji": "nusumu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "吸",
@@ -10927,17 +13296,25 @@
       "kyuu",
       "suu"
     ],
-    "primary_romaji": [
-      "kyuu",
-      "suu"
-    ],
     "meanings": [
       "suck",
       "imbibe",
       "inhale",
       "sip"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "キュウ",
+        "romaji": "kyuu",
+        "type": "on"
+      },
+      {
+        "kana": "す.う",
+        "romaji": "suu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "陽",
@@ -10956,10 +13333,6 @@
       "you",
       "hi"
     ],
-    "primary_romaji": [
-      "you",
-      "hi"
-    ],
     "meanings": [
       "sunshine",
       "yang principle",
@@ -10968,7 +13341,14 @@
       "heaven",
       "daytime"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "ヨウ",
+        "romaji": "you",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "御",
@@ -10993,16 +13373,24 @@
       "o",
       "mi"
     ],
-    "primary_romaji": [
-      "go",
-      "o"
-    ],
     "meanings": [
       "honorable",
       "manipulate",
       "govern"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "ゴ",
+        "romaji": "go",
+        "type": "on"
+      },
+      {
+        "kana": "お-",
+        "romaji": "o",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "歯",
@@ -11026,15 +13414,23 @@
       "ha",
       "yowaisuru"
     ],
-    "primary_romaji": [
-      "shi",
-      "ha"
-    ],
     "meanings": [
       "tooth",
       "cog"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "シ",
+        "romaji": "shi",
+        "type": "on"
+      },
+      {
+        "kana": "は",
+        "romaji": "ha",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "忘",
@@ -11053,14 +13449,22 @@
       "bou",
       "wasureru"
     ],
-    "primary_romaji": [
-      "bou",
-      "wasureru"
-    ],
     "meanings": [
       "forget"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "ボウ",
+        "romaji": "bou",
+        "type": "on"
+      },
+      {
+        "kana": "わす.れる",
+        "romaji": "wasureru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "雪",
@@ -11079,14 +13483,22 @@
       "setsu",
       "yuki"
     ],
-    "primary_romaji": [
-      "setsu",
-      "yuki"
-    ],
     "meanings": [
       "snow"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "セツ",
+        "romaji": "setsu",
+        "type": "on"
+      },
+      {
+        "kana": "ゆき",
+        "romaji": "yuki",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "吹",
@@ -11105,10 +13517,6 @@
       "sui",
       "fuku"
     ],
-    "primary_romaji": [
-      "sui",
-      "fuku"
-    ],
     "meanings": [
       "blow",
       "breathe",
@@ -11116,7 +13524,19 @@
       "emit",
       "smoke"
     ],
-    "stroke_count": 7
+    "stroke_count": 7,
+    "primary_readings": [
+      {
+        "kana": "スイ",
+        "romaji": "sui",
+        "type": "on"
+      },
+      {
+        "kana": "ふ.く",
+        "romaji": "fuku",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "娘",
@@ -11137,15 +13557,23 @@
       "musume",
       "ko"
     ],
-    "primary_romaji": [
-      "jou",
-      "musume"
-    ],
     "meanings": [
       "daughter",
       "girl"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "ジョウ",
+        "romaji": "jou",
+        "type": "on"
+      },
+      {
+        "kana": "むすめ",
+        "romaji": "musume",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "誤",
@@ -11165,17 +13593,25 @@
       "go",
       "ayamaru"
     ],
-    "primary_romaji": [
-      "go",
-      "ayamaru"
-    ],
     "meanings": [
       "mistake",
       "err",
       "do wrong",
       "mislead"
     ],
-    "stroke_count": 14
+    "stroke_count": 14,
+    "primary_readings": [
+      {
+        "kana": "ゴ",
+        "romaji": "go",
+        "type": "on"
+      },
+      {
+        "kana": "あやま.る",
+        "romaji": "ayamaru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "洗",
@@ -11194,16 +13630,24 @@
       "sen",
       "arau"
     ],
-    "primary_romaji": [
-      "sen",
-      "arau"
-    ],
     "meanings": [
       "wash",
       "inquire into",
       "probe"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "セン",
+        "romaji": "sen",
+        "type": "on"
+      },
+      {
+        "kana": "あら.う",
+        "romaji": "arau",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "慣",
@@ -11224,16 +13668,24 @@
       "nareru",
       "narasu"
     ],
-    "primary_romaji": [
-      "kan",
-      "nareru"
-    ],
     "meanings": [
       "accustomed",
       "get used to",
       "become experienced"
     ],
-    "stroke_count": 14
+    "stroke_count": 14,
+    "primary_readings": [
+      {
+        "kana": "カン",
+        "romaji": "kan",
+        "type": "on"
+      },
+      {
+        "kana": "な.れる",
+        "romaji": "nareru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "礼",
@@ -11251,9 +13703,6 @@
       "rei",
       "rai"
     ],
-    "primary_romaji": [
-      "rei"
-    ],
     "meanings": [
       "salute",
       "bow",
@@ -11261,7 +13710,14 @@
       "thanks",
       "remuneration"
     ],
-    "stroke_count": 5
+    "stroke_count": 5,
+    "primary_readings": [
+      {
+        "kana": "レイ",
+        "romaji": "rei",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "窓",
@@ -11286,15 +13742,23 @@
       "tenmado",
       "kemudashi"
     ],
-    "primary_romaji": [
-      "sou",
-      "mado"
-    ],
     "meanings": [
       "window",
       "pane"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "ソウ",
+        "romaji": "sou",
+        "type": "on"
+      },
+      {
+        "kana": "まど",
+        "romaji": "mado",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "昔",
@@ -11315,16 +13779,24 @@
       "shaku",
       "mukashi"
     ],
-    "primary_romaji": [
-      "seki",
-      "mukashi"
-    ],
     "meanings": [
       "once upon a time",
       "antiquity",
       "old times"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "セキ",
+        "romaji": "seki",
+        "type": "on"
+      },
+      {
+        "kana": "むかし",
+        "romaji": "mukashi",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "貧",
@@ -11345,15 +13817,23 @@
       "bin",
       "mazushii"
     ],
-    "primary_romaji": [
-      "hin",
-      "mazushii"
-    ],
     "meanings": [
       "poverty",
       "poor"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "ヒン",
+        "romaji": "hin",
+        "type": "on"
+      },
+      {
+        "kana": "まず.しい",
+        "romaji": "mazushii",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "怒",
@@ -11376,15 +13856,23 @@
       "ikaru",
       "okoru"
     ],
-    "primary_romaji": [
-      "do",
-      "okoru"
-    ],
     "meanings": [
       "angry",
       "be offended"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "ド",
+        "romaji": "do",
+        "type": "on"
+      },
+      {
+        "kana": "おこ.る",
+        "romaji": "okoru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "泳",
@@ -11403,14 +13891,22 @@
       "ei",
       "oyogu"
     ],
-    "primary_romaji": [
-      "ei",
-      "oyogu"
-    ],
     "meanings": [
       "swim"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "エイ",
+        "romaji": "ei",
+        "type": "on"
+      },
+      {
+        "kana": "およ.ぐ",
+        "romaji": "oyogu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "祖",
@@ -11426,15 +13922,19 @@
     "romaji_readings": [
       "so"
     ],
-    "primary_romaji": [
-      "so"
-    ],
     "meanings": [
       "ancestor",
       "pioneer",
       "founder"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "ソ",
+        "romaji": "so",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "杯",
@@ -11453,17 +13953,25 @@
       "hai",
       "sakazuki"
     ],
-    "primary_romaji": [
-      "hai",
-      "sakazuki"
-    ],
     "meanings": [
       "counter for cupfuls",
       "wine glass",
       "glass",
       "toast"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "ハイ",
+        "romaji": "hai",
+        "type": "on"
+      },
+      {
+        "kana": "さかずき",
+        "romaji": "sakazuki",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "疲",
@@ -11486,16 +13994,24 @@
       "zukare",
       "tsukarasu"
     ],
-    "primary_romaji": [
-      "hi",
-      "tsukareru"
-    ],
     "meanings": [
       "exhausted",
       "tire",
       "weary"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "ヒ",
+        "romaji": "hi",
+        "type": "on"
+      },
+      {
+        "kana": "つか.れる",
+        "romaji": "tsukareru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "皆",
@@ -11516,15 +14032,23 @@
       "mina",
       "minna"
     ],
-    "primary_romaji": [
-      "kai",
-      "mina"
-    ],
     "meanings": [
       "all",
       "everything"
     ],
-    "stroke_count": 9
+    "stroke_count": 9,
+    "primary_readings": [
+      {
+        "kana": "カイ",
+        "romaji": "kai",
+        "type": "on"
+      },
+      {
+        "kana": "みな",
+        "romaji": "mina",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "鳴",
@@ -11547,10 +14071,6 @@
       "naru",
       "narasu"
     ],
-    "primary_romaji": [
-      "mei",
-      "naru"
-    ],
     "meanings": [
       "chirp",
       "cry",
@@ -11560,7 +14080,19 @@
       "echo",
       "honk"
     ],
-    "stroke_count": 14
+    "stroke_count": 14,
+    "primary_readings": [
+      {
+        "kana": "メイ",
+        "romaji": "mei",
+        "type": "on"
+      },
+      {
+        "kana": "な.る",
+        "romaji": "naru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "腹",
@@ -11579,16 +14111,24 @@
       "fuku",
       "hara"
     ],
-    "primary_romaji": [
-      "fuku",
-      "hara"
-    ],
     "meanings": [
       "abdomen",
       "belly",
       "stomach"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "フク",
+        "romaji": "fuku",
+        "type": "on"
+      },
+      {
+        "kana": "はら",
+        "romaji": "hara",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "煙",
@@ -11611,14 +14151,22 @@
       "kemuri",
       "kemui"
     ],
-    "primary_romaji": [
-      "en",
-      "kemuri"
-    ],
     "meanings": [
       "smoke"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "エン",
+        "romaji": "en",
+        "type": "on"
+      },
+      {
+        "kana": "けむり",
+        "romaji": "kemuri",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "眠",
@@ -11639,16 +14187,24 @@
       "nemuru",
       "nemui"
     ],
-    "primary_romaji": [
-      "min",
-      "nemuru"
-    ],
     "meanings": [
       "sleep",
       "die",
       "sleepy"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "ミン",
+        "romaji": "min",
+        "type": "on"
+      },
+      {
+        "kana": "ねむ.る",
+        "romaji": "nemuru",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "怖",
@@ -11675,16 +14231,24 @@
       "ojiru",
       "osoreru"
     ],
-    "primary_romaji": [
-      "fu",
-      "kowai"
-    ],
     "meanings": [
       "dreadful",
       "be frightened",
       "fearful"
     ],
-    "stroke_count": 8
+    "stroke_count": 8,
+    "primary_readings": [
+      {
+        "kana": "フ",
+        "romaji": "fu",
+        "type": "on"
+      },
+      {
+        "kana": "こわ.い",
+        "romaji": "kowai",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "耳",
@@ -11703,14 +14267,22 @@
       "ji",
       "mimi"
     ],
-    "primary_romaji": [
-      "ji",
-      "mimi"
-    ],
     "meanings": [
       "ear"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "ジ",
+        "romaji": "ji",
+        "type": "on"
+      },
+      {
+        "kana": "みみ",
+        "romaji": "mimi",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "頂",
@@ -11731,10 +14303,6 @@
       "itadaku",
       "itadaki"
     ],
-    "primary_romaji": [
-      "chou",
-      "itadaku"
-    ],
     "meanings": [
       "place on the head",
       "receive",
@@ -11743,7 +14311,19 @@
       "summit",
       "peak"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "チョウ",
+        "romaji": "chou",
+        "type": "on"
+      },
+      {
+        "kana": "いただ.く",
+        "romaji": "itadaku",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "箱",
@@ -11762,10 +14342,6 @@
       "sou",
       "hako"
     ],
-    "primary_romaji": [
-      "sou",
-      "hako"
-    ],
     "meanings": [
       "box",
       "chest",
@@ -11773,7 +14349,19 @@
       "bin",
       "railway car"
     ],
-    "stroke_count": 15
+    "stroke_count": 15,
+    "primary_readings": [
+      {
+        "kana": "ソウ",
+        "romaji": "sou",
+        "type": "on"
+      },
+      {
+        "kana": "はこ",
+        "romaji": "hako",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "晩",
@@ -11789,14 +14377,18 @@
     "romaji_readings": [
       "ban"
     ],
-    "primary_romaji": [
-      "ban"
-    ],
     "meanings": [
       "nightfall",
       "night"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "バン",
+        "romaji": "ban",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "寒",
@@ -11815,14 +14407,22 @@
       "kan",
       "samui"
     ],
-    "primary_romaji": [
-      "kan",
-      "samui"
-    ],
     "meanings": [
       "cold"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "カン",
+        "romaji": "kan",
+        "type": "on"
+      },
+      {
+        "kana": "さむ.い",
+        "romaji": "samui",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "髪",
@@ -11841,14 +14441,22 @@
       "hatsu",
       "kami"
     ],
-    "primary_romaji": [
-      "hatsu",
-      "kami"
-    ],
     "meanings": [
       "hair of the head"
     ],
-    "stroke_count": 14
+    "stroke_count": 14,
+    "primary_readings": [
+      {
+        "kana": "ハツ",
+        "romaji": "hatsu",
+        "type": "on"
+      },
+      {
+        "kana": "かみ",
+        "romaji": "kami",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "忙",
@@ -11875,16 +14483,24 @@
       "osoreru",
       "ureerusama"
     ],
-    "primary_romaji": [
-      "bou",
-      "isogashii"
-    ],
     "meanings": [
       "busy",
       "occupied",
       "restless"
     ],
-    "stroke_count": 6
+    "stroke_count": 6,
+    "primary_readings": [
+      {
+        "kana": "ボウ",
+        "romaji": "bou",
+        "type": "on"
+      },
+      {
+        "kana": "いそが.しい",
+        "romaji": "isogashii",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "才",
@@ -11900,15 +14516,19 @@
     "romaji_readings": [
       "sai"
     ],
-    "primary_romaji": [
-      "sai"
-    ],
     "meanings": [
       "genius",
       "years old",
       "cubic shaku"
     ],
-    "stroke_count": 3
+    "stroke_count": 3,
+    "primary_readings": [
+      {
+        "kana": "サイ",
+        "romaji": "sai",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "靴",
@@ -11927,14 +14547,22 @@
       "ka",
       "kutsu"
     ],
-    "primary_romaji": [
-      "ka",
-      "kutsu"
-    ],
     "meanings": [
       "shoes"
     ],
-    "stroke_count": 13
+    "stroke_count": 13,
+    "primary_readings": [
+      {
+        "kana": "カ",
+        "romaji": "ka",
+        "type": "on"
+      },
+      {
+        "kana": "くつ",
+        "romaji": "kutsu",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "恥",
@@ -11959,15 +14587,23 @@
       "hajirau",
       "hazukashii"
     ],
-    "primary_romaji": [
-      "chi",
-      "hazukashii"
-    ],
     "meanings": [
       "shame",
       "dishonor"
     ],
-    "stroke_count": 10
+    "stroke_count": 10,
+    "primary_readings": [
+      {
+        "kana": "チ",
+        "romaji": "chi",
+        "type": "on"
+      },
+      {
+        "kana": "は.ずかしい",
+        "romaji": "hazukashii",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "偶",
@@ -11986,10 +14622,6 @@
       "guu",
       "tama"
     ],
-    "primary_romaji": [
-      "guu",
-      "tama"
-    ],
     "meanings": [
       "accidentally",
       "even number",
@@ -11997,7 +14629,14 @@
       "man & wife",
       "same kind"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "グウ",
+        "romaji": "guu",
+        "type": "on"
+      }
+    ]
   },
   {
     "kanji": "偉",
@@ -12016,10 +14655,6 @@
       "i",
       "erai"
     ],
-    "primary_romaji": [
-      "i",
-      "erai"
-    ],
     "meanings": [
       "admirable",
       "greatness",
@@ -12028,7 +14663,19 @@
       "famous",
       "excellent"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "イ",
+        "romaji": "i",
+        "type": "on"
+      },
+      {
+        "kana": "えら.い",
+        "romaji": "erai",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "猫",
@@ -12047,14 +14694,22 @@
       "byou",
       "neko"
     ],
-    "primary_romaji": [
-      "byou",
-      "neko"
-    ],
     "meanings": [
       "cat"
     ],
-    "stroke_count": 11
+    "stroke_count": 11,
+    "primary_readings": [
+      {
+        "kana": "ビョウ",
+        "romaji": "byou",
+        "type": "on"
+      },
+      {
+        "kana": "ねこ",
+        "romaji": "neko",
+        "type": "kun"
+      }
+    ]
   },
   {
     "kanji": "幾",
@@ -12077,10 +14732,6 @@
       "ikutsu",
       "ikura"
     ],
-    "primary_romaji": [
-      "ki",
-      "iku"
-    ],
     "meanings": [
       "how many",
       "how much",
@@ -12089,6 +14740,18 @@
       "some",
       "several"
     ],
-    "stroke_count": 12
+    "stroke_count": 12,
+    "primary_readings": [
+      {
+        "kana": "キ",
+        "romaji": "ki",
+        "type": "on"
+      },
+      {
+        "kana": "いく-",
+        "romaji": "iku",
+        "type": "kun"
+      }
+    ]
   }
 ]

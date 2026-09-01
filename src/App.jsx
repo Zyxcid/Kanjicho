@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { LEVEL_IDS, getUnitsForLevel, getLevelMeta, loadLevelKanji } from "./lib/dataLoader.js";
 import { createInitialUnitState, reviewUnit } from "./lib/srs.js";
-import { generateQuiz, scoreQuiz } from "./lib/quizGenerator.js";
+import { generateQuiz, generateWeakQuiz, scoreQuiz } from "./lib/quizGenerator.js";
 import * as storage from "./lib/storage.js";
 import { useRouter } from "./lib/useRouter.js";
 
@@ -34,12 +34,11 @@ function toDateStr(date) {
 /**
  * Hitung streak harian dari riwayat kuis: berapa hari BERTURUT-TURUT user
  * mengerjakan minimal satu kuis, dihitung mundur dari hari ini. Kalau hari
- * ini belum ada aktivitas, streak tetap dihitung dari kemarin (belum
- * "putus" sampai hari ini benar-benar lewat tanpa aktivitas).
+ * ini belum ada aktivitas, streak dihitung dari kemarin (belum "putus"
+ * sampai hari ini benar-benar lewat kosong).
  *
- * Return { streak, doneToday } -- doneToday dipakai UI (Home.jsx) untuk
- * bedakan visual "hari ini sudah aman" vs "belum", supaya user tidak cuma
- * mengandalkan baca angka untuk tahu statusnya.
+ * Return { streak, doneToday } — doneToday dipakai Home.jsx untuk warna
+ * stat streak (emas = aman, merah = terancam).
  */
 function computeStreak(attempts) {
   const dateSet = new Set(attempts.map((a) => a.timestamp.slice(0, 10)));
@@ -59,13 +58,31 @@ function computeStreak(attempts) {
 }
 
 export default function App() {
-  // Screen navigation is driven by the URL hash via useRouter, so the
-  // browser Back button navigates within the app instead of exiting it.
+  // Navigasi layar lewat hash URL (useRouter) supaya tombol Back browser
+  // berpindah layar di dalam app, bukan keluar.
   const { view, level: routeLevel, unit: routeUnit, navigate } = useRouter();
 
-  // activeLevel/activeUnit lag the route so UnitSelect keeps showing the
-  // right level even when we briefly route home (e.g. Quiz Cancel goes to
-  // the level the quiz was in).
+  // Skrip tampilan kana/romaji: "romaji" (default, ramah pemula) atau
+  // "kana" (autentik — melatih baca kana langsung). Mengatur seluruh layar
+  // kuis: label pilihan jawaban, bacaan On/Kun di panel reveal, dan reading
+  // contoh kata. Disimpan di localStorage supaya bertahan lintas sesi;
+  // toggle berlaku LIVE (pilihan soal menyimpan kana+romaji sekaligus,
+  // reveal dikonversi runtime — lihat lib/kana.js).
+  const [answerScript, setAnswerScript] = useState(
+    () => localStorage.getItem("kanji-answer-script") || "romaji"
+  );
+
+  function toggleAnswerScript() {
+    setAnswerScript((s) => {
+      const next = s === "kana" ? "romaji" : "kana";
+      localStorage.setItem("kanji-answer-script", next);
+      return next;
+    });
+  }
+
+  // activeLevel/activeUnit tertinggal dari route supaya UnitSelect tetap
+  // menampilkan level yang benar saat kita sempat route home (mis. Cancel
+  // kuis kembali ke level asal kuisnya).
   const [activeLevel, setActiveLevel] = useState(routeLevel || "N5");
   const [activeUnit, setActiveUnit] = useState(routeUnit);
 
@@ -74,22 +91,40 @@ export default function App() {
   const [streakDoneToday, setStreakDoneToday] = useState(false);
   const [loading, setLoading] = useState(true);
   const [quiz, setQuiz] = useState(null);
+  // Mode sesi kuis yang sedang berjalan:
+  //   "srs"      — kuis sungguhan: update jadwal SRS + kanjiStats + streak
+  //   "practice" — latihan bebas: tidak mengubah apa pun
+  //   "weak"     — missed kanji review: update kanjiStats + streak, tanpa SRS
+  const [quizMode, setQuizMode] = useState("srs");
   const [qIndex, setQIndex] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [selectedChoice, setSelectedChoice] = useState(null);
   const [result, setResult] = useState(null);
   const [toast, setToast] = useState(null);
+  // Kanji yang sedang "missed" (pernah salah, belum ditebus) — untuk pill
+  // "✕ N" di tiap kartu unit (UnitSelect).
+  const [weakKanji, setWeakKanji] = useState([]);
+  // Level asal sesi missed review — untuk tombol "Back to Units" di Result
+  // kembali ke daftar unit level itu.
+  const [weakOriginLevel, setWeakOriginLevel] = useState(null);
 
-  // Keep activeLevel / activeUnit in sync with the route as the user
-  // navigates (forward navigation sets them; back navigation restores them).
+  // Lookup cepat kanji → "sedang missed" (Set of chars) untuk UnitSelect.
+  const weakChars = useMemo(() => new Set(weakKanji.map((r) => r.kanji)), [weakKanji]);
+
+  // Sinkronkan activeLevel/activeUnit dengan route saat user navigasi.
   useEffect(() => {
     if (routeLevel) setActiveLevel(routeLevel);
     if (routeUnit) setActiveUnit(routeUnit);
   }, [routeLevel, routeUnit]);
 
-  // Load semua progress + riwayat kuis dari IndexedDB sekali saat app dibuka.
+  // Muat semua progress + riwayat kuis + statistik kanji dari IndexedDB
+  // sekali saat app dibuka.
   useEffect(() => {
-    Promise.all([storage.getAllProgress(), storage.getAllQuizAttempts()]).then(([records, attempts]) => {
+    Promise.all([
+      storage.getAllProgress(),
+      storage.getAllQuizAttempts(),
+      storage.getWeakKanji(),
+    ]).then(([records, attempts, weak]) => {
       const map = {};
       records.forEach((r) => {
         map[r.unitId] = r;
@@ -98,6 +133,7 @@ export default function App() {
       const { streak: s, doneToday } = computeStreak(attempts);
       setStreak(s);
       setStreakDoneToday(doneToday);
+      setWeakKanji(weak);
       setLoading(false);
     });
   }, []);
@@ -107,9 +143,30 @@ export default function App() {
     setTimeout(() => setToast(null), 2200);
   }, []);
 
-  // Hitung statistik untuk satu set unit: berapa yang sudah pernah dikuiskan
-  // ("studied"), berapa yang jatuh tempo sekarang ("due"), berapa yang sudah
-  // dikuasai ("mastered"), plus info review terdekat berikutnya (unit + hari).
+  // Shortcut global: q = klik tombol back (".kd-back") di layar yang punya
+  // tombol itu. Diimplementasikan dengan meng-KLIK tombolnya (bukan
+  // navigasi langsung) supaya shortcut menempuh alur yang sama dengan klik
+  // mouse — termasuk dialog konfirmasi keluar kuis di Quiz.jsx.
+  useEffect(() => {
+    function handleBackKey(e) {
+      if (e.ctrlKey || e.metaKey || e.altKey) return; // Ctrl+Q/Cmd+Q = OS/browser
+      if (e.key.toLowerCase() !== "q") return;
+      // User sedang mengetik (search box Browse) — jangan direbut.
+      const el = document.activeElement;
+      if (el && (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.isContentEditable)) return;
+      // Modal terbuka (help / detail Browse / konfirmasi) — shortcut tidak
+      // menembus modal.
+      if (document.querySelector(".kd-modal-overlay")) return;
+      // Home & Result tidak punya tombol back → q tidak melakukan apa-apa.
+      document.querySelector(".kd-back")?.click();
+    }
+    window.addEventListener("keydown", handleBackKey);
+    return () => window.removeEventListener("keydown", handleBackKey);
+  }, []);
+
+  // Statistik satu set unit: berapa yang pernah dikuiskan ("studied"),
+  // jatuh tempo ("due"), dikuasai ("mastered"), + review terdekat
+  // (unit + hari).
   function computeStats(units) {
     let studied = 0, due = 0, mastered = 0;
     let soonestAt = null, soonestUnit = null;
@@ -118,9 +175,9 @@ export default function App() {
       const status = unitStatus(state);
       if (status === "due") due++;
       else if (status === "mastered") mastered++;
-      // "Studied" = pernah dikerjakan minimal sekali (stability sudah terisi).
+      // "Studied" = pernah dikerjakan minimal sekali.
       if (state && state.stability !== null) studied++;
-      // Cari nextReviewAt paling dekat di antara unit yang sudah dipelajari.
+      // Cari nextReviewAt terdekat di antara unit yang sudah dipelajari.
       if (state && state.nextReviewAt) {
         const at = new Date(state.nextReviewAt).getTime();
         if (soonestAt === null || at < soonestAt) {
@@ -143,14 +200,13 @@ export default function App() {
     };
   }
 
-  // Stats agregat SEMUA level (dipakai di Home, sebelum user pilih level tertentu)
+  // Stats agregat semua level (Home, sebelum user pilih level tertentu).
   const allLevelsStats = useMemo(
     () => computeStats(LEVEL_IDS.flatMap((l) => getUnitsForLevel(l))),
     [progress]
   );
 
-  // Stats per-level untuk badge tiap kartu level di Home. Dihitung sekali
-  // dari `progress` tiap kali progress berubah, lalu dipass sebagai lookup.
+  // Stats per level untuk badge tiap kartu level di Home.
   const levelStatsMap = useMemo(() => {
     const map = {};
     LEVEL_IDS.forEach((l) => {
@@ -159,11 +215,10 @@ export default function App() {
     return map;
   }, [progress]);
 
-  // Badging API -- taruh angka "due" di icon app (kalau PWA sudah di-install
-  // & browser dukung). Cuma bisa update pas app kebuka; TIDAK jalan di
-  // background kalau app tertutup (bukan push notification sungguhan,
-  // lihat catatan di README). Feature-detect supaya aman di browser yang
-  // belum dukung (mis. Safari/iOS).
+  // Badge angka "due" di ikon app (PWA ter-install & browser dukung).
+  // Hanya ter-update saat app terbuka — bukan push notification
+  // (lihat catatan di README). Feature-detect untuk browser yang belum
+  // dukung (mis. Safari/iOS).
   useEffect(() => {
     if (!("setAppBadge" in navigator)) return;
     const due = allLevelsStats.due;
@@ -174,7 +229,7 @@ export default function App() {
     }
   }, [allLevelsStats.due]);
 
-  // Stats khusus level yang lagi dibuka (dipakai di layar pilih unit)
+  // Stats level yang sedang dibuka (layar pilih unit).
   const levelStats = useMemo(
     () => computeStats(getUnitsForLevel(activeLevel)),
     [progress, activeLevel]
@@ -185,14 +240,22 @@ export default function App() {
     navigate("unitSelect", { level });
   }
 
-  // level (parameter kedua, opsional) dipakai kalau unit yang mau dibuka
-  // BUKAN dari activeLevel saat ini -- mis. klik banner "next review" di
-  // Home yang bisa nunjuk ke unit di level manapun. Kalau tidak dikasih,
-  // fallback ke activeLevel seperti biasa (dipakai UnitSelect).
+  // Parameter kedua (level) dipakai kalau unit yang dibuka BUKAN dari
+  // activeLevel — mis. klik banner "next review" di Home yang bisa
+  // menunjuk unit level mana pun. Tanpa itu, fallback ke activeLevel.
+  //
+  // Mode kuis DIDERIVE dari status unit, bukan dipilih user:
+  //   - "new" / "due" → kuis SRS: satu-satunya yang menggerakkan jadwal
+  //     SRS, streak, dan statistik.
+  //   - lainnya (scheduled/mastered) → latihan bebas: kuis yang sama tapi
+  //     tidak menulis apa pun. Unit scheduled tampak redup + popup
+  //     konfirmasi singkat saat diklik; tanpa label "practice" di UI.
   async function startUnit(unitId, level = activeLevel) {
-    // loadLevelKanji() sudah di-cache -- kalau UnitSelect sudah lebih dulu
-    // load level ini (biasanya sudah, karena preview strip butuh itu juga),
-    // baris ini langsung resolve dari cache, tidak fetch ulang.
+    const status = unitStatus(progress[unitId]);
+    const mode = status === "new" || status === "due" ? "srs" : "practice";
+    // loadLevelKanji() sudah di-cache — kalau UnitSelect lebih dulu load
+    // level ini (biasanya sudah, untuk preview strip), baris ini langsung
+    // resolve dari cache.
     const pool = await loadLevelKanji(level);
     if (pool.length < 4) {
       showToast("This level doesn't have enough kanji to generate distractors.");
@@ -201,6 +264,7 @@ export default function App() {
     const kanjiInUnit = pool.filter((k) => k.unit === unitId);
     setActiveLevel(level);
     setActiveUnit(unitId);
+    setQuizMode(mode);
     setQuiz(generateQuiz(kanjiInUnit, pool));
     setQIndex(0);
     setAnswers([]);
@@ -208,9 +272,35 @@ export default function App() {
     navigate("quiz", { level, unit: unitId });
   }
 
-  // Dipanggil dari klik banner "next review" (Home & UnitSelect) -- level
-  // unit itu di-derive dari progress-nya sendiri (jlptLevel tersimpan per
-  // record, lihat storage.js), TIDAK diasumsikan sama dengan activeLevel.
+  // Missed-kanji review per unit: kumpulkan kanji unit itu yang pernah
+  // dijawab salah dan belum ditebus (lihat WEAK_REDEEM_CORRECT_STREAK di
+  // storage.js), lalu buat kuis darinya. Panjang sesi = semua missed kanji
+  // unit itu (tanpa batas).
+  async function startWeakReview(unitId) {
+    const pool = await loadLevelKanji(activeLevel);
+    if (pool.length < 4) {
+      showToast("This level doesn't have enough kanji to generate distractors.");
+      return;
+    }
+    const entries = pool.filter((k) => k.unit === unitId && weakChars.has(k.kanji));
+
+    if (entries.length === 0) {
+      showToast("No missed kanji in this unit right now.");
+      return;
+    }
+
+    setWeakOriginLevel(activeLevel);
+    setQuizMode("weak");
+    setQuiz(generateWeakQuiz(entries, { [activeLevel]: pool }));
+    setQIndex(0);
+    setAnswers([]);
+    setSelectedChoice(null);
+    navigate("quiz", { unit: "weak" });
+  }
+
+  // Dipanggil dari klik banner "next review" (Home & UnitSelect) — level
+  // unit di-derive dari progress-nya sendiri (jlptLevel tersimpan per
+  // record), tidak diasumsikan sama dengan activeLevel.
   function jumpToNextReview(unitId) {
     if (!unitId) return;
     const level = progress[unitId]?.jlptLevel;
@@ -219,7 +309,9 @@ export default function App() {
   }
 
   function submitAnswer(choice) {
-    if (selectedChoice) return;
+    // `choice` = indeks pilihan (number) atau DONT_KNOW. Indeks 0 valid,
+    // jadi guard-nya `!== null`, bukan truthiness.
+    if (selectedChoice !== null) return;
     setSelectedChoice(choice);
   }
 
@@ -233,37 +325,79 @@ export default function App() {
     }
 
     const finalResult = scoreQuiz(quiz, newAnswers);
-    const prevState = progress[activeUnit] || createInitialUnitState();
-    const newState = reviewUnit(prevState, finalResult.score, new Date());
+    const finishedAt = new Date();
+    let extra = { mode: quizMode };
 
-    setProgress((p) => ({ ...p, [activeUnit]: newState }));
-    setResult({ ...finalResult, newState });
-    navigate("result", { level: activeLevel, unit: activeUnit });
+    if (quizMode === "srs") {
+      const prevState = progress[activeUnit] || createInitialUnitState();
+      const newState = reviewUnit(prevState, finalResult.score, finishedAt);
 
-    // Persist ke IndexedDB (tidak perlu ditunggu / await sebelum ganti layar --
-    // UI sudah update optimistically dari state React di atas)
-    await storage.saveUnitProgress(activeUnit, activeLevel, newState);
-    await storage.logQuizAttempt(activeUnit, finalResult);
+      setProgress((p) => ({ ...p, [activeUnit]: newState }));
+      extra = { ...extra, newState };
+    } else if (quizMode === "practice") {
+      // Latihan bebas: lampirkan state SRS SAAT INI (tidak diubah sesi ini)
+      // supaya layar Result tetap bisa menampilkan "next review" seperti
+      // biasa.
+      extra = { ...extra, existingState: progress[activeUnit] || null };
+    }
 
-    // Recompute streak SEKARANG, bukan cuma sekali pas app dibuka -- kalau
-    // tidak, kuis pertama hari itu tidak langsung kelihatan nambah
-    // streak-nya di Home sampai halaman di-reload.
-    const attempts = await storage.getAllQuizAttempts();
-    const { streak: s, doneToday } = computeStreak(attempts);
-    setStreak(s);
-    setStreakDoneToday(doneToday);
+    setResult({ ...finalResult, ...extra });
+    navigate("result", quizMode === "weak" ? { unit: "weak" } : { level: activeLevel, unit: activeUnit });
+
+    // Persist ke IndexedDB — tidak perlu ditunggu sebelum ganti layar
+    // (UI sudah update optimistically dari state React di atas)
+    if (quizMode === "srs") {
+      await storage.saveUnitProgress(activeUnit, activeLevel, extra.newState);
+      await storage.logQuizAttempt(activeUnit, finalResult);
+    } else if (quizMode === "weak") {
+      // Weak review dihitung sebagai aktivitas belajar (streak) tapi tidak
+      // mengubah jadwal SRS unit mana pun.
+      await storage.logQuizAttempt("weak-review", finalResult);
+    }
+    // mode "practice": sengaja tidak menyimpan apa pun.
+
+    if (quizMode === "srs" || quizMode === "weak") {
+      await storage.updateKanjiStats(finalResult.details);
+
+      // Berapa kanji yang MASIH missed setelah sesi ini (salah/"don't
+      // know" lagi, atau belum ditebus). Dipakai Result untuk baris
+      // "N kanji missed". generateWeakQuiz membuat tepat satu soal per
+      // kanji, jadi details 1:1 dengan missed kanji unit.
+      if (quizMode === "weak") {
+        const statsNow = await storage.getKanjiStats(finalResult.details.map((d) => d.kanji));
+        const remaining = finalResult.details.filter(
+          (d) => !d.isCorrect || (statsNow[d.kanji]?.correctSinceWrong || 0) < storage.WEAK_REDEEM_CORRECT_STREAK
+        ).length;
+        setResult((r) => (r ? { ...r, remainingMissed: remaining } : r));
+      }
+
+      // Refresh daftar weak untuk pill "✕ N" di kartu unit.
+      setWeakKanji(await storage.getWeakKanji());
+    }
+
+    if (quizMode !== "practice") {
+      // Hitung ulang streak SEKARANG, bukan hanya saat app dibuka — supaya
+      // kuis pertama hari itu langsung menambah streak di Home.
+      const attempts = await storage.getAllQuizAttempts();
+      const { streak: s, doneToday } = computeStreak(attempts);
+      setStreak(s);
+      setStreakDoneToday(doneToday);
+    }
   }
 
   if (loading) {
     return <div className="kd-root kd-loading">Loading your progress…</div>;
   }
 
-  // If the route points at quiz/result but the in-memory state for that screen
-  // isn't there (e.g. after a reload), gracefully fall back to the unit list
-  // instead of rendering a blank screen.
+  // Kalau route menunjuk quiz/result tapi state in-memory untuk layar itu
+  // tidak ada (mis. setelah reload), jatuh ke daftar unit supaya tidak
+  // menampilkan layar kosong. Route "weak" jatuh ke Home karena tidak
+  // terikat daftar unit level mana pun.
   const effectiveView =
     (view === "quiz" && !quiz) || (view === "result" && !result)
-      ? "unitSelect"
+      ? routeUnit === "weak"
+        ? "home"
+        : "unitSelect"
       : view;
 
   return (
@@ -291,6 +425,8 @@ export default function App() {
           onBack={() => navigate("home")}
           onStartUnit={startUnit}
           onJumpToNextReview={jumpToNextReview}
+          weakChars={weakChars}
+          onStartWeakReview={startWeakReview}
         />
       )}
 
@@ -299,19 +435,31 @@ export default function App() {
           quiz={quiz}
           qIndex={qIndex}
           selectedChoice={selectedChoice}
+          mode={quizMode}
+          answerScript={answerScript}
+          onToggleScript={toggleAnswerScript}
           onSubmitAnswer={submitAnswer}
           onContinue={handleContinue}
-          // Quiz Cancel = browser Back semantics: return to the unit list
-          // the quiz was launched from.
-          onCancel={() => navigate("unitSelect", { level: activeLevel })}
+          // Cancel kuis = semantics Back browser: kembali ke daftar unit
+          // asal kuis (missed review → daftar unit level asalnya).
+          onCancel={() =>
+            quizMode === "weak"
+              ? navigate("unitSelect", { level: weakOriginLevel || activeLevel })
+              : navigate("unitSelect", { level: activeLevel })
+          }
         />
       )}
 
       {effectiveView === "result" && result && (
         <Result
           result={result}
+          mode={result.mode || "srs"}
           activeUnit={activeUnit}
-          onBackToUnits={() => navigate("unitSelect", { level: activeLevel })}
+          onBackToUnits={() =>
+            result.mode === "weak"
+              ? navigate("unitSelect", { level: weakOriginLevel || activeLevel })
+              : navigate("unitSelect", { level: activeLevel })
+          }
           onHome={() => navigate("home")}
         />
       )}

@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
 """
-build_manifest.py — Build src/data/manifest.json, a small summary of every
-JLPT level (total kanji count + ordered unit ids) WITHOUT the full kanji
-data (readings, meanings, examples).
+build_manifest.py — Langkah 4 pipeline: susun src/data/manifest.json,
+ringkasan kecil tiap level JLPT (jumlah kanji + daftar id unit berurut)
+TANPA data kanji lengkap (bacaan, arti, contoh kata).
 
-Why this exists: the app's Home screen needs unit ids (to compute due /
-studied / mastered counts against locally-stored progress) and kanji counts
-for every level, on first paint. It does NOT need the full kanji data for
-levels the user hasn't opened yet. Splitting this out lets dataLoader.js
-import the manifest eagerly (a few KB) while lazy-loading each level's full
-n*.json (tens to hundreds of KB) only when that level is actually opened.
+Kenapa perlu: layar Home butuh id unit (menghitung due/studied/mastered
+terhadap progress lokal) dan jumlah kanji tiap level saat paint pertama —
+tapi tidak butuh data lengkap level yang belum dibuka. Dengan manifest
+yang kecil (beberapa KB), dataLoader.js bisa memuatnya eager sambil
+me-load n*.json tiap level (puluhan-ratusan KB) secara lazy saat level
+itu benar-benar dibuka.
 
-Usage:
+Pemakaian:
     python scripts/build_manifest.py [path/to/output/dir]
 
-Reads n5.json ... n1.json from the given directory (default: src/data
-relative to the project root) and writes manifest.json alongside them.
+Baca n5.json ... n1.json dari direktori yang diberikan (default: src/data
+relatif ke root proyek) dan menulis manifest.json di sebelahnya.
 """
 import json
 import sys
@@ -37,8 +37,8 @@ def main():
         with open(path, encoding="utf-8") as f:
             kanji_list = json.load(f)
 
-        # Preserve unit order as they appear in the file (already ordered by
-        # frequency from convert_kanji.py) — dedupe while keeping order.
+        # Pertahankan urutan unit seperti di file (sudah urut frekuensi
+        # dari convert_kanji.py) — dedupe tanpa mengubah urutan.
         units = list(dict.fromkeys(k["unit"] for k in kanji_list))
 
         manifest[level] = {"total": len(kanji_list), "units": units}

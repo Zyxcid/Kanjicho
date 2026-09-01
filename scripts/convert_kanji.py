@@ -1,20 +1,21 @@
 #!/usr/bin/env python3
 """
-convert_kanji.py — Build the per-level kanji JSON files from raw sources.
+convert_kanji.py — Langkah 1 pipeline: susun JSON kanji per level dari
+sumber mentah.
 
-Reads:
-  - kanjidic2.xml.gz   (KANJIDIC2 XML — kanji, readings, meanings, strokes, freq)
-  - JLPT_kanji_ALL.json   (modern N1-N5 levels from Bluskyo/JLPT_Vocabulary)
+Baca:
+  - kanjidic2.xml.gz       (XML KANJIDIC2 — kanji, bacaan, arti, jumlah goresan, freq)
+  - JLPT_kanji_ALL.json    (level N1-N5 modern dari Bluskyo/JLPT_Vocabulary)
 
-Writes:
-  - output/n5.json, output/n4.json, ..., output/n1.json
-  - output/all_kanji.json (combined)
+Tulis:
+  - output/n5.json ... n1.json (data kanji per level)
+  - output/all_kanji.json (gabungan)
 
-Only kanji present in JLPT_kanji_ALL.json are kept — this ensures the JLPT
-levels are the modern N1-N5 system (KANJIDIC2's own <jlpt> tag uses the
-old pre-2010 4-level system which doesn't map 1:1 to modern levels).
+Hanya kanji yang ada di JLPT_kanji_ALL.json yang disimpan — tag <jlpt>
+milik KANJIDIC2 memakai sistem lama pra-2010 (4 level, tanpa N5) yang
+tidak bisa dipetakan 1:1 ke level modern.
 
-Usage:
+Pemakaian:
     python scripts/convert_kanji.py [kanjidic2.xml.gz] [output_dir] [JLPT_kanji_ALL.json]
 """
 
@@ -25,7 +26,7 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 
 # ============================================================
-# Kana → Romaji converter (Hepburn)
+# Konverter kana → romaji (Hepburn)
 # ============================================================
 
 KATA_TO_HIRA_SMALL = {
@@ -141,7 +142,7 @@ def build_romaji_list(on_readings, kun_readings):
 
 
 # ============================================================
-# KANJIDIC2 XML parsing
+# Parsing XML KANJIDIC2
 # ============================================================
 
 JLPT_MAP = {5: "N5", 4: "N4", 3: "N3", 2: "N2", 1: "N1"}
@@ -149,8 +150,8 @@ UNIT_SIZE = 15
 
 
 def parse_kanjidic2(xml_path, jlpt_override):
-    """Parse kanjidic2.xml.gz. Only keep kanji present in jlpt_override
-    (modern N1-N5 levels). Returns a list of kanji entries."""
+    """Parse kanjidic2.xml.gz, hanya simpan kanji yang ada di jlpt_override
+    (level N1-N5 modern). Return list of entry kanji."""
     print(f"Parsing KANJIDIC2 from {xml_path} ...")
 
     if str(xml_path).endswith(".gz"):
@@ -171,16 +172,14 @@ def parse_kanjidic2(xml_path, jlpt_override):
             continue
         kanji_char = literal_el.text
 
-        # Only keep kanji that are in the modern JLPT override (Bluskyo).
-        # KANJIDIC2's own <jlpt> tag uses the old pre-2010 system (1-4, no N5)
-        # which doesn't map 1:1 to modern levels. By requiring the kanji to be
-        # in jlpt_override, we ensure only modern N1-N5 kanji are included.
+        # Hanya simpan kanji level-JLPT modern (Bluskyo) — alasan lihat
+        # docstring modul.
         if kanji_char not in jlpt_override:
             skipped += 1
             char.clear()
             continue
 
-        # Readings
+        # Bacaan (reading)
         on_readings = []
         kun_readings = []
         rm = char.find("reading_meaning")
@@ -194,7 +193,7 @@ def parse_kanjidic2(xml_path, jlpt_override):
                     elif rt == "ja_kun":
                         kun_readings.append(r.text)
 
-        # English meanings (skip non-English with m_lang attribute)
+        # Arti bahasa Inggris (lewati yang ber-atribut m_lang non-Inggris)
         meanings = []
         if rm is not None:
             rmg = rm.find("rmgroup")
@@ -203,7 +202,7 @@ def parse_kanjidic2(xml_path, jlpt_override):
                     if m.get("m_lang") is None and m.text:
                         meanings.append(m.text)
 
-        # Misc: stroke count, freq
+        # Misc: jumlah goresan & frekuensi koran
         misc = char.find("misc")
         stroke_count = None
         freq = None
@@ -231,7 +230,7 @@ def parse_kanjidic2(xml_path, jlpt_override):
         char.clear()
 
     f.close()
-    print(f"  Parsed {len(kanji_list)} kanji (skipped {skipped} with old JLPT only)")
+    print(f"  Parsed {len(kanji_list)} kanji (skipped {skipped} non-JLPT)")
     return kanji_list
 
 
@@ -261,14 +260,14 @@ def main():
     output_dir.mkdir(exist_ok=True)
     all_kanji = parse_kanjidic2(kanjidic_path, jlpt_override)
 
-    # Group by JLPT level
+    # Kelompokkan per level JLPT
     by_level = {"N5": [], "N4": [], "N3": [], "N2": [], "N1": []}
     for k in all_kanji:
         level = JLPT_MAP.get(k["jlpt_num"])
         if level:
             by_level[level].append(k)
 
-    # Sort each level by newspaper frequency (common kanji first)
+    # Urutkan tiap level berdasarkan frekuensi koran (kanji umum dulu)
     for level in by_level:
         by_level[level].sort(key=lambda k: (k["freq"] or 999999, k["stroke_count"] or 0, k["kanji"]))
 
@@ -314,8 +313,11 @@ def main():
         json.dump(all_output, f, ensure_ascii=False, indent=2)
 
     print(f"\nTotal: {len(all_output)} kanji across all levels")
-    print("\nNOTE: primary_romaji is a placeholder here (on[0]+kun[0]).")
-    print("Run rerank_readings.py next to rank them by real BCCWJ word frequency.")
+    print("\nNOTE: primary_romaji masih placeholder (on[0]+kun[0]).")
+    print("Lanjutkan dengan rerank_readings.py untuk rank berdasarkan frekuensi")
+    print("kata BCCWJ. Field ini hanya kerja-kerja internal pipeline —")
+    print("build_examples.py menggantinya dengan primary_readings di file")
+    print("final.")
 
 
 if __name__ == "__main__":

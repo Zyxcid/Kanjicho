@@ -1,10 +1,8 @@
 import React from "react";
-import { HelpCircle, X, Github, Instagram } from "lucide-react";
+import { HelpCircle, X, Github } from "lucide-react";
 import pkg from "../../package.json";
 
-// GitHub sudah link asli, Instagram tinggal ganti ke handle Anda.
-const GITHUB_URL = "https://github.com/Zyxcid/Kanji-Drill";
-const INSTAGRAM_URL = "https://instagram.com/your-handle"; // TODO: ganti ke handle asli
+const GITHUB_URL = "https://github.com/Zyxcid/Kanjicho";
 
 export default function HelpButton() {
   const [open, setOpen] = React.useState(false);
@@ -28,13 +26,29 @@ export default function HelpButton() {
             <div className="kd-help-section">
               <div className="kd-help-heading">Keyboard shortcuts</div>
               <div className="kd-help-shortcut-row">
-                <span className="kd-key-hint muted wide">1–4</span> Select an answer
+                <span className="kd-key-cluster">
+                  <span className="kd-key-row">
+                    <span className="kd-key-hint muted">w</span>
+                    <span className="kd-key-hint muted">e</span>
+                  </span>
+                  <span className="kd-key-row">
+                    <span className="kd-key-hint muted">s</span>
+                    <span className="kd-key-hint muted">d</span>
+                  </span>
+                </span>
+                Select an answer
               </div>
               <div className="kd-help-shortcut-row">
-                <span className="kd-key-hint muted">5</span> Don't know
+                <span className="kd-key-hint muted">f</span> Don't know
               </div>
               <div className="kd-help-shortcut-row">
-                <span className="kd-key-hint muted">↵</span> Continue to next question
+                <span className="kd-key-hint muted">r</span> Toggle kana / romaji
+              </div>
+              <div className="kd-help-shortcut-row">
+                <span className="kd-key-hint muted">q</span> Back — Cancel / Home
+              </div>
+              <div className="kd-help-shortcut-row">
+                <span className="kd-key-hint muted wide">↵ / Space</span> Continue to next question
               </div>
             </div>
 
@@ -57,7 +71,11 @@ export default function HelpButton() {
                 <a href="https://clrd.ninjal.ac.jp/bccwj/en/freq-list.html" target="_blank" rel="noreferrer">
                   BCCWJ
                 </a>{" "}
-                © NINJAL.
+                © NINJAL. JLPT kanji and vocabulary levels from{" "}
+                <a href="https://github.com/Bluskyo/JLPT_Vocabulary" target="_blank" rel="noreferrer">
+                  Bluskyo/JLPT_Vocabulary
+                </a>
+                .
               </p>
             </div>
 
@@ -66,9 +84,6 @@ export default function HelpButton() {
               <div className="kd-help-links">
                 <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="kd-help-link">
                   <Github size={15} /> GitHub
-                </a>
-                <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className="kd-help-link">
-                  <Instagram size={15} /> Instagram
                 </a>
               </div>
             </div>

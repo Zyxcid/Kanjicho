@@ -3,8 +3,7 @@ import { BookOpen, Flame } from "lucide-react";
 import NextReviewBanner from "./NextReviewBanner.jsx";
 
 /**
- * Badge tiap kartu level di Home. Dulu selalu "Ready" statis; sekarang
- * mencerminkan progres nyata user terhadap level itu:
+ * Badge tiap kartu level di Home, mencerminkan progres nyata user:
  *   - mastered == total → "Mastered" (gold)
  *   - due > 0           → "N due" (seal)
  *   - studied > 0       → "studied/total" (indigo)
@@ -25,17 +24,26 @@ function levelBadge(stats) {
 }
 
 export default function Home({ levelIds, getLevelMeta, getLevelStats, onOpenLevel, onBrowse, stats, onJumpToNextReview, streak, streakDoneToday }) {
-  const atRisk = streak > 0 && !streakDoneToday; // ada streak nyata & belum kuis hari ini
+  const atRisk = streak > 0 && !streakDoneToday; // ada streak & belum kuis hari ini
   return (
     <>
       <div className="kd-hero">
         <div className="kd-hero-row">
-          <div className={`kd-stat streak ${streakDoneToday ? "lit" : atRisk ? "at-risk" : ""}`}>
+          {/* Streak: api + angka saja. Status terbaca dari warna: border
+              emas + api terisi = selesai hari ini; border merah = streak
+              terancam. Detail lengkap di tooltip (title). */}
+          <div
+            className={`kd-stat streak ${streakDoneToday ? "lit" : atRisk ? "at-risk" : ""}`}
+            title={
+              streakDoneToday
+                ? `Day streak: ${streak} — today's quiz done`
+                : atRisk
+                  ? `Day streak: ${streak} — quiz today to keep it`
+                  : "Day streak"
+            }
+          >
             <div className="kd-stat-num">
               <Flame size={18} className="kd-stat-flame" fill={streakDoneToday ? "currentColor" : "none"} /> {streak}
-            </div>
-            <div className="kd-stat-label">
-              {streakDoneToday ? "Today done" : atRisk ? "Quiz today to keep it" : "Day streak"}
             </div>
           </div>
           <div className="kd-stat studied">
@@ -55,7 +63,7 @@ export default function Home({ levelIds, getLevelMeta, getLevelStats, onOpenLeve
 
       <NextReviewBanner stats={stats} onJump={onJumpToNextReview} />
 
-      {/* Browse entry: jump to the full kanji library (every kanji, all levels). */}
+      {/* Entry ke perpustakaan kanji lengkap (semua level). */}
       <div className="kd-browse-entry-row">
         <button className="kd-browse-entry" onClick={onBrowse}>
           <BookOpen size={16} />
