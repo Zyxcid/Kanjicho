@@ -27,7 +27,7 @@ import { getDB } from "./storage";
 // localStorage — hanya pengaturan. Daftar eksplisit juga berarti file
 // hasil manipulasi tidak bisa menyuntik key sembarangan saat impor;
 // key pengaturan baru tinggal ditambahkan ke daftar ini.
-const SETTINGS_KEYS = ["kanji-theme", "kanji-answer-script"];
+const SETTINGS_KEYS = ["kanji-theme", "kanji-answer-script", "kanji-show-reset"];
 
 // Versi format backup saat ini. Naikkan (+1) setiap kali struktur data
 // di IndexedDB/localStorage berubah, lalu tambahkan fungsi migrasi di

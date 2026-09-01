@@ -80,6 +80,23 @@ export default function App() {
     });
   }
 
+  // Toggle "tampilkan tombol Reset progress" di modal Help (seksi
+  // Progress). Default OFF — aksi destruktif jarang dipakai, jadi
+  // disembunyikan sampai diaktifkan. Karena state-nya di sini, tombol di
+  // UnitSelect muncul/hilang LIVE saat toggle diklik (modal Help bahkan
+  // belum perlu ditutup dulu untuk melihatnya).
+  const [showReset, setShowReset] = useState(
+    () => localStorage.getItem("kanji-show-reset") === "1"
+  );
+
+  function toggleShowReset() {
+    setShowReset((v) => {
+      const next = !v;
+      localStorage.setItem("kanji-show-reset", next ? "1" : "0");
+      return next;
+    });
+  }
+
   // activeLevel/activeUnit tertinggal dari route supaya UnitSelect tetap
   // menampilkan level yang benar saat kita sempat route home (mis. Cancel
   // kuis kembali ke level asal kuisnya).
@@ -117,10 +134,12 @@ export default function App() {
     if (routeUnit) setActiveUnit(routeUnit);
   }, [routeLevel, routeUnit]);
 
-  // Muat semua progress + riwayat kuis + statistik kanji dari IndexedDB
-  // sekali saat app dibuka.
-  useEffect(() => {
-    Promise.all([
+  // Muat ulang seluruh data dari IndexedDB ke state React. Dipakai saat
+  // app dibuka dan setelah progress satu level dihapus (Reset progress di
+  // UnitSelect) — semua layar yang bergantung state ini (Home, kartu unit,
+  // streak, pill missed, badge PWA) otomatis ikut bersih tanpa reload.
+  function loadAllData() {
+    return Promise.all([
       storage.getAllProgress(),
       storage.getAllQuizAttempts(),
       storage.getWeakKanji(),
@@ -134,8 +153,11 @@ export default function App() {
       setStreak(s);
       setStreakDoneToday(doneToday);
       setWeakKanji(weak);
-      setLoading(false);
     });
+  }
+
+  useEffect(() => {
+    loadAllData().finally(() => setLoading(false));
   }, []);
 
   const showToast = useCallback((msg) => {
@@ -298,6 +320,16 @@ export default function App() {
     navigate("quiz", { unit: "weak" });
   }
 
+  // Tombol "Reset progress" di UnitSelect: hapus seluruh progress level
+  // itu (deleteLevelProgress di storage.js — dialog konfirmasinya ada di
+  // UnitSelect), lalu muat ulang state. Kontribusi streak dari kuis level
+  // itu ikut hilang karena streak dihitung ulang dari sisa attempts.
+  async function resetLevelProgress(level) {
+    await storage.deleteLevelProgress(level);
+    await loadAllData();
+    showToast(`${level} progress deleted`);
+  }
+
   // Dipanggil dari klik banner "next review" (Home & UnitSelect) — level
   // unit di-derive dari progress-nya sendiri (jlptLevel tersimpan per
   // record), tidak diasumsikan sama dengan activeLevel.
@@ -407,7 +439,7 @@ export default function App() {
           漢字帳 <small>Kanjichō · JLPT Kanji Practice</small>
         </div>
         <div className="kd-topbar-right">
-          <HelpButton />
+          <HelpButton showReset={showReset} onToggleShowReset={toggleShowReset} />
           <ThemeToggle />
         </div>
       </div>
@@ -425,6 +457,8 @@ export default function App() {
           onBack={() => navigate("home")}
           onStartUnit={startUnit}
           onJumpToNextReview={jumpToNextReview}
+          onResetProgress={resetLevelProgress}
+          showReset={showReset}
           weakChars={weakChars}
           onStartWeakReview={startWeakReview}
         />

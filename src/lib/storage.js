@@ -203,6 +203,32 @@ async function getWeakKanji() {
 
 // ---- Utilitas ----
 
+/**
+ * Hapus seluruh progress satu level — dipakai tombol "Reset progress"
+ * di UnitSelect (mis. membersihkan jejak setelah coba-coba level di atas
+ * kemampuan). Tiga store dibersihkan dalam SATU transaksi supaya atomik:
+ *   - unitProgress : state SRS semua unit level ini (jadwal & mastery hilang)
+ *   - quizAttempts : log kuis unit-unit level ini (kontribusi streak-nya
+ *                    ikut hilang — streak dihitung ulang pemanggil)
+ *   - kanjiStats   : statistik per-kanji level ini (pill "✕ N" & weak review)
+ * Log kuis weak review (unitId "weak-review") tidak memuat info level,
+ * jadi tidak bisa dihapus selektif — hanya menyisakan jejak tanggal
+ * aktivitas, bukan jadwal. Level lain tidak tersentuh.
+ */
+async function deleteLevelProgress(jlptLevel) {
+  const db = getDB();
+  await db.transaction("rw", db.unitProgress, db.quizAttempts, db.kanjiStats, async () => {
+    // Kumpulkan unitId level ini dulu — dipakai menghapus log kuisnya.
+    const units = await db.unitProgress.where("jlptLevel").equals(jlptLevel).toArray();
+    const unitIds = units.map((u) => u.unitId);
+    await db.unitProgress.bulkDelete(unitIds);
+    if (unitIds.length > 0) {
+      await db.quizAttempts.where("unitId").anyOf(unitIds).delete();
+    }
+    await db.kanjiStats.where("level").equals(jlptLevel).delete();
+  });
+}
+
 /** Hapus semua data progress & histori (fitur reset / testing). */
 async function clearAllData() {
   const db = getDB();
@@ -224,6 +250,7 @@ export {
   updateKanjiStats,
   getKanjiStats,
   getWeakKanji,
+  deleteLevelProgress,
   clearAllData,
   WEAK_REDEEM_CORRECT_STREAK,
 };

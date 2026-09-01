@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ChevronLeft, CircleX } from "lucide-react";
+import { ChevronLeft, CircleX, Trash2 } from "lucide-react";
 import { unitStatus, daysUntil } from "../App.jsx";
 import { loadLevelKanji } from "../lib/dataLoader.js";
 import NextReviewBanner from "./NextReviewBanner.jsx";
@@ -19,6 +19,8 @@ export default function UnitSelect({
   onBack,
   onStartUnit,
   onJumpToNextReview,
+  onResetProgress,
+  showReset,
   weakChars,
   onStartWeakReview,
 }) {
@@ -31,6 +33,9 @@ export default function UnitSelect({
   // practice; "scheduled"/"mastered" DENGAN missed → gate "review dulu"
   // (practice terkunci sampai missed bersih).
   const [pendingDrill, setPendingDrill] = useState(null);
+  // Dialog konfirmasi "Reset progress" (destruktif — hapus seluruh
+  // progress level yang sedang dilihat).
+  const [confirmReset, setConfirmReset] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -85,7 +90,18 @@ export default function UnitSelect({
 
       <NextReviewBanner stats={stats} onJump={onJumpToNextReview} />
 
-      <div className="kd-section-title">{level} Units</div>
+      <div className="kd-section-title kd-section-title-row">
+        <span>{level} Units</span>
+        {stats.studied > 0 && showReset && (
+          <button
+            className="kd-reset-progress"
+            onClick={() => setConfirmReset(true)}
+            title={`Delete this level's progress: SRS schedule, quiz history and missed kanji. Other levels are not affected.`}
+          >
+            <Trash2 size={13} strokeWidth={2.25} /> Reset progress
+          </button>
+        )}
+      </div>
       <div className="kd-unit-grid">
         {units.map((unitId) => {
           const state = progress[unitId];
@@ -143,6 +159,32 @@ export default function UnitSelect({
           );
         })}
       </div>
+
+      {confirmReset && (
+        <div className="kd-modal-overlay" onClick={() => setConfirmReset(false)}>
+          <div className="kd-modal kd-drill-confirm" onClick={(e) => e.stopPropagation()}>
+            <p className="kd-drill-confirm-text">Delete all {level} progress?</p>
+            <p className="kd-drill-confirm-text">
+              SRS schedule, quiz history and missed kanji for this level will be removed
+            </p>
+            <p className="kd-drill-confirm-text">other levels are not affected</p>
+            <div className="kd-btn-row">
+              <button className="kd-btn secondary" onClick={() => setConfirmReset(false)}>
+                Cancel
+              </button>
+              <button
+                className="kd-btn danger"
+                onClick={() => {
+                  setConfirmReset(false);
+                  onResetProgress(level);
+                }}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {pendingDrill && (() => {
         // Popup ini punya dua wajah: unit masih punya missed kanji →

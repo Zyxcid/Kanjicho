@@ -5,7 +5,7 @@ import BackupControls from "./BackupControls";
 
 const GITHUB_URL = "https://github.com/Zyxcid/Kanjicho";
 
-export default function HelpButton() {
+export default function HelpButton({ showReset, onToggleShowReset }) {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -46,7 +46,7 @@ export default function HelpButton() {
                 <span className="kd-key-hint muted">r</span> Toggle kana / romaji
               </div>
               <div className="kd-help-shortcut-row">
-                <span className="kd-key-hint muted">q</span> Back — Cancel / Home
+                <span className="kd-key-hint muted">q</span> Back
               </div>
               <div className="kd-help-shortcut-row">
                 <span className="kd-key-hint muted wide">↵ / Space</span> Continue to next question
@@ -81,17 +81,32 @@ export default function HelpButton() {
             </div>
 
             <div className="kd-help-section">
+              <div className="kd-help-heading">Progress</div>
+              <BackupControls />
+              <button
+                type="button"
+                role="switch"
+                aria-checked={showReset}
+                className={`kd-help-switch-row ${showReset ? "on" : ""}`}
+                onClick={onToggleShowReset}
+              >
+                <span className="kd-help-switch" aria-hidden="true">
+                  <span className="kd-help-switch-thumb" />
+                </span>
+                <span className="kd-help-switch-label">
+                  Show "Reset progress" buttons
+                  <small>per-level delete action next to the unit list</small>
+                </span>
+              </button>
+            </div>
+
+            <div className="kd-help-section">
               <div className="kd-help-heading">Contact</div>
               <div className="kd-help-links">
                 <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="kd-help-link">
                   <Github size={15} /> GitHub
                 </a>
               </div>
-            </div>
-
-            <div className="kd-help-section">
-              <div className="kd-help-heading">Progress backup</div>
-              <BackupControls />
             </div>
           </div>
         </div>

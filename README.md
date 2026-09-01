@@ -47,6 +47,16 @@ npm run preview   # preview the production build locally
   free practice session that writes nothing, so mastery can't be rushed by repetition.
   (The scheduler also dampens early reviews — growth bonus scaled by elapsed
   time — as a defensive measure.)
+- **Per-level progress reset** — a quiet "Reset progress" action at the
+  right of the "{level} Units" title deletes that level's SRS schedule,
+  quiz history, and missed-kanji stats in one IndexedDB transaction
+  (confirmation dialog first; streak contributions from that level's
+  quizzes disappear with the history). Other levels are untouched — the
+  escape hatch for cleaning up after trying a level above your current
+  one. Destructive and rarely needed, so it is **opt-in**: the toggle
+  lives in the help modal's Progress section ("Show \"Reset progress\"
+  buttons", persisted in localStorage, included in backups). The button
+  only appears when the toggle is on and the level has progress.
 - **Per-level progress badges** — each level card shows live status (New /
   N due / studied-of-total / Mastered) instead of a static label.
 - **Primary readings are the quiz source** — quiz answers come only from each
