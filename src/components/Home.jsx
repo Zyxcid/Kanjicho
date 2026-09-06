@@ -66,7 +66,6 @@ export default function Home({
             <span className="kd-ar-title">Browse all kanji</span>
             <span className="kd-ar-small">Reference library · N5–N1</span>
           </span>
-          <ChevronRight size={16} className="kd-ar-chevron" />
         </button>
       </div>
 
