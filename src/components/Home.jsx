@@ -1,6 +1,5 @@
 import React from "react";
-import { BookOpen } from "lucide-react";
-import NextReviewBanner from "./NextReviewBanner.jsx";
+import { BookOpen, ChevronRight } from "lucide-react";
 import StatCards from "./StatCards.jsx";
 
 /**
@@ -25,15 +24,18 @@ function levelBadge(stats) {
 }
 
 /**
- * Home — layar utama: banner review (pintu kalender) + panel statistik
- * kartu besar + browse + grid level.
+ * Home — layar utama: panel statistik kartu besar, lalu tombol Browse
+ * (sistem kd-action-row: ikon + judul + subteks + chevron), baru grid
+ * level.
  *
- * Statistik simple & informatif tampil langsung di sini (scope semua
- * level): tiga kartu non-interaktif "x/total Studied", "Due now",
- * "Mastered" — ala tampilan lama, tanpa stat missed (sudah terbaca dari
- * pill ✕N tiap kartu unit) dan tanpa streak. Banner review di atasnya
- * tetap satu-satunya pintu jadwal (klik = overlay kalender). Progres per
- * level tetap terbaca dari badge tiap kartu level di bawah.
+ * Banner review DIHAPUS (keputusan user — teksnya terlalu panjang dan
+ * jaraknya ke Browse terasa jauh): tugasnya diambil alih kartu "Due
+ * now" di hero (klik = overlay kalender review, lihat StatCards.jsx),
+ * sehingga statistik langsung bersANDING dengan Browse tanpa baris
+ * aksi ekstra. Kartu streak (api + angka, tanpa label — t55) kembali
+ * tampil sebagai kartu keempat yang sama ukuran, satu baris horizontal
+ * dengan kartu lain (t54). Progres per level tetap terbaca dari badge
+ * tiap kartu level di bawah.
  */
 export default function Home({
   levelIds,
@@ -42,24 +44,29 @@ export default function Home({
   onOpenLevel,
   onBrowse,
   stats,
+  studyStats,
   onOpenCalendar,
 }) {
   return (
     <>
-      {/* Banner review: klik membuka overlay kalender review (bukan langsung
-          ke kuis) — user lihat dulu unit yang due + jamnya. */}
-      <NextReviewBanner stats={stats} onOpenCalendar={onOpenCalendar} />
+      <StatCards
+        stats={stats}
+        studyStats={studyStats}
+        onOpenCalendar={onOpenCalendar}
+      />
 
-      {/* Statistik kartu besar semua level (bacaan sekali lewat, bukan
-          tombol — angka "Studied" menyertakan totalnya). */}
-      <StatCards stats={stats} />
-
-      {/* Entry ke perpustakaan kanji lengkap (semua level). */}
+      {/* Entry ke perpustakaan kanji lengkap (semua level) — kini langsung
+          di bawah statistik. */}
       <div className="kd-browse-entry-row">
-        <button className="kd-browse-entry" onClick={onBrowse}>
-          <BookOpen size={16} />
-          <span>Browse all kanji</span>
-          <small>Reference library · N5–N1</small>
+        <button className="kd-action-row kd-browse-entry" onClick={onBrowse}>
+          <span className="kd-ar-icon">
+            <BookOpen size={16} />
+          </span>
+          <span className="kd-ar-body">
+            <span className="kd-ar-title">Browse all kanji</span>
+            <span className="kd-ar-small">Reference library · N5–N1</span>
+          </span>
+          <ChevronRight size={16} className="kd-ar-chevron" />
         </button>
       </div>
 

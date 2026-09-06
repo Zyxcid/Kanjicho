@@ -3,7 +3,6 @@ import { ChevronLeft, CircleX, Trash2 } from "lucide-react";
 import { unitStatus } from "../App.jsx";
 import { intervalUntilLabel } from "../lib/dueFormat.js";
 import { loadLevelKanji } from "../lib/dataLoader.js";
-import NextReviewBanner from "./NextReviewBanner.jsx";
 import StatCards from "./StatCards.jsx";
 
 const STATUS_LABEL = {
@@ -18,6 +17,7 @@ export default function UnitSelect({
   units,
   progress,
   stats,
+  studyStats,
   onBack,
   onStartUnit,
   onOpenCalendar,
@@ -79,14 +79,17 @@ export default function UnitSelect({
         <ChevronLeft size={16} /> Home
       </button>
 
-      {/* Banner review: klik membuka overlay kalender review (ter-filter
-          level ini, sejalan dengan angka banner) — panel hari menampilkan
-          jam due per unit. */}
-      <NextReviewBanner stats={stats} onOpenCalendar={onOpenCalendar} />
-
       {/* Statistik kartu besar scope level ini (Studied x/total, Due now,
-          Mastered — non-interaktif, lihat StatCards.jsx). */}
-      <StatCards stats={stats} />
+          Mastered — lihat StatCards.jsx): kartu streak global (api +
+          angka tanpa label, t55) satu baris sama ukuran dengan kartu
+          lain (t54), kartu "Due now"/"Next due" jadi pintu overlay
+          kalender review ter-filter level ini (menggantikan banner yang
+          dihapus). Dibaca dulu, sama seperti Home. */}
+      <StatCards
+        stats={stats}
+        studyStats={studyStats}
+        onOpenCalendar={onOpenCalendar}
+      />
 
       {/* Judul seksi + tombol reset di ujung kanan (space-between, pola
           sama dengan judul Browse). Tombol hanya muncul kalau diaktifkan

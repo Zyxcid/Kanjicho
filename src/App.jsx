@@ -108,16 +108,17 @@ export default function App() {
   const [weakOriginLevel, setWeakOriginLevel] = useState(null);
   const [weakOriginUnit, setWeakOriginUnit] = useState(null);
 
-  // Overlay kalender review (CalendarModal), dibuka dari klik banner review.
-  // `calendarLevel` null = semua level (banner Home), "N5" dsb. = ter-filter
-  // level itu (banner UnitSelect, sejalan dengan angka banner-nya).
+  // Overlay kalender review (CalendarModal), dibuka dari klik kartu "Due
+  // now" di panel statistik. `calendarLevel` null = semua level (Home),
+  // "N5" dsb. = ter-filter level itu (UnitSelect, sejalan dengan angka
+  // kartunya).
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [calendarLevel, setCalendarLevel] = useState(null);
 
   // Streak & riwayat belajar (current/longest streak, hari unik, aktivitas
-  // per hari) diderive dari attempts — aktivitas per hari mengisi kalender
-  // overlay banner (streak sendiri tidak lagi ditampilkan sejak statistik
-  // menjadi tiga kartu read-only: Studied / Due now / Mastered).
+  // per hari) diderive dari attempts — streak & doneToday mengisi KARTU
+  // STREAK (api + angka, satu baris sama ukuran dengan kartu statistik
+  // lain — StatCards), aktivitas per hari mengisi titik kalender overlay.
   const studyStats = useMemo(() => computeStudyStats(attempts), [attempts]);
 
   // Lookup cepat kanji → "sedang missed" (Set of chars) untuk UnitSelect.
@@ -282,8 +283,8 @@ export default function App() {
       total: units.length,
       nextReviewDays,
       nextReviewUnit: soonestUnit,
-      // Timestamp jatuh tempo terdekat — banner memakai ini untuk label
-      // presisi jam ("in 6 hours" untuk unit Relearning, bukan "tomorrow").
+      // Timestamp jatuh tempo terdekat — kartu "Due now" memakai ini untuk
+      // sufiks presisi jam ("next 6h" untuk unit Relearning, bukan "tomorrow").
       nextReviewAt: soonestAt,
     };
   }
@@ -328,14 +329,14 @@ export default function App() {
     navigate("unitSelect", { level });
   }
 
-  // Buka overlay kalender review dari banner. Bukan route/hash — overlay
-  // memang ephemeral, ditutup lewat X/backdrop/Escape.
+  // Buka overlay kalender review dari kartu "Due now". Bukan route/hash —
+  // overlay memang ephemeral, ditutup lewat X/backdrop/Escape.
   function openCalendar(level = null) {
     setCalendarLevel(level);
     setCalendarOpen(true);
   }
 
-  // Jadwal review untuk overlay kalender, ter-filter sesuai konteks banner
+  // Jadwal review untuk overlay kalender, ter-filter sesuai konteks kartu
   // yang membukanya (Home = semua level, UnitSelect = level aktif).
   const calendarEntries = useMemo(
     () => (calendarOpen ? buildScheduleEntries(progress, calendarLevel) : []),
@@ -357,8 +358,8 @@ export default function App() {
   }, [view]);
 
   // Parameter kedua (level) dipakai kalau unit yang dibuka BUKAN dari
-  // activeLevel — mis. klik banner "next review" di Home yang bisa
-  // menunjuk unit level mana pun. Tanpa itu, fallback ke activeLevel.
+  // activeLevel — mis. klik unit di overlay kalender (yang bisa menunjuk
+  // unit level mana pun). Tanpa itu, fallback ke activeLevel.
   //
   // Mode kuis DIDERIVE dari status unit, bukan dipilih user:
   //   - "new" / "due" → kuis SRS: satu-satunya yang menggerakkan jadwal
@@ -545,7 +546,7 @@ export default function App() {
     <div className="kd-root">
       <div className="kd-topbar">
         <div className="kd-brand">
-          漢字帳 <small>Kanjichō · JLPT Kanji Practice</small>
+          漢字帳 <small>Kanjichō</small>
         </div>
         <div className="kd-topbar-right">
           <HelpButton showReset={showReset} onToggleShowReset={toggleShowReset} />
@@ -553,7 +554,7 @@ export default function App() {
         </div>
       </div>
 
-      {effectiveView === "home" && <Home levelIds={LEVEL_IDS} getLevelMeta={getLevelMeta} getLevelStats={(level) => levelStatsMap[level]} onOpenLevel={openLevel} onBrowse={() => navigate("browse")} stats={allLevelsStats} onOpenCalendar={() => openCalendar(null)} />}
+      {effectiveView === "home" && <Home levelIds={LEVEL_IDS} getLevelMeta={getLevelMeta} getLevelStats={(level) => levelStatsMap[level]} onOpenLevel={openLevel} onBrowse={() => navigate("browse")} stats={allLevelsStats} studyStats={studyStats} onOpenCalendar={() => openCalendar(null)} />}
 
       {effectiveView === "browse" && <Browse onBack={() => navigate("home")} />}
 
@@ -563,6 +564,7 @@ export default function App() {
           units={getUnitsForLevel(activeLevel)}
           progress={progress}
           stats={levelStats}
+          studyStats={studyStats}
           onBack={() => navigate("home")}
           onStartUnit={startUnit}
           onOpenCalendar={() => openCalendar(activeLevel)}
@@ -614,9 +616,9 @@ export default function App() {
         />
       )}
 
-      {/* Overlay kalender review (dari klik banner): kalender + panel hari
-          (default hari ini) dengan jam due per unit — baris overdue klik →
-          kuis. Statistik ringkas tampil sebagai tiga kartu read-only
+      {/* Overlay kalender review (dari klik kartu "Due now"): kalender +
+          panel hari (default hari ini) dengan jam due per unit — baris
+          overdue klik → kuis. Statistik ringkas tampil sebagai tiga kartu
           (Studied / Due now / Mastered) di Home/UnitSelect — layar Progress
           sudah dihapus. */}
       {calendarOpen && (

@@ -154,68 +154,158 @@ body {
 }
 
 /* ---- Panel statistik kartu besar (Home & UnitSelect) ----
-   Tampilan lama pra-chip dipulihkan sebagai READ-ONLY: tiga kartu angka
-   besar "x/total Studied" · "Due now" · "Mastered". BUKAN tombol — layar
-   Progress sudah dihapus, satu-satunya pintu jadwal tetap banner review
-   di atasnya. Nilai 0 tetap tampil supaya hari pertama langsung terbaca
-   "mulai dari nol"; angka Studied selalu menyertakan totalnya (9/151).
-   Stat missed kanji tidak ada di sini — sudah terbaca dari pill "✕ N"
-   di tiap kartu unit. */
+   Empat kartu sama ukuran SATU BARIS horizontal saat streak aktif
+   (keputusan user t54: "logo api disertai angka, berukuran sama dengan
+   studied/due/mastered, satu baris"; t55: tanpa label — api cukup):
+   [api N] · x/total Studied · N Due now · N Mastered
+   Saat streak 0 → 3 kartu. Dua titik interaksi/titik makna (menggantikan
+   banner review yang dihapus):
+   - Kartu streak: angka hari beruntun + api inline, TANPA label teks
+     (t55); lit = kuis hari ini sudah (angka gold, api menyala), at-risk
+     = belum (angka seal, api outline) — pasif, detail via tooltip.
+   - Kartu "Due now" jadi pintu jadwal review (klik = overlay kalender):
+     t55 tanpa garis tepi saat diam — border transparan, MUNCUL saat
+     hover (indigo; seal bila ada due) + chevron sebagai affordance;
+     saat 0 due ia berganti peran jadi "Next due" — angka interval
+     terdekat.
+   Angka Studied menyertakan totalnya sebagai SUFIKS KECIL mute (15 besar
+   + /151 kecil) — angka sama-ukuran pernah patah di tengah angka pada
+   layar sempit dan merusak kesejajaran kartu tetangganya.
+   Stat missed kanji tidak ada di sini — sudah terbaca dari pill di tiap
+   kartu unit.
+
+   Layout GRID (bukan flex): kolom eksplisit sama lebar (repeat(4,1fr)
+   saat kartu streak hadir — kelas count-4; repeat(3,1fr) tanpanya),
+   SATU BARIS di semua ukuran layar; <480px tanpa streak jadi 2+1
+   (kartu terakhir melebar penuh), dengan streak TETAP satu baris 4
+   kolom dengan angka/sufiks kompak supaya "151/151" muat di kartu
+   ~76px. Konten tiap kartu dipusatkan VERTIKAL (flex column +
+   justify center) supaya baris angka tetap sejajar walau satu kartu
+   lebih tinggi. */
 .kd-hero {
   max-width: 640px; margin: 12px auto 0;
   background: var(--surface); border: 1px solid var(--paper-line);
   border-radius: 4px; padding: 18px 16px;
 }
-.kd-hero-row { display: flex; gap: 10px; align-items: stretch; }
+.kd-hero-row {
+  display: grid; gap: 10px; align-items: stretch;
+  grid-template-columns: repeat(3, 1fr);
+}
+/* Baris dengan kartu streak (streak > 0): 4 kolom SAMA LEBAR —
+   streak-Studied-Due-Mastered SATU BARIS horizontal (keputusan user
+   t54). */
+.kd-hero-row.count-4 { grid-template-columns: repeat(4, 1fr); }
+/* t55: kartu statistik TANPA garis tepi (dashed/solid dinilai tidak
+   menarik) — border tetap dideklarasikan TRANSPARENT 1.5px supaya
+   metrik kotak (padding/tinggi) seragam antar kartu & tidak bergeser
+   saat border tombol muncul saat hover. Kartu pasif (Studied/
+   Mastered/streak) tidak pernah menampilkan garis; satu-satunya
+   pemakai border adalah kartu Due yang KLIKABLE — garisnya muncul
+   saat hover (indigo; seal bila ada yang due). */
 .kd-stat {
-  flex: 1; text-align: center; padding: 14px 6px;
-  border: 1px dashed var(--paper-line); border-radius: 3px;
+  display: flex; flex-direction: column; justify-content: center;
+  text-align: center; padding: 14px 6px;
+  border: 1.5px solid transparent; border-radius: 3px;
 }
 .kd-stat-num {
   font-family: 'DM Mono', monospace; font-size: 26px; font-weight: 500;
-  line-height: 1; overflow-wrap: anywhere;
+  line-height: 1;
+  display: flex; align-items: baseline; justify-content: center; gap: 3px;
 }
 .kd-stat-label { font-size: 11px; color: var(--ink-soft); margin-top: 6px; }
 .kd-stat.studied .kd-stat-num { color: var(--indigo-soft); }
 .kd-stat.due .kd-stat-num { color: var(--seal); }
 .kd-stat.mastered .kd-stat-num { color: var(--gold); }
 
-/* Angka "x/total" (mis. 9/151) menyempit di layar kecil supaya tetap
-   muat satu baris dalam sel tanpa memaksa label turun. */
+/* Kartu streak — ANGKA + API inline, ukuran SAMA dengan kartu
+   Studied/Due/Mastered dan satu baris horizontal dengannya (keputusan
+   user t54 "logo api disertai angka"; t55 label teks DIHAPUS — api
+   sudah memberi cukup konteks). lit = kuis hari ini sudah (api
+   menyala + angka gold), at-risk = streak nyata belum dikuis hari ini
+   (api outline + angka seal), streak 0 = kartu tidak dirender.
+   Pasif (bukan tombol) — tanpa garis tepi; keadaan hanya lewat warna
+   + tooltip/aria-label. */
+.kd-streak-flame { align-self: center; flex-shrink: 0; display: flex; }
+.kd-stat.streak.lit .kd-stat-num { color: var(--gold); }
+.kd-stat.streak.at-risk .kd-stat-num { color: var(--seal); }
+
+/* Kartu "Due now" — satu-satunya kartu INTERAKTIF (menggantikan banner
+   review yang dihapus): klik = overlay kalender review. t55: garis
+   tepinya TRANSPARENT saat diam dan MUNCUL saat hover (keputusan user
+   "cukup tampilkan line ketika tombol yang clickable di hover") —
+   indigo saat hover, seal bila ada unit due; chevron di baris label
+   tetap jadi penanda affordance sebelum hover. Saat ada unit due →
+   aksen seal pada ANGKA + label + chevron (bukan border). <button>
+   perlu font-family & color eksplisit karena tidak mewarisi root. */
+.kd-stat-action {
+  font-family: 'Zen Kaku Gothic New', sans-serif; color: var(--ink);
+  background: var(--surface); cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.2s, border-color 0.15s;
+}
+.kd-stat-action:hover:not(:disabled) {
+  transform: translateY(-2px); border-color: var(--indigo-soft);
+  box-shadow: 0 6px 18px var(--shadow);
+}
+.kd-stat-action:focus-visible { outline: 2px solid var(--indigo-soft); outline-offset: 2px; }
+.kd-stat-action.has-due:hover:not(:disabled) { border-color: var(--seal); }
+.kd-stat-action.has-due .kd-stat-label { color: var(--seal); font-weight: 700; }
+.kd-stat-action.has-due .kd-stat-chevron { color: var(--seal); }
+.kd-stat-label-action { display: flex; align-items: center; justify-content: center; gap: 3px; }
+.kd-stat-chevron { display: flex; color: var(--ink-soft); }
+
+/* Varian "Next due" (0 due, ada jadwal terdekat): angka interval
+   ("3h"/"2d") di-mute — ini informasi jadwal, bukan alarm seal seperti
+   angka due; affordance klik tetap (chevron + border saat hover). */
+.kd-stat.due.next-due .kd-stat-num { color: var(--ink-soft); }
+
+/* Sufiks kecil di baris angka Studied ("/151"). Angka besar + keterangan
+   kecil mute: proporsi terbaca tanpa membuat baris angka lebar/wrap. */
+.kd-stat-total {
+  font-size: 14px; font-weight: 400; color: var(--ink-soft);
+  align-self: center;
+}
+
+/* Ponsel kecil: angka mengecil supaya "150/151" sekalipun muat. */
 @media (max-width: 380px) {
   .kd-stat-num { font-size: 20px; }
+  .kd-stat-total { font-size: 11px; }
   .kd-stat { padding: 10px 4px; }
+  /* count-4 perlu dinyatakan ulang: aturan ≤480 lebih spesifik sehingga
+     menang atas .kd-stat-num generik di sini. */
+  .kd-hero-row.count-4 .kd-stat-num { font-size: 20px; }
+  .kd-streak-flame svg { width: 13px; height: 13px; }
 }
 
-/* Banner next-review — ELEMEN PERTAMA layar Home/UnitSelect; di bawahnya
-   panel statistik kartu besar (kd-hero, read-only). */
-.kd-next-review-banner {
-  max-width: 640px; margin: 12px auto 0;
-  display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap;
-  background: var(--surface); border: 1px dashed var(--paper-line); border-radius: 4px;
-  padding: 12px 14px; text-align: center;
-  font-family: 'DM Mono', monospace; font-size: 13px; color: var(--ink-soft);
+/* ---- Baris aksi (kd-action-row) — sistem visual untuk tombol-tombol
+   baris lebar-penuh (kini satu-satunya pemakainya: "Browse all kanji"
+   di Home; banner review yang dulu bersandingan sudah dihapus — tugas
+   pintu kalendernya diambil kartu "Due now" di panel statistik).
+   Struktur: [ikon + (judul + subteks) + chevron], SATU keluarga
+   tipografi (judul Zen Kaku Gothic 700; subteks DM Mono kecil mute —
+   angka/jam memang mono).
+   Karena bisa berupa <button>, font-family diatur eksplisit di sini
+   (button tidak mewarisi font root). ---- */
+.kd-action-row {
+  width: 100%; display: flex; align-items: center; gap: 12px;
+  background: var(--surface); border: 1.5px solid var(--paper-line); border-radius: 4px;
+  padding: 12px 16px; cursor: pointer; text-align: left; color: var(--ink);
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  transition: transform 0.15s, box-shadow 0.2s, border-color 0.15s;
 }
-.kd-next-review-banner.due { border-color: var(--seal); border-style: solid; }
-.kd-nrb-label { color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.04em; font-size: 11px; }
-.kd-nrb-unit { color: var(--indigo); font-weight: 700; }
-.kd-nrb-when { color: var(--ink-soft); }
-.kd-nrb-strong { color: var(--seal); font-weight: 700; }
+.kd-action-row:hover:not(:disabled) {
+  transform: translateY(-2px); border-color: var(--indigo-soft);
+  box-shadow: 0 6px 18px var(--shadow);
+}
+.kd-action-row:disabled { cursor: default; }
+.kd-ar-icon { flex-shrink: 0; color: var(--ink-soft); display: flex; }
+.kd-ar-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.kd-ar-title { font-weight: 700; font-size: 14.5px; line-height: 1.25; color: var(--ink); }
+.kd-ar-small { font-family: 'DM Mono', monospace; font-weight: 400; font-size: 11.5px; color: var(--ink-soft); }
+.kd-ar-chevron { flex-shrink: 0; color: var(--ink-soft); }
 
-/* Banner bisa berupa <button> — SEMUA state (termasuk "belum belajar")
-   bisa diklik untuk membuka overlay kalender review. Reset default
-   browser: .kd-next-review-banner sudah mengatur font DM Mono di elemen
-   yang sama, jadi TIDAK ada font-family: inherit di sini (dulu membuat
-   state tombol tampil dengan font root, beda dari versi <div>). */
-.kd-nrb-clickable {
-  width: 100%; cursor: pointer;
-  transition: border-color 0.15s, transform 0.1s;
-}
-.kd-nrb-clickable:hover:not(:disabled) { border-color: var(--indigo-soft); transform: translateY(-1px); }
-.kd-nrb-clickable.due:hover:not(:disabled) { border-color: var(--seal); }
-.kd-nrb-clickable:disabled { cursor: default; }
-.kd-nrb-chevron { color: var(--ink-soft); flex-shrink: 0; }
-.kd-nrb-clickable.due .kd-nrb-chevron { color: var(--seal); }
+/* (Banner review yang dulu memakai kelas-kelas kd-nrb/kd-next-review
+   sudah dihapus — kartu "Due now" di panel statistik mengambil alih
+   fungsinya; gaya aksen seal-nya kini hidup di .kd-stat-action.has-due.) */
 
 
 /* Kalender bulanan: kartu surface seperti banner, minggu mulai Minggu.
@@ -362,7 +452,11 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 }
 .kd-unit-main:disabled { cursor: default; opacity: 0.6; }
 .kd-unit-status { font-size: 11px; color: var(--ink-soft); }
+/* Warna label status = warna border kartunya (due seal, mastered gold
+   — t55: "Mastered" disamakan dengan bordernya) supaya sinyal status
+   kartu konsisten satu warna, bukan abu generik. */
 .kd-unit-card.due .kd-unit-status { color: var(--seal); font-weight: 700; }
+.kd-unit-card.mastered .kd-unit-status { color: var(--gold); font-weight: 700; }
 .kd-unit-preview { font-size: 20px; margin-top: 10px; letter-spacing: 2px; color: var(--ink); opacity: 0.75; }
 /* Pill "✕ N" (kartu dengan kanji missed) — desain lama pra-hanko yang
    diminta user kembali: pill compact di sebelah judul unit, TOMBOL: klik
@@ -561,8 +655,7 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
   .kd-root { padding: 36px 32px 80px; }
 
   .kd-topbar, .kd-section-title, .kd-hero,
-  .kd-level-grid, .kd-unit-grid, .kd-progress-dots,
-  .kd-next-review-banner {
+  .kd-level-grid, .kd-unit-grid, .kd-progress-dots, .kd-browse-entry-row {
     max-width: 880px;
   }
 
@@ -618,22 +711,11 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
    ============================================================ */
 
 /* Tombol entry di Home */
-.kd-browse-entry-row { max-width: 640px; margin: 12px auto 0; }
-.kd-browse-entry {
-  width: 100%; display: flex; align-items: center; gap: 10px;
-  background: var(--surface); border: 1.5px solid var(--paper-line); border-radius: 4px;
-  padding: 14px 16px; cursor: pointer; text-align: left; color: var(--ink);
-  font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 700; font-size: 14.5px;
-  transition: transform 0.15s, box-shadow 0.2s, border-color 0.15s;
-}
-.kd-browse-entry:hover {
-  transform: translateY(-2px); border-color: var(--indigo-soft);
-  box-shadow: 0 6px 18px var(--shadow);
-}
-.kd-browse-entry span { flex: 1; }
-.kd-browse-entry small {
-  font-family: 'DM Mono', monospace; font-weight: 400; font-size: 11.5px; color: var(--ink-soft);
-}
+/* Entry Browse — tombolnya kini memakai sistem kd-action-row (ikon +
+   judul + subteks + chevron, lihat blok action-row); wrapper ini hanya
+   menangani lebar dan jarak baris (10px), langsung di bawah panel
+   statistik sejak banner review dihapus. */
+.kd-browse-entry-row { max-width: 640px; margin: 10px auto 0; }
 /* Judul seksi + jumlah inline */
 .kd-section-title-row {
   display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
@@ -779,11 +861,7 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
   display: flex; align-items: center; justify-content: space-between;
   gap: 14px; margin-top: 14px;
 }
-.kd-help-toggle-name { font-size: 13px; font-weight: 700; color: var(--ink); }
-.kd-help-toggle-desc {
-  font-size: 11.5px; color: var(--ink-soft); line-height: 1.5;
-  margin-top: 2px; max-width: 260px;
-}
+.kd-help-toggle-name { font-size: 13.5px; font-weight: 500; color: var(--ink); }
 /* Sakelar: track pil + knob bulat yang bergeser. State on memakai
    --indigo (aksen positif, bukan --seal — ini pengaturan, bukan aksi
    destruktif). */
