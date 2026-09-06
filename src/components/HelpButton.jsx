@@ -46,7 +46,7 @@ export default function HelpButton({ showReset, onToggleShowReset }) {
                 <span className="kd-key-hint muted">r</span> Toggle kana / romaji
               </div>
               <div className="kd-help-shortcut-row">
-                <span className="kd-key-hint muted">q</span> Back
+                <span className="kd-key-hint muted">q</span> Back — Cancel / Home
               </div>
               <div className="kd-help-shortcut-row">
                 <span className="kd-key-hint muted wide">↵ / Space</span> Continue to next question
@@ -76,6 +76,14 @@ export default function HelpButton({ showReset, onToggleShowReset }) {
                 <a href="https://github.com/Bluskyo/JLPT_Vocabulary" target="_blank" rel="noreferrer">
                   Bluskyo/JLPT_Vocabulary
                 </a>
+                . Stroke order animations (tap any kanji in a quiz) from{" "}
+                <a href="http://kanjivg.tagaini.net/" target="_blank" rel="noreferrer">
+                  KanjiVG
+                </a>{" "}
+                © Ulrich Apel, used under{" "}
+                <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noreferrer">
+                  CC BY-SA 3.0
+                </a>
                 .
               </p>
             </div>
@@ -83,21 +91,24 @@ export default function HelpButton({ showReset, onToggleShowReset }) {
             <div className="kd-help-section">
               <div className="kd-help-heading">Progress</div>
               <BackupControls />
-              <button
-                type="button"
-                role="switch"
-                aria-checked={showReset}
-                className={`kd-help-switch-row ${showReset ? "on" : ""}`}
-                onClick={onToggleShowReset}
-              >
-                <span className="kd-help-switch" aria-hidden="true">
-                  <span className="kd-help-switch-thumb" />
-                </span>
-                <span className="kd-help-switch-label">
-                  Show "Reset progress" buttons
-                  <small>per-level delete action next to the unit list</small>
-                </span>
-              </button>
+              {/* Toggle visibilitas tombol "Reset progress" per level —
+                  destruktif, jadi disembunyikan dari layar utama dan hanya
+                  diaktifkan dari sini. */}
+              <div className="kd-help-toggle-row">
+                <div>
+                  <div className="kd-help-toggle-name">Reset progress button</div>
+                  <div className="kd-help-toggle-desc">Show reset button</div>
+                </div>
+                <button
+                  className={`kd-toggle ${showReset ? "on" : ""}`}
+                  role="switch"
+                  aria-checked={showReset}
+                  aria-label="Show reset button"
+                  onClick={onToggleShowReset}
+                >
+                  <span className="kd-toggle-knob" />
+                </button>
+              </div>
             </div>
 
             <div className="kd-help-section">

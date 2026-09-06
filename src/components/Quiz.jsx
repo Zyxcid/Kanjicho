@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ChevronLeft, CircleX, HelpCircle } from "lucide-react";
 import { DONT_KNOW } from "../lib/quizGenerator.js";
 import { ReadingList } from "./Readings.jsx";
 import { kanaToRomaji } from "../lib/kana.js";
+import GenkouGlyph from "./GenkouGlyph.jsx";
 
 /**
  * Label satu pilihan sesuai skrip aktif: soal arti → teks biasa; soal
@@ -33,6 +34,7 @@ export default function Quiz({
   onSubmitAnswer,
   onContinue,
   onCancel,
+  registerGuard, // dari useRouter — menahan Back browser saat sesi berproses
 }) {
   const current = quiz[qIndex];
   const isKana = current.questionType === "reading" && answerScript === "kana";
@@ -41,11 +43,49 @@ export default function Quiz({
   // satu jawaban terkumpul — qIndex > 0, atau soal saat ini sudah dijawab),
   // tombol Cancel/q menampilkan dialog dulu. Tanpa progres, keluar langsung.
   const [confirmExit, setConfirmExit] = useState(false);
+  // Sumber dialog: "ui" (tombol Cancel / shortcut q) atau "browser"
+  // (Back browser ditahan guard) — menentukan aksi tombol Leave.
+  const [exitSource, setExitSource] = useState("ui");
+  // Leave dari Back browser: loloskan popstate BERIKUTNYA dari guard —
+  // history.back() di confirmLeave memicu popstate itu.
+  const leavingRef = useRef(false);
   const hasProgress = qIndex > 0 || selectedChoice !== null;
   function requestExit() {
-    if (hasProgress) setConfirmExit(true);
-    else onCancel();
+    if (hasProgress) {
+      setExitSource("ui");
+      setConfirmExit(true);
+    } else {
+      onCancel();
+    }
   }
+
+  // "Leave": dari Back browser → lanjutkan Back yang tadi ditahan
+  // (tujuan asli Alt+← dihormati); dari tombol Cancel → navigate biasa.
+  function confirmLeave() {
+    setConfirmExit(false);
+    if (exitSource === "browser") {
+      leavingRef.current = true;
+      window.history.back();
+    } else {
+      onCancel();
+    }
+  }
+
+  // Guard Back browser (Alt+← / tombol Back): saat sesi berprogres,
+  // router menahan popstate (URL dikembalikan ke kuis) lalu dialog ini
+  // dibuka — jalur keluar sama dengan tombol Cancel. Dipasang ulang saat
+  // hasProgress berubah; lepas otomatis saat layar unmount.
+  useEffect(() => {
+    if (!registerGuard) return;
+    registerGuard({
+      canLeave: () => leavingRef.current || !hasProgress,
+      onBlocked: () => {
+        setExitSource("browser");
+        setConfirmExit(true);
+      },
+    });
+    return () => registerGuard(null);
+  }, [registerGuard, hasProgress]);
 
   // Shortcut keyboard: w/e/s/d pilih jawaban (mirror grid 2×2), f =
   // "Don't know", r = toggle kana/romaji, Enter/Space = lanjut. (q = tombol
@@ -64,8 +104,7 @@ export default function Quiz({
       if (confirmExit) {
         if (e.key === "Enter") {
           e.preventDefault();
-          setConfirmExit(false);
-          onCancel();
+          confirmLeave();
         } else if (e.key === "Escape") {
           setConfirmExit(false);
         }
@@ -96,7 +135,7 @@ export default function Quiz({
     }
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [selectedChoice, current, onSubmitAnswer, onContinue, onToggleScript, confirmExit, onCancel]);
+  }, [selectedChoice, current, onSubmitAnswer, onContinue, onToggleScript, confirmExit, exitSource, onCancel]);
 
   return (
     <>
@@ -114,8 +153,18 @@ export default function Quiz({
           lihat global.css): kanji di kiri, soal + pilihan di kanan. */}
       <div className="kd-quiz-layout">
         <div className="kd-quiz-left">
+          {/* Glyph selalu dirender sebagai SVG KanjiVG keadaan SELESAI
+              sejak soal muncul (bentuk konsisten, tidak ada pergantian
+              font). KLIK KIRI glyph → animasi urutan goresan diputar
+              LANGSUNG di kotak genkō-yōshi ini (default 1x, tanpa
+              kontrol — lihat GenkouGlyph.jsx); KLIK KANAN → animasi
+              langsung diselesaikan (semua goresan muncul seketika).
+              Shortcut kuis tetap hidup karena tidak ada overlay. Tidak
+              ada lagi tombol detail dari dalam kuis: sheet detail
+              (bacaan, arti, contoh kata) membocorkan jawaban soal —
+              info lengkap tersedia di modal Browse SETELAH kuis. */}
           <div className="kd-genkou">
-            <div className="kd-genkou-glyph">{current.kanji}</div>
+            <GenkouGlyph key={current.kanji} kanji={current.kanji} level={current.level} />
           </div>
         </div>
 
@@ -238,13 +287,7 @@ export default function Quiz({
               <button className="kd-btn secondary" onClick={() => setConfirmExit(false)}>
                 Keep studying
               </button>
-              <button
-                className="kd-btn primary"
-                onClick={() => {
-                  setConfirmExit(false);
-                  onCancel();
-                }}
-              >
+              <button className="kd-btn primary" onClick={confirmLeave}>
                 Leave
               </button>
             </div>

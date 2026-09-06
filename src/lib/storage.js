@@ -8,7 +8,7 @@
  * Tiga tabel:
  *   - unitProgress : state SRS per unit (lihat srs.js)
  *   - quizAttempts : log tiap kuis selesai (untuk streak/statistik, bukan SRS)
- *   - kanjiStats   : performa per KANJI — sumber daftar "missed" untuk pill
+ *   - kanjiStats   : performa per KANJI — sumber daftar "missed" untuk stamp
  *                    di kartu unit. Kanji dianggap "missed" kalau pernah
  *                    salah/"tidak tahu" dan belum ditebus 1x benar
  *                    berturut-turut sejak salah terakhir.
@@ -34,7 +34,7 @@ class KanjiDB extends Dexie {
       unitProgress: "unitId, jlptLevel, nextReviewAt",
       // ++id auto-increment; unitId & timestamp di-index untuk query histori.
       quizAttempts: "++id, unitId, timestamp",
-      // kanji primary key; level & lastWrongAt di-index (filter pill &
+      // kanji primary key; level & lastWrongAt di-index (filter stamp &
       // prioritas review).
       kanjiStats: "kanji, level, lastWrongAt",
     });
@@ -109,6 +109,9 @@ async function logQuizAttempt(unitId, quizResult) {
     dontKnowCount: quizResult.dontKnowCount,
     wrongCount: quizResult.wrongCount,
     total: quizResult.total,
+    // Rating FSRS hasil adapter (1-4) — hanya terisi untuk kuis SRS;
+    // bekal optimisasi parameter per pengguna (format siap optimizer).
+    rating: quizResult.rating ?? null,
   });
 }
 
@@ -201,6 +204,18 @@ async function getWeakKanji() {
     );
 }
 
+/**
+ * Hapus baris kanjiStats beberapa kanji sekaligus — dipakai App.jsx untuk
+ * MEREST daftar missed unit yang jatuh tempo: review due menguji ulang
+ * seluruh unit sebagai pengukuran ingatan dari nol, jadi jejak missed
+ * lama (yang belum sempat ditebus lewat sesi remedial) tidak ikut
+ * menumpuk. Baris baru tercipta otomatis dari hasil kuis due berikutnya.
+ */
+async function clearKanjiStats(kanjiChars) {
+  const db = getDB();
+  await db.kanjiStats.bulkDelete(kanjiChars || []);
+}
+
 // ---- Utilitas ----
 
 /**
@@ -210,7 +225,7 @@ async function getWeakKanji() {
  *   - unitProgress : state SRS semua unit level ini (jadwal & mastery hilang)
  *   - quizAttempts : log kuis unit-unit level ini (kontribusi streak-nya
  *                    ikut hilang — streak dihitung ulang pemanggil)
- *   - kanjiStats   : statistik per-kanji level ini (pill "✕ N" & weak review)
+ *   - kanjiStats   : statistik per-kanji level ini (stamp "✕ N" & weak review)
  * Log kuis weak review (unitId "weak-review") tidak memuat info level,
  * jadi tidak bisa dihapus selektif — hanya menyisakan jejak tanggal
  * aktivitas, bukan jadwal. Level lain tidak tersentuh.
@@ -250,6 +265,7 @@ export {
   updateKanjiStats,
   getKanjiStats,
   getWeakKanji,
+  clearKanjiStats,
   deleteLevelProgress,
   clearAllData,
   WEAK_REDEEM_CORRECT_STREAK,

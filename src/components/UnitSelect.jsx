@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { ChevronLeft, CircleX, Trash2 } from "lucide-react";
-import { unitStatus, daysUntil } from "../App.jsx";
+import { unitStatus } from "../App.jsx";
+import { intervalUntilLabel } from "../lib/dueFormat.js";
 import { loadLevelKanji } from "../lib/dataLoader.js";
 import NextReviewBanner from "./NextReviewBanner.jsx";
+import StatCards from "./StatCards.jsx";
 
 const STATUS_LABEL = {
   new: "Not started",
@@ -18,8 +20,10 @@ export default function UnitSelect({
   stats,
   onBack,
   onStartUnit,
-  onJumpToNextReview,
+  onOpenCalendar,
   onResetProgress,
+  // Tombol reset disembunyikan default; toggle ada di modal Help (seksi
+  // Progress). showReset=false → tombol tidak dirender sama sekali.
   showReset,
   weakChars,
   onStartWeakReview,
@@ -57,7 +61,11 @@ export default function UnitSelect({
       .join(" ");
   }
 
-  // Berapa kanji unit ini yang sedang "missed" — untuk pill di kartu unit.
+  // Berapa kanji unit ini yang sedang "missed" — untuk pill "✕ N" di
+  // sebelah judul kartu unit. Kanji milik unit yang sedang DUE sudah
+  // direset saat data dimuat (lihat App.jsx resetMissedForDueUnits):
+  // review jatuh tempo menguji ulang seluruh unit sebagai pengukuran
+  // bersih, jadi pill hanya muncul untuk unit yang belum jatuh tempo.
   function missedCountFor(unitId) {
     if (!kanjiList || !weakChars) return 0;
     return kanjiList.filter(
@@ -71,28 +79,22 @@ export default function UnitSelect({
         <ChevronLeft size={16} /> Home
       </button>
 
-      <div className="kd-hero">
-        <div className="kd-hero-row">
-          <div className="kd-stat studied">
-            <div className="kd-stat-num">{stats.studied}</div>
-            <div className="kd-stat-label">Studied</div>
-          </div>
-          <div className="kd-stat due">
-            <div className="kd-stat-num">{stats.due}</div>
-            <div className="kd-stat-label">Due now</div>
-          </div>
-          <div className="kd-stat mastered">
-            <div className="kd-stat-num">{stats.mastered}</div>
-            <div className="kd-stat-label">Mastered</div>
-          </div>
-        </div>
-      </div>
+      {/* Banner review: klik membuka overlay kalender review (ter-filter
+          level ini, sejalan dengan angka banner) — panel hari menampilkan
+          jam due per unit. */}
+      <NextReviewBanner stats={stats} onOpenCalendar={onOpenCalendar} />
 
-      <NextReviewBanner stats={stats} onJump={onJumpToNextReview} />
+      {/* Statistik kartu besar scope level ini (Studied x/total, Due now,
+          Mastered — non-interaktif, lihat StatCards.jsx). */}
+      <StatCards stats={stats} />
 
+      {/* Judul seksi + tombol reset di ujung kanan (space-between, pola
+          sama dengan judul Browse). Tombol hanya muncul kalau diaktifkan
+          dari modal Help DAN ada progress yang bisa dihapus — tidak ada
+          gunanya menawarkan reset pada level yang masih bersih. */}
       <div className="kd-section-title kd-section-title-row">
         <span>{level} Units</span>
-        {stats.studied > 0 && showReset && (
+        {showReset && stats.studied > 0 && (
           <button
             className="kd-reset-progress"
             onClick={() => setConfirmReset(true)}
@@ -119,18 +121,22 @@ export default function UnitSelect({
           const drillGated = missed > 0;
           return (
             <div key={unitId} className={`kd-unit-card ${status}${dim ? " dim" : ""}`}>
-              {status === "mastered" && <div className="kd-hanko gold">済</div>}
-              {status === "due" && <div className="kd-hanko">要</div>}
-              {/* Baris judul: judul unit kiri + pill "✕ N" di ujung kanan
-                  (space-between). Pill tombol TERPISAH dari kd-unit-main
-                  karena tombol tidak boleh nested. */}
+              {/* Baris judul: judul unit + pill "✕ N" missed review (desain
+                  lama pra-hanko, diminta user kembali). HANKO DIHAPUS
+                  SEPENUHNYA (済/要/✕N stamp pojok tidak ada lagi): status
+                  unit tetap terbaca dari label tombol utama + warna border
+                  kartu; sinyal missed kini pill kecil di sebelah judul —
+                  satu elemen, satu sinyal, dan merupakan TOMBOL: klik =
+                  review missed unit itu. */}
               <div className="kd-unit-head">
                 <div className="kd-unit-title">{unitId}</div>
                 {missed > 0 && (
                   <button
+                    type="button"
                     className="kd-unit-missed"
                     onClick={() => onStartWeakReview(unitId)}
                     title={`Quiz the ${missed} kanji you missed in this unit — doesn't change your schedule`}
+                    aria-label={`Review ${missed} missed kanji`}
                   >
                     <CircleX size={12} strokeWidth={2.25} /> {missed}
                   </button>
@@ -151,7 +157,8 @@ export default function UnitSelect({
               >
                 <div className="kd-unit-status">
                   {STATUS_LABEL[status]}
-                  {status === "scheduled" && ` · in ${daysUntil(state.nextReviewAt)} days`}
+                  {status === "scheduled" &&
+                    ` · in ${intervalUntilLabel(state.nextReviewAt)}`}
                 </div>
                 <div className="kd-unit-preview">{kanjiList ? previewFor(unitId) : "…"}</div>
               </button>
@@ -163,6 +170,9 @@ export default function UnitSelect({
       {confirmReset && (
         <div className="kd-modal-overlay" onClick={() => setConfirmReset(false)}>
           <div className="kd-modal kd-drill-confirm" onClick={(e) => e.stopPropagation()}>
+            {/* Konfirmasi destruktif: sebutkan eksplisit apa saja yang
+                terhapus supaya tidak dikira hanya jadwal SRS-nya. Klik di
+                luar dialog = batal. */}
             <p className="kd-drill-confirm-text">Delete all {level} progress?</p>
             <p className="kd-drill-confirm-text">
               SRS schedule, quiz history and missed kanji for this level will be removed

@@ -15,9 +15,10 @@
  *      sebenarnya: unitProgress (jadwal SRS), quizAttempts (log kuis,
  *      sumber streak harian), kanjiStats (tally benar/salah per kanji,
  *      sumber daftar missed).
- *   2. Dua key localStorage pengaturan tampilan (tema, kana/romaji).
- *      Bukan progress, tapi ikut dibackup supaya pindah perangkat/peramban
- *      terasa langsung "seperti sebelumnya".
+ *   2. Tiga key localStorage pengaturan tampilan (tema, kana/romaji,
+ *      visibilitas tombol reset progress). Bukan progress, tapi ikut
+ *      dibackup supaya pindah perangkat/peramban terasa langsung
+ *      "seperti sebelumnya".
  */
 
 import { getDB } from "./storage";

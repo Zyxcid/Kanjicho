@@ -15,9 +15,9 @@
   ],
   "一": [
     {
-      "word": "一日",
-      "reading": "いちにち",
-      "meaning": "one day",
+      "word": "一緒",
+      "reading": "いっしょ",
+      "meaning": "(doing) together",
       "type": "on"
     },
     {
@@ -35,9 +35,9 @@
       "type": "on"
     },
     {
-      "word": "国々",
-      "reading": "くにぐに",
-      "meaning": "countries",
+      "word": "国",
+      "reading": "くに",
+      "meaning": "country",
       "type": "kun"
     }
   ],
@@ -49,9 +49,9 @@
       "type": "on"
     },
     {
-      "word": "一人",
-      "reading": "ひとり",
-      "meaning": "one person",
+      "word": "人",
+      "reading": "ひと",
+      "meaning": "person",
       "type": "kun"
     }
   ],
@@ -63,9 +63,9 @@
       "type": "on"
     },
     {
-      "word": "今年",
-      "reading": "ことし",
-      "meaning": "this year",
+      "word": "毎年",
+      "reading": "まいとし",
+      "meaning": "every year",
       "type": "kun"
     }
   ],
@@ -77,8 +77,8 @@
       "type": "on"
     },
     {
-      "word": "大きな",
-      "reading": "おおきな",
+      "word": "大きい",
+      "reading": "おおきい",
       "meaning": "big",
       "type": "kun"
     }
@@ -105,17 +105,17 @@
       "type": "on"
     },
     {
-      "word": "二人",
-      "reading": "ふたり",
-      "meaning": "two persons",
+      "word": "二つ",
+      "reading": "ふたつ",
+      "meaning": "two",
       "type": "kun"
     }
   ],
   "本": [
     {
-      "word": "本棚",
-      "reading": "ほんだな",
-      "meaning": "bookshelves",
+      "word": "本",
+      "reading": "ほん",
+      "meaning": "book",
       "type": "on"
     },
     {
@@ -133,9 +133,9 @@
       "type": "on"
     },
     {
-      "word": "中々",
-      "reading": "なかなか",
-      "meaning": "very",
+      "word": "中",
+      "reading": "なか",
+      "meaning": "inside",
       "type": "kun"
     }
   ],
@@ -155,9 +155,9 @@
   ],
   "出": [
     {
-      "word": "輸出",
-      "reading": "ゆしゅつ",
-      "meaning": "export",
+      "word": "出品者",
+      "reading": "しゅっぴんしゃ",
+      "meaning": "seller",
       "type": "on"
     },
     {
@@ -245,9 +245,9 @@
       "type": "on"
     },
     {
-      "word": "後ろ",
-      "reading": "うしろ",
-      "meaning": "back",
+      "word": "後",
+      "reading": "あと",
+      "meaning": "behind",
       "type": "kun"
     }
   ],
@@ -323,15 +323,15 @@
   ],
   "東": [
     {
-      "word": "東京",
-      "reading": "とうきょう",
-      "meaning": "Tokyo",
+      "word": "東西",
+      "reading": "とうざい",
+      "meaning": "east and west",
       "type": "on"
     },
     {
-      "word": "東側",
-      "reading": "ひがしがわ",
-      "meaning": "east side",
+      "word": "東",
+      "reading": "ひがし",
+      "meaning": "east",
       "type": "kun"
     }
   ],
@@ -357,9 +357,9 @@
       "type": "on"
     },
     {
-      "word": "今や",
-      "reading": "いまや",
-      "meaning": "now (esp. in contrast to the past)",
+      "word": "今",
+      "reading": "いま",
+      "meaning": "now",
       "type": "kun"
     }
   ],
@@ -371,9 +371,9 @@
       "type": "on"
     },
     {
-      "word": "金持ち",
-      "reading": "かねもち",
-      "meaning": "rich person",
+      "word": "銭金",
+      "reading": "ぜにかね",
+      "meaning": "money",
       "type": "kun"
     }
   ],
@@ -407,9 +407,9 @@
   ],
   "学": [
     {
-      "word": "大学",
-      "reading": "だいがく",
-      "meaning": "university",
+      "word": "学校",
+      "reading": "がっこう",
+      "meaning": "school",
       "type": "on"
     },
     {
@@ -455,9 +455,9 @@
       "type": "on"
     },
     {
-      "word": "子供",
-      "reading": "こども",
-      "meaning": "child",
+      "word": "女の子",
+      "reading": "おんなのこ",
+      "meaning": "girl",
       "type": "kun"
     }
   ],
@@ -469,9 +469,9 @@
       "type": "on"
     },
     {
-      "word": "外側",
-      "reading": "そとがわ",
-      "meaning": "exterior",
+      "word": "外",
+      "reading": "そと",
+      "meaning": "outside",
       "type": "kun"
     }
   ],
@@ -537,12 +537,6 @@
       "reading": "びょうき",
       "meaning": "illness (usu. excluding minor ailments, e.g. common cold)",
       "type": "on"
-    },
-    {
-      "word": "気持ち",
-      "reading": "きもち",
-      "meaning": "feeling",
-      "type": "kun"
     }
   ],
   "小": [
@@ -581,9 +575,9 @@
       "type": "on"
     },
     {
-      "word": "山々",
-      "reading": "やまやま",
-      "meaning": "(many) mountains",
+      "word": "山",
+      "reading": "やま",
+      "meaning": "mountain",
       "type": "kun"
     }
   ],
@@ -595,9 +589,9 @@
       "type": "on"
     },
     {
-      "word": "話す",
-      "reading": "はなす",
-      "meaning": "to talk",
+      "word": "話",
+      "reading": "はなし",
+      "meaning": "talk",
       "type": "kun"
     }
   ],
@@ -609,23 +603,23 @@
       "type": "on"
     },
     {
-      "word": "女の子",
-      "reading": "おんなのこ",
-      "meaning": "girl",
+      "word": "女",
+      "reading": "おんな",
+      "meaning": "woman",
       "type": "kun"
     }
   ],
   "北": [
     {
-      "word": "東北",
-      "reading": "とうほく",
-      "meaning": "north-east",
+      "word": "南北",
+      "reading": "なんぼく",
+      "meaning": "north and south",
       "type": "on"
     },
     {
-      "word": "北朝鮮",
-      "reading": "きたちょうせん",
-      "meaning": "North Korea",
+      "word": "北",
+      "reading": "きた",
+      "meaning": "north",
       "type": "kun"
     }
   ],
@@ -637,9 +631,9 @@
       "type": "on"
     },
     {
-      "word": "午年",
-      "reading": "うまどし",
-      "meaning": "year of the Horse",
+      "word": "丙午",
+      "reading": "ひのえうま",
+      "meaning": "Fire Horse (43rd term of the sexagenary cycle, e.g. 1906, 1966, 2026)",
       "type": "kun"
     }
   ],
@@ -649,6 +643,12 @@
       "reading": "ひゃくねん",
       "meaning": "century",
       "type": "on"
+    },
+    {
+      "word": "百夜",
+      "reading": "ももよ",
+      "meaning": "many nights",
+      "type": "kun"
     }
   ],
   "書": [
@@ -673,9 +673,9 @@
       "type": "on"
     },
     {
-      "word": "指先",
-      "reading": "ゆびさき",
-      "meaning": "fingertip",
+      "word": "先",
+      "reading": "さき",
+      "meaning": "point",
       "type": "kun"
     }
   ],
@@ -701,9 +701,9 @@
       "type": "on"
     },
     {
-      "word": "川崎",
-      "reading": "かわさき",
-      "meaning": "Kawasaki (city)",
+      "word": "川",
+      "reading": "かわ",
+      "meaning": "river",
       "type": "kun"
     }
   ],
@@ -715,9 +715,9 @@
       "type": "on"
     },
     {
-      "word": "千代",
-      "reading": "ちよ",
-      "meaning": "thousand years",
+      "word": "千鳥足",
+      "reading": "ちどりあし",
+      "meaning": "tottering steps",
       "type": "kun"
     }
   ],
@@ -729,9 +729,9 @@
       "type": "on"
     },
     {
-      "word": "水気",
-      "reading": "みずけ",
-      "meaning": "water content",
+      "word": "水",
+      "reading": "みず",
+      "meaning": "water (esp. cool or cold)",
       "type": "kun"
     }
   ],
@@ -757,9 +757,9 @@
       "type": "on"
     },
     {
-      "word": "男の子",
-      "reading": "おとこのこ",
-      "meaning": "boy",
+      "word": "男",
+      "reading": "おとこ",
+      "meaning": "man",
       "type": "kun"
     }
   ],
@@ -771,9 +771,9 @@
       "type": "on"
     },
     {
-      "word": "西側",
-      "reading": "にしがわ",
-      "meaning": "west side",
+      "word": "西",
+      "reading": "にし",
+      "meaning": "west",
       "type": "kun"
     }
   ],
@@ -829,9 +829,9 @@
       "type": "on"
     },
     {
-      "word": "木々",
-      "reading": "きぎ",
-      "meaning": "(many) trees",
+      "word": "木",
+      "reading": "き",
+      "meaning": "tree",
       "type": "kun"
     }
   ],
@@ -871,23 +871,23 @@
       "type": "on"
     },
     {
-      "word": "車椅子",
-      "reading": "くるまいす",
-      "meaning": "wheelchair",
+      "word": "車",
+      "reading": "くるま",
+      "meaning": "car",
       "type": "kun"
     }
   ],
   "何": [
     {
-      "word": "如何に",
-      "reading": "いかに",
-      "meaning": "how",
+      "word": "幾何学",
+      "reading": "きかがく",
+      "meaning": "geometry",
       "type": "on"
     },
     {
-      "word": "何度",
-      "reading": "なんど",
-      "meaning": "how many times",
+      "word": "何",
+      "reading": "なん",
+      "meaning": "what",
       "type": "kun"
     }
   ],
@@ -899,9 +899,9 @@
       "type": "on"
     },
     {
-      "word": "南向き",
-      "reading": "みなみむき",
-      "meaning": "facing south",
+      "word": "南",
+      "reading": "みなみ",
+      "meaning": "south",
       "type": "kun"
     }
   ],
@@ -913,9 +913,9 @@
       "type": "on"
     },
     {
-      "word": "八百万",
-      "reading": "やおよろず",
-      "meaning": "myriad",
+      "word": "万屋",
+      "reading": "よろずや",
+      "meaning": "general store",
       "type": "kun"
     }
   ],
@@ -925,6 +925,12 @@
       "reading": "まいにち",
       "meaning": "every day",
       "type": "on"
+    },
+    {
+      "word": "夜毎",
+      "reading": "よごと",
+      "meaning": "every night",
+      "type": "kun"
     }
   ],
   "白": [
@@ -963,9 +969,9 @@
       "type": "on"
     },
     {
-      "word": "母親",
-      "reading": "ははおや",
-      "meaning": "mother",
+      "word": "継母",
+      "reading": "ままはは",
+      "meaning": "stepmother",
       "type": "kun"
     }
   ],
@@ -977,9 +983,9 @@
       "type": "on"
     },
     {
-      "word": "火花",
-      "reading": "ひばな",
-      "meaning": "spark",
+      "word": "飛び火",
+      "reading": "とびひ",
+      "meaning": "leaping flames",
       "type": "kun"
     }
   ],
@@ -991,9 +997,9 @@
       "type": "on"
     },
     {
-      "word": "右手",
-      "reading": "みぎて",
-      "meaning": "right hand",
+      "word": "右",
+      "reading": "みぎ",
+      "meaning": "right",
       "type": "kun"
     }
   ],
@@ -1033,9 +1039,9 @@
       "type": "on"
     },
     {
-      "word": "左手",
-      "reading": "ひだりて",
-      "meaning": "left hand",
+      "word": "左",
+      "reading": "ひだり",
+      "meaning": "left",
       "type": "kun"
     }
   ],
@@ -1061,8 +1067,8 @@
       "type": "on"
     },
     {
-      "word": "父親",
-      "reading": "ちちおや",
+      "word": "父",
+      "reading": "ちち",
       "meaning": "father",
       "type": "kun"
     }
@@ -1075,9 +1081,9 @@
       "type": "on"
     },
     {
-      "word": "大雨",
-      "reading": "おおあめ",
-      "meaning": "heavy rain",
+      "word": "雨",
+      "reading": "あめ",
+      "meaning": "rain",
       "type": "kun"
     }
   ]

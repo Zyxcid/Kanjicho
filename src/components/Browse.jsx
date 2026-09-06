@@ -2,6 +2,9 @@ import React, { useState, useMemo, useEffect, useCallback } from "react";
 import { ChevronLeft, Search, X, BookOpen } from "lucide-react";
 import { LEVEL_IDS, loadLevelKanji, loadAllKanji } from "../lib/dataLoader.js";
 import { ReadingList } from "./Readings.jsx";
+import StrokePlayer from "./StrokePlayer.jsx";
+import CopyKanji from "./CopyKanji.jsx";
+import { loadStrokes } from "../lib/strokes.js";
 
 // "All" + N5..N1. Default N5 supaya paint pertama ringan (N1 sendiri
 // berisi 1.232 entri; N5 lebih ramah sebagai halaman mula).
@@ -16,6 +19,10 @@ export default function Browse({ onBack }) {
   const [query, setQuery] = useState("");
   const [visibleCount, setVisibleCount] = useState(VISIBLE_STEP);
   const [selected, setSelected] = useState(null); // kanji yang ditampilkan di modal
+
+  // Data urutan goresan untuk kanji di modal (KanjiVG, per level —
+  // loader di lib/strokes.js meng-cache chunk per level). null = dimuat.
+  const [strokePaths, setStrokePaths] = useState(null);
 
   // Data level aktif (atau semua level untuk "All") dimuat on-demand —
   // null selagi proses. "All" memuat 5 level sekaligus (satu-satunya kasus
@@ -69,6 +76,20 @@ export default function Browse({ onBack }) {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
+
+  // Setiap modal dibuka untuk kanji baru → muat path goresannya. "All"
+  // memuat level entri TERSEBUT (bukan semua level sekaligus).
+  useEffect(() => {
+    if (!selected) return;
+    let cancelled = false;
+    setStrokePaths(null);
+    loadStrokes(selected.jlpt_level).then((map) => {
+      if (!cancelled) setStrokePaths(map[selected.kanji] || []);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [selected]);
 
   const visible = list.slice(0, visibleCount);
   const hasMore = list.length > visibleCount;
@@ -155,7 +176,9 @@ export default function Browse({ onBack }) {
         </div>
       )}
 
-      {/* Modal detail — pakai estetika kd-reveal dari layar kuis. */}
+      {/* Modal detail — layout dua kolom (mobile: bertumpuk): animasi
+          urutan goresan KanjiVG di kiri, info (arti, bacaan, contoh) di
+          kanan. Estetika elemen info tetap memakai kd-reveal. */}
       {selected && (
         <div className="kd-modal-overlay" onClick={() => setSelected(null)}>
           <div className="kd-modal" onClick={(e) => e.stopPropagation()}>
@@ -166,53 +189,80 @@ export default function Browse({ onBack }) {
             >
               <X size={18} />
             </button>
-            <div className="kd-reveal-head">
-              <span className="kd-meaning-kanji">{selected.kanji}</span>
-              <span className="kd-meaning-text">
-                {selected.meanings.join(", ")}
-              </span>
-            </div>
-            <div className="kd-reveal-yomi">
-              {selected.readings.on.length > 0 && (
-                <div className="kd-yomi-row">
-                  <span className="kd-yomi-tag on">On&apos;yomi</span>
-                  <ReadingList readings={selected.readings.on} primaryReadings={selected.primary_readings} type="on" />
-                </div>
-              )}
-              {selected.readings.kun.length > 0 && (
-                <div className="kd-yomi-row">
-                  <span className="kd-yomi-tag kun">Kun&apos;yomi</span>
-                  <ReadingList readings={selected.readings.kun} primaryReadings={selected.primary_readings} type="kun" />
-                </div>
-              )}
-              {selected.romaji_readings.length > 0 && (
-                <div className="kd-yomi-row">
-                  <span className="kd-yomi-tag kd-yomi-tag-neutral">Romaji</span>
-                  <span className="kd-yomi-value">{selected.romaji_readings.join(", ")}</span>
-                </div>
-              )}
-            </div>
-            <div className="kd-browse-modal-meta">
-              <span className="kd-yomi-tag kd-yomi-tag-indigo">
-                {selected.jlpt_level}
-              </span>
-              <span>{selected.unit}</span>
-              <span>· {selected.stroke_count} strokes</span>
-            </div>
-            {selected.examples.length > 0 && (
-              <div className="kd-examples">
-                {selected.examples.map((ex) => (
-                  <div key={ex.word} className="kd-example-item">
-                    <span className={`kd-yomi-tag ${ex.type} small`}>
-                      {ex.type === "on" ? "On" : "Kun"}
-                    </span>
-                    <span className="kd-example-word">{ex.word}</span>
-                    <span className="kd-example-reading">{ex.reading}</span>
-                    <span className="kd-example-meaning">{ex.meaning}</span>
-                  </div>
-                ))}
+            <div className="kd-detail-grid">
+              <div className="kd-detail-stroke">
+                {/* StrokePlayer merender penghitung live sendiri
+                    ("n / N strokes" — lihat komponen itu); label statis
+                    hanya untuk state loading/fallback tanpa data goresan.
+                    Kedua state kotak sama-sama bisa diKLIK untuk menyalin
+                    kanji (CopyKanji — konsisten dengan kotak animasi). */}
+                {strokePaths && strokePaths.length > 0 ? (
+                  <StrokePlayer paths={strokePaths} kanji={selected.kanji} />
+                ) : (
+                  <>
+                    <div className="kd-stroke-box">
+                      {strokePaths === null ? (
+                        <div className="kd-stroke-loading">…</div>
+                      ) : (
+                        <div className="kd-stroke-fallback">{selected.kanji}</div>
+                      )}
+                      <CopyKanji kanji={selected.kanji} />
+                    </div>
+                    <div className="kd-detail-strokes">
+                      {selected.stroke_count} {selected.stroke_count === 1 ? "stroke" : "strokes"}
+                    </div>
+                  </>
+                )}
               </div>
-            )}
+              <div className="kd-detail-info">
+                {/* Head cukup MEANING saja — kanji sudah tampil besar (dan
+                    dianimasikan) di kolom kiri, tampilkan lagi di head hanya
+                    duplikat. */}
+                <div className="kd-detail-head">
+                  <span className="kd-detail-meaning">{selected.meanings.join(", ")}</span>
+                </div>
+                <div className="kd-reveal-yomi">
+                  {selected.readings.on.length > 0 && (
+                    <div className="kd-yomi-row">
+                      <span className="kd-yomi-tag on">On&apos;yomi</span>
+                      <ReadingList readings={selected.readings.on} primaryReadings={selected.primary_readings} type="on" />
+                    </div>
+                  )}
+                  {selected.readings.kun.length > 0 && (
+                    <div className="kd-yomi-row">
+                      <span className="kd-yomi-tag kun">Kun&apos;yomi</span>
+                      <ReadingList readings={selected.readings.kun} primaryReadings={selected.primary_readings} type="kun" />
+                    </div>
+                  )}
+                  {selected.romaji_readings.length > 0 && (
+                    <div className="kd-yomi-row">
+                      <span className="kd-yomi-tag kd-yomi-tag-neutral">Romaji</span>
+                      <span className="kd-yomi-value">{selected.romaji_readings.join(", ")}</span>
+                    </div>
+                  )}
+                </div>
+                <div className="kd-browse-modal-meta">
+                  <span className="kd-yomi-tag kd-yomi-tag-indigo">
+                    {selected.jlpt_level}
+                  </span>
+                  <span>{selected.unit}</span>
+                </div>
+                {selected.examples.length > 0 && (
+                  <div className="kd-examples">
+                    {selected.examples.map((ex) => (
+                      <div key={ex.word} className="kd-example-item">
+                        <span className={`kd-yomi-tag ${ex.type} small`}>
+                          {ex.type === "on" ? "On" : "Kun"}
+                        </span>
+                        <span className="kd-example-word">{ex.word}</span>
+                        <span className="kd-example-reading">{ex.reading}</span>
+                        <span className="kd-example-meaning">{ex.meaning}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       )}

@@ -12,10 +12,13 @@ me-load n*.json tiap level (puluhan-ratusan KB) secara lazy saat level
 itu benar-benar dibuka.
 
 Pemakaian:
-    python scripts/build_manifest.py [path/to/output/dir]
+    python scripts/build_manifest.py [path/to/data/dir]
 
-Baca n5.json ... n1.json dari direktori yang diberikan (default: src/data
-relatif ke root proyek) dan menulis manifest.json di sebelahnya.
+Baca n5.json ... n1.json dari direktori yang diberikan (default:
+output/ — workspace pipeline, konsisten dengan langkah 1–3 dan 5;
+src/data/ adalah hasil promosi, jangan dijadikan default input) dan
+menulis manifest.json di sebelahnya (di-promosi ke src/data/ lewat
+satu cp, lihat README).
 """
 import json
 import sys
@@ -26,7 +29,13 @@ LEVEL_IDS = ["N5", "N4", "N3", "N2", "N1"]
 
 def main():
     data_dir = Path(sys.argv[1]) if len(sys.argv) > 1 else \
-        Path(__file__).resolve().parent.parent / "src" / "data"
+        Path(__file__).resolve().parent.parent / "output"
+
+    if not data_dir.is_dir():
+        # Fail-fast: tanpa ini script hanya print "[skip]" per level lalu
+        # menulis manifest KOSONG diam-diam — jebakan saat src/data/ lama
+        # (default sebelumnya) dihapus untuk rebuild.
+        sys.exit(f"Data dir not found: {data_dir}")
 
     manifest = {}
     for level in LEVEL_IDS:

@@ -1,5 +1,6 @@
 import React from "react";
 import { CircleX, Clock } from "lucide-react";
+import { formatDueExact, intervalUntilLabel } from "../lib/dueFormat.js";
 
 /**
  * Layar hasil. Tampilannya menyesuaikan mode sesi:
@@ -9,9 +10,11 @@ import { CircleX, Clock } from "lucide-react";
  *                kecil "schedule unchanged" supaya tidak dikira bergeser
  *  - "weak"     → skor + breakdown + berapa kanji yang MASIH missed
  *                setelah sesi ini (`remainingMissed`, dihitung App dari
- *                stats pasca-sesi)
+ *                stats pasca-sesi). Kalau masih ada yang missed, tombol
+ *                utama berganti "Review again" (onReviewAgain) — sesi
+ *                remedial bisa diulang langsung tanpa pulang ke daftar unit.
  */
-export default function Result({ result, mode, activeUnit, onBackToUnits, onHome }) {
+export default function Result({ result, mode, activeUnit, onBackToUnits, onHome, onReviewAgain }) {
   const isWeak = mode === "weak";
   const isPractice = mode === "practice";
 
@@ -21,6 +24,10 @@ export default function Result({ result, mode, activeUnit, onBackToUnits, onHome
   // tidak tersentuh. Keduanya dirender dengan panel "Next review in" yang
   // sama — hasil latihan bebas pun tetap informatif.
   const shownState = isPractice ? result.existingState : result.newState;
+  // Weak review selesai tapi masih ada kanji missed (salah lagi / belum
+  // ditebus) → tawarkan ulang sesi remedialnya. Angka datang async dari
+  // IndexedDB; `typeof` guard menahan render tombol sampai siap.
+  const canReviewAgain = isWeak && typeof result.remainingMissed === "number" && result.remainingMissed > 0 && !!onReviewAgain;
 
   return (
     <>
@@ -44,13 +51,16 @@ export default function Result({ result, mode, activeUnit, onBackToUnits, onHome
         </div>
       </div>
 
-      {shownState && (
+      {shownState && shownState.nextReviewAt && (
         <div className="kd-next-review">
           <Clock size={14} style={{ marginBottom: 4 }} />
           <div>Next review in</div>
-          <div className="kd-next-review-num">{shownState.stability.toFixed(1)} days</div>
+          {/* Durasi dihitung dari nextReviewAt persis (bukan stability):
+              loop Relearning ber-jam tampil "6 hours", bukan "2.3 days". */}
+          <div className="kd-next-review-num">{intervalUntilLabel(shownState.nextReviewAt)}</div>
+          {/* Waktu jatuh tempo persis: tanggal + jam (pukul berapa). */}
           <div style={{ fontSize: 11, color: "var(--ink-soft)" }}>
-            ({new Date(shownState.nextReviewAt).toLocaleDateString("en-US", { day: "numeric", month: "long" })})
+            ({formatDueExact(shownState.nextReviewAt)})
           </div>
           {/* Menegaskan tanggal ini TIDAK digeser oleh sesi practice — tanpa
               ini panelnya identik dengan hasil review sungguhan. */}
@@ -68,7 +78,7 @@ export default function Result({ result, mode, activeUnit, onBackToUnits, onHome
                 sebelum angka siap. */}
             {typeof result.remainingMissed === "number"
               ? result.remainingMissed > 0
-                ? `${result.remainingMissed} kanji missed`
+                ? `${result.remainingMissed} kanji still missed`
                 : "No kanji missed"
               : "…"}
           </div>
@@ -76,7 +86,20 @@ export default function Result({ result, mode, activeUnit, onBackToUnits, onHome
       )}
 
       <div className="kd-btn-row">
-        <button className="kd-btn primary" onClick={onBackToUnits}>{backLabel}</button>
+        {/* Masih ada missed → "Review again" jadi tombol utama (aksi yang
+            dianjurkan); "Back to Units" turun jadi sekunder. Tanpa missed
+            (srs/practice/weak bersih) susunan tombol seperti biasa. */}
+        {canReviewAgain && (
+          <button className="kd-btn primary" onClick={onReviewAgain}>
+            Review again
+          </button>
+        )}
+        <button
+          className={`kd-btn ${canReviewAgain ? "secondary" : "primary"}`}
+          onClick={onBackToUnits}
+        >
+          {backLabel}
+        </button>
         <button className="kd-btn secondary" onClick={onHome}>Home</button>
       </div>
     </>

@@ -1,6 +1,7 @@
 import React from "react";
-import { BookOpen, Flame } from "lucide-react";
+import { BookOpen } from "lucide-react";
 import NextReviewBanner from "./NextReviewBanner.jsx";
+import StatCards from "./StatCards.jsx";
 
 /**
  * Badge tiap kartu level di Home, mencerminkan progres nyata user:
@@ -23,45 +24,35 @@ function levelBadge(stats) {
   return { label: "New", variant: "muted" };
 }
 
-export default function Home({ levelIds, getLevelMeta, getLevelStats, onOpenLevel, onBrowse, stats, onJumpToNextReview, streak, streakDoneToday }) {
-  const atRisk = streak > 0 && !streakDoneToday; // ada streak & belum kuis hari ini
+/**
+ * Home — layar utama: banner review (pintu kalender) + panel statistik
+ * kartu besar + browse + grid level.
+ *
+ * Statistik simple & informatif tampil langsung di sini (scope semua
+ * level): tiga kartu non-interaktif "x/total Studied", "Due now",
+ * "Mastered" — ala tampilan lama, tanpa stat missed (sudah terbaca dari
+ * pill ✕N tiap kartu unit) dan tanpa streak. Banner review di atasnya
+ * tetap satu-satunya pintu jadwal (klik = overlay kalender). Progres per
+ * level tetap terbaca dari badge tiap kartu level di bawah.
+ */
+export default function Home({
+  levelIds,
+  getLevelMeta,
+  getLevelStats,
+  onOpenLevel,
+  onBrowse,
+  stats,
+  onOpenCalendar,
+}) {
   return (
     <>
-      <div className="kd-hero">
-        <div className="kd-hero-row">
-          {/* Streak: api + angka saja. Status terbaca dari warna: border
-              emas + api terisi = selesai hari ini; border merah = streak
-              terancam. Detail lengkap di tooltip (title). */}
-          <div
-            className={`kd-stat streak ${streakDoneToday ? "lit" : atRisk ? "at-risk" : ""}`}
-            title={
-              streakDoneToday
-                ? `Day streak: ${streak} — today's quiz done`
-                : atRisk
-                  ? `Day streak: ${streak} — quiz today to keep it`
-                  : "Day streak"
-            }
-          >
-            <div className="kd-stat-num">
-              <Flame size={18} className="kd-stat-flame" fill={streakDoneToday ? "currentColor" : "none"} /> {streak}
-            </div>
-          </div>
-          <div className="kd-stat studied">
-            <div className="kd-stat-num">{stats.studied}</div>
-            <div className="kd-stat-label">Studied</div>
-          </div>
-          <div className="kd-stat due">
-            <div className="kd-stat-num">{stats.due}</div>
-            <div className="kd-stat-label">Due now</div>
-          </div>
-          <div className="kd-stat mastered">
-            <div className="kd-stat-num">{stats.mastered}</div>
-            <div className="kd-stat-label">Mastered</div>
-          </div>
-        </div>
-      </div>
+      {/* Banner review: klik membuka overlay kalender review (bukan langsung
+          ke kuis) — user lihat dulu unit yang due + jamnya. */}
+      <NextReviewBanner stats={stats} onOpenCalendar={onOpenCalendar} />
 
-      <NextReviewBanner stats={stats} onJump={onJumpToNextReview} />
+      {/* Statistik kartu besar semua level (bacaan sekali lewat, bukan
+          tombol — angka "Studied" menyertakan totalnya). */}
+      <StatCards stats={stats} />
 
       {/* Entry ke perpustakaan kanji lengkap (semua level). */}
       <div className="kd-browse-entry-row">

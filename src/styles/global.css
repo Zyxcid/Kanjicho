@@ -89,7 +89,6 @@ body {
 /* Transisi tema halus di permukaan utama (ganti dark/light tidak
    berubah mendadak). */
 .kd-root,
-.kd-root .kd-hero,
 .kd-root .kd-level-card,
 .kd-root .kd-unit-card,
 .kd-root .kd-genkou,
@@ -97,9 +96,7 @@ body {
 .kd-root .kd-reveal,
 .kd-root .kd-next-review,
 .kd-root .kd-btn,
-.kd-root .kd-stat,
-.kd-root .kd-theme-toggle,
-.kd-root .kd-hanko {
+.kd-root .kd-theme-toggle {
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease,
     box-shadow 0.2s ease, transform 0.15s ease;
 }
@@ -156,36 +153,42 @@ body {
   margin: 26px 0 12px; max-width: 640px; margin-left: auto; margin-right: auto;
 }
 
+/* ---- Panel statistik kartu besar (Home & UnitSelect) ----
+   Tampilan lama pra-chip dipulihkan sebagai READ-ONLY: tiga kartu angka
+   besar "x/total Studied" · "Due now" · "Mastered". BUKAN tombol — layar
+   Progress sudah dihapus, satu-satunya pintu jadwal tetap banner review
+   di atasnya. Nilai 0 tetap tampil supaya hari pertama langsung terbaca
+   "mulai dari nol"; angka Studied selalu menyertakan totalnya (9/151).
+   Stat missed kanji tidak ada di sini — sudah terbaca dari pill "✕ N"
+   di tiap kartu unit. */
 .kd-hero {
-  max-width: 640px; margin: 0 auto; background: var(--surface); border: 1px solid var(--paper-line);
-  border-radius: 4px; padding: 22px 20px; position: relative; overflow: hidden;
+  max-width: 640px; margin: 12px auto 0;
+  background: var(--surface); border: 1px solid var(--paper-line);
+  border-radius: 4px; padding: 18px 16px;
 }
 .kd-hero-row { display: flex; gap: 10px; align-items: stretch; }
 .kd-stat {
-  flex: 1; text-align: center; padding: 14px 6px; border: 1px dashed var(--paper-line); border-radius: 3px;
+  flex: 1; text-align: center; padding: 14px 6px;
+  border: 1px dashed var(--paper-line); border-radius: 3px;
 }
-.kd-stat-num { font-family: 'DM Mono', monospace; font-size: 26px; font-weight: 500; line-height: 1; display: flex; align-items: center; justify-content: center; gap: 4px; }
+.kd-stat-num {
+  font-family: 'DM Mono', monospace; font-size: 26px; font-weight: 500;
+  line-height: 1; overflow-wrap: anywhere;
+}
 .kd-stat-label { font-size: 11px; color: var(--ink-soft); margin-top: 6px; }
+.kd-stat.studied .kd-stat-num { color: var(--indigo-soft); }
 .kd-stat.due .kd-stat-num { color: var(--seal); }
 .kd-stat.mastered .kd-stat-num { color: var(--gold); }
-.kd-stat.new .kd-stat-num { color: var(--indigo-soft); }
-.kd-stat.studied .kd-stat-num { color: var(--indigo-soft); }
-.kd-stat.streak .kd-stat-num { color: var(--gold); }
-/* Streak kini hanya api + angka (tanpa label teks) — angka di-center
-   vertikal supaya kotaknya sejajar dengan stat lain yang punya label. */
-.kd-stat.streak { display: flex; align-items: center; justify-content: center; }
-.kd-stat.streak.at-risk .kd-stat-num { color: var(--ink-soft); }
-.kd-stat.streak.at-risk { border-color: var(--seal); }
-.kd-stat.streak.lit { border-color: var(--gold); border-style: solid; }
-.kd-stat-flame { flex-shrink: 0; }
 
+/* Angka "x/total" (mis. 9/151) menyempit di layar kecil supaya tetap
+   muat satu baris dalam sel tanpa memaksa label turun. */
 @media (max-width: 380px) {
-  .kd-stat-num { font-size: 20px; gap: 2px; }
+  .kd-stat-num { font-size: 20px; }
   .kd-stat { padding: 10px 4px; }
-  .kd-stat-flame { width: 14px; height: 14px; }
 }
 
-/* Banner next-review: ringkasan jadwal di bawah stats hero. */
+/* Banner next-review — ELEMEN PERTAMA layar Home/UnitSelect; di bawahnya
+   panel statistik kartu besar (kd-hero, read-only). */
 .kd-next-review-banner {
   max-width: 640px; margin: 12px auto 0;
   display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap;
@@ -199,11 +202,13 @@ body {
 .kd-nrb-when { color: var(--ink-soft); }
 .kd-nrb-strong { color: var(--seal); font-weight: 700; }
 
-/* Banner bisa berupa <button> (state "due"/"scheduled" yang bisa diklik
-   untuk lompat ke kuis) — reset styling tombol default browser supaya
-   tetap terlihat identik dengan versi <div> non-klik. */
+/* Banner bisa berupa <button> — SEMUA state (termasuk "belum belajar")
+   bisa diklik untuk membuka overlay kalender review. Reset default
+   browser: .kd-next-review-banner sudah mengatur font DM Mono di elemen
+   yang sama, jadi TIDAK ada font-family: inherit di sini (dulu membuat
+   state tombol tampil dengan font root, beda dari versi <div>). */
 .kd-nrb-clickable {
-  width: 100%; font-family: inherit; cursor: pointer;
+  width: 100%; cursor: pointer;
   transition: border-color 0.15s, transform 0.1s;
 }
 .kd-nrb-clickable:hover:not(:disabled) { border-color: var(--indigo-soft); transform: translateY(-1px); }
@@ -211,6 +216,97 @@ body {
 .kd-nrb-clickable:disabled { cursor: default; }
 .kd-nrb-chevron { color: var(--ink-soft); flex-shrink: 0; }
 .kd-nrb-clickable.due .kd-nrb-chevron { color: var(--seal); }
+
+
+/* Kalender bulanan: kartu surface seperti banner, minggu mulai Minggu.
+   (Dipakai overlay CalendarModal — layar Progress sudah dihapus.) */
+.kd-cal {
+  max-width: 640px; margin: 16px auto 0;
+  background: var(--surface); border: 1px solid var(--paper-line); border-radius: 4px;
+  padding: 16px 14px 12px;
+}
+.kd-cal-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+.kd-cal-title { font-family: 'Shippori Mincho', serif; font-weight: 700; font-size: 17px; color: var(--ink); }
+.kd-cal-nav { display: flex; align-items: center; gap: 6px; }
+.kd-cal-nav button {
+  display: flex; align-items: center; justify-content: center; width: 28px; height: 28px;
+  border: 1px solid var(--paper-line); background: var(--surface); color: var(--ink-soft);
+  border-radius: 3px; cursor: pointer; padding: 0;
+  transition: color 0.15s, border-color 0.15s;
+}
+.kd-cal-nav button:hover:not(:disabled) { color: var(--indigo); border-color: var(--indigo-soft); }
+.kd-cal-nav button:disabled { opacity: 0.35; cursor: default; }
+.kd-cal-today-btn {
+  width: auto; height: 28px; padding: 0 10px; font-family: 'DM Mono', monospace;
+  font-size: 11px; color: var(--indigo); border: 1px solid var(--indigo-soft);
+  border-radius: 3px; background: none; cursor: pointer;
+}
+.kd-cal-today-btn:hover { background: var(--surface-hover); color: var(--indigo); border-color: var(--indigo-soft); }
+
+.kd-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+.kd-cal-weekday {
+  font-family: 'DM Mono', monospace; font-size: 10px; color: var(--ink-soft);
+  text-align: center; padding: 2px 0 6px; text-transform: uppercase; letter-spacing: 0.04em;
+}
+.kd-cal-cell {
+  position: relative; min-height: 48px; border: 1px solid transparent; border-radius: 3px;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+  padding-top: 6px; background: none; cursor: pointer; font-family: inherit;
+  transition: background-color 0.12s, border-color 0.12s;
+}
+.kd-cal-cell:hover { background: var(--surface-hover); }
+.kd-cal-cell.empty { visibility: hidden; pointer-events: none; }
+.kd-cal-daynum { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--ink); line-height: 1; }
+.kd-cal-cell.past .kd-cal-daynum { color: var(--ink-soft); }
+.kd-cal-cell.today { border-color: var(--indigo); }
+.kd-cal-cell.today .kd-cal-daynum { color: var(--indigo); font-weight: 700; }
+.kd-cal-cell.selected { background: var(--on-tag-bg); border-color: var(--indigo-soft); }
+.kd-cal-marks { display: flex; align-items: center; gap: 4px; margin-top: 4px; min-height: 13px; }
+/* Angka seal = jumlah unit dijadwalkan review hari itu. */
+.kd-cal-due { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700; color: var(--seal); line-height: 1; }
+/* Titik indigo = hari itu pernah belajar (≥ 1 kuis). */
+.kd-cal-study-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--indigo-soft); flex-shrink: 0; }
+
+/* Panel hari terpilih: unit + jam jatuh tempo hari itu. */
+.kd-day-panel {
+  max-width: 640px; margin: 12px auto 0; background: var(--surface);
+  border: 1px dashed var(--paper-line); border-radius: 4px; padding: 14px 16px;
+}
+.kd-day-panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+.kd-day-panel-title { font-family: 'Shippori Mincho', serif; font-weight: 700; font-size: 15px; color: var(--ink); }
+.kd-day-panel-count { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink-soft); }
+.kd-day-empty { font-size: 12.5px; color: var(--ink-soft); margin: 6px 0 0; line-height: 1.6; }
+.kd-day-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 8px 4px; border-top: 1px dashed var(--paper-line);
+}
+.kd-day-row:first-child { border-top: none; }
+.kd-day-unit { font-family: 'DM Mono', monospace; font-size: 13px; font-weight: 700; color: var(--ink); }
+.kd-day-when {
+  display: flex; align-items: center; gap: 7px;
+  font-family: 'DM Mono', monospace; font-size: 11.5px; color: var(--ink-soft);
+}
+.kd-day-overdue { color: var(--seal); font-weight: 700; font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.05em; }
+.kd-day-chevron { color: var(--seal); flex-shrink: 0; }
+/* Baris overdue = tombol "review sekarang" (mirip banner due). */
+button.kd-day-row { width: 100%; background: none; cursor: pointer; font-family: inherit; border-radius: 3px; transition: background-color 0.12s; }
+button.kd-day-row:hover { background: var(--surface-hover); }
+button.kd-day-row .kd-day-unit { color: var(--indigo); }
+.kd-day-activity {
+  display: flex; align-items: center; gap: 6px; margin-top: 10px; padding-top: 10px;
+  border-top: 1px dashed var(--paper-line);
+  font-family: 'DM Mono', monospace; font-size: 11px; color: var(--indigo-soft);
+}
+
+/* Prakiraan (kd-forecast/kd-chip) sudah dihapus bersama layar Progress —
+   overlay CalendarModal memakai kd-day-row sendiri. */
+@media (max-width: 420px) {
+  .kd-cal { padding: 12px 8px 10px; }
+  .kd-cal-cell { min-height: 42px; padding-top: 4px; }
+  .kd-cal-marks { min-height: 11px; margin-top: 3px; }
+  .kd-day-panel { padding: 12px 12px; }
+  .kd-cal-modal { padding: 14px 12px 16px; }
+}
 
 .kd-level-grid { max-width: 640px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
 .kd-level-card {
@@ -234,8 +330,10 @@ body {
 .kd-level-badge.seal { background: var(--seal); }
 
 .kd-unit-grid { max-width: 640px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
-/* Kartu unit = <div> pembungkus SATU tombol penuh (kd-unit-main). Div
-   diperlukan karena hanko 要/済 diposisikan absolut relatif ke kartu. */
+/* Kartu unit = <div> pembungkus: baris judul (judul + pill missed) HARUS
+   jadi tetangga tombol utama, bukan anaknya (tombol tidak boleh bersarang
+   di dalam tombol). Hanko status (済/要/✕N pojok) sudah dihapus total —
+   status terbaca dari label tombol utama + warna border kartu. */
 .kd-unit-card {
   background: var(--surface); border: 1.5px solid var(--paper-line); border-radius: 4px; padding: 14px;
   position: relative; text-align: left; transition: transform 0.15s, box-shadow 0.2s, opacity 0.15s; color: var(--ink);
@@ -244,11 +342,9 @@ body {
 .kd-unit-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px var(--shadow); }
 .kd-unit-card.due { border-color: var(--seal); }
 .kd-unit-card.mastered { border-color: var(--gold); }
-/* Baris judul kartu: judul unit KIRI + pill "✕ N" di ujung KANAN kartu
-   (space-between — badge di ujung kanan menandai kartu). Pill tombol
-   terpisah dari kd-unit-main (tombol tidak boleh nested); min-height
-   menjaga baris tetap sejajar antar kartu. Kartu sangat sempit: pill
-   melipat ke baris kedua (gap 10px jadi jarak minimum saat wrap). */
+/* Baris judul kartu: judul unit + pill "✕ N" missed review di ujung kanan
+   (space-between; wrap ke baris kedua di kartu sempit). min-height menjaga
+   tinggi baris tetap seragam antar kartu. */
 .kd-unit-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; min-height: 23px; }
 .kd-unit-title { font-family: 'Shippori Mincho', serif; font-weight: 700; font-size: 16px; line-height: 1.25; }
 /* Unit "scheduled" dim: judul + tombol utama di-redupkan (bukan kartu)
@@ -268,11 +364,10 @@ body {
 .kd-unit-status { font-size: 11px; color: var(--ink-soft); }
 .kd-unit-card.due .kd-unit-status { color: var(--seal); font-weight: 700; }
 .kd-unit-preview { font-size: 20px; margin-top: 10px; letter-spacing: 2px; color: var(--ink); opacity: 0.75; }
-/* Pill "✕ N" — badge compact di baris judul: ikon salah + angka missed,
-   tanpa kata (tooltip tombol menjelaskan maknanya). Ikon dalam lingkaran
-   (bukan X telanjang) supaya tidak terbaca sebagai tombol close; chip
-   solid radius penuh, melipat ke baris berikutnya di kartu sempit
-   (flex-wrap). */
+/* Pill "✕ N" (kartu dengan kanji missed) — desain lama pra-hanko yang
+   diminta user kembali: pill compact di sebelah judul unit, TOMBOL: klik
+   = review missed unit itu. Tooltip menjelaskan bahwa jadwal tidak
+   berubah. */
 .kd-unit-missed {
   display: inline-flex; align-items: center; gap: 4px;
   background: var(--wrong-bg); color: var(--seal);
@@ -282,14 +377,8 @@ body {
   cursor: pointer; transition: background 0.15s, color 0.15s, border-color 0.15s;
 }
 .kd-unit-missed:hover { background: var(--seal); color: #fff; border-color: var(--seal); }
+.kd-unit-missed:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; }
 .kd-unit-missed svg { flex-shrink: 0; }
-.kd-hanko {
-  position: absolute; top: -8px; right: -8px; width: 34px; height: 34px; border-radius: 50%;
-  border: 2px solid var(--seal); color: var(--seal); display: flex; align-items: center; justify-content: center;
-  font-family: 'Shippori Mincho', serif; font-size: 13px; font-weight: 800; background: var(--surface);
-  transform: rotate(-8deg);
-}
-.kd-hanko.gold { border-color: var(--gold); color: var(--gold); }
 
 .kd-progress-dots { display: flex; gap: 6px; justify-content: center; margin-bottom: 20px; max-width: 640px; margin-left: auto; margin-right: auto; flex-wrap: wrap; }
 .kd-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--paper-line); }
@@ -529,7 +618,7 @@ body {
    ============================================================ */
 
 /* Tombol entry di Home */
-.kd-browse-entry-row { max-width: 640px; margin: 0 auto; }
+.kd-browse-entry-row { max-width: 640px; margin: 12px auto 0; }
 .kd-browse-entry {
   width: 100%; display: flex; align-items: center; gap: 10px;
   background: var(--surface); border: 1.5px solid var(--paper-line); border-radius: 4px;
@@ -549,12 +638,16 @@ body {
 .kd-section-title-row {
   display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
 }
-/* Tombol "Reset progress" */
+/* Tombol "Reset progress" di ujung kanan judul "N Units" (UnitSelect).
+   Tombol reset selalu MERAH (seal) — destruktif, jadi dibuat mencolok
+   tanpa menunggu hover; hover cukup menegaskan dengan underline. */
 .kd-reset-progress {
   display: flex; align-items: center; gap: 5px; background: none; border: none;
   color: var(--seal); font-family: 'DM Mono', monospace; font-size: 11.5px;
   font-weight: 500; cursor: pointer; padding: 2px 0;
 }
+.kd-reset-progress:hover { text-decoration: underline; }
+.kd-reset-progress:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; }
 .kd-browse-count-inline {
   font-family: 'DM Mono', monospace; font-size: 12px; color: var(--ink-soft); font-weight: 400;
 }
@@ -639,6 +732,14 @@ body {
 .kd-modal-close:hover { color: var(--ink); background: var(--paper); }
 
 .kd-help-modal { max-width: 420px; }
+/* Overlay kalender review (dari klik banner): kd-cal + kd-day-panel di
+   dalam modal — margin/max-width keduanya dinolkan supaya rapat dengan
+   header modal ("Review calendar" + scope level). */
+.kd-cal-modal { max-width: 420px; }
+.kd-cal-modal-title { font-family: 'Shippori Mincho', serif; font-size: 16px; font-weight: 700; color: var(--indigo); }
+.kd-cal-modal-sub { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink-soft); margin-top: 2px; }
+.kd-cal-modal .kd-cal { max-width: none; margin: 12px 0 0; }
+.kd-cal-modal .kd-day-panel { max-width: none; margin: 10px 0 0; }
 /* Popup konfirmasi singkat saat klik unit dim (scheduled) — satu kalimat
    + dua tombol, tanpa judul/ikon (UnitSelect.jsx). */
 .kd-drill-confirm { max-width: 340px; }
@@ -672,31 +773,34 @@ body {
   font-family: inherit;
 }
 .kd-help-btn:hover { color: var(--indigo-soft); }
-/* Baris toggle switch di modal Help — dipakai untuk "tampilkan tombol
-   Reset progress" (seksi Progress). Track 30px + thumb 11px; state on
-   = class .on di row (track indigo, thumb geser kanan). */
-.kd-help-switch-row {
-  display: flex; align-items: center; gap: 10px; background: none;
-  border: none; padding: 12px 0 0; cursor: pointer; text-align: left;
-  font-family: inherit; color: var(--ink);
+/* Baris toggle on/off di modal Help (mis. visibilitas tombol Reset
+   progress): label + deskripsi kiri, sakelar pil kanan. */
+.kd-help-toggle-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 14px; margin-top: 14px;
 }
-.kd-help-switch {
-  flex: none; width: 30px; height: 17px; border-radius: 999px;
-  border: 1px solid var(--paper-line); background: var(--surface);
-  position: relative; transition: background 0.15s, border-color 0.15s;
+.kd-help-toggle-name { font-size: 13px; font-weight: 700; color: var(--ink); }
+.kd-help-toggle-desc {
+  font-size: 11.5px; color: var(--ink-soft); line-height: 1.5;
+  margin-top: 2px; max-width: 260px;
 }
-.kd-help-switch-thumb {
-  position: absolute; top: 2px; left: 2px; width: 11px; height: 11px;
+/* Sakelar: track pil + knob bulat yang bergeser. State on memakai
+   --indigo (aksen positif, bukan --seal — ini pengaturan, bukan aksi
+   destruktif). */
+.kd-toggle {
+  position: relative; flex-shrink: 0; width: 40px; height: 22px;
+  border-radius: 999px; border: 1px solid var(--paper-line);
+  background: var(--surface); cursor: pointer; padding: 0;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.kd-toggle:hover { border-color: var(--indigo-soft); }
+.kd-toggle-knob {
+  position: absolute; top: 1px; left: 2px; width: 18px; height: 18px;
   border-radius: 50%; background: var(--ink-soft);
-  transition: transform 0.15s, background 0.15s;
+  transition: left 0.15s ease, background 0.15s ease;
 }
-.kd-help-switch-row.on .kd-help-switch { background: var(--indigo); border-color: var(--indigo); }
-.kd-help-switch-row.on .kd-help-switch-thumb { transform: translateX(13px); background: #fff; }
-.kd-help-switch-label { font-size: 13px; font-weight: 700; display: flex; flex-direction: column; gap: 2px; }
-.kd-help-switch-label small {
-  font-family: 'DM Mono', monospace; font-weight: 400; font-size: 11.5px;
-  color: var(--ink-soft);
-}
+.kd-toggle.on { background: var(--indigo); border-color: var(--indigo); }
+.kd-toggle.on .kd-toggle-knob { left: 18px; background: #fff; }
 .kd-yomi-tag-neutral { background: var(--paper); color: var(--ink-soft); }
 .kd-yomi-tag-indigo { background: var(--indigo); color: #fff; }
 .kd-browse-modal-meta {
@@ -721,4 +825,210 @@ body {
 @media (max-width: 420px) {
   .kd-browse-grid { grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 8px; }
   .kd-browse-glyph { font-size: 34px; }
+}
+
+/* ===== Modal detail kanji (Browse) + animasi urutan goresan (KanjiVG) ===== */
+
+/* Glyph kuis sekarang tombol — mengisi seluruh kotak supaya area klik
+   besar. Interaktivitas cukup terbaca dari kursor pointer; glyphnya
+   sendiri TIDAK berubah warna saat hover (hover seal dihapus).
+   Isi tombol selalu SVG goresan KanjiVG sejak soal muncul (keadaan
+   selesai), klik kiri = putar ulang animasi, klik kanan = selesaikan
+   seketika (lihat GenkouGlyph.jsx). */
+button.kd-genkou-glyph {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-tap-highlight-color: transparent;
+}
+button.kd-genkou-glyph:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* SVG animasi inline di kotak genkō: <80% kotak supaya goresan tidak
+   menabrak garis silang dan bobot goresannya serasi dengan glyph font
+   yang digantikannya (guide + ink pakai class .kd-stroke-* yang sama
+   dengan sheet detail). */
+.kd-genkou-svg { width: 78%; height: 78%; display: block; }
+
+/* Kotak animasi — estetika sama dengan kotak glyph kuis (genkō-yōshi).
+   Seluruh kotak bisa DIKLIK untuk menyalin kanji (tombol overlay
+   .kd-stroke-copy di bawah). */
+.kd-stroke-box {
+  width: 180px;
+  height: 180px;
+  background: var(--surface);
+  border: 2px solid var(--genkou-border);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex: none;
+}
+.kd-stroke-svg { width: 100%; height: 100%; display: block; }
+
+/* Tombol transparan menutupi seluruh kotak goresan: klik = salin kanji
+   (CopyKanji.jsx). Tombol native <button> memberi interaksi klik +
+   fokus + Enter/Space gratis tanpa mengubah semantik SVG animasi di
+   bawahnya. Ikon copy kecil di sudut kanan-atas jadi petunjuk afordansi
+   — redup saat idle (pass-by tanpa basi-basi), jelas saat hover/fokus.
+   Hover memberi tint indigo sangat halus; glyph sendiri tidak berubah
+   warna (konvensi yang sama dengan kotak glyph kuis). */
+.kd-stroke-copy {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  border-radius: 2px;
+  -webkit-tap-highlight-color: transparent;
+}
+.kd-stroke-copy:hover { background: rgba(31, 60, 92, 0.05); }
+.kd-stroke-copy:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 2px;
+}
+.kd-copy-icon {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  color: var(--ink-soft);
+  opacity: 0.5;
+  transition: opacity 0.15s, color 0.15s;
+}
+.kd-stroke-copy:hover .kd-copy-icon,
+.kd-stroke-copy:focus-visible .kd-copy-icon {
+  opacity: 1;
+  color: var(--indigo);
+}
+
+/* Pil konfirmasi "Copied 語" di sudut kiri-atas kotak — muncul sekejap
+   setelah salin lalu hilang sendiri (timer di lib/useCopy.js). Toast
+   global sengaja tidak dipakai: konfirmasi tepat di kotak yang diklik
+   lebih jelas daripada pesan di dasar layar. Warna memakai token toast
+   (invers di tiap tema) supaya konsisten dengan bahasa feedback app;
+   role="status" di komponen → dibacakan screen reader. */
+.kd-copy-note {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--toast-bg);
+  color: var(--toast-fg);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  animation: kd-copy-note-in 0.16s ease-out;
+}
+@keyframes kd-copy-note-in {
+  from { opacity: 0; transform: translate(-2px, 2px) scale(0.92); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Dua lapis render: guide (seluruh kanji samar seperti kertas latihan)
+   dan ink (goresan yang sudah "ditulis" — dashoffset dianimasikan dari
+   inline style, lihat StrokePlayer.jsx; pathLength=1 menormalkan panjang
+   tiap path sehingga dasharray/dashoffset bisa memakai angka 0..1). */
+.kd-stroke-guide path {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 5.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.12;
+}
+.kd-stroke-ink {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 5.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke-dashoffset 0.42s ease;
+}
+
+.kd-stroke-loading { color: var(--ink-soft); font-size: 13px; }
+.kd-stroke-fallback {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 84px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* Wrapper player (box + kontrol + label): text-align center supaya
+   label goresan live sejajar tengah dengan kotak 180px. */
+.kd-stroke-player { text-align: center; }
+
+/* Kontrol player: replay, play/pause, maju/mundur satu goresan, speed. */
+.kd-stroke-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  width: 180px;
+}
+.kd-stroke-ctrl-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  border: 1px solid var(--paper-line);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+.kd-stroke-ctrl-btn:hover { border-color: var(--indigo-soft); color: var(--indigo); }
+.kd-stroke-ctrl-btn:disabled { opacity: 0.35; cursor: default; }
+.kd-stroke-ctrl-btn:disabled:hover { border-color: var(--paper-line); color: var(--ink); }
+.kd-stroke-ctrl-btn:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; }
+.kd-stroke-speed { width: auto; min-width: 34px; padding: 0 7px; font-size: 12px; font-weight: 600; }
+
+/* Layout sheet: mobile bertumpuk, ≥640px dua kolom (animasi kiri, info
+   kanan). Lebar maksimal info dibatasi supaya contoh kata tidak melebar
+   tak berbatas di desktop. */
+.kd-detail-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+.kd-detail-stroke { display: flex; flex-direction: column; align-items: center; }
+/* Label jumlah goresan: di dalam StrokePlayer angkanya LIVE ("2 / 4
+   strokes", mengikuti animasi — penghitung lama kd-stroke-counter
+   digabung ke sini); di branch fallback Browse tetap statis.
+   Tabular-nums supaya angka tidak "menari" saat berubah. */
+.kd-detail-strokes {
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-top: 6px;
+  font-variant-numeric: tabular-nums;
+}
+.kd-detail-info { width: 100%; }
+/* Head info kompak — cukup MEANING: kanjinya sudah tampil besar (dan
+   dianimasikan) di kotak goresan, jadi glyph statik di head hanya
+   duplikasi info. */
+.kd-detail-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+.kd-detail-head .kd-detail-meaning { font-size: 15px; font-weight: 600; color: var(--ink); }
+
+@media (min-width: 640px) {
+  .kd-detail-grid { flex-direction: row; align-items: flex-start; gap: 22px; }
+  .kd-detail-grid > .kd-detail-info { flex: 1; max-width: 420px; }
 }

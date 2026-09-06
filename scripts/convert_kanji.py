@@ -4,8 +4,11 @@ convert_kanji.py — Langkah 1 pipeline: susun JSON kanji per level dari
 sumber mentah.
 
 Baca:
-  - kanjidic2.xml.gz       (XML KANJIDIC2 — kanji, bacaan, arti, jumlah goresan, freq)
-  - JLPT_kanji_ALL.json    (level N1-N5 modern dari Bluskyo/JLPT_Vocabulary)
+  - raw/kanjidic2.xml.gz    (XML KANJIDIC2 — kanji, bacaan, arti, jumlah goresan, freq)
+  - raw/JLPT_kanji_ALL.json (level N1-N5 modern dari Bluskyo/JLPT_Vocabulary)
+
+Konvensi pipeline: semua sumber mentah pihak ketiga dikumpulkan di raw/
+di root aplikasi (lihat build_examples.py / README).
 
 Tulis:
   - output/n5.json ... n1.json (data kanji per level)
@@ -16,7 +19,7 @@ milik KANJIDIC2 memakai sistem lama pra-2010 (4 level, tanpa N5) yang
 tidak bisa dipetakan 1:1 ke level modern.
 
 Pemakaian:
-    python scripts/convert_kanji.py [kanjidic2.xml.gz] [output_dir] [JLPT_kanji_ALL.json]
+    python scripts/convert_kanji.py [raw/kanjidic2.xml.gz] [output_dir] [raw/JLPT_kanji_ALL.json]
 """
 
 import gzip
@@ -240,11 +243,11 @@ def parse_kanjidic2(xml_path, jlpt_override):
 
 def main():
     kanjidic_path = Path(sys.argv[1]) if len(sys.argv) > 1 else \
-        Path(__file__).resolve().parent.parent / "kanjidic2.xml.gz"
+        Path(__file__).resolve().parent.parent / "raw" / "kanjidic2.xml.gz"
     output_dir = Path(sys.argv[2]) if len(sys.argv) > 2 else \
         Path(__file__).resolve().parent.parent / "output"
     jlpt_path = Path(sys.argv[3]) if len(sys.argv) > 3 else \
-        Path(__file__).resolve().parent.parent / "JLPT_kanji_ALL.json"
+        Path(__file__).resolve().parent.parent / "raw" / "JLPT_kanji_ALL.json"
 
     if not kanjidic_path.exists():
         print(f"Error: KANJIDIC2 file not found: {kanjidic_path}", file=sys.stderr)
