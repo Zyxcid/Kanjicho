@@ -54,23 +54,6 @@ export default function HelpButton({ showReset, onToggleShowReset }) {
             </div>
 
             <div className="kd-help-section">
-              <div className="kd-help-heading">Components</div>
-              <p className="kd-help-text">
-                Under every kanji&apos;s stroke animation you&apos;ll find its component
-                equation — the kanji as a sum of its parts (時 = 日 + 寺, with 寺 further
-                split into 土・寸). A small <span className="kd-help-dot-example" /> indigo
-                dot marks the semantic radical (the part carrying the kanji&apos;s meaning);
-                a “phon” label marks the phonetic component (the part hinting its reading —
-                寺 gives 時 its ジ sound). In the Browse library, the chips light up as the
-                animation draws each component&apos;s strokes, and clicking a chip opens that
-                kanji&apos;s own entry — the <span className="kd-key-hint muted wide">←</span> button at the
-                top of the entry takes you back to the kanji you were viewing. Not every
-                kanji is decomposed in the KanjiVG data, so
-                simple kanji like 食 or 雨 show no equation.
-              </p>
-            </div>
-
-            <div className="kd-help-section">
               <div className="kd-help-heading">Data sources</div>
               <p className="kd-help-text">
                 Kanji readings and meanings from{" "}
