@@ -96,7 +96,8 @@ export default function HelpButton({ showReset, onToggleShowReset }) {
                   diaktifkan dari sini. */}
               <div className="kd-help-toggle-row">
                 <div>
-                  <div className="kd-help-toggle-name">Show "reset progress" button</div>
+                  <div className="kd-help-toggle-name">Reset progress button</div>
+                  <div className="kd-help-toggle-desc">Show reset button</div>
                 </div>
                 <button
                   className={`kd-toggle ${showReset ? "on" : ""}`}

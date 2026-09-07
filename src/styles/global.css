@@ -147,6 +147,13 @@ body {
   cursor: pointer; padding: 6px 0; margin: 0 auto 6px; width: 100%; max-width: 880px;
 }
 .kd-back:hover { color: var(--indigo); }
+/* t63: tombol back (Cancel kuis / Home) disembunyikan di layar kecil —
+   pengguna hp/tablet cukup memakai navigasi sistem (Back Android,
+   geser; guard kuis tetap menahan dengan dialog konfirmasi). Layar
+   lebar (desktop, keyboard) tetap memilikinya. */
+@media (max-width: 899px) {
+  .kd-back { display: none; }
+}
 
 .kd-section-title {
   font-family: 'Shippori Mincho', serif; font-weight: 700; font-size: 19px; color: var(--ink);
@@ -263,6 +270,26 @@ body {
 .kd-stat-total {
   font-size: 14px; font-weight: 400; color: var(--ink-soft);
   align-self: center;
+}
+
+
+/* Layar sempit: 2 kolom supaya tiap kartu lega (angka + sufiks muat
+   satu baris, tidak lagi sempit/patah). 3 kartu = 2+1, kartu terakhir
+   melebar penuh agar tidak menggantung setengah baris. Dengan kartu
+   streak (count-4): TETAP SATU BARIS 4 kolom sama lebar (keputusan
+   user t54 "satu baris horizontal") — angka/sufiks/label mengecil
+   supaya "151/151" dan "Next due" sekalipun muat di kartu ~68px. */
+@media (max-width: 480px) {
+  .kd-hero-row { grid-template-columns: repeat(2, 1fr); }
+  .kd-hero-row .kd-stat:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  /* Satu baris 4 kolom: gap/padding/label dikencangkan supaya "Next due"
+     + chevron dan "151/151" tetap satu baris di kartu ~68px (gap 10,
+     padding 6, label 11px terbukti membuat label "Next due" wrap 2 baris). */
+  .kd-hero-row.count-4 { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .kd-hero-row.count-4 .kd-stat { padding: 12px 3px; }
+  .kd-hero-row.count-4 .kd-stat-num { font-size: 22px; }
+  .kd-hero-row.count-4 .kd-stat-total { font-size: 11px; }
+  .kd-hero-row.count-4 .kd-stat-label { font-size: 10px; }
 }
 
 /* Ponsel kecil: angka mengecil supaya "150/151" sekalipun muat. */
@@ -490,6 +517,86 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 .kd-genkou::after { top: 50%; left: 0; right: 0; height: 1px; }
 .kd-genkou-glyph { font-family: 'Shippori Mincho', serif; font-size: 92px; font-weight: 600; position: relative; z-index: 1; color: var(--ink); }
 
+/* ===== Dekomposisi komponen kanji (persamaan KanjiVG) =====
+   Dua varian:
+   - full (modal Browse, TEPAT DI BAWAH animasi goresan — t63): chip
+     bisa diklik untuk menjelajah kanji komponen. TANPA lead "[kanji] ="
+     (kanjinya sendiri sedang dianimasikan tepat di atas baris ini).
+     Chip: GLYPY-SAJA (t64 — jumlah goresan + arti dihapus; arti peran
+     radikal/fonetik cukup lewat tooltip). Titik 4px di pojok chip:
+     seal = radikal (komponen makna), indigo = fonetik (bunyi).
+     Persamaan panjang (爾 6 komponen) melipat rapi: tiap suku "+ chip"
+     satu kesatuan; SINKRON ANIMASI (t64): chip .future (redup) →
+     .active (goresan yang digambar ada di rentangnya — border indigo
+     + tint) → .done (selesai, normal) mengikuti animasi di atasnya.
+   - plain (baris "Components" di panel reveal kuis — t63): TEKS BIASA,
+     tanpa kotak/border/latar (tampilan card-like di panel jawab
+     dinilai mengganggu): glyph + pemisah "+" (t64: tanpa jumlah
+     goresan). */
+.kd-comp { margin: 14px 0 0; }
+.kd-comp-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-soft); margin-bottom: 8px;
+  /* t64: label selalu di TENGAH (dulu ikut lebar max-content blok
+     persamaan — persamaan pendek label ke tengah, panjang nempel kiri;
+     terlihat tidak konsisten). */
+  text-align: center;
+}
+.kd-comp-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px; row-gap: 8px; }
+.kd-comp-term { display: inline-flex; align-items: center; gap: 6px; }
+.kd-comp-plus { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--ink-soft); }
+.kd-comp-chip {
+  position: relative;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
+  min-width: 44px; padding: 9px 10px;
+  background: var(--paper); border: 1px solid var(--paper-line); border-radius: 4px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease, opacity 0.2s ease, transform 0.15s ease;
+}
+/* Varian full (Browse): chip glyph-saja kompak (t64) — tinggi seragam
+   38px (dulu 66px karena memuat arti/jumlah goresan); varian plain
+   tidak merender chip sama sekali. */
+.kd-comp .kd-comp-chip { min-height: 38px; }
+.kd-comp-chip:hover { border-color: var(--indigo); background: var(--correct-bg); transform: translateY(-1px); }
+.kd-comp-chip:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; }
+.kd-comp-chip.static { cursor: default; }
+.kd-comp-chip.static:hover { border-color: var(--paper-line); background: var(--paper); transform: none; }
+.kd-comp-glyph { font-family: 'Shippori Mincho', serif; font-size: 20px; font-weight: 600; color: var(--ink); line-height: 1.2; }
+.kd-comp-chip.rad::after, .kd-comp-chip.phon::after {
+  content: ''; position: absolute; top: 5px; right: 5px;
+  width: 4px; height: 4px; border-radius: 50%;
+}
+.kd-comp-chip.rad::after { background: var(--seal); }
+.kd-comp-chip.phon::after { background: var(--indigo); }
+/* Bagian goresan lepas (tanpa grup bernama) — chip redup putus-putus. */
+.kd-comp-chip.ungrouped { border-style: dashed; background: transparent; }
+.kd-comp-chip.ungrouped .kd-comp-glyph {
+  font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: var(--ink-soft);
+}
+.kd-comp-chip.ungrouped:hover { border-color: var(--paper-line); background: transparent; transform: none; }
+
+/* Sinkron animasi goresan ↔ komponen (t64, varian full + progress):
+   chip "menyala" berturut mengikuti goresan yang sedang digambar di
+   kotak animasi di atasnya. .future = belum tergambar (redup),
+   .active = goresan yang sedang digambar milik bagian ini (border
+   indigo + tint + glyph indigo), .done = selesai "ditinta" (normal
+   penuh). Tanpa kelas (progress null — kuis/fallback) = netral. */
+.kd-comp-chip.future { opacity: 0.45; }
+.kd-comp-chip.active { opacity: 1; border-color: var(--indigo); background: var(--correct-bg); }
+.kd-comp-chip.active .kd-comp-glyph { color: var(--indigo); }
+.kd-comp-chip.done { opacity: 1; }
+
+/* Varian plain (baris "Components" di panel reveal kuis — t63):
+   teks tenang tanpa kotak — glyph Mincho + "+" pemisah + "+N" goresan
+   lepas redup (t64: tanpa angka goresan per bagian). Sejajar baseline
+   supaya terbaca seperti satu kalimat. */
+.kd-comp.plain { margin: 0; }
+.kd-comp.plain .kd-comp-row { gap: 7px; row-gap: 2px; align-items: baseline; justify-content: flex-start; }
+.kd-comp-pt { display: inline-flex; align-items: baseline; gap: 3px; }
+.kd-comp-pt .kd-comp-glyph { font-size: 17px; line-height: 1.3; }
+.kd-comp-loose { font-family: 'DM Mono', monospace; font-size: 11.5px; color: var(--ink-soft); }
+.kd-comp.plain .kd-comp-plus { font-size: 11.5px; }
+
 .kd-question-row {
   display: flex; align-items: center; justify-content: space-between; gap: 10px;
   max-width: 460px; margin: 0 auto 20px;
@@ -518,13 +625,30 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 }
 .kd-mode-badge.weak { background: var(--wrong-bg); color: var(--seal); border: 1px solid var(--seal); }
 
-.kd-choice-grid { max-width: 460px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.kd-choice-grid {
+  max-width: 460px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  transition: gap 0.25s ease;
+  /* t64: animasi lipat (padding/gap) memicu reflow tiap frame —
+     layout containment membatasi lingkup perhitungannya ke grid ini
+     supaya seluruh halaman besar tidak ikut dihitung ulang (animasi
+     kuis di PC terasa kurang mulus dibanding mobile). Sengaja TANPA
+     paint containment: ia memotong outline focus-visible tombol pilihan
+     (aksesibilitas keyboard) di tepi grid. */
+  contain: layout;
+}
 .kd-choice-btn {
   background: var(--surface); border: 1.5px solid var(--paper-line); border-radius: 4px; padding: 16px 10px;
   font-family: 'DM Mono', monospace; font-size: 15px; cursor: pointer; text-align: center;
-  transition: border-color 0.15s, background 0.15s; position: relative; color: var(--ink);
+  transition: border-color 0.15s, background 0.15s, padding 0.25s ease, opacity 0.25s ease; position: relative; color: var(--ink);
 }
 .kd-choice-btn:hover:not(:disabled) { border-color: var(--indigo-soft); }
+/* Setelah dijawab: grid "melipat" — tombol merapat (padding mengecil),
+   pilihan netral meredup; correct/wrong tetap penuh supaya hasil
+   terbaca jelas. Kuis mundur, panel reveal mengambil panggung —
+   bagian dari transisi jawab → reveal (t62). */
+.kd-choice-grid.answered { gap: 8px; }
+.kd-choice-grid.answered .kd-choice-btn { padding: 9px 10px; }
+.kd-choice-grid.answered .kd-choice-btn:not(.correct):not(.wrong) { opacity: 0.55; }
 /* Jawaban berupa kana: pakai font JAPANESE (DM Mono tidak punya glyph
    kana — fallback sistem terlihat tidak serasi). */
 .kd-choice-btn.kana { font-family: 'Zen Kaku Gothic New', sans-serif; letter-spacing: 0.03em; }
@@ -556,9 +680,18 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 .kd-key-row .kd-key-hint.muted { margin-right: 0; }
 .kd-continue-btn { display: flex; align-items: center; justify-content: center; }
 
+/* t64: panel reveal kembali DI DALAM kolom kanan (di bawah grid
+   pilihan — penempatan asalnya; t63 sempat menjadi baris lebar
+   sendiri di bawah baris dua-kolom). Lebar 460px baris mobile;
+   desktop mengikuti lebar kolom (override max-width none).
+   contain: layout paint — animasi tinggi panel (0→scrollHeight) dan
+   perubahan di dalamnya tidak menginvalidasi layout/paint seluruh
+   halaman tiap frame (t64: animasi kuis di PC terasa kurang mulus —
+   lingkup reflow/repaint diperkecil; lihat juga .kd-choice-grid). */
 .kd-reveal {
   max-width: 460px; margin: 18px auto 0; background: var(--surface);
   border: 1px solid var(--paper-line); border-radius: 4px; padding: 16px;
+  contain: layout paint;
 }
 .kd-reveal-head {
   display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;
@@ -585,6 +718,14 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 /* Bacaan primary (sumber soal kuis) — hanya ditebalkan, tanpa romaji.
    Lihat scripts/build_examples.py (primary_readings) & Readings.jsx. */
 .kd-yomi-primary { font-weight: 800; color: var(--ink); }
+/* Baris komponen di panel reveal (t63): tag mono kecil + persamaan
+   varian plain (TEKS BIASA — glyph + "+", tanpa chip/kotak; t64: tanpa
+   jumlah goresan) senada dengan baris On/Kun di atasnya; melipat rapi
+   kalau komponennya banyak. Detail + navigasi komponen tetap di modal
+   Browse. */
+.kd-reveal-comp { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px; margin: 10px 0 2px; }
+.kd-reveal-comp .kd-comp { margin: 0; }
+.kd-yomi-tag.comp { background: var(--paper); color: var(--ink-soft); }
 .kd-examples { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--paper-line); display: flex; flex-direction: column; gap: 8px; }
 .kd-example-item { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; font-size: 13px; }
 .kd-example-word { font-family: 'Shippori Mincho', serif; font-size: 16px; color: var(--ink); }
@@ -594,7 +735,13 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
    webfont. */
 .kd-example-reading { font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 12px; color: var(--indigo-soft); letter-spacing: 0.01em; }
 .kd-example-meaning { font-size: 12.5px; color: var(--ink-soft); }
-.kd-continue-btn { max-width: 460px; margin: 12px auto 0; width: 100%; display: block; }
+.kd-continue-btn { max-width: 460px; margin: 12px auto 0; width: 100%; display: block; animation: kd-rise-in 0.3s ease 0.12s backwards; }
+/* Masuknya tombol Continue mengikuti ekspansi panel reveal (tombol
+   ikut "turun" bersama aliran layout; fade + naik kecil saja). */
+@keyframes kd-rise-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
 
 .kd-result-stamp {
   width: 140px; height: 140px; margin: 10px auto 18px; border-radius: 50%; border: 3px solid var(--indigo);
@@ -679,16 +826,14 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
     display: flex; flex-direction: row; align-items: flex-start; justify-content: center;
     gap: 64px; max-width: 900px; margin: 0 auto;
   }
-  /* Kolom: KOTAK GLYPH lalu persamaan komponen DI BAWAHNYA (t60 —
-     sebelumnya flex default row, section komponen muncul di KANAN
-     kotak genkou di PC). align-items memusatkan horizontal (sumbu
-     silang kolom); margin flex tidak collapse, jadi 6px + margin-top
-     section = ritme ~16px. */
   .kd-quiz-left {
+    /* t63/t64: genkō DIJANGKAR DI ATAS kolom — membuka panel reveal
+       (di kolom kanan) tidak menggeser kotak genkō sama sekali (t62:
+       genkō "turun" saat reveal membuka, dinilai jelek). */
     flex: 0 0 auto; display: flex; flex-direction: column; align-items: center;
-    position: sticky; top: 28px;
+    align-self: flex-start;
   }
-  .kd-quiz-left .kd-genkou { margin: 0 0 6px; width: 260px; height: 260px; }
+  .kd-quiz-left .kd-genkou { width: 260px; height: 260px; margin: 0; }
   .kd-quiz-left .kd-genkou-glyph { font-size: 138px; }
 
   .kd-quiz-right { flex: 1 1 420px; max-width: 440px; }
@@ -697,6 +842,8 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
   .kd-quiz-right .kd-choice-grid { max-width: none; margin: 0; grid-template-columns: 1fr 1fr; gap: 12px; }
   .kd-quiz-right .kd-choice-btn { padding: 18px 10px; font-size: 15.5px; }
   .kd-quiz-right .kd-dontknow { max-width: none; }
+  /* t64: reveal + Continue kembali di kolom kanan — lebar mengikuti
+     kolom (t63 sempat baris lebar 560px sendiri di bawah layout). */
   .kd-quiz-right .kd-reveal { max-width: none; }
   .kd-quiz-right .kd-continue-btn { max-width: none; }
 }
@@ -817,24 +964,25 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
   color: var(--ink-soft); padding: 4px; border-radius: 3px; display: flex; align-items: center; justify-content: center;
 }
 .kd-modal-close:hover { color: var(--ink); background: var(--paper); }
-/* "Kembali ke kanji sebelumnya" di modal Browse (t60): muncul hanya
-   saat navigasi komponen dilakukan — di ALUR modal (bukan absolute)
-   supaya tidak menimpa kotak goresan. Menampilkan glyph + arti kanji
-   sebelumnya, bukan cuma panah: tujuannya jelas terbaca. */
+
+/* Tombol back modal Browse — muncul hanya setelah navigasi komponen
+   (chip → kanji komponen): kembali ke kanji sebelumnya di tumpukan.
+   In-flow di atas konten (bukan absolute) supaya tidak menabrak ✕;
+   lebar maksimal menjauhi tombol tutup di pojok kanan-atas. */
 .kd-modal-back {
-  display: inline-flex; align-items: center; gap: 5px;
-  background: none; border: none; cursor: pointer; padding: 3px 7px;
-  margin: 0 0 12px -7px; border-radius: 3px; font: inherit;
-  color: var(--ink-soft); max-width: 100%;
+  display: flex; align-items: center; gap: 8px;
+  width: fit-content; max-width: calc(100% - 48px);
+  margin: 0 0 14px; padding: 7px 12px;
+  background: var(--paper); border: 1px solid var(--paper-line); border-radius: 4px;
+  cursor: pointer; color: var(--ink-soft);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
 }
-.kd-modal-back:hover { color: var(--indigo); background: var(--paper); }
-.kd-modal-back-glyph {
-  font-family: 'Shippori Mincho', serif; font-weight: 600;
-  font-size: 15px; line-height: 1; color: inherit;
-}
+.kd-modal-back:hover { border-color: var(--indigo); background: var(--correct-bg); color: var(--ink); }
+.kd-modal-back:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; }
+.kd-modal-back-glyph { font-family: 'Shippori Mincho', serif; font-size: 16px; font-weight: 600; color: var(--ink); line-height: 1; }
 .kd-modal-back-mean {
-  font-size: 11px; color: inherit; opacity: 0.75;
-  max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  font-size: 12px; color: var(--ink-soft);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 
 .kd-help-modal { max-width: 420px; }
@@ -862,11 +1010,6 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 .kd-help-shortcut-row { font-size: 13.5px; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; }
 .kd-help-text { font-size: 12.5px; color: var(--ink-soft); line-height: 1.7; margin: 0; }
 .kd-help-text a { color: var(--indigo-soft); }
-/* Titik indigo inline (contoh penanda radikal di bagian "Components"). */
-.kd-help-dot-example {
-  display: inline-block; width: 5px; height: 5px; border-radius: 50%;
-  background: var(--indigo); vertical-align: middle; margin: 0 1px;
-}
 .kd-help-links { display: flex; gap: 14px; }
 .kd-help-link {
   display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--indigo);
@@ -890,7 +1033,11 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
   display: flex; align-items: center; justify-content: space-between;
   gap: 14px; margin-top: 14px;
 }
-.kd-help-toggle-name { font-size: 13.5px; font-weight: 500; color: var(--ink); }
+.kd-help-toggle-name { font-size: 13px; font-weight: 700; color: var(--ink); }
+.kd-help-toggle-desc {
+  font-size: 11.5px; color: var(--ink-soft); line-height: 1.5;
+  margin-top: 2px; max-width: 260px;
+}
 /* Sakelar: track pil + knob bulat yang bergeser. State on memakai
    --indigo (aksen positif, bukan --seal — ini pengaturan, bukan aksi
    destruktif). */
@@ -1118,6 +1265,11 @@ button.kd-genkou-glyph:focus-visible {
   align-items: center;
 }
 .kd-detail-stroke { display: flex; flex-direction: column; align-items: center; }
+/* Persamaan komponen TEPAT DI BAWAH animasi goresan (t63): lebar baris
+   chip dibatasi 180px — SAMA dengan kotak goresan di atasnya (t64;
+   dulu 224px) supaya kolom animasi seragam sempit dan kolom info di
+   sebelahnya lega; chip melipat mengikuti lebar kolom animasi. */
+.kd-detail-stroke .kd-comp { max-width: 180px; }
 /* Label jumlah goresan: di dalam StrokePlayer angkanya LIVE ("2 / 4
    strokes", mengikuti animasi — penghitung lama kd-stroke-counter
    digabung ke sini); di branch fallback Browse tetap statis.
@@ -1135,88 +1287,11 @@ button.kd-genkou-glyph:focus-visible {
 .kd-detail-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
 .kd-detail-head .kd-detail-meaning { font-size: 15px; font-weight: 600; color: var(--ink); }
 
-/* ---- Persamaan komponen kanji (t59 — ComponentBreakdown.jsx) ----
-   Ditampilkan di bawah Kotak KanjiVG: kuis SETELAH reveal (varian
-   .compact) dan modal Browse di bawah StrokePlayer. Struktur data dari
-   atribut kvg:element SVG KanjiVG (scripts/build_components.py).
-
-   Layout: baris kolom-chip dipisah operator "+"; tiap kolom = chip
-   komponen (glyph Shippori Mincho + arti + [mode browse] rentang
-   goresan di kanji induknya) dan strip mini sub-parts di bawahnya
-   (寺 = 土・寸). Radikal semantik = titik indigo pojok chip; komponen
-   fonetik = akhiran "phon" di baris rentang.
-
-   Sinkron animasi (class .pending/.active dipasang komponen sesuai
-   prop revealed): chip yang goresannya belum/belum seluruhnya
-   tergambar tampak REDUP; chip yang goresannya SEDANG digambar
-   diberi RING indigo — persamaan "terisi" mengikuti animasi goresan
-   di atasnya. */
-.kd-comp { margin-top: 14px; text-align: center; }
-.kd-comp-title {
-  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--ink-soft); margin-bottom: 8px;
-}
-.kd-comp-row {
-  display: flex; flex-wrap: wrap; justify-content: center;
-  align-items: flex-start; gap: 4px 8px;
-}
-.kd-comp-col { display: flex; flex-direction: column; align-items: center; gap: 5px; }
-.kd-comp-op {
-  font-family: 'Shippori Mincho', serif; font-size: 14px; font-weight: 600;
-  color: var(--ink-soft); line-height: 58px; /* sejajar tengah chip */
-}
-.kd-comp-chip {
-  position: relative; display: flex; flex-direction: column; align-items: center;
-  gap: 1px; min-width: 56px; max-width: 96px; padding: 7px 9px 6px;
-  border-radius: 8px; background: var(--surface);
-  border: 1px solid transparent; cursor: default;
-  font: inherit; color: inherit; text-align: center;
-  transition: border-color 0.3s ease, background-color 0.3s ease;
-}
-.kd-comp-chip.clickable { cursor: pointer; }
-.kd-comp-chip.clickable:hover { border-color: var(--indigo-soft); }
-.kd-comp-chip.clickable:focus-visible {
-  outline: 2px solid var(--indigo); outline-offset: 1px; border-radius: 8px;
-}
-/* Chip aktif (goresannya sedang digambar): garis 1px + tint lembut.
-   Ring box-shadow 3px t59 terlalu tebal — memakan celah antar chip dan
-   terasa asing di bahasa desain garis-1px app (umpan balik t60);
-   token --correct-bg sudah tint-indigo dan ikut tema gelap/terang. */
-.kd-comp-chip.active { border-color: var(--indigo); background: var(--correct-bg); }
-.kd-comp-glyph {
-  font-family: 'Shippori Mincho', serif; font-weight: 600;
-  font-size: 27px; line-height: 1.2; color: var(--ink);
-  transition: color 0.4s ease, opacity 0.4s ease;
-}
-.kd-comp-chip.pending .kd-comp-glyph { color: var(--ink-soft); opacity: 0.35; }
-.kd-comp-chip.active .kd-comp-glyph { color: var(--indigo); }
-.kd-comp-mean {
-  font-size: 9.5px; line-height: 1.3; color: var(--ink-soft);
-  max-width: 84px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-}
-.kd-comp-range {
-  font-size: 9px; line-height: 1.3; color: var(--ink-soft);
-  font-variant-numeric: tabular-nums;
-}
-.kd-comp-dot {
-  position: absolute; top: 5px; right: 5px; width: 5px; height: 5px;
-  border-radius: 50%; background: var(--indigo);
-}
-.kd-comp-parts { display: flex; align-items: baseline; gap: 3px; }
-.kd-comp-part-sep { font-size: 8px; color: var(--ink-soft); }
-.kd-comp-part {
-  font-family: 'Shippori Mincho', serif; font-size: 12.5px; line-height: 1.2;
-  color: var(--ink-soft);
-}
-
-/* Varian kuis: lebih kompak — tanpa rentang goresan & sub-parts
-   (ruang kolom glyph ketat, terutama mobile 360px). */
-.kd-comp.compact .kd-comp-chip { min-width: 50px; padding: 6px 8px 5px; }
-.kd-comp.compact .kd-comp-glyph { font-size: 24px; }
-.kd-comp.compact .kd-comp-op { line-height: 50px; }
-.kd-comp.compact { margin-top: 10px; }
-
 @media (min-width: 640px) {
   .kd-detail-grid { flex-direction: row; align-items: flex-start; gap: 22px; }
   .kd-detail-grid > .kd-detail-info { flex: 1; max-width: 420px; }
+  /* Kolom animasi + persamaan komponen di bawahnya (t63): lebar tetap
+     180px = lebar kotak goresan (t64; dulu 224px) supaya kolom info
+     tetap lega di sampingnya. */
+  .kd-detail-grid > .kd-detail-stroke { width: 180px; }
 }

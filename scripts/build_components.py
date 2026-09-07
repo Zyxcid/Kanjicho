@@ -1,50 +1,74 @@
 #!/usr/bin/env python3
-"""build_components.py — Ekstrak dekomposisi komponen kanji dari SVG KanjiVG
-menjadi JSON ringkas per level JLPT untuk Kanjichō.
+"""build_components.py — Ekstrak data dekomposisi komponen kanji dari SVG
+KanjiVG menjadi JSON ringkas per level JLPT untuk Kanjichō.
+
+Sumber data = struktur stroke-group KanjiVG: tiap <g> ber-atribut
+kvg:element adalah komponen; grup level-pertama (anak langsung grup
+root kanji) adalah bagian-bagian penyusun kanji. Contoh (時/06642):
+    <g kvg:element="日" kvg:position="left" kvg:radical="general">
+    <g kvg:element="寺" kvg:position="right" kvg:phon="寺">
+→ 時 = 日 + 寺.
+
+Aturan ekstraksi:
+  R1  Komponen = grup gN level pertama (anak langsung root kanji);
+      grup bersarang lebih dalam (sub-grup) milik komponen induknya.
+  R2  Wadah TANPA kvg:element transparan: anak berlabelnya dinaikkan
+      (rekursif) ke level pertama. Contoh (前): wadah atas tanpa label
+      → 八; wadah bawah tanpa label → 月 + 刂.
+  R3  Bagian yang dipecah (kvg:part="1"/"2", elemen sama) digabung
+      kembali; jumlah goresannya dijumlah.
+  R4  Glyph yang ditampilkan = kvg:element (bentuk TERTULIS — 亻, 刂,
+      飠), bukan kvg:original. kvg:original (bentuk asli/etimologis:
+      人, 刀, 食) disimpan sebagai field "o" untuk tooltip, dan dipakai
+      sebagai TARGET LINK kalau bentuk tertulisnya bukan kanji di DB.
+      Contoh (全): element="王" original="玉" → tampil 王 (4 goresan,
+      konsisten dengan total 6 = 2 + 4), tooltip "originally 玉".
+  R5  Goresan yang tidak termasuk grup manapun (path telanjang di
+      root) atau daun tanpa label → bagian "{u: N}" (chip redup
+      "+N strokes") di akhir daftar.
+  R6  "lv" = level JLPT di DB tempat kanji target-link berada (untuk
+      navigasi klik di Browse; loadLevelKanji cache per level).
+      "k" = kanji target link bila beda dari glyph (亻 → 人).
+  R7  Glyph "berisiko font" — astral (CJK Ext-B, mis. 𠂉) atau CJK
+      Radicals Supplement U+2E80–2EFF (⻌ ⻖ ⻏ ⺕ …) — tidak dimuat
+      font app; bila kvg:original-nya aman (⻌→辶, 𠂊→勹, ⺍→つ) tampil-
+      kan bentuk itu; selain itu goresannya dilipat ke {u} supaya
+      tidak ada chip tofu.
 
 Baca:
   - raw/kanjivg-master/kanji/*.svg  (KanjiVG master, CC BY-SA 3.0 —
-                                     struktur grup kvg:element memuat
-                                     dekomposisi hierarkis komponen)
-  - output/n5.json .. n1.json         (daftar kanji per level + arti —
-                                        untuk label arti komponen yang
-                                        juga merupakan kanji di DB app)
+    unduh repo-nya ke raw/ dulu, lihat README bagian Data sources)
+  - output/n5.json .. n1.json        (daftar kanji per level + DB
+                                      resolusi lv + stroke_count)
 
 Tulis:
   - output/components_n5.json ... components_n1.json
-    Format: { "<kanji>": [ { "e": <char>, "m": <arti>, "lv": <level>,
-                             "r": [<awal>, <akhir>], "rad": 1?, "ph": 1?,
-                             "p": [<char>, ...]? }, ... ], ... }
+    Format: { "<kanji>": { "t": <total goresan>,
+                            "p": [ { "e": glyph, "s": goresan,
+                                     "lv": "N5".."N1"|null,
+                                     "k": kanjiLink (jika != e),
+                                     "o": bentukAsli (jika ada),
+                                     "r": 1 (radikal), "ph": 1 (fonetik),
+                                     "m": arti singkat (form radikal
+                                          non-kanji saja) },
+                                   { "u": N } ] } }
+    Kanji tanpa komponen berlabel (kanji primitif, mis. 雨) tidak
+    ditulis — app tidak menampilkan seksi komponen untuk mereka.
 
-  e  — karakter komponen UNTUK TAMPILAN. Elemen varian (kvg:variant)
-       diganti bentuk aslinya (kvg:original, mis. ⻏ → 邑) supaya bisa
-       dirender font. Komponen CDP-* (bentuk tanpa kode Unicode di
-       data KanjiVG, hanya 3 kemunculan: 原, 2× 武) → placeholder "□".
-  m  — arti komponen bila komponen itu adalah kanji di DB app
-       (2 arti pertama, digabung ", "); dihilangkan kalau tidak ada.
-  lv — level JLPT komponen (dipakai Browse untuk navigasi klik chip
-       → modal detail komponen itu).
-  r  — rentang nomor goresan komponen DI DALAM kanji induknya
-       (1-based, inklusif) — dipakai highlight chip yang goresannya
-       sedang digambar animasi.
-  rad — komponen radikal semantik (kvg:radical="general") — bagian
-       pembawa ARTI (ditandai titik indigo di UI).
-  ph  — komponen fonetik (kvg:phon) — bagian pembawa BACAAN.
-  p  — sub-komponen level berikutnya (turun melewati grup penata tanpa
-       kvg:element), karakter saja; CDP-* difilter.
+Kontrak pipeline: sama dengan build_strokes.py — semua langkah baca/
+tulis di output/ (workspace); src/data/ hanya menerima hasil lewat
+satu cp promosi setelah langkah 5. --data-dir src/data/ tetap bisa
+dipakai untuk meng-audit salinan yang benar-benar dipakai app.
 
-Kualitas (kanji dibuang dari output, UI menyembunyikan section-nya):
-  - goresan 1..N harus terpartisi utuh oleh rentang komponen level-1
-    (tiap goresan milik tepat satu komponen);
-  - rentang tidak boleh saling tumpang tindih;
-  - komponen tanpa goresan → data aneh → buang.
-
-Diverifikasi terhadap stroke_count data app saat --data-dir diberikan
-(default: src/data/ sekaligus target promosi manual — lihat README).
+Verifikasi (build GAGAL exit 1 bila ada masalah):
+  - SVG ada untuk semua kanji app
+  - jumlah goresan total == stroke_count data app
+  - sum(goresan semua bagian) == total (tidak ada yang hilang)
+  - setiap bagian ber-e harus punya glyph 1 karakter
 
 Pemakaian:
-    python scripts/build_components.py [--kanjivg-dir DIR] [--out-dir DIR]
-                                       [--data-dir DIR]
+    python scripts/build_components.py \
+        [--kanjivg-dir DIR] [--data-dir DIR] [--out-dir DIR]
 """
 
 import argparse
@@ -53,187 +77,246 @@ import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-KVG_NS = "{http://kanjivg.tagaini.net}"  # xmlns:kvg pada <svg>
 LEVELS = ["n5", "n4", "n3", "n2", "n1"]
-CDP_PLACEHOLDER = "□"  # komponen tanpa Unicode (CDP-*) di KanjiVG
+KVG = "{http://kanjivg.tagaini.net}"
+SVGNS = "{http://www.w3.org/2000/svg}"
+
+# Arti singkat untuk bentuk komponen yang BUKAN kanji berdiri sendiri
+# (tidak akan ketemu di DB app) — frekuensi tertinggi hasil scan.
+# Hanya dipakai kalau elemen (maupun original-nya) tidak ada di DB.
+RADICAL_MEANINGS = {
+    "艹": "grass", "⻌": "road", "辶": "road", "宀": "crown",
+    "⻖": "hill", "⻏": "village", "阝": "mound", "囗": "enclosure",
+    "广": "cliff", "厂": "cliff", "丶": "dot", "頁": "page", "彳": "step",
+    "攵": "strike", "隹": "bird", "亠": "lid", "丿": "slash",
+    "尸": "flag", "冖": "cover", "冫": "ice", "氵": "water",
+    "忄": "heart", "扌": "hand", "犭": "beast", "罒": "net",
+    "龸": "top", "尢": "lame", "丬": "two", "糹": "silk",
+    "貝": "shell", "釒": "metal", "飠": "food", "訁": "word",
+    "⺼": "flesh", "⻂": "?", "冂": "frame", "卜": "divination",
+    "讠": "word", "饣": "food", "纟": "silk", "钅": "metal",
+    "勹": "wrap", "臼": "mortar", "阜": "hill", "爪": "claw",
+    "爿": "plank", "彑": "snare",
+}
 
 
 def kv_filename(kanji):
     # KanjiVG memakai hex codepoint 5 digit dengan leading nol.
-    return format(ord(kanji), "05x") + ".svg"
+    return f"{ord(kanji):05x}"
 
 
-def attr(node, name):
-    return node.get(KVG_NS + name)
+def strokes_of(g):
+    return sum(1 for el in g.iter()
+               if el.tag == SVGNS + "path" and "-s" in (el.get("id") or ""))
 
 
-def child_groups(node):
-    return [c for c in node if c.tag.endswith("}g")]
+def child_groups(g):
+    """Anak langsung yang merupakan stroke-group (id berakhiran -gN)."""
+    return [c for c in g
+            if c.tag == SVGNS + "g"
+            and (c.get("id", "").split("-")[-1].startswith("g"))]
 
 
-def descend_element_groups(node):
-    """Grup anak ber-kvg:element, turun melewati grup penata posisi
-    (grup <g> TANPA kvg:element — mis. pembungkus left/right)."""
-    out = []
-    for g in child_groups(node):
-        if attr(g, "element"):
-            out.append(g)
+def kanji_root(svg_root, hexid):
+    """Grup root kanji: svg > g#StrokePaths > g#hexid."""
+    for child in svg_root:
+        if child.get("id") == f"kvg:StrokePaths_{hexid}":
+            for sub in child:
+                if sub.get("id") == f"kvg:{hexid}":
+                    return sub
+    return None
+
+
+def labeled_parts_from(groups):
+    """R1+R2: grup berlabel jadi bagian; wadah tanpa label turun
+    rekursif. Kembalikan (parts, ) — bagian mentah ber-atribut.
+
+    Grup dengan element yang BUKAN satu karakter Unicode (mis. id
+    CDP-* ala KanjiVG untuk komponen tanpa codepoint) juga diperlaku-
+    kan transparan: tidak bisa dirender sebagai glyph, jadi anak
+    berlabelnya dinaikkan dan goresan daunnya jatuh ke bagian {u}."""
+    parts = []
+    for g in groups:
+        el = g.get(KVG + "element")
+        if el and len(el) == 1:
+            parts.append({
+                "e": el,
+                "orig": g.get(KVG + "original"),
+                "s": strokes_of(g),
+                "rad": g.get(KVG + "radical"),
+                "phon": g.get(KVG + "phon"),
+                "part": g.get(KVG + "part"),
+            })
         else:
-            out.extend(descend_element_groups(g))
-    return out
+            parts.extend(labeled_parts_from(child_groups(g)))
+    return parts
 
 
-def stroke_numbers(node):
-    """Nomor goresan (atribut id "...-s<N>") semua path di bawah node,
-    urut dokumen — nomor goresan KanjiVG = urutan penulisan."""
-    nums = []
-    for p in node.iter():
-        if p.tag.endswith("}path"):
-            pid = p.get("id", "")
-            if pid.startswith("kvg:") and "-s" in pid:
-                try:
-                    nums.append(int(pid.rsplit("-s", 1)[1]))
-                except ValueError:
-                    pass
-    return nums
-
-
-def display_char(g):
-    """Karakter tampilan: bentuk asli untuk varian (⻏ → 邑), placeholder
-    untuk bentuk CDP tanpa Unicode, sisanya kvg:element apa adanya."""
-    el = attr(g, "element") or ""
-    if el.startswith("CDP"):
-        return CDP_PLACEHOLDER
-    orig = attr(g, "original")
-    if orig and not orig.startswith("CDP"):
-        return orig
-    return el
-
-
-def parse_components(kanji, kanjivg_dir):
-    """Dekomposisi level-1 + sub-parts. None = tidak ada SVG (jangan
-    terjadi — build_strokes sudah menjamin coverage); [] = kanji tanpa
-    dekomposisi di data KanjiVG (UI menyembunyikan section)."""
-    f = kanjivg_dir / kv_filename(kanji)
-    if not f.exists():
+def extract(svg_path, hexid):
+    """Kembalikan (total_strokes, parts) atau None bila SVG tidak
+    terstruktur. parts = hasil R1-R3 (label + merge pecahan)."""
+    root = ET.parse(svg_path).getroot()
+    kg = kanji_root(root, hexid)
+    if kg is None:
         return None
-    root = None
-    want = "kvg:" + format(ord(kanji), "05x")
-    for g in ET.parse(f).iter():
-        if g.get("id", "") == want:
-            root = g
-            break
-    if root is None:
-        return None
-    total = stroke_numbers(root)
-    if not total:
-        return None
-
-    tops = descend_element_groups(root)
-    # Tanpa sub-komponen, atau komponen tunggal = dirinya sendiri
-    # (bukan bentuk partial) → tidak ada dekomposisi yang bisa ditunjuk.
-    if not tops:
-        return []
-    if len(tops) == 1 and display_char(tops[0]) == kanji and not attr(tops[0], "partial"):
-        return []
-
-    comps = []
-    covered = []
-    for g in tops:
-        nums = stroke_numbers(g)
-        if not nums:
-            return []  # komponen tanpa goresan — data aneh
-        covered.extend(nums)
-        entry = {"e": display_char(g), "r": [min(nums), max(nums)]}
-        if attr(g, "radical"):
-            entry["rad"] = 1
-        if attr(g, "phon"):
-            entry["ph"] = 1
-        parts = [display_char(sub) for sub in descend_element_groups(g)]
-        parts = [p for p in parts if p]  # buang string kosong
-        if parts:
-            entry["p"] = parts
-        comps.append(entry)
-
-    # Partisi utuh: tiap goresan milik tepat satu komponen level-1.
-    if sorted(covered) != sorted(total):
-        return []
-    # Rentang tidak boleh saling tumpang tindih.
-    ranges = sorted(c["r"] for c in comps)
-    for a, b in zip(ranges, ranges[1:]):
-        if a[1] >= b[0]:
-            return []
-    return comps
+    total = strokes_of(kg)
+    raw = labeled_parts_from(child_groups(kg))
+    # R3 — gabungkan bagian pecahan (kvg:part) dengan elemen sama.
+    merged, seen = [], {}
+    for p in raw:
+        if p["part"]:
+            key = ("part", p["e"])
+            if key in seen:
+                seen[key]["s"] += p["s"]
+                continue
+            q = dict(p)
+            seen[key] = q
+            merged.append(q)
+        else:
+            merged.append(p)
+    return total, merged
 
 
 def main():
-    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    ap.add_argument("--kanjivg-dir", default="raw/kanjivg-master/kanji", type=Path)
-    ap.add_argument("--out-dir", default="output", type=Path)
-    ap.add_argument("--data-dir", default="src/data", type=Path, help="untuk verifikasi stroke_count")
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--kanjivg-dir",
+                    default=Path(__file__).resolve().parent.parent / "raw"
+                    / "kanjivg-master" / "kanji")
+    ap.add_argument("--data-dir",
+                    default=Path(__file__).resolve().parent.parent / "output")
+    ap.add_argument("--out-dir",
+                    default=Path(__file__).resolve().parent.parent / "output")
     args = ap.parse_args()
 
-    # DB app: kanji → (arti, level) untuk label arti + navigasi chip.
+    kv_dir, data_dir, out_dir = (Path(args.kanjivg_dir),
+                                 Path(args.data_dir), Path(args.out_dir))
+    if not kv_dir.is_dir():
+        sys.exit(f"KanjiVG dir not found: {kv_dir} — unduh repo KanjiVG "
+                 "(github.com/KanjiVG/kanjivg, ZIP master) dan ekstrak ke "
+                 "raw/kanjivg-master/, atau pass --kanjivg-dir.")
+    if not data_dir.is_dir():
+        sys.exit(f"Data dir not found: {data_dir} (default = workspace "
+                 "pipeline output/). Jalankan langkah 1-3 dulu, atau pass "
+                 "--data-dir (mis. src/data untuk audit salinan terpasang).")
+
+    # DB app: kanji -> level (level pertama tempat kanji itu muncul).
     db = {}
-    for lv in LEVELS:
-        for entry in json.load(open(args.out_dir / f"{lv}.json")):
-            db[entry["kanji"]] = (entry.get("meanings") or [], lv.upper())
-
     stroke_counts = {}
-    try:
-        for lv in LEVELS:
-            data = json.load(open(args.data_dir / f"{lv}.json"))
-            for entry in data:
-                stroke_counts[entry["kanji"]] = entry["stroke_count"]
-    except FileNotFoundError:
-        print("note: data-dir tidak ada — verifikasi stroke_count dilewati")
+    for lvl in LEVELS:
+        src = data_dir / f"{lvl}.json"
+        raw = json.loads(src.read_text(encoding="utf-8"))
+        items = list(raw.values()) if isinstance(raw, dict) else raw
+        for it in items:
+            db.setdefault(it["kanji"], lvl.upper())
+            stroke_counts.setdefault(it["kanji"], it.get("stroke_count"))
 
-    stats = []
-    n_written = 0
-    for lv in LEVELS:
-        entries = json.load(open(args.out_dir / f"{lv}.json"))
+    problems = []
+    total_kanji = total_parts = total_bytes = 0
+    for lvl in LEVELS:
+        src = data_dir / f"{lvl}.json"
+        raw = json.loads(src.read_text(encoding="utf-8"))
+        items = list(raw.values()) if isinstance(raw, dict) else raw
         out = {}
-        n_decomp = 0
-        for entry in entries:
-            comps = parse_components(entry["kanji"], args.kanjivg_dir)
-            if not comps:
-                continue  # None / [] → kanji tanpa section komponen
-            # Verifikasi rentang vs stroke_count app.
-            sc = stroke_counts.get(entry["kanji"])
-            if sc is not None and comps[-1]["r"][1] > sc:
-                print(f"WARN {entry['kanji']}: rentang melebihi stroke_count ({comps[-1]['r'][1]} > {sc}) — dibuang", file=sys.stderr)
+        for it in items:
+            ch = it["kanji"]
+            svg_path = kv_dir / f"{kv_filename(ch)}.svg"
+            if not svg_path.exists():
+                problems.append(f"{lvl} {ch}: KanjiVG SVG missing")
                 continue
-            # Perkaya label arti + level navigasi.
-            for c in comps:
-                if c["e"] in db:
-                    meanings = db[c["e"]][0][:2]
-                    if meanings:
-                        c["m"] = ", ".join(meanings)
-                    c["lv"] = db[c["e"]][1]
-                # urutan kunci rapi: e m lv r rad ph p
-                ordered = {"e": c["e"]}
-                if "m" in c:
-                    ordered["m"] = c["m"]
-                if "lv" in c:
-                    ordered["lv"] = c["lv"]
-                ordered["r"] = c["r"]
-                for k in ("rad", "ph", "p"):
-                    if k in c:
-                        ordered[k] = c[k]
-                c.clear()
-                c.update(ordered)
-            out[entry["kanji"]] = comps
-            n_decomp += 1
-        path = args.out_dir / f"components_{lv}.json"
-        json.dump(out, open(path, "w"), ensure_ascii=False, separators=(",", ":"))
-        n_written += 1
-        stats.append((lv.upper(), len(entries), n_decomp, path.stat().st_size))
+            res = extract(svg_path, kv_filename(ch))
+            if res is None:
+                problems.append(f"{lvl} {ch}: no kanji root group parsed")
+                continue
+            total, raw_parts = res
 
-    for lv, tot, nd, sz in stats:
-        print(f"{lv}: {nd}/{tot} kanji ({nd / tot * 100:.0f}%) — {sz / 1024:.1f} KB")
-    total_all = sum(nd for _, _, nd, _ in stats)
-    total_kanji = sum(tot for _, tot, _, _ in stats)
-    print(f"TOTAL: {total_all}/{total_kanji} kanji ({total_all / total_kanji * 100:.0f}%), {n_written} file ditulis ke {args.out_dir}/")
+            parts = []
+            for p in raw_parts:
+                e = p["e"]
+                orig = p["orig"]
+                # R7 — glyph "berisiko font" tidak dimuat Shippori
+                # Mincho dan dukungan font sistem tidak konsisten →
+                # tofu. Dua set berisiko: astral (CJK Ext-B, mis. 𠂉)
+                # dan CJK Radicals Supplement U+2E80–2EFF (⻌ ⻖ ⻏ ⺕ ⺍ …).
+                # KanjiVG hampir selalu memberi kvg:original yang aman
+                # (⻌→辶, ⻖→阜, ⻏→邑, 𠂊→勹, 𦥑→臼, ⺍→つ) → tampilkan
+                # bentuk itu; selain itu goresannya dilipat ke {u} (chip
+                # "+N" — persamaan tetap jujur soal jumlah).
+                def risky(c):
+                    return c is None or ord(c) > 0xFFFF or 0x2E80 <= ord(c) <= 0x2EFF
+                if risky(e):
+                    if orig and not risky(orig) and len(orig) == 1:
+                        e = orig
+                        orig = None
+                    else:
+                        continue  # goresannya otomatis masuk {u} lewat
+                                  # selisih total - sum(parts)
+                if not e or len(e) != 1:
+                    problems.append(f"{lvl} {ch}: bad part glyph {e!r}")
+                    continue
+                part = {"e": e, "s": p["s"]}
+                # R4/R6 — target link: bentuk tertulis dulu, lalu
+                # bentuk asli; lv + k hanya dicatat bila ketemu (bagian
+                # tanpa link tidak punya field lv sama sekali).
+                target = e if e in db else (p["orig"] if p["orig"] in db else None)
+                if target is not None:
+                    part["lv"] = db[target]
+                    if target != e:
+                        part["k"] = target
+                else:
+                    m = RADICAL_MEANINGS.get(e)
+                    if m:
+                        part["m"] = m
+                if p["orig"] and p["orig"] != e:
+                    part["o"] = p["orig"]
+                if p["rad"]:
+                    part["r"] = 1
+                if p["phon"]:
+                    part["ph"] = 1
+                parts.append(part)
+
+            # R5 — goresan yang tidak terkover grup apa pun.
+            covered = sum(p["s"] for p in parts)
+            if covered < total:
+                parts.append({"u": total - covered})
+
+            # Verifikasi jumlah goresan.
+            sc = stroke_counts.get(ch)
+            if sc is not None and total != sc:
+                problems.append(f"{lvl} {ch}: stroke_count={sc} but "
+                                f"KanjiVG has {total} paths")
+                continue
+            if covered > total:
+                problems.append(f"{lvl} {ch}: parts cover {covered} of "
+                                f"{total} strokes")
+                continue
+
+            # Kanji tanpa komponen berlabel dilewati (tidak ada
+            # persamaan yang bisa ditampilkan).
+            named = [p for p in parts if "e" in p]
+            if not named:
+                continue
+            out[ch] = {"t": total, "p": parts}
+
+        dst = out_dir / f"components_{lvl}.json"
+        payload = json.dumps(out, ensure_ascii=False, separators=(",", ":"))
+        dst.write_text(payload, encoding="utf-8")
+        total_kanji += len(out)
+        total_parts += sum(len(v["p"]) for v in out.values())
+        total_bytes += dst.stat().st_size
+        linked = sum(1 for v in out.values() for p in v["p"] if p.get("lv"))
+        print(f"{lvl.upper()}: {len(out)} kanji decomposed -> "
+              f"{dst.name} ({dst.stat().st_size / 1024:.0f} KB, "
+              f"{linked} linked parts)")
+
+    print(f"TOTAL: {total_kanji} kanji, {total_parts} parts, "
+          f"{total_bytes / 1024:.0f} KB")
+    if problems:
+        print(f"\nPROBLEMS ({len(problems)}):")
+        for p in problems:
+            print("  -", p)
+        sys.exit(1)
+    print("All stroke sums verified against KanjiVG paths and app "
+          "stroke_count — 0 problems.")
 
 
 if __name__ == "__main__":

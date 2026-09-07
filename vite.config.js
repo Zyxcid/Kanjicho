@@ -4,14 +4,11 @@ import { VitePWA } from "vite-plugin-pwa";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // raw/ (checkout repo KanjiVG, ~11.600 SVG untuk pipeline data) TIDAK
-  // di-watch dev server: menembus limit inotify kernel (ENOSPC — server
-  // mati saat folder itu ada). Data mentah tidak pernah berubah saat
-  // develop app; `npm run build` pun tidak membacanya.
+  // raw/ (unduhan sumber pipeline: KanjiVG = 11.661 file SVG, kanjidic2,
+  // JMdict…) TIDAK boleh di-watch dev server: menghabiskan limit inotify
+  // sistem (ENOSPC, server mati) dan tidak pernah di-serve oleh Vite.
   server: {
-    watch: {
-      ignored: ["**/raw/**"],
-    },
+    watch: { ignored: ["**/raw/**"] },
   },
   plugins: [
     react(),
@@ -19,6 +16,10 @@ export default defineConfig({
       registerType: "autoUpdate", // service worker otomatis update tanpa perlu user hapus-install ulang
       includeAssets: ["icons/icon-192.png", "icons/icon-512.png"],
       manifest: {
+        // Aplikasi belum dipublikasikan — versi dipatok 1.0.0 (bukan
+        // auto-bump per iterasi fitur; naikkan hanya saat rilis publik).
+        version: "1.0.0",
+        version_name: "1.0.0",
         name: "Kanjichō — JLPT Kanji Practice",
         short_name: "Kanjichō",
         description: "Latihan kanji JLPT dengan spaced repetition, dari N5 sampai N1.",

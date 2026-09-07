@@ -1,20 +1,14 @@
-// Loader data dekomposisi komponen kanji (struktur kvg:element KanjiVG)
-// per level JLPT.
+// Loader data dekomposisi komponen kanji (KanjiVG stroke-group) per
+// level JLPT.
 //
 // File data (src/data/components_n*.json) berisi
-// { kanji: [ { e, m?, lv?, r, rad?, ph?, p? }, ... ] } — dihasilkan
-// scripts/build_components.py dari SVG KanjiVG (CC BY-SA 3.0):
-//   e  = karakter komponen (varian diganti bentuk asli, mis. ⻏ → 邑)
-//   m  = arti komponen bila komponen itu kanji di DB app
-//   lv = level JLPT komponen (navigasi klik chip di modal Browse)
-//   r  = rentang goresan komponen di dalam kanji induknya [awal, akhir]
-//   rad = penanda radikal semantik (pembawa arti)
-//   ph  = penanda komponen fonetik (pembawa bacaan)
-//   p  = sub-komponen level berikutnya (karakter saja)
-// Loader memakai dynamic import() supaya tiap level di-code-split oleh
-// Vite menjadi chunk terpisah — N1 (paling besar, ~146 KB) hanya diunduh
-// saat level itu dipakai. Chunk ikut di-precache service worker, jadi
-// data tetap tersedia offline (parit yang sama dengan strokes_n*.json).
+// { kanji: { t: totalGoresan, p: [ { e: glyph, s: goresan, lv: level,
+// k: kanjiLink?, o: bentukAsli?, r: 1?, ph: 1?, m: artiFormRadikal? },
+// { u: goresanTanpaGrup } ] } } — dihasilkan scripts/build_components.py
+// dari struktur stroke-group SVG KanjiVG (CC BY-SA 3.0). Loader memakai
+// dynamic import() supaya tiap level di-code-split oleh Vite menjadi
+// chunk terpisah (pola yang sama dengan lib/strokes.js); chunk ikut
+// di-precache service worker sehingga tetap tersedia offline.
 
 const LOADERS = {
   N5: () => import("../data/components_n5.json"),
@@ -31,8 +25,10 @@ const cache = new Map();
 /**
  * Muat peta komponen untuk satu level.
  * @param {string} level id level ("N5".."N1")
- * @returns {Promise<Object<string, Object[]>>} map kanji -> daftar
- *   komponen; kanji tanpa dekomposisi tidak ada di peta.
+ * @returns {Promise<Object<string, {t: number, p: Array}>>} map kanji ->
+ *   dekomposisi ({ t: total goresan, p: daftar bagian }). Kanji tanpa
+ *   dekomposisi (komponen primitif, mis. 雨) tidak ada di map — pemanggil
+ *   cukup cek map[kanji] untuk memutuskan menampilkan seksi atau tidak.
  */
 export function loadComponents(level) {
   const loader = LOADERS[level];

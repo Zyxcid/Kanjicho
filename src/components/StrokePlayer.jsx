@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Pause, Play, RotateCcw, StepBack, StepForward } from "lucide-react";
 import CopyKanji from "./CopyKanji.jsx";
 
@@ -19,6 +19,11 @@ import CopyKanji from "./CopyKanji.jsx";
  * (lihat .kd-detail-strokes di global.css). Tanpa library animasi —
  * timer + transisi CSS saja.
  *
+ * Prop onProgress(revealed) — dipanggil tiap jumlah goresan tergambar
+ * berubah (termasuk 0 saat replay / ganti kanji): modal Browse
+ * memakainya untuk MENYINKRONKAN persamaan komponen dengan animasi
+ * (chip komponen menyala saat goresannya sedang digambar — t64).
+ *
  * Kotak goresan (kd-stroke-box) bisa DIKLIK untuk menyalin karakter
  * kanji ke clipboard (CopyKanji — tombol transparan menutupi kotak,
  * konfirmasi pil "Copied <kanji>"; prop `kanji` wajib untuk itu).
@@ -30,7 +35,7 @@ const BASE_STROKE_MS = 620;
 
 const SPEEDS = [0.5, 1, 2];
 
-export default function StrokePlayer({ paths, kanji, onStrokeChange }) {
+export default function StrokePlayer({ paths, kanji, onProgress }) {
   const [revealed, setRevealed] = useState(0); // jumlah goresan yang sudah tergambar
   const [playing, setPlaying] = useState(true); // auto-play saat pertama kali dibuka
   const [speed, setSpeed] = useState(1);
@@ -49,15 +54,12 @@ export default function StrokePlayer({ paths, kanji, onStrokeChange }) {
     return () => clearTimeout(t);
   }, [playing, revealed, speed, paths]);
 
-  // Lapor progres goresan (jumlah goresan selesai) ke pemanggil — dipakai
-  // Browse.jsx untuk men-highlight chip komponen yang goresannya sedang
-  // digambar (ComponentBreakdown di bawah player ini). Ref supaya identitas
-  // callback yang berubah tiap render tidak memicu ulang efek.
-  const strokeCbRef = useRef(onStrokeChange);
-  strokeCbRef.current = onStrokeChange;
+  // Laporkan kemajuan ke pemanggil (Browse: sinkron chip komponen).
+  // Efek terpisah supaya semua jalur perubahan (autoplay, step manual,
+  // replay, ganti kanji) dilaporkan dengan satu titik.
   useEffect(() => {
-    strokeCbRef.current?.(revealed);
-  }, [revealed]);
+    if (onProgress) onProgress(revealed);
+  }, [revealed, paths, onProgress]);
 
   const done = revealed >= paths.length;
 

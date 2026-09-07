@@ -6,6 +6,7 @@ import StrokePlayer from "./StrokePlayer.jsx";
 import CopyKanji from "./CopyKanji.jsx";
 import ComponentBreakdown from "./ComponentBreakdown.jsx";
 import { loadStrokes } from "../lib/strokes.js";
+import { loadComponents } from "../lib/components.js";
 
 // "All" + N5..N1. Default N5 supaya paint pertama ringan (N1 sendiri
 // berisi 1.232 entri; N5 lebih ramah sebagai halaman mula).
@@ -21,20 +22,30 @@ export default function Browse({ onBack }) {
   const [visibleCount, setVisibleCount] = useState(VISIBLE_STEP);
   const [selected, setSelected] = useState(null); // kanji yang ditampilkan di modal
 
-  // Riwayat navigasi komponen di modal (t60): klik chip komponen
-  // (mis. 時 → 寺) menumpuk kanji asal; tombol "← 時" memunculkan
-  // kembali isi modal sebelumnya — sebelum t60 tukar kanji bersifat
-  // satu arah, kanji yang sedang dilihat hilang tanpa jejak. Entri
-  // disimpan utuh (sudah termuat), jadi kembali = instan tanpa load.
+  // Navigasi komponen: klik chip komponen di modal → tampilkan kanji
+  // komponen itu; entri yang ditinggalkan ditumpuk di navHistory supaya
+  // tombol ← (back) bisa kembali langkah demi langkah (mis. 時 → 寺 → 土).
+  // Membuka kanji baru dari GRID mengosongkan histori (sesi jelajah baru).
   const [navHistory, setNavHistory] = useState([]);
+  // Scroll modal reset ke atas setiap kanji berganti (termasuk saat
+  // menavigasi komponen — panel bacaan/contoh panjang bisa tersisa di
+  // posisi scroll lama).
+  const modalRef = useRef(null);
 
   // Data urutan goresan untuk kanji di modal (KanjiVG, per level —
   // loader di lib/strokes.js meng-cache chunk per level). null = dimuat.
   const [strokePaths, setStrokePaths] = useState(null);
-
-  // Progres animasi goresan (dilaporkan StrokePlayer) — men-highlight
-  // chip komponen yang goresannya sedang digambar (ComponentBreakdown).
-  const [activeStroke, setActiveStroke] = useState(null);
+  // Dekomposisi komponen kanji di modal (KanjiVG stroke-group, per
+  // level — lib/components.js). null = dimuat.
+  const [compEntry, setCompEntry] = useState(null);
+  // Kemajuan animasi goresan (jumlah goresan tergambar) — dipantau agar
+  // persamaan komponen MENGIKUTI animasi: chip komponen yang goresannya
+  // sedang digambar menyala, yang belum redup, yang selesai normal
+  // (sinkronisasi via StrokePlayer.onProgress + ComponentBreakdown
+  // progress). null = tidak ada animasi aktif (loading/fallback) → chip
+  // netral. Reset saat kanji berganti.
+  const [strokeProgress, setStrokeProgress] = useState(null);
+  const handleStrokeProgress = useCallback((n) => setStrokeProgress(n), []);
 
   // Data level aktif (atau semua level untuk "All") dimuat on-demand —
   // null selagi proses. "All" memuat 5 level sekaligus (satu-satunya kasus
@@ -80,70 +91,90 @@ export default function Browse({ onBack }) {
     setVisibleCount(VISIBLE_STEP);
   }, []);
 
-  // Tutup modal detail dengan Escape.
+  // Tutup modal detail dengan Escape (ikut mengosongkan histori
+  // navigasi komponen — modal ditutup berarti sesi jelajah selesai).
   useEffect(() => {
     function onKey(e) {
-      if (e.key === "Escape") setSelected(null);
+      if (e.key === "Escape") {
+        setSelected(null);
+        setNavHistory([]);
+      }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
-  // Setiap modal dibuka untuk kanji baru → muat path goresannya. "All"
-  // memuat level entri TERSEBUT (bukan semua level sekaligus).
+  // Setiap modal dibuka untuk kanji baru → muat path goresannya DAN
+  // dekomposisi komponennya, lalu reset scroll ke atas. "All"
+  // memuat level entri TERSEBUT (bukan semua level sekaligus); komponen
+  // bisa ber-link ke level lain — level itu dimuat terpisah saat chip
+  // diklik (lihat openComponent).
   useEffect(() => {
     if (!selected) return;
     let cancelled = false;
     setStrokePaths(null);
-    setActiveStroke(null);
-    loadStrokes(selected.jlpt_level).then((map) => {
-      if (!cancelled) setStrokePaths(map[selected.kanji] || []);
+    setCompEntry(null);
+    setStrokeProgress(null);
+    Promise.all([
+      loadStrokes(selected.jlpt_level),
+      loadComponents(selected.jlpt_level),
+    ]).then(([strokesMap, compsMap]) => {
+      if (cancelled) return;
+      setStrokePaths(strokesMap[selected.kanji] || []);
+      setCompEntry(compsMap[selected.kanji] || null);
     });
+    if (modalRef.current) modalRef.current.scrollTop = 0;
     return () => {
       cancelled = true;
     };
   }, [selected]);
 
-  // Ganti isi modal (klik komponen / kembali) → gulir modal ke atas —
-  // tanpa ini pengguna pindah kanji sambil modal terscroll di contoh
-  // kata panjang dan mendarat di tengah konten kanji baru.
-  const modalRef = useRef(null);
-  useEffect(() => {
-    modalRef.current?.scrollTo({ top: 0 });
-  }, [selected]);
+  const visible = list.slice(0, visibleCount);
+  const hasMore = list.length > visibleCount;
 
-  // Buka kanji langsung dari grid → mulai riwayat baru (t60).
+  // Buka kanji dari grid → sesi jelajah baru: histori komponen kosong.
   const openKanji = useCallback((k) => {
     setNavHistory([]);
     setSelected(k);
   }, []);
 
-  // Klik chip komponen (yang komponennya adalah kanji di DB) → tukar
-  // isi modal ke detail komponen itu, kanji asal ditumpuk ke riwayat
-  // supaya bisa kembali (tombol "←" di modal, t60). Level tersimpan di
-  // data komponen (field lv) — loadLevelKanji cache per level, jadi
-  // bolak-balik antar kanji ringan.
-  function openComponent(comp) {
-    if (!comp || !comp.lv) return;
-    const from = selected;
-    loadLevelKanji(comp.lv).then((list) => {
-      const entry = list.find((k) => k.kanji === comp.e);
-      if (entry && (!from || entry.kanji !== from.kanji)) {
-        setNavHistory((h) => (from ? [...h, from] : h));
+  // Klik chip komponen → navigasi modal ke kanji komponen itu (target
+  // link = k bila bentuk tertulisnya bukan kanji DB, mis. 亻 → 人).
+  // Level target dimuat on-demand via loadLevelKanji (di-cache; saat
+  // browsing "All" biasanya sudah termuat).
+  const openComponent = useCallback(
+    (part) => {
+      const target = part.k || part.e;
+      if (!part.lv || !target || !selected) return;
+      let cancelled = false;
+      loadLevelKanji(part.lv).then((list) => {
+        if (cancelled) return;
+        const entry = list.find((x) => x.kanji === target);
+        if (!entry) return;
+        setNavHistory((h) => [...h, selected]);
         setSelected(entry);
-      }
-    });
-  }
+      });
+      return () => {
+        cancelled = true;
+      };
+    },
+    [selected]
+  );
 
-  // Satu langkah kembali di riwayat navigasi komponen (t60).
+  // Kembali satu langkah ke kanji sebelumnya (pop histori).
   const goBack = useCallback(() => {
-    if (navHistory.length === 0) return;
-    setSelected(navHistory[navHistory.length - 1]);
-    setNavHistory(navHistory.slice(0, -1));
-  }, [navHistory]);
+    setNavHistory((h) => {
+      if (h.length === 0) return h;
+      setSelected(h[h.length - 1]);
+      return h.slice(0, -1);
+    });
+  }, []);
 
-  const visible = list.slice(0, visibleCount);
-  const hasMore = list.length > visibleCount;
+  // Tutup modal (tombol ✕ / klik overlay) — histori ikut dikosongkan.
+  const closeModal = useCallback(() => {
+    setSelected(null);
+    setNavHistory([]);
+  }, []);
 
   return (
     <>
@@ -229,39 +260,44 @@ export default function Browse({ onBack }) {
 
       {/* Modal detail — layout dua kolom (mobile: bertumpuk): animasi
           urutan goresan KanjiVG di kiri, info (arti, bacaan, contoh) di
-          kanan. Estetika elemen info tetap memakai kd-reveal. */}
+          kanan. Estetika elemen info tetap memakai kd-reveal. Tombol ←
+          muncul hanya setelah navigasi komponen (navHistory terisi). */}
       {selected && (
-        <div className="kd-modal-overlay" onClick={() => setSelected(null)}>
+        <div className="kd-modal-overlay" onClick={closeModal}>
           <div className="kd-modal" ref={modalRef} onClick={(e) => e.stopPropagation()}>
             <button
               className="kd-modal-close"
-              onClick={() => setSelected(null)}
+              onClick={closeModal}
               aria-label="Close"
             >
               <X size={18} />
             </button>
-            {/* Kembali ke kanji sebelumnya (t60) — hanya muncul setelah
-                navigasi komponen; glyph + arti kanji tujuan, bukan panah
-                kosong. */}
             {navHistory.length > 0 && (
+              /* Back: kembali ke kanji sebelumnya di tumpukan navigasi
+                 komponen — glyph + arti pertamanya jadi konteks tujuan
+                 ("Back to 時 — time"), selaras bahasa UI tombol ✕. */
               <button
                 className="kd-modal-back"
                 onClick={goBack}
                 aria-label={`Back to ${navHistory[navHistory.length - 1].kanji}`}
-                title={`Back to ${navHistory[navHistory.length - 1].kanji}`}
               >
-                <ChevronLeft size={14} />
+                <ChevronLeft size={16} />
                 <span className="kd-modal-back-glyph">
                   {navHistory[navHistory.length - 1].kanji}
                 </span>
-                {navHistory[navHistory.length - 1].meanings?.[0] && (
-                  <span className="kd-modal-back-mean">
-                    {navHistory[navHistory.length - 1].meanings[0]}
-                  </span>
-                )}
+                <span className="kd-modal-back-mean">
+                  {(navHistory[navHistory.length - 1].meanings || [])[0] || ""}
+                </span>
               </button>
             )}
             <div className="kd-detail-grid">
+              {/* Kolom kiri: animasi urutan goresan KanjiVG (lebar kolom
+                  180px — sama dengan kotak goresan, t64), lalu — tepat DI
+                  BAWAH animasi yang sedang berjalan (t63) — persamaan
+                  komponen kanji itu. onProgress → strokeProgress → prop
+                  progress ComponentBreakdown: chip MENGIKUTI animasi
+                  (menyala saat goresannya digambar — t64). Chip tetap
+                  ber-link (openComponent + navHistory + ← Back). */}
               <div className="kd-detail-stroke">
                 {/* StrokePlayer merender penghitung live sendiri
                     ("n / N strokes" — lihat komponen itu); label statis
@@ -272,7 +308,7 @@ export default function Browse({ onBack }) {
                   <StrokePlayer
                     paths={strokePaths}
                     kanji={selected.kanji}
-                    onStrokeChange={setActiveStroke}
+                    onProgress={handleStrokeProgress}
                   />
                 ) : (
                   <>
@@ -289,20 +325,22 @@ export default function Browse({ onBack }) {
                     </div>
                   </>
                 )}
-                {/* Persamaan komponen kanji (t59) — di bawah player:
-                    struktur kvg:element KanjiVG (radikal semantik
-                    bertitik indigo, komponen fonetik berlabel "phon",
-                    sub-parts di strip mini). Chip yang goresannya
-                    sedang digambar animasi diberi ring indigo; klik
-                    chip (komponen yang ada di DB) → modal menampilkan
-                    detail kanji komponen itu. */}
-                <ComponentBreakdown
-                  kanji={selected.kanji}
-                  level={selected.jlpt_level}
-                  variant="browse"
-                  revealed={activeStroke}
-                  onSelect={openComponent}
-                />
+                {/* Persamaan komponen (KanjiVG stroke-group) — chip
+                    glyph-saja (t64) ber-link bisa diklik untuk menjelajah
+                    kanji komponen itu; navHistory + tombol ← di atas
+                    modal. progress = sinkron dengan animasi di atasnya. */}
+                {compEntry && (
+                  <ComponentBreakdown
+                    kanji={selected.kanji}
+                    parts={compEntry.p}
+                    progress={
+                      strokePaths && strokePaths.length > 0
+                        ? strokeProgress ?? 0
+                        : null
+                    }
+                    onOpenPart={openComponent}
+                  />
+                )}
               </div>
               <div className="kd-detail-info">
                 {/* Head cukup MEANING saja — kanji sudah tampil besar (dan

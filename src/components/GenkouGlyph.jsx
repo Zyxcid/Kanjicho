@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { loadStrokes } from "../lib/strokes.js";
 
 // Durasi dasar satu goresan — sama dengan default StrokePlayer (speed 1x),
@@ -34,7 +34,7 @@ const BASE_STROKE_MS = 620;
  * di-remount per soal; reset render di bawah adalah jaring pengaman
  * kalau komponen dipakai tanpa key.
  */
-export default function GenkouGlyph({ kanji, level, onStrokeChange }) {
+export default function GenkouGlyph({ kanji, level }) {
   // undefined = chunk belum selesai (placeholder teks), null = sedang
   // dimuat, [] = tidak ada data KanjiVG, array = siap dirender.
   const [paths, setPaths] = useState(undefined);
@@ -71,16 +71,6 @@ export default function GenkouGlyph({ kanji, level, onStrokeChange }) {
     const t = setTimeout(() => setRevealed((r) => r + 1), BASE_STROKE_MS);
     return () => clearTimeout(t);
   }, [playing, revealed, paths]);
-
-  // Lapor progres goresan (jumlah goresan selesai) ke pemanggil — dipakai
-  // Quiz.jsx untuk men-highlight chip komponen yang goresannya sedang
-  // digambar (ComponentBreakdown di bawah kotak ini). Ref supaya identitas
-  // callback yang berubah tiap render tidak memicu ulang efek.
-  const strokeCbRef = useRef(onStrokeChange);
-  strokeCbRef.current = onStrokeChange;
-  useEffect(() => {
-    strokeCbRef.current?.(Array.isArray(paths) ? revealed : null);
-  }, [revealed, paths]);
 
   function handleClick() {
     // Selama loading atau tanpa data: tidak ada yang bisa dianimasikan.

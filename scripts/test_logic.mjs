@@ -512,5 +512,94 @@ console.log("\nDue format (label interval presisi jam + waktu jatuh tempo persis
   );
 }
 
+console.log("Data komponen (components_n*.json — invariant build build_components.py)");
+{
+  const LEVEL_DATA = { N5: n5, N4: n4, N3: n3, N2: n2, N1: n1 };
+  // Import data komponen per level.
+  const comps = {};
+  for (const lv of Object.keys(LEVEL_DATA)) {
+    const mod = await import(`../src/data/components_${lv.toLowerCase()}.json`, { with: { type: "json" } });
+    comps[lv] = mod.default;
+  }
+
+  // 1) Setiap kanji ber-dekomposisi ada di data levelnya (kunci konsisten).
+  for (const [lv, map] of Object.entries(comps)) {
+    const known = new Set(LEVEL_DATA[lv].map((k) => k.kanji));
+    let orphans = 0;
+    for (const ch of Object.keys(map)) if (!known.has(ch)) orphans++;
+    assert(orphans === 0, `${lv}: semua kanji kunci ada di n*.json (${Object.keys(map).length} entri)`);
+  }
+
+  // 2) Invariant stroke: t == stroke_count data app; sum(s) + sum(u) == t;
+  //    glyph e satu karakter; lv valid bila ada; u/k target satu karakter.
+  let bad = 0;
+  for (const [lv, map] of Object.entries(comps)) {
+    const byCh = new Map(LEVEL_DATA[lv].map((k) => [k.kanji, k]));
+    for (const [ch, entry] of Object.entries(map)) {
+      const sc = byCh.get(ch)?.stroke_count;
+      if (sc !== undefined && entry.t !== sc) bad++;
+      let sum = 0;
+      for (const p of entry.p) {
+        if (p.e !== undefined) {
+          // codepoint-aware: glyph CJK Ext-B punya 2 unit UTF-16 — build
+          // sudah melipatnya, tapi cek tetap aman untuk pasangan surrogate.
+          if (typeof p.e !== "string" || [...p.e].length !== 1) bad++;
+          // R7: astral (Ext-B) ATAU CJK Radicals Supplement (U+2E80-2EFF)
+          // = risiko tofu font — build wajib mensubstitusi/melipat.
+          const cp = p.e.codePointAt(0);
+          if (cp > 0xffff || (cp >= 0x2e80 && cp <= 0x2eff)) bad++;
+          if (p.lv && !(p.lv in LEVEL_DATA)) bad++;
+          if (p.k && [...p.k].length !== 1) bad++;
+        } else if (p.u === undefined) {
+          bad++;
+        }
+        sum += p.s ?? p.u ?? 0;
+      }
+      if (sum !== entry.t) bad++;
+    }
+  }
+  assert(bad === 0, "semua level: t=stroke_count, sum(s)+u=t, glyph/link valid");
+
+  // 3) Kasus yang pernah dipertanyakan user (sumber beda):
+  //    全 = 人 + 王 (bentuk TERTULIS; original 玉 di tooltip o).
+  const zen = comps.N3["全"];
+  assert(
+    zen && zen.p.length === 2 && zen.p[0].e === "人" && zen.p[1].e === "王" && zen.p[1].o === "玉" && zen.t === 6,
+    "全 (N3) = 人 + 王(o:玉), 6 goresan"
+  );
+  //    体: 亻 varian → link 人 (k), arti chip dari 人.
+  const tai = comps.N4["体"];
+  assert(
+    tai && tai.p[0].e === "亻" && tai.p[0].k === "人" && tai.p[0].lv === "N5",
+    "体 (N4): 亻 ber-link kanji 人 (N5)"
+  );
+  //    急: 𠂊 (astral, Ext-B) disubstitusi bentuk dasar 勹 (R7 — bebas tofu).
+  const kyu = comps.N4["急"];
+  assert(
+    kyu && kyu.p.some((p) => p.e === "勹") && !kyu.p.some((p) => p.e?.codePointAt(0) > 0xffff) && kyu.t === 9,
+    "急 (N4) = 勹 + 心 tanpa glyph astral (R7)"
+  );
+  //    毎: 𠂉 (astral tanpa original aman) dilipat ke goresan lepas {u};
+  //    bagian bawahnya berlabel 毋 (radikal, bentuk tulis KanjiVG).
+  const mai = comps.N5["毎"];
+  assert(
+    mai && mai.p.some((p) => p.e === "毋") && !mai.p.some((p) => p.e?.codePointAt(0) > 0xffff) && (mai.p.find((p) => p.u) || {}).u === 2,
+    "毎 (N5) = 毋 + {u:2} (𠂉 dilipat, R7)"
+  );
+  //    時: rantai navigasi Browse (時 → 寺 → 土) tersedia lintas level.
+  const toki = comps.N5["時"];
+  const tera = comps.N2["寺"];
+  assert(
+    toki?.p[1].e === "寺" && toki.p[1].lv === "N2" && tera?.p.some((p) => p.e === "土"),
+    "時 (N5) → 寺 (N2) → 土: rantai chip dapat dinavigasi"
+  );
+  //    本: goresan lepas jujur (+1) — 4 + 1 = 5.
+  const hon = comps.N5["本"];
+  assert(
+    hon && hon.p[0].e === "木" && hon.p[1]?.u === 1 && hon.t === 5,
+    "本 (N5) = 木 + {u:1} (goresan lepas tercatat)"
+  );
+}
+
 console.log(failures === 0 ? "\nALL PASSED" : `\n${failures} FAILURES`);
 process.exit(failures === 0 ? 0 : 1);

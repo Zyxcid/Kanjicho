@@ -42,24 +42,36 @@ npm run preview   # preview the production build locally
   code-split per level — N1 loads only when N1 is opened). Every kanji's path count is
   verified against the data's `stroke_count` at build time (0 mismatches
   across all 2,211 kanji).
-- **Kanji components (形声 analysis)** — under the stroke animation, the
-  kanji is shown as a **component equation** (時 = 日 + 寺, 寺 further split
-  into 土・寸) extracted from KanjiVG's `kvg:element` structure
-  (1,972 / 2,211 kanji have a decomposition; simple kanji like 食・雨
-  show no equation). Each chip shows the component's glyph, meaning and
-  (in the Browse modal) its stroke range in the parent kanji; an indigo
-  dot marks the **semantic radical** (meaning carrier) and a "phon" label
-  the **phonetic component** (reading hint — 寺 gives 時 its ジ). The
-  chips light up in sync with the stroke animation (the component being
-  drawn gets an indigo ring, drawn components fill in, undrawn ones stay
-  dim), and in the Browse library **clicking a chip opens that kanji's
-  own detail entry** — follow the structure down the rabbit hole. In the
-  quiz, the equation appears under the kanji box after reveal (compact,
-  non-clickable so the session keeps focus).
-  Data: `components_n*.json` (~250 KB, code-split per level) built by
-  `scripts/build_components.py` from the same KanjiVG SVGs; every
-  component's stroke range is verified to partition the kanji's strokes
-  exactly (build fails otherwise).
+- **Component breakdown (KanjiVG stroke groups)** — kanji are shown as
+  component equations: `時 = 日 + 寺`, `全 = 人 + 王`. After you answer a
+  quiz question, the answer panel expands with a smooth transition
+  inside the question column and includes a quiet "Components" row —
+  the equation as plain text (glyphs only, no stroke counts, no chip
+  boxes: a memory aid, not an answer hint; the choice grid folds up
+  and the genkō tile never moves while the panel opens). In the Kanji
+  Library modal, the same equation sits **directly below the running
+  stroke animation** (column width matches the 180px stroke box) and
+  **follows it live**: the chip whose strokes are currently being drawn
+  lights up (indigo border + tint), undrawn components stay dimmed,
+  finished ones settle back — the equation "inks in" as the kanji
+  writes itself (replay, pause and single-stroke stepping keep the
+  sync). Each component chip is **clickable**: it opens that component
+  as its own kanji (cross-level — `空`'s 穴 lives in N1), with a
+  **← Back** button walking you back through the chain
+  (`時 → 寺 → 土 → …`). Long equations (up to 6 components, e.g. `爾`)
+  wrap neatly in the narrow column. Chips show **glyphs only** — hover
+  a chip and the tooltip explains its role: *radical* (seal dot, the
+  meaning component) or *phonetic* (indigo dot, the sound component);
+  a muted `+N` chip counts strokes that belong to no named component
+  (keeps every equation stroke-accurate).
+  Data: first-level stroke groups from the same **KanjiVG** SVGs,
+  extracted by `scripts/build_components.py` (see *Data build pipeline*),
+  2,148 of 2,211 kanji decomposed, every equation's stroke sum verified
+  at build time (the stroke ranges powering the live sync come from the
+  same order-preserving data). KanjiVG also tags historical/
+  etymological forms (`王` originally `玉`) — the app shows the
+  **written form** (stroke-consistent); it may differ from other
+  sources (see the note under *Component decomposition* below).
 - **Free practice on non-due units** — scheduled units appear slightly
   **dimmed** in the unit list. Clicking one shows a short confirm ("practice
   won't change your review schedule") and then runs freely — nothing
@@ -215,17 +227,17 @@ src/
     kana.js                  kana → romaji Hepburn converter (JS port of the pipeline's, powers the romaji display)
     useCopy.js               clipboard hook (navigator.clipboard + execCommand fallback, 1.4s "copied" state) powering click-to-copy on the stroke box
     strokes.js              loads KanjiVG stroke-order data per level (code-split dynamic import, in-memory cache)
-    components.js           loads KanjiVG component-decomposition data per level (code-split dynamic import, in-memory cache)
+    components.js           loads KanjiVG component decompositions per level (same code-split + cache pattern)
   components/
     Home.jsx                next-review banner (the calendar entry) + stat cards panel + browse entry + level grid
     StatCards.jsx           shared panel of three large read-only stat cards (x/total Studied, Due now, Mastered) used by Home and UnitSelect
     UnitSelect.jsx           per-level stat cards + unit cards (dimmed = free practice; "✕ N" missed-review pill next to the title, hidden once the unit is due)
     Quiz.jsx                 quiz screen (kanji box + choices + reveal panel + weak-review badge); the kanji is always shown as the finished KanjiVG SVG — left-click the box to replay the stroke animation inline, right-click to finish it instantly (no detail entry from inside the quiz — that would leak the answer)
     Readings.jsx             shared On/Kun rendering with primary bolding, kana or romaji
-    GenkouGlyph.jsx          quiz kanji box as a button: renders the KanjiVG SVG in its finished state on mount (paths lazy-loaded per level); left-click → replays the stroke animation from the first stroke (1× default), right-click → completes it instantly; reports stroke progress up to Quiz via onStrokeChange (component chips sync)
-    ComponentBreakdown.jsx   component equation under the KanjiVG box (quiz after reveal = compact static; Browse below StrokePlayer = full: ranges, sub-parts, click-to-open, animation-synced highlight)
+    GenkouGlyph.jsx          quiz kanji box as a button: renders the KanjiVG SVG in its finished state on mount (paths lazy-loaded per level); left-click → replays the stroke animation from the first stroke (1× default), right-click → completes it instantly
+    ComponentBreakdown.jsx   component equation (時 = 日 + 寺): plain-text variant inside the quiz answer panel's "Components" row (after answering, glyphs only, no interaction, no chip boxes); full chip variant in the Browse modal directly below the stroke animation (no "kanji =" lead) — glyph-only chips with radical/phonetic role tooltips (radical = meaning carrier, phonetic = sound carrier) and radical/phonetic dots; the `progress` prop keeps the chips in sync with the running stroke animation (future → active → done); clickable chips navigate to the component kanji (← Back button from Browse's navHistory); +N loose-stroke chip; long equations wrap as "+ chip" terms in the 180px animation column
     CopyKanji.jsx            transparent <button> covering the Browse stroke box: click = copy the kanji (faint corner copy icon as affordance, inline "Copied 語" pill, keyboard-accessible)
-    StrokePlayer.jsx         animated stroke-order player (two-layer SVG: faint guide + drawn ink via stroke-dashoffset; play/pause/replay/step/speed; live "n / N strokes" label under the controls — old kd-stroke-counter merged into it; the stroke box itself is click-to-copy via the CopyKanji overlay)
+    StrokePlayer.jsx         animated stroke-order player (two-layer SVG: faint guide + drawn ink via stroke-dashoffset; play/pause/replay/step/speed; live "n / N strokes" label under the controls — old kd-stroke-counter merged into it; `onProgress(revealed)` reports the live stroke count so the Browse component chips can highlight in sync; the stroke box itself is click-to-copy via the CopyKanji overlay)
     Result.jsx               score stamp + breakdown + mode-aware next-review panel
     Browse.jsx               full kanji library (filter pills, search, modal; the modal's stroke box is click-to-copy — see CopyKanji.jsx)
     ReviewCalendar.jsx       shared month calendar + selected-day panel (used by the banner overlay)
@@ -238,7 +250,7 @@ src/
     n5.json ... n1.json               full kanji entries per level (loaded on demand)
     n5_examples.json ... n1_examples.json   example words per kanji (loaded on demand)
     strokes_n5.json ... strokes_n1.json     KanjiVG stroke-order paths per kanji (loaded on demand, code-split)
-    components_n5.json ... components_n1.json  KanjiVG component decomposition per kanji (loaded on demand, code-split)
+    components_n5.json ... components_n1.json   KanjiVG component decompositions per kanji (loaded on demand, code-split)
   styles/
     global.css               genkouyoushi design system (light + dark tokens)
 
@@ -334,14 +346,18 @@ scripts/
                             mismatch). Needs the KanjiVG repo checkout in
                             raw/kanjivg-master/ (default) — pass
                             --kanjivg-dir if it lives elsewhere
-  build_components.py       Step 5b: KanjiVG SVGs → components_n*.json
-                            (dekomposisi komponen per kanji dari struktur
-                            kvg:element — glyph/arti/level + rentang
-                            goresan + radikal/fonetik + sub-parts,
-                            ditulis ke output/); verifikasi: goresan kanji
-                            harus terpartisi utuh oleh rentang komponennya
-                            (kanji gagal partisi dibuang — UI menyembunyikan
-                            section-nya). Sumber sama: raw/kanjivg-master/
+  build_components.py       Step 6: KanjiVG SVGs → components_n*.json
+                            (component equation per kanji: first-level
+                            stroke groups; unlabeled containers promote
+                            their labeled children, part-split components
+                            re-merge, non-Unicode CDP groups fold into a
+                            loose-stroke count; written to output/).
+                            Every equation's stroke sum + the kanji's
+                            stroke_count are verified (fails on mismatch).
+                            Same KanjiVG checkout requirement as Step 5;
+                            see "Component decomposition" below for the
+                            extraction rules and the written-vs-original
+                            form policy
 ```
 
 ## Data sources
@@ -604,7 +620,7 @@ built.
 | `BCCWJ_frequencylist_luw2_ver1_0.tsv` | https://clrd.ninjal.ac.jp/bccwj/en/freq-list.html ("Long Unit Word list data (v2)") |
 | `JLPT_kanji_ALL.json` | [Bluskyo/JLPT_Vocabulary](https://github.com/Bluskyo/JLPT_Vocabulary/releases) — modern N1–N5 levels |
 | `JLPT_vocab_ALL.json` | [Bluskyo/JLPT_Vocabulary](https://github.com/Bluskyo/JLPT_Vocabulary) — `data/vocab/results/JLPT_vocab_ALL.json` (vocabulary levels; required — `build_examples.py` exits with an error when it's missing, rather than silently falling back to frequency-only ranking) |
-| KanjiVG `kanji/` SVGs | https://github.com/KanjiVG/kanjivg (clone or download ZIP; only needed for `build_strokes.py`) |
+| KanjiVG `kanji/` SVGs | https://github.com/KanjiVG/kanjivg (clone or download ZIP; needed for `build_strokes.py` **and** `build_components.py`) |
 
 > Raw sources are **not** included in the project — download them into
 > `raw/` at the app root (the single home for raw downloads) when running
@@ -643,6 +659,11 @@ raw/KanjiVG kanji/*.svg ─→ build_strokes.py    ──→ strokes_n*.json
                            (stroke-order paths per kanji; path count
                            verified against stroke_count, build fails
                            on any mismatch)
+
+raw/KanjiVG kanji/*.svg ─→ build_components.py  ──→ components_n*.json
+                           (component equation per kanji from first-level
+                           stroke groups; stroke sum + stroke_count
+                           verified, build fails on any mismatch)
 ```
 
 ```bash
@@ -661,12 +682,17 @@ python scripts/build_manifest.py output
 # (the default expects raw/kanjivg-master/)
 python scripts/build_strokes.py
 
+# component decomposition data — SAME KanjiVG checkout, no extra
+# downloads. Extracts first-level stroke groups → components_n*.json
+# (see "Component decomposition" below for the rules & format)
+python scripts/build_components.py
+
 # promote: everything the app imports goes from output/ into src/data/
-# in ONE copy. Steps 1–5 all read & write output/ (the build workspace),
+# in ONE copy. Steps 1–6 all read & write output/ (the build workspace),
 # so you can wipe src/data/ and rebuild from raw sources; src/data/ is
 # only ever written by this cp (all_kanji.json is a convert-stage
 # intermediate the app never imports)
-cp output/n[1-5].json output/n[1-5]_examples.json output/manifest.json output/strokes_n[1-5].json src/data/
+cp output/n[1-5].json output/n[1-5]_examples.json output/manifest.json output/strokes_n[1-5].json output/components_n[1-5].json src/data/
 
 # post-promotion verifier: re-checks the strict backing rules the
 # pipeline already applied — expect "GANTI (0)" (non-zero = data was
@@ -697,6 +723,74 @@ step 3 (`strict_primary_pass`, with gemination as strict evidence —
 Fix-8), so a fresh rebuild applies the same corrections the old
 post-hoc audit did, automatically — the verifier after promotion is
 expected to report **GANTI (0)**.
+
+## Component decomposition (build_components.py)
+
+KanjiVG's SVGs don't just carry stroke paths — each `<g>` stroke group is
+tagged with the component it draws (`kvg:element`). `build_components.py`
+reads that structure and turns it into the per-kanji equation the app
+displays. It shares the Step-5 KanjiVG checkout (`raw/kanjivg-master/`)
+and the same CLI conventions (`--kanjivg-dir`, `--data-dir`, `--out-dir`;
+workspace contract `output/` → promote with one `cp`).
+
+### Extraction rules
+
+1. **First level only** — components are the stroke groups that are direct
+   children of the kanji's root group. Nested groups belong to their parent
+   component (語's 吾 contains 五・二・口, but the equation stays `言 + 吾` —
+   the nested view appears when you *click* 吾 and open its own page).
+2. **Unlabeled containers are transparent** — a group without
+   `kvg:element` is pure layout; its labeled children are promoted
+   (recursively). 前's top/bottom containers have no labels, so the
+   equation becomes `八 + 月 + 刂`.
+3. **Part-split components re-merge** — KanjiVG sometimes splits one
+   component into `kvg:part="1"`/`"2"` groups (武's frame); they merge back
+   into a single part with summed strokes.
+4. **Written form, original as tooltip** — the chip shows `kvg:element`
+   (what your hand actually writes: 亻, 刂, 飠, 王), while `kvg:original`
+   (the base/etymological kanji: 人, 刀, 食, 玉) is kept in the tooltip and
+   used as the click target when the written form isn't a standalone kanji
+   in the app's data.
+5. **Loose strokes stay honest** — strokes that belong to no named group
+   (本's final horizontal, 電's tail, unlabeled leaves like 行's right
+   side) become a muted `+N` chip, so every equation's stroke count adds
+   up. Non-Unicode KanjiVG ids (`CDP-*`, no codepoint) are treated the
+   same way: promoted if they contain labeled children, otherwise folded
+   into `+N`.
+
+### Data format
+
+```json
+"全": { "t": 6, "p": [
+  { "e": "人", "s": 2, "lv": "N5", "r": 1 },
+  { "e": "王", "s": 4, "lv": "N3", "o": "玉" } ] }
+```
+
+`e` glyph as written · `s` its stroke count · `lv` the level whose data
+contains the click target (missing = chip is static, e.g. 吾) · `k` the
+link target when it differs from `e` (亻 → 人) · `o` the original form for
+the tooltip · `r`/`ph` radical/phonetic flags (the seal/indigo dots) · `m`
+a built-in gloss for radical *forms* that are no kanji at all (艹 "grass",
+⻌ "road", 宀 "crown"…) · `{ "u": N }` loose strokes. `t` is the kanji's
+total stroke count. Kanji with no labeled parts (primitives like 雨, 金)
+are simply absent — the app shows no equation for them.
+
+Build output (2,148 of 2,211 kanji decomposed, ~209 KB total): each
+equation's part strokes (+ loose) are verified to sum to `t`, and `t` to
+the app's `stroke_count` — the build fails on any mismatch, same contract
+as `build_strokes.py`.
+
+### Why other sources may disagree
+
+There is **no single standard** for decomposition. The Kanji Map shows
+semantic tree splits with variant-glyph notation (全 = 𠆢 + 王); Jisho
+lists a *radical + parts* classification (radical 入, parts 个 ハ 王 — the
+入/人 split is a famous classifier ambiguity). This app follows KanjiVG's
+stroke grouping and always prefers the **written form**: 全's bottom group
+is tagged `element="王" original="玉"` — 王 (4 strokes) is what you write
+and what makes 2 + 4 = 6 add up, so the equation shows 王 and the tooltip
+carries "originally 玉". All three views are defensible; the app's choice
+is the one that stays consistent with its own stroke data.
 
 ## Spaced repetition model
 

@@ -1,139 +1,172 @@
-import React, { useEffect, useState } from "react";
-import { loadComponents } from "../lib/components.js";
+import React from "react";
 
 /**
- * ComponentBreakdown — "persamaan komponen" satu kanji, dari struktur
- * kvg:element KanjiVG (scripts/build_components.py, t59).
+ * Tooltip satu bagian — cukup menjelaskan APA ITU radikal/fonetik
+ * (t64: jumlah goresan, arti, bentuk asli ditarik dari chip — tooltip
+ * hanya definisi peran bagian). Bagian tanpa peran tidak punya tooltip.
+ */
+function partTitle(part) {
+  if (part.r) return "Radical — the component that carries the meaning";
+  if (part.ph) return "Phonetic — the component that carries the sound";
+  return null;
+}
+
+/**
+ * ComponentBreakdown — persamaan dekomposisi kanji (KanjiVG
+ * stroke-group): 日 + 寺. Presentational murni; data (parts) dimuat
+ * pemanggil via lib/components.js.
  *
- * Ditampilkan DI BAWAH kotak KanjiVG: di layar kuis setelah reveal
- * (variant="quiz") dan di modal Browse di bawah StrokePlayer
- * (variant="browse"). Kanji tanpa dekomposisi di data KanjiVG
- * (~11%, mis. 食・雨・行) → section tidak dirender sama sekali.
+ * Varian:
+ *  - plain (kuis, di panel reveal): TEKS BIASA — glyph + pemisah "+",
+ *    tanpa kotak/border/latar (t63) dan tanpa jumlah goresan (t64).
+ *    Tanpa navigasi: detail penuh tetap di modal Browse.
+ *  - full (modal Browse, DI BAWAH animasi goresan): chip GLYPY-SAJA
+ *    (t64: jumlah goresan + arti dihapus — chip jadi kompak; tooltip
+ *    menjelaskan peran radikal/fonetik). Bagian yang punya "lv" jadi
+ *    TOMBOL (onOpenPart) — klik menavigasi modal ke kanji komponen itu
+ *    (navHistory di Browse.jsx menyediakan tombol back).
  *
- * Susunan: baris chip komponen level-1 yang dipisah operator "+"
- * (時 = 日 + 寺); tiap chip = kolom dengan glyph (Shippori Mincho,
- * sama dengan tampilan kanji app), arti (bila komponen adalah kanji
- * di DB), dan — mode browse — rentang goresannya di kanji induk
- * ("1–4"). Sub-komponen (寺 = 土・寸) tampil sebagai strip mini di
- * bawah chip induknya (mode browse saja).
+ * Sinkron animasi (t64, varian full): prop `progress` = jumlah goresan
+ * yang sudah tergambar (dari StrokePlayer.onProgress). Bagian diberi
+ * rentang goresan kumulatif (parts memang urut goresan — build script
+ * menjamin jumlah goresan cocok): chip "menyala" saat goresan yang
+ * sedang digambar berada di rentangnya, redup sebelumnya, normal
+ * (selesai "ditinta") setelahnya — persamaan MENGIKUTI animasi kanji.
+ * progress null/undefined (kuis, fallback tanpa data goresan) = semua
+ * chip netral.
  *
- * Penanda:
- *  - RADIKAL SEMANTIK (kvg:radical — bagian pembawa ARTI kanji itu):
- *    titik indigo di pojok chip + tooltip.
- *  - KOMPONEN FONETIK (kvg:phon — pembawa BACAAN, mis. 寺 → ジ di 時):
- *    akhiran "phon" di baris rentang + tooltip.
- *
- * Sinkron animasi (prop revealed = jumlah goresan yang sudah
- * tergambar): chip goresannya BELUM tergambar tampak redup; chip yang
- * goresannya SEDANG digambar diberi ring indigo — persamaan
- * "terisi" mengikuti animasi KanjiVG di atasnya. revealed = null →
- * semua chip tampil penuh (keadaan selesai/idle).
- *
- * Klik chip (hanya mode browse, hanya komponen yang ada di DB —
- * prop onSelect dipasang) → pemanggil membuka modal detail kanji
- * komponen itu. Mode kuis: chip statis (tanpa navigasi — fokus tetap
- * di sesi kuis).
+ * Bagian {u} (goresan tanpa grup berlabel) dirender "+N" — jujur soal
+ * jumlah goresan yang tidak termasuk komponen bernama. Titik kecil di
+ * pojok chip (varian full): seal = radikal (komponen makna), indigo =
+ * fonetik (komponen bunyi).
  */
 export default function ComponentBreakdown({
   kanji,
-  level,
-  variant = "browse",
-  revealed = null,
-  onSelect,
+  parts,
+  plain = false,
+  progress,
+  onOpenPart,
 }) {
-  // undefined = chunk masih dimuat, null = tidak ada dekomposisi,
-  // array = siap dirender.
-  const [comps, setComps] = useState(undefined);
+  // Persamaan hanya bermakna dengan >= 2 keping visual (bagian bernama
+  // +/atau goresan lepas); satu bagian tunggal bukan persamaan.
+  const visible = parts.filter((p) => p.e || p.u);
+  if (visible.length < 2) return null;
 
-  useEffect(() => {
-    let cancelled = false;
-    setComps(undefined);
-    loadComponents(level).then((map) => {
-      if (cancelled) return;
-      const c = map[kanji];
-      // 1 komponen sendirian tidak memberi informasi struktur.
-      setComps(Array.isArray(c) && c.length > 1 ? c : null);
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [kanji, level]);
+  // Rentang goresan kumulatif tiap bagian (urutan parts = urutan
+  // goresan KanjiVG). Dipakai mencari bagian yang sedang digambar.
+  let acc = 0;
+  const ranges = visible.map((p) => {
+    const n = p.s || p.u || 0;
+    const r = { start: acc, end: acc + n };
+    acc += n;
+    return r;
+  });
 
-  if (!Array.isArray(comps)) return null;
+  // Goresan yang AKAN digambar berikutnya = progress + 1 (1-based);
+  // bagian aktif = bagian yang memuat goresan itu. Bagian dengan
+  // end <= progress sudah selesai digambar.
+  const hasProgress = typeof progress === "number";
+  const activeIndex = hasProgress
+    ? ranges.findIndex((r) => progress + 1 > r.start && progress + 1 <= r.end)
+    : -1;
 
-  const compact = variant === "quiz";
+  // Kelas sinkron animasi: future (redup) / active (menyala) / done
+  // (normal). Tanpa progress → string kosong (netral).
+  function syncClass(i) {
+    if (!hasProgress) return "";
+    if (i === activeIndex) return " active";
+    if (ranges[i].end <= progress) return " done";
+    return " future";
+  }
 
-  return (
-    <section className={`kd-comp${compact ? " compact" : ""}`} aria-label={`Components of ${kanji}`}>
-      <div className="kd-comp-title">Components</div>
-      <div className="kd-comp-row">
-        {comps.map((c, i) => {
-          // Keadaan chip relatif progres animasi (revealed = jumlah
-          // goresan selesai; goresan yang SEDANG digambar = revealed+1).
-          const complete = revealed === null || revealed >= c.r[1];
-          const active =
-            !complete && revealed + 1 >= c.r[0] && revealed + 1 <= c.r[1];
-          const clickable = !compact && c.m !== undefined && onSelect !== undefined;
-          const cls =
-            "kd-comp-chip" +
-            (complete ? "" : " pending") +
-            (active ? " active" : "") +
-            (clickable ? " clickable" : "");
-          const label =
-            `${c.e}${c.m !== undefined ? `, ${c.m}` : ""}, strokes ${c.r[0]}–${c.r[1]}` +
-            (c.rad ? ", semantic radical" : "") +
-            (c.ph ? ", phonetic component" : "");
-          const Chip = clickable ? "button" : "div";
-          return (
-            <React.Fragment key={`${c.e}-${c.r[0]}`}>
-              {i > 0 && (
-                <span className="kd-comp-op" aria-hidden="true">
-                  +
-                </span>
-              )}
-              <div className="kd-comp-col">
-                <Chip
-                  type={clickable ? "button" : undefined}
-                  className={cls}
-                  onClick={clickable ? () => onSelect(c) : undefined}
-                  aria-label={label}
-                  title={
-                    (c.rad ? "Semantic radical — carries the meaning. " : "") +
-                    (c.ph ? "Phonetic component — hints the reading. " : "") +
-                    (clickable ? "Click to open this kanji." : "")
-                  }
-                >
-                  {c.rad && <span className="kd-comp-dot" aria-hidden="true" />}
-                  <span className="kd-comp-glyph" aria-hidden="true">
-                    {c.e}
+  // Persamaan utuh tetap dibacakan screen reader (kanji = bagian-bagian)
+  // walau lead visualnya tidak dirender — konteks tanpa melihat layar.
+  const ariaLabel = `Components: ${kanji} = ${visible
+    .map((p) => p.e || `+${p.u}`)
+    .join(" + ")}`;
+
+  // ---- Varian plain (panel reveal kuis): baris teks tenang ----------
+  if (plain) {
+    return (
+      <div className="kd-comp plain">
+        <div className="kd-comp-row" role="group" aria-label={ariaLabel}>
+          {visible.map((p, i) => {
+            const title = p.u
+              ? `${p.u} ${p.u === 1 ? "stroke" : "strokes"} not part of a named component`
+              : partTitle(p);
+            return (
+              <span
+                className="kd-comp-pt"
+                key={`${p.e || "u"}${i}`}
+                title={title || undefined}
+              >
+                {i > 0 && (
+                  <span className="kd-comp-plus" aria-hidden="true">
+                    +
                   </span>
-                  {c.m !== undefined && <span className="kd-comp-mean">{c.m}</span>}
-                  {!compact && (
-                    <span className="kd-comp-range">
-                      {c.r[0]}–{c.r[1]}
-                      {c.ph ? " · phon" : ""}
-                    </span>
-                  )}
-                </Chip>
-                {!compact && c.p && c.p.length > 0 && (
-                  <div className="kd-comp-parts" aria-label={`Parts: ${c.p.join(", ")}`}>
-                    {c.p.map((ch, j) => (
-                      <React.Fragment key={`${ch}-${j}`}>
-                        {j > 0 && (
-                          <span className="kd-comp-part-sep" aria-hidden="true">
-                            ·
-                          </span>
-                        )}
-                        <span className="kd-comp-part">{ch}</span>
-                      </React.Fragment>
-                    ))}
-                  </div>
                 )}
-              </div>
-            </React.Fragment>
-          );
-        })}
+                {p.u ? (
+                  <span className="kd-comp-loose">+{p.u}</span>
+                ) : (
+                  <span className="kd-comp-glyph" aria-hidden="true">
+                    {p.e}
+                  </span>
+                )}
+              </span>
+            );
+          })}
+        </div>
       </div>
-    </section>
+    );
+  }
+
+  // ---- Varian full (modal Browse, di bawah animasi goresan) ----------
+  return (
+    <div className="kd-comp">
+      <div className="kd-comp-label">Components</div>
+      <div className="kd-comp-row" role="group" aria-label={ariaLabel}>
+        {visible.map((p, i) => (
+          /* Term = "+" MENEMPEL pada chip sesudahnya: baris baru selalu
+             dimulai dengan "+ chip" (operator pembuka suku), tidak pernah
+             ada plus yatim menggantung di ujung baris. */
+          <span className="kd-comp-term" key={`${p.e || "u"}${i}`}>
+            {i > 0 && (
+              <span className="kd-comp-plus" aria-hidden="true">
+                +
+              </span>
+            )}
+            {p.u ? (
+              <span
+                className={`kd-comp-chip static ungrouped${syncClass(i)}`}
+                title={`${p.u} ${p.u === 1 ? "stroke" : "strokes"} not part of a named component`}
+              >
+                <span className="kd-comp-glyph">+{p.u}</span>
+              </span>
+            ) : p.lv && onOpenPart ? (
+              <button
+                type="button"
+                className={`kd-comp-chip ${p.r ? "rad" : p.ph ? "phon" : ""}${syncClass(i)}`}
+                onClick={() => onOpenPart(p)}
+                title={partTitle(p) || undefined}
+                aria-label={`Show component ${p.e}`}
+              >
+                <span className="kd-comp-glyph" aria-hidden="true">
+                  {p.e}
+                </span>
+              </button>
+            ) : (
+              <span
+                className={`kd-comp-chip static ${p.r ? "rad" : p.ph ? "phon" : ""}${syncClass(i)}`}
+                title={partTitle(p) || undefined}
+              >
+                <span className="kd-comp-glyph" aria-hidden="true">
+                  {p.e}
+                </span>
+              </span>
+            )}
+          </span>
+        ))}
+      </div>
+    </div>
   );
 }

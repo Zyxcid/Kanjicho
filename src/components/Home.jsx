@@ -49,6 +49,11 @@ export default function Home({
 }) {
   return (
     <>
+      {/* Statistik kartu besar semua level — kartu streak (api + angka
+          tanpa label, hanya saat streak > 0) satu baris sama ukuran
+          dengan Studied / Due / Mastered; kartu "Due now"/"Next due"
+          adalah pintu jadwal review (klik = overlay kalender,
+          menggantikan banner lama). */}
       <StatCards
         stats={stats}
         studyStats={studyStats}

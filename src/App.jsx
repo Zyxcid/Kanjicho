@@ -542,12 +542,42 @@ export default function App() {
         : "unitSelect"
       : view;
 
+  // Info sesi di topbar SELAMA KUIS (t63): level + unit yang sedang
+  // dikerjakan menggantikan brand 漢字帳 Kanjichō — posisi topbar selalu
+  // terlihat, jadi user selalu tahu konteks sesinya tanpa tombol/menu
+  // tambahan. Sesi weak review menunjuk unit asalnya; sesi berakhir
+  // (layar hasil/home) → brand kembali. UnitId berbentuk "N5-U3" →
+  // cukup tampilkan "Unit 3" (levelnya sudah tampil di sebelah).
+  const sessionLevel =
+    effectiveView === "quiz"
+      ? quizMode === "weak"
+        ? weakOriginLevel || activeLevel
+        : activeLevel
+      : null;
+  let sessionUnitLabel = null;
+  if (effectiveView === "quiz") {
+    if (quizMode === "weak") {
+      const m = weakOriginUnit && /-U(\d+)$/.exec(weakOriginUnit);
+      sessionUnitLabel = m ? `Unit ${m[1]} · review` : "Missed review";
+    } else {
+      const m = activeUnit && /-U(\d+)$/.exec(activeUnit);
+      sessionUnitLabel = m ? `Unit ${m[1]}` : activeUnit || "";
+    }
+  }
+
   return (
     <div className="kd-root">
       <div className="kd-topbar">
-        <div className="kd-brand">
-          漢字帳 <small>Kanjichō</small>
-        </div>
+        {sessionLevel ? (
+          <div className="kd-brand" aria-label={`Studying ${sessionLevel} ${sessionUnitLabel}`}>
+            <span>{sessionLevel}</span>
+            <small>{sessionUnitLabel}</small>
+          </div>
+        ) : (
+          <div className="kd-brand">
+            漢字帳 <small>Kanjichō</small>
+          </div>
+        )}
         <div className="kd-topbar-right">
           <HelpButton showReset={showReset} onToggleShowReset={toggleShowReset} />
           <ThemeToggle />
