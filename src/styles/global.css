@@ -679,11 +679,16 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
     display: flex; flex-direction: row; align-items: flex-start; justify-content: center;
     gap: 64px; max-width: 900px; margin: 0 auto;
   }
+  /* Kolom: KOTAK GLYPH lalu persamaan komponen DI BAWAHNYA (t60 —
+     sebelumnya flex default row, section komponen muncul di KANAN
+     kotak genkou di PC). align-items memusatkan horizontal (sumbu
+     silang kolom); margin flex tidak collapse, jadi 6px + margin-top
+     section = ritme ~16px. */
   .kd-quiz-left {
-    flex: 0 0 auto; display: flex; justify-content: center;
+    flex: 0 0 auto; display: flex; flex-direction: column; align-items: center;
     position: sticky; top: 28px;
   }
-  .kd-quiz-left .kd-genkou { margin: 0; width: 260px; height: 260px; }
+  .kd-quiz-left .kd-genkou { margin: 0 0 6px; width: 260px; height: 260px; }
   .kd-quiz-left .kd-genkou-glyph { font-size: 138px; }
 
   .kd-quiz-right { flex: 1 1 420px; max-width: 440px; }
@@ -812,6 +817,25 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
   color: var(--ink-soft); padding: 4px; border-radius: 3px; display: flex; align-items: center; justify-content: center;
 }
 .kd-modal-close:hover { color: var(--ink); background: var(--paper); }
+/* "Kembali ke kanji sebelumnya" di modal Browse (t60): muncul hanya
+   saat navigasi komponen dilakukan — di ALUR modal (bukan absolute)
+   supaya tidak menimpa kotak goresan. Menampilkan glyph + arti kanji
+   sebelumnya, bukan cuma panah: tujuannya jelas terbaca. */
+.kd-modal-back {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 3px 7px;
+  margin: 0 0 12px -7px; border-radius: 3px; font: inherit;
+  color: var(--ink-soft); max-width: 100%;
+}
+.kd-modal-back:hover { color: var(--indigo); background: var(--paper); }
+.kd-modal-back-glyph {
+  font-family: 'Shippori Mincho', serif; font-weight: 600;
+  font-size: 15px; line-height: 1; color: inherit;
+}
+.kd-modal-back-mean {
+  font-size: 11px; color: inherit; opacity: 0.75;
+  max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
 
 .kd-help-modal { max-width: 420px; }
 /* Overlay kalender review (dari klik banner): kd-cal + kd-day-panel di
@@ -838,6 +862,11 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 .kd-help-shortcut-row { font-size: 13.5px; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; }
 .kd-help-text { font-size: 12.5px; color: var(--ink-soft); line-height: 1.7; margin: 0; }
 .kd-help-text a { color: var(--indigo-soft); }
+/* Titik indigo inline (contoh penanda radikal di bagian "Components"). */
+.kd-help-dot-example {
+  display: inline-block; width: 5px; height: 5px; border-radius: 50%;
+  background: var(--indigo); vertical-align: middle; margin: 0 1px;
+}
 .kd-help-links { display: flex; gap: 14px; }
 .kd-help-link {
   display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--indigo);
@@ -1105,6 +1134,87 @@ button.kd-genkou-glyph:focus-visible {
    duplikasi info. */
 .kd-detail-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
 .kd-detail-head .kd-detail-meaning { font-size: 15px; font-weight: 600; color: var(--ink); }
+
+/* ---- Persamaan komponen kanji (t59 — ComponentBreakdown.jsx) ----
+   Ditampilkan di bawah Kotak KanjiVG: kuis SETELAH reveal (varian
+   .compact) dan modal Browse di bawah StrokePlayer. Struktur data dari
+   atribut kvg:element SVG KanjiVG (scripts/build_components.py).
+
+   Layout: baris kolom-chip dipisah operator "+"; tiap kolom = chip
+   komponen (glyph Shippori Mincho + arti + [mode browse] rentang
+   goresan di kanji induknya) dan strip mini sub-parts di bawahnya
+   (寺 = 土・寸). Radikal semantik = titik indigo pojok chip; komponen
+   fonetik = akhiran "phon" di baris rentang.
+
+   Sinkron animasi (class .pending/.active dipasang komponen sesuai
+   prop revealed): chip yang goresannya belum/belum seluruhnya
+   tergambar tampak REDUP; chip yang goresannya SEDANG digambar
+   diberi RING indigo — persamaan "terisi" mengikuti animasi goresan
+   di atasnya. */
+.kd-comp { margin-top: 14px; text-align: center; }
+.kd-comp-title {
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-soft); margin-bottom: 8px;
+}
+.kd-comp-row {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  align-items: flex-start; gap: 4px 8px;
+}
+.kd-comp-col { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.kd-comp-op {
+  font-family: 'Shippori Mincho', serif; font-size: 14px; font-weight: 600;
+  color: var(--ink-soft); line-height: 58px; /* sejajar tengah chip */
+}
+.kd-comp-chip {
+  position: relative; display: flex; flex-direction: column; align-items: center;
+  gap: 1px; min-width: 56px; max-width: 96px; padding: 7px 9px 6px;
+  border-radius: 8px; background: var(--surface);
+  border: 1px solid transparent; cursor: default;
+  font: inherit; color: inherit; text-align: center;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+.kd-comp-chip.clickable { cursor: pointer; }
+.kd-comp-chip.clickable:hover { border-color: var(--indigo-soft); }
+.kd-comp-chip.clickable:focus-visible {
+  outline: 2px solid var(--indigo); outline-offset: 1px; border-radius: 8px;
+}
+/* Chip aktif (goresannya sedang digambar): garis 1px + tint lembut.
+   Ring box-shadow 3px t59 terlalu tebal — memakan celah antar chip dan
+   terasa asing di bahasa desain garis-1px app (umpan balik t60);
+   token --correct-bg sudah tint-indigo dan ikut tema gelap/terang. */
+.kd-comp-chip.active { border-color: var(--indigo); background: var(--correct-bg); }
+.kd-comp-glyph {
+  font-family: 'Shippori Mincho', serif; font-weight: 600;
+  font-size: 27px; line-height: 1.2; color: var(--ink);
+  transition: color 0.4s ease, opacity 0.4s ease;
+}
+.kd-comp-chip.pending .kd-comp-glyph { color: var(--ink-soft); opacity: 0.35; }
+.kd-comp-chip.active .kd-comp-glyph { color: var(--indigo); }
+.kd-comp-mean {
+  font-size: 9.5px; line-height: 1.3; color: var(--ink-soft);
+  max-width: 84px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.kd-comp-range {
+  font-size: 9px; line-height: 1.3; color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+.kd-comp-dot {
+  position: absolute; top: 5px; right: 5px; width: 5px; height: 5px;
+  border-radius: 50%; background: var(--indigo);
+}
+.kd-comp-parts { display: flex; align-items: baseline; gap: 3px; }
+.kd-comp-part-sep { font-size: 8px; color: var(--ink-soft); }
+.kd-comp-part {
+  font-family: 'Shippori Mincho', serif; font-size: 12.5px; line-height: 1.2;
+  color: var(--ink-soft);
+}
+
+/* Varian kuis: lebih kompak — tanpa rentang goresan & sub-parts
+   (ruang kolom glyph ketat, terutama mobile 360px). */
+.kd-comp.compact .kd-comp-chip { min-width: 50px; padding: 6px 8px 5px; }
+.kd-comp.compact .kd-comp-glyph { font-size: 24px; }
+.kd-comp.compact .kd-comp-op { line-height: 50px; }
+.kd-comp.compact { margin-top: 10px; }
 
 @media (min-width: 640px) {
   .kd-detail-grid { flex-direction: row; align-items: flex-start; gap: 22px; }

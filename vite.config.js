@@ -4,6 +4,15 @@ import { VitePWA } from "vite-plugin-pwa";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // raw/ (checkout repo KanjiVG, ~11.600 SVG untuk pipeline data) TIDAK
+  // di-watch dev server: menembus limit inotify kernel (ENOSPC — server
+  // mati saat folder itu ada). Data mentah tidak pernah berubah saat
+  // develop app; `npm run build` pun tidak membacanya.
+  server: {
+    watch: {
+      ignored: ["**/raw/**"],
+    },
+  },
   plugins: [
     react(),
     VitePWA({

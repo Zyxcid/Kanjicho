@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Pause, Play, RotateCcw, StepBack, StepForward } from "lucide-react";
 import CopyKanji from "./CopyKanji.jsx";
 
@@ -30,7 +30,7 @@ const BASE_STROKE_MS = 620;
 
 const SPEEDS = [0.5, 1, 2];
 
-export default function StrokePlayer({ paths, kanji }) {
+export default function StrokePlayer({ paths, kanji, onStrokeChange }) {
   const [revealed, setRevealed] = useState(0); // jumlah goresan yang sudah tergambar
   const [playing, setPlaying] = useState(true); // auto-play saat pertama kali dibuka
   const [speed, setSpeed] = useState(1);
@@ -48,6 +48,16 @@ export default function StrokePlayer({ paths, kanji }) {
     const t = setTimeout(() => setRevealed((r) => r + 1), BASE_STROKE_MS / speed);
     return () => clearTimeout(t);
   }, [playing, revealed, speed, paths]);
+
+  // Lapor progres goresan (jumlah goresan selesai) ke pemanggil — dipakai
+  // Browse.jsx untuk men-highlight chip komponen yang goresannya sedang
+  // digambar (ComponentBreakdown di bawah player ini). Ref supaya identitas
+  // callback yang berubah tiap render tidak memicu ulang efek.
+  const strokeCbRef = useRef(onStrokeChange);
+  strokeCbRef.current = onStrokeChange;
+  useEffect(() => {
+    strokeCbRef.current?.(revealed);
+  }, [revealed]);
 
   const done = revealed >= paths.length;
 

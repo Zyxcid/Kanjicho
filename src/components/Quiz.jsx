@@ -4,6 +4,7 @@ import { DONT_KNOW } from "../lib/quizGenerator.js";
 import { ReadingList } from "./Readings.jsx";
 import { kanaToRomaji } from "../lib/kana.js";
 import GenkouGlyph from "./GenkouGlyph.jsx";
+import ComponentBreakdown from "./ComponentBreakdown.jsx";
 
 /**
  * Label satu pilihan sesuai skrip aktif: soal arti → teks biasa; soal
@@ -58,6 +59,11 @@ export default function Quiz({
       onCancel();
     }
   }
+
+  // Progres goresan glyph (jumlah selesai) dari GenkouGlyph — dipakai
+  // men-highlight chip komponen saat user memutar ulang animasi.
+  // null = idle/selesai (semua chip penuh).
+  const [glyphStrokes, setGlyphStrokes] = useState(null);
 
   // "Leave": dari Back browser → lanjutkan Back yang tadi ditahan
   // (tujuan asli Alt+← dihormati); dari tombol Cancel → navigate biasa.
@@ -164,8 +170,29 @@ export default function Quiz({
               (bacaan, arti, contoh kata) membocorkan jawaban soal —
               info lengkap tersedia di modal Browse SETELAH kuis. */}
           <div className="kd-genkou">
-            <GenkouGlyph key={current.kanji} kanji={current.kanji} level={current.level} />
+            <GenkouGlyph
+              key={current.kanji}
+              kanji={current.kanji}
+              level={current.level}
+              onStrokeChange={setGlyphStrokes}
+            />
           </div>
+
+          {/* Persamaan komponen kanji (t59) — muncul SETELAH reveal,
+              tepat di bawah kotak KanjiVG: kanji berhenti jadi gambar
+              bulat dan mulai terbaca sebagai struktur (radikal +
+              fonetik + sub-parts). Varian compact: tanpa rentang
+              goresan/parts (ruang kuis ketat), chip statis — navigasi
+              penuh tersedia di modal Browse. Kanji tanpa dekomposisi
+              di data KanjiVG → section tidak dirender. */}
+          {selectedChoice !== null && (
+            <ComponentBreakdown
+              kanji={current.kanji}
+              level={current.level}
+              variant="quiz"
+              revealed={glyphStrokes}
+            />
+          )}
         </div>
 
         <div className="kd-quiz-right">
