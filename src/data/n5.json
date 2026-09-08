@@ -1962,11 +1962,6 @@
         "kana": "ヒャク",
         "romaji": "hyaku",
         "type": "on"
-      },
-      {
-        "kana": "もも",
-        "romaji": "momo",
-        "type": "kun"
       }
     ]
   },
@@ -2701,11 +2696,6 @@
         "kana": "マン",
         "romaji": "man",
         "type": "on"
-      },
-      {
-        "kana": "よろず",
-        "romaji": "yorozu",
-        "type": "kun"
       }
     ]
   },
@@ -2737,11 +2727,6 @@
         "kana": "マイ",
         "romaji": "mai",
         "type": "on"
-      },
-      {
-        "kana": "ごと",
-        "romaji": "goto",
-        "type": "kun"
       }
     ]
   },

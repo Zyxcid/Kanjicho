@@ -92,11 +92,6 @@
         "kana": "ソウ",
         "romaji": "sou",
         "type": "on"
-      },
-      {
-        "kana": "す.べて",
-        "romaji": "subete",
-        "type": "kun"
       }
     ]
   },
@@ -161,11 +156,6 @@
         "kana": "リョウ",
         "romaji": "ryou",
         "type": "on"
-      },
-      {
-        "kana": "えり",
-        "romaji": "eri",
-        "type": "kun"
       }
     ]
   },
@@ -471,11 +461,6 @@
         "kana": "カク",
         "romaji": "kaku",
         "type": "on"
-      },
-      {
-        "kana": "おのおの",
-        "romaji": "onoono",
-        "type": "kun"
       }
     ]
   },
@@ -1215,11 +1200,6 @@
         "kana": "ブ",
         "romaji": "bu",
         "type": "on"
-      },
-      {
-        "kana": "たけ.し",
-        "romaji": "takeshi",
-        "type": "kun"
       }
     ]
   },
@@ -1475,11 +1455,6 @@
         "kana": "ショウ",
         "romaji": "shou",
         "type": "on"
-      },
-      {
-        "kana": "ほ.める",
-        "romaji": "homeru",
-        "type": "kun"
       }
     ]
   },
@@ -1723,11 +1698,6 @@
         "kana": "フク",
         "romaji": "fuku",
         "type": "on"
-      },
-      {
-        "kana": "また",
-        "romaji": "mata",
-        "type": "kun"
       }
     ]
   },
@@ -2396,11 +2366,6 @@
         "kana": "ヘイ",
         "romaji": "hei",
         "type": "on"
-      },
-      {
-        "kana": "つわもの",
-        "romaji": "tsuwamono",
-        "type": "kun"
       }
     ]
   },
@@ -2716,11 +2681,6 @@
         "kana": "キュウ",
         "romaji": "kyuu",
         "type": "on"
-      },
-      {
-        "kana": "ふる.い",
-        "romaji": "furui",
-        "type": "kun"
       }
     ]
   },
@@ -3467,11 +3427,6 @@
         "kana": "ショウ",
         "romaji": "shou",
         "type": "on"
-      },
-      {
-        "kana": "まさ",
-        "romaji": "masa",
-        "type": "kun"
       }
     ]
   },
@@ -5315,11 +5270,6 @@
         "kana": "ソツ",
         "romaji": "sotsu",
         "type": "on"
-      },
-      {
-        "kana": "お.える",
-        "romaji": "oeru",
-        "type": "kun"
       }
     ]
   },
@@ -6114,11 +6064,6 @@
         "kana": "カ",
         "romaji": "ka",
         "type": "on"
-      },
-      {
-        "kana": "たから",
-        "romaji": "takara",
-        "type": "kun"
       }
     ]
   },
@@ -6521,11 +6466,6 @@
         "kana": "コ",
         "romaji": "ko",
         "type": "on"
-      },
-      {
-        "kana": "くら",
-        "romaji": "kura",
-        "type": "kun"
       }
     ]
   },
@@ -7007,11 +6947,6 @@
         "kana": "イ",
         "romaji": "i",
         "type": "on"
-      },
-      {
-        "kana": "よ.る",
-        "romaji": "yoru",
-        "type": "kun"
       }
     ]
   },
@@ -7907,11 +7842,6 @@
         "kana": "カン",
         "romaji": "kan",
         "type": "on"
-      },
-      {
-        "kana": "ふだ",
-        "romaji": "fuda",
-        "type": "kun"
       }
     ]
   },
@@ -10799,11 +10729,6 @@
         "kana": "カイ",
         "romaji": "kai",
         "type": "on"
-      },
-      {
-        "kana": "かせ",
-        "romaji": "kase",
-        "type": "kun"
       }
     ]
   },
@@ -10982,11 +10907,6 @@
         "kana": "キツ",
         "romaji": "kitsu",
         "type": "on"
-      },
-      {
-        "kana": "の.む",
-        "romaji": "nomu",
-        "type": "kun"
       }
     ]
   },
@@ -11217,11 +11137,6 @@
         "kana": "コウ",
         "romaji": "kou",
         "type": "on"
-      },
-      {
-        "kana": "あらがね",
-        "romaji": "aragane",
-        "type": "kun"
       }
     ]
   },
@@ -11961,11 +11876,6 @@
         "kana": "ドウ",
         "romaji": "dou",
         "type": "on"
-      },
-      {
-        "kana": "あかがね",
-        "romaji": "akagane",
-        "type": "kun"
       }
     ]
   },
@@ -12080,11 +11990,6 @@
     "stroke_count": 9,
     "primary_readings": [
       {
-        "kana": "ショウ",
-        "romaji": "shou",
-        "type": "on"
-      },
-      {
         "kana": "さ.く",
         "romaji": "saku",
         "type": "kun"
@@ -12162,11 +12067,6 @@
         "kana": "カン",
         "romaji": "kan",
         "type": "on"
-      },
-      {
-        "kana": "かま",
-        "romaji": "kama",
-        "type": "kun"
       }
     ]
   },
@@ -12310,11 +12210,6 @@
     ],
     "stroke_count": 6,
     "primary_readings": [
-      {
-        "kana": "キ",
-        "romaji": "ki",
-        "type": "on"
-      },
       {
         "kana": "はだ",
         "romaji": "hada",
@@ -13422,11 +13317,6 @@
     ],
     "stroke_count": 5,
     "primary_readings": [
-      {
-        "kana": "ベイ",
-        "romaji": "bei",
-        "type": "on"
-      },
       {
         "kana": "さら",
         "romaji": "sara",

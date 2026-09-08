@@ -5,6 +5,12 @@
       "reading": "せいとう",
       "meaning": "political party",
       "type": "on"
+    },
+    {
+      "word": "野党",
+      "reading": "やとう",
+      "meaning": "opposition party",
+      "type": "on"
     }
   ],
   "協": [
@@ -12,6 +18,12 @@
       "word": "協力",
       "reading": "きょうりょく",
       "meaning": "cooperation",
+      "type": "on"
+    },
+    {
+      "word": "協議",
+      "reading": "きょうぎ",
+      "meaning": "conference",
       "type": "on"
     }
   ],
@@ -23,10 +35,10 @@
       "type": "on"
     },
     {
-      "word": "総べる",
-      "reading": "すべる",
-      "meaning": "to rule over",
-      "type": "kun"
+      "word": "総合的",
+      "reading": "そうごうてき",
+      "meaning": "comprehensive",
+      "type": "on"
     }
   ],
   "区": [
@@ -34,6 +46,12 @@
       "word": "区別",
       "reading": "くべつ",
       "meaning": "distinction",
+      "type": "on"
+    },
+    {
+      "word": "地区",
+      "reading": "ちく",
+      "meaning": "district",
       "type": "on"
     }
   ],
@@ -45,10 +63,10 @@
       "type": "on"
     },
     {
-      "word": "領",
-      "reading": "えり",
-      "meaning": "collar",
-      "type": "kun"
+      "word": "要領",
+      "reading": "ようりょう",
+      "meaning": "point",
+      "type": "on"
     }
   ],
   "県": [
@@ -56,6 +74,12 @@
       "word": "県道",
       "reading": "けんどう",
       "meaning": "prefectural road",
+      "type": "on"
+    },
+    {
+      "word": "県警",
+      "reading": "けんけい",
+      "meaning": "prefectural police",
       "type": "on"
     }
   ],
@@ -93,6 +117,12 @@
       "reading": "せいふ",
       "meaning": "government",
       "type": "on"
+    },
+    {
+      "word": "政府委員",
+      "reading": "せいふいいん",
+      "meaning": "ministerial aide",
+      "type": "on"
     }
   ],
   "査": [
@@ -100,6 +130,12 @@
       "word": "調査",
       "reading": "ちょうさ",
       "meaning": "investigation",
+      "type": "on"
+    },
+    {
+      "word": "検査",
+      "reading": "けんさ",
+      "meaning": "inspection (e.g. customs, factory)",
       "type": "on"
     }
   ],
@@ -137,6 +173,12 @@
       "reading": "だんたい",
       "meaning": "group",
       "type": "on"
+    },
+    {
+      "word": "集団",
+      "reading": "しゅうだん",
+      "meaning": "group",
+      "type": "on"
     }
   ],
   "各": [
@@ -147,10 +189,10 @@
       "type": "on"
     },
     {
-      "word": "各方",
-      "reading": "おのおのがた",
-      "meaning": "all of you",
-      "type": "kun"
+      "word": "各自",
+      "reading": "かくじ",
+      "meaning": "each (person)",
+      "type": "on"
     }
   ],
   "島": [
@@ -242,6 +284,12 @@
       "word": "税金",
       "reading": "ぜいきん",
       "meaning": "tax",
+      "type": "on"
+    },
+    {
+      "word": "課税",
+      "reading": "かぜい",
+      "meaning": "taxation",
       "type": "on"
     }
   ],
@@ -335,6 +383,12 @@
       "reading": "ふくし",
       "meaning": "adverb",
       "type": "on"
+    },
+    {
+      "word": "副作用",
+      "reading": "ふくさよう",
+      "meaning": "side effect",
+      "type": "on"
     }
   ],
   "算": [
@@ -356,6 +410,12 @@
       "word": "輸入",
       "reading": "ゆにゅう",
       "meaning": "import",
+      "type": "on"
+    },
+    {
+      "word": "輸出",
+      "reading": "ゆしゅつ",
+      "meaning": "export",
       "type": "on"
     }
   ],
@@ -379,6 +439,12 @@
       "reading": "ないせん",
       "meaning": "phone extension",
       "type": "on"
+    },
+    {
+      "word": "新幹線",
+      "reading": "しんかんせん",
+      "meaning": "Shinkansen",
+      "type": "on"
     }
   ],
   "農": [
@@ -387,6 +453,12 @@
       "reading": "のうぎょう",
       "meaning": "agriculture",
       "type": "on"
+    },
+    {
+      "word": "農家",
+      "reading": "のうか",
+      "meaning": "farmer",
+      "type": "on"
     }
   ],
   "州": [
@@ -394,6 +466,12 @@
       "word": "砂州",
       "reading": "さす",
       "meaning": "sandbar",
+      "type": "on"
+    },
+    {
+      "word": "白州",
+      "reading": "しらす",
+      "meaning": "white sandbar",
       "type": "on"
     }
   ],
@@ -405,10 +483,10 @@
       "type": "on"
     },
     {
-      "word": "武し",
-      "reading": "たけし",
-      "meaning": "brave",
-      "type": "kun"
+      "word": "武士",
+      "reading": "ぶし",
+      "meaning": "samurai",
+      "type": "on"
     }
   ],
   "象": [
@@ -417,12 +495,24 @@
       "reading": "たいしょう",
       "meaning": "target",
       "type": "on"
+    },
+    {
+      "word": "印象",
+      "reading": "いんしょう",
+      "meaning": "impression",
+      "type": "on"
     }
   ],
   "域": [
     {
       "word": "地域",
       "reading": "ちいき",
+      "meaning": "area",
+      "type": "on"
+    },
+    {
+      "word": "区域",
+      "reading": "くいき",
       "meaning": "area",
       "type": "on"
     }
@@ -446,6 +536,12 @@
       "word": "欧米",
       "reading": "おうべい",
       "meaning": "Europe and the United States",
+      "type": "on"
+    },
+    {
+      "word": "欧米諸国",
+      "reading": "おうべいしょこく",
+      "meaning": "Western countries",
       "type": "on"
     }
   ],
@@ -485,10 +581,10 @@
       "type": "on"
     },
     {
-      "word": "賞める",
-      "reading": "ほめる",
-      "meaning": "to praise",
-      "type": "kun"
+      "word": "賞金",
+      "reading": "しょうきん",
+      "meaning": "prize money",
+      "type": "on"
     }
   ],
   "辺": [
@@ -569,10 +665,10 @@
       "type": "on"
     },
     {
-      "word": "復",
-      "reading": "また",
-      "meaning": "again",
-      "type": "kun"
+      "word": "往復",
+      "reading": "おうふく",
+      "meaning": "making a round trip",
+      "type": "on"
     }
   ],
   "移": [
@@ -593,6 +689,12 @@
     {
       "word": "個人",
       "reading": "こじん",
+      "meaning": "individual",
+      "type": "on"
+    },
+    {
+      "word": "個体",
+      "reading": "こたい",
       "meaning": "individual",
       "type": "on"
     }
@@ -617,6 +719,12 @@
       "reading": "かちょう",
       "meaning": "section manager",
       "type": "on"
+    },
+    {
+      "word": "課税",
+      "reading": "かぜい",
+      "meaning": "taxation",
+      "type": "on"
     }
   ],
   "脳": [
@@ -624,6 +732,12 @@
       "word": "頭脳",
       "reading": "ずのう",
       "meaning": "head",
+      "type": "on"
+    },
+    {
+      "word": "脳裏",
+      "reading": "のうり",
+      "meaning": "one's mind",
       "type": "on"
     }
   ],
@@ -703,6 +817,12 @@
       "reading": "じょうきょう",
       "meaning": "state of affairs",
       "type": "on"
+    },
+    {
+      "word": "不況",
+      "reading": "ふきょう",
+      "meaning": "(economic) depression",
+      "type": "on"
     }
   ],
   "針": [
@@ -725,6 +845,12 @@
       "reading": "せんこう",
       "meaning": "major subject",
       "type": "on"
+    },
+    {
+      "word": "専制",
+      "reading": "せんせい",
+      "meaning": "despotism",
+      "type": "on"
     }
   ],
   "谷": [
@@ -746,6 +872,12 @@
       "word": "歴史",
       "reading": "れきし",
       "meaning": "history",
+      "type": "on"
+    },
+    {
+      "word": "歴史的",
+      "reading": "れきしてき",
+      "meaning": "historical",
       "type": "on"
     }
   ],
@@ -785,10 +917,10 @@
       "type": "on"
     },
     {
-      "word": "古兵",
-      "reading": "ふるつわもの",
-      "meaning": "feudal warrior",
-      "type": "kun"
+      "word": "兵士",
+      "reading": "へいし",
+      "meaning": "soldier",
+      "type": "on"
     }
   ],
   "接": [
@@ -853,6 +985,12 @@
       "reading": "こうわん",
       "meaning": "harbour",
       "type": "on"
+    },
+    {
+      "word": "湾岸戦争",
+      "reading": "わんがんせんそう",
+      "meaning": "Gulf War (1990-1991)",
+      "type": "on"
     }
   ],
   "録": [
@@ -891,10 +1029,10 @@
       "type": "on"
     },
     {
-      "word": "旧い",
-      "reading": "ふるい",
-      "meaning": "old",
-      "type": "kun"
+      "word": "旧約聖書",
+      "reading": "きゅうやくせいしょ",
+      "meaning": "Old Testament",
+      "type": "on"
     }
   ],
   "橋": [
@@ -945,6 +1083,12 @@
       "reading": "ざいりょう",
       "meaning": "materials",
       "type": "on"
+    },
+    {
+      "word": "木材",
+      "reading": "もくざい",
+      "meaning": "lumber",
+      "type": "on"
     }
   ],
   "戸": [
@@ -967,6 +1111,12 @@
       "reading": "ちゅうおう",
       "meaning": "centre",
       "type": "on"
+    },
+    {
+      "word": "中央政府",
+      "reading": "ちゅうおうせいふ",
+      "meaning": "central government",
+      "type": "on"
     }
   ],
   "券": [
@@ -974,6 +1124,12 @@
       "word": "定期券",
       "reading": "ていきけん",
       "meaning": "commuter pass",
+      "type": "on"
+    },
+    {
+      "word": "回数券",
+      "reading": "かいすうけん",
+      "meaning": "coupon tickets",
       "type": "on"
     }
   ],
@@ -1053,6 +1209,12 @@
       "reading": "いりょう",
       "meaning": "medical treatment",
       "type": "on"
+    },
+    {
+      "word": "治療",
+      "reading": "ちりょう",
+      "meaning": "(medical) treatment",
+      "type": "on"
     }
   ],
   "採": [
@@ -1103,6 +1265,12 @@
       "reading": "しょうかい",
       "meaning": "introduction",
       "type": "on"
+    },
+    {
+      "word": "厄介",
+      "reading": "やっかい",
+      "meaning": "trouble",
+      "type": "on"
     }
   ],
   "根": [
@@ -1125,6 +1293,12 @@
       "reading": "はんばい",
       "meaning": "sale",
       "type": "on"
+    },
+    {
+      "word": "市販",
+      "reading": "しはん",
+      "meaning": "putting on the market",
+      "type": "on"
     }
   ],
   "歴": [
@@ -1132,6 +1306,12 @@
       "word": "歴史",
       "reading": "れきし",
       "meaning": "history",
+      "type": "on"
+    },
+    {
+      "word": "歴史的",
+      "reading": "れきしてき",
+      "meaning": "historical",
       "type": "on"
     }
   ],
@@ -1143,10 +1323,10 @@
       "type": "on"
     },
     {
-      "word": "大将季",
-      "reading": "だいまさき",
-      "meaning": "daimasaki (mandarin variety)",
-      "type": "kun"
+      "word": "将棋",
+      "reading": "しょうぎ",
+      "meaning": "shogi",
+      "type": "on"
     }
   ],
   "幅": [
@@ -1169,6 +1349,12 @@
       "reading": "いっぱん",
       "meaning": "general",
       "type": "on"
+    },
+    {
+      "word": "全般",
+      "reading": "ぜんぱん",
+      "meaning": "(the) whole",
+      "type": "on"
     }
   ],
   "貿": [
@@ -1177,6 +1363,12 @@
       "reading": "ぼうえき",
       "meaning": "(foreign) trade",
       "type": "on"
+    },
+    {
+      "word": "貿易収支",
+      "reading": "ぼうえきしゅうし",
+      "meaning": "trade balance",
+      "type": "on"
     }
   ],
   "講": [
@@ -1184,6 +1376,12 @@
       "word": "講師",
       "reading": "こうし",
       "meaning": "speaker",
+      "type": "on"
+    },
+    {
+      "word": "講演",
+      "reading": "こうえん",
+      "meaning": "lecture",
       "type": "on"
     }
   ],
@@ -1235,6 +1433,12 @@
       "reading": "ひげき",
       "meaning": "tragedy",
       "type": "on"
+    },
+    {
+      "word": "劇場",
+      "reading": "げきじょう",
+      "meaning": "theatre",
+      "type": "on"
     }
   ],
   "河": [
@@ -1257,6 +1461,12 @@
       "reading": "こうくう",
       "meaning": "aviation",
       "type": "on"
+    },
+    {
+      "word": "航空機",
+      "reading": "こうくうき",
+      "meaning": "aircraft",
+      "type": "on"
     }
   ],
   "鉄": [
@@ -1264,6 +1474,12 @@
       "word": "鉄道",
       "reading": "てつどう",
       "meaning": "railroad",
+      "type": "on"
+    },
+    {
+      "word": "地下鉄",
+      "reading": "ちかてつ",
+      "meaning": "subway",
       "type": "on"
     }
   ],
@@ -1286,6 +1502,12 @@
       "word": "禁止",
       "reading": "きんし",
       "meaning": "prohibition",
+      "type": "on"
+    },
+    {
+      "word": "禁煙",
+      "reading": "きんえん",
+      "meaning": "abstaining from smoking",
       "type": "on"
     }
   ],
@@ -1449,6 +1671,12 @@
       "reading": "にばい",
       "meaning": "double",
       "type": "on"
+    },
+    {
+      "word": "三倍",
+      "reading": "さんばい",
+      "meaning": "three times (as much)",
+      "type": "on"
     }
   ],
   "均": [
@@ -1470,6 +1698,12 @@
       "word": "一億",
       "reading": "いちおく",
       "meaning": "100,000,000",
+      "type": "on"
+    },
+    {
+      "word": "億万長者",
+      "reading": "おくまんちょうじゃ",
+      "meaning": "billionaire",
       "type": "on"
     }
   ],
@@ -1493,6 +1727,12 @@
       "reading": "げいじゅつ",
       "meaning": "art",
       "type": "on"
+    },
+    {
+      "word": "芸能",
+      "reading": "げいのう",
+      "meaning": "public entertainment",
+      "type": "on"
     }
   ],
   "署": [
@@ -1500,6 +1740,12 @@
       "word": "署名",
       "reading": "しょめい",
       "meaning": "signature",
+      "type": "on"
+    },
+    {
+      "word": "消防署",
+      "reading": "しょうぼうしょ",
+      "meaning": "fire station",
       "type": "on"
     }
   ],
@@ -1677,6 +1923,12 @@
       "reading": "ふつう",
       "meaning": "normal",
       "type": "on"
+    },
+    {
+      "word": "普段",
+      "reading": "ふだん",
+      "meaning": "usual",
+      "type": "on"
     }
   ],
   "測": [
@@ -1757,10 +2009,10 @@
       "type": "on"
     },
     {
-      "word": "卒える",
-      "reading": "おえる",
-      "meaning": "to finish",
-      "type": "kun"
+      "word": "卒業式",
+      "reading": "そつぎょうしき",
+      "meaning": "graduation ceremony",
+      "type": "on"
     }
   ],
   "略": [
@@ -1768,6 +2020,12 @@
       "word": "略す",
       "reading": "りゃくす",
       "meaning": "to abbreviate",
+      "type": "on"
+    },
+    {
+      "word": "省略",
+      "reading": "しょうりゃく",
+      "meaning": "omission",
       "type": "on"
     }
   ],
@@ -1790,6 +2048,12 @@
       "word": "順調",
       "reading": "じゅんちょう",
       "meaning": "favourable",
+      "type": "on"
+    },
+    {
+      "word": "順番",
+      "reading": "じゅんばん",
+      "meaning": "order",
       "type": "on"
     }
   ],
@@ -1841,6 +2105,12 @@
       "reading": "しゅうりょう",
       "meaning": "end",
       "type": "on"
+    },
+    {
+      "word": "完了",
+      "reading": "かんりょう",
+      "meaning": "completion",
+      "type": "on"
     }
   ],
   "庁": [
@@ -1848,6 +2118,12 @@
       "word": "官庁",
       "reading": "かんちょう",
       "meaning": "government office",
+      "type": "on"
+    },
+    {
+      "word": "関係省庁",
+      "reading": "かんけいしょうちょう",
+      "meaning": "the concerned government agencies",
       "type": "on"
     }
   ],
@@ -1885,6 +2161,12 @@
       "reading": "いっそう",
       "meaning": "even more",
       "type": "on"
+    },
+    {
+      "word": "高層",
+      "reading": "こうそう",
+      "meaning": "high-rise (building)",
+      "type": "on"
     }
   ],
   "版": [
@@ -1893,6 +2175,12 @@
       "reading": "しゅっぱん",
       "meaning": "publication",
       "type": "on"
+    },
+    {
+      "word": "出版社",
+      "reading": "しゅっぱんしゃ",
+      "meaning": "publisher",
+      "type": "on"
     }
   ],
   "令": [
@@ -1900,6 +2188,12 @@
       "word": "命令",
       "reading": "めいれい",
       "meaning": "order",
+      "type": "on"
+    },
+    {
+      "word": "政令",
+      "reading": "せいれい",
+      "meaning": "government ordinance",
       "type": "on"
     }
   ],
@@ -1993,6 +2287,12 @@
       "reading": "せいせき",
       "meaning": "results",
       "type": "on"
+    },
+    {
+      "word": "実績",
+      "reading": "じっせき",
+      "meaning": "achievements",
+      "type": "on"
     }
   ],
   "築": [
@@ -2017,10 +2317,10 @@
       "type": "on"
     },
     {
-      "word": "貨",
-      "reading": "たから",
-      "meaning": "treasure",
-      "type": "kun"
+      "word": "貨物",
+      "reading": "かもつ",
+      "meaning": "cargo",
+      "type": "on"
     }
   ],
   "混": [
@@ -2099,6 +2399,12 @@
       "reading": "きせつ",
       "meaning": "season",
       "type": "on"
+    },
+    {
+      "word": "四季",
+      "reading": "しき",
+      "meaning": "the four seasons",
+      "type": "on"
     }
   ],
   "星": [
@@ -2149,6 +2455,12 @@
       "reading": "ざっし",
       "meaning": "magazine",
       "type": "on"
+    },
+    {
+      "word": "週刊誌",
+      "reading": "しゅうかんし",
+      "meaning": "weekly (publication)",
+      "type": "on"
     }
   ],
   "庫": [
@@ -2159,10 +2471,10 @@
       "type": "on"
     },
     {
-      "word": "船庫",
-      "reading": "ふなぐら",
-      "meaning": "boathouse",
-      "type": "kun"
+      "word": "倉庫",
+      "reading": "そうこ",
+      "meaning": "storehouse",
+      "type": "on"
     }
   ],
   "刊": [
@@ -2171,6 +2483,12 @@
       "reading": "ゆうかん",
       "meaning": "evening edition (of a daily newspaper)",
       "type": "on"
+    },
+    {
+      "word": "週刊誌",
+      "reading": "しゅうかんし",
+      "meaning": "weekly (publication)",
+      "type": "on"
     }
   ],
   "像": [
@@ -2178,6 +2496,12 @@
       "word": "想像",
       "reading": "そうぞう",
       "meaning": "imagination",
+      "type": "on"
+    },
+    {
+      "word": "画像",
+      "reading": "がぞう",
+      "meaning": "image",
       "type": "on"
     }
   ],
@@ -2257,6 +2581,12 @@
       "reading": "うちゅう",
       "meaning": "universe",
       "type": "on"
+    },
+    {
+      "word": "宇宙人",
+      "reading": "うちゅうじん",
+      "meaning": "space alien",
+      "type": "on"
     }
   ],
   "巨": [
@@ -2264,6 +2594,12 @@
       "word": "巨大",
       "reading": "きょだい",
       "meaning": "huge",
+      "type": "on"
+    },
+    {
+      "word": "巨人",
+      "reading": "きょじん",
+      "meaning": "giant",
       "type": "on"
     }
   ],
@@ -2317,10 +2653,10 @@
       "type": "on"
     },
     {
-      "word": "依り所",
-      "reading": "よりどころ",
-      "meaning": "grounds",
-      "type": "kun"
+      "word": "依然",
+      "reading": "いぜん",
+      "meaning": "still",
+      "type": "on"
     }
   ],
   "籍": [
@@ -2328,6 +2664,12 @@
       "word": "国籍",
       "reading": "こくせき",
       "meaning": "nationality",
+      "type": "on"
+    },
+    {
+      "word": "書籍",
+      "reading": "しょせき",
+      "meaning": "book",
       "type": "on"
     }
   ],
@@ -2351,6 +2693,12 @@
       "reading": "まいすう",
       "meaning": "the number of flat things",
       "type": "on"
+    },
+    {
+      "word": "一枚",
+      "reading": "いちまい",
+      "meaning": "one (thin, flat object)",
+      "type": "on"
     }
   ],
   "複": [
@@ -2359,6 +2707,12 @@
       "reading": "ふくざつ",
       "meaning": "complex",
       "type": "on"
+    },
+    {
+      "word": "複数",
+      "reading": "ふくすう",
+      "meaning": "plural",
+      "type": "on"
     }
   ],
   "郵": [
@@ -2366,6 +2720,12 @@
       "word": "郵便局",
       "reading": "ゆうびんきょく",
       "meaning": "post office",
+      "type": "on"
+    },
+    {
+      "word": "郵送",
+      "reading": "ゆうそう",
+      "meaning": "mailing",
       "type": "on"
     }
   ],
@@ -2455,6 +2815,12 @@
   ],
   "届": [
     {
+      "word": "届ける",
+      "reading": "とどける",
+      "meaning": "to deliver",
+      "type": "kun"
+    },
+    {
       "word": "届く",
       "reading": "とどく",
       "meaning": "to reach",
@@ -2523,6 +2889,12 @@
       "reading": "ちゅうしゃじょう",
       "meaning": "parking lot",
       "type": "on"
+    },
+    {
+      "word": "駐車",
+      "reading": "ちゅうしゃ",
+      "meaning": "parking (a vehicle)",
+      "type": "on"
     }
   ],
   "弱": [
@@ -2544,6 +2916,12 @@
       "word": "紹介",
       "reading": "しょうかい",
       "meaning": "introduction",
+      "type": "on"
+    },
+    {
+      "word": "自己紹介",
+      "reading": "じこしょうかい",
+      "meaning": "self-introduction",
       "type": "on"
     }
   ],
@@ -2611,10 +2989,10 @@
       "type": "on"
     },
     {
-      "word": "簡",
-      "reading": "ふだ",
-      "meaning": "ticket",
-      "type": "kun"
+      "word": "簡潔",
+      "reading": "かんけつ",
+      "meaning": "concise",
+      "type": "on"
     }
   ],
   "章": [
@@ -2622,6 +3000,12 @@
       "word": "文章",
       "reading": "ぶんしょう",
       "meaning": "writing",
+      "type": "on"
+    },
+    {
+      "word": "本章",
+      "reading": "ほんしょう",
+      "meaning": "this chapter",
       "type": "on"
     }
   ],
@@ -2631,6 +3015,12 @@
       "reading": "しんぞう",
       "meaning": "heart",
       "type": "on"
+    },
+    {
+      "word": "肝臓",
+      "reading": "かんぞう",
+      "meaning": "liver",
+      "type": "on"
     }
   ],
   "律": [
@@ -2638,6 +3028,12 @@
       "word": "法律",
       "reading": "ほうりつ",
       "meaning": "law",
+      "type": "on"
+    },
+    {
+      "word": "規律",
+      "reading": "きりつ",
+      "meaning": "order",
       "type": "on"
     }
   ],
@@ -2703,6 +3099,12 @@
       "reading": "いちびょう",
       "meaning": "one second",
       "type": "on"
+    },
+    {
+      "word": "数秒",
+      "reading": "すうびょう",
+      "meaning": "a few seconds",
+      "type": "on"
     }
   ],
   "奥": [
@@ -2767,6 +3169,12 @@
       "reading": "たんじゅん",
       "meaning": "simple",
       "type": "on"
+    },
+    {
+      "word": "純粋",
+      "reading": "じゅんすい",
+      "meaning": "pure",
+      "type": "on"
     }
   ],
   "翌": [
@@ -2774,6 +3182,12 @@
       "word": "翌日",
       "reading": "よくじつ",
       "meaning": "next day",
+      "type": "on"
+    },
+    {
+      "word": "翌年",
+      "reading": "よくねん",
+      "meaning": "following year",
       "type": "on"
     }
   ],
@@ -3049,6 +3463,12 @@
       "reading": "ふうとう",
       "meaning": "envelope",
       "type": "on"
+    },
+    {
+      "word": "封ずる",
+      "reading": "ふうずる",
+      "meaning": "to seal (letter)",
+      "type": "on"
     }
   ],
   "胸": [
@@ -3253,6 +3673,12 @@
       "reading": "けつえき",
       "meaning": "blood",
       "type": "on"
+    },
+    {
+      "word": "液体",
+      "reading": "えきたい",
+      "meaning": "liquid",
+      "type": "on"
     }
   ],
   "衣": [
@@ -3372,6 +3798,12 @@
       "word": "大臣",
       "reading": "だいじん",
       "meaning": "cabinet minister",
+      "type": "on"
+    },
+    {
+      "word": "総理大臣",
+      "reading": "そうりだいじん",
+      "meaning": "prime minister (as the head of a cabinet government)",
       "type": "on"
     }
   ],
@@ -3535,6 +3967,12 @@
       "reading": "こうがい",
       "meaning": "suburb",
       "type": "on"
+    },
+    {
+      "word": "近郊",
+      "reading": "きんこう",
+      "meaning": "outskirts",
+      "type": "on"
     }
   ],
   "腰": [
@@ -3585,6 +4023,12 @@
       "reading": "さっし",
       "meaning": "book",
       "type": "on"
+    },
+    {
+      "word": "小冊子",
+      "reading": "しょうさっし",
+      "meaning": "booklet",
+      "type": "on"
     }
   ],
   "勇": [
@@ -3609,10 +4053,10 @@
       "type": "on"
     },
     {
-      "word": "手械",
-      "reading": "てかせ",
-      "meaning": "handcuffs",
-      "type": "kun"
+      "word": "機械的",
+      "reading": "きかいてき",
+      "meaning": "mechanical",
+      "type": "on"
     }
   ],
   "菜": [
@@ -3679,10 +4123,10 @@
       "type": "on"
     },
     {
-      "word": "喫む",
-      "reading": "のむ",
-      "meaning": "to smoke (tobacco)",
-      "type": "kun"
+      "word": "喫煙",
+      "reading": "きつえん",
+      "meaning": "smoking (tobacco)",
+      "type": "on"
     }
   ],
   "干": [
@@ -3763,10 +4207,10 @@
       "type": "on"
     },
     {
-      "word": "鉱",
-      "reading": "あらがね",
-      "meaning": "ore",
-      "type": "kun"
+      "word": "炭鉱",
+      "reading": "たんこう",
+      "meaning": "coal mine",
+      "type": "on"
     }
   ],
   "涙": [
@@ -3873,6 +4317,12 @@
       "reading": "きのどく",
       "meaning": "pitiful",
       "type": "on"
+    },
+    {
+      "word": "消毒",
+      "reading": "しょうどく",
+      "meaning": "disinfection",
+      "type": "on"
     }
   ],
   "叫": [
@@ -3936,6 +4386,12 @@
       "word": "泥棒",
       "reading": "どろぼう",
       "meaning": "thief",
+      "type": "on"
+    },
+    {
+      "word": "相棒",
+      "reading": "あいぼう",
+      "meaning": "partner",
       "type": "on"
     }
   ],
@@ -4031,10 +4487,10 @@
       "type": "on"
     },
     {
-      "word": "銅酵母",
-      "reading": "あかがねこうぼ",
-      "meaning": "copper yeast",
-      "type": "kun"
+      "word": "青銅",
+      "reading": "せいどう",
+      "meaning": "bronze",
+      "type": "on"
     }
   ],
   "湿": [
@@ -4053,9 +4509,9 @@
   ],
   "瓶": [
     {
-      "word": "瓶",
-      "reading": "びん",
-      "meaning": "bottle",
+      "word": "花瓶",
+      "reading": "かびん",
+      "meaning": "(flower) vase",
       "type": "on"
     },
     {
@@ -4067,10 +4523,10 @@
   ],
   "咲": [
     {
-      "word": "巧咲",
-      "reading": "こうしょう",
-      "meaning": "courteous laughter",
-      "type": "on"
+      "word": "返り咲く",
+      "reading": "かえりざく",
+      "meaning": "to come back",
+      "type": "kun"
     },
     {
       "word": "咲く",
@@ -4101,10 +4557,10 @@
       "type": "on"
     },
     {
-      "word": "円缶",
-      "reading": "まるがま",
-      "meaning": "cylindrical boiler",
-      "type": "kun"
+      "word": "ドラム缶",
+      "reading": "ドラムかん",
+      "meaning": "drum (e.g. oil, gasoline)",
+      "type": "on"
     }
   ],
   "隻": [
@@ -4112,6 +4568,12 @@
       "word": "一隻",
       "reading": "いっせき",
       "meaning": "one boat",
+      "type": "on"
+    },
+    {
+      "word": "数隻",
+      "reading": "すうせき",
+      "meaning": "several (boats)",
       "type": "on"
     }
   ],
@@ -4145,10 +4607,10 @@
   ],
   "肌": [
     {
-      "word": "肌骨",
-      "reading": "きこつ",
-      "meaning": "skin and bones",
-      "type": "on"
+      "word": "肌着",
+      "reading": "はだぎ",
+      "meaning": "underwear",
+      "type": "kun"
     },
     {
       "word": "肌",
@@ -4275,6 +4737,12 @@
       "reading": "きゅうせい",
       "meaning": "one's original family name",
       "type": "on"
+    },
+    {
+      "word": "姓名",
+      "reading": "せいめい",
+      "meaning": "(full) name",
+      "type": "on"
     }
   ],
   "筒": [
@@ -4339,6 +4807,12 @@
       "reading": "いちょう",
       "meaning": "stomach and intestines",
       "type": "on"
+    },
+    {
+      "word": "胃袋",
+      "reading": "いぶくろ",
+      "meaning": "stomach",
+      "type": "on"
     }
   ],
   "畳": [
@@ -4377,9 +4851,9 @@
       "type": "on"
     },
     {
-      "word": "山膚",
-      "reading": "やまはだ",
-      "meaning": "mountain's surface",
+      "word": "地膚",
+      "reading": "じはだ",
+      "meaning": "texture",
       "type": "kun"
     }
   ],
@@ -4402,6 +4876,12 @@
       "word": "仏塔",
       "reading": "ぶっとう",
       "meaning": "stupa",
+      "type": "on"
+    },
+    {
+      "word": "尖塔",
+      "reading": "せんとう",
+      "meaning": "spire",
       "type": "on"
     }
   ],
@@ -4439,6 +4919,12 @@
       "reading": "かし",
       "meaning": "confectionery",
       "type": "on"
+    },
+    {
+      "word": "菓子パン",
+      "reading": "かしパン",
+      "meaning": "baked sweet goods (e.g. Danish pastry, melon bread)",
+      "type": "on"
     }
   ],
   "帽": [
@@ -4446,6 +4932,12 @@
       "word": "帽子",
       "reading": "ぼうし",
       "meaning": "hat",
+      "type": "on"
+    },
+    {
+      "word": "脱帽",
+      "reading": "だつぼう",
+      "meaning": "removing one's hat",
       "type": "on"
     }
   ],
@@ -4511,6 +5003,12 @@
       "reading": "ふごう",
       "meaning": "sign",
       "type": "on"
+    },
+    {
+      "word": "終止符",
+      "reading": "しゅうしふ",
+      "meaning": "full stop",
+      "type": "on"
     }
   ],
   "憎": [
@@ -4529,10 +5027,10 @@
   ],
   "皿": [
     {
-      "word": "器皿",
-      "reading": "きべい",
-      "meaning": "bowl",
-      "type": "on"
+      "word": "皿",
+      "reading": "さら",
+      "meaning": "plate",
+      "type": "kun"
     },
     {
       "word": "灰皿",
@@ -4547,6 +5045,12 @@
       "reading": "こうてい",
       "meaning": "affirmation",
       "type": "on"
+    },
+    {
+      "word": "肯定的",
+      "reading": "こうていてき",
+      "meaning": "affirmative",
+      "type": "on"
     }
   ],
   "燥": [
@@ -4555,6 +5059,12 @@
       "reading": "かんそう",
       "meaning": "dryness",
       "type": "on"
+    },
+    {
+      "word": "乾燥機",
+      "reading": "かんそうき",
+      "meaning": "drying machine",
+      "type": "on"
     }
   ],
   "畜": [
@@ -4562,6 +5072,12 @@
       "word": "牧畜",
       "reading": "ぼくちく",
       "meaning": "stock-farming",
+      "type": "on"
+    },
+    {
+      "word": "家畜",
+      "reading": "かちく",
+      "meaning": "domestic animals",
       "type": "on"
     }
   ],

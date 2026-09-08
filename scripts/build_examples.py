@@ -88,6 +88,56 @@ dulu hidup sebagai pass terpisah audit_primary_readings.mjs):
      (た.れ/た.れる, pasangan bersuara) dan primary yang justru
      pemenang frekuensi TIDAK ditukar.
 
+t67 (feedback user, kelas 対【むか.う ← 対い】) — dua lapis:
+  A. FIX AKAR filter ejaan langka: teks entitas &rK; JMdict adalah
+     "rarely used kanji form" — RK_HINT lama "rare kanji form" tidak
+     pernah cocok sehingga ejaan rK bocor ke pool kandidat & fallback
+     (対い/対う/活きる/勉める/旧い...). Kini rK/oK/iK/sK dikeluarkan
+     per-ejaan (pool fallback) dan entri dengan KEB PERTAMA rK
+     digugurkan; cek entri hanya membaca ke_inf milik k_ele pertama.
+  B. ATURAN UMUM user: bacaan kun hasil derivasi/promosi (kandidat
+     turunan di filter_entry atau pengganti di strict_primary_pass)
+     HARUS punya backing — contoh kun yang membuktikannya wajib
+     ber-frekuensi BCCWJ >= KUN_DERIVE_MIN_FREQ ATAU bertanda common
+     JMdict (ke_pri/re_pri — lihat t68); contoh kamus-hoaks (tanpa
+     keduanya) tidak bisa menjadikan kun primary.
+
+t68 (feedback user, kelas 験【馬験【うまじるし】 + 験【しるし】 saat coba
+     diperbaiki) — contoh kata juga digerbangi mutunya, bukan hanya
+     primary. Audit t68: 247 contoh kun fallback kamus (± campuran kata
+     varian sah 撃つ/聴く/治る dan kata arkais 馬験/地士/是者...), 387
+     contoh satu-kanji (49 di antaranya fallback tautologis — kelas
+     験【しるし】, kata == kanji itu sendiri), 90 contoh on fallback
+     obskur, 663 kanji hanya punya 1 contoh. Aturan umum:
+  C. BACKING = korpus BCCWJ ATAU tanda common JMdict. parse_jmdict
+     kini mengekstrak ke_pri (per-ejaan) / re_pri (reb pertama entri)
+     ke alt_common — sinyal "kata ini umum" versi kamus. Ini diskriminator
+     yang diramal t67 ("korpus-absence tak bisa memisah varian sah
+     dari artefak rK; tag JMdict bisa"): 治る/活かす/撃つ bertanda
+     ichi1/spec1, 馬験/地士/是者/雅び tidak bertanda apa-apa.
+  D. GERBANG MUTU FALLBACK KAMUS (semua tipe, pool fallback saja —
+     kandidat korpus sudah ter-backing BCCWJ):
+     1) kata multi-karakter — kata satu-kanji fallback DILARANG
+        (tautologis: kelas 験【しるし】; kata satu-kanji hanya sah
+        lewat jalur korpus, kelas Fix-6 蚕【かいこ】);
+     2) bertanda common JMdict (alt_common);
+     3) tidak diawali kana (kelas ひと条 — kanji terkubur di posisi
+        akhir frasa);
+     4) tidak memuat partikel を (kelas 身を護る — frasa, bukan kata).
+  E. GERBANG t67 DIREFINASI: promosi/derivasi primary kun kini
+     diterima bila contoh kun ber-frekuensi korpus >=
+     KUN_DERIVE_MIN_FREQ ATAU bertanda common JMdict. Ini menutup
+     inkonsistensi state t67 (primary なお.る milik 治 selamat di data
+     lama hanya lewat pemulihan primary_readings dari run sebelumnya;
+     chain segar men-drop-nya) TANPA membuka kembali kelas 対 —
+     対い sudah ter-exclude rK, 馬験 tanpa tanda common.
+  F. BACKFILL slot kosong: bila slot kun/on tetap kosong setelah
+     gerbang (kanji tanpa kata kun yang layak — kelas 験), slot diisi
+     kandidat korpus TERBAIK yang belum terpakai dari tipe mana pun
+     (験 → 経験 + 試験, dua-duanya on), baru sisa fallback yang lolos
+     gerbang D. Lebih baik nol contoh jelek daripada satu contoh
+     sampah — tapi dua contoh bagus lebih baik daripada satu.
+
 Tiap kanji dicari 2 kata contoh umum: satu pakai on'yomi, satu pakai
 kun'yomi — TIPE tiap contoh ditentukan atribusi struktural. Kata
 dirank berdasarkan frekuensi korpus BCCWJ supaya contoh paling umum
@@ -147,7 +197,28 @@ P2A_FREQ_FLOOR = 2000     # ambang bawah frekuensi kandidat (anti-noise)
 
 # Penanda misc/ke_inf JMdict (entitas sudah diekspansi parser XML):
 UK_HINT = "usually written using kana alone"
-RK_HINT = "rare kanji form"
+# t67: teks entitas &rK; yang BENAR adalah "rarely used kanji form".
+# RK_HINT lama ("rare kanji form") bukan substring teks entitas asli
+# sehingga filter ejaan langka TIDAK PERNAH menyala — akar kelas bug
+# 対【primary kun むか.う ditopang 対い (ejaan rK entri 向かい)】.
+RK_HINT = "rarely used kanji form"
+# Tag per-ejaan yang tidak layak menjadi contoh bacaan (pool fallback
+# kamus): rK langka, oK kedaluwarsa, iK kanji tak beraturan, sK
+# hanya-untuk-pencarian (artefak kamus, bukan kata nyata).
+RARE_FORM_HINTS = (
+    RK_HINT,
+    "word containing out-dated kanji",
+    "word containing irregular kanji usage",
+    "search-only kanji form",
+)
+# t67 — aturan umum dari feedback user (kelas 対): bacaan kun hasil
+# DERIVASI (kandidat turunan) tidak boleh menjadi primary hanya karena
+# satu contoh kamus — ia butuh backing nyata (kata contoh yang
+# membuktikannya harus punya frekuensi BCCWJ >= ambang ini, ATAU
+# bertanda common JMdict ke_pri/re_pri — t68 E).
+# 1 = cukup HADIR di korpus (ejaan kamus-hoaks tak pernah muncul);
+# naikkan kalau ingin lebih ketat.
+KUN_DERIVE_MIN_FREQ = 1
 
 
 def clean_kun(text):
@@ -159,17 +230,24 @@ def clean_kun(text):
 # ============================================================
 
 def parse_jmdict(jmdict_path):
-    """Parse JMdict → (terms, alt_terms).
+    """Parse JMdict → (terms, alt_terms, alt_common).
 
-    terms     : { keb-PERTAMA: [(reading, glosses), ...] } — sumber
-                kandidat UTAMA (dipasangkan frekuensi BCCWJ;
-                identik dengan pipeline pra-surgery supaya perubahan
-                contoh murni efek atribusi, bukan perubahan sumber).
-    alt_terms : { SEMUA keb: [(reading, glosses), ...] } — sumber
-                FALLBACK KAMUS untuk slot yang korpus tak punya kata
-                umum (mis. 活かす adalah keb kedua entri 生かす【いかす】;
-                BCCWJ hanya memuat ejaan 生かす). Ejaan keb yang
-                ditandai rK (rare kanji form) dilewati per-ejaan.
+    terms       : { keb-PERTAMA: [(reading, glosses), ...] } — sumber
+                  kandidat UTAMA (dipasangkan frekuensi BCCWJ;
+                  identik dengan pipeline pra-surgery supaya perubahan
+                  contoh murni efek atribusi, bukan perubahan sumber).
+    alt_terms   : { SEMUA keb: [(reading, glosses), ...] } — sumber
+                  FALLBACK KAMUS untuk slot yang korpus tak punya kata
+                  umum (mis. 活かす adalah keb kedua entri 生かす【いかす】;
+                  BCCWJ hanya memuat ejaan 生かす). Ejaan keb yang
+                  ditandai rK (rare kanji form) dilewati per-ejaan.
+    alt_common  : { keb: True } — t68 C: ejaan yang KAMUS sendiri
+                  menandai umum: k_ele keb ini bertanda ke_pri
+                  (ichi1/news1/spec1/gai1/...) ATAU reb pertama entri
+                  bertanda re_pri. Sinyal pemisah varian sah (治る,
+                  活かす — ejaan lain dari kata umum) vs artefak kamus
+                  (馬験, 地士 — tak bertanda apa-apa). Dipakai gerbang
+                  mutu fallback (t68 D) dan gerbang promosi kun (t68 E).
 
     Lewati entry yang ejaan kanjinya bukan bentuk tulis normal — buruk
     sebagai contoh bacaan:
@@ -185,7 +263,9 @@ def parse_jmdict(jmdict_path):
 
     terms = {}
     alt_terms = {}
+    alt_common = {}
     skipped_uk = 0
+    skipped_rk_forms = 0
     context = ET.iterparse(f, events=("end",))
     for _event, entry in context:
         if entry.tag != "entry":
@@ -201,12 +281,19 @@ def parse_jmdict(jmdict_path):
             entry.clear()
             continue
 
-        # Ejaan kanji langka (ke_inf &rK;) — contoh bacaan yang buruk.
-        ke_inf = entry.find(".//k_ele/ke_inf")
-        if ke_inf is not None and RK_HINT in (ke_inf.text or ""):
-            skipped_uk += 1
-            entry.clear()
-            continue
+        # Ejaan kanji langka pada KEB PERTAMA (bentuk tulis utama entri)
+        # — contoh bacaan yang buruk. HANYA ke_inf milik k_ele pertama
+        # yang boleh menggugurkan ENTRI (t67: dulu find(".//k_ele/ke_inf")
+        # mengambil ke_inf pertama dari k_ele MANA PUN — dengan hint yang
+        # kini benar, entri seperti 努める (keb-2 勉める rK) akan ikut
+        # digugurkan padahal ejaan utamanya normal).
+        first_k = entry.find("k_ele")
+        if first_k is not None:
+            first_inf = first_k.find("ke_inf")
+            if first_inf is not None and RK_HINT in (first_inf.text or ""):
+                skipped_uk += 1
+                entry.clear()
+                continue
 
         reb = entry.find(".//r_ele/reb")
         if reb is None or not reb.text:
@@ -233,8 +320,17 @@ def parse_jmdict(jmdict_path):
 
         pair = (reading, glosses)
         terms.setdefault(term, []).append(pair)
+        # t68 C: tanda common JMdict — ke_pri milik k_ele ini, ATAU
+        # re_pri milik reb pertama entri (ejaan varian dari kata umum:
+        # 活かす tak bertanda ke_pri, tapi entri 生かす【いかす】 reb
+        # pertamanya ichi1 — うつ untuk 撃つ, なおる untuk 治
+        # juga hanya bersumpah lewat re_pri).
+        first_r_ele = entry.find("r_ele")
+        entry_re_pri = first_r_ele is not None and \
+            bool(first_r_ele.findall("re_pri"))
         # Semua ejaan (keb) entri — sumber fallback kamus. Ejaan per-keb
-        # yang ditandai rK dilewati; panjang dibatasi MAX_WORD_LEN sama
+        # yang ditandai rK/oK/iK/sK (t67, RARE_FORM_HINTS) dilewati;
+        # panjang dibatasi MAX_WORD_LEN sama
         # seperti kandidat utama. Reading yang dipakai = reb pertama
         # (paritas dengan jalur utama); pasangan (ejaan, reading) yang
         # aneh nanti ditolak sendiri oleh atribusi DP.
@@ -244,9 +340,14 @@ def parse_jmdict(jmdict_path):
                 continue
             if not (MIN_WORD_LEN <= len(k.text) <= MAX_WORD_LEN):
                 continue
-            inf = k_ele.find("ke_inf")
-            if inf is not None and RK_HINT in (inf.text or ""):
+            inf_texts = [(x.text or "") for x in k_ele.findall("ke_inf")]
+            if any(hint in it for it in inf_texts for hint in RARE_FORM_HINTS):
+                skipped_rk_forms += 1
                 continue
+            if k_ele.findall("ke_pri") or entry_re_pri:
+                # union antar entri: ejaan yang umum di satu entri
+                # cukup (bucket alt_terms juga union antar entri).
+                alt_common[k.text] = True
             bucket = alt_terms.setdefault(k.text, [])
             if pair not in bucket:
                 bucket.append(pair)
@@ -254,9 +355,13 @@ def parse_jmdict(jmdict_path):
 
     f.close()
     print(f"  Loaded {len(terms)} JMdict terms with kanji (len {MIN_WORD_LEN}-{MAX_WORD_LEN})"
-          f" — skipped {skipped_uk} kana-preferred/rare-spelling entries")
-    print(f"  {len(alt_terms)} ejaan kanji (semua keb non-rK) untuk fallback kamus")
-    return terms, alt_terms
+          f" — skipped {skipped_uk} kana-preferred/rare-headword entries")
+    print(f"  {len(alt_terms)} ejaan kanji untuk fallback kamus "
+          f"({skipped_rk_forms} ejaan rK/oK/iK/sK dikeluarkan — filter rK "
+          f"baru efektif t67, dulu string hint tak pernah cocok)")
+    print(f"  {len(alt_common)} ejaan bertanda common JMdict (ke_pri/re_pri) "
+          f"— gerbang mutu fallback t68")
+    return terms, alt_terms, alt_common
 
 
 # ============================================================
@@ -850,14 +955,17 @@ def lookup_freq(term, entries, kanji, freq_index, freq_by_reading):
 
 # Statistik observabilitas build (di-reset per level oleh main();
 # murni pelaporan — tidak memengaruhi seleksi).
-_BUILD_STATS = {"fallback_filled": 0, "attr_unknown": 0}
+_BUILD_STATS = {"fallback_filled": 0, "attr_unknown": 0,
+                "derive_kun_blocked": 0,
+                "fallback_gated": 0, "backfilled": 0}
 
 
 def build_examples_for_kanji(kanji, jmdict_terms, term_index, freq_index,
                               cand_table, on_readings, kun_readings,
                               primary_on_hira=None, primary_kun_reading=None,
                               freq_by_reading=None, kanji_level=None,
-                              vocab=None, alt_terms=None, alt_index=None):
+                              vocab=None, alt_terms=None, alt_index=None,
+                              alt_common=None):
     """Susun kata contoh untuk satu kanji — attribution-first
     (Surgery 2 / Tahap B: kandidat hanya boleh masuk pool SE-TIPENYA).
 
@@ -877,10 +985,17 @@ def build_examples_for_kanji(kanji, jmdict_terms, term_index, freq_index,
          JMdict TANPA frekuensi korpus (mis. 活かす — BCCWJ hanya
          memuat 生かす). Fallback MELALUI ATRIBUSI YANG SAMA + gerbang
          tambahan: segmen harus cocok bacaan yang entri kanji miliki
-         (fallback tidak boleh memperkenalkan bacaan asing). Ranking:
-         multi-karakter → tier → cocok primary → OKURIGANA PERSIS
-         primary (活かす mengalahkan 活き untuk primary い.かす) →
-         kata terpendek.
+         (fallback tidak boleh memperkenalkan bacaan asing) + GERBANG
+         MUTU t68 D: multi-karakter, bertanda common JMdict
+         (alt_common — 馬験/地士 gugur, 活かす/治る lolos), tidak
+         diawali kana, tanpa partikel を. Ranking: multi-karakter →
+         tier → cocok primary → OKURIGANA PERSIS primary (活かす
+         mengalahkan 活き untuk primary い.かす) → kata terpendek.
+      3. BACKFILL t68 F — slot yang tetap kosong setelah 1-2 (kanji
+         tanpa kata kun/on yang layak, kelas 験) diisi kandidat korpus
+         TERBAIK yang belum terpakai dari tipe mana pun, baru sisa
+         fallback yang lolos gerbang. Nol contoh sampah > satu contoh
+         sampah; dua contoh baik > satu.
 
     primary_on_hira / primary_kun_reading (bacaan primary hasil
     rerank_readings.py; kun dalam BENTUK PENUH BERTITIK, mis.
@@ -1026,8 +1141,28 @@ def build_examples_for_kanji(kanji, jmdict_terms, term_index, freq_index,
     # Di-scan SEKARANG, dipakai NANTI hanya bila slot tipe itu tetap
     # tidak terisi kandidat korpus. Reading = reb pertama (paritas
     # jalur utama); pasangan aneh ditolak sendiri oleh atribusi.
+    # t68 D — GERBANG MUTU fallback (kandidat korpus tidak digerbangi:
+    # frekuensi BCCWJ adalah backing yang lebih kuat):
+    #   - multi-karakter: kata satu-kanji fallback DILARANG — tautologis
+    #     (kelas 験【しるし】: "kata" == kanji yang diajarkan; kata
+    #     satu-kanji hanya sah lewat jalur korpus, Fix-6 蚕【かいこ】);
+    #   - alt_common: ejaan bertanda ke_pri/re_pri JMdict (kelas 馬験/
+    #     地士/是者 gugur; varian sah 治る/活かす/撃つ lolos);
+    #   - tidak diawali kana (kelas ひと条 — kanji di ekor frasa);
+    #   - tanpa を (kelas 身を護る — frasa berpartikel, bukan kata).
     if alt_terms is not None and alt_index is not None:
         for keb in alt_index.get(kanji, []):
+            if len(keb) == 1:
+                continue  # tautologis — lihat gerbang di atas
+            if not (alt_common or {}).get(keb, False):
+                _BUILD_STATS["fallback_gated"] += 1
+                continue
+            if is_kana_char(keb[0]):
+                _BUILD_STATS["fallback_gated"] += 1
+                continue
+            if "を" in keb:
+                _BUILD_STATS["fallback_gated"] += 1
+                continue
             reading, glosses = alt_terms[keb][0]
             gloss = glosses[0]
             if is_likely_proper_noun(keb, gloss):
@@ -1055,13 +1190,10 @@ def build_examples_for_kanji(kanji, jmdict_terms, term_index, freq_index,
 
             okuri_exact = _kun_okuri_exact(keb, attr["matched_reading"])
 
-            # Fix-6 (paritas jalur kamus): kata satu-kanji fallback yang
-            # membuktikan primary persis juga dicatat; slot-3 tetap 1
-            # (guard sama dengan jalur korpus).
+            # (kata satu-kanji fallback sudah digerbangi di atas —
+            # blok paritas Fix-6 lama untuk fallback DIHAPUS t68 D:
+            # justru itulah lubang yang membuat 験【しるし】 menang slot.)
             fallback_okuri_flag = 0 if okuri_exact else 1
-            if okuri_exact and len(keb) == 1 and item_type == "kun":
-                _single_kanji_exact.add(keb)
-                fallback_okuri_flag = 1
 
             tier = 1
             if vocab is not None and kanji_level is not None:
@@ -1102,22 +1234,90 @@ def build_examples_for_kanji(kanji, jmdict_terms, term_index, freq_index,
 
     # ---- 3) pasang slot: korpus dulu, kamus belakangan; slot on
     # mendahului slot kun (urutan stabil, sama dengan pipeline lama).
-    def _take(pool, item_type):
-        if not pool:
-            return None
-        _t, _p, _o, _l, t, r, g = pool[0]
-        return {"word": t, "reading": r, "meaning": g, "type": item_type}
+    # t67/t68: contoh diberi penanda asal internal — _corpus True +
+    # _freq untuk kandidat korpus BCCWJ, _pri True untuk fallback
+    # kamus yang lolos gerbang mutu (bertanda common JMdict).
+    # Dipakai gerbang promosi primary kun (t68 E: backing = korpus
+    # ATAU pri) dan DIBUANG saat menulis JSON (lihat main).
+    # Konsumsi pool berbasis indeks (t68 F) supaya kandidat yang tak
+    # terpakai tetap tersedia untuk backfill slot lain.
+    _ci = {"on": 0, "kun": 0}   # indeks konsumsi pool korpus
+    _fi = {"on": 0, "kun": 0}   # indeks konsumsi pool fallback
 
-    slot_on = _take(on_candidates, "on")
-    slot_kun = _take(kun_candidates, "kun")
+    def _make(item, item_type, corpus):
+        _t, _p, _o, _l, t, r, g = item
+        freq = -item[3] if corpus else None
+        return {"word": t, "reading": r, "meaning": g, "type": item_type,
+                "_corpus": corpus, "_freq": freq,
+                "_pri": (not corpus)}
+
+    def _take_corpus(item_type):
+        pool = on_candidates if item_type == "on" else kun_candidates
+        i = _ci[item_type]
+        if i >= len(pool):
+            return None
+        _ci[item_type] = i + 1
+        return _make(pool[i], item_type, corpus=True)
+
+    def _take_fallback(item_type):
+        pool = on_fallback if item_type == "on" else kun_fallback
+        i = _fi[item_type]
+        if i >= len(pool):
+            return None
+        _fi[item_type] = i + 1
+        return _make(pool[i], item_type, corpus=False)
+
+    slot_on = _take_corpus("on")
     if slot_on is None:
-        slot_on = _take(on_fallback, "on")
+        slot_on = _take_fallback("on")
         if slot_on is not None:
             _BUILD_STATS["fallback_filled"] += 1
+    slot_kun = _take_corpus("kun")
     if slot_kun is None:
-        slot_kun = _take(kun_fallback, "kun")
+        slot_kun = _take_fallback("kun")
         if slot_kun is not None:
             _BUILD_STATS["fallback_filled"] += 1
+
+    # ---- 4) BACKFILL t68 F: slot yang tetap kosong diisi kandidat
+    # terbaik yang belum terpakai — korpus dulu (tipe mana pun:
+    # 験 tanpa kata kun yang layak mendapat 経験 + 試験, dua-duanya
+    # on), baru sisa fallback yang sudah lolos gerbang mutu.
+    def _spare_corpus():
+        spare = []
+        for t in ("on", "kun"):
+            pool = on_candidates if t == "on" else kun_candidates
+            spare.extend((t, it) for it in pool[_ci[t]:])
+        spare.sort(key=lambda x: _rank(x[1]))
+        return spare
+
+    def _spare_fallback():
+        spare = []
+        for t in ("on", "kun"):
+            pool = on_fallback if t == "on" else kun_fallback
+            spare.extend((t, it) for it in pool[_fi[t]:])
+        spare.sort(key=lambda x: _rank(x[1]))
+        return spare
+
+    if slot_on is None or slot_kun is None:
+        for t, it in _spare_corpus():
+            if slot_kun is None:
+                slot_kun = _make(it, t, corpus=True)
+                _BUILD_STATS["backfilled"] += 1
+            elif slot_on is None:
+                slot_on = _make(it, t, corpus=True)
+                _BUILD_STATS["backfilled"] += 1
+            else:
+                break
+    if slot_on is None or slot_kun is None:
+        for t, it in _spare_fallback():
+            if slot_kun is None:
+                slot_kun = _make(it, t, corpus=False)
+                _BUILD_STATS["fallback_filled"] += 1
+            elif slot_on is None:
+                slot_on = _make(it, t, corpus=False)
+                _BUILD_STATS["fallback_filled"] += 1
+            else:
+                break
 
     results = [s for s in (slot_on, slot_kun) if s is not None]
     return results[:MAX_EXAMPLES_PER_KANJI]
@@ -1300,24 +1500,42 @@ def filter_entry(entry, examples):
         # bacaan yang contoh tampilkan.
         pr_set = set(new_pr)
         covered = {i["type"] for i in backed_infos if i["romaji"] in pr_set}
+        # t67/t68 — aturan user (kelas 対, refined kelas 験): bacaan kun
+        # hasil DERIVASI tidak boleh jadi primary hanya karena ada satu
+        # contoh kamus. Contoh kun yang ditampilkan harus punya backing
+        # nyata: frekuensi BCCWJ >= KUN_DERIVE_MIN_FREQ ATAU tanda common
+        # JMdict (t68 E — 治る ichi1 sah; 馬験/対い-class hoaks gugur).
+        # Diterapkan hanya pada kun: bacaan on hidup di kata majemuk
+        # korpus sehingga kandidat turunan on selalu punya frekuensi;
+        # scoped ala feedback user supaya tidak ada regresi luas.
+        kun_corpus_ok = any(
+            (isinstance(ex.get("_freq"), int)
+             and ex["_freq"] >= KUN_DERIVE_MIN_FREQ)
+            or ex.get("_pri")
+            for ex in examples or [] if ex.get("type") == "kun"
+        )
         for t in ("on", "kun"):
             if t in covered:
                 continue
             cands = [i for i in backed_infos if i["type"] == t]
-            if cands:
-                # Utamakan bacaan yang SAMA PERSIS dengan reading contoh
-                # (kata polos kanji+okurigana: 約まる=つづまる → つづ.まる),
-                # baru bacaan terpanjang. Tanpa ini stem terpanjang menang
-                # padahal bukan bacaan yang dipakai contoh (約まる justru
-                # memilih つづま.やか; 恥じる memilih はじ, bukan は.じる).
-                def deriv_rank(i):
-                    exact_eq = any(rd == i["full"] for rd in ex_read[t] if rd)
-                    return (1 if exact_eq else 0, len(i["full"]))
+            if not cands:
+                continue
+            if t == "kun" and not kun_corpus_ok:
+                _BUILD_STATS["derive_kun_blocked"] += 1
+                continue
+            # Utamakan bacaan yang SAMA PERSIS dengan reading contoh
+            # (kata polos kanji+okurigana: 約まる=つづまる → つづ.まる),
+            # baru bacaan terpanjang. Tanpa ini stem terpanjang menang
+            # padahal bukan bacaan yang dipakai contoh (約まる justru
+            # memilih つづま.やか; 恥じる memilih はじ, bukan は.じる).
+            def deriv_rank(i):
+                exact_eq = any(rd == i["full"] for rd in ex_read[t] if rd)
+                return (1 if exact_eq else 0, len(i["full"]))
 
-                best = max(cands, key=deriv_rank)
-                if best["romaji"] not in new_pr:
-                    new_pr.append(best["romaji"])
-                    derived.append(best["romaji"])
+            best = max(cands, key=deriv_rank)
+            if best["romaji"] not in new_pr:
+                new_pr.append(best["romaji"])
+                derived.append(best["romaji"])
 
     # Atribusi kana untuk tiap primary romaji. Utamakan bacaan yang
     # benar-benar ditopang contoh (menyelesaikan tabrakan romaji seperti
@@ -1458,6 +1676,11 @@ def strict_primary_pass(entry, primary_readings, examples):
       - primary skor < 2 tanpa kandidat ketat → PERTAHANKAN (skor-1
         longgar umumnya benar: 人 ひと via 一人; tidak ada jalur
         penghapusan — penghapusan ditangani filter_entry).
+      - t67/t68 (aturan user, kelas 対→験): pengganti se-tipe KUN juga
+        butuh backing — frekuensi BCCWJ atau tanda common JMdict
+        (t68 E), konsisten dengan gerbang derivasi filter_entry.
+        ON tidak digerbangkan (kandidat on hidup di kata majemuk
+        korpus).
     Return (primary_readings_baru, jumlah_kanji_yang_berubah_di_entry).
     """
     kanji = entry["kanji"]
@@ -1465,6 +1688,14 @@ def strict_primary_pass(entry, primary_readings, examples):
         return primary_readings, False
     on_list = entry.get("readings", {}).get("on", []) or []
     kun_list = entry.get("readings", {}).get("kun", []) or []
+    # t68 E: backing = korpus BCCWJ ATAU tanda common JMdict (_pri —
+    # contoh fallback yang lolos gerbang mutu, mis. 治る ichi1).
+    kun_corpus_ok = any(
+        (isinstance(ex.get("_freq"), int)
+         and ex["_freq"] >= KUN_DERIVE_MIN_FREQ)
+        or ex.get("_pri")
+        for ex in examples or [] if ex.get("type") == "kun"
+    )
 
     def scorer_of(kana, t):
         if t == "on":
@@ -1490,6 +1721,12 @@ def strict_primary_pass(entry, primary_readings, examples):
             out.append(p)
             continue
         reading_list = on_list if t == "on" else kun_list
+        if t == "kun" and not kun_corpus_ok:
+            # t67: tanpa contoh kun ber-backing korpus, tidak ada
+            # kandidat pengganti yang sah untuk primary kun.
+            _BUILD_STATS["derive_kun_blocked"] += 1
+            out.append(p)
+            continue
         cand = best_candidate(reading_list, t)
         if cand is None:
             out.append(p)
@@ -1609,7 +1846,15 @@ def structural_freq_for_kanji(kanji, rows, cand_table):
     Return (freq_on, freq_kun) — kunci freq_on = bacaan on bersih,
     kunci freq_kun = stem kun. Baris BCCWJ yang tak teratribusi untuk
     kanji ini TIDAK mengkredit bacaan mana pun (frekuensi tidak bisa
-    dicuri lewat substring — しょ う di 摂食障害 milik 障, bukan 摂)."""
+    dicuri lewat substring — しょ う di 摂食障害 milik 障, bukan 摂).
+
+    t67: segmen AMBIGU on/kun homofon (base sama dikredit "on" DAN
+    "kun" pada kata yang sama — 摩擦 ま mengkredit マ sekaligus stem
+    ま milik ま.する) hanya mengkredit ember ON: frekuensi kata
+    majemuk/nama itu milik bacaan on; tanpa guard ini P2a bisa
+    menganggap ま.する ber-frekuensi 3306 (padahal semua dari マ)
+    dan menukar primary ke bacaan arkaik. Kredit kun tetap penuh
+    untuk segmen kun murni (摩る【さする】 → さす)."""
     freq_on, freq_kun = {}, {}
     for lemma, reading, freq in rows:
         attr = attribute(lemma, reading, kanji, cand_table)
@@ -1619,7 +1864,7 @@ def structural_freq_for_kanji(kanji, rows, cand_table):
         for base, t in segs:
             if t == "on":
                 freq_on[base] = freq_on.get(base, 0) + freq
-            else:
+            elif (base, "on") not in segs:
                 freq_kun[base] = freq_kun.get(base, 0) + freq
     return freq_on, freq_kun
 
@@ -1678,7 +1923,12 @@ def corrected_kun_score(kana, reps, kanji):
         label_kun = rep["stored"] == "kun"
         if not (attr_kun or label_kun):
             continue
-        if (stem, "kun") in rep["segments"]:
+        if (stem, "kun") in rep["segments"] \
+                and (stem, "on") not in rep["segments"]:
+            # t67: guard homofon on/kun — segmen ambigu (credits stem
+            # sebagai on DAN kun, mis. 摩擦 untuk stem ま) bukan bukti
+            # kun; tanpa guard bacaan ま.する phantom-skor-2 dari contoh
+            # on. (Cermin guard structural_freq_for_kanji.)
             idx = rep["word"].find(kanji)
             rest = rep["word"][idx + 1:] if idx >= 0 else ""
             if rest == "" or not is_kana_char(rest[0]):
@@ -1853,7 +2103,7 @@ def main():
         )
         sys.exit(1)
 
-    jmdict_terms, alt_terms = parse_jmdict(jmdict_path)
+    jmdict_terms, alt_terms, alt_common = parse_jmdict(jmdict_path)
     freq_index, freq_by_reading = load_bccwj_freq(bccwj_path)
 
     # Wajib — dijamin ada oleh pengecekan di atas.
@@ -1917,7 +2167,9 @@ def main():
         # n3.json -> 3 (angka lebih besar = level lebih mudah; untuk tier)
         kanji_level = int(level_file.stem[1:])
 
-        _BUILD_STATS.update(fallback_filled=0, attr_unknown=0)
+        _BUILD_STATS.update(fallback_filled=0, attr_unknown=0,
+                            derive_kun_blocked=0, fallback_gated=0,
+                            backfilled=0)
 
         result = {}
         no_example = 0
@@ -1949,7 +2201,7 @@ def main():
                 kanji, jmdict_terms, term_index, freq_index, cand_table,
                 on_readings, kun_readings,
                 primary_on_hira, primary_kun_reading, freq_by_reading,
-                kanji_level, vocab, alt_terms, alt_index,
+                kanji_level, vocab, alt_terms, alt_index, alt_common,
             )
             result[kanji] = examples
             if not examples:
@@ -2022,8 +2274,15 @@ def main():
         p2a_swap_total += p2a_swaps
 
         out_path = output_dir / f"{level_file.stem}_examples.json"
+        # t67/t68: buang penanda internal (_corpus/_freq/_pri) sebelum
+        # menulis — data app tetap {word, reading, meaning, type}.
+        result_clean = {
+            k: [{f: v for f, v in x.items() if not f.startswith("_")}
+                for x in v]
+            for k, v in result.items()
+        }
         with open(out_path, "w", encoding="utf-8") as f:
-            json.dump(result, f, ensure_ascii=False, indent=2)
+            json.dump(result_clean, f, ensure_ascii=False, indent=2)
 
         kanji_path = output_dir / level_file.name
         with open(kanji_path, "w", encoding="utf-8") as f:
@@ -2035,6 +2294,16 @@ def main():
               f"({both_types} with both on+kun) → {out_path.name}")
         print(f"    fallback kamus mengisi {bs['fallback_filled']} slot kosong; "
               f"{bs['attr_unknown']} kandidat korpus tak teratribusi (dilewati)")
+        if bs["fallback_gated"]:
+            print(f"    t68 gerbang mutu fallback menolak {bs['fallback_gated']} "
+                  f"ejaan (satu-kanji/tanpa tanda common/awalan kana/を)")
+        if bs["backfilled"]:
+            print(f"    t68 backfill: {bs['backfilled']} slot kosong diisi "
+                  f"kandidat korpus terbaik yang belum terpakai")
+        if bs["derive_kun_blocked"]:
+            print(f"    t67/68 gerbang backing memblokir "
+                  f"{bs['derive_kun_blocked']} promosi/derivasi primary kun "
+                  f"tanpa backing (kelas 対)")
         print(f"    primary readings filtered on {lv['filtered']}/{len(kanji_list)} kanji "
               f"({lv['derived_total']} re-derived from examples, {lv['strict_total']} strict-corrected, "
               f"{p2a_swaps} P2a freq-resolved) → {kanji_path.name}")

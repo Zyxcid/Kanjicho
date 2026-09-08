@@ -63,10 +63,10 @@
       "type": "on"
     },
     {
-      "word": "辻社",
-      "reading": "つじやしろ",
-      "meaning": "small shrine built at a crossroads",
-      "type": "kun"
+      "word": "社会",
+      "reading": "しゃかい",
+      "meaning": "society",
+      "type": "on"
     }
   ],
   "発": [
@@ -102,6 +102,12 @@
       "word": "地図",
       "reading": "ちず",
       "meaning": "map",
+      "type": "on"
+    },
+    {
+      "word": "地下鉄",
+      "reading": "ちかてつ",
+      "meaning": "subway",
       "type": "on"
     }
   ],
@@ -166,6 +172,12 @@
       "word": "公務員",
       "reading": "こうむいん",
       "meaning": "public employee",
+      "type": "on"
+    },
+    {
+      "word": "店員",
+      "reading": "てんいん",
+      "meaning": "employee (of a store)",
       "type": "on"
     }
   ],
@@ -287,6 +299,12 @@
       "reading": "とうきょうけん",
       "meaning": "Tokyo area (esp. in ref. to Tokyo, Kanagawa, Saitama and Chiba)",
       "type": "on"
+    },
+    {
+      "word": "上京",
+      "reading": "じょうきょう",
+      "meaning": "going (up) to the capital",
+      "type": "on"
     }
   ],
   "目": [
@@ -336,6 +354,12 @@
       "word": "理由",
       "reading": "りゆう",
       "meaning": "reason",
+      "type": "on"
+    },
+    {
+      "word": "無理",
+      "reading": "むり",
+      "meaning": "unreasonable",
       "type": "on"
     }
   ],
@@ -387,6 +411,12 @@
       "reading": "もんだい",
       "meaning": "question (e.g. on a test)",
       "type": "on"
+    },
+    {
+      "word": "宿題",
+      "reading": "しゅくだい",
+      "meaning": "homework",
+      "type": "on"
     }
   ],
   "意": [
@@ -395,6 +425,12 @@
       "reading": "いみ",
       "meaning": "meaning",
       "type": "on"
+    },
+    {
+      "word": "意見",
+      "reading": "いけん",
+      "meaning": "opinion",
+      "type": "on"
     }
   ],
   "不": [
@@ -402,6 +438,12 @@
       "word": "不便",
       "reading": "ふべん",
       "meaning": "inconvenience",
+      "type": "on"
+    },
+    {
+      "word": "不思議",
+      "reading": "ふしぎ",
+      "meaning": "wonderful",
       "type": "on"
     }
   ],
@@ -511,10 +553,10 @@
       "type": "on"
     },
     {
-      "word": "今以て",
-      "reading": "いまもって",
-      "meaning": "until now",
-      "type": "kun"
+      "word": "以上",
+      "reading": "いじょう",
+      "meaning": "not less than ...",
+      "type": "on"
     }
   ],
   "思": [
@@ -607,6 +649,12 @@
       "reading": "びょういん",
       "meaning": "hospital",
       "type": "on"
+    },
+    {
+      "word": "入院",
+      "reading": "にゅういん",
+      "meaning": "hospitalization",
+      "type": "on"
     }
   ],
   "心": [
@@ -628,6 +676,12 @@
       "word": "世界",
       "reading": "せかい",
       "meaning": "the world",
+      "type": "on"
+    },
+    {
+      "word": "限界",
+      "reading": "げんかい",
+      "meaning": "limit",
       "type": "on"
     }
   ],
@@ -889,6 +943,12 @@
       "reading": "とくに",
       "meaning": "particularly",
       "type": "on"
+    },
+    {
+      "word": "特別",
+      "reading": "とくべつ",
+      "meaning": "special",
+      "type": "on"
     }
   ],
   "私": [
@@ -966,6 +1026,12 @@
       "word": "台所",
       "reading": "だいどころ",
       "meaning": "kitchen",
+      "type": "on"
+    },
+    {
+      "word": "台風",
+      "reading": "たいふう",
+      "meaning": "typhoon",
       "type": "on"
     }
   ],
@@ -1073,6 +1139,12 @@
       "reading": "りょうり",
       "meaning": "cooking",
       "type": "on"
+    },
+    {
+      "word": "食料品",
+      "reading": "しょくりょうひん",
+      "meaning": "foodstuff",
+      "type": "on"
     }
   ],
   "工": [
@@ -1080,6 +1152,12 @@
       "word": "工場",
       "reading": "こうじょう",
       "meaning": "factory",
+      "type": "on"
+    },
+    {
+      "word": "工業",
+      "reading": "こうぎょう",
+      "meaning": "(manufacturing) industry",
       "type": "on"
     }
   ],
@@ -1217,10 +1295,10 @@
       "type": "on"
     },
     {
-      "word": "究める",
-      "reading": "きわめる",
-      "meaning": "to investigate thoroughly",
-      "type": "kun"
+      "word": "研究室",
+      "reading": "けんきゅうしつ",
+      "meaning": "laboratory",
+      "type": "on"
     }
   ],
   "楽": [
@@ -1301,10 +1379,10 @@
       "type": "on"
     },
     {
-      "word": "蔓質",
-      "reading": "つるだち",
-      "meaning": "vine-like",
-      "type": "kun"
+      "word": "性質",
+      "reading": "せいしつ",
+      "meaning": "nature (of a person)",
+      "type": "on"
     }
   ],
   "待": [
@@ -1341,6 +1419,12 @@
       "reading": "かぞく",
       "meaning": "family",
       "type": "on"
+    },
+    {
+      "word": "民族",
+      "reading": "みんぞく",
+      "meaning": "people",
+      "type": "on"
     }
   ],
   "銀": [
@@ -1348,6 +1432,12 @@
       "word": "銀行",
       "reading": "ぎんこう",
       "meaning": "bank",
+      "type": "on"
+    },
+    {
+      "word": "銀色",
+      "reading": "ぎんいろ",
+      "meaning": "silver (color, colour)",
       "type": "on"
     }
   ],
@@ -1401,10 +1491,10 @@
       "type": "on"
     },
     {
-      "word": "験し",
-      "reading": "ためし",
-      "meaning": "trial",
-      "type": "kun"
+      "word": "試験",
+      "reading": "しけん",
+      "meaning": "examination",
+      "type": "on"
     }
   ],
   "英": [
@@ -1415,10 +1505,10 @@
       "type": "on"
     },
     {
-      "word": "英",
-      "reading": "はなぶさ",
-      "meaning": "calyx",
-      "type": "kun"
+      "word": "英雄",
+      "reading": "えいゆう",
+      "meaning": "hero",
+      "type": "on"
     }
   ],
   "医": [
@@ -1493,9 +1583,9 @@
   ],
   "字": [
     {
-      "word": "字",
-      "reading": "じ",
-      "meaning": "character (esp. kanji)",
+      "word": "漢字",
+      "reading": "かんじ",
+      "meaning": "kanji",
       "type": "on"
     },
     {
@@ -1650,6 +1740,12 @@
       "word": "今週",
       "reading": "こんしゅう",
       "meaning": "this week",
+      "type": "on"
+    },
+    {
+      "word": "来週",
+      "reading": "らいしゅう",
+      "meaning": "next week",
       "type": "on"
     }
   ],
@@ -1883,6 +1979,12 @@
       "reading": "えきまえ",
       "meaning": "in front of a station",
       "type": "on"
+    },
+    {
+      "word": "駅舎",
+      "reading": "えきしゃ",
+      "meaning": "station building",
+      "type": "on"
     }
   ],
   "洋": [
@@ -1890,6 +1992,12 @@
       "word": "洋服",
       "reading": "ようふく",
       "meaning": "Western-style clothes (cf. traditional Japanese clothes)",
+      "type": "on"
+    },
+    {
+      "word": "西洋",
+      "reading": "せいよう",
+      "meaning": "the West",
       "type": "on"
     }
   ],
@@ -1912,6 +2020,12 @@
       "word": "洋服",
       "reading": "ようふく",
       "meaning": "Western-style clothes (cf. traditional Japanese clothes)",
+      "type": "on"
+    },
+    {
+      "word": "服装",
+      "reading": "ふくそう",
+      "meaning": "attire",
       "type": "on"
     }
   ],
@@ -1948,6 +2062,12 @@
       "word": "金曜日",
       "reading": "きんようび",
       "meaning": "Friday",
+      "type": "on"
+    },
+    {
+      "word": "日曜日",
+      "reading": "にちようび",
+      "meaning": "Sunday",
       "type": "on"
     }
   ],
@@ -1999,6 +2119,12 @@
       "reading": "しょくどう",
       "meaning": "dining room",
       "type": "on"
+    },
+    {
+      "word": "講堂",
+      "reading": "こうどう",
+      "meaning": "auditorium",
+      "type": "on"
     }
   ],
   "鳥": [
@@ -2037,10 +2163,10 @@
       "type": "on"
     },
     {
-      "word": "勉める",
-      "reading": "つとめる",
-      "meaning": "to endeavor (to do)",
-      "type": "kun"
+      "word": "勉強会",
+      "reading": "べんきょうかい",
+      "meaning": "study group",
+      "type": "on"
     }
   ],
   "冬": [
@@ -2076,6 +2202,12 @@
       "word": "紅茶",
       "reading": "こうちゃ",
       "meaning": "black tea",
+      "type": "on"
+    },
+    {
+      "word": "茶色",
+      "reading": "ちゃいろ",
+      "meaning": "brown",
       "type": "on"
     }
   ],
@@ -2182,6 +2314,12 @@
       "word": "漢字",
       "reading": "かんじ",
       "meaning": "kanji",
+      "type": "on"
+    },
+    {
+      "word": "漢方薬",
+      "reading": "かんぽうやく",
+      "meaning": "Chinese herbal medicine",
       "type": "on"
     }
   ]

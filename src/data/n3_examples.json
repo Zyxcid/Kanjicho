@@ -19,6 +19,12 @@
       "reading": "ふしぎ",
       "meaning": "wonderful",
       "type": "on"
+    },
+    {
+      "word": "議論",
+      "reading": "ぎろん",
+      "meaning": "argument",
+      "type": "on"
     }
   ],
   "民": [
@@ -29,10 +35,10 @@
       "type": "on"
     },
     {
-      "word": "神の民",
-      "reading": "かみのたみ",
-      "meaning": "People of God (i.e. the Israelites)",
-      "type": "kun"
+      "word": "市民",
+      "reading": "しみん",
+      "meaning": "citizen (of a country)",
+      "type": "on"
     }
   ],
   "連": [
@@ -57,10 +63,10 @@
       "type": "on"
     },
     {
-      "word": "対い",
-      "reading": "むかい",
-      "meaning": "facing",
-      "type": "kun"
+      "word": "絶対",
+      "reading": "ぜったい",
+      "meaning": "absolutely",
+      "type": "on"
     }
   ],
   "部": [
@@ -93,9 +99,9 @@
   ],
   "市": [
     {
-      "word": "市",
-      "reading": "し",
-      "meaning": "city",
+      "word": "市民",
+      "reading": "しみん",
+      "meaning": "citizen (of a country)",
       "type": "on"
     },
     {
@@ -177,9 +183,9 @@
   ],
   "米": [
     {
-      "word": "米",
-      "reading": "べい",
-      "meaning": "(United States of) America",
+      "word": "欧米",
+      "reading": "おうべい",
+      "meaning": "Europe and the United States",
       "type": "on"
     },
     {
@@ -407,10 +413,10 @@
       "type": "on"
     },
     {
-      "word": "性",
-      "reading": "さが",
-      "meaning": "one's nature",
-      "type": "kun"
+      "word": "男性",
+      "reading": "だんせい",
+      "meaning": "man",
+      "type": "on"
     }
   ],
   "要": [
@@ -432,6 +438,12 @@
       "word": "制度",
       "reading": "せいど",
       "meaning": "system",
+      "type": "on"
+    },
+    {
+      "word": "制限",
+      "reading": "せいげん",
+      "meaning": "restriction",
       "type": "on"
     }
   ],
@@ -482,6 +494,12 @@
       "word": "時期",
       "reading": "じき",
       "meaning": "time",
+      "type": "on"
+    },
+    {
+      "word": "期間",
+      "reading": "きかん",
+      "meaning": "period",
       "type": "on"
     }
   ],
@@ -607,7 +625,7 @@
     {
       "word": "進む",
       "reading": "すすむ",
-      "meaning": "to advance",
+      "meaning": "to advance (spatially)",
       "type": "kun"
     }
   ],
@@ -675,10 +693,10 @@
       "type": "on"
     },
     {
-      "word": "権殿",
-      "reading": "かりどの",
-      "meaning": "temporary shrine (houses the object in which the deity resides when main shrine is under repairs)",
-      "type": "kun"
+      "word": "権限",
+      "reading": "けんげん",
+      "meaning": "power",
+      "type": "on"
     }
   ],
   "支": [
@@ -759,9 +777,9 @@
       "type": "on"
     },
     {
-      "word": "活きる",
-      "reading": "いきる",
-      "meaning": "to live",
+      "word": "活き",
+      "reading": "いき",
+      "meaning": "living",
       "type": "kun"
     }
   ],
@@ -841,6 +859,12 @@
       "reading": "しげん",
       "meaning": "resources",
       "type": "on"
+    },
+    {
+      "word": "資本",
+      "reading": "しほん",
+      "meaning": "funds",
+      "type": "on"
     }
   ],
   "予": [
@@ -848,6 +872,12 @@
       "word": "予定",
       "reading": "よてい",
       "meaning": "plans",
+      "type": "on"
+    },
+    {
+      "word": "予算",
+      "reading": "よさん",
+      "meaning": "estimate (of costs)",
       "type": "on"
     }
   ],
@@ -1011,6 +1041,12 @@
       "reading": "しんらい",
       "meaning": "trust (in)",
       "type": "on"
+    },
+    {
+      "word": "信仰",
+      "reading": "しんこう",
+      "meaning": "(religious) faith",
+      "type": "on"
     }
   ],
   "在": [
@@ -1021,9 +1057,9 @@
       "type": "on"
     },
     {
-      "word": "野に在る",
-      "reading": "やにある",
-      "meaning": "to be in opposition",
+      "word": "在りし日",
+      "reading": "ありしひ",
+      "meaning": "past days",
       "type": "kun"
     }
   ],
@@ -1035,10 +1071,10 @@
       "type": "on"
     },
     {
-      "word": "件の如し",
-      "reading": "くだんのごとし",
-      "meaning": "the above is hereby affirmed",
-      "type": "kun"
+      "word": "条件",
+      "reading": "じょうけん",
+      "meaning": "condition",
+      "type": "on"
     }
   ],
   "側": [
@@ -1131,6 +1167,12 @@
       "reading": "さくや",
       "meaning": "last night",
       "type": "on"
+    },
+    {
+      "word": "昨年",
+      "reading": "さくねん",
+      "meaning": "last year",
+      "type": "on"
     }
   ],
   "論": [
@@ -1141,10 +1183,10 @@
       "type": "on"
     },
     {
-      "word": "論い",
-      "reading": "あげつらい",
-      "meaning": "arguing",
-      "type": "kun"
+      "word": "結論",
+      "reading": "けつろん",
+      "meaning": "conclusion (of an argument, discussion, study, etc.)",
+      "type": "on"
     }
   ],
   "官": [
@@ -1152,6 +1194,12 @@
       "word": "警官",
       "reading": "けいかん",
       "meaning": "police officer",
+      "type": "on"
+    },
+    {
+      "word": "長官",
+      "reading": "ちょうかん",
+      "meaning": "secretary (government)",
       "type": "on"
     }
   ],
@@ -1188,6 +1236,12 @@
       "word": "感じ",
       "reading": "かんじ",
       "meaning": "feeling",
+      "type": "on"
+    },
+    {
+      "word": "感じる",
+      "reading": "かんじる",
+      "meaning": "to feel",
       "type": "on"
     }
   ],
@@ -1281,6 +1335,12 @@
       "reading": "りょうしん",
       "meaning": "parents",
       "type": "on"
+    },
+    {
+      "word": "両方",
+      "reading": "りょうほう",
+      "meaning": "both",
+      "type": "on"
     }
   ],
   "式": [
@@ -1288,6 +1348,12 @@
       "word": "正式",
       "reading": "せいしき",
       "meaning": "formal",
+      "type": "on"
+    },
+    {
+      "word": "株式",
+      "reading": "かぶしき",
+      "meaning": "share (in a company)",
       "type": "on"
     }
   ],
@@ -1353,13 +1419,19 @@
       "reading": "えんそう",
       "meaning": "musical performance",
       "type": "on"
+    },
+    {
+      "word": "講演",
+      "reading": "こうえん",
+      "meaning": "lecture",
+      "type": "on"
     }
   ],
   "歳": [
     {
-      "word": "歳月",
-      "reading": "さいげつ",
-      "meaning": "time",
+      "word": "三歳",
+      "reading": "さんさい",
+      "meaning": "three-year-old",
       "type": "on"
     },
     {
@@ -1388,6 +1460,12 @@
       "word": "相談",
       "reading": "そうだん",
       "meaning": "consultation",
+      "type": "on"
+    },
+    {
+      "word": "冗談",
+      "reading": "じょうだん",
+      "meaning": "joke",
       "type": "on"
     }
   ],
@@ -1452,6 +1530,12 @@
       "word": "性格",
       "reading": "せいかく",
       "meaning": "character (of a person)",
+      "type": "on"
+    },
+    {
+      "word": "価格",
+      "reading": "かかく",
+      "meaning": "price",
       "type": "on"
     }
   ],
@@ -1531,6 +1615,12 @@
       "reading": "じょうきょう",
       "meaning": "state of affairs",
       "type": "on"
+    },
+    {
+      "word": "状態",
+      "reading": "じょうたい",
+      "meaning": "state",
+      "type": "on"
     }
   ],
   "球": [
@@ -1552,6 +1642,12 @@
       "word": "職業",
       "reading": "しょくぎょう",
       "meaning": "occupation",
+      "type": "on"
+    },
+    {
+      "word": "就職",
+      "reading": "しゅうしょく",
+      "meaning": "finding employment",
       "type": "on"
     }
   ],
@@ -1588,6 +1684,12 @@
       "word": "役割",
       "reading": "やくわり",
       "meaning": "part",
+      "type": "on"
+    },
+    {
+      "word": "役立つ",
+      "reading": "やくだつ",
+      "meaning": "to be useful",
       "type": "on"
     }
   ],
@@ -1821,6 +1923,12 @@
       "reading": "きそく",
       "meaning": "rule",
       "type": "on"
+    },
+    {
+      "word": "規定",
+      "reading": "きてい",
+      "meaning": "stipulation",
+      "type": "on"
     }
   ],
   "術": [
@@ -1831,10 +1939,10 @@
       "type": "on"
     },
     {
-      "word": "詮術",
-      "reading": "せんすべ",
-      "meaning": "(proper) methods",
-      "type": "kun"
+      "word": "手術",
+      "reading": "しゅじゅつ",
+      "meaning": "surgery",
+      "type": "on"
     }
   ],
   "備": [
@@ -1857,6 +1965,12 @@
       "reading": "じゅうたく",
       "meaning": "residence",
       "type": "on"
+    },
+    {
+      "word": "帰宅",
+      "reading": "きたく",
+      "meaning": "returning home",
+      "type": "on"
     }
   ],
   "害": [
@@ -1864,6 +1978,12 @@
       "word": "障害",
       "reading": "しょうがい",
       "meaning": "obstacle",
+      "type": "on"
+    },
+    {
+      "word": "被害",
+      "reading": "ひがい",
+      "meaning": "(suffering) damage",
       "type": "on"
     }
   ],
@@ -1889,9 +2009,9 @@
       "type": "on"
     },
     {
-      "word": "警める",
-      "reading": "いましめる",
-      "meaning": "to warn against",
+      "word": "警め",
+      "reading": "いましめ",
+      "meaning": "caution",
       "type": "kun"
     }
   ],
@@ -1914,6 +2034,12 @@
       "word": "座席",
       "reading": "ざせき",
       "meaning": "seat (esp. in public places or places with assigned seating)",
+      "type": "on"
+    },
+    {
+      "word": "出席",
+      "reading": "しゅっせき",
+      "meaning": "attendance",
       "type": "on"
     }
   ],
@@ -1992,6 +2118,12 @@
       "word": "残念",
       "reading": "ざんねん",
       "meaning": "regrettable",
+      "type": "on"
+    },
+    {
+      "word": "記念",
+      "reading": "きねん",
+      "meaning": "commemoration",
       "type": "on"
     }
   ],
@@ -2154,6 +2286,12 @@
       "word": "風景",
       "reading": "ふうけい",
       "meaning": "scenery",
+      "type": "on"
+    },
+    {
+      "word": "光景",
+      "reading": "こうけい",
+      "meaning": "scene",
       "type": "on"
     }
   ],
@@ -2359,6 +2497,12 @@
       "reading": "こうふく",
       "meaning": "happiness",
       "type": "on"
+    },
+    {
+      "word": "福祉",
+      "reading": "ふくし",
+      "meaning": "welfare",
+      "type": "on"
     }
   ],
   "望": [
@@ -2380,6 +2524,12 @@
       "word": "非常",
       "reading": "ひじょう",
       "meaning": "emergency",
+      "type": "on"
+    },
+    {
+      "word": "是非",
+      "reading": "ぜひ",
+      "meaning": "certainly",
       "type": "on"
     }
   ],
@@ -2403,6 +2553,12 @@
       "reading": "けいさつ",
       "meaning": "police",
       "type": "on"
+    },
+    {
+      "word": "観察",
+      "reading": "かんさつ",
+      "meaning": "observation",
+      "type": "on"
     }
   ],
   "段": [
@@ -2410,6 +2566,12 @@
       "word": "手段",
       "reading": "しゅだん",
       "meaning": "means",
+      "type": "on"
+    },
+    {
+      "word": "値段",
+      "reading": "ねだん",
+      "meaning": "price",
       "type": "on"
     }
   ],
@@ -2474,6 +2636,12 @@
       "word": "財産",
       "reading": "ざいさん",
       "meaning": "property",
+      "type": "on"
+    },
+    {
+      "word": "財布",
+      "reading": "さいふ",
+      "meaning": "wallet",
       "type": "on"
     }
   ],
@@ -2665,6 +2833,12 @@
       "reading": "かがく",
       "meaning": "science",
       "type": "on"
+    },
+    {
+      "word": "教科書",
+      "reading": "きょうかしょ",
+      "meaning": "textbook",
+      "type": "on"
     }
   ],
   "積": [
@@ -2703,10 +2877,10 @@
       "type": "on"
     },
     {
-      "word": "居処",
-      "reading": "いどころ",
-      "meaning": "whereabouts",
-      "type": "kun"
+      "word": "処分",
+      "reading": "しょぶん",
+      "meaning": "disposal",
+      "type": "on"
     }
   ],
   "太": [
@@ -2729,6 +2903,12 @@
       "reading": "かんきゃく",
       "meaning": "spectator",
       "type": "on"
+    },
+    {
+      "word": "乗客",
+      "reading": "じょうきゃく",
+      "meaning": "passenger",
+      "type": "on"
     }
   ],
   "否": [
@@ -2750,6 +2930,12 @@
       "word": "医師",
       "reading": "いし",
       "meaning": "doctor",
+      "type": "on"
+    },
+    {
+      "word": "教師",
+      "reading": "きょうし",
+      "meaning": "teacher",
       "type": "on"
     }
   ],
@@ -2803,10 +2989,10 @@
       "type": "on"
     },
     {
-      "word": "存える",
-      "reading": "ながらえる",
-      "meaning": "to have a long life",
-      "type": "kun"
+      "word": "保存",
+      "reading": "ほぞん",
+      "meaning": "preservation",
+      "type": "on"
     }
   ],
   "飛": [
@@ -2842,6 +3028,12 @@
       "word": "番号",
       "reading": "ばんごう",
       "meaning": "number",
+      "type": "on"
+    },
+    {
+      "word": "信号",
+      "reading": "しんごう",
+      "meaning": "signal",
       "type": "on"
     }
   ],
@@ -2906,6 +3098,12 @@
       "word": "完全",
       "reading": "かんぜん",
       "meaning": "perfect",
+      "type": "on"
+    },
+    {
+      "word": "完成",
+      "reading": "かんせい",
+      "meaning": "completion",
       "type": "on"
     }
   ],
@@ -3029,9 +3227,9 @@
       "type": "on"
     },
     {
-      "word": "具える",
-      "reading": "そなえる",
-      "meaning": "to furnish with",
+      "word": "具わる",
+      "reading": "そなわる",
+      "meaning": "to be furnished with",
       "type": "kun"
     }
   ],
@@ -3197,10 +3395,10 @@
       "type": "on"
     },
     {
-      "word": "婦",
-      "reading": "よめ",
-      "meaning": "bride",
-      "type": "kun"
+      "word": "主婦",
+      "reading": "しゅふ",
+      "meaning": "housewife",
+      "type": "on"
     }
   ],
   "寄": [
@@ -3218,6 +3416,12 @@
     }
   ],
   "込": [
+    {
+      "word": "込む",
+      "reading": "こむ",
+      "meaning": "to be crowded",
+      "type": "kun"
+    },
     {
       "word": "申し込む",
       "reading": "もうしこむ",
@@ -3272,6 +3476,12 @@
       "word": "王様",
       "reading": "おうさま",
       "meaning": "king",
+      "type": "on"
+    },
+    {
+      "word": "女王",
+      "reading": "じょおう",
+      "meaning": "queen",
       "type": "on"
     }
   ],
@@ -3423,10 +3633,10 @@
       "type": "on"
     },
     {
-      "word": "使い途",
-      "reading": "つかいみち",
-      "meaning": "purpose",
-      "type": "kun"
+      "word": "途端",
+      "reading": "とたん",
+      "meaning": "just (now, at the moment, etc.)",
+      "type": "on"
     }
   ],
   "許": [
@@ -3521,9 +3731,9 @@
       "type": "on"
     },
     {
-      "word": "精げる",
-      "reading": "しらげる",
-      "meaning": "to polish (rice)",
+      "word": "精しい",
+      "reading": "くわしい",
+      "meaning": "detailed",
       "type": "kun"
     }
   ],
@@ -3560,6 +3770,12 @@
       "word": "結婚",
       "reading": "けっこん",
       "meaning": "marriage",
+      "type": "on"
+    },
+    {
+      "word": "離婚",
+      "reading": "りこん",
+      "meaning": "divorce",
       "type": "on"
     }
   ],
@@ -3781,10 +3997,10 @@
       "type": "on"
     },
     {
-      "word": "雑える",
-      "reading": "まじえる",
-      "meaning": "to mix",
-      "type": "kun"
+      "word": "雑誌",
+      "reading": "ざっし",
+      "meaning": "magazine",
+      "type": "on"
     }
   ],
   "招": [
@@ -3865,10 +4081,10 @@
       "type": "on"
     },
     {
-      "word": "賛える",
-      "reading": "たたえる",
-      "meaning": "to praise",
-      "type": "kun"
+      "word": "賛辞",
+      "reading": "さんじ",
+      "meaning": "eulogy",
+      "type": "on"
     }
   ],
   "抱": [
@@ -3975,6 +4191,12 @@
       "reading": "かいが",
       "meaning": "painting",
       "type": "on"
+    },
+    {
+      "word": "絵本",
+      "reading": "えほん",
+      "meaning": "picture book",
+      "type": "on"
     }
   ],
   "越": [
@@ -4080,6 +4302,12 @@
       "word": "列車",
       "reading": "れっしゃ",
       "meaning": "train",
+      "type": "on"
+    },
+    {
+      "word": "行列",
+      "reading": "ぎょうれつ",
+      "meaning": "line",
       "type": "on"
     }
   ],
@@ -4281,10 +4509,10 @@
   ],
   "掛": [
     {
-      "word": "面掛",
-      "reading": "おもがい",
-      "meaning": "headstall",
-      "type": "on"
+      "word": "腰掛ける",
+      "reading": "こしかける",
+      "meaning": "to sit (down)",
+      "type": "kun"
     },
     {
       "word": "仕掛ける",
@@ -4509,6 +4737,12 @@
       "reading": "れいぎ",
       "meaning": "manners",
       "type": "on"
+    },
+    {
+      "word": "失礼",
+      "reading": "しつれい",
+      "meaning": "discourtesy",
+      "type": "on"
     }
   ],
   "窓": [
@@ -4586,6 +4820,12 @@
       "word": "祖父",
       "reading": "そふ",
       "meaning": "grandfather",
+      "type": "on"
+    },
+    {
+      "word": "祖母",
+      "reading": "そぼ",
+      "meaning": "grandmother",
       "type": "on"
     }
   ],
@@ -4749,6 +4989,12 @@
       "reading": "ばんごはん",
       "meaning": "dinner",
       "type": "on"
+    },
+    {
+      "word": "毎晩",
+      "reading": "まいばん",
+      "meaning": "every night",
+      "type": "on"
     }
   ],
   "寒": [
@@ -4799,6 +5045,12 @@
       "reading": "さいのう",
       "meaning": "talent",
       "type": "on"
+    },
+    {
+      "word": "天才",
+      "reading": "てんさい",
+      "meaning": "genius",
+      "type": "on"
     }
   ],
   "靴": [
@@ -4837,10 +5089,10 @@
       "type": "on"
     },
     {
-      "word": "時偶",
-      "reading": "ときたま",
-      "meaning": "once in a while",
-      "type": "kun"
+      "word": "配偶者",
+      "reading": "はいぐうしゃ",
+      "meaning": "spouse",
+      "type": "on"
     }
   ],
   "偉": [

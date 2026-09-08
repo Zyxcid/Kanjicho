@@ -145,7 +145,29 @@ npm run preview   # preview the production build locally
   example word (validated by `scripts/build_examples.py`). Primary readings
   are shown **bold** (in kana *and* in romaji mode) in the quiz answer panel,
   and bold in kana in the kanji library, and the help overlay explains this,
-  so you don't waste effort memorizing rarely-used readings.
+  so you don't waste effort memorizing rarely-used readings. A promoted kun
+  reading additionally needs **real backing** — the example word that proves
+  it must occur in BCCWJ or be marked common by JMdict (ke_pri/re_pri), and
+  rare kanji spellings (JMdict rK/oK/iK/sK) never enter the candidate pool,
+  so a dictionary-ghost word like 対い can never make a reading like 対
+  むか.う primary (t67 rule; removed 64 such artifacts, e.g. 歓 よろこ.ぶ via
+  the rare spelling 歓ぶ), while legitimate variant spellings of common
+  words (治る, 撃つ — ichi1-marked) still back their readings (t68).
+- **No junk example words** — dictionary-fallback examples (words without
+  BCCWJ corpus frequency) pass a quality gate (t68): they must be
+  multi-character (a single-kanji "word" like 験【しるし】 is tautological —
+  it is the kanji itself), marked common by JMdict (ke_pri/re_pri — 馬験,
+  地士, 是者-style archaic dictionary remnants are rejected; 治る, 活かす,
+  撃つ pass), must not start with kana (ひと条) and must not contain the
+  particle を (身を護る). Corpus words (BCCWJ-attested) are not gated —
+  frequency is the stronger backing. When a slot stays empty after the
+  gates (e.g. 験 has no common kun word at all), it is **backfilled** with
+  the best unused corpus candidate of any type — 験 now shows 経験 + 試験
+  instead of the archaic 馬験【うまじるし】; 565 kanji gained a second
+  example this way (2-ex: 1,534 → 2,099; only 49 N1 literary kanji keep a
+  single example where genuinely only one common word exists, and 63 N1
+  name-only kanji — 之, 亮, 楠 … — now show no example at all rather than
+  a junk one).
 - **Kana / romaji display toggle** — reading answers carry both their kana
   and romaji form; the **あ / Aa** button on the quiz screen switches which
   one is displayed, instantly, even mid-quiz (scoring is index-based, so
@@ -155,7 +177,7 @@ npm run preview   # preview the production build locally
   words' readings all switch together. Non-primary readings and example
   readings are romanized at runtime by `src/lib/kana.js` — a faithful JS
   port of the pipeline's Hepburn converter (verified identical on all
-  3,531 primary readings). The kanji Library always shows both scripts.
+  3,614 primary readings). The kanji Library always shows both scripts.
 - **Level-appropriate example words** — each kanji's example words are
   matched against a JLPT vocabulary list (same source as the kanji levels):
   a word at the kanji's own level or easier always wins over harder/unlisted
@@ -304,7 +326,42 @@ scripts/
                             freq_backing_pass (P2a natural — primary
                             lemah + kandidat ber-backing ketat + freq
                             korpus ≥4× dan ≥2000 → tukar; aturan umum,
-                            bukan special case per kanji). RANKING FIXES:
+                            bukan special case per kanji). t67: (a)
+                            rare-form spellings (ke_inf rK/oK/iK/sK)
+                            excluded per-spelling from both pools — the
+                            old RK hint string never matched JMdict's
+                            "rarely used kanji form", so ghost spellings
+                            like 対い/歓ぶ leaked in; (b) corpus-backing
+                            gate: a kun reading may only be DERIVED or
+                            PROMOTED to primary when the example word
+                            proving it has BCCWJ frequency
+                            (KUN_DERIVE_MIN_FREQ) — dictionary ghosts
+                            can no longer create kun primaries (64
+                            removed, e.g. 対 むか.う, 歓 よろこ.ぶ,
+                            随 したが.う); (c) homophone guard: a
+                            segment credited as both on and kun (摩擦
+                            credits マ and stem ま) feeds the ON bucket
+                            only, so P2a can no longer swap primaries
+                            using on-frequency leaking into a kun stem;
+                            t68: (d) example-quality gate — dictionary
+                            fallback words must be multi-char + JMdict
+                            common-marked (ke_pri/re_pri → alt_common)
+                            + not kana-initial + particle-free を,
+                            closing the 馬験【うまじるし】 (archaic
+                            remnant) and 験【しるし】 (tautological
+                            single-kanji fallback, the hole behind the
+                            user's failed manual fix) classes; (e) the
+                            t67 kun-promotion gate now also accepts
+                            JMdict common-marked examples as backing —
+                            治る (ichi1) can prove 治 なお.る from a
+                            fresh chain run (previously it only
+                            survived via state recovery from a previous
+                            build run — a determinism bug); (f) backfill:
+                            a slot still empty after the gates is filled
+                            with the best unused corpus candidate of
+                            any type (験 → 経験 + 試験; 565 kanji gained
+                            a second example, 2-ex 1534 → 2099).
+                            RANKING FIXES:
                             single-kanji words that read EXACTLY the
                             primary (蚕【かいこ】, 館【やかた】) are no
                             longer demoted behind rare compounds (Fix-6,
@@ -414,6 +471,17 @@ Words whose kanji spelling is not the normal written form are never picked:
     normally written ひらがな — it used to be picked as THE kun example for
     平), and
   - kanji forms flagged "rare kanji form" (`ke_inf &rK;`).
+
+Dictionary-fallback words (no BCCWJ frequency) additionally pass the t68
+quality gate: multi-character, JMdict common-marked (ke_pri on the spelling
+or re_pri on the entry's first reading — this is what separates legitimate
+variant spellings like 治る/活かす/撃つ from dictionary ghosts like 馬験),
+not kana-initial, and free of the particle を. Single-kanji words are only
+ever picked through the corpus path (蚕【かいこ】, 姿【すがた】 — real
+standalone words), never as dictionary fallback. An empty slot after the
+gates is backfilled with the best unused corpus candidate of any type
+(験 → 経験 + 試験), so a kanji either shows two good examples or honest
+fewer — never a junk word.
 
 Frequency attribution is also guarded: a BCCWJ frequency is only used when
 the BCCWJ reading matches one of the term's JMdict readings (BCCWJ stores
