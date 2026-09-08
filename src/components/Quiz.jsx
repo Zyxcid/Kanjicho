@@ -76,18 +76,25 @@ export default function Quiz({
   // Guard Back browser (Alt+← / tombol Back): saat sesi berprogres,
   // router menahan popstate (URL dikembalikan ke kuis) lalu dialog ini
   // dibuka — jalur keluar sama dengan tombol Cancel. Dipasang ulang saat
-  // hasProgress berubah; lepas otomatis saat layar unmount.
+  // hasProgress/confirmExit berubah; lepas otomatis saat layar unmount.
   useEffect(() => {
     if (!registerGuard) return;
     registerGuard({
       canLeave: () => leavingRef.current || !hasProgress,
       onBlocked: () => {
+        // Dialog sudah terbuka + Back ditekan LAGI (t65) → tutup dialognya
+        // (= "tetap belajar"), seperti Back menutup overlay lain; router
+        // sudah mengembalikan URL ke layar kuis sebelum callback ini.
+        if (confirmExit) {
+          setConfirmExit(false);
+          return;
+        }
         setExitSource("browser");
         setConfirmExit(true);
       },
     });
     return () => registerGuard(null);
-  }, [registerGuard, hasProgress]);
+  }, [registerGuard, hasProgress, confirmExit]);
 
   // Dekomposisi komponen soal aktif (KanjiVG stroke-group) — dimuat
   // sejak soal muncul (chunk per level, di-cache; level biasanya sudah

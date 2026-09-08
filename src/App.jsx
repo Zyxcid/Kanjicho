@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { LEVEL_IDS, getUnitsForLevel, getLevelMeta, loadLevelKanji } from "./lib/dataLoader.js";
 import { createInitialUnitState, reviewUnit, migrateUnitState } from "./lib/srs.js";
 import { generateQuiz, generateWeakQuiz, scoreQuiz } from "./lib/quizGenerator.js";
 import { computeStudyStats } from "./lib/studyStats.js";
 import * as storage from "./lib/storage.js";
 import { useRouter } from "./lib/useRouter.js";
+import { pushOverlayEntry, closeOverlayUI, discardOverlayEntry } from "./lib/useRouter.js";
 
 import Home from "./components/Home.jsx";
 import UnitSelect from "./components/UnitSelect.jsx";
@@ -114,6 +115,10 @@ export default function App() {
   // kartunya).
   const [calendarOpen, setCalendarOpen] = useState(false);
   const [calendarLevel, setCalendarLevel] = useState(null);
+  // Penutup overlay kalender yang terdaftar di tumpukan overlay router
+  // (t65): identitasnya disimpan supaya penutupan UI vs programatik bisa
+  // membuang entri yang tepat dari tumpukan.
+  const calCloseRef = useRef(null);
 
   // Streak & riwayat belajar (current/longest streak, hari unik, aktivitas
   // per hari) diderive dari attempts — streak & doneToday mengisi KARTU
@@ -330,10 +335,25 @@ export default function App() {
   }
 
   // Buka overlay kalender review dari kartu "Due now". Bukan route/hash —
-  // overlay memang ephemeral, ditutup lewat X/backdrop/Escape.
+  // overlay memang ephemeral; tapi SEJAK t65 tiap overlay membuka entri
+  // history sendiri (pushOverlayEntry) sehingga tombol Back di mobile
+  // menutup overlay-nya alih-alih berpindah halaman. Penutupan lewat UI
+  // (✕ / Escape / backdrop) mengonsumsi entri itu kembali.
   function openCalendar(level = null) {
     setCalendarLevel(level);
+    if (!calendarOpen) {
+      calCloseRef.current = () => setCalendarOpen(false);
+      pushOverlayEntry(calCloseRef.current);
+    }
     setCalendarOpen(true);
+  }
+
+  // Tutup kalender lewat UI (✕ / Escape / backdrop dari CalendarModal) —
+  // konsumsi entri overlay supaya tumpukan history tetap bersih.
+  function closeCalendarUI() {
+    const close = calCloseRef.current;
+    calCloseRef.current = null;
+    closeOverlayUI(close);
   }
 
   // Jadwal review untuk overlay kalender, ter-filter sesuai konteks kartu
@@ -344,17 +364,26 @@ export default function App() {
   );
 
   // Klik unit overdue di overlay: tutup overlay dulu, baru buka kuisnya —
-  // supaya overlay tidak menutupi layar kuis.
+  // supaya overlay tidak menutupi layar kuis. Entri overlay ditinggalkan
+  // "basi" di history (tanpa konsumsi — history.back() asinkron akan
+  // bertabrakan dengan pushState kuis); entri basi itu otomatis DIGANTI
+  // entri kuis oleh navigate() — lihat useRouter.navigate.
   function jumpFromCalendar(unitId) {
     setCalendarOpen(false);
+    discardOverlayEntry(calCloseRef.current);
+    calCloseRef.current = null;
     jumpToNextReview(unitId);
   }
 
   // Navigasi apa pun (termasuk Back browser yang mengubah layar di belakang
   // overlay) menutup overlay kalender — overlay tidak boleh bertahan lintas
   // layar. Klik unit overdue sudah menutup eksplisit; ini menutup jalur lain.
+  // (Back saat overlay terbuka TIDAK lewat sini — popstate menutup overlay
+  // tanpa mengubah layar, lihat useRouter.onPop (2).)
   useEffect(() => {
     setCalendarOpen(false);
+    discardOverlayEntry(calCloseRef.current);
+    calCloseRef.current = null;
   }, [view]);
 
   // Parameter kedua (level) dipakai kalau unit yang dibuka BUKAN dari
@@ -394,7 +423,10 @@ export default function App() {
   // dijawab salah dan belum ditebus (lihat WEAK_REDEEM_CORRECT_STREAK di
   // storage.js), lalu buat kuis darinya. Panjang sesi = semua missed kanji
   // unit itu (tanpa batas).
-  async function startWeakReview(unitId) {
+  // navOpts diteruskan ke navigate() — "Review again" dari layar hasil
+  // memakai { collapse: 1 } supaya entri hasil LAMA diganti entri kuis
+  // baru (Back saat keluar sesi tidak menghidupkan hasil basi).
+  async function startWeakReview(unitId, navOpts) {
     const pool = await loadLevelKanji(activeLevel);
     if (pool.length < 4) {
       showToast("This level doesn't have enough kanji to generate distractors.");
@@ -415,7 +447,7 @@ export default function App() {
     setQIndex(0);
     setAnswers([]);
     setSelectedChoice(null);
-    navigate("quiz", { unit: "weak" });
+    navigate("quiz", { unit: "weak", ...(navOpts || {}) });
   }
 
   // Tombol "Reset progress" di UnitSelect: hapus seluruh progress level
@@ -586,7 +618,10 @@ export default function App() {
 
       {effectiveView === "home" && <Home levelIds={LEVEL_IDS} getLevelMeta={getLevelMeta} getLevelStats={(level) => levelStatsMap[level]} onOpenLevel={openLevel} onBrowse={() => navigate("browse")} stats={allLevelsStats} studyStats={studyStats} onOpenCalendar={() => openCalendar(null)} />}
 
-      {effectiveView === "browse" && <Browse onBack={() => navigate("home")} />}
+      {/* Back dari Browse MELIPAT entri browse (collapse 1) — mundur ke
+          entri home yang sudah ada di tumpukan; tanpa ini Back setelah
+          "Home" akan membuka ulang Browse. */}
+      {effectiveView === "browse" && <Browse onBack={() => navigate("home", { collapse: 1 })} />}
 
       {effectiveView === "unitSelect" && (
         <UnitSelect
@@ -595,7 +630,7 @@ export default function App() {
           progress={progress}
           stats={levelStats}
           studyStats={studyStats}
-          onBack={() => navigate("home")}
+          onBack={() => navigate("home", { collapse: 1 })}
           onStartUnit={startUnit}
           onOpenCalendar={() => openCalendar(activeLevel)}
           onResetProgress={resetLevelProgress}
@@ -618,10 +653,12 @@ export default function App() {
           registerGuard={registerGuard}
           // Cancel kuis = semantics Back browser: kembali ke daftar unit
           // asal kuis (missed review → daftar unit level asalnya).
+          // collapse 1: lipat entri kuis — entri di bawahnya memang layar
+          // sebelum kuis, jadi Back setelahnya tidak menghidupkan kuis mati.
           onCancel={() =>
             quizMode === "weak"
-              ? navigate("unitSelect", { level: weakOriginLevel || activeLevel })
-              : navigate("unitSelect", { level: activeLevel })
+              ? navigate("unitSelect", { level: weakOriginLevel || activeLevel, collapse: 1 })
+              : navigate("unitSelect", { level: activeLevel, collapse: 1 })
           }
         />
       )}
@@ -631,18 +668,25 @@ export default function App() {
           result={result}
           mode={result.mode || "srs"}
           activeUnit={activeUnit}
+          // "Back to Units" melipat entri kuis + hasil (collapse 2) →
+          // mendarat di layar sebelum kuis (biasanya daftar unit):
+          // Back berikutnya pulang ke home, bukan ke layar hasil.
           onBackToUnits={() =>
             result.mode === "weak"
-              ? navigate("unitSelect", { level: weakOriginLevel || activeLevel })
-              : navigate("unitSelect", { level: activeLevel })
+              ? navigate("unitSelect", { level: weakOriginLevel || activeLevel, collapse: 2 })
+              : navigate("unitSelect", { level: activeLevel, collapse: 2 })
           }
-          onHome={() => navigate("home")}
+          // Home dari layar hasil RESET tumpukan sampai entri pertama app
+          // (t65): Back dari home keluar dari app — tidak lagi membuka
+          // ulang layar hasil yang sudah ditinggalkan.
+          onHome={() => navigate("home", { reset: true })}
           // Hanya relevan untuk weak review yang masih menyisakan kanji
           // missed — mengulang sesi remedial unit yang sama. startWeakReview
           // membaca daftar missed TERKINI (weakKanji sudah di-refresh App
           // setelah sesi selesai), jadi kuis ulang otomatis hanya berisi
-          // kanji yang masih perlu ditebus.
-          onReviewAgain={() => weakOriginUnit && startWeakReview(weakOriginUnit)}
+          // kanji yang masih perlu ditebus. collapse 1: entri hasil lama
+          // diganti entri kuis baru.
+          onReviewAgain={() => weakOriginUnit && startWeakReview(weakOriginUnit, { collapse: 1 })}
         />
       )}
 
@@ -656,7 +700,7 @@ export default function App() {
           level={calendarLevel}
           entries={calendarEntries}
           activity={studyStats.activity}
-          onClose={() => setCalendarOpen(false)}
+          onClose={closeCalendarUI}
           onJump={jumpFromCalendar}
         />
       )}

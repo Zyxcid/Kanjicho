@@ -3,6 +3,7 @@ import { ChevronLeft, CircleX, Trash2 } from "lucide-react";
 import { unitStatus } from "../App.jsx";
 import { intervalUntilLabel } from "../lib/dueFormat.js";
 import { loadLevelKanji } from "../lib/dataLoader.js";
+import { useDialogOverlay } from "../lib/useRouter.js";
 import StatCards from "./StatCards.jsx";
 
 const STATUS_LABEL = {
@@ -35,11 +36,13 @@ export default function UnitSelect({
   const [kanjiList, setKanjiList] = useState(null);
   // Unit yang menunggu popup: "scheduled" tanpa missed → konfirmasi
   // practice; "scheduled"/"mastered" DENGAN missed → gate "review dulu"
-  // (practice terkunci sampai missed bersih).
-  const [pendingDrill, setPendingDrill] = useState(null);
+  // (practice terkunci sampai missed bersih). Terintegrasi history Back
+  // (t65): Back saat popup terbuka menutup popup-nya, bukan berpindah
+  // layar.
+  const [pendingDrill, openDrillDialog, closeDrillDialogUI, dismissDrillDialog] = useDialogOverlay(null);
   // Dialog konfirmasi "Reset progress" (destruktif — hapus seluruh
-  // progress level yang sedang dilihat).
-  const [confirmReset, setConfirmReset] = useState(false);
+  // progress level yang sedang dilihat). Back juga menutupnya (t65).
+  const [confirmReset, openResetDialog, closeResetDialogUI] = useDialogOverlay(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -100,7 +103,7 @@ export default function UnitSelect({
         {showReset && stats.studied > 0 && (
           <button
             className="kd-reset-progress"
-            onClick={() => setConfirmReset(true)}
+            onClick={openResetDialog}
             title={`Delete this level's progress: SRS schedule, quiz history and missed kanji. Other levels are not affected.`}
           >
             <Trash2 size={13} strokeWidth={2.25} /> Reset progress
@@ -154,7 +157,7 @@ export default function UnitSelect({
                 disabled={!kanjiList}
                 onClick={() =>
                   (dim || (status === "mastered" && drillGated))
-                    ? setPendingDrill(unitId)
+                    ? openDrillDialog(unitId)
                     : onStartUnit(unitId)
                 }
               >
@@ -171,7 +174,7 @@ export default function UnitSelect({
       </div>
 
       {confirmReset && (
-        <div className="kd-modal-overlay" onClick={() => setConfirmReset(false)}>
+        <div className="kd-modal-overlay" onClick={closeResetDialogUI}>
           <div className="kd-modal kd-drill-confirm" onClick={(e) => e.stopPropagation()}>
             {/* Konfirmasi destruktif: sebutkan eksplisit apa saja yang
                 terhapus supaya tidak dikira hanya jadwal SRS-nya. Klik di
@@ -182,13 +185,16 @@ export default function UnitSelect({
             </p>
             <p className="kd-drill-confirm-text">other levels are not affected</p>
             <div className="kd-btn-row">
-              <button className="kd-btn secondary" onClick={() => setConfirmReset(false)}>
+              <button className="kd-btn secondary" onClick={closeResetDialogUI}>
                 Cancel
               </button>
               <button
                 className="kd-btn danger"
                 onClick={() => {
-                  setConfirmReset(false);
+                  // Konsumsi entri overlay dulu ( sama seperti Cancel ),
+                  // baru eksekusi — reset tidak menavigasi, jadi entri
+                  // harus benar-benar dibuang dari history.
+                  closeResetDialogUI();
                   onResetProgress(level);
                 }}
               >
@@ -219,17 +225,20 @@ export default function UnitSelect({
                   <div className="kd-btn-row">
                     <button
                       className="kd-btn secondary"
-                      onClick={() => setPendingDrill(null)}
+                      onClick={closeDrillDialogUI}
                     >
                       Cancel
                     </button>
                     {/* Cukup "Review" tanpa angka — jumlah missed sudah
-                        disebut di kalimat atasnya. */}
+                        disebut di kalimat atasnya. dismiss ( bukan close ):
+                        aksi ini langsung disusul navigasi ke kuis — entri
+                        dialog basi digantikan entri kuis ( lihat
+                        useRouter.navigate ). */}
                     <button
                       className="kd-btn primary"
                       onClick={() => {
                         const unitId = pendingDrill;
-                        setPendingDrill(null);
+                        dismissDrillDialog();
                         onStartWeakReview(unitId);
                       }}
                     >
@@ -248,7 +257,7 @@ export default function UnitSelect({
                   <div className="kd-btn-row">
                     <button
                       className="kd-btn secondary"
-                      onClick={() => setPendingDrill(null)}
+                      onClick={closeDrillDialogUI}
                     >
                       Cancel
                     </button>
@@ -256,7 +265,7 @@ export default function UnitSelect({
                       className="kd-btn primary"
                       onClick={() => {
                         const unitId = pendingDrill;
-                        setPendingDrill(null);
+                        dismissDrillDialog();
                         onStartUnit(unitId);
                       }}
                     >

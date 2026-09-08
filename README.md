@@ -135,7 +135,11 @@ npm run preview   # preview the production build locally
   and turned on via the Progress section of the help modal; it only
   appears on a level that has progress.
 - **Per-level progress badges** — each level card shows live status (New /
-  N due / studied-of-total / Mastered) instead of a static label.
+  N due / studied-of-total / Mastered) instead of a static label. On small
+  screens (≤640px) the level chooser becomes a vertical list of full-width
+  cards — the level name large on the left, badge + "N kanji · N units"
+  right-aligned on the right (one structure, CSS-only switch); wider
+  screens keep the grid.
 - **Primary readings are the quiz source** — quiz answers come only from each
   kanji's *primary reading*: the most common reading that is backed by a real
   example word (validated by `scripts/build_examples.py`). Primary readings
@@ -1024,6 +1028,29 @@ unit's level.
 history entry; browser Back/Forward fires `popstate` and restores the screen.
 Deep-linking / reload on a quiz/result hash falls back to Unit Select
 (in-memory quiz state is lost on reload).
+
+Mobile Back button behaves like a native app (t65):
+
+- **Overlays own a history entry.** Opening a modal (kanji detail in Browse,
+  help, review calendar, unit practice/reset confirm dialogs) pushes an extra
+  entry that shares the screen's hash; pressing Back while a modal is open
+  just closes the modal — the screen underneath does not change. Closing a
+  modal via its own UI (✕ / Escape / backdrop / Cancel) consumes that entry
+  (`history.back()`), so Back afterwards navigates for real instead of
+  hitting a dead entry.
+- **"Up" navigation folds entries instead of stacking.** Cancel quiz, Browse
+  Home, Unit Select Home collapse one entry (`collapse: 1`); "Back to Units"
+  on the result screen folds quiz + result (`collapse: 2`). Back after these
+  never resurrects a dead quiz/result screen.
+- **Home from the result screen resets to the app root** (`reset: true`), so
+  Back exits the app instead of reopening the finished quiz's result.
+- Entry depth is tracked in `history.state` (`{ kd: n }`, root = 0) so folds
+  never travel past the app's first entry; a leftover overlay entry from a
+  programmatic close (e.g. jumping from the calendar straight into a quiz) is
+  replaced by the next navigation instead of burying a dead entry.
+- The in-progress quiz guard still intercepts Back (confirm dialog); pressing
+  Back again while the "Leave this session?" dialog is open dismisses it
+  (same close-on-Back behavior as other overlays).
 
 ## Progress storage
 

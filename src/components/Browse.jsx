@@ -7,6 +7,7 @@ import CopyKanji from "./CopyKanji.jsx";
 import ComponentBreakdown from "./ComponentBreakdown.jsx";
 import { loadStrokes } from "../lib/strokes.js";
 import { loadComponents } from "../lib/components.js";
+import { pushOverlayEntry, closeOverlayUI, discardOverlayEntry } from "../lib/useRouter.js";
 
 // "All" + N5..N1. Default N5 supaya paint pertama ringan (N1 sendiri
 // berisi 1.232 entri; N5 lebih ramah sebagai halaman mula).
@@ -91,18 +92,35 @@ export default function Browse({ onBack }) {
     setVisibleCount(VISIBLE_STEP);
   }, []);
 
+  // Tutup modal (tombol ✕ / klik overlay / Escape) — histori ikut
+  // dikosongkan.
+  const closeModal = useCallback(() => {
+    setSelected(null);
+    setNavHistory([]);
+  }, []);
+
+  // Tutup lewat UI: selain menutup state modal, KONSUMSI entri overlay
+  // di history yang ditambahkan saat modal dibuka (t65) — tanpa itu
+  // pengguna harus menekan Back dua kali untuk benar-benar berpindah.
+  const closeModalUI = useCallback(() => {
+    closeOverlayUI(closeModal);
+  }, [closeModal]);
+
   // Tutup modal detail dengan Escape (ikut mengosongkan histori
   // navigasi komponen — modal ditutup berarti sesi jelajah selesai).
   useEffect(() => {
     function onKey(e) {
       if (e.key === "Escape") {
-        setSelected(null);
-        setNavHistory([]);
+        closeModalUI();
       }
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, []);
+  }, [closeModalUI]);
+
+  // Bersih-bersih defensif: modal terbuka saat layar Browse unmount
+  // (navigasi lewat popstate) → buang penutupnya dari tumpukan overlay.
+  useEffect(() => () => discardOverlayEntry(closeModal), [closeModal]);
 
   // Setiap modal dibuka untuk kanji baru → muat path goresannya DAN
   // dekomposisi komponennya, lalu reset scroll ke atas. "All"
@@ -133,10 +151,18 @@ export default function Browse({ onBack }) {
   const hasMore = list.length > visibleCount;
 
   // Buka kanji dari grid → sesi jelajah baru: histori komponen kosong.
-  const openKanji = useCallback((k) => {
-    setNavHistory([]);
-    setSelected(k);
-  }, []);
+  // Modal membuka ENTRI OVERLAY history sendiri (t65): tombol Back di
+  // mobile saat modal terbuka menutup modal — layar tidak berpindah.
+  // Navigasi chip komponen (openComponent/goBack) TIDAK menambah entri:
+  // Back tetap berarti "tutup modal" di kedalaman jelajah mana pun.
+  const openKanji = useCallback(
+    (k) => {
+      setNavHistory([]);
+      setSelected(k);
+      pushOverlayEntry(closeModal);
+    },
+    [closeModal]
+  );
 
   // Klik chip komponen → navigasi modal ke kanji komponen itu (target
   // link = k bila bentuk tertulisnya bukan kanji DB, mis. 亻 → 人).
@@ -168,12 +194,6 @@ export default function Browse({ onBack }) {
       setSelected(h[h.length - 1]);
       return h.slice(0, -1);
     });
-  }, []);
-
-  // Tutup modal (tombol ✕ / klik overlay) — histori ikut dikosongkan.
-  const closeModal = useCallback(() => {
-    setSelected(null);
-    setNavHistory([]);
   }, []);
 
   return (
@@ -263,11 +283,11 @@ export default function Browse({ onBack }) {
           kanan. Estetika elemen info tetap memakai kd-reveal. Tombol ←
           muncul hanya setelah navigasi komponen (navHistory terisi). */}
       {selected && (
-        <div className="kd-modal-overlay" onClick={closeModal}>
+        <div className="kd-modal-overlay" onClick={closeModalUI}>
           <div className="kd-modal" ref={modalRef} onClick={(e) => e.stopPropagation()}>
             <button
               className="kd-modal-close"
-              onClick={closeModal}
+              onClick={closeModalUI}
               aria-label="Close"
             >
               <X size={18} />

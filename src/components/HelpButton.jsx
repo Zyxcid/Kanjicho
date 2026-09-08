@@ -2,22 +2,63 @@ import React from "react";
 import { HelpCircle, X, Github } from "lucide-react";
 import pkg from "../../package.json";
 import BackupControls from "./BackupControls";
+import { pushOverlayEntry, closeOverlayUI, discardOverlayEntry, isOverlayEntryRegistered } from "../lib/useRouter.js";
 
 const GITHUB_URL = "https://github.com/Zyxcid/Kanjicho";
 
 export default function HelpButton({ showReset, onToggleShowReset }) {
   const [open, setOpen] = React.useState(false);
+  // Penutup overlay yang terdaftar di tumpukan overlay router (t65):
+  // membuka modal menambah entri history sendiri → tombol Back di mobile
+  // menutup modal ini alih-alih berpindah halaman; menutup lewat UI
+  // (✕/Escape/backdrop) mengonsumsi entri itu kembali.
+  const closeRef = React.useRef(null);
+
+  function openHelp() {
+    setOpen(true);
+    // Push hanya kalau belum ada entri HIDUP — ref bisa basi setelah modal
+    // ditutup lewat Back (popstate membuang penutup dari tumpukan).
+    if (!isOverlayEntryRegistered(closeRef.current)) {
+      closeRef.current = () => setOpen(false);
+      pushOverlayEntry(closeRef.current);
+    }
+  }
+
+  function closeHelp() {
+    const close = closeRef.current;
+    closeRef.current = null;
+    closeOverlayUI(close);
+  }
+
+  // Escape menutup modal help — konsisten dengan modal lain (kalender,
+  // detail Browse).
+  React.useEffect(() => {
+    if (!open) return;
+    function onKey(e) {
+      if (e.key === "Escape") closeHelp();
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  // Bersih-bersih defensif: kalau komponen unmount saat modal terbuka
+  // (navigasi layar lewat popstate), buang penutupnya dari tumpukan
+  // overlay supaya tidak menutup overlay lain secara salah.
+  React.useEffect(() => () => {
+    discardOverlayEntry(closeRef.current);
+    closeRef.current = null;
+  }, []);
 
   return (
     <>
-      <button className="kd-icon-btn" onClick={() => setOpen(true)} aria-label="Help & about">
+      <button className="kd-icon-btn" onClick={openHelp} aria-label="Help & about">
         <HelpCircle size={18} />
       </button>
 
       {open && (
-        <div className="kd-modal-overlay" onClick={() => setOpen(false)}>
+        <div className="kd-modal-overlay" onClick={closeHelp}>
           <div className="kd-modal kd-help-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="kd-modal-close" onClick={() => setOpen(false)} aria-label="Close">
+            <button className="kd-modal-close" onClick={closeHelp} aria-label="Close">
               <X size={18} />
             </button>
 
