@@ -625,7 +625,7 @@
     {
       "word": "進む",
       "reading": "すすむ",
-      "meaning": "to advance (spatially)",
+      "meaning": "to advance",
       "type": "kun"
     }
   ],
@@ -1429,9 +1429,9 @@
   ],
   "歳": [
     {
-      "word": "三歳",
-      "reading": "さんさい",
-      "meaning": "three-year-old",
+      "word": "歳月",
+      "reading": "さいげつ",
+      "meaning": "time",
       "type": "on"
     },
     {

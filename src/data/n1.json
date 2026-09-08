@@ -30419,7 +30419,7 @@
       "hata"
     ],
     "meanings": [
-      "Qin dynasty",
+      "Manchu dynasty",
       "name given to naturalized foreigners"
     ],
     "stroke_count": 10,
@@ -39022,6 +39022,11 @@
         "kana": "フ",
         "romaji": "fu",
         "type": "on"
+      },
+      {
+        "kana": "つ.ける",
+        "romaji": "tsukeru",
+        "type": "kun"
       }
     ]
   },

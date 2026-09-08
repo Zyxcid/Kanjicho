@@ -5793,7 +5793,7 @@
     {
       "word": "丁目",
       "reading": "ちょうめ",
-      "meaning": "nth district of a town",
+      "meaning": "district of a town",
       "type": "on"
     },
     {
@@ -8685,7 +8685,7 @@
     {
       "word": "寂しい",
       "reading": "さびしい",
-      "meaning": "lonely (e.g. person, feeling)",
+      "meaning": "lonely",
       "type": "kun"
     }
   ],
@@ -14848,10 +14848,10 @@
       "type": "on"
     },
     {
-      "word": "附加",
-      "reading": "ふか",
-      "meaning": "addition",
-      "type": "on"
+      "word": "附け根",
+      "reading": "つけね",
+      "meaning": "root",
+      "type": "kun"
     }
   ],
   "彪": [],
