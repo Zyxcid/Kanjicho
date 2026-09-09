@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 """
 rerank_readings.py — Langkah 2 pipeline: rank ulang `primary_romaji` tiap
-kanji memakai frekuensi kata nyata dari korpus BCCWJ — kredit bacaan
-via ATRIBUSI STRUKTURAL (alignment DP), bukan substring (Fix-5).
+kanji memakai frekuensi HYBRID kata berkanji — jiten.moe global UTAMA
+(rank ≤ 10.000 → pseudo-freq Zipf, CC BY-SA 4.0) + penanda common JMdict
+ke_pri/re_pri FALLBACK — kredit
+bacaan via ATRIBUSI STRUKTURAL (alignment DP), bukan substring (Fix-5).
 
-Untuk tiap kanji, lihat semua KATA korpus yang memuat kanji itu (mis.
-時代, 代わり, 世代 untuk 代), atribusikan reading kata ke segmen kanji
-dengan mesin yang sama dengan build_examples.py (langkah 3), lalu
-jumlahkan frekuensi per bacaan. On'yomi paling sering jadi
-primary_romaji[0]; kun'yomi paling sering jadi primary_romaji[1].
+Untuk tiap kanji, lihat semua KATA sinyal hybrid (terattestasi jiten
+kuat ATAU bertanda pri) yang memuat kanji itu (mis. 時代, 代わり, 世代
+untuk 代), atribusikan reading kata ke segmen kanji dengan mesin yang
+sama dengan build_examples.py (langkah 3), lalu jumlahkan freq per
+bacaan. On'yomi paling sering jadi primary_romaji[0]; kun'yomi paling
+sering jadi primary_romaji[1].
 
 MENGAPA ATRIBUSI, BUKAN SUBSTRING (Fix-5 — akar bug seed): pencocokan
 substring first-match lama menyebabkan kredit palsu dua arah:
@@ -27,7 +30,11 @@ tidak mengkredit apa pun; seed default (bacaan pertama kamus) hanya
 tergulingkan bila pemenang korpus menang telak (margin > 100).
 
 Input:
-  - raw/BCCWJ_frequencylist_luw2_ver1_0.tsv  (daftar frekuensi BCCWJ)
+  - raw/JMdict_e.gz  (kamus Jepang→Inggris — sumber gloss sekaligus
+                     tanda common ke_pri/re_pri fallback, t70)
+  - raw/frequency_list_global.csv  (daftar frekuensi global Jiten —
+                     sinyal UTAMA hybrid; jiten.moe, CC BY-SA 4.0;
+                     raw/jiten_frequency_README.md)
   - output/n*.json  (data kanji hasil langkah 1 — workspace pipeline;
                      default. src/data/ adalah hasil promosi, bukan
                      sumber default)
@@ -41,7 +48,7 @@ Output:
   - file JSON di-update in place (hanya `primary_romaji` yang di-rank ulang)
 
 Pemakaian:
-    python scripts/rerank_readings.py [raw/BCCWJ_frequencylist_luw2_ver1_0.tsv] [path/to/data] [raw/kanjidic2.xml.gz]
+    python scripts/rerank_readings.py [raw/JMdict_e.gz] [path/to/data] [raw/kanjidic2.xml.gz]
 """
 
 import json
@@ -168,43 +175,47 @@ def clean_reading(kana):
 
 
 # ============================================================
-# Pemuatan BCCWJ
+# Pemuatan kata sinyal hybrid (jiten + pri, via hybrid_freq)
 # ============================================================
 
-def load_bccwj(tsv_path):
-    """Muat TSV BCCWJ → [(lemma, reading_hiragana, freq), ...].
-    Hanya simpan lemma yang memuat minimal satu kanji."""
-    print(f"Loading BCCWJ from {tsv_path} ...")
-    import csv
+def load_pri_words(jmdict_path):
+    """Muat entri sinyal hybrid → [(lemma, reading_hira, freq), ...]
+    (jiten.moe global UTAMA + penanda pri JMdict FALLBACK).
+
+    Overlay hybrid (hybrid_freq.attach) diterapkan pada hasil
+    parse_jmdict SEBELUM iterasi — pasangan terattestasi jiten
+    (rank ≤ 10.000) membawa pseudo-freq Zipf jiten; sisanya mempertahankan
+    nilai pri. POS tidak tersedia dan tidak diperlukan: nama diri
+    hidup di JMnedict, bukan JMdict, jadi saring 固有名詞 tidak pernah
+    dibutuhkan (parameter pos tetap dibawa sebagai None supaya
+    rank_readings tidak berubah)."""
+    print(f"Loading hybrid corpus words (jiten + pri) from {jmdict_path} ...")
+    # Lazy import (lihat komentar modul): hindari sikulus import
+    # build_examples ↔ rerank_readings.
+    from build_examples import parse_jmdict
+    terms, alt_terms, _alt_common = parse_jmdict(jmdict_path)
+    # t72 — sinyal hybrid: jiten utama, pri fallback. SATU titik injeksi
+    # yang sama dengan build_examples.py (hybrid_freq.attach).
+    from hybrid_freq import attach as hybrid_attach
+    hybrid_attach(jmdict_path.parent, terms, alt_terms, label="rerank")
     words = []
-    with open(tsv_path, encoding="utf-8") as f:
-        reader = csv.reader(f, delimiter="\t")
-        next(reader)
-        for row in reader:
-            if len(row) < 7:
+    for lemma, entries in terms.items():
+        if not any("\u4e00" <= ch <= "\u9fff" for ch in lemma):
+            continue
+        for reading, _glosses, freq in entries:
+            if freq is None or freq <= 0:
                 continue
-            lemma = row[2]
-            lform = row[1]
-            pos = row[3] if len(row) > 3 else ""
-            try:
-                freq = int(row[6])  # jumlah kemunculan (lebih besar = makin umum)
-            except (ValueError, IndexError):
-                continue
-            if not any("\u4e00" <= ch <= "\u9fff" for ch in lemma):
-                continue
-            reading_hira = katakana_to_hiragana(lform)
-            # Fix-5 iterasi-2: pos ikut dibawa — baris 固有名詞 tidak boleh
-            # mengkredit bacaan (konsisten aturan POS build_examples).
-            words.append((lemma, reading_hira, freq, pos))
-    print(f"  Loaded {len(words)} kanji-containing BCCWJ lemmas")
+            words.append((lemma, katakana_to_hiragana(reading), freq, None))
+    print(f"  Loaded {len(words)} hybrid corpus words "
+          f"(jiten-attested strong + pri-marked)")
     return words
 
 
-def build_kanji_word_index(bccwj_words):
+def build_kanji_word_index(pri_words):
     """Susun { kanji_char: [(lemma, reading, freq), ...] }."""
-    print("Indexing BCCWJ words by kanji ...")
+    print("Indexing pri words by kanji ...")
     index = {}
-    for lemma, reading, freq, pos in bccwj_words:
+    for lemma, reading, freq, pos in pri_words:
         seen_kanji = set()
         for ch in lemma:
             if "\u4e00" <= ch <= "\u9fff":
@@ -219,8 +230,8 @@ def build_kanji_word_index(bccwj_words):
 # Ranking bacaan
 # ============================================================
 
-def rank_readings(kanji, on_readings, kun_readings, bccwj_words, cand_table=None):
-    """Rank bacaan berdasarkan total frekuensi kata BCCWJ — Fix-5:
+def rank_readings(kanji, on_readings, kun_readings, pri_words, cand_table=None):
+    """Rank bacaan berdasarkan total pseudo-freq pri — Fix-5:
     kredit via atribusi struktural DP, bukan substring first-match.
 
     Per kata (lemma, reading, freq) yang memuat kanji:
@@ -272,7 +283,7 @@ def rank_readings(kanji, on_readings, kun_readings, bccwj_words, cand_table=None
     on_freq = {}
     kun_freq = {}
 
-    for lemma, word_reading, freq, pos in bccwj_words:
+    for lemma, word_reading, freq, pos in pri_words:
         if kanji not in lemma:
             continue
         # Fix-5 iterasi-2: nama diri tidak boleh mengkredit bacaan
@@ -288,7 +299,13 @@ def rank_readings(kanji, on_readings, kun_readings, bccwj_words, cand_table=None
             matched = attr["matched_reading"]
             if attr["type"] == "on":
                 if matched in on_clean:
-                    on_freq[matched] = on_freq.get(matched, 0) + freq
+                    # Kredit MAX, bukan SUM — pseudo-freq adalah skor kelas
+                    # kata, bukan jumlah token; varian bacaan yang dipakai
+                    # KATA TERUMUM harus menang lawan varian yang cuma
+                    # punya BANYAK kata menengah (万:
+                    # バン 12 kata x ~30k tidak boleh mengalahkan マン
+                    # 数万 41k — frekuensi korpus berdistribusi Zipf).
+                    on_freq[matched] = max(on_freq.get(matched, 0), freq)
             else:
                 # Kata dengan ekor kana MURNI setelah kanji (kata kerja
                 # 入る/終わる: kanji di awal + okurigana; kata akhir-kanji
@@ -302,8 +319,8 @@ def rank_readings(kanji, on_readings, kun_readings, bccwj_words, cand_table=None
                 if all(not ("\u4e00" <= ch <= "\u9fff") for ch in tail):
                     whole_clean = katakana_to_hiragana(word_reading)
                     if whole_clean in kun_clean:
-                        kun_freq[whole_clean] = \
-                            kun_freq.get(whole_clean, 0) + freq
+                        kun_freq[whole_clean] = max(
+                            kun_freq.get(whole_clean, 0), freq)
                         continue
                 group = kun_by_stem.get(matched)
                 if not group:
@@ -313,18 +330,18 @@ def rank_readings(kanji, on_readings, kun_readings, bccwj_words, cand_table=None
                 exact = [c for (c, r, okuri) in group if okuri == rest]
                 if exact:
                     # kata membedakan anggota secara pasti (okurigana
-                    # persis) → kredit penuh HANYA ke bentuk bersih itu.
+                    # persis) → kredit MAX hanya ke bentuk bersih itu.
                     for c in dict.fromkeys(exact):
-                        kun_freq[c] = kun_freq.get(c, 0) + freq
+                        kun_freq[c] = max(kun_freq.get(c, 0), freq)
                 else:
                     # Kata tidak membedakan anggota grup-stem (入れた
-                    # membuktikan い-sesuatu). Bagi rata antar BENTUK
-                    # BERSIH berbeda: bukti eksak selalu dominan di atas
-                    # bukti kabur, anggota tunggal tetap kredit penuh.
+                    # membuktikan い-sesuatu). Kredit MAX setara dibagi
+                    # per bentuk bersih: bukti eksak selalu dominan di
+                    # atas bukti kabur, anggota tunggal tetap penuh.
                     cleans = list(dict.fromkeys(c for (c, r, okuri) in group))
                     share = freq / len(cleans)
                     for c in cleans:
-                        kun_freq[c] = kun_freq.get(c, 0) + share
+                        kun_freq[c] = max(kun_freq.get(c, 0), share)
         else:  # pragma: no cover — jalur fallback tanpa kanjidic2
             matched_on = None
             matched_kun = None
@@ -389,8 +406,8 @@ def rank_readings(kanji, on_readings, kun_readings, bccwj_words, cand_table=None
 # ============================================================
 
 def main():
-    bccwj_path = Path(sys.argv[1]) if len(sys.argv) > 1 else \
-        Path(__file__).resolve().parent.parent / "raw" / "BCCWJ_frequencylist_luw2_ver1_0.tsv"
+    jmdict_path = Path(sys.argv[1]) if len(sys.argv) > 1 else \
+        Path(__file__).resolve().parent.parent / "raw" / "JMdict_e.gz"
     # Default = workspace pipeline (output/), konsisten dengan langkah
     # lain — src/data/ adalah hasil promosi, bukan default input.
     data_dir = Path(sys.argv[2]) if len(sys.argv) > 2 else \
@@ -400,15 +417,18 @@ def main():
     kanjidic_path = Path(sys.argv[3]) if len(sys.argv) > 3 else \
         Path(__file__).resolve().parent.parent / "raw" / "kanjidic2.xml.gz"
 
-    if not bccwj_path.exists():
-        print(f"Error: BCCWJ file not found: {bccwj_path}", file=sys.stderr)
+    if not jmdict_path.exists():
+        print(f"Error: JMdict file not found: {jmdict_path}", file=sys.stderr)
         sys.exit(1)
     if not data_dir.exists():
         print(f"Error: data directory not found: {data_dir}", file=sys.stderr)
         sys.exit(1)
 
-    bccwj_words = load_bccwj(bccwj_path)
-    kanji_word_index = build_kanji_word_index(bccwj_words)
+    # Sinyal hybrid: jiten global (raw/frequency_list_global.csv) UTAMA
+    # + penanda common JMdict (berada DI DALAM JMdict_e.gz, CC BY-SA 4.0 —
+    # lisensi sama dengan data lain) sebagai fallback (hybrid_freq.py).
+    pri_words = load_pri_words(jmdict_path)
+    kanji_word_index = build_kanji_word_index(pri_words)
 
     cand_table = None
     if kanjidic_path.exists():
@@ -438,12 +458,11 @@ def main():
             kun_readings = entry.get("readings", {}).get("kun", []) or []
 
             old = entry.get("primary_romaji", [])
-            bccwj_for_kanji = kanji_word_index.get(kanji, [])
+            pri_for_kanji = kanji_word_index.get(kanji, [])
             best_on, best_kun, on_freq, kun_freq = rank_readings(
-                kanji, on_readings, kun_readings, bccwj_for_kanji,
+                kanji, on_readings, kun_readings, pri_for_kanji,
                 cand_table=cand_table
             )
-
             new_pr = []
             if best_on:
                 new_pr.append(best_on)
@@ -466,7 +485,7 @@ def main():
         print(f"  {f.name}: {changed}/{len(kanji_list)} entries re-ranked")
 
     print(f"\nDone. {changed_all}/{total_all} kanji had their primary_romaji updated")
-    print("(Ranked by real BCCWJ frequency — Fix-5 DP attribution credit.)")
+    print("(Ranked by JMdict pri pseudo-frequency — t70; Fix-5 DP attribution credit.)")
 
 
 if __name__ == "__main__":

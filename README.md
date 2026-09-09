@@ -147,19 +147,20 @@ npm run preview   # preview the production build locally
   and bold in kana in the kanji library, and the help overlay explains this,
   so you don't waste effort memorizing rarely-used readings. A promoted kun
   reading additionally needs **real backing** — the example word that proves
-  it must occur in BCCWJ or be marked common by JMdict (ke_pri/re_pri), and
+  it must be attested in the Jiten global frequency list (rank ≤ 10,000)
+  or be marked common by JMdict (ke_pri/re_pri), and
   rare kanji spellings (JMdict rK/oK/iK/sK) never enter the candidate pool,
   so a dictionary-ghost word like 対い can never make a reading like 対
   むか.う primary (t67 rule; removed 64 such artifacts, e.g. 歓 よろこ.ぶ via
   the rare spelling 歓ぶ), while legitimate variant spellings of common
   words (治る, 撃つ — ichi1-marked) still back their readings (t68).
 - **No junk example words** — dictionary-fallback examples (words without
-  BCCWJ corpus frequency) pass a quality gate (t68): they must be
+  Jiten corpus frequency) pass a quality gate (t68): they must be
   multi-character (a single-kanji "word" like 験【しるし】 is tautological —
   it is the kanji itself), marked common by JMdict (ke_pri/re_pri — 馬験,
   地士, 是者-style archaic dictionary remnants are rejected; 治る, 活かす,
   撃つ pass), must not start with kana (ひと条) and must not contain the
-  particle を (身を護る). Corpus words (BCCWJ-attested) are not gated —
+  particle を (身を護る). Corpus words (hybrid-attested) are not gated —
   frequency is the stronger backing. When a slot stays empty after the
   gates (e.g. 験 has no common kun word at all), it is **backfilled** with
   the best unused corpus candidate of any type — 験 now shows 経験 + 試験
@@ -177,7 +178,7 @@ npm run preview   # preview the production build locally
   words' readings all switch together. Non-primary readings and example
   readings are romanized at runtime by `src/lib/kana.js` — a faithful JS
   port of the pipeline's Hepburn converter (verified identical on all
-  3,614 primary readings). The kanji Library always shows both scripts.
+  3,686 primary readings). The kanji Library always shows both scripts.
 - **Level-appropriate example words** — each kanji's example words are
   matched against a JLPT vocabulary list (same source as the kanji levels):
   a word at the kanji's own level or easier always wins over harder/unlisted
@@ -289,7 +290,9 @@ scripts/
   convert_kanji.py          Step 1: raw/kanjidic2.xml.gz + raw/JLPT_kanji_ALL.json
                             → n*.json (kanji data, workspace output/)
   rerank_readings.py        Step 2: rank primary_romaji (pipeline-internal
-                            working list) by BCCWJ word frequency —
+                            working list) by hybrid frequency (Jiten
+                            global list utama + penanda pri JMdict
+                            fallback — scripts/hybrid_freq.py; t72) —
                             credit via STRUCTURAL ATTRIBUTION (Fix-5):
                             a word only credits the reading whose
                             segment the DP alignment actually proves
@@ -304,7 +307,9 @@ scripts/
                             3rd arg = kanjidic2.xml.gz (default raw/;
                             without it the old substring matching runs
                             and a warning is printed)
-  build_examples.py         Step 3: raw/JMdict + BCCWJ + raw/JLPT_vocab_ALL.json
+  build_examples.py         Step 3: raw/JMdict + raw/frequency_list_global.csv
+                            (Jiten, CC BY-SA 4.0 — sinyal hybrid t72) +
+                            raw/JLPT_vocab_ALL.json
                             (arg ke-5 eksplisit) + raw/kanjidic2.xml.gz
                             (arg ke-6 opsional, default raw/) →
                             n*_examples.json; also filters the primaries
@@ -319,7 +324,7 @@ scripts/
                             fallback kamus JMdict (ejaan alternatif
                             seperti 活かす, keb kedua entri 生かす) MELALUI
                             atribusi yang sama; nama diri disaring via
-                            POS 固有名詞 BCCWJ. THREE stages: filter_entry
+                            POS 固有名詞 hybrid. THREE stages: filter_entry
                             (loose heuristic, candidates only) →
                             strict_primary_pass (structural verification;
                             gemination = strict evidence, Fix-8) →
@@ -334,7 +339,7 @@ scripts/
                             like 対い/歓ぶ leaked in; (b) corpus-backing
                             gate: a kun reading may only be DERIVED or
                             PROMOTED to primary when the example word
-                            proving it has BCCWJ frequency
+                            proving it has hybrid corpus frequency
                             (KUN_DERIVE_MIN_FREQ) — dictionary ghosts
                             can no longer create kun primaries (64
                             removed, e.g. 対 むか.う, 歓 よろこ.ぶ,
@@ -386,21 +391,6 @@ scripts/
                             no longer displace the gemination-backed
                             primary (列 レツ was exactly that false
                             positive; 颯 ソウ was stealing 爽's segment そう)
-  reading_quality_audit.py  AUDIT KUALITAS MENYELURUH v2 (read-only,
-                            jalankan kapan saja): atribusi struktural
-                            kata↔bacaan (alignment DP — segmentasi
-                            on/stem-kun, okurigana, geminasi, rendaku, 々)
-                            untuk memeriksa (a) tipe on/kun tiap contoh,
-                            (b) backing primary Level A/B/C, (c) frekuensi
-                            BCCWJ per bacaan tanpa substring. Taksonomi v2:
-                            HIGH hanya berisi kasus intervensi (contoh-
-                            salah-tipe / primary-kalah-kuat ≥4× / primary-
-                            valid-kurang-contoh), varian morfologis
-                            (morfem sama) jadi kategori 🔵 tersendiri,
-                            kandidat lemah jadi 🟡 ambigu. Output:
-                            output/reading_quality_report.{md,json} + fix
-                            plan per kasus HIGH (usulan contoh BCCWJ/JMdict
-                            + apa yang dibuktikan contoh salah-tipe)
   build_strokes.py          Step 5: KanjiVG SVGs → strokes_n*.json (stroke
                             paths per kanji, written to output/); verifies
                             every path count against stroke_count (fails on
@@ -419,6 +409,23 @@ scripts/
                             see "Component decomposition" below for the
                             extraction rules and the written-vs-original
                             form policy
+  hybrid_freq.py            Sinyal frekuensi HYBRID: jiten.moe global
+                            (raw/frequency_list_global.csv, CC BY-SA 4.0)
+                            UTAMA + penanda pri JMdict fallback — satu
+                            titik injeksi apply_hybrid()/attach() yang
+                            dipakai Step 2 DAN Step 3 (fail-fast bila
+                            CSV jiten hilang); standalone: python
+                            scripts/hybrid_freq.py (laporan distribusi)
+  fetch_fonts.py            Regenerasi public/fonts/ (woff2 subset) +
+                            src/styles/fonts.css — self-host Google
+                            Fonts (OFL 1.1), zero third-party request
+  test_logic.mjs            Unit test logika app (FSRS adapter, quiz,
+                            histori) — node scripts/test_logic.mjs
+  differential_tsfsrs.mjs, srs_oracle.mjs, experiment_adapters.mjs,
+  experiment_slope_full.mjs  Bukti validasi mesin SRS (differential
+                            test 2.600 kasus vs engine manual; oracle;
+                            eksperimen adapter/slope — lihat seksi
+                            SRS design)
 ```
 
 ## Data sources
@@ -430,10 +437,19 @@ bundled and loaded from disk. Three public datasets feed the build pipeline:
 | Source | Provides | Project page |
 |---|---|---|
 | **KANJIDIC2** | Kanji, on'yomi/kun'yomi, English meanings, stroke count, newspaper frequency | https://www.edrdg.org/wiki/KANJIDIC_Project.html |
-| **BCCWJ** (Balanced Corpus of Contemporary Written Japanese) | Word frequency — which readings and example words are actually common | https://clrd.ninjal.ac.jp/bccwj/en/freq-list.html |
+| **Jiten global frequency list** | Word frequency (media corpus, 3.18 B chars) — which readings and example words are actually common; primary layer of the hybrid build signal | https://jiten.moe/frequency-dictionaries |
 | **JMdict** | English glosses for example words | https://www.edrdg.org/jmdict/edict_doc_depr.html |
-| **JLPT vocabulary list** | JLPT level (N1–N5) of each example word — same-level-or-easier words are preferred | [Bluskyo/JLPT_Vocabulary](https://github.com/Bluskyo/JLPT_Vocabulary) (`data/vocab/results/JLPT_vocab_ALL.json`) |
+| **JLPT vocabulary list** | JLPT level (N1–N5) of each example word — same-level-or-easier words are preferred | [Bluskyo/JLPT_Vocabulary](https://github.com/Bluskyo/JLPT_Vocabulary) (`data/vocab/results/JLPT_vocab_ALL.json`, MIT) |
 | **KanjiVG** | Stroke-order animation data (SVG stroke paths) for every kanji in the app | https://github.com/KanjiVG/kanjivg (CC BY-SA 3.0) |
+
+Licences and ShareAlike compliance: KANJIDIC2 & JMdict are © EDRDG (CC
+BY-SA 4.0), KanjiVG is © Ulrich Apel (CC BY-SA 3.0), the Jiten global
+frequency list is © Jiten (CC BY-SA 4.0; build-time hybrid signal only —
+no frequency values ship in `src/data/`),
+JLPT levels are MIT. The derived data files are published at
+[Zyxcid/kanjicho-data](https://github.com/Zyxcid/kanjicho-data) under the
+same licences — see `NOTICE.md` (repo root) and the "Privacy & Google
+Play readiness" section below.
 
 
 | Field in JSON | Built from |
@@ -442,9 +458,9 @@ bundled and loaded from disk. Three public datasets feed the build pipeline:
 | `readings.on`, `readings.kun`, `meanings` | KANJIDIC2 |
 | `jlpt_level` | `JLPT_kanji_ALL.json` (see note below) |
 | `romaji_readings` | Derived — all readings romanized |
-| `primary_readings` | The primary readings as `{kana, romaji, type}` — ranked by BCCWJ frequency, then filtered to readings backed by an example word (see below). The quiz answer pool and the UI bolding both come from this one field |
+| `primary_readings` | The primary readings as `{kana, romaji, type}` — ranked by hybrid frequency (Jiten global list primary, JMdict `ke_pri`/`re_pri` fallback; t72), then filtered to readings backed by an example word (see below). The quiz answer pool and the UI bolding both come from this one field |
 | `unit`, `order_index` | Pipeline grouping — 15 kanji per unit, ordered by newspaper frequency |
-| `examples` | JMdict words containing the kanji, ranked by BCCWJ frequency with a preference for words at the kanji's JLPT level or easier |
+| `examples` | JMdict words containing the kanji, ranked by hybrid frequency with a preference for words at the kanji's JLPT level or easier |
 
 **JLPT levels:** KANJIDIC2 only carries the pre-2010 JLPT system (4 levels,
 no N5). `JLPT_kanji_ALL.json` maps each kanji to the modern N1–N5 system.
@@ -452,8 +468,8 @@ Like every other raw source, it is not included in the project — see the
 note under "Required raw sources" below.
 
 **Example words:** for each kanji, `build_examples.py` finds JMdict words
-containing it that also appear in the BCCWJ frequency list, cross-verifies
-the reading against BCCWJ (to reject archaic/rare alternate readings), and
+containing it that are attested in the hybrid corpus signal, cross-verifies
+the reading against corpus frequency (to reject archaic/rare alternate readings), and
 picks the most frequent on'yomi word and the most frequent kun'yomi word.
 Words are first matched by JLPT level (via the required `JLPT_vocab_ALL.json`):
 a word listed at the kanji's own level **or easier** is preferred
@@ -472,7 +488,7 @@ Words whose kanji spelling is not the normal written form are never picked:
     平), and
   - kanji forms flagged "rare kanji form" (`ke_inf &rK;`).
 
-Dictionary-fallback words (no BCCWJ frequency) additionally pass the t68
+Dictionary-fallback words (no corpus frequency) additionally pass the t68
 quality gate: multi-character, JMdict common-marked (ke_pri on the spelling
 or re_pri on the entry's first reading — this is what separates legitimate
 variant spellings like 治る/活かす/撃つ from dictionary ghosts like 馬験),
@@ -483,8 +499,8 @@ gates is backfilled with the best unused corpus candidate of any type
 (験 → 経験 + 試験), so a kanji either shows two good examples or honest
 fewer — never a junk word.
 
-Frequency attribution is also guarded: a BCCWJ frequency is only used when
-the BCCWJ reading matches one of the term's JMdict readings (BCCWJ stores
+Frequency attribution is also guarded: a corpus frequency is only used when
+the corpus reading matches one of the term's JMdict readings (the Jiten list stores
 貴方 with the reading あなた, but the kanji entry is 貴方【きほう】 — without
 this guard a rare reading would inherit あなた's big frequency), and the
 by-reading fallback only accepts the same word (or a spelling variant with
@@ -492,7 +508,7 @@ the same kanji sequence, like 現れる/現われる) — otherwise 本盗【ほ
 would inherit 本当's frequency.
 
 **Most common readings (`primary_readings`):** ranked by
-`rerank_readings.py`, which scores candidate readings by BCCWJ corpus
+`rerank_readings.py`, which scores candidate readings by hybrid corpus
 frequency — but only through **structural attribution** (Fix-5): a
 word containing the kanji credits the reading whose segment the DP
 alignment proves (looking at every word containing the kanji, e.g.
@@ -500,7 +516,7 @@ alignment proves (looking at every word containing the kanji, e.g.
 the old substring matching let いる steal 57030 from はいる). The most
 frequent on'yomi and kun'yomi win; the dictionary-default seed only
 falls when the corpus winner beats it by more than the margin guard.
-This aggregates frequency across ALL BCCWJ words using each reading,
+This aggregates frequency across ALL hybrid corpus words using each reading,
 so it correctly identifies the common readings (e.g. 十 → `too`, not
 the rare `so`). `primary_romaji` — a plain romaji list of the same
 information — exists only as the pipeline's internal working field
@@ -566,18 +582,17 @@ example typing lives in `build_examples.py` itself:
   医する い+する ↔ い.する); compound position (kanji followed by a
   kanji, or word-final in a multi-char word) → ON (病気 キ, 訓練 クン,
   放送 ホウ, 必死 シ); single-kanji words / non-matching okurigana
-  stay conservatively `unknown`. Ported identically into
-  `reading_quality_audit.py` (producer ↔ verifier invariant).
+  stay conservatively `unknown`.
 - Pool rule (Surgery 2, "Tahap B"): a candidate may only enter the
   on-pool or kun-pool of ITS OWN attributed type — 活性化【かっせいか】
   goes to 活's ON pool (かつ, via gemination), never to the kun pool
   of い.かす no matter what its reading happens to contain.
 - Dictionary fallback (kept, but attributed): slots the corpus cannot
   fill get JMdict alternate spellings (活かす is the 2nd keb of
-  生かす【いかす】; BCCWJ only has the 生 spelling) — same attribution,
+  生かす【いかす】; the corpus list only has the 生 spelling) — same attribution,
   plus an entry-reading gate and an exact-okurigana preference
   (活かす beats 活き for primary い.かす).
-- Proper-noun filter: BCCWJ rows with POS 固有名詞 (names of people /
+- Proper-noun filter: corpus rows with POS 固有名詞 (names of people /
   places / TV shows — 篤姫, 川崎) never become examples.
 - **Rendaku-aware loose backing (Fix-1, class R1):**
   `filter_entry.contained()` accepts the voiced variant of a reading
@@ -622,21 +637,20 @@ example typing lives in `build_examples.py` itself:
   swapped. 摂 セツ and 列 レツ and 代 か.わり emerge from the pipeline
   themselves.
 
-The read-only verifier for ALL of this is still
-`scripts/reading_quality_audit.py` (it keeps its own independent copy
-of the attribution engine — pipeline is producer, audit is verifier):
+The read-only verifier for ALL of this is
+`scripts/audit_primary_readings.mjs` — it re-checks every promoted
+primary against the same strict rules (run it after promotion, expect
+**GANTI (0)**):
 
 ```bash
-python scripts/reading_quality_audit.py   # → output/reading_quality_report.{md,json}
+node scripts/audit_primary_readings.mjs
 ```
 
-It reports per kanji: mislabeled examples, primary backing level
-(A strict / B loose / C unbacked), BCCWJ frequency re-attributed
-per reading (no substring credit-stealing), a **decision taxonomy**
-per primary and a fix plan for every HIGH case (candidate replacement
-examples from BCCWJ — proper nouns filtered, JMdict glosses attached,
-plus a dictionary-source fallback when the corpus has no common word,
-e.g. いかす is normally spelled 生かす so 活かす only exists in JMdict).
+The decision taxonomy below is the historical record of the full
+reading-quality audit run during the attribution surgery. That audit
+script was bound to the retired pre-hybrid frequency list and was
+removed together with it; `audit_primary_readings.mjs` is the living
+verifier.
 
 **Taxonomy v2** (after reviewing the v1 report, HIGH only contains
 cases that truly need intervention). Post-surgery state on a fresh
@@ -689,7 +703,7 @@ built.
 |---|---|
 | `kanjidic2.xml.gz` | https://www.edrdg.org/wiki/KANJIDIC_Project.html (see "download" link) |
 | `JMdict_e.gz` | https://www.edrdg.org/jmdict/edict_doc_depr.html (see "CURRENT VERSION & DOWNLOAD") |
-| `BCCWJ_frequencylist_luw2_ver1_0.tsv` | https://clrd.ninjal.ac.jp/bccwj/en/freq-list.html ("Long Unit Word list data (v2)") |
+| `frequency_list_global.csv` | https://jiten.moe/frequency-dictionaries → "Global" → CSV (CC BY-SA 4.0; MD5 b36652e9fb36873dc25676d52f7cac50) |
 | `JLPT_kanji_ALL.json` | [Bluskyo/JLPT_Vocabulary](https://github.com/Bluskyo/JLPT_Vocabulary/releases) — modern N1–N5 levels |
 | `JLPT_vocab_ALL.json` | [Bluskyo/JLPT_Vocabulary](https://github.com/Bluskyo/JLPT_Vocabulary) — `data/vocab/results/JLPT_vocab_ALL.json` (vocabulary levels; required — `build_examples.py` exits with an error when it's missing, rather than silently falling back to frequency-only ranking) |
 | KanjiVG `kanji/` SVGs | https://github.com/KanjiVG/kanjivg (clone or download ZIP; needed for `build_strokes.py` **and** `build_components.py`) |
@@ -710,12 +724,12 @@ raw/kanjidic2.xml.gz    ─┐
 raw/JLPT_kanji_ALL.json ─┘                      (kanji entries, units, readings)
 
 n*.json           ─┐
-raw/BCCWJ TSV     ─┴─→ rerank_readings.py ──→ n*.json (primary_romaji working list:
+raw/Jiten CSV     ─┴─→ rerank_readings.py ──→ n*.json (primary_romaji working list:
                                            frequency-ranked default)
 
 n*.json               ─┐
 raw/JMdict_e.gz       ─┼─→ build_examples.py ──→ n*_examples.json (example words per kanji,
-raw/BCCWJ TSV         ─┤   │                    type per structural attribution)
+raw/Jiten CSV         ─┤   │                    type per structural attribution)
 raw/JLPT_vocab_ALL.json ┤   └→                   + n*.json updated (primaries filtered to
 raw/kanjidic2.xml.gz  ─┘                        example-backed readings, written as
                                                 primary_readings {kana, romaji, type};
@@ -743,11 +757,11 @@ python scripts/convert_kanji.py raw/kanjidic2.xml.gz output raw/JLPT_kanji_ALL.j
 # 3rd arg (optional, default raw/kanjidic2.xml.gz) = candidate table
 # for Fix-5 DP attribution credit — omit it and the step falls back
 # to the legacy substring matching with a warning
-python scripts/rerank_readings.py raw/BCCWJ_frequencylist_luw2_ver1_0.tsv output raw/kanjidic2.xml.gz
+python scripts/rerank_readings.py raw/JMdict_e.gz output raw/kanjidic2.xml.gz
 # JLPT vocab levels are passed EXPLICITLY as the 5th arg — same
 # convention as JLPT_kanji_ALL.json above (no auto-detect);
 # build_examples.py fails fast if the file is missing
-python scripts/build_examples.py raw/JMdict_e.gz raw/BCCWJ_frequencylist_luw2_ver1_0.tsv output output raw/JLPT_vocab_ALL.json raw/kanjidic2.xml.gz
+python scripts/build_examples.py raw/JMdict_e.gz output output raw/JLPT_vocab_ALL.json raw/kanjidic2.xml.gz
 python scripts/build_manifest.py output
 
 # stroke-order data (KanjiVG): clone/download the repo into raw/ first
@@ -1144,8 +1158,50 @@ Configured via `vite-plugin-pwa`:
 - Runs offline after first load (all data + assets precached).
 - Auto-updates the service worker on new deploys.
 
+### Fonts are self-hosted (zero third-party requests)
+
+`public/fonts/` holds 854 subset woff2 files (16.2 MB on disk; browsers
+fetch only the unicode-range subsets they actually render) for Shippori
+Mincho, Zen Kaku Gothic New, and DM Mono — all **SIL Open Font License
+1.1**, regenerated by `python scripts/fetch_fonts.py` into
+`src/styles/fonts.css`. There is **no `<link>` to fonts.googleapis.com**:
+every request the app ever makes stays on its own origin, which is what
+makes the privacy policy's "no data collected / no data shared" honest
+(Google Play Data Safety). The woff2 subsets are deliberately **not**
+precached — with unicode-range, the browser only downloads the subsets
+needed for the glyphs actually shown; used subsets are cached by the
+service worker (CacheFirst, `app-fonts-cache`) and stay available offline.
+
 Test PWA features with `npm run build && npm run preview` (PWA behavior is
 limited in `npm run dev`).
+
+## Privacy & Google Play readiness
+
+The app is a zero-collection, no-account, offline-first PWA, and ships with
+the paperwork that Play submission needs:
+
+- **`public/privacy-policy.html`** — standalone policy page served from the
+  same origin as the app (linked from Help → "Privacy policy"); fill in the
+  developer name / email / country placeholders marked in the page before
+  submitting. Play Console requires a privacy policy URL for **every** app.
+- **`NOTICE.md`** (repo root) — data licensing map, font licensing, npm
+  licenses, trademark note.
+- **Open data repository** — the exact `src/data/` files are published at
+  [Zyxcid/kanjicho-data](https://github.com/Zyxcid/kanjicho-data) under the
+  same licences (CC BY-SA 4.0 / CC BY-SA 3.0), which satisfies the
+  ShareAlike obligations of KANJIDIC2, JMdict, and KanjiVG while the app
+  code stays proprietary. Sync it whenever `src/data/` changes.
+- **JLPT trademark disclaimer** — shown in Help ("not affiliated with…
+  JEES or the organizers of the JLPT").
+- **Frequency signal licensing** — the Jiten global list is CC BY-SA 4.0
+  (build-time signal; no frequency values ship in `src/data/`), credited in
+  Help → Data sources, the privacy policy, and the data repo NOTICE.
+
+Still on you before release: host the app + policy on your domain, push
+`kanjicho-data` to GitHub, review the filled privacy policy contact
+section, and (when the time comes) implement purchases exclusively via
+Google Play Billing — including for a TWA-wrapped PWA — and never paywall
+the CC BY-SA data itself (features only).
 
 ### Notifications (or lack thereof)
 

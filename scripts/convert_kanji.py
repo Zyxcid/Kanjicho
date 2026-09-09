@@ -318,7 +318,7 @@ def main():
     print(f"\nTotal: {len(all_output)} kanji across all levels")
     print("\nNOTE: primary_romaji masih placeholder (on[0]+kun[0]).")
     print("Lanjutkan dengan rerank_readings.py untuk rank berdasarkan frekuensi")
-    print("kata BCCWJ. Field ini hanya kerja-kerja internal pipeline —")
+    print("kata (sinyal hybrid jiten + pri). Field ini hanya kerja-kerja internal pipeline —")
     print("build_examples.py menggantinya dengan primary_readings di file")
     print("final.")
 

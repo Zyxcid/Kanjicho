@@ -144,14 +144,14 @@
     "stroke_count": 2,
     "primary_readings": [
       {
-        "kana": "ジン",
-        "romaji": "jin",
-        "type": "on"
-      },
-      {
         "kana": "ひと",
         "romaji": "hito",
         "type": "kun"
+      },
+      {
+        "kana": "ジン",
+        "romaji": "jin",
+        "type": "on"
       }
     ]
   },
@@ -262,8 +262,8 @@
     "stroke_count": 2,
     "primary_readings": [
       {
-        "kana": "ジュウ",
-        "romaji": "juu",
+        "kana": "ジッ",
+        "romaji": "jitsu",
         "type": "on"
       },
       {
@@ -308,8 +308,8 @@
         "type": "on"
       },
       {
-        "kana": "ふた.つ",
-        "romaji": "futatsu",
+        "kana": "ふた",
+        "romaji": "futa",
         "type": "kun"
       }
     ]
@@ -688,14 +688,14 @@
     "stroke_count": 4,
     "primary_readings": [
       {
-        "kana": "つき",
-        "romaji": "tsuki",
-        "type": "kun"
-      },
-      {
         "kana": "ゲツ",
         "romaji": "getsu",
         "type": "on"
+      },
+      {
+        "kana": "つき",
+        "romaji": "tsuki",
+        "type": "kun"
       }
     ]
   },
@@ -920,8 +920,8 @@
         "type": "on"
       },
       {
-        "kana": "ま",
-        "romaji": "ma",
+        "kana": "あいだ",
+        "romaji": "aida",
         "type": "kun"
       }
     ]
@@ -983,8 +983,8 @@
         "type": "on"
       },
       {
-        "kana": "あ.げる",
-        "romaji": "ageru",
+        "kana": "うえ",
+        "romaji": "ue",
         "type": "kun"
       }
     ]
@@ -1168,8 +1168,8 @@
     "stroke_count": 2,
     "primary_readings": [
       {
-        "kana": "キュウ",
-        "romaji": "kyuu",
+        "kana": "ク",
+        "romaji": "ku",
         "type": "on"
       },
       {
@@ -1343,8 +1343,8 @@
         "type": "on"
       },
       {
-        "kana": "まど.か",
-        "romaji": "madoka",
+        "kana": "まる",
+        "romaji": "maru",
         "type": "kun"
       }
     ]
@@ -1382,14 +1382,14 @@
     "stroke_count": 3,
     "primary_readings": [
       {
-        "kana": "シ",
-        "romaji": "shi",
-        "type": "on"
-      },
-      {
         "kana": "こ",
         "romaji": "ko",
         "type": "kun"
+      },
+      {
+        "kana": "シ",
+        "romaji": "shi",
+        "type": "on"
       }
     ]
   },
@@ -1468,11 +1468,6 @@
     ],
     "stroke_count": 2,
     "primary_readings": [
-      {
-        "kana": "ハチ",
-        "romaji": "hachi",
-        "type": "on"
-      },
       {
         "kana": "やっ.つ",
         "romaji": "yattsu",
@@ -1962,6 +1957,11 @@
         "kana": "ヒャク",
         "romaji": "hyaku",
         "type": "on"
+      },
+      {
+        "kana": "もも",
+        "romaji": "momo",
+        "type": "kun"
       }
     ]
   },
@@ -2252,14 +2252,14 @@
     "stroke_count": 7,
     "primary_readings": [
       {
-        "kana": "ダン",
-        "romaji": "dan",
-        "type": "on"
-      },
-      {
         "kana": "おとこ",
         "romaji": "otoko",
         "type": "kun"
+      },
+      {
+        "kana": "ナン",
+        "romaji": "nan",
+        "type": "on"
       }
     ]
   },
@@ -2465,14 +2465,14 @@
     "stroke_count": 4,
     "primary_readings": [
       {
-        "kana": "モク",
-        "romaji": "moku",
-        "type": "on"
-      },
-      {
         "kana": "き",
         "romaji": "ki",
         "type": "kun"
+      },
+      {
+        "kana": "モク",
+        "romaji": "moku",
+        "type": "on"
       }
     ]
   },
@@ -2625,8 +2625,8 @@
         "type": "on"
       },
       {
-        "kana": "なん",
-        "romaji": "nan",
+        "kana": "なに",
+        "romaji": "nani",
         "type": "kun"
       }
     ]
@@ -2696,6 +2696,11 @@
         "kana": "マン",
         "romaji": "man",
         "type": "on"
+      },
+      {
+        "kana": "よろず",
+        "romaji": "yorozu",
+        "type": "kun"
       }
     ]
   },

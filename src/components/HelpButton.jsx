@@ -1,5 +1,5 @@
 import React from "react";
-import { HelpCircle, X, Github } from "lucide-react";
+import { HelpCircle, X, Github, ShieldCheck } from "lucide-react";
 import pkg from "../../package.json";
 import BackupControls from "./BackupControls";
 import { pushOverlayEntry, closeOverlayUI, discardOverlayEntry, isOverlayEntryRegistered } from "../lib/useRouter.js";
@@ -109,15 +109,19 @@ export default function HelpButton({ showReset, onToggleShowReset }) {
                 <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">
                   CC BY-SA 4.0
                 </a>
-                . Reading and word frequency from{" "}
-                <a href="https://clrd.ninjal.ac.jp/bccwj/en/freq-list.html" target="_blank" rel="noreferrer">
-                  BCCWJ
+                . Reading and word frequency signals from{" "}
+                <a href="https://jiten.moe/frequency-dictionaries" target="_blank" rel="noreferrer">
+                  Jiten frequency lists
                 </a>{" "}
-                © NINJAL. JLPT kanji and vocabulary levels from{" "}
+                © Jiten, and common-word markers from JMdict, used under{" "}
+                <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">
+                  CC BY-SA 4.0
+                </a>
+                . JLPT kanji and vocabulary levels from{" "}
                 <a href="https://github.com/Bluskyo/JLPT_Vocabulary" target="_blank" rel="noreferrer">
                   Bluskyo/JLPT_Vocabulary
                 </a>
-                . Stroke order animations (tap any kanji in a quiz) from{" "}
+                <span className="kd-help-license"> (MIT)</span>. Stroke order animations (tap any kanji in a quiz) from{" "}
                 <a href="http://kanjivg.tagaini.net/" target="_blank" rel="noreferrer">
                   KanjiVG
                 </a>{" "}
@@ -126,6 +130,24 @@ export default function HelpButton({ showReset, onToggleShowReset }) {
                   CC BY-SA 3.0
                 </a>
                 .
+              </p>
+              {/* Disclaimer merek JLPT (JEES) + repo data terbuka + kredit
+                  pustaka OSS — kebersihan publish (Play Store): semua muatan
+                  legal Help kini satu tempat, tanpa baris vertikal baru yang
+                  berlebih (paragraf kecil di bawah kredit data). */}
+              <p className="kd-help-text kd-help-legal">
+                Kanjichō is an independent study tool and is not affiliated
+                with, authorized by, or endorsed by the Japan Educational
+                Exchanges and Services (JEES) or the organizers of the JLPT.
+              </p>
+              <p className="kd-help-text kd-help-legal">
+                The derived data files are published at{" "}
+                <a href="https://github.com/Zyxcid/kanjicho-data" target="_blank" rel="noreferrer">
+                  github.com/Zyxcid/kanjicho-data
+                </a>{" "}
+                under the same licenses (CC&nbsp;BY-SA). Built on open-source
+                libraries: React, Dexie, ts-fsrs, and lucide-react
+                (MIT / Apache-2.0 / ISC).
               </p>
             </div>
 
@@ -157,6 +179,17 @@ export default function HelpButton({ showReset, onToggleShowReset }) {
               <div className="kd-help-links">
                 <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="kd-help-link">
                   <Github size={15} /> GitHub
+                </a>
+                {/* Privacy policy wajib untuk listing Play Console — halaman
+                    statis di-served dari origin yang sama dengan app (relatif,
+                    ikut domain hosting apa pun + ikut build PWA). */}
+                <a
+                  href="privacy-policy.html"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="kd-help-link"
+                >
+                  <ShieldCheck size={15} /> Privacy policy
                 </a>
               </div>
             </div>

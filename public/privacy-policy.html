@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#1F3C5C" />
+  <title>Kanjichō — Privacy Policy</title>
+  <style>
+    :root {
+      --paper: #F5F1E8;
+      --ink: #24303E;
+      --ink-soft: #5B6672;
+      --indigo: #1F3C5C;
+      --indigo-soft: #3E5C80;
+      --line: #D8D2C4;
+      --todo-bg: #FFF6E5;
+      --todo-line: #E0A437;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #12161B;
+        --ink: #E7E3D8;
+        --ink-soft: #A7AEB8;
+        --indigo: #9DB4D0;
+        --indigo-soft: #B7C8DD;
+        --line: #333B44;
+        --todo-bg: #3A2E14;
+        --todo-line: #E0A437;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+    }
+    main { max-width: 720px; margin: 0 auto; padding: 40px 24px 72px; }
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 28px; line-height: 1.25; margin: 0 0 4px;
+      color: var(--indigo);
+    }
+    .sub { color: var(--ink-soft); font-size: 14px; margin-bottom: 28px; }
+    h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 19px; margin: 34px 0 10px; color: var(--indigo);
+      border-bottom: 1px solid var(--line); padding-bottom: 6px;
+    }
+    p, li { font-size: 15.5px; }
+    ul { padding-left: 22px; margin: 8px 0; }
+    li { margin: 4px 0; }
+    .todo {
+      background: var(--todo-bg);
+      border: 1px solid var(--todo-line);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin: 0 0 26px;
+      font-size: 14px;
+    }
+    .todo strong { color: var(--todo-line); }
+    table { border-collapse: collapse; width: 100%; margin: 10px 0 6px; }
+    th, td { border: 1px solid var(--line); padding: 8px 10px; text-align: left; vertical-align: top; font-size: 14.5px; }
+    th { background: rgba(31, 60, 92, 0.07); color: var(--indigo); font-weight: 600; }
+    .credits { color: var(--ink-soft); font-size: 13px; line-height: 1.6; margin-top: 44px; border-top: 1px solid var(--line); padding-top: 14px; }
+    .credits a { color: var(--indigo-soft); }
+    a { color: var(--indigo-soft); }
+    @media print {
+      body { background: #fff; color: #000; }
+      .todo { display: none; }
+      main { padding: 0; max-width: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Kanjichō — Privacy Policy</h1>
+    <div class="sub">Effective date: September 9, 2026 · Kanjichō version 1.0.0</div>
+
+    <h2>Summary</h2>
+    <p>
+      Kanjichō is an offline-first kanji study app. It does <strong>not</strong>
+      collect, transmit, share, or sell any personal data. There are no user
+      accounts, no analytics, no advertising, and no tracking of any kind.
+      All of your study progress is stored only on your own device and never
+      leaves it. After the first load, the app makes no requests to any
+      third-party server, and it can be used entirely offline.
+    </p>
+
+    <h2>What we do not collect</h2>
+    <p>The app never collects or processes:</p>
+    <ul>
+      <li>names, email addresses, phone numbers, or any contact details;</li>
+      <li>account credentials &mdash; the app has no accounts and no sign-in;</li>
+      <li>device identifiers, advertising IDs, or fingerprinting data;</li>
+      <li>precise or coarse location;</li>
+      <li>usage analytics, crash reports, or performance telemetry;</li>
+      <li>any content you type or study &mdash; quiz answers and review history
+        are saved only in your device's local storage.</li>
+    </ul>
+
+    <h2>Data stored on your device</h2>
+    <p>
+      The following data is stored locally in your browser's IndexedDB database
+      and localStorage (standard browser storage on your device, not accessible
+      to us or to any third party). It exists only to make your own study
+      progress work:
+    </p>
+    <table>
+      <tr>
+        <th>What</th><th>Where</th><th>Purpose</th>
+      </tr>
+      <tr>
+        <td>Review history and scheduling state for each kanji</td>
+        <td>IndexedDB (local)</td>
+        <td>Spaced-repetition scheduling of your quizzes and due reviews</td>
+      </tr>
+      <tr>
+        <td>Per-unit progress (seen / learned counts, streaks)</td>
+        <td>IndexedDB (local)</td>
+        <td>Progress indicators on the home screen</td>
+      </tr>
+      <tr>
+        <td>Display preferences (light/dark theme, kana vs. romaji answers)</td>
+        <td>localStorage (local)</td>
+        <td>Remember your settings between sessions</td>
+      </tr>
+    </table>
+    <p>
+      You can export all of this at any time with the in-app backup feature,
+      delete it with the in-app &ldquo;Reset progress&rdquo; option, or remove it
+      permanently by uninstalling the app / clearing site data. Because it never
+      leaves your device, there is nothing for us to delete, return, or hand
+      over on your behalf.
+    </p>
+
+    <h2>Network requests and third parties</h2>
+    <p>
+      Kanjichō serves all of its content &mdash; including all fonts &mdash;
+      from its own origin. The app loads no third-party scripts, trackers, or
+      advertising SDKs, and sends no information to any server. When you first
+      open the app, your browser downloads the app's assets from our own web
+      server; after that, everything is served from the on-device cache and the
+      app works with the network completely disabled.
+    </p>
+
+    <h2>Purchases</h2>
+    <p>
+      Kanjichō version 1.0.0 contains no purchases, subscriptions, or paid
+      features. If in-app purchases are added in a future version, they will be
+      processed exclusively by Google Play Billing: Google (as the seller of
+      record) receives and processes your payment information, and the developer
+      receives no card numbers or bank details &mdash; only an anonymous purchase
+      token used to deliver the purchased feature. This policy will be updated
+      before any such feature is released.
+    </p>
+
+    <h2>Children and age</h2>
+    <p>
+      Kanjichō is an educational tool suitable for all ages. It collects no
+      personal information from anyone, including children, and is therefore
+      designed to be compliant with children's-privacy rules such as COPPA by
+      not collecting any data at all.
+    </p>
+
+    <h2>App permissions</h2>
+    <p>The app requests no sensitive device permissions. It does not access your contacts, camera, microphone, storage files, or location.</p>
+
+    <h2>Your rights and legal bases</h2>
+    <p>
+      Because no personal data is collected or processed, there is no personal
+      data to which access, correction, deletion, portability, or objection
+      rights would apply under regulations such as the GDPR or CCPA. If you
+      have any privacy question or concern about the app, contact us using the
+      email below and we will respond.
+    </p>
+
+    <h2>Security</h2>
+    <p>
+      Since study data never leaves your device and is not transmitted anywhere,
+      the main security boundary is your device's own browser profile. We
+      recommend using your device's screen lock and backing up your progress
+      with the in-app export feature if you want a copy.
+    </p>
+
+    <h2>Changes to this policy</h2>
+    <p>
+      If a future version of the app changes anything described here, this page
+      will be updated and the effective date above revised before that version
+      is released.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      Developer: <strong>Syahid Nurhidayatullah</strong>, Indonesia.
+      Privacy contact: <a href="mailto:kanjicho.dev@gmail.com">kanjicho.dev@gmail.com</a>.
+    </p>
+
+    <div class="credits">
+      Kanjichō is an independent study tool and is not affiliated with,
+      authorized by, or endorsed by the Japan Educational Exchanges and
+      Services (JEES) or the organizers of the JLPT. Kanji data:
+      <a href="https://www.edrdg.org/wiki/KANJIDIC_Project.html">KANJIDIC2</a>
+      and <a href="https://www.edrdg.org/jmdict/edict_doc_depr.html">JMdict</a>
+      &copy; EDRDG (CC&nbsp;BY-SA&nbsp;4.0);
+      <a href="http://kanjivg.tagaini.net/">KanjiVG</a> &copy; Ulrich Apel
+      (CC&nbsp;BY-SA&nbsp;3.0); frequency data from
+      <a href="https://jiten.moe/frequency-dictionaries">Jiten</a> (jiten.moe),
+      CC&nbsp;BY-SA&nbsp;4.0; JLPT levels from Bluskyo/JLPT_Vocabulary (MIT).
+    </div>
+  </main>
+</body>
+</html>

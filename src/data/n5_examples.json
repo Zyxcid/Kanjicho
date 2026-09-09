@@ -1,9 +1,9 @@
 {
   "日": [
     {
-      "word": "一日",
-      "reading": "いちにち",
-      "meaning": "one day",
+      "word": "毎日",
+      "reading": "まいにち",
+      "meaning": "every day",
       "type": "on"
     },
     {
@@ -57,9 +57,9 @@
   ],
   "年": [
     {
-      "word": "来年",
-      "reading": "らいねん",
-      "meaning": "next year",
+      "word": "年",
+      "reading": "ねん",
+      "meaning": "year",
       "type": "on"
     },
     {
@@ -85,9 +85,9 @@
   ],
   "十": [
     {
-      "word": "十分",
-      "reading": "じゅうぶん",
-      "meaning": "enough",
+      "word": "二十世紀",
+      "reading": "にじっせいき",
+      "meaning": "twentieth century",
       "type": "on"
     },
     {
@@ -99,15 +99,15 @@
   ],
   "二": [
     {
-      "word": "第二",
-      "reading": "だいに",
-      "meaning": "second",
+      "word": "二十世紀",
+      "reading": "にじっせいき",
+      "meaning": "twentieth century",
       "type": "on"
     },
     {
-      "word": "二つ",
-      "reading": "ふたつ",
-      "meaning": "two",
+      "word": "二人",
+      "reading": "ふたり",
+      "meaning": "two persons",
       "type": "kun"
     }
   ],
@@ -119,31 +119,31 @@
       "type": "on"
     },
     {
-      "word": "旗本",
-      "reading": "はたもと",
-      "meaning": "headquarters (on the battlefield)",
+      "word": "大本",
+      "reading": "おおもと",
+      "meaning": "root",
       "type": "kun"
     }
   ],
   "中": [
     {
-      "word": "中心",
-      "reading": "ちゅうしん",
-      "meaning": "center",
+      "word": "中",
+      "reading": "ちゅう",
+      "meaning": "medium (size)",
       "type": "on"
     },
     {
-      "word": "中",
-      "reading": "なか",
-      "meaning": "inside",
+      "word": "背中",
+      "reading": "せなか",
+      "meaning": "back (of the body)",
       "type": "kun"
     }
   ],
   "長": [
     {
-      "word": "社長",
-      "reading": "しゃちょう",
-      "meaning": "company president",
+      "word": "成長",
+      "reading": "せいちょう",
+      "meaning": "growth",
       "type": "on"
     },
     {
@@ -155,9 +155,9 @@
   ],
   "出": [
     {
-      "word": "出品者",
-      "reading": "しゅっぴんしゃ",
-      "meaning": "seller",
+      "word": "出発",
+      "reading": "しゅっぱつ",
+      "meaning": "departure",
       "type": "on"
     },
     {
@@ -197,9 +197,9 @@
   ],
   "行": [
     {
-      "word": "銀行",
-      "reading": "ぎんこう",
-      "meaning": "bank",
+      "word": "旅行",
+      "reading": "りょこう",
+      "meaning": "travel",
       "type": "on"
     },
     {
@@ -211,9 +211,9 @@
   ],
   "見": [
     {
-      "word": "意見",
-      "reading": "いけん",
-      "meaning": "opinion",
+      "word": "発見",
+      "reading": "はっけん",
+      "meaning": "discovery",
       "type": "on"
     },
     {
@@ -301,9 +301,9 @@
       "type": "on"
     },
     {
-      "word": "仲間",
-      "reading": "なかま",
-      "meaning": "companion",
+      "word": "この間",
+      "reading": "このあいだ",
+      "meaning": "the other day",
       "type": "kun"
     }
   ],
@@ -315,17 +315,17 @@
       "type": "on"
     },
     {
-      "word": "上げる",
-      "reading": "あげる",
-      "meaning": "to raise",
+      "word": "上",
+      "reading": "うえ",
+      "meaning": "above",
       "type": "kun"
     }
   ],
   "東": [
     {
-      "word": "東西",
-      "reading": "とうざい",
-      "meaning": "east and west",
+      "word": "東京",
+      "reading": "とうきょう",
+      "meaning": "Tokyo",
       "type": "on"
     },
     {
@@ -337,9 +337,9 @@
   ],
   "四": [
     {
-      "word": "四時",
-      "reading": "しじ",
-      "meaning": "the four seasons",
+      "word": "四十九日",
+      "reading": "しじゅうくにち",
+      "meaning": "forty-ninth day after a person's death",
       "type": "on"
     },
     {
@@ -371,17 +371,17 @@
       "type": "on"
     },
     {
-      "word": "銭金",
-      "reading": "ぜにかね",
+      "word": "お金",
+      "reading": "おかね",
       "meaning": "money",
       "type": "kun"
     }
   ],
   "九": [
     {
-      "word": "十九",
-      "reading": "じゅうきゅう",
-      "meaning": "nineteen",
+      "word": "四十九日",
+      "reading": "しじゅうくにち",
+      "meaning": "forty-ninth day after a person's death",
       "type": "on"
     },
     {
@@ -393,9 +393,9 @@
   ],
   "入": [
     {
-      "word": "収入",
-      "reading": "しゅうにゅう",
-      "meaning": "income",
+      "word": "侵入",
+      "reading": "しんにゅう",
+      "meaning": "invasion",
       "type": "on"
     },
     {
@@ -421,9 +421,9 @@
   ],
   "高": [
     {
-      "word": "高齢者",
-      "reading": "こうれいしゃ",
-      "meaning": "old person",
+      "word": "最高",
+      "reading": "さいこう",
+      "meaning": "best",
       "type": "on"
     },
     {
@@ -435,23 +435,23 @@
   ],
   "円": [
     {
-      "word": "円滑",
-      "reading": "えんかつ",
-      "meaning": "smooth",
+      "word": "一円",
+      "reading": "いちえん",
+      "meaning": "one yen",
       "type": "on"
     },
     {
-      "word": "円か",
-      "reading": "まどか",
-      "meaning": "round",
+      "word": "円錐",
+      "reading": "まるぎり",
+      "meaning": "round gimlet",
       "type": "kun"
     }
   ],
   "子": [
     {
-      "word": "帽子",
-      "reading": "ぼうし",
-      "meaning": "hat",
+      "word": "お菓子",
+      "reading": "おかし",
+      "meaning": "confections",
       "type": "on"
     },
     {
@@ -477,9 +477,9 @@
   ],
   "八": [
     {
-      "word": "十八",
-      "reading": "じゅうはち",
-      "meaning": "eighteen",
+      "word": "四苦八苦",
+      "reading": "しくはっく",
+      "meaning": "being in dire distress",
       "type": "on"
     },
     {
@@ -491,9 +491,9 @@
   ],
   "六": [
     {
-      "word": "十六",
-      "reading": "じゅうろく",
-      "meaning": "sixteen",
+      "word": "四六時中",
+      "reading": "しろくじちゅう",
+      "meaning": "around the clock",
       "type": "on"
     },
     {
@@ -533,37 +533,37 @@
   ],
   "気": [
     {
-      "word": "病気",
-      "reading": "びょうき",
-      "meaning": "illness (usu. excluding minor ailments, e.g. common cold)",
-      "type": "on"
-    },
-    {
       "word": "元気",
       "reading": "げんき",
       "meaning": "lively",
+      "type": "on"
+    },
+    {
+      "word": "病気",
+      "reading": "びょうき",
+      "meaning": "illness (usu. excluding minor ailments, e.g. common cold)",
       "type": "on"
     }
   ],
   "小": [
     {
-      "word": "小学校",
-      "reading": "しょうがっこう",
-      "meaning": "primary school",
+      "word": "小学生",
+      "reading": "しょうがくせい",
+      "meaning": "elementary school student",
       "type": "on"
     },
     {
-      "word": "小さな",
-      "reading": "ちいさな",
+      "word": "小さい",
+      "reading": "ちいさい",
       "meaning": "small",
       "type": "kun"
     }
   ],
   "七": [
     {
-      "word": "七五三",
-      "reading": "しちごさん",
-      "meaning": "shichi-go-san",
+      "word": "七回忌",
+      "reading": "しちかいき",
+      "meaning": "sixth anniversary of a death",
       "type": "on"
     },
     {
@@ -575,15 +575,15 @@
   ],
   "山": [
     {
-      "word": "山頂",
-      "reading": "さんちょう",
-      "meaning": "summit (of a mountain)",
+      "word": "山",
+      "reading": "さん",
+      "meaning": "Mt.",
       "type": "on"
     },
     {
-      "word": "山",
-      "reading": "やま",
-      "meaning": "mountain",
+      "word": "奥山",
+      "reading": "おくやま",
+      "meaning": "remote mountain",
       "type": "kun"
     }
   ],
@@ -603,23 +603,23 @@
   ],
   "女": [
     {
-      "word": "彼女",
-      "reading": "かのじょ",
-      "meaning": "she",
+      "word": "女",
+      "reading": "じょ",
+      "meaning": "woman",
       "type": "on"
     },
     {
-      "word": "女",
-      "reading": "おんな",
-      "meaning": "woman",
+      "word": "女の子",
+      "reading": "おんなのこ",
+      "meaning": "girl",
       "type": "kun"
     }
   ],
   "北": [
     {
-      "word": "南北",
-      "reading": "なんぼく",
-      "meaning": "north and south",
+      "word": "敗北",
+      "reading": "はいぼく",
+      "meaning": "defeat",
       "type": "on"
     },
     {
@@ -645,16 +645,16 @@
   ],
   "百": [
     {
-      "word": "百年",
-      "reading": "ひゃくねん",
-      "meaning": "century",
+      "word": "百",
+      "reading": "ひゃく",
+      "meaning": "hundred",
       "type": "on"
     },
     {
-      "word": "百姓",
-      "reading": "ひゃくしょう",
-      "meaning": "farmer",
-      "type": "on"
+      "word": "百千鳥",
+      "reading": "ももちどり",
+      "meaning": "many bird",
+      "type": "kun"
     }
   ],
   "書": [
@@ -715,15 +715,15 @@
   ],
   "千": [
     {
-      "word": "千切り",
-      "reading": "せんぎり",
-      "meaning": "finely cut strips (of vegetables)",
+      "word": "何千",
+      "reading": "なんぜん",
+      "meaning": "many thousands",
       "type": "on"
     },
     {
-      "word": "千鳥足",
-      "reading": "ちどりあし",
-      "meaning": "tottering steps",
+      "word": "千草",
+      "reading": "ちぐさ",
+      "meaning": "great variety of flowering plants",
       "type": "kun"
     }
   ],
@@ -757,29 +757,29 @@
   ],
   "男": [
     {
-      "word": "男性",
-      "reading": "だんせい",
-      "meaning": "man",
+      "word": "男",
+      "reading": "なん",
+      "meaning": "son",
       "type": "on"
     },
     {
-      "word": "男",
-      "reading": "おとこ",
-      "meaning": "man",
+      "word": "男の子",
+      "reading": "おとこのこ",
+      "meaning": "boy",
       "type": "kun"
     }
   ],
   "西": [
     {
-      "word": "西洋",
-      "reading": "せいよう",
-      "meaning": "the West",
+      "word": "西",
+      "reading": "せい",
+      "meaning": "Spain",
       "type": "on"
     },
     {
-      "word": "西",
-      "reading": "にし",
-      "meaning": "west",
+      "word": "真西",
+      "reading": "まにし",
+      "meaning": "due west",
       "type": "kun"
     }
   ],
@@ -805,9 +805,9 @@
       "type": "on"
     },
     {
-      "word": "小学校",
-      "reading": "しょうがっこう",
-      "meaning": "primary school",
+      "word": "高校",
+      "reading": "こうこう",
+      "meaning": "senior high school",
       "type": "on"
     }
   ],
@@ -883,9 +883,9 @@
   ],
   "車": [
     {
-      "word": "自転車",
-      "reading": "じてんしゃ",
-      "meaning": "bicycle",
+      "word": "電車",
+      "reading": "でんしゃ",
+      "meaning": "train",
       "type": "on"
     },
     {
@@ -897,23 +897,23 @@
   ],
   "何": [
     {
-      "word": "幾何学",
-      "reading": "きかがく",
+      "word": "幾何",
+      "reading": "きか",
       "meaning": "geometry",
       "type": "on"
     },
     {
       "word": "何",
-      "reading": "なん",
+      "reading": "なに",
       "meaning": "what",
       "type": "kun"
     }
   ],
   "南": [
     {
-      "word": "南部",
-      "reading": "なんぶ",
-      "meaning": "southern part",
+      "word": "指南",
+      "reading": "しなん",
+      "meaning": "instruction (in martial arts, performance, etc.)",
       "type": "on"
     },
     {
@@ -931,10 +931,10 @@
       "type": "on"
     },
     {
-      "word": "一万円",
-      "reading": "いちまんえん",
-      "meaning": "10,000 yen",
-      "type": "on"
+      "word": "千代万代",
+      "reading": "ちよよろずよ",
+      "meaning": "for ever and ever",
+      "type": "kun"
     }
   ],
   "毎": [
@@ -953,9 +953,9 @@
   ],
   "白": [
     {
-      "word": "明白",
-      "reading": "めいはく",
-      "meaning": "obvious",
+      "word": "告白",
+      "reading": "こくはく",
+      "meaning": "confession (to a crime, wrongdoing, etc.)",
       "type": "on"
     },
     {
@@ -981,9 +981,9 @@
   ],
   "母": [
     {
-      "word": "祖母",
-      "reading": "そぼ",
-      "meaning": "grandmother",
+      "word": "異母",
+      "reading": "いぼ",
+      "meaning": "different mother",
       "type": "on"
     },
     {
@@ -1051,23 +1051,23 @@
   ],
   "左": [
     {
-      "word": "左右",
-      "reading": "さゆう",
-      "meaning": "left and right",
+      "word": "左",
+      "reading": "さ",
+      "meaning": "left (esp. in vertical Japanese writing)",
       "type": "on"
     },
     {
-      "word": "左",
-      "reading": "ひだり",
-      "meaning": "left",
+      "word": "右左",
+      "reading": "みぎひだり",
+      "meaning": "right and left",
       "type": "kun"
     }
   ],
   "休": [
     {
-      "word": "休日",
-      "reading": "きゅうじつ",
-      "meaning": "holiday",
+      "word": "自然休会",
+      "reading": "しぜんきゅうかい",
+      "meaning": "spontaneous recess (in the Diet)",
       "type": "on"
     },
     {
@@ -1085,17 +1085,17 @@
       "type": "on"
     },
     {
-      "word": "父",
-      "reading": "ちち",
-      "meaning": "father",
+      "word": "義理の父",
+      "reading": "ぎりのちち",
+      "meaning": "father-in-law",
       "type": "kun"
     }
   ],
   "雨": [
     {
-      "word": "豪雨",
-      "reading": "ごうう",
-      "meaning": "torrential rain",
+      "word": "雨中",
+      "reading": "うちゅう",
+      "meaning": "in the rain",
       "type": "on"
     },
     {

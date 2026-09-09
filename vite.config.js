@@ -37,15 +37,22 @@ export default defineConfig({
       workbox: {
         // Precache semua aset build (JS/CSS/HTML) + data kanji JSON supaya
         // app tetap jalan penuh offline setelah dibuka sekali pertama kali.
+        // Font woff2 SENGAJA tidak di-precache (16,2 MB / 854 subset) —
+        // unicode-range membuat browser hanya memuat subset yang benar-benar
+        // dipakai; sisanya tidak pernah diunduh.
         globPatterns: ["**/*.{js,css,html,ico,png,svg,json}"],
-        // Font Google (Shippori Mincho dkk) di-cache terpisah dengan strategi
-        // "cache lalu update di background" -- tetap kelihatan meski offline,
-        // tapi cache diperbarui kalau ada koneksi.
+        // Font kini self-hosted (public/fonts/, origin sama). Strategi
+        // CacheFirst: subset yang pernah dipakai tersedia offline, isi file
+        // immutable (regenerasi selalu menghasilkan nama hash-urutan baru
+        // bila daftar subset berubah). PENTING: sebelumnya pola ini
+        // men-target fonts.googleapis.com (pihak ketiga) — dihapus supaya
+        // TIDAK ada request font ke luar origin (Play Data Safety: no data
+        // collected/shared).
         runtimeCaching: [
           {
-            urlPattern: /^https:\/\/fonts\.(googleapis|gstatic)\.com\/.*/i,
-            handler: "StaleWhileRevalidate",
-            options: { cacheName: "google-fonts-cache" },
+            urlPattern: /\/fonts\/[^/]+\.(woff2)$/i,
+            handler: "CacheFirst",
+            options: { cacheName: "app-fonts-cache" },
           },
         ],
       },
