@@ -37,20 +37,20 @@ export default defineConfig({
       workbox: {
         // Precache semua aset build (JS/CSS/HTML) + data kanji JSON supaya
         // app tetap jalan penuh offline setelah dibuka sekali pertama kali.
-        // Font woff2 SENGAJA tidak di-precache (16,2 MB / 854 subset) —
-        // unicode-range membuat browser hanya memuat subset yang benar-benar
-        // dipakai; sisanya tidak pernah diunduh.
+        // Font woff2 SENGAJA tidak di-precache (ratusan subset unicode-range
+        // per weight — lihat @fontsource di main.jsx) — browser hanya
+        // mengunduh subset yang benar-benar dirender; sisanya tidak pernah
+        // diunduh, jadi mem-precache semuanya akan membengkakkan SW.
         globPatterns: ["**/*.{js,css,html,ico,png,svg,json}"],
-        // Font kini self-hosted (public/fonts/, origin sama). Strategi
-        // CacheFirst: subset yang pernah dipakai tersedia offline, isi file
-        // immutable (regenerasi selalu menghasilkan nama hash-urutan baru
-        // bila daftar subset berubah). PENTING: sebelumnya pola ini
-        // men-target fonts.googleapis.com (pihak ketiga) — dihapus supaya
-        // TIDAK ada request font ke luar origin (Play Data Safety: no data
-        // collected/shared).
+        // (t81) Font kini dari npm @fontsource/* — dibundel Vite ke
+        // dist/assets/*.woff2 dengan NAMA BERHASH (immutable). Strategi
+        // CacheFirst aman & tepat: subset yang pernah dipakai tersedia
+        // offline, dan file hash tidak pernah berubah isi. Semua font
+        // tetap dari origin sendiri — TIDAK ada request font ke pihak
+        // ketiga (Play Data Safety: no data collected/shared).
         runtimeCaching: [
           {
-            urlPattern: /\/fonts\/[^/]+\.(woff2)$/i,
+            urlPattern: /\/assets\/[^/]+\.woff2?$/i,
             handler: "CacheFirst",
             options: { cacheName: "app-fonts-cache" },
           },

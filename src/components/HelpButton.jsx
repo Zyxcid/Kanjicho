@@ -9,7 +9,27 @@ import { pushOverlayEntry, closeOverlayUI, discardOverlayEntry, isOverlayEntryRe
 // aplikasi email itu, bukan app ini.
 const CONTACT_EMAIL = "kanjicho.dev@gmail.com";
 
-export default function HelpButton({ showReset, onToggleShowReset }) {
+// (t81) Pilihan jeda auto-flip (ms) — dipakai App (sanitasi nilai
+// localStorage "kanji-autoflip-delay") dan deretan pill di bawah sakelar
+// auto-flip di help overlay ini. Diekspor dari komponen pemilik UI-nya
+// supaya daftar pilihan & state tidak pernah saling basi. Default (nilai
+// absen di localStorage) = 1000: keluhan t79 "420 ms terlalu cepat
+// dibaca" vs t81 "1500 ms terlalu lama".
+export const AUTO_FLIP_DELAYS = [500, 1000, 1500, 2000, 3000];
+
+// 500 → "0.5s", 1000 → "1s", 1500 → "1.5s" (t81)
+function delayLabel(ms) {
+  return `${ms / 1000}s`;
+}
+
+export default function HelpButton({
+  showReset,
+  onToggleShowReset,
+  autoFlip = true,
+  onToggleAutoFlip,
+  autoFlipDelay = 1000, // (t81) ms — satu dari AUTO_FLIP_DELAYS
+  onChangeAutoFlipDelay, // (t81) (ms) => void — dikelola App + localStorage
+}) {
   const [open, setOpen] = React.useState(false);
   // Penutup overlay yang terdaftar di tumpukan overlay router (t65):
   // membuka modal menambah entri history sendiri → tombol Back di mobile
@@ -78,20 +98,72 @@ export default function HelpButton({ showReset, onToggleShowReset }) {
                 lebih mengundang dibaca daripada poin-poin; penjelasan
                 lengkap untuk user baru hidup DI SINI, layar kuis/browse
                 sendiri tetap bersih.
-                (t78) Kalimat swipe DIHAPUS dari sini — petunjuk swipe kini
-                tampil di layar kuis itu sendiri, hanya sampai user
-                melakukan swipe pertama (lihat Quiz.jsx).
-                (t79) Prosa disesuaikan: kartu tidak lagi berputar sendiri
-                — sebutkan swipe sebagai gerakan menuju reading sheet. */}
+                (t80) Toggle auto-flip hidup di seksi ini (pola row yang
+                sama dengan toggle "Reset progress button"): kartu berputar
+                sendiri setelah menjawab (default ON), bisa dimatikan bila
+                user ingin kendali penuh lewat swipe.
+                (t81) JEDA-nya kini bisa dipilih (deretan pill di bawah
+                sakelar) — default 1 dtk. */}
 
             <div className="kd-help-section">
               <div className="kd-help-heading">Quiz</div>
               <p className="kd-help-text">
                 You can tap the kanji to watch its stroke order. Once you
-                answer, swipe the card sideways to flip it over to a
-                reading sheet — the readings written in <b>bold</b> are
-                the ones the multiple-choice options come from.
+                answer, the card turns over on its own to a reading
+                sheet — the readings written in <b>bold</b> are the ones
+                the multiple-choice options come from. A sideways swipe
+                flips the card back and forth whenever you like. If the
+                card waits too long or too briefly before turning, pick
+                a different delay just below — or switch auto-flip off
+                to flip only by hand.
               </p>
+              {/* (t80) Toggle auto-flip — pola row switch yang sama dengan
+                  toggle reset button di seksi Progress. */}
+              <div className="kd-help-toggle-row">
+                <div>
+                  <div className="kd-help-toggle-name">Auto-flip the card</div>
+                  <div className="kd-help-toggle-desc">
+                    Turn it over automatically once you answer
+                  </div>
+                </div>
+                <button
+                  className={`kd-toggle ${autoFlip ? "on" : ""}`}
+                  role="switch"
+                  aria-checked={autoFlip}
+                  aria-label="Auto-flip the card"
+                  onClick={onToggleAutoFlip}
+                >
+                  <span className="kd-toggle-knob" />
+                </button>
+              </div>
+              {/* (t81) Jeda auto-flip — deretan pill durasi; row meredup
+                  saat auto-flip off (pilihan tetap tersimpan, timer Quiz
+                  membaca nilai terbaru begitu toggle menyala lagi). */}
+              <div className={`kd-help-delay-row ${autoFlip ? "" : "off"}`}>
+                <div>
+                  <div className="kd-help-toggle-name">Auto-flip delay</div>
+                  <div className="kd-help-toggle-desc">
+                    How long the answer stays visible before the turn
+                  </div>
+                </div>
+                <div
+                  className="kd-help-delay-pills"
+                  role="group"
+                  aria-label="Auto-flip delay"
+                >
+                  {AUTO_FLIP_DELAYS.map((ms) => (
+                    <button
+                      key={ms}
+                      type="button"
+                      className={`kd-delay-pill ${ms === autoFlipDelay ? "active" : ""}`}
+                      aria-pressed={ms === autoFlipDelay}
+                      onClick={() => onChangeAutoFlipDelay && onChangeAutoFlipDelay(ms)}
+                    >
+                      {delayLabel(ms)}
+                    </button>
+                  ))}
+                </div>
+              </div>
               <p className="kd-help-text">
                 The first time you finish a unit, its review is always
                 scheduled 1 or 2 days away (8 for a perfect score). The
@@ -173,6 +245,23 @@ export default function HelpButton({ showReset, onToggleShowReset }) {
                 under the same licenses (CC&nbsp;BY-SA). Built on open-source
                 libraries: React, Dexie, ts-fsrs, and lucide-react
                 (MIT / Apache-2.0 / ISC).
+              </p>
+              {/* (t81) Kredit font — dibundel dari npm @fontsource saat
+                  build (origin sama, tanpa request pihak ketiga). OFL 1.1
+                  memperbolehkan pembundelan & distribusi (termasuk app
+                  Play Store); menyebut lisensinya di sini menjaga listing
+                  tetap bersih & jujur. */}
+              <p className="kd-help-text kd-help-legal">
+                Typefaces Shippori Mincho, Zen Kaku Gothic New, and DM
+                Mono are bundled from Fontsource under the{" "}
+                <a
+                  href="https://openfontlicense.org/open-font-license-official-text/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  SIL Open Font License 1.1
+                </a>
+                .
               </p>
             </div>
 

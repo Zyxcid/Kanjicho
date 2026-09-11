@@ -8,6 +8,7 @@ import ComponentBreakdown from "./ComponentBreakdown.jsx";
 import { loadStrokes } from "../lib/strokes.js";
 import { loadComponents } from "../lib/components.js";
 import { pushOverlayEntry, closeOverlayUI, discardOverlayEntry } from "../lib/useRouter.js";
+import { kanaToRomaji } from "../lib/kana.js";
 
 // "All" + N5..N1. Default N5 supaya paint pertama ringan (N1 sendiri
 // berisi 1.232 entri; N5 lebih ramah sebagai halaman mula).
@@ -17,7 +18,7 @@ const LEVELS = ["All", ...LEVEL_IDS];
 // "Show more" menaikkan batas bertahap.
 const VISIBLE_STEP = 400;
 
-export default function Browse({ onBack }) {
+export default function Browse({ onBack, script = "kana" }) {
   const [activeLevel, setActiveLevel] = useState("N5");
   const [query, setQuery] = useState("");
   const [visibleCount, setVisibleCount] = useState(VISIBLE_STEP);
@@ -370,22 +371,21 @@ export default function Browse({ onBack }) {
                   <span className="kd-detail-meaning">{selected.meanings.join(", ")}</span>
                 </div>
                 <div className="kd-reveal-yomi">
+                  {/* (t80) Skrip mengikuti toggle universal あ/Aa di topbar
+                      (prop `script` dari App) — bacaan On/Kun dan reading
+                      contoh kata berganti live seperti di kuis. Baris
+                      "Romaji" terpisah DIHAPUS: tumpang tindih dengan
+                      fungsi toggle. */}
                   {selected.readings.on.length > 0 && (
                     <div className="kd-yomi-row">
                       <span className="kd-yomi-tag on">On&apos;yomi</span>
-                      <ReadingList readings={selected.readings.on} primaryReadings={selected.primary_readings} type="on" />
+                      <ReadingList readings={selected.readings.on} primaryReadings={selected.primary_readings} type="on" script={script} />
                     </div>
                   )}
                   {selected.readings.kun.length > 0 && (
                     <div className="kd-yomi-row">
                       <span className="kd-yomi-tag kun">Kun&apos;yomi</span>
-                      <ReadingList readings={selected.readings.kun} primaryReadings={selected.primary_readings} type="kun" />
-                    </div>
-                  )}
-                  {selected.romaji_readings.length > 0 && (
-                    <div className="kd-yomi-row">
-                      <span className="kd-yomi-tag kd-yomi-tag-neutral">Romaji</span>
-                      <span className="kd-yomi-value">{selected.romaji_readings.join(", ")}</span>
+                      <ReadingList readings={selected.readings.kun} primaryReadings={selected.primary_readings} type="kun" script={script} />
                     </div>
                   )}
                 </div>
@@ -403,7 +403,11 @@ export default function Browse({ onBack }) {
                           {ex.type === "on" ? "On" : "Kun"}
                         </span>
                         <span className="kd-example-word">{ex.word}</span>
-                        <span className="kd-example-reading">{ex.reading}</span>
+                        {/* (t80) Reading contoh kata ikut skrip toggle
+                            universal — romaji dikonversi runtime. */}
+                        <span className="kd-example-reading">
+                          {script === "romaji" ? kanaToRomaji(ex.reading) : ex.reading}
+                        </span>
                         <span className="kd-example-meaning">{ex.meaning}</span>
                       </div>
                     ))}

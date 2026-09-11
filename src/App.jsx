@@ -13,10 +13,11 @@ import Quiz from "./components/Quiz.jsx";
 import Result from "./components/Result.jsx";
 import Toast from "./components/Toast.jsx";
 import ThemeToggle from "./components/ThemeToggle.jsx";
+import ScriptToggle from "./components/ScriptToggle.jsx";
 import Browse from "./components/Browse.jsx";
 import CalendarModal from "./components/CalendarModal.jsx";
 import { buildScheduleEntries } from "./components/ReviewCalendar.jsx";
-import HelpButton from "./components/HelpButton.jsx";
+import HelpButton, { AUTO_FLIP_DELAYS } from "./components/HelpButton.jsx";
 
 export function unitStatus(state) {
   if (!state || state.stability === null) return "new";
@@ -68,6 +69,42 @@ export default function App() {
       localStorage.setItem("kanji-answer-script", next);
       return next;
     });
+  }
+
+  // (t80) Auto-flip kartu kuis — DEFAULT ON (permintaan user: "make auto
+  // flip the default"): setelah menjawab, kartu berputar sendiri ke sisi
+  // belakang/reading sheet. Bisa dimatikan dari toggle di help overlay
+  // (seksi Quiz); pilihan disimpan di localStorage "kanji-autoflip"
+  // (absen/"1" = ON, "0" = OFF) supaya bertahan lintas sesi seperti tema
+  // & skrip.
+  const [autoFlip, setAutoFlip] = useState(
+    () => localStorage.getItem("kanji-autoflip") !== "0"
+  );
+
+  function toggleAutoFlip() {
+    setAutoFlip((v) => {
+      const next = !v;
+      localStorage.setItem("kanji-autoflip", next ? "1" : "0");
+      return next;
+    });
+  }
+
+  // (t81) JEDA auto-flip — keluhan user: 1500 ms "flip kartu terlalu
+  // lama"; kini DURASI BISA DIPILIH di help overlay (deretan pill tepat
+  // di bawah sakelar auto-flip; pilihan daftar dari HelpButton agar UI
+  // & state tidak pernah saling basi). Default 1000 ms — tengah antara
+  // 420 ms yang dulu "terlalu cepat dibaca" (t79) dan 1500 ms yang
+  // "terlalu lama". Nilai disanitasi ke daftar pilihan supaya
+  // localStorage basi/hasil edit manual tidak merusak timer; tersimpan
+  // di "kanji-autoflip-delay" (string ms).
+  const [autoFlipDelay, setAutoFlipDelay] = useState(() => {
+    const raw = Number(localStorage.getItem("kanji-autoflip-delay"));
+    return AUTO_FLIP_DELAYS.includes(raw) ? raw : 1000;
+  });
+
+  function changeAutoFlipDelay(ms) {
+    setAutoFlipDelay(ms);
+    localStorage.setItem("kanji-autoflip-delay", String(ms));
   }
 
   // activeLevel/activeUnit tertinggal dari route supaya UnitSelect tetap
@@ -462,15 +499,13 @@ export default function App() {
 
   // Dipanggil dari baris overdue di layar Progress (panel hari & chip
   // prakiraan) — level unit di-derive dari progress-nya sendiri
-  // (jlptLevel tersimpan per record; fallback prefix unitId untuk
-  // state in-memory lama yang belum membawanya), tidak diasumsikan sama
-  // dengan activeLevel.
+  // (jlptLevel tersimpan per record), tidak diasumsikan sama dengan
+  // activeLevel.
   function jumpToNextReview(unitId) {
     if (!unitId) return;
-    const state = progress[unitId];
-    const dash = unitId.indexOf("-");
-    const level =
-      state?.jlptLevel || (dash > 0 ? unitId.slice(0, dash) : null);
+    // (t78) Fallback prefix unitId ("N1-U3" → "N1") bila state
+    // in-memory belum memuat jlptLevel — record DB selalu memuatnya.
+    const level = progress[unitId]?.jlptLevel || unitId.split("-")[0];
     if (!level) return;
     startUnit(unitId, level);
   }
@@ -500,24 +535,22 @@ export default function App() {
       // Jumlah soal ikut dikirim supaya adapter binomial menghitung z-score
       // dengan ukuran sampel yang benar (unit hampir selalu 15, tapi tidak
       // di-hardcode).
-      // (t78) jlptLevel DILEKATKAN ke state in-memory: reviewUnit()
-      // mengembalikan objek segar tanpa field itu — tanpa dilekatkan,
-      // state in-memory pasca-kuis kehilangan levelnya sampai reload,
-      // sehingga kalender review per-level (buildScheduleEntries)
-      // menyaringnya keluar: jadwal "besok" unit N1 tidak ditandai di
-      // kalender N1 padahal muncul di kalender semua level. Bentuk
-      // in-memory kini identik dengan record IndexedDB
-      // (saveUnitProgress menulis jlptLevel sebagai kolomnya sendiri).
-      const newState = {
-        ...reviewUnit(prevState, finalResult.score, finishedAt, finalResult.total),
-        jlptLevel: activeLevel,
-      };
+      const newState = reviewUnit(prevState, finalResult.score, finishedAt, finalResult.total);
 
-      setProgress((p) => ({ ...p, [activeUnit]: newState }));
-      // (t78) firstCompletion TIDAK lagi dilampirkan — kartu "Why the same
-      // review date?" di layar Result dihapus; penjelasan jadwal awal
-      // cukup dibawa help overlay (seksi Quiz).
-      extra = { ...extra, newState };
+      // (t78) jlptLevel dilekatkan ke state in-memory: record DB
+      // (saveUnitProgress) menyimpannya sebagai KOLOM, tapi objek hasil
+      // reviewUnit() tidak memuatnya — tanpa ini, sampai reload
+      // berikutnya, kalender per-level (buildScheduleEntries) menyaring
+      // KELUAR unit yang baru selesai dikuis sesi berjalan (bug:
+      // jadwal besok tak bertanda di kalender levelnya, padahal tampil
+      // di kalender semua level).
+      const newStateWithLevel = { ...newState, jlptLevel: activeLevel };
+      setProgress((p) => ({ ...p, [activeUnit]: newStateWithLevel }));
+      // (t78) firstCompletion TIDAK lagi dilampirkan — kartu "Why the
+      // same review date?" di layar Result dihapus; newState tetap
+      // dilampirkan (panel "Next review in" + saveUnitProgress
+      // memakainya).
+      extra = { ...extra, newState: newStateWithLevel };
     } else if (quizMode === "practice") {
       // Latihan bebas: lampirkan state SRS SAAT INI (tidak diubah sesi ini)
       // supaya layar Result tetap bisa menampilkan "next review" seperti
@@ -629,7 +662,19 @@ export default function App() {
           </div>
         )}
         <div className="kd-topbar-right">
-          <HelpButton showReset={showReset} onToggleShowReset={toggleShowReset} />
+          {/* (t81) Urutan tombol topbar: Help → toggle skrip (あ/Aa) →
+              Theme — toggle kana/romaji kini DI TENGAH antara keduanya
+              (permintaan user), tetap pill netral tanpa indikator on/off
+              berwarna; satu gerbang untuk kuis DAN Browse. */}
+          <HelpButton
+            showReset={showReset}
+            onToggleShowReset={toggleShowReset}
+            autoFlip={autoFlip}
+            onToggleAutoFlip={toggleAutoFlip}
+            autoFlipDelay={autoFlipDelay}
+            onChangeAutoFlipDelay={changeAutoFlipDelay}
+          />
+          <ScriptToggle answerScript={answerScript} onToggleScript={toggleAnswerScript} />
           <ThemeToggle />
         </div>
       </div>
@@ -639,7 +684,7 @@ export default function App() {
       {/* Back dari Browse MELIPAT entri browse (collapse 1) — mundur ke
           entri home yang sudah ada di tumpukan; tanpa ini Back setelah
           "Home" akan membuka ulang Browse. */}
-      {effectiveView === "browse" && <Browse onBack={() => navigate("home", { collapse: 1 })} />}
+      {effectiveView === "browse" && <Browse onBack={() => navigate("home", { collapse: 1 })} script={answerScript} />}
 
       {effectiveView === "unitSelect" && (
         <UnitSelect
@@ -669,6 +714,11 @@ export default function App() {
           mode={quizMode}
           answerScript={answerScript}
           onToggleScript={toggleAnswerScript}
+          // (t80) auto-flip dari App (toggle help overlay) — Quiz hanya
+          // membaca; jeda & pembatalan oleh swipe diatur di Quiz.jsx.
+          // (t81) jeda kini prop terpisah (dipilih user di help overlay).
+          autoFlip={autoFlip}
+          autoFlipDelay={autoFlipDelay}
           onSubmitAnswer={submitAnswer}
           onContinue={handleContinue}
           registerGuard={registerGuard}

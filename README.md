@@ -20,25 +20,36 @@ npm run preview   # preview the production build locally
   a time. The quiz is a **physical flip card** (t77): the front holds the
   question and choices (the genkō-yōshi kanji box, tappable for stroke
   order), the back is the reading sheet (readings, components, example
-  words). The card never rotates on its own (t79: the old ~0.4 s
-  auto-flip left no time to read the correct answer) — after answering it
-  stays on the front, marking the choices, for as long as you like; a
-  horizontal swipe turns it over and back, and it is the **only** flip
-  trigger (the Flip button was removed, t79). Flipping is locked until
-  you answer, since the back contains the answer. A one-time hint under
-  the card teaches the swipe and disappears for good after the first
-  real swipe (t78, localStorage flag; the swipe sentence was removed
-  from the Help overlay). Both card faces sit 1 px apart on the Z axis
-  (t78) so the face pointing at you always wins depth sorting —
+  words; head reads kanji **left** / meaning box **right** with naturally
+  left-aligned lines, t80–t81). After you
+  answer, the card **turns over on its own** after a moment — **1 s by
+  default**, and the wait is user-selectable in the Help overlay
+  (0.5 / 1 / 1.5 / 2 / 3 s pills under the auto-flip switch, t81;
+  persisted in localStorage; auto-flip can also be switched off entirely
+  for a fully manual card, default on) — long enough to
+  read the correct/wrong marking on the choices first (t80; t79's 420 ms
+  was too fast to read, 1500 ms felt too long) — and a **horizontal swipe
+  flips it back and forth**
+  whenever you like; the rotation **follows the swipe direction** (swipe
+  right sweeps the card right, swipe left sweeps left, t80) instead of
+  replaying the same animation. On desktop (≥900px) the card widens to
+  780 px so its two-column front breathes (t81 — the 480 px cap used to
+  crush the choice column to ~124 px). A one-time hint under the card
+  teaches the
+  swipe and disappears for good after the first real swipe (t78, localStorage
+  flag). The old Flip button is gone (t79: the swipe already covered it);
+  the action row below the card (outside the rotation) holds just
+  **Continue**. Flipping is locked until you answer, since the back
+  contains the answer; both card faces sit 1 px apart on the Z axis (t78)
+  so the face pointing at you always wins depth sorting —
   `backface-visibility` alone proved unreliable on some Android devices.
-  Answered choices keep their size (the old shrink animation was
-  removed, t78); only the neutral ones dim. The action row below the
-  card (outside the rotation) holds just **Continue** (t79). The row of
-  dots above the card is a **live scoreboard**
-  (t76): correct answers collect at the far left in full indigo, wrong
-  (or "don't know") answers dim, and the enlarged dark dot marks the
-  running question — a dot's position encodes its status (correct /
-  current / wrong / unanswered), not the question's original number.
+  Answered choices keep their size (the old shrink animation was removed,
+  t78); only the neutral ones dim. The row of dots above the card is a
+  **live scoreboard** (t76): correct answers collect at the far left in
+  full indigo, wrong (or "don't know") answers dim, and the enlarged dark
+  dot marks the running question — a dot's position encodes its status
+  (correct / current / wrong / unanswered), not the question's original
+  number.
 - **Stroke-order animations (KanjiVG)** — the quiz kanji is **always
   rendered as the KanjiVG stroke SVG, fully drawn** (same shape before,
   during and after the animation — no font swap). **Left-click** (tap) the
@@ -69,8 +80,8 @@ npm run preview   # preview the production build locally
   quiz question, the card's back (reading sheet) includes a quiet
   "Components" row —
   the equation as plain text (glyphs only, no stroke counts, no chip
-  boxes: a memory aid, not an answer hint; the choice grid on the front
-  folds up after answering). In the Kanji
+  boxes: a memory aid, not an answer hint; the choice buttons keep their
+  size and the genkō tile never moves). In the Kanji
   Library modal, the same equation sits **directly below the running
   stroke animation** (column width matches the 180px stroke box) and
   **follows it live**: the chip whose strokes are currently being drawn
@@ -167,7 +178,7 @@ npm run preview   # preview the production build locally
 - **Primary readings are the quiz source** — quiz answers come only from each
   kanji's *primary reading*: the most common reading that is backed by a real
   example word (validated by `scripts/build_examples.py`). Primary readings
-  are shown **bold** (in kana *and* in romaji mode) on the card's back,
+  are shown **bold** (in kana *and* in romaji mode) in the quiz answer panel,
   and bold in kana in the kanji library, and the help overlay explains this,
   so you don't waste effort memorizing rarely-used readings. A promoted kun
   reading additionally needs **real backing** — the example word that proves
@@ -247,7 +258,8 @@ npm run preview   # preview the production build locally
   re-entered via Back — its in-memory session is discarded, which also
   prevents double-saving answers.
 - **Keyboard-friendly quiz (kept for development)** — W/E/S/D select an
-  answer, F = "don't know", R toggles kana ↔ romaji (works before and
+  answer, F = "don't know", R toggles kana ↔ romaji (the same global
+  state as the topbar あ/Aa toggle; works before and
   after answering), Q triggers the back button (Cancel / Home), Enter
   **or Space** continues to the next question. Leaving a quiz with
   progress first asks for confirmation (Enter = leave, Esc = keep
@@ -285,15 +297,16 @@ src/
     Home.jsx                next-review banner (the calendar entry) + stat cards panel + browse entry + level grid
     StatCards.jsx           shared panel of three large read-only stat cards (x/total Studied, Due now, Mastered) used by Home and UnitSelect
     UnitSelect.jsx           per-level stat cards + unit cards (dimmed = free practice; "✕ N" missed-review pill next to the title, hidden once the unit is due)
-    Quiz.jsx                 quiz screen as a FLIP CARD (t77): front = kanji box + choices, back = reading sheet (readings, components, examples) + weak-review badge on the front. CSS 3D (perspective on .kd-card-scene, preserve-3d + rotateY on .kd-card-inner, backface-visibility on both faces + 1 px translateZ depth separation, t78); never auto-flips (t79 — the card stays on the front after answering so the correct/wrong marking can be read at leisure); a horizontal swipe (pointer events, ≥56 px, only after answering) is the only flip trigger — the Flip button was removed (t79); a one-time swipe hint (t78) shows under the card after answering until the user's first registered swipe (localStorage "kanji-swipe-learned"); the hidden face is inert; key=qIndex remounts a fresh card per question. The kanji is always shown as the finished KanjiVG SVG — left-click the box to replay the stroke animation inline, right-click to finish it instantly (no detail entry from inside the quiz before answering — that would leak the answer); the script toggle (kana/romaji) sits in the card's top-right corner on the front and in the reading-sheet header on the back; the dots above the card are a live scoreboard (t76): answers prop + correctIndex comparison sorts them into [correct (full indigo, leftmost)] [current] [wrong (dimmed)] [unanswered]
+    Quiz.jsx                 quiz screen as a FLIP CARD (t77): front = kanji box + choices, back = reading sheet (readings, components, examples; head kanji-left / meaning-box-right with left-aligned lines t80–t81) + weak-review badge on the front. CSS 3D (perspective on .kd-card-scene, preserve-3d + rotateY on .kd-card-inner via inline cumulative style, backface-visibility on both faces + 1 px translateZ depth separation, t78); auto-flips to the back after answering — delay default 1000 ms, user-selectable in the Help overlay as 0.5–3 s pills (t81: App owns the "kanji-autoflip-delay" state and passes it as a prop; changing it mid-session reschedules the pending timer safely; manual swipe cancels the timer; the on/off toggle lives beside the pills, off = fully manual, the t79 behavior); a horizontal swipe (pointer events, ≥56 px, only after answering) is the only manual flip trigger — the Flip button was removed (t79) — and its DIRECTION sets the rotation direction (right sweep +180, left sweep −180, t80); a one-time swipe hint (t78) shows under the card after answering until the user's first registered swipe (localStorage "kanji-swipe-learned"); the hidden face is inert; key=qIndex remounts a fresh card per question. The kanji is always shown as the finished KanjiVG SVG — left-click the box to replay the stroke animation inline, right-click to finish it instantly (no detail entry from inside the quiz before answering — that would leak the answer); the script toggle lives in the app topbar (t80, universal for quiz + Browse); the dots above the card are a live scoreboard (t76): answers prop + correctIndex comparison sorts them into [correct (full indigo, leftmost)] [current] [wrong (dimmed)] [unanswered]
     Readings.jsx             shared On/Kun rendering with primary bolding, kana or romaji
     GenkouGlyph.jsx          quiz kanji box as a button: renders the KanjiVG SVG in its finished state on mount (paths lazy-loaded per level); left-click → replays the stroke animation from the first stroke (1× default), right-click → completes it instantly
     ComponentBreakdown.jsx   component equation (時 = 日 + 寺): plain-text variant inside the quiz answer panel's "Components" row (after answering, glyphs only, no interaction, no chip boxes); full chip variant in the Browse modal directly below the stroke animation (no "kanji =" lead) — glyph-only chips with radical/phonetic role tooltips (radical = meaning carrier, phonetic = sound carrier) and radical/phonetic dots (their meaning is explained in the help overlay's Browse section — t76 removed the in-modal mini-legend again to keep the screen clean); the `progress` prop keeps the chips in sync with the running stroke animation (future → active → done); clickable chips navigate to the component kanji (← Back button from Browse's navHistory); +N loose-stroke chip; long equations wrap as "+ chip" terms in the 180px animation column
     CopyKanji.jsx            transparent <button> covering the Browse stroke box: click = copy the kanji (faint corner copy icon as affordance, inline "Copied 語" pill, keyboard-accessible)
     StrokePlayer.jsx         animated stroke-order player (two-layer SVG: faint guide + drawn ink via stroke-dashoffset; play/pause/replay/step/speed; live "n / N strokes" label under the controls — old kd-stroke-counter merged into it; `onProgress(revealed)` reports the live stroke count so the Browse component chips can highlight in sync; the stroke box itself is click-to-copy via the CopyKanji overlay)
-    Result.jsx               score stamp + breakdown + mode-aware next-review panel. (t78) The "Why the same review date?" note was removed — the first-quiz schedule explanation lives in the Help overlay's Quiz section; the numbers are still verified by scripts/t74_srs_first_schedule.mjs
-    Browse.jsx               full kanji library (filter pills, search, modal; the modal's stroke box is click-to-copy — see CopyKanji.jsx)
-    ReviewCalendar.jsx       shared month calendar + selected-day panel (used by the banner overlay); buildScheduleEntries filters per level via state.jlptLevel with a unitId-prefix fallback ("N1-U3" → "N1", t78) so freshly scheduled units are never hidden from the level-scoped calendar; days the user actually studied on (≥ 1 completed quiz) are gold — same color story as the lit streak card (t76: the marker is on activity days, not on "today"; today keeps its indigo border); the study dot under the day number is gold too
+    ScriptToggle.jsx         (t80) topbar kana/romaji toggle — universal for the quiz and Browse (Readings + example readings switch live); neutral pill, no on/off color: the label (あ / Aa) is the state; (t81) sits BETWEEN the Help and Theme buttons
+    Result.jsx               score stamp + breakdown + mode-aware next-review panel; the "Why the same review date?" note was removed (t78) — the fixed 1/2/8-day first-quiz schedule is explained in the Help overlay's Quiz section instead
+    Browse.jsx               full kanji library (filter pills, search, modal; the modal's stroke box is click-to-copy — see CopyKanji.jsx); readings and example readings follow the universal topbar script toggle, the separate Romaji row was removed (t80)
+    ReviewCalendar.jsx       shared month calendar + selected-day panel (used by the banner overlay); days the user actually studied on (≥ 1 completed quiz) are gold — same color story as the lit streak card (t76: the marker is on activity days, not on "today"; today keeps its indigo border); the study dot under the day number is gold too
     CalendarModal.jsx        review-calendar overlay opened from the review banner: calendar + day panel
     NextReviewBanner.jsx     one-line schedule banner — a clickable calendar entry in ALL states (empty/due/scheduled); click opens the review-calendar overlay
     ThemeToggle.jsx          Sun/Moon dark-mode switch
@@ -442,9 +455,15 @@ scripts/
                             dipakai Step 2 DAN Step 3 (fail-fast bila
                             CSV jiten hilang); standalone: python
                             scripts/hybrid_freq.py (laporan distribusi)
-  fetch_fonts.py            Regenerasi public/fonts/ (woff2 subset) +
-                            src/styles/fonts.css — self-host Google
-                            Fonts (OFL 1.1), zero third-party request
+  fix_font_maxp.py          (t81) Patch tabel maxp file woff2 @fontsource
+                            di node_modules (maxZones=0 → 1/2 — subset
+                            Shippori Mincho mewarisinya dari pipeline
+                            Google) supaya Firefox tidak memperingatkan
+                            "maxp: Bad maxZones"; dijalankan otomatis
+                            sebagai hook postinstall npm (gagal lembut
+                            bila python/fontTools absen). fetch_fonts.py
+                            pensiun (t81) — font kini dikelola npm
+                            @fontsource/*.
   test_logic.mjs            Unit test logika app (FSRS adapter, quiz,
                             histori) — node scripts/test_logic.mjs
   differential_tsfsrs.mjs, srs_oracle.mjs, experiment_adapters.mjs,
@@ -944,9 +963,8 @@ A first-time unit quiz always lands on a **fixed starting interval** (the
 absolute anchor of the adapter has no model expectation to compare
 against): ≤80% → 1 day, 87–99% → 2 days, 100% → 8 days — so two units
 with different first scores can share the same review date, and the app
-explains this in the Help overlay's Quiz section (t78: the result-screen
-note was removed at the user's request to keep results clean). Adaptation
-begins with the
+explains this in the Help overlay (Quiz section, t78 — the result-screen
+note was removed) instead of leaving users to guess. Adaptation begins with the
 second review (1 → 5 → 13 days… for good results). The per-score table
 is verified by `scripts/t74_srs_first_schedule.mjs`.
 
@@ -1126,7 +1144,8 @@ the unit card) and covers all of that unit's missed kanji.
    readings (`primary_readings` — the most common on'yomi or kun'yomi,
    filtered to example-backed readings by the data pipeline, so rare
    readings are never asked). Reading choices carry BOTH scripts
-   (`{kana, romaji}`); the あ/Aa toggle on the quiz screen only changes
+   (`{kana, romaji}`); the あ/Aa toggle in the topbar (t80: universal for
+   the quiz and Browse) only changes
    which one is displayed, live, even mid-quiz. Scoring compares the
    chosen **index**, so the display script can never affect grading.
 2. Build **distractors** from other kanji in the same level, excluding the
@@ -1194,19 +1213,27 @@ Configured via `vite-plugin-pwa`:
 - Runs offline after first load (all data + assets precached).
 - Auto-updates the service worker on new deploys.
 
-### Fonts are self-hosted (zero third-party requests)
+### Fonts ship from npm @fontsource (zero third-party requests)
 
-`public/fonts/` holds 854 subset woff2 files (16.2 MB on disk; browsers
-fetch only the unicode-range subsets they actually render) for Shippori
-Mincho, Zen Kaku Gothic New, and DM Mono — all **SIL Open Font License
-1.1**, regenerated by `python scripts/fetch_fonts.py` into
-`src/styles/fonts.css`. There is **no `<link>` to fonts.googleapis.com**:
-every request the app ever makes stays on its own origin, which is what
-makes the privacy policy's "no data collected / no data shared" honest
-(Google Play Data Safety). The woff2 subsets are deliberately **not**
-precached — with unicode-range, the browser only downloads the subsets
-needed for the glyphs actually shown; used subsets are cached by the
-service worker (CacheFirst, `app-fonts-cache`) and stay available offline.
+Fonts are regular npm dependencies (t81): `@fontsource/shippori-mincho`,
+`@fontsource/zen-kaku-gothic-new`, `@fontsource/dm-mono` — imported per
+used weight in `src/main.jsx`, bundled by Vite into hashed
+`dist/assets/*.woff2` files, and covered by the SIL Open Font License 1.1
+(redistribution & embedding in a Play Store app is permitted; the Help
+overlay credits them). There is **no `<link>` to fonts.googleapis.com**
+and no manual `public/fonts/` pipeline anymore: every request the app
+ever makes stays on its own origin, which is what makes the privacy
+policy's "no data collected / no data shared" honest (Google Play Data
+Safety). The woff2 subsets are deliberately **not** precached — with
+unicode-range, the browser only downloads the subsets needed for the
+glyphs actually shown; used subsets are cached by the service worker
+(CacheFirst, `app-fonts-cache`, matched on hashed `/assets/*.woff2`) and
+stay available offline. One caveat carried over from t80: the Shippori
+Mincho subsets (all weights) ship with `maxp.maxZones = 0`, which made
+Firefox print a "maxp: Bad maxZones" warning per subset —
+`scripts/fix_font_maxp.py` patches them in `node_modules` and runs
+automatically as an npm `postinstall` hook (soft-fails if python3 /
+fontTools / brotli are unavailable, so `npm install` never breaks).
 
 Test PWA features with `npm run build && npm run preview` (PWA behavior is
 limited in `npm run dev`).

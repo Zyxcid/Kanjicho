@@ -26,10 +26,17 @@ function choiceLabel(choice, questionType, answerScript) {
 const CHOICE_KEYS = ["w", "e", "s", "d"];
 const DONT_KNOW_KEY = "f"; // sebelah d — masih dalam jangkauan satu tangan
 
-/* (t79) AUTO-FLIP DIHAPUS — laporan user: kartu berputar sendiri 420 ms
-   setelah dijawab, terlalu cepat, jawaban yang benar belum sempat
-   terbaca. Kartu kini DIAM di depan (pilihan terwarna) selama user
-   mau; satu-satunya cara membalik = swipe horizontal. */
+/* (t80) AUTO-FLIP KEMBALI — default ON (permintaan user). (t81) JEDA
+   kini DIPILIH USER: keluhan "flip kartu terlalu lama" atas 1500 ms →
+   default 1000 ms (tengah antara 420 ms yang dulu "terlalu cepat
+   dibaca" — t79 — dan 1500 ms), plus deretan pilihan durasi di help
+   overlay (prop `autoFlipDelay` dari App; state + localStorage
+   "kanji-autoflip-delay" dikelola App, daftar pilihan di
+   HelpButton.jsx). Auto-flip tetap bisa dimatikan total dari toggle
+   help overlay ("kanji-autoflip"). Swipe manual MEMBATALKAN timer
+   yang masih menggantung — kartu tidak boleh "direbut" kembali dari
+   tangan user. t79 sempat menghapus auto-flip total; ini
+   komprominya. */
 /* Geseran horizontal minimum (px) agar dihitung gerakan "balik kartu" —
    cukup jauh supaya tap biasa (getar beberapa piksel) tidak ikut;
    harus dominan horizontal supaya scroll vertikal tidak tersangkut. */
@@ -42,32 +49,6 @@ const SWIPE_AXIS_MARGIN = 24;
    saat kartunya sendiri sedang di tangan user. */
 const SWIPE_LEARNED_KEY = "kanji-swipe-learned";
 
-/**
- * Toggle skrip kana ↔ romaji (shortcut: r). Diangkat jadi komponen kecil
- * karena t77 menaruhnya di DUA sisi kartu — pojok kanan-atas sisi DEPAN
- * (absolut) dan ujung kanan baris kepala sisi BELAKANG — kontrol utilitas
- * yang selalu ada di pojok kanan, di sisi mana pun yang sedang menghadap
- * user. Mengatur seluruh layar kuis: label pilihan, bacaan On/Kun di
- * panel reveal, dan reading contoh kata — semuanya berganti live karena
- * kedua bentuk tersimpan (lihat lib/kana.js).
- */
-function ScriptToggle({ answerScript, onToggleScript }) {
-  return (
-    <button
-      className={`kd-script-toggle ${answerScript === "kana" ? "kana" : ""}`}
-      onClick={onToggleScript}
-      title={
-        answerScript === "kana"
-          ? "Show readings in romaji (r)"
-          : "Show readings in kana (r)"
-      }
-      aria-pressed={answerScript === "kana"}
-    >
-      {answerScript === "kana" ? "あ" : "Aa"}
-    </button>
-  );
-}
-
 export default function Quiz({
   quiz,
   qIndex,
@@ -76,6 +57,8 @@ export default function Quiz({
   mode,
   answerScript = "romaji",
   onToggleScript,
+  autoFlip = true, // (t80) dari toggle help overlay — default ON
+  autoFlipDelay = 1000, // (t81) jeda auto-flip (ms) — dari deretan pill help overlay
   onSubmitAnswer,
   onContinue,
   onCancel,
@@ -94,12 +77,16 @@ export default function Quiz({
   const wrongSoFar = qIndex - correctSoFar;
 
   // (t77) Kartu kuis = KARTU FISIK: depan = soal + pilihan, belakang =
-  // reading sheet. `flipped` adalah keinginan user — sejak t79 murni
-  // swipe (tombol Flip dihapus, auto-flip pensiun); `answered` dari App
-  // mengunci flip — sisi belakang memuat JAWABAN, jadi sebelum menjawab
-  // kartu tidak boleh bisa dibalik.
+  // reading sheet. (t80) `rot` = rotasi KUMULATIF di sumbu Y (derajat):
+  // tiap pergantian sisi menambah/mengurangi 180 SESUAI ARAH GERAKAN —
+  // swipe ke kanan menyapu wajah ke kanan (+180), ke kiri menyapu ke
+  // kiri (−180), auto-flip memakai −180 (lipatan halaman maju). Genap
+  // (0, ±360, …) = depan; ganjil (±180, ±540, …) = belakang. `answered`
+  // dari App mengunci flip — sisi belakang memuat JAWABAN, jadi sebelum
+  // menjawab kartu tidak boleh bisa dibalik.
   const answered = selectedChoice !== null;
-  const [flipped, setFlipped] = useState(false);
+  const [rot, setRot] = useState(0);
+  const flipped = Math.abs(rot % 360) === 180;
   // (t78) Petunjuk swipe sekali-lihat — lihat SWIPE_LEARNED_KEY di atas.
   // try/catch: mode privat browser bisa melempar saat membaca localStorage
   // (hint lalu tampil tiap sesi — aman, hanya redundan).
@@ -120,27 +107,44 @@ export default function Quiz({
   }
   // Gerbang `answered`: saat Continue, selectedChoice kembali null dalam
   // render yang SAMA dengan naiknya qIndex (kartu baru via key) — state
-  // `flipped` mentah belum sempat direset efek di bawah. Tanpa gerbang
-  // ini kartu baru ter-mount dalam pose terbalik lalu "berputar pulang".
+  // `rot` mentah belum sempat direset efek di bawah. Tanpa gerbang ini
+  // transform kartu baru memuat rotasi bekas soal lama. Gerbang yang sama
+  // diterapkan pada style inline di bawah: rotateY(answered ? rot : 0).
   const showBack = answered && flipped;
 
-  // (t79) Reset saja — auto-flip pensiun: kartu berputar HANYA atas
-  // perintah user (swipe), jadi user punya waktu tak terbatas membaca
-  // jawaban yang benar di sisi depan. Saat soal berganti (selectedChoice
-  // null), `flipped` dikembalikan false supaya swipe PERTAMA pada soal
-  // baru menghadapkan belakang (bukan memutar balik ke depan).
+  // (t80) Auto-flip + reset: jawab → tunggu `autoFlipDelay` → putar
+  // sendiri ke belakang (guard `r === 0`: hanya bila masih di depan —
+  // user yang sudah membalik manual tidak diganggu). Soal berganti
+  // (selectedChoice null) → rot kembali 0: soal baru selalu mulai dari
+  // depan DAN swipe pertamanya mengarah ke BELAKANG (bukan memutar balik).
+  // Bila autoFlip dimatikan (toggle help overlay) tidak ada timer sama
+  // sekali — kartu sepenuhnya manual (perilaku t79). (t81) ganti jeda
+  // saat sesi berjalan juga aman: efek ini bergantung `autoFlipDelay`,
+  // timer lama dibersihkan cleanup lalu dipasang ulang dengan durasi
+  // baru sebelum sempat terpicu.
+  const autoFlipTimer = useRef(null);
   useEffect(() => {
-    if (selectedChoice === null) setFlipped(false);
-  }, [selectedChoice, current.kanji]);
+    if (selectedChoice === null) {
+      setRot(0);
+      return;
+    }
+    if (!autoFlip) return;
+    const t = setTimeout(() => {
+      setRot((r) => (r === 0 ? r - 180 : r));
+    }, autoFlipDelay);
+    autoFlipTimer.current = t;
+    return () => clearTimeout(t);
+  }, [selectedChoice, current.kanji, autoFlip, autoFlipDelay]);
 
   // Swipe horizontal = balik kartu (HANYA setelah menjawab) — sejak t79
-  // SATU-SATUNYA jalur membalik (tombol Flip dihapus, auto-flip pensiun;
-  // pointer events menangkap sentuhan maupun drag mouse di desktop).
-  // Threshold
-  // dx + dominasi horizontal memisahkan swipe dari tap dan dari scroll
-  // vertikal (touch-action: pan-y di CSS menjaga scroll halaman tetap
-  // hidup). Swipe kiri/kanan dua-duanya membalik — arah tidak bermakna,
-  // konsisten dengan rotasi di sumbu Y.
+  // satu-satunya jalur manual (tombol Flip dihapus; pointer events
+  // menangkap sentuhan maupun drag mouse di desktop). (t80) ARAH swipe
+  // menentukan ARAH putaran: geser ke kanan = wajah menyapu ke kanan
+  // (+180), ke kiri = −180 — kartu mengikuti tangan, bukan mengulang
+  // animasi yang sama dua kali. Threshold dx + dominasi horizontal
+  // memisahkan swipe dari tap dan dari scroll vertikal (touch-action:
+  // pan-y di CSS menjaga scroll halaman tetap hidup). Swipe juga
+  // MEMBATALKAN timer auto-flip yang belum jalan.
   const swipeStartRef = useRef(null);
   function handlePointerDown(e) {
     if (!e.isPrimary) return;
@@ -154,7 +158,8 @@ export default function Quiz({
     const dx = e.clientX - s.x;
     const dy = e.clientY - s.y;
     if (Math.abs(dx) >= SWIPE_MIN_DX && Math.abs(dx) > Math.abs(dy) + SWIPE_AXIS_MARGIN) {
-      setFlipped((f) => !f);
+      setRot((r) => r + (dx > 0 ? 180 : -180));
+      clearTimeout(autoFlipTimer.current);
       // Swipe pertama yang TERDAFTAR = user sudah mengenal gerakannya.
       markSwipeLearned();
     }
@@ -237,16 +242,13 @@ export default function Quiz({
     };
   }, [current.kanji, current.level]);
 
-  // (t62) Animasi tinggi panel reveal DIHAPUS (t77): panel kini sisi
-  // BELAKANG kartu — pergantian depan/belakang dianimasikan rotasi
-  // transform murni di compositor (GPU), tanpa reflow per frame, jauh
-  // lebih murah daripada animasi height dulu.
-
   // Shortcut keyboard: w/e/s/d pilih jawaban (mirror grid 2×2), f =
-  // "Don't know", r = toggle kana/romaji, Enter/Space = lanjut. (q = tombol
-  // Cancel ditangani global di App.jsx — dia meng-KLIK tombol ini, jadi
-  // ikut alur konfirmasi yang sama dengan klik mouse.) Listener di window
-  // supaya jalan tanpa fokus ke elemen tertentu.
+  // "Don't know", r = toggle kana/romaji (kini toggle global di topbar,
+  // state yang sama — r tetap hanya hidup di layar kuis), Enter/Space =
+  // lanjut. (q = tombol Cancel ditangani global di App.jsx — dia
+  // meng-KLIK tombol ini, jadi ikut alur konfirmasi yang sama dengan
+  // klik mouse.) Listener di window supaya jalan tanpa fokus ke elemen
+  // tertentu.
   useEffect(() => {
     function handleKeyDown(e) {
       // Modifier + huruf = shortcut browser/OS (Ctrl+S, Cmd+R) — jangan
@@ -321,6 +323,8 @@ export default function Quiz({
           soal + pilihan (tata letak lama utuh: mobile ditumpuk vertikal,
           desktop ≥900px genkō kiri + kolom soal kanan). BELAKANG:
           reading sheet. Rotasi di sumbu Y (perspective di .kd-card-scene);
+          (t80) transform di-set INLINE dari state kumulatif `rot` supaya
+          ARAH transisi mengikuti arah swipe — bukan kelas statis .flipped.
           key=qIndex membuat soal baru = kartu BARU yang ter-mount polos
           (tanpa bekas rotasi), masuk dengan animasi kartu segar. Sisi
           yang tidak menghadap user diberi atribut inert supaya tombolnya
@@ -332,11 +336,13 @@ export default function Quiz({
         onPointerCancel={clearSwipe}
         onPointerLeave={clearSwipe}
       >
-        <div key={qIndex} className={`kd-card-inner ${showBack ? "flipped" : ""}`}>
+        <div
+          key={qIndex}
+          className="kd-card-inner"
+          style={{ transform: `rotateY(${answered ? rot : 0}deg)` }}
+        >
           {/* ============ DEPAN: soal + pilihan ============ */}
           <div className="kd-card-face front" inert={showBack ? "true" : undefined}>
-            <ScriptToggle answerScript={answerScript} onToggleScript={onToggleScript} />
-
             {/* Mobile: kanji dan soal ditumpuk vertikal. Desktop (>=900px,
                 lihat global.css): kanji di kiri ATAS (posisi statis —
                 tidak pernah bergeser saat kartu dibalik), soal + pilihan
@@ -380,9 +386,9 @@ export default function Quiz({
                 </div>
 
                 {/* Grid pilihan: setelah dijawab UKURANNYA TETAP (t78:
-                  animasi menciut dihapus) — hanya pilihan netral yang
-                  meredup; correct/wrong tetap penuh supaya hasil masih
-                  terbaca ketika user membalik kartu kembali ke depan. */}
+                    animasi menciut dihapus) — hanya pilihan netral yang
+                    meredup; correct/wrong tetap penuh supaya hasil masih
+                    terbaca ketika user membalik kartu kembali ke depan. */}
                 <div className={`kd-choice-grid ${answered ? "answered" : ""}`}>
                   {current.choices.map((choice, idx) => {
                     let cls = "kd-choice-btn";
@@ -418,14 +424,17 @@ export default function Quiz({
               tidak punya sisi belakang yang berarti — dan tidak boleh
               ada: jawaban harus tersembunyi). Struktur kelas dalam
               (kd-reveal-head/yomi/comp/examples) sama dengan versi
-              panel dulu — CSS-nya dipakai bersama modal Browse. */}
+              panel dulu — CSS-nya dipakai bersama modal Browse.
+              (t80) Head: kanji KIRI, arti KANAN (justify-content
+              space-between di CSS) — konsisten dengan tata letak depan
+              kartu (genkō kiri, info kanan); toggle skrip sudah pindah
+              ke topbar app (universal). */}
           {answered && (
             <div className="kd-card-face back" inert={showBack ? undefined : "true"}>
               <div className="kd-card-back-body">
                 <div className="kd-reveal-head">
                   <span className="kd-meaning-kanji">{current.kanji}</span>
                   <span className="kd-meaning-text">{current.meanings.join(", ")}</span>
-                  <ScriptToggle answerScript={answerScript} onToggleScript={onToggleScript} />
                 </div>
                 {/* Baris bacaan mengikuti skrip toggle (kana atau romaji);
                     primary tetap di-bold di kedua skrip. */}
@@ -486,15 +495,14 @@ export default function Quiz({
           Tampil hanya setelah menjawab (sebelum itu swipe memang belum
           berfungsi — kartu terkunci) dan hanya sampai swipe PERTAMA
           user terdaftar (flag localStorage, lihat SWIPE_LEARNED_KEY).
-          Sejak t79 petunjuk ini jadi satu-satunya jalan menuju sisi
-          belakang (auto-flip & tombol Flip sama-sama pensiun) — teksnya
-          menjanjikan ISINYA, bukan cuma gerakannya. Dekoratif
-          (aria-hidden): makna gerakannya dijelaskan teksnya sendiri;
-          layar tetap bersih setelah gerakan dikenal. */}
+          (t80) auto-flip default ON memperlihatkan sisi belakang dengan
+          sendirinya — petunjuk ini mengajarkan KONTROL manual (bolak-balik kapan pun), teksnya netral terhadap mode.
+          Dekoratif (aria-hidden): makna gerakannya dijelaskan teksnya
+          sendiri; layar tetap bersih setelah gerakan dikenal. */}
       {answered && !swipeLearned && (
         <div className="kd-swipe-hint" aria-hidden="true">
           <MoveHorizontal size={14} />
-          <span>Swipe the card sideways to see its readings</span>
+          <span>Swipe the card sideways to flip it</span>
         </div>
       )}
 

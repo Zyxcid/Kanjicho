@@ -45,20 +45,15 @@ export function units(n) {
 
 /** Jadwal review dari state SRS: [{unitId, at}] terurut waktu. `level`
  *  memfilter ke unit level itu (dipakai saat konteksnya per-level).
- *  Level unit diambil dari state.jlptLevel; kalau field itu absen (state
- *  in-memory yang dibuat reviewUnit() sebelum t78, atau data lama),
- *  jatuh ke prefix unitId ("N1-U3" → "N1") — unitId selalu berformat
- *  "<level>-U<n>" — supaya penyaringan per-level tidak pernah
- *  menyembunyikan unit yang memang dijadwalkan (t78: bug "jadwal N1
- *  besok tidak ditandai di kalender N1, tapi muncul di semua level"). */
+ *  (t78) Fallback prefix unitId ("N1-U3" → "N1") bila state in-memory
+ *  belum memuat jlptLevel — record DB selalu memuatnya (kolom), tapi
+ *  objek hasil reviewUnit() sesi berjalan tidak; tanpa fallback,
+ *  kalender per-level kehilangan jadwal unit yang baru selesai dikuis. */
 export function buildScheduleEntries(progress, level) {
   const out = [];
   for (const [unitId, state] of Object.entries(progress || {})) {
     if (!state || !state.nextReviewAt) continue;
-    const dash = unitId.indexOf("-");
-    const unitLevel =
-      state.jlptLevel || (dash > 0 ? unitId.slice(0, dash) : null);
-    if (level && unitLevel !== level) continue;
+    if (level && (state.jlptLevel || unitId.split("-")[0]) !== level) continue;
     out.push({ unitId, at: new Date(state.nextReviewAt) });
   }
   out.sort((a, b) => a.at - b.at);
