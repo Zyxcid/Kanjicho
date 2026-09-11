@@ -561,7 +561,10 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
    konten rata atas). Rotasi di sumbu Y; wajah yang membelakangi user
    disembunyikan backface-visibility dan di-inert dari JS. Soal baru =
    elemen baru (key=qIndex di JSX) → ter-mount polos tanpa bekas
-   rotasi, masuk dengan animasi kartu segar. */
+   rotasi, masuk dengan animasi kartu segar.
+   (t79) Kartu TIDAK lagi berputar sendiri — auto-flip 420 ms dihapus
+   agar user tak dikejar waktu membaca jawaban yang benar di depan;
+   swipe horizontal = satu-satunya pemicu flip (tombol Flip dihapus). */
 .kd-card-scene {
   max-width: 480px; margin: 0 auto;
   perspective: 1500px;
@@ -611,17 +614,14 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
    tidak melebar penuh di kartu desktop yang lebar. */
 .kd-card-back-body { max-width: 460px; margin: 0 auto; }
 .kd-reveal-head .kd-script-toggle { margin-left: auto; }
-/* Bar aksi kartu: DI LUAR kartu (tidak ikut berputar) — Flip (banding
-   swipe, dua jalur input yang sama) + Continue (primary). Muncul hanya
+/* Bar aksi kartu: DI LUAR kartu (tidak ikut berputar) — sejak t79 hanya
+   berisi Continue (primary, flex 1 → lebar penuh): tombol Flip dihapus
+   per permintaan user karena swipe sudah menutup fungsinya. Muncul hanya
    setelah menjawab: sebelum itu tidak ada aksi kartu (belum boleh
    dibalik — jawaban ada di sisi belakang). */
 .kd-card-actions {
   display: flex; gap: 10px; max-width: 480px; margin: 14px auto 0;
   animation: kd-rise-in 0.3s ease 0.12s backwards;
-}
-.kd-card-actions .kd-flip-btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
-  flex: 0 0 auto;
 }
 .kd-card-actions .kd-continue-btn { flex: 1 1 auto; }
 /* (t78) Petunjuk swipe sekali-lihat: baris kecil redup di antara kartu
@@ -629,7 +629,9 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
    (flag localStorage "kanji-swipe-learned" di Quiz.jsx); setelah itu
    gerakan dianggap dikenal selamanya dan baris ini tak muncul lagi.
    Menggantikan kalimat swipe di help overlay (dipindah ke sini, lebih
-   dekat ke momen gerakannya relevan). Ikon bergeser tipis kiri-kanan
+   dekat ke momen gerakannya relevan). Sejak t79 petunjuk ini jadi
+   satu-satunya afordansi menuju sisi belakang (auto-flip pensiun) —
+   teksnya menjanjikan isi sheetnya. Ikon bergeser tipis kiri-kanan
    sebagai isyarat gestur. */
 .kd-swipe-hint {
   display: flex; align-items: center; justify-content: center; gap: 7px;

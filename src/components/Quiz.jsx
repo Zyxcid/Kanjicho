@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ChevronLeft, CircleX, FlipHorizontal2, HelpCircle, MoveHorizontal } from "lucide-react";
+import { ChevronLeft, CircleX, HelpCircle, MoveHorizontal } from "lucide-react";
 import { DONT_KNOW } from "../lib/quizGenerator.js";
 import { ReadingList } from "./Readings.jsx";
 import { kanaToRomaji } from "../lib/kana.js";
@@ -26,10 +26,10 @@ function choiceLabel(choice, questionType, answerScript) {
 const CHOICE_KEYS = ["w", "e", "s", "d"];
 const DONT_KNOW_KEY = "f"; // sebelah d — masih dalam jangkauan satu tangan
 
-/* (t77) KARTU FLIP: setelah menjawab, kartu menunggu sebentar supaya
-   penandaan correct/wrong pada pilihan sempat terbaca, lalu berputar
-   sendiri ke sisi belakang (reading sheet). */
-const AUTO_FLIP_DELAY_MS = 420;
+/* (t79) AUTO-FLIP DIHAPUS — laporan user: kartu berputar sendiri 420 ms
+   setelah dijawab, terlalu cepat, jawaban yang benar belum sempat
+   terbaca. Kartu kini DIAM di depan (pilihan terwarna) selama user
+   mau; satu-satunya cara membalik = swipe horizontal. */
 /* Geseran horizontal minimum (px) agar dihitung gerakan "balik kartu" —
    cukup jauh supaya tap biasa (getar beberapa piksel) tidak ikut;
    harus dominan horizontal supaya scroll vertikal tidak tersangkut. */
@@ -94,9 +94,10 @@ export default function Quiz({
   const wrongSoFar = qIndex - correctSoFar;
 
   // (t77) Kartu kuis = KARTU FISIK: depan = soal + pilihan, belakang =
-  // reading sheet. `flipped` adalah keinginan user (auto-flip, swipe,
-  // tombol Flip); `answered` dari App mengunci flip — sisi belakang
-  // memuat JAWABAN, jadi sebelum menjawab kartu tidak boleh bisa dibalik.
+  // reading sheet. `flipped` adalah keinginan user — sejak t79 murni
+  // swipe (tombol Flip dihapus, auto-flip pensiun); `answered` dari App
+  // mengunci flip — sisi belakang memuat JAWABAN, jadi sebelum menjawab
+  // kartu tidak boleh bisa dibalik.
   const answered = selectedChoice !== null;
   const [flipped, setFlipped] = useState(false);
   // (t78) Petunjuk swipe sekali-lihat — lihat SWIPE_LEARNED_KEY di atas.
@@ -123,22 +124,19 @@ export default function Quiz({
   // ini kartu baru ter-mount dalam pose terbalik lalu "berputar pulang".
   const showBack = answered && flipped;
 
-  // Auto-flip + reset: jawab → tunggu AUTO_FLIP_DELAY_MS (lihat warna
-  // correct/wrong dulu) → putar ke belakang. Soal berganti (selectedChoice
-  // null) → reset mentah supaya jawaban berikutnya selalu mulai dari
-  // depan. Flip manual (swipe/tombol) bebas menimpa kapan pun — efek ini
-  // hanya berjalan pada transisi menjawab, bukan terus-menerus.
+  // (t79) Reset saja — auto-flip pensiun: kartu berputar HANYA atas
+  // perintah user (swipe), jadi user punya waktu tak terbatas membaca
+  // jawaban yang benar di sisi depan. Saat soal berganti (selectedChoice
+  // null), `flipped` dikembalikan false supaya swipe PERTAMA pada soal
+  // baru menghadapkan belakang (bukan memutar balik ke depan).
   useEffect(() => {
-    if (selectedChoice === null) {
-      setFlipped(false);
-      return;
-    }
-    const t = setTimeout(() => setFlipped(true), AUTO_FLIP_DELAY_MS);
-    return () => clearTimeout(t);
+    if (selectedChoice === null) setFlipped(false);
   }, [selectedChoice, current.kanji]);
 
-  // Swipe horizontal = balik kartu (HANYA setelah menjawab). Pointer events
-  // di .kd-card-scene menangkap sentuhan di mana pun pada kartu; threshold
+  // Swipe horizontal = balik kartu (HANYA setelah menjawab) — sejak t79
+  // SATU-SATUNYA jalur membalik (tombol Flip dihapus, auto-flip pensiun;
+  // pointer events menangkap sentuhan maupun drag mouse di desktop).
+  // Threshold
   // dx + dominasi horizontal memisahkan swipe dari tap dan dari scroll
   // vertikal (touch-action: pan-y di CSS menjaga scroll halaman tetap
   // hidup). Swipe kiri/kanan dua-duanya membalik — arah tidak bermakna,
@@ -488,30 +486,28 @@ export default function Quiz({
           Tampil hanya setelah menjawab (sebelum itu swipe memang belum
           berfungsi — kartu terkunci) dan hanya sampai swipe PERTAMA
           user terdaftar (flag localStorage, lihat SWIPE_LEARNED_KEY).
-          Dekoratif (aria-hidden): makna gerakannya dijelaskan teksnya
-          sendiri; layar tetap bersih setelah gerakan dikenal. */}
+          Sejak t79 petunjuk ini jadi satu-satunya jalan menuju sisi
+          belakang (auto-flip & tombol Flip sama-sama pensiun) — teksnya
+          menjanjikan ISINYA, bukan cuma gerakannya. Dekoratif
+          (aria-hidden): makna gerakannya dijelaskan teksnya sendiri;
+          layar tetap bersih setelah gerakan dikenal. */}
       {answered && !swipeLearned && (
         <div className="kd-swipe-hint" aria-hidden="true">
           <MoveHorizontal size={14} />
-          <span>Swipe the card sideways to flip it</span>
+          <span>Swipe the card sideways to see its readings</span>
         </div>
       )}
 
       {/* Bar aksi KARTU — DI LUAR kartu (tidak ikut berputar), supaya
-          tombol selalu di tempat yang sama di sisi mana pun: Flip
-          (secondary, sama fungsinya dengan swipe) + Continue (primary).
-          Hanya muncul setelah menjawab: sebelum itu tidak ada aksi kartu
-          yang tersedia (mem-balik belum boleh — jawaban ada di belakang).
-          Enter/Space tetap melanjutkan tanpa perlu fokus tombol. */}
+          tombol selalu di tempat yang sama di sisi mana pun. (t79) tombol
+          Flip DIHAPUS per permintaan user — swipe sudah menutup fungsi itu
+          (satu gerakan, satu makna; bar juga lebih ringkas); kini hanya
+          Continue (primary, lebar penuh). Hanya muncul setelah menjawab:
+          sebelum itu tidak ada aksi kartu yang tersedia (membalik belum
+          boleh — jawaban ada di belakang). Enter/Space tetap melanjutkan
+          tanpa perlu fokus tombol. */}
       {answered && (
         <div className="kd-card-actions">
-          <button
-            className="kd-btn secondary kd-flip-btn"
-            onClick={() => setFlipped((f) => !f)}
-            title="Flip the card — swiping it sideways works too"
-          >
-            <FlipHorizontal2 size={15} strokeWidth={2.25} /> Flip
-          </button>
           <button className="kd-btn primary kd-continue-btn" onClick={onContinue}>
             {qIndex + 1 < quiz.length ? "Continue" : "See Results"}
           </button>

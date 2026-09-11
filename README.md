@@ -17,23 +17,24 @@ npm run preview   # preview the production build locally
 ## Features
 
 - **JLPT practice (N5–N1)** — multiple-choice reading quizzes, one unit at
-  a time. The quiz is a **physical flip card** (t77): answering turns the
-  card over — the front holds the question and choices (the genkō-yōshi
-  kanji box, tappable for stroke order), the back is the reading sheet
-  (readings, components, example words). The card auto-rotates to its
-  back ~0.4 s after you answer (long enough to see the correct/wrong
-  marking on the choices); swipe it sideways or tap **Flip** to see the
-  choices again — flipping is locked until you answer, since the back
-  contains the answer. A one-time hint under the card teaches the swipe
-  and disappears for good after the first real swipe (t78, localStorage
-  flag; the swipe sentence was removed from the Help overlay). Both card
-  faces sit 1 px apart on the Z axis (t78) so the face pointing at you
-  always wins depth sorting — `backface-visibility` alone proved
-  unreliable on some Android devices. Answered choices keep their size
-  (the old shrink animation was removed, t78); only the neutral ones
-  dim. The action row below the card (outside the
-  rotation) always holds **Flip** + **Continue** in the same place. The
-  row of dots above the card is a **live scoreboard**
+  a time. The quiz is a **physical flip card** (t77): the front holds the
+  question and choices (the genkō-yōshi kanji box, tappable for stroke
+  order), the back is the reading sheet (readings, components, example
+  words). The card never rotates on its own (t79: the old ~0.4 s
+  auto-flip left no time to read the correct answer) — after answering it
+  stays on the front, marking the choices, for as long as you like; a
+  horizontal swipe turns it over and back, and it is the **only** flip
+  trigger (the Flip button was removed, t79). Flipping is locked until
+  you answer, since the back contains the answer. A one-time hint under
+  the card teaches the swipe and disappears for good after the first
+  real swipe (t78, localStorage flag; the swipe sentence was removed
+  from the Help overlay). Both card faces sit 1 px apart on the Z axis
+  (t78) so the face pointing at you always wins depth sorting —
+  `backface-visibility` alone proved unreliable on some Android devices.
+  Answered choices keep their size (the old shrink animation was
+  removed, t78); only the neutral ones dim. The action row below the
+  card (outside the rotation) holds just **Continue** (t79). The row of
+  dots above the card is a **live scoreboard**
   (t76): correct answers collect at the far left in full indigo, wrong
   (or "don't know") answers dim, and the enlarged dark dot marks the
   running question — a dot's position encodes its status (correct /
@@ -284,7 +285,7 @@ src/
     Home.jsx                next-review banner (the calendar entry) + stat cards panel + browse entry + level grid
     StatCards.jsx           shared panel of three large read-only stat cards (x/total Studied, Due now, Mastered) used by Home and UnitSelect
     UnitSelect.jsx           per-level stat cards + unit cards (dimmed = free practice; "✕ N" missed-review pill next to the title, hidden once the unit is due)
-    Quiz.jsx                 quiz screen as a FLIP CARD (t77): front = kanji box + choices, back = reading sheet (readings, components, examples) + weak-review badge on the front. CSS 3D (perspective on .kd-card-scene, preserve-3d + rotateY on .kd-card-inner, backface-visibility on both faces + 1 px translateZ depth separation, t78); auto-flips to the back 420 ms after answering; horizontal swipe (pointer events, ≥56 px, only after answering) or the Flip button in the action row below the card toggles sides; a one-time swipe hint (t78) shows under the card after answering until the user's first registered swipe (localStorage "kanji-swipe-learned"); the hidden face is inert; key=qIndex remounts a fresh card per question. The kanji is always shown as the finished KanjiVG SVG — left-click the box to replay the stroke animation inline, right-click to finish it instantly (no detail entry from inside the quiz before answering — that would leak the answer); the script toggle (kana/romaji) sits in the card's top-right corner on the front and in the reading-sheet header on the back; the dots above the card are a live scoreboard (t76): answers prop + correctIndex comparison sorts them into [correct (full indigo, leftmost)] [current] [wrong (dimmed)] [unanswered]
+    Quiz.jsx                 quiz screen as a FLIP CARD (t77): front = kanji box + choices, back = reading sheet (readings, components, examples) + weak-review badge on the front. CSS 3D (perspective on .kd-card-scene, preserve-3d + rotateY on .kd-card-inner, backface-visibility on both faces + 1 px translateZ depth separation, t78); never auto-flips (t79 — the card stays on the front after answering so the correct/wrong marking can be read at leisure); a horizontal swipe (pointer events, ≥56 px, only after answering) is the only flip trigger — the Flip button was removed (t79); a one-time swipe hint (t78) shows under the card after answering until the user's first registered swipe (localStorage "kanji-swipe-learned"); the hidden face is inert; key=qIndex remounts a fresh card per question. The kanji is always shown as the finished KanjiVG SVG — left-click the box to replay the stroke animation inline, right-click to finish it instantly (no detail entry from inside the quiz before answering — that would leak the answer); the script toggle (kana/romaji) sits in the card's top-right corner on the front and in the reading-sheet header on the back; the dots above the card are a live scoreboard (t76): answers prop + correctIndex comparison sorts them into [correct (full indigo, leftmost)] [current] [wrong (dimmed)] [unanswered]
     Readings.jsx             shared On/Kun rendering with primary bolding, kana or romaji
     GenkouGlyph.jsx          quiz kanji box as a button: renders the KanjiVG SVG in its finished state on mount (paths lazy-loaded per level); left-click → replays the stroke animation from the first stroke (1× default), right-click → completes it instantly
     ComponentBreakdown.jsx   component equation (時 = 日 + 寺): plain-text variant inside the quiz answer panel's "Components" row (after answering, glyphs only, no interaction, no chip boxes); full chip variant in the Browse modal directly below the stroke animation (no "kanji =" lead) — glyph-only chips with radical/phonetic role tooltips (radical = meaning carrier, phonetic = sound carrier) and radical/phonetic dots (their meaning is explained in the help overlay's Browse section — t76 removed the in-modal mini-legend again to keep the screen clean); the `progress` prop keeps the chips in sync with the running stroke animation (future → active → done); clickable chips navigate to the component kanji (← Back button from Browse's navHistory); +N loose-stroke chip; long equations wrap as "+ chip" terms in the 180px animation column

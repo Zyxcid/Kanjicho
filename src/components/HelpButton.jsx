@@ -80,15 +80,17 @@ export default function HelpButton({ showReset, onToggleShowReset }) {
                 sendiri tetap bersih.
                 (t78) Kalimat swipe DIHAPUS dari sini — petunjuk swipe kini
                 tampil di layar kuis itu sendiri, hanya sampai user
-                melakukan swipe pertama (lihat Quiz.jsx). */}
+                melakukan swipe pertama (lihat Quiz.jsx).
+                (t79) Prosa disesuaikan: kartu tidak lagi berputar sendiri
+                — sebutkan swipe sebagai gerakan menuju reading sheet. */}
 
             <div className="kd-help-section">
               <div className="kd-help-heading">Quiz</div>
               <p className="kd-help-text">
                 You can tap the kanji to watch its stroke order. Once you
-                answer, the card flips over to a reading sheet, and the
-                readings written in <b>bold</b> are the ones the
-                multiple-choice options come from.
+                answer, swipe the card sideways to flip it over to a
+                reading sheet — the readings written in <b>bold</b> are
+                the ones the multiple-choice options come from.
               </p>
               <p className="kd-help-text">
                 The first time you finish a unit, its review is always
