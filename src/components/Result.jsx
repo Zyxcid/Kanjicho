@@ -67,6 +67,10 @@ export default function Result({ result, mode, activeUnit, onBackToUnits, onHome
           {isPractice && (
             <div className="kd-next-review-note">schedule unchanged</div>
           )}
+          {/* (t78) Kartu "Why the same review date?" DIHAPUS — penjelasan
+              jadwal awal kuis pertama sudah cukup dibawa versi ringkasnya
+              di help overlay (seksi Quiz), tidak perlu tampil di tiap
+              hasil kuis pertama. */}
         </div>
       )}
 

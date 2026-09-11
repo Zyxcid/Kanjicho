@@ -1,10 +1,13 @@
 import React from "react";
-import { HelpCircle, X, Github, ShieldCheck } from "lucide-react";
+import { HelpCircle, X, Mail, ShieldCheck } from "lucide-react";
 import pkg from "../../package.json";
 import BackupControls from "./BackupControls";
 import { pushOverlayEntry, closeOverlayUI, discardOverlayEntry, isOverlayEntryRegistered } from "../lib/useRouter.js";
 
-const GITHUB_URL = "https://github.com/Zyxcid/Kanjicho";
+// Kontak resmi app (t74): email kanjicho — mailto membuka aplikasi email
+// dengan penerima terisi; tombol Back browser/Android menutup dulu
+// aplikasi email itu, bukan app ini.
+const CONTACT_EMAIL = "kanjicho.dev@gmail.com";
 
 export default function HelpButton({ showReset, onToggleShowReset }) {
   const [open, setOpen] = React.useState(false);
@@ -65,33 +68,53 @@ export default function HelpButton({ showReset, onToggleShowReset }) {
             <div className="kd-help-title">漢字帳 Kanjichō</div>
             <div className="kd-help-version">v{pkg.version}</div>
 
+            {/* t74: seksi "Keyboard shortcuts" DIHAPUS dari UI — app
+                fokus Android, hover/shortcut desktop bukan lagi audiens
+                utama. Handler shortcutnya (w/e/s/d/f/r/q/Enter di
+                Quiz.jsx + App.jsx) TETAP hidup untuk development. */}
+
+            {/* t76: seksi Quiz & Browse kanji ditulis sebagai PROSA pendek
+                (bukan bullet) — mengikuti referensi user: kalimat mengalir
+                lebih mengundang dibaca daripada poin-poin; penjelasan
+                lengkap untuk user baru hidup DI SINI, layar kuis/browse
+                sendiri tetap bersih.
+                (t78) Kalimat swipe DIHAPUS dari sini — petunjuk swipe kini
+                tampil di layar kuis itu sendiri, hanya sampai user
+                melakukan swipe pertama (lihat Quiz.jsx). */}
+
             <div className="kd-help-section">
-              <div className="kd-help-heading">Keyboard shortcuts</div>
-              <div className="kd-help-shortcut-row">
-                <span className="kd-key-cluster">
-                  <span className="kd-key-row">
-                    <span className="kd-key-hint muted">w</span>
-                    <span className="kd-key-hint muted">e</span>
-                  </span>
-                  <span className="kd-key-row">
-                    <span className="kd-key-hint muted">s</span>
-                    <span className="kd-key-hint muted">d</span>
-                  </span>
-                </span>
-                Select an answer
-              </div>
-              <div className="kd-help-shortcut-row">
-                <span className="kd-key-hint muted">f</span> Don't know
-              </div>
-              <div className="kd-help-shortcut-row">
-                <span className="kd-key-hint muted">r</span> Toggle kana / romaji
-              </div>
-              <div className="kd-help-shortcut-row">
-                <span className="kd-key-hint muted">q</span> Back — Cancel / Home
-              </div>
-              <div className="kd-help-shortcut-row">
-                <span className="kd-key-hint muted wide">↵ / Space</span> Continue to next question
-              </div>
+              <div className="kd-help-heading">Quiz</div>
+              <p className="kd-help-text">
+                You can tap the kanji to watch its stroke order. Once you
+                answer, the card flips over to a reading sheet, and the
+                readings written in <b>bold</b> are the ones the
+                multiple-choice options come from.
+              </p>
+              <p className="kd-help-text">
+                The first time you finish a unit, its review is always
+                scheduled 1 or 2 days away (8 for a perfect score). The
+                app uses that early date as the starting reference for
+                your next reviews, so don&apos;t hesitate to answer{" "}
+                <b>Don&apos;t know</b>: an honest answer keeps your
+                schedule accurate.
+              </p>
+            </div>
+
+            <div className="kd-help-section">
+              <div className="kd-help-heading">Browse kanji</div>
+              <p className="kd-help-text">
+                Tap any kanji to see its stroke order, readings, and
+                example words.
+              </p>
+              <p className="kd-help-text">
+                In a kanji&apos;s components, a{" "}
+                <span className="kd-help-dot rad" aria-hidden="true" /> red
+                dot marks the <b>radical</b>, the part that carries the
+                meaning, and a{" "}
+                <span className="kd-help-dot phon" aria-hidden="true" /> blue
+                dot marks the <b>phonetic</b>, the part that carries the
+                sound. Tap a component to open its own page.
+              </p>
             </div>
 
             <div className="kd-help-section">
@@ -177,8 +200,14 @@ export default function HelpButton({ showReset, onToggleShowReset }) {
             <div className="kd-help-section">
               <div className="kd-help-heading">Contact</div>
               <div className="kd-help-links">
-                <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="kd-help-link">
-                  <Github size={15} /> GitHub
+                {/* t74: kontak = email kanjicho (mailto) — satu klik di
+                    Android langsung membuka aplikasi email dengan penerima
+                    (dan subjek) terisi. Link GitHub lama dihapus. */}
+                <a
+                  href={`mailto:${CONTACT_EMAIL}?subject=Kanjicho%20app%20feedback`}
+                  className="kd-help-link"
+                >
+                  <Mail size={15} /> {CONTACT_EMAIL}
                 </a>
                 {/* Privacy policy wajib untuk listing Play Console — halaman
                     statis di-served dari origin yang sama dengan app (relatif,

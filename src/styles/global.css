@@ -94,6 +94,7 @@ body {
 .kd-root .kd-genkou,
 .kd-root .kd-choice-btn,
 .kd-root .kd-reveal,
+.kd-root .kd-card-face,
 .kd-root .kd-next-review,
 .kd-root .kd-btn,
 .kd-root .kd-theme-toggle {
@@ -376,14 +377,26 @@ body {
 .kd-cal-cell.empty { visibility: hidden; pointer-events: none; }
 .kd-cal-daynum { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--ink); line-height: 1; }
 .kd-cal-cell.past .kd-cal-daynum { color: var(--ink-soft); }
+.kd-cal-cell.selected { background: var(--on-tag-bg); border-color: var(--indigo-soft); }
+/* t76: penanda HARI INI kembali indigo (pra-t74) — warna gold bukan
+   untuk "sekarang", melainkan untuk hari AKTIVITAS di bawah. */
 .kd-cal-cell.today { border-color: var(--indigo); }
 .kd-cal-cell.today .kd-cal-daynum { color: var(--indigo); font-weight: 700; }
-.kd-cal-cell.selected { background: var(--on-tag-bg); border-color: var(--indigo-soft); }
+/* t76: hari AKTIVITAS (ada kuis yang dikerjakan) memakai GOLD — satu
+   warna dengan kartu streak yang menyala, jadi "hari ini saya belajar"
+   di kalender dan streak yang hidup terbaca sebagai satu kisah warna
+   (feedback user: yang dimaksud bukan hari-ini, tapi hari-hari ketika
+   app benar-benar dipakai). Ditaruh SETELAH .today dan .past supaya
+   angka gold MENANG: hari lampau yang tadinya redup dan hari ini yang
+   sudah dikuis tetap terbaca gold; tepi .today tetap indigo sebagai
+   penanda "sekarang". */
+.kd-cal-cell.active .kd-cal-daynum { color: var(--gold); font-weight: 700; }
 .kd-cal-marks { display: flex; align-items: center; gap: 4px; margin-top: 4px; min-height: 13px; }
 /* Angka seal = jumlah unit dijadwalkan review hari itu. */
 .kd-cal-due { font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 700; color: var(--seal); line-height: 1; }
-/* Titik indigo = hari itu pernah belajar (≥ 1 kuis). */
-.kd-cal-study-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--indigo-soft); flex-shrink: 0; }
+/* Titik gold = hari itu pernah belajar (≥ 1 kuis) — senada angka gold
+   hari aktif. */
+.kd-cal-study-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
 
 /* Panel hari terpilih: unit + jam jatuh tempo hari itu. */
 .kd-day-panel {
@@ -528,9 +541,114 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 .kd-unit-missed svg { flex-shrink: 0; }
 
 .kd-progress-dots { display: flex; gap: 6px; justify-content: center; margin-bottom: 20px; max-width: 640px; margin-left: auto; margin-right: auto; flex-wrap: wrap; }
-.kd-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--paper-line); }
-.kd-dot.filled { background: var(--indigo-soft); }
+/* t76: titik = papan skor LIVE (bukan lagi nomor soal): jawaban BENAR
+   terkumpul di KIRI (indigo penuh), SALAH redup di belakang soal
+   berjalan, sisanya netral. "redup" = indigo pada opacity rendah — masih
+   terbaca "dulu biru", beda dari titik netral paper-line. */
+.kd-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--paper-line); transition: background-color 0.15s ease, opacity 0.15s ease; }
+.kd-dot.correct { background: var(--indigo-soft); }
+.kd-dot.wrong { background: var(--indigo-soft); opacity: 0.3; }
 .kd-dot.current { background: var(--indigo); transform: scale(1.3); }
+
+/* ===== (t77) Kartu kuis flip =====
+   Kuis = SATU kartu fisik. Depan: soal + pilihan (tata letak lama utuh:
+   mobile ditumpuk, desktop genkō kiri + kolom soal kanan). Belakang:
+   reading sheet. .kd-card-scene memberi perspektif 3D dan menangkap
+   swipe (touch-action: pan-y → scroll vertikal tetap milik halaman,
+   geser horizontal milik kartu). .kd-card-inner = grid SATU sel yang
+   menumpuk dua wajah — tinggi baris = wajah TERTINGGI, jadi kedua sisi
+   selalu seukuran satu kartu yang sama (wajah pendek ikut meregang,
+   konten rata atas). Rotasi di sumbu Y; wajah yang membelakangi user
+   disembunyikan backface-visibility dan di-inert dari JS. Soal baru =
+   elemen baru (key=qIndex di JSX) → ter-mount polos tanpa bekas
+   rotasi, masuk dengan animasi kartu segar. */
+.kd-card-scene {
+  max-width: 480px; margin: 0 auto;
+  perspective: 1500px;
+  touch-action: pan-y;
+}
+.kd-card-inner {
+  display: grid; position: relative;
+  transform-style: preserve-3d;
+  transition: transform 620ms cubic-bezier(0.3, 0.8, 0.3, 1);
+  animation: kd-card-in 0.28s ease;
+}
+.kd-card-inner.flipped { transform: rotateY(180deg); }
+.kd-card-face {
+  grid-area: 1 / 1; position: relative; min-width: 0;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  background: var(--surface);
+  border: 1px solid var(--paper-line);
+  border-radius: 6px;
+  padding: 18px 16px 22px;
+  box-shadow: 0 2px 12px var(--shadow);
+}
+/* (t78) PEMISAHAN KEDALAMAN 1px: kedua wajah tadinya tepat koplanar
+   (z = 0). backface-visibility saja ternyata tidak cukup di sebagian
+   perangkat — laporan user Android: saat kartu menampilkan sisi
+   belakang, wajah DEPAN masih terlihat menembus (lapisan komposit dari
+   SVG/tombol di dalam wajah dapat merusak pengecekan backface di
+   Chromium). translateZ(1px) di kerangka rotasi masing-masing membuat
+   wajah yang menghadap user SELALU 1px lebih dekat → sortir kedalaman
+   3D pasti mengecatnya paling atas; backface-visibility tetap jadi
+   lini pertahanan pertama, inert tetap lini ketiga. Offset 1px pada
+   perspektif 1500px tak terlihat (skala ~0,07%). */
+.kd-card-face.front { transform: translateZ(1px); }
+.kd-card-face.back { transform: rotateY(180deg) translateZ(1px); }
+/* Masuknya kartu soal baru: fade + naik tipis — kesan "kartu berikutnya
+   ditarik dari tumpukan", bukan lompatan konten. */
+@keyframes kd-card-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+/* Toggle skrip di sisi DEPAN: pojok kanan-atas kartu (absolut — genkō di
+   tengah dan label soal di bawahnya, pojok kanan-atas selalu kosong, di
+   mobile maupun desktop). Di sisi BELAKANG toggle ikut baris kepala
+   reading sheet (margin-left: auto — lihat .kd-reveal-head). Dua-duanya
+   "pojok kanan", satu gerbang ingatan yang sama. */
+.kd-card-face.front > .kd-script-toggle { position: absolute; top: 12px; right: 12px; z-index: 2; }
+/* Badan reading sheet di sisi belakang — lebar terpusat supaya sheet
+   tidak melebar penuh di kartu desktop yang lebar. */
+.kd-card-back-body { max-width: 460px; margin: 0 auto; }
+.kd-reveal-head .kd-script-toggle { margin-left: auto; }
+/* Bar aksi kartu: DI LUAR kartu (tidak ikut berputar) — Flip (banding
+   swipe, dua jalur input yang sama) + Continue (primary). Muncul hanya
+   setelah menjawab: sebelum itu tidak ada aksi kartu (belum boleh
+   dibalik — jawaban ada di sisi belakang). */
+.kd-card-actions {
+  display: flex; gap: 10px; max-width: 480px; margin: 14px auto 0;
+  animation: kd-rise-in 0.3s ease 0.12s backwards;
+}
+.kd-card-actions .kd-flip-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  flex: 0 0 auto;
+}
+.kd-card-actions .kd-continue-btn { flex: 1 1 auto; }
+/* (t78) Petunjuk swipe sekali-lihat: baris kecil redup di antara kartu
+   dan bar aksi — hanya tampil sampai user melakukan swipe PERTAMA
+   (flag localStorage "kanji-swipe-learned" di Quiz.jsx); setelah itu
+   gerakan dianggap dikenal selamanya dan baris ini tak muncul lagi.
+   Menggantikan kalimat swipe di help overlay (dipindah ke sini, lebih
+   dekat ke momen gerakannya relevan). Ikon bergeser tipis kiri-kanan
+   sebagai isyarat gestur. */
+.kd-swipe-hint {
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  max-width: 480px; margin: 12px auto 0;
+  font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 12px;
+  color: var(--ink-soft);
+}
+.kd-swipe-hint svg { animation: kd-swipe-nudge 1.8s ease-in-out infinite alternate; }
+@keyframes kd-swipe-nudge {
+  from { transform: translateX(-3px); }
+  to { transform: translateX(3px); }
+}
+/* Hormati preferensi gerak minimal: kartu tetap bisa dibalik, hanya
+   tanpa animasi — pergantian sisi instan. */
+@media (prefers-reduced-motion: reduce) {
+  .kd-card-inner { transition: none; animation: none; }
+  .kd-card-actions { animation: none; }
+  .kd-swipe-hint svg { animation: none; }
+}
 
 .kd-genkou {
   width: 168px; height: 168px; margin: 0 auto 22px; background: var(--surface); border: 2px solid var(--genkou-border);
@@ -599,6 +717,9 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 .kd-comp-chip.ungrouped .kd-comp-glyph {
   font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: var(--ink-soft);
 }
+/* (t76) Blok .kd-comp-legend DIHAPUS — makna titik merah/biru kembali
+   dijelaskan di help overlay (seksi Browse kanji), layar Browse kembali
+   bersih seperti sebelum t74; tooltip hover (desktop) tetap ada. */
 .kd-comp-chip.ungrouped:hover { border-color: var(--paper-line); background: transparent; transform: none; }
 
 /* Sinkron animasi goresan ↔ komponen (t64, varian full + progress):
@@ -624,7 +745,9 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 .kd-comp.plain .kd-comp-plus { font-size: 11.5px; }
 
 .kd-question-row {
-  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  /* (t77) toggle skrip pindah ke pojok kartu — baris soal tinggal label
+      yang di tengah. */
+  display: flex; align-items: center; justify-content: center; gap: 10px;
   max-width: 460px; margin: 0 auto 20px;
 }
 .kd-question-label { text-align: center; font-size: 14.5px; color: var(--ink-soft); margin-bottom: 0; }
@@ -653,27 +776,24 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 
 .kd-choice-grid {
   max-width: 460px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
-  transition: gap 0.25s ease;
-  /* t64: animasi lipat (padding/gap) memicu reflow tiap frame —
-     layout containment membatasi lingkup perhitungannya ke grid ini
-     supaya seluruh halaman besar tidak ikut dihitung ulang (animasi
-     kuis di PC terasa kurang mulus dibanding mobile). Sengaja TANPA
-     paint containment: ia memotong outline focus-visible tombol pilihan
-     (aksesibilitas keyboard) di tepi grid. */
+  /* t78: animasi "melipat" (gap + padding tombol mengecil) DIHAPUS
+     atas permintaan user — tombol pilihan mempertahankan ukurannya
+     setelah dijawab. contain: layout tetap dipertahankan supaya
+     perubahan warna/opacity di dalam grid tidak menginvalidasi layout
+     seluruh halaman. Sengaja TANPA paint containment: ia memotong
+     outline focus-visible tombol pilihan (aksesibilitas keyboard) di
+     tepi grid. */
   contain: layout;
 }
 .kd-choice-btn {
   background: var(--surface); border: 1.5px solid var(--paper-line); border-radius: 4px; padding: 16px 10px;
   font-family: 'DM Mono', monospace; font-size: 15px; cursor: pointer; text-align: center;
-  transition: border-color 0.15s, background 0.15s, padding 0.25s ease, opacity 0.25s ease; position: relative; color: var(--ink);
+  transition: border-color 0.15s, background 0.15s, opacity 0.25s ease; position: relative; color: var(--ink);
 }
 .kd-choice-btn:hover:not(:disabled) { border-color: var(--indigo-soft); }
-/* Setelah dijawab: grid "melipat" — tombol merapat (padding mengecil),
-   pilihan netral meredup; correct/wrong tetap penuh supaya hasil
-   terbaca jelas. Kuis mundur, panel reveal mengambil panggung —
-   bagian dari transisi jawab → reveal (t62). */
-.kd-choice-grid.answered { gap: 8px; }
-.kd-choice-grid.answered .kd-choice-btn { padding: 9px 10px; }
+/* Setelah dijawab (t78): UKURAN TETAP — hanya pilihan netral yang
+   meredup; correct/wrong tetap penuh warna supaya hasil masih terbaca
+   jelas ketika user membalik kartu kembali ke depan. */
 .kd-choice-grid.answered .kd-choice-btn:not(.correct):not(.wrong) { opacity: 0.55; }
 /* Jawaban berupa kana: pakai font JAPANESE (DM Mono tidak punya glyph
    kana — fallback sistem terlihat tidak serasi). */
@@ -690,21 +810,24 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 }
 .kd-dontknow:hover:not(:disabled) { border-color: var(--ink); color: var(--ink); }
 
-.kd-key-hint {
-  position: absolute; top: 6px; left: 8px; font-family: 'DM Mono', monospace; font-size: 10px;
-  color: var(--ink-soft); background: var(--paper); border: 1px solid var(--paper-line);
-  border-radius: 3px; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center;
-  line-height: 1;
-}
-.kd-key-hint.muted { position: static; margin-right: 2px; }
-.kd-key-hint.wide { width: auto; min-width: 16px; padding: 0 4px; }
-/* Cluster tombol jawaban di help overlay: ditumpuk 2 baris (w e / s d)
-   persis seperti grid jawaban di layar kuis — lebih mudah dipahami
-   daripada deretan huruf rata. */
-.kd-key-cluster { display: inline-flex; flex-direction: column; gap: 4px; margin-right: 4px; flex-shrink: 0; }
-.kd-key-row { display: flex; gap: 4px; }
-.kd-key-row .kd-key-hint.muted { margin-right: 0; }
+/* (t74) Blok .kd-key-hint/.kd-key-cluster/.kd-key-row DIHAPUS — tata letak
+   shortcut keyboard hanya dipakai seksi "Keyboard shortcuts" help overlay,
+   yang kini dihapus dari UI (app fokus Android). Handler shortcutnya tetap
+   hidup di Quiz.jsx/App.jsx untuk development.
+
+   (t76) Blok .kd-hint (banner FirstHint) juga DIHAPUS — panduan di layar
+   kuis/browse dikembalikan seperti sebelum t74; penjelasan untuk user baru
+   hidup di help overlay (seksi Quiz & Browse kanji, gaya prosa). */
+
 .kd-continue-btn { display: flex; align-items: center; justify-content: center; }
+/* (t77) Continue kini anggota .kd-card-actions (bar aksi di bawah
+   kartu) — lebar/margin/animasi masuknya diatur di blok
+   .kd-card-actions; aturan lama max-width/margin/block dihapus. */
+
+/* (t78) Blok .kd-first-review-note DIHAPUS — kartu "Why the same review
+   date?" di layar Result dihapus atas permintaan user (penjelasan
+   jadwal awal kini cukup dibawa versi ringkasnya di help overlay,
+   seksi Quiz). */
 
 /* t64: panel reveal kembali DI DALAM kolom kanan (di bawah grid
    pilihan — penempatan asalnya; t63 sempat menjadi baris lebar
@@ -761,9 +884,8 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
    webfont. */
 .kd-example-reading { font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 12px; color: var(--indigo-soft); letter-spacing: 0.01em; }
 .kd-example-meaning { font-size: 12.5px; color: var(--ink-soft); }
-.kd-continue-btn { max-width: 460px; margin: 12px auto 0; width: 100%; display: block; animation: kd-rise-in 0.3s ease 0.12s backwards; }
-/* Masuknya tombol Continue mengikuti ekspansi panel reveal (tombol
-   ikut "turun" bersama aliran layout; fade + naik kecil saja). */
+/* Masuknya bar aksi mengikuti berputarnya kartu ke sisi belakang (fade
+   + naik kecil saja, dipakai .kd-card-actions). */
 @keyframes kd-rise-in {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: none; }
@@ -868,10 +990,13 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
   .kd-quiz-right .kd-choice-grid { max-width: none; margin: 0; grid-template-columns: 1fr 1fr; gap: 12px; }
   .kd-quiz-right .kd-choice-btn { padding: 18px 10px; font-size: 15.5px; }
   .kd-quiz-right .kd-dontknow { max-width: none; }
-  /* t64: reveal + Continue kembali di kolom kanan — lebar mengikuti
-     kolom (t63 sempat baris lebar 560px sendiri di bawah layout). */
-  .kd-quiz-right .kd-reveal { max-width: none; }
-  .kd-quiz-right .kd-continue-btn { max-width: none; }
+  /* (t77) kartu kuis melebar mengikuti layout dua-kolom di dalamnya;
+     reading sheet di belakang tetap terpusat (max 520px) supaya baris
+     bacaan tidak terlalu panjang dibaca; bar aksi di bawah kartu tetap
+     480px (lebar jemari, sepusat dengan kartu). */
+  .kd-card-scene { max-width: 900px; }
+  .kd-card-face { padding: 26px 28px 30px; }
+  .kd-card-back-body { max-width: 520px; }
 }
 
 .kd-loading {
@@ -1033,7 +1158,20 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
   font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft);
   font-weight: 700; margin-bottom: 10px;
 }
-.kd-help-shortcut-row { font-size: 13.5px; color: var(--ink); margin-bottom: 6px; display: flex; align-items: center; }
+/* (t76) Blok .kd-help-list DIHAPUS — seksi Quiz/Browse kanji kini PROSA
+   (paragraf .kd-help-text), mengikuti referensi user: kalimat mengalir
+   lebih mengundang dibaca daripada bullet. Paragraf beruntun diberi
+   jarak halus + bold tegas (menggantikan gaya .kd-help-list b). */
+.kd-help-text + .kd-help-text { margin-top: 7px; }
+.kd-help-text b { color: var(--ink); font-weight: 700; }
+/* Titik warna inline di teks Help — pasangan visual titik pada chip
+   komponen (rad = seal, phon = indigo). */
+.kd-help-dot {
+  display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+  vertical-align: 1px; margin: 0 1px;
+}
+.kd-help-dot.rad { background: var(--seal); }
+.kd-help-dot.phon { background: var(--indigo); }
 .kd-help-text { font-size: 12.5px; color: var(--ink-soft); line-height: 1.7; margin: 0; }
 .kd-help-text a { color: var(--indigo-soft); }
 /* Paragraf legal bantu (disclaimer JLPT, repo data, OSS) — lebih kecil dan

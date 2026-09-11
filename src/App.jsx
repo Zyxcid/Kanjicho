@@ -462,11 +462,15 @@ export default function App() {
 
   // Dipanggil dari baris overdue di layar Progress (panel hari & chip
   // prakiraan) — level unit di-derive dari progress-nya sendiri
-  // (jlptLevel tersimpan per record), tidak diasumsikan sama dengan
-  // activeLevel.
+  // (jlptLevel tersimpan per record; fallback prefix unitId untuk
+  // state in-memory lama yang belum membawanya), tidak diasumsikan sama
+  // dengan activeLevel.
   function jumpToNextReview(unitId) {
     if (!unitId) return;
-    const level = progress[unitId]?.jlptLevel;
+    const state = progress[unitId];
+    const dash = unitId.indexOf("-");
+    const level =
+      state?.jlptLevel || (dash > 0 ? unitId.slice(0, dash) : null);
     if (!level) return;
     startUnit(unitId, level);
   }
@@ -496,9 +500,23 @@ export default function App() {
       // Jumlah soal ikut dikirim supaya adapter binomial menghitung z-score
       // dengan ukuran sampel yang benar (unit hampir selalu 15, tapi tidak
       // di-hardcode).
-      const newState = reviewUnit(prevState, finalResult.score, finishedAt, finalResult.total);
+      // (t78) jlptLevel DILEKATKAN ke state in-memory: reviewUnit()
+      // mengembalikan objek segar tanpa field itu — tanpa dilekatkan,
+      // state in-memory pasca-kuis kehilangan levelnya sampai reload,
+      // sehingga kalender review per-level (buildScheduleEntries)
+      // menyaringnya keluar: jadwal "besok" unit N1 tidak ditandai di
+      // kalender N1 padahal muncul di kalender semua level. Bentuk
+      // in-memory kini identik dengan record IndexedDB
+      // (saveUnitProgress menulis jlptLevel sebagai kolomnya sendiri).
+      const newState = {
+        ...reviewUnit(prevState, finalResult.score, finishedAt, finalResult.total),
+        jlptLevel: activeLevel,
+      };
 
       setProgress((p) => ({ ...p, [activeUnit]: newState }));
+      // (t78) firstCompletion TIDAK lagi dilampirkan — kartu "Why the same
+      // review date?" di layar Result dihapus; penjelasan jadwal awal
+      // cukup dibawa help overlay (seksi Quiz).
       extra = { ...extra, newState };
     } else if (quizMode === "practice") {
       // Latihan bebas: lampirkan state SRS SAAT INI (tidak diubah sesi ini)
@@ -644,6 +662,9 @@ export default function App() {
         <Quiz
           quiz={quiz}
           qIndex={qIndex}
+          // t76: jawaban terkumpul (diisi per soal saat Continue) — dipakai
+          // Quiz untuk papan skor titik: benar terkumpul kiri, salah redup.
+          answers={answers}
           selectedChoice={selectedChoice}
           mode={quizMode}
           answerScript={answerScript}

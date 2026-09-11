@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ChevronLeft, CircleX, HelpCircle } from "lucide-react";
+import { ChevronLeft, CircleX, FlipHorizontal2, HelpCircle, MoveHorizontal } from "lucide-react";
 import { DONT_KNOW } from "../lib/quizGenerator.js";
 import { ReadingList } from "./Readings.jsx";
 import { kanaToRomaji } from "../lib/kana.js";
@@ -26,9 +26,52 @@ function choiceLabel(choice, questionType, answerScript) {
 const CHOICE_KEYS = ["w", "e", "s", "d"];
 const DONT_KNOW_KEY = "f"; // sebelah d — masih dalam jangkauan satu tangan
 
+/* (t77) KARTU FLIP: setelah menjawab, kartu menunggu sebentar supaya
+   penandaan correct/wrong pada pilihan sempat terbaca, lalu berputar
+   sendiri ke sisi belakang (reading sheet). */
+const AUTO_FLIP_DELAY_MS = 420;
+/* Geseran horizontal minimum (px) agar dihitung gerakan "balik kartu" —
+   cukup jauh supaya tap biasa (getar beberapa piksel) tidak ikut;
+   harus dominan horizontal supaya scroll vertikal tidak tersangkut. */
+const SWIPE_MIN_DX = 56;
+const SWIPE_AXIS_MARGIN = 24;
+/* (t78) Flag localStorage "kanji-swipe-learned": petunjuk swipe tampil
+   sampai user melakukan swipe PERTAMA kali — setelah itu gerakan
+   dianggap dikenal selamanya (hint tidak muncul lagi di sesi mana pun).
+   Kalimatnya dihapus dari help overlay: mengajar gerakan paling efektif
+   saat kartunya sendiri sedang di tangan user. */
+const SWIPE_LEARNED_KEY = "kanji-swipe-learned";
+
+/**
+ * Toggle skrip kana ↔ romaji (shortcut: r). Diangkat jadi komponen kecil
+ * karena t77 menaruhnya di DUA sisi kartu — pojok kanan-atas sisi DEPAN
+ * (absolut) dan ujung kanan baris kepala sisi BELAKANG — kontrol utilitas
+ * yang selalu ada di pojok kanan, di sisi mana pun yang sedang menghadap
+ * user. Mengatur seluruh layar kuis: label pilihan, bacaan On/Kun di
+ * panel reveal, dan reading contoh kata — semuanya berganti live karena
+ * kedua bentuk tersimpan (lihat lib/kana.js).
+ */
+function ScriptToggle({ answerScript, onToggleScript }) {
+  return (
+    <button
+      className={`kd-script-toggle ${answerScript === "kana" ? "kana" : ""}`}
+      onClick={onToggleScript}
+      title={
+        answerScript === "kana"
+          ? "Show readings in romaji (r)"
+          : "Show readings in kana (r)"
+      }
+      aria-pressed={answerScript === "kana"}
+    >
+      {answerScript === "kana" ? "あ" : "Aa"}
+    </button>
+  );
+}
+
 export default function Quiz({
   quiz,
   qIndex,
+  answers = [],
   selectedChoice, // indeks pilihan (number) | DONT_KNOW | null
   mode,
   answerScript = "romaji",
@@ -36,10 +79,91 @@ export default function Quiz({
   onSubmitAnswer,
   onContinue,
   onCancel,
-  registerGuard, // dari useRouter — menahan Back browser saat sesi berproses
+  registerGuard, // dari useRouter — menahan Back browser saat sesi berprogres
 }) {
   const current = quiz[qIndex];
   const isKana = current.questionType === "reading" && answerScript === "kana";
+
+  // Papan skor dot (t76): jumlah benar/salah dari jawaban yang SUDAH
+  // dimasukkan (answers bertambah tiap Continue; panjangnya = qIndex).
+  // DONT_KNOW adalah string, bukan indeks, jadi !== correctIndex → salah.
+  const correctSoFar = answers.reduce(
+    (n, a, j) => (a === quiz[j].correctIndex ? n + 1 : n),
+    0
+  );
+  const wrongSoFar = qIndex - correctSoFar;
+
+  // (t77) Kartu kuis = KARTU FISIK: depan = soal + pilihan, belakang =
+  // reading sheet. `flipped` adalah keinginan user (auto-flip, swipe,
+  // tombol Flip); `answered` dari App mengunci flip — sisi belakang
+  // memuat JAWABAN, jadi sebelum menjawab kartu tidak boleh bisa dibalik.
+  const answered = selectedChoice !== null;
+  const [flipped, setFlipped] = useState(false);
+  // (t78) Petunjuk swipe sekali-lihat — lihat SWIPE_LEARNED_KEY di atas.
+  // try/catch: mode privat browser bisa melempar saat membaca localStorage
+  // (hint lalu tampil tiap sesi — aman, hanya redundan).
+  const [swipeLearned, setSwipeLearned] = useState(() => {
+    try {
+      return localStorage.getItem(SWIPE_LEARNED_KEY) === "1";
+    } catch {
+      return false;
+    }
+  });
+  function markSwipeLearned() {
+    setSwipeLearned(true);
+    try {
+      localStorage.setItem(SWIPE_LEARNED_KEY, "1");
+    } catch {
+      /* abaikan — penyimpanan tak tersedia, hint cuma tampil lagi nanti */
+    }
+  }
+  // Gerbang `answered`: saat Continue, selectedChoice kembali null dalam
+  // render yang SAMA dengan naiknya qIndex (kartu baru via key) — state
+  // `flipped` mentah belum sempat direset efek di bawah. Tanpa gerbang
+  // ini kartu baru ter-mount dalam pose terbalik lalu "berputar pulang".
+  const showBack = answered && flipped;
+
+  // Auto-flip + reset: jawab → tunggu AUTO_FLIP_DELAY_MS (lihat warna
+  // correct/wrong dulu) → putar ke belakang. Soal berganti (selectedChoice
+  // null) → reset mentah supaya jawaban berikutnya selalu mulai dari
+  // depan. Flip manual (swipe/tombol) bebas menimpa kapan pun — efek ini
+  // hanya berjalan pada transisi menjawab, bukan terus-menerus.
+  useEffect(() => {
+    if (selectedChoice === null) {
+      setFlipped(false);
+      return;
+    }
+    const t = setTimeout(() => setFlipped(true), AUTO_FLIP_DELAY_MS);
+    return () => clearTimeout(t);
+  }, [selectedChoice, current.kanji]);
+
+  // Swipe horizontal = balik kartu (HANYA setelah menjawab). Pointer events
+  // di .kd-card-scene menangkap sentuhan di mana pun pada kartu; threshold
+  // dx + dominasi horizontal memisahkan swipe dari tap dan dari scroll
+  // vertikal (touch-action: pan-y di CSS menjaga scroll halaman tetap
+  // hidup). Swipe kiri/kanan dua-duanya membalik — arah tidak bermakna,
+  // konsisten dengan rotasi di sumbu Y.
+  const swipeStartRef = useRef(null);
+  function handlePointerDown(e) {
+    if (!e.isPrimary) return;
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    swipeStartRef.current = { x: e.clientX, y: e.clientY };
+  }
+  function handlePointerUp(e) {
+    const s = swipeStartRef.current;
+    swipeStartRef.current = null;
+    if (!s || selectedChoice === null) return;
+    const dx = e.clientX - s.x;
+    const dy = e.clientY - s.y;
+    if (Math.abs(dx) >= SWIPE_MIN_DX && Math.abs(dx) > Math.abs(dy) + SWIPE_AXIS_MARGIN) {
+      setFlipped((f) => !f);
+      // Swipe pertama yang TERDAFTAR = user sudah mengenal gerakannya.
+      markSwipeLearned();
+    }
+  }
+  function clearSwipe() {
+    swipeStartRef.current = null;
+  }
 
   // Konfirmasi sebelum keluar kuis: kalau sesi sudah ada progres (minimal
   // satu jawaban terkumpul — qIndex > 0, atau soal saat ini sudah dijawab),
@@ -99,10 +223,10 @@ export default function Quiz({
   // Dekomposisi komponen soal aktif (KanjiVG stroke-group) — dimuat
   // sejak soal muncul (chunk per level, di-cache; level biasanya sudah
   // termuat untuk data kuis), tapi baru DIRENDER setelah dijawab sebagai
-  // baris "Components" di panel reveal: persamaan bentuk kanji adalah
-  // alat bantu mengingat ("明 = sun + moon"), bukan petunjuk jawaban.
-  // Varian plain: TEKS BIASA glyph saja (t64: jumlah goresan dihapus;
-  // t63: tanpa kotak chip) — detail penuh tetap di modal Browse.
+  // baris "Components" di sisi belakang kartu: persamaan bentuk kanji
+  // adalah alat bantu mengingat ("明 = sun + moon"), bukan petunjuk
+  // jawaban. Varian plain: TEKS BIASA glyph saja (t64: jumlah goresan
+  // dihapus; t63: tanpa kotak chip) — detail penuh tetap di modal Browse.
   const [compEntry, setCompEntry] = useState(null);
   useEffect(() => {
     let cancelled = false;
@@ -115,56 +239,10 @@ export default function Quiz({
     };
   }, [current.kanji, current.level]);
 
-  // Transisi buka panel reveal (setelah menjawab): tinggi panel
-  // dianimasikan 0 → tinggi konten penuh + fade. Panel kembali DI DALAM
-  // kolom kanan, di bawah grid pilihan (t64: "seperti semula" — t63
-  // sempat memindahkannya jadi baris lebar di bawah baris dua-kolom).
-  // Genkō tetap DIAM: kolom kiri dijangkar di atas (align-self
-  // flex-start, ≥900px) sehingga pertumbuhan kolom kanan tidak
-  // menggesernya. void el.offsetHeight memaksa browser menghitung
-  // state AWAL dulu — tanpa flush, kedua perubahan style dicampur dalam
-  // satu frame dan transisi tidak pernah berjalan. Setelah selesai (atau
-  // lewat timer pengaman), height/overflow/opacity dilepas lagi supaya
-  // konten live (toggle kana/romaji, arti panjang) bebas berubah tinggi.
-  // Hormati prefers-reduced-motion: tanpa animasi.
-  const revealRef = useRef(null);
-  useEffect(() => {
-    if (selectedChoice === null) return;
-    const el = revealRef.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const h = el.scrollHeight;
-    if (h <= 0) return;
-    el.style.height = "0px";
-    el.style.overflow = "hidden";
-    el.style.opacity = "0";
-    void el.offsetHeight; // flush: state awal dihitung sebelum transisi
-    el.style.transition =
-      "height 340ms cubic-bezier(0.2, 0.8, 0.3, 1), opacity 280ms ease 60ms";
-    el.style.height = h + "px";
-    el.style.opacity = "1";
-    function cleanup() {
-      el.style.height = "";
-      el.style.overflow = "";
-      el.style.opacity = "";
-      el.style.transition = "";
-      el.removeEventListener("transitionend", onEnd);
-      clearTimeout(timer);
-    }
-    function onEnd(e) {
-      if (e.propertyName !== "height") return;
-      cleanup();
-    }
-    el.addEventListener("transitionend", onEnd);
-    // Pengaman 900ms: apa pun yang terjadi (transisi terpotong, tab
-    // background), style inline pasti lepas — overflow:hidden yang
-    // tertinggal akan memotong konten live.
-    const timer = setTimeout(cleanup, 900);
-    return () => {
-      el.removeEventListener("transitionend", onEnd);
-      clearTimeout(timer);
-    };
-  }, [selectedChoice, current.kanji]);
+  // (t62) Animasi tinggi panel reveal DIHAPUS (t77): panel kini sisi
+  // BELAKANG kartu — pergantian depan/belakang dianimasikan rotasi
+  // transform murni di compositor (GPU), tanpa reflow per frame, jauh
+  // lebih murah daripada animasi height dulu.
 
   // Shortcut keyboard: w/e/s/d pilih jawaban (mirror grid 2×2), f =
   // "Don't know", r = toggle kana/romaji, Enter/Space = lanjut. (q = tombol
@@ -192,7 +270,8 @@ export default function Quiz({
       // Modal terbuka (help overlay) — shortcut tidak boleh menembus modal.
       if (document.querySelector(".kd-modal-overlay")) return;
       // r = toggle kana/romaji — bekerja baik sebelum maupun sesudah
-      // menjawab (reveal panel ikut berganti live), jadi dicek dulu.
+      // menjawab (reading sheet di belakang kartu ikut berganti live),
+      // jadi dicek dulu.
       if (key === "r") {
         onToggleScript();
         return;
@@ -222,116 +301,133 @@ export default function Quiz({
         <ChevronLeft size={16} /> Cancel
       </button>
 
-      <div className="kd-progress-dots">
-        {quiz.map((_, i) => (
-          <div key={i} className={`kd-dot ${i < qIndex ? "filled" : ""} ${i === qIndex ? "current" : ""}`} />
+      <div className="kd-progress-dots" aria-hidden="true">
+        {/* t76: titik = papan skor LIVE, bukan nomor soal — urutan dot adalah
+            STATUS: [benar (indigo penuh, terkumpul KIRI)] [soal berjalan
+            (penanda besar)] [salah (indigo redup)] [belum dijawab (netral)].
+            `answers` diisi App per soal saat Continue, jadi panjangnya
+            selalu = qIndex; penilaian benar membandingkan INDEKS pilihan
+            dengan correctIndex soal itu (DONT_KNOW != indeks → otomatis
+            dihitung salah, sama seperti skor akhir). */}
+        {[
+          ...Array.from({ length: correctSoFar }, () => "kd-dot correct"),
+          "kd-dot current",
+          ...Array.from({ length: wrongSoFar }, () => "kd-dot wrong"),
+          ...Array.from({ length: quiz.length - qIndex - 1 }, () => "kd-dot"),
+        ].map((cls, i) => (
+          <div key={i} className={cls} />
         ))}
       </div>
 
-      {/* Mobile: kanji dan soal ditumpuk vertikal. Desktop (>=900px,
-          lihat global.css): kanji di kiri ATAS (posisi statis — tidak
-          pernah bergeser saat panel reveal membuka), soal + pilihan +
-          panel reveal + Continue di kanan (t64: reveal kembali DI DALAM
-          kolom kanan seperti semula, di bawah pilihan). */}
-      <div className="kd-quiz-layout">
-        {/* Kolom kiri: kotak genkō SAJA. Di desktop kotak ini DIJANGKAR
-            DI ATAS kolom (align-items flex-start pada layout) — genkō
-            tidak ikut bergerak saat panel reveal membuka di kolom kanan
-            (t62: genkō "turun" saat reveal membuka, dinilai jelek —
-            jangkaran atas dipertahankan di t64 walau reveal kembali ke
-            kolom kanan). Persamaan komponen dirender sebagai
-            baris "Components" DI DALAM panel reveal di kolom kanan
-            (bukan blok terpisah di sini). */}
-        <div className="kd-quiz-left">
-          {/* Glyph selalu dirender sebagai SVG KanjiVG keadaan SELESAI
-              sejak soal muncul (bentuk konsisten, tidak ada pergantian
-              font). KLIK KIRI glyph → animasi urutan goresan diputar
-              LANGSUNG di kotak genkō-yōshi ini (default 1x, tanpa
-              kontrol — lihat GenkouGlyph.jsx); KLIK KANAN → animasi
-              langsung diselesaikan (semua goresan muncul seketika).
-              Shortcut kuis tetap hidup karena tidak ada overlay. Tidak
-              ada lagi tombol detail dari dalam kuis: sheet detail
-              (bacaan, arti, contoh kata) membocorkan jawaban soal —
-              info lengkap tersedia di modal Browse SETELAH kuis. */}
-          <div className="kd-genkou">
-            <GenkouGlyph key={current.kanji} kanji={current.kanji} level={current.level} />
-          </div>
-        </div>
+      {/* (t77) KARTU KUIS — satu kartu fisik dengan dua sisi. DEPAN:
+          soal + pilihan (tata letak lama utuh: mobile ditumpuk vertikal,
+          desktop ≥900px genkō kiri + kolom soal kanan). BELAKANG:
+          reading sheet. Rotasi di sumbu Y (perspective di .kd-card-scene);
+          key=qIndex membuat soal baru = kartu BARU yang ter-mount polos
+          (tanpa bekas rotasi), masuk dengan animasi kartu segar. Sisi
+          yang tidak menghadap user diberi atribut inert supaya tombolnya
+          tidak bisa di-Tab/klik buta dari sisi tersembunyi. */}
+      <div
+        className="kd-card-scene"
+        onPointerDown={handlePointerDown}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={clearSwipe}
+        onPointerLeave={clearSwipe}
+      >
+        <div key={qIndex} className={`kd-card-inner ${showBack ? "flipped" : ""}`}>
+          {/* ============ DEPAN: soal + pilihan ============ */}
+          <div className="kd-card-face front" inert={showBack ? "true" : undefined}>
+            <ScriptToggle answerScript={answerScript} onToggleScript={onToggleScript} />
 
-        <div className="kd-quiz-right">
-          {/* Badge hanya untuk sesi missed-kanji review — jelas beda dari
-              kuis unit. Latihan bebas dari unit dim TIDAK diberi badge. */}
-          {mode === "weak" && (
-            <div className="kd-mode-badge weak">
-              <CircleX size={13} strokeWidth={2.25} /> Missed kanji review
+            {/* Mobile: kanji dan soal ditumpuk vertikal. Desktop (>=900px,
+                lihat global.css): kanji di kiri ATAS (posisi statis —
+                tidak pernah bergeser saat kartu dibalik), soal + pilihan
+                di kanan. */}
+            <div className="kd-quiz-layout">
+              {/* Kolom kiri: kotak genkō SAJA. Di desktop kotak ini DIJANGKAR
+                  DI ATAS kolom (align-items flex-start pada layout) — genkō
+                  tidak ikut bergerak. Persamaan komponen dirender sebagai
+                  baris "Components" DI SISI BELAKANG KARTU setelah
+                  dijawab (bukan blok terpisah di sini). */}
+              <div className="kd-quiz-left">
+                {/* Glyph selalu dirender sebagai SVG KanjiVG keadaan SELESAI
+                    sejak soal muncul (bentuk konsisten, tidak ada pergantian
+                    font). KLIK KIRI glyph → animasi urutan goresan diputar
+                    LANGSUNG di kotak genkō-yōshi ini (default 1x, tanpa
+                    kontrol — lihat GenkouGlyph.jsx); KLIK KANAN → animasi
+                    langsung diselesaikan (semua goresan muncul seketika).
+                    Shortcut kuis tetap hidup karena tidak ada overlay. Sheet
+                    detail (bacaan, arti, contoh kata) ada di sisi BELAKANG
+                    kartu SETELAH menjawab — sebelum itu memang tersembunyi
+                    karena membocorkan jawaban soal. */}
+                <div className="kd-genkou">
+                  <GenkouGlyph key={current.kanji} kanji={current.kanji} level={current.level} />
+                </div>
+              </div>
+
+              <div className="kd-quiz-right">
+                {/* Badge hanya untuk sesi missed-kanji review — jelas beda
+                    dari kuis unit. Latihan bebas dari unit dim TIDAK
+                    diberi badge. */}
+                {mode === "weak" && (
+                  <div className="kd-mode-badge weak">
+                    <CircleX size={13} strokeWidth={2.25} /> Missed kanji review
+                  </div>
+                )}
+
+                <div className="kd-question-row">
+                  <div className="kd-question-label">
+                    Question {qIndex + 1} of {quiz.length}
+                  </div>
+                </div>
+
+                {/* Grid pilihan: setelah dijawab UKURANNYA TETAP (t78:
+                  animasi menciut dihapus) — hanya pilihan netral yang
+                  meredup; correct/wrong tetap penuh supaya hasil masih
+                  terbaca ketika user membalik kartu kembali ke depan. */}
+                <div className={`kd-choice-grid ${answered ? "answered" : ""}`}>
+                  {current.choices.map((choice, idx) => {
+                    let cls = "kd-choice-btn";
+                    if (isKana) cls += " kana";
+                    if (answered) {
+                      if (idx === current.correctIndex) cls += " correct";
+                      else if (idx === selectedChoice) cls += " wrong";
+                    }
+                    return (
+                      <button
+                        key={idx}
+                        className={cls}
+                        disabled={answered}
+                        onClick={() => onSubmitAnswer(idx)}
+                      >
+                        {choiceLabel(choice, current.questionType, answerScript)}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {!answered && (
+                  <button className="kd-dontknow" onClick={() => onSubmitAnswer(DONT_KNOW)}>
+                    <HelpCircle size={15} /> Don't know
+                  </button>
+                )}
+              </div>
             </div>
-          )}
-
-          <div className="kd-question-row">
-            <div className="kd-question-label">
-              Question {qIndex + 1} of {quiz.length}
-            </div>
-            {/* Toggle skrip kana ↔ romaji (shortcut: r). Mengatur seluruh
-                layar kuis: label pilihan, bacaan On/Kun di panel reveal, dan
-                reading contoh kata — semua berganti live karena kedua bentuk
-                tersedia (lihat lib/kana.js). */}
-            <button
-              className={`kd-script-toggle ${answerScript === "kana" ? "kana" : ""}`}
-              onClick={onToggleScript}
-              title={
-                answerScript === "kana"
-                  ? "Show readings in romaji (r)"
-                  : "Show readings in kana (r)"
-              }
-              aria-pressed={answerScript === "kana"}
-            >
-              {answerScript === "kana" ? "あ" : "Aa"}
-            </button>
           </div>
 
-          {/* Grid pilihan: setelah dijawab kelas "answered" melipat
-              tombol (padding mengecil, pilihan netral meredup) — kuis
-              "mundur", perhatian berpindah ke panel reveal. Warna
-              correct/wrong tetap penuh supaya hasil tetap terbaca. */}
-          <div className={`kd-choice-grid ${selectedChoice !== null ? "answered" : ""}`}>
-            {current.choices.map((choice, idx) => {
-              let cls = "kd-choice-btn";
-              if (isKana) cls += " kana";
-              if (selectedChoice !== null) {
-                if (idx === current.correctIndex) cls += " correct";
-                else if (idx === selectedChoice) cls += " wrong";
-              }
-              return (
-                <button
-                  key={idx}
-                  className={cls}
-                  disabled={selectedChoice !== null}
-                  onClick={() => onSubmitAnswer(idx)}
-                >
-                  {choiceLabel(choice, current.questionType, answerScript)}
-                </button>
-              );
-            })}
-          </div>
-
-          {selectedChoice === null && (
-            <button className="kd-dontknow" onClick={() => onSubmitAnswer(DONT_KNOW)}>
-              <HelpCircle size={15} /> Don't know
-            </button>
-          )}
-
-          {/* Panel reveal + tombol Continue: DI DALAM kolom kanan, di
-              bawah grid pilihan — penempatan asalnya (t64: "seperti
-              semula"; t63 sempat menjadikannya baris lebar di bawah
-              baris dua-kolom). Genkō tetap diam — kolom kiri dijangkar
-              di atas; di mobile urutan tampil juga sama: genkō → soal →
-              pilihan → reveal → Continue. */}
-          {selectedChoice !== null && (
-            <>
-              <div className="kd-reveal" ref={revealRef}>
+          {/* ============ BELAKANG: reading sheet ============
+              Baru dirender setelah menjawab (sebelum itu kartu memang
+              tidak punya sisi belakang yang berarti — dan tidak boleh
+              ada: jawaban harus tersembunyi). Struktur kelas dalam
+              (kd-reveal-head/yomi/comp/examples) sama dengan versi
+              panel dulu — CSS-nya dipakai bersama modal Browse. */}
+          {answered && (
+            <div className="kd-card-face back" inert={showBack ? undefined : "true"}>
+              <div className="kd-card-back-body">
                 <div className="kd-reveal-head">
                   <span className="kd-meaning-kanji">{current.kanji}</span>
                   <span className="kd-meaning-text">{current.meanings.join(", ")}</span>
+                  <ScriptToggle answerScript={answerScript} onToggleScript={onToggleScript} />
                 </div>
                 {/* Baris bacaan mengikuti skrip toggle (kana atau romaji);
                     primary tetap di-bold di kedua skrip. */}
@@ -349,12 +445,12 @@ export default function Quiz({
                     </div>
                   )}
                 </div>
-                {/* Baris komponen (varian plain) di DALAM panel reveal:
-                    persamaan bentuk kanji yang baru dijawab sebagai TEKS
-                    BIASA (glyph + "+") — senada dan sekalem baris yomi di
-                    atasnya, tanpa kotak chip (t63) dan tanpa jumlah goresan
-                    (t64). Tanpa arti & tanpa navigasi: detail penuh + chip
-                    ber-link tetap di modal Browse. */}
+                {/* Baris komponen (varian plain): persamaan bentuk kanji
+                    yang baru dijawab sebagai TEKS BIASA (glyph + "+") —
+                    senada dan sekalem baris yomi di atasnya, tanpa kotak
+                    chip (t63) dan tanpa jumlah goresan (t64). Tanpa arti
+                    & tanpa navigasi: detail penuh + chip ber-link tetap di
+                    modal Browse. */}
                 {compEntry && (
                   <div className="kd-reveal-comp">
                     <span className="kd-yomi-tag comp">Components</span>
@@ -383,13 +479,44 @@ export default function Quiz({
                   </div>
                 )}
               </div>
-              <button className="kd-btn primary kd-continue-btn" onClick={onContinue}>
-                {qIndex + 1 < quiz.length ? "Continue" : "See Results"}
-              </button>
-            </>
+            </div>
           )}
         </div>
       </div>
+
+      {/* (t78) Petunjuk swipe — baris kecil di antara kartu dan bar aksi.
+          Tampil hanya setelah menjawab (sebelum itu swipe memang belum
+          berfungsi — kartu terkunci) dan hanya sampai swipe PERTAMA
+          user terdaftar (flag localStorage, lihat SWIPE_LEARNED_KEY).
+          Dekoratif (aria-hidden): makna gerakannya dijelaskan teksnya
+          sendiri; layar tetap bersih setelah gerakan dikenal. */}
+      {answered && !swipeLearned && (
+        <div className="kd-swipe-hint" aria-hidden="true">
+          <MoveHorizontal size={14} />
+          <span>Swipe the card sideways to flip it</span>
+        </div>
+      )}
+
+      {/* Bar aksi KARTU — DI LUAR kartu (tidak ikut berputar), supaya
+          tombol selalu di tempat yang sama di sisi mana pun: Flip
+          (secondary, sama fungsinya dengan swipe) + Continue (primary).
+          Hanya muncul setelah menjawab: sebelum itu tidak ada aksi kartu
+          yang tersedia (mem-balik belum boleh — jawaban ada di belakang).
+          Enter/Space tetap melanjutkan tanpa perlu fokus tombol. */}
+      {answered && (
+        <div className="kd-card-actions">
+          <button
+            className="kd-btn secondary kd-flip-btn"
+            onClick={() => setFlipped((f) => !f)}
+            title="Flip the card — swiping it sideways works too"
+          >
+            <FlipHorizontal2 size={15} strokeWidth={2.25} /> Flip
+          </button>
+          <button className="kd-btn primary kd-continue-btn" onClick={onContinue}>
+            {qIndex + 1 < quiz.length ? "Continue" : "See Results"}
+          </button>
+        </div>
+      )}
 
       {/* Dialog konfirmasi keluar sesi — hanya muncul kalau ada progres
           yang akan hilang. */}

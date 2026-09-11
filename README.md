@@ -16,7 +16,28 @@ npm run preview   # preview the production build locally
 
 ## Features
 
-- **JLPT practice (N5–N1)** — multiple-choice reading quizzes, one unit at a time.
+- **JLPT practice (N5–N1)** — multiple-choice reading quizzes, one unit at
+  a time. The quiz is a **physical flip card** (t77): answering turns the
+  card over — the front holds the question and choices (the genkō-yōshi
+  kanji box, tappable for stroke order), the back is the reading sheet
+  (readings, components, example words). The card auto-rotates to its
+  back ~0.4 s after you answer (long enough to see the correct/wrong
+  marking on the choices); swipe it sideways or tap **Flip** to see the
+  choices again — flipping is locked until you answer, since the back
+  contains the answer. A one-time hint under the card teaches the swipe
+  and disappears for good after the first real swipe (t78, localStorage
+  flag; the swipe sentence was removed from the Help overlay). Both card
+  faces sit 1 px apart on the Z axis (t78) so the face pointing at you
+  always wins depth sorting — `backface-visibility` alone proved
+  unreliable on some Android devices. Answered choices keep their size
+  (the old shrink animation was removed, t78); only the neutral ones
+  dim. The action row below the card (outside the
+  rotation) always holds **Flip** + **Continue** in the same place. The
+  row of dots above the card is a **live scoreboard**
+  (t76): correct answers collect at the far left in full indigo, wrong
+  (or "don't know") answers dim, and the enlarged dark dot marks the
+  running question — a dot's position encodes its status (correct /
+  current / wrong / unanswered), not the question's original number.
 - **Stroke-order animations (KanjiVG)** — the quiz kanji is **always
   rendered as the KanjiVG stroke SVG, fully drawn** (same shape before,
   during and after the animation — no font swap). **Left-click** (tap) the
@@ -44,11 +65,11 @@ npm run preview   # preview the production build locally
   across all 2,211 kanji).
 - **Component breakdown (KanjiVG stroke groups)** — kanji are shown as
   component equations: `時 = 日 + 寺`, `全 = 人 + 王`. After you answer a
-  quiz question, the answer panel expands with a smooth transition
-  inside the question column and includes a quiet "Components" row —
+  quiz question, the card's back (reading sheet) includes a quiet
+  "Components" row —
   the equation as plain text (glyphs only, no stroke counts, no chip
-  boxes: a memory aid, not an answer hint; the choice grid folds up
-  and the genkō tile never moves while the panel opens). In the Kanji
+  boxes: a memory aid, not an answer hint; the choice grid on the front
+  folds up after answering). In the Kanji
   Library modal, the same equation sits **directly below the running
   stroke animation** (column width matches the 180px stroke box) and
   **follows it live**: the chip whose strokes are currently being drawn
@@ -60,8 +81,10 @@ npm run preview   # preview the production build locally
   **← Back** button walking you back through the chain
   (`時 → 寺 → 土 → …`). Long equations (up to 6 components, e.g. `爾`)
   wrap neatly in the narrow column. Chips show **glyphs only** — hover
-  a chip and the tooltip explains its role: *radical* (seal dot, the
-  meaning component) or *phonetic* (indigo dot, the sound component);
+  a chip (desktop) and the tooltip explains its role: *radical* (seal dot, the
+  meaning component) or *phonetic* (indigo dot, the sound component); on
+  touch (no hover) the help overlay's **Browse kanji** section explains
+  the red/blue dots in plain prose (t76);
   a muted `+N` chip counts strokes that belong to no named component
   (keeps every equation stroke-accurate).
   Data: first-level stroke groups from the same **KanjiVG** SVGs,
@@ -143,7 +166,7 @@ npm run preview   # preview the production build locally
 - **Primary readings are the quiz source** — quiz answers come only from each
   kanji's *primary reading*: the most common reading that is backed by a real
   example word (validated by `scripts/build_examples.py`). Primary readings
-  are shown **bold** (in kana *and* in romaji mode) in the quiz answer panel,
+  are shown **bold** (in kana *and* in romaji mode) on the card's back,
   and bold in kana in the kanji library, and the help overlay explains this,
   so you don't waste effort memorizing rarely-used readings. A promoted kun
   reading additionally needs **real backing** — the example word that proves
@@ -222,13 +245,15 @@ npm run preview   # preview the production build locally
   until you choose). Leaving a finished or abandoned quiz can't be
   re-entered via Back — its in-memory session is discarded, which also
   prevents double-saving answers.
-- **Keyboard-friendly quiz** — W/E/S/D select an answer, F = "don't know",
-  R toggles kana ↔ romaji (works before and after answering), Q triggers
-  the back button (Cancel / Home), Enter **or Space** continues to the next
-  question. Leaving a quiz with progress first asks for confirmation
-  (Enter = leave, Esc = keep studying — for Q and mouse clicks alike). The
-  key layout is only shown in the help overlay (as a 2-row
-  grid matching the answer grid), so the quiz screen itself stays clean.
+- **Keyboard-friendly quiz (kept for development)** — W/E/S/D select an
+  answer, F = "don't know", R toggles kana ↔ romaji (works before and
+  after answering), Q triggers the back button (Cancel / Home), Enter
+  **or Space** continues to the next question. Leaving a quiz with
+  progress first asks for confirmation (Enter = leave, Esc = keep
+  studying — for Q and mouse clicks alike). The shortcuts still work,
+  but their help-overlay section was removed (t74: the app targets
+  Android where there is no keyboard) — the help overlay now teaches
+  the touch flows instead (Quiz / Browse kanji sections).
 - **Offline PWA** — installable, caches all data + assets, auto-updates.
 - **Lazy-loaded kanji data** — each JLPT level's full data (readings,
   meanings, example words) loads on demand the first time it's opened, not
@@ -250,7 +275,7 @@ src/
     studyStats.js           study-history stats from quiz attempts (current/longest streak, days studied; pure)
     storage.js               IndexedDB persistence via Dexie (the only storage module)
     useTheme.js              light/dark theme hook (localStorage)
-    useRouter.js             hash-based router (browser Back/Forward support)
+    useRouter.js             hash-based router (browser Back/Forward support); collapse navigation ("fold" entries when going up) updates the view optimistically before the popstate lands — otherwise React's quiz-session cleanup effect wipes a freshly-installed quiz during the gap and "Review again" fell through to Home (t74)
     kana.js                  kana → romaji Hepburn converter (JS port of the pipeline's, powers the romaji display)
     useCopy.js               clipboard hook (navigator.clipboard + execCommand fallback, 1.4s "copied" state) powering click-to-copy on the stroke box
     strokes.js              loads KanjiVG stroke-order data per level (code-split dynamic import, in-memory cache)
@@ -259,15 +284,15 @@ src/
     Home.jsx                next-review banner (the calendar entry) + stat cards panel + browse entry + level grid
     StatCards.jsx           shared panel of three large read-only stat cards (x/total Studied, Due now, Mastered) used by Home and UnitSelect
     UnitSelect.jsx           per-level stat cards + unit cards (dimmed = free practice; "✕ N" missed-review pill next to the title, hidden once the unit is due)
-    Quiz.jsx                 quiz screen (kanji box + choices + reveal panel + weak-review badge); the kanji is always shown as the finished KanjiVG SVG — left-click the box to replay the stroke animation inline, right-click to finish it instantly (no detail entry from inside the quiz — that would leak the answer)
+    Quiz.jsx                 quiz screen as a FLIP CARD (t77): front = kanji box + choices, back = reading sheet (readings, components, examples) + weak-review badge on the front. CSS 3D (perspective on .kd-card-scene, preserve-3d + rotateY on .kd-card-inner, backface-visibility on both faces + 1 px translateZ depth separation, t78); auto-flips to the back 420 ms after answering; horizontal swipe (pointer events, ≥56 px, only after answering) or the Flip button in the action row below the card toggles sides; a one-time swipe hint (t78) shows under the card after answering until the user's first registered swipe (localStorage "kanji-swipe-learned"); the hidden face is inert; key=qIndex remounts a fresh card per question. The kanji is always shown as the finished KanjiVG SVG — left-click the box to replay the stroke animation inline, right-click to finish it instantly (no detail entry from inside the quiz before answering — that would leak the answer); the script toggle (kana/romaji) sits in the card's top-right corner on the front and in the reading-sheet header on the back; the dots above the card are a live scoreboard (t76): answers prop + correctIndex comparison sorts them into [correct (full indigo, leftmost)] [current] [wrong (dimmed)] [unanswered]
     Readings.jsx             shared On/Kun rendering with primary bolding, kana or romaji
     GenkouGlyph.jsx          quiz kanji box as a button: renders the KanjiVG SVG in its finished state on mount (paths lazy-loaded per level); left-click → replays the stroke animation from the first stroke (1× default), right-click → completes it instantly
-    ComponentBreakdown.jsx   component equation (時 = 日 + 寺): plain-text variant inside the quiz answer panel's "Components" row (after answering, glyphs only, no interaction, no chip boxes); full chip variant in the Browse modal directly below the stroke animation (no "kanji =" lead) — glyph-only chips with radical/phonetic role tooltips (radical = meaning carrier, phonetic = sound carrier) and radical/phonetic dots; the `progress` prop keeps the chips in sync with the running stroke animation (future → active → done); clickable chips navigate to the component kanji (← Back button from Browse's navHistory); +N loose-stroke chip; long equations wrap as "+ chip" terms in the 180px animation column
+    ComponentBreakdown.jsx   component equation (時 = 日 + 寺): plain-text variant inside the quiz answer panel's "Components" row (after answering, glyphs only, no interaction, no chip boxes); full chip variant in the Browse modal directly below the stroke animation (no "kanji =" lead) — glyph-only chips with radical/phonetic role tooltips (radical = meaning carrier, phonetic = sound carrier) and radical/phonetic dots (their meaning is explained in the help overlay's Browse section — t76 removed the in-modal mini-legend again to keep the screen clean); the `progress` prop keeps the chips in sync with the running stroke animation (future → active → done); clickable chips navigate to the component kanji (← Back button from Browse's navHistory); +N loose-stroke chip; long equations wrap as "+ chip" terms in the 180px animation column
     CopyKanji.jsx            transparent <button> covering the Browse stroke box: click = copy the kanji (faint corner copy icon as affordance, inline "Copied 語" pill, keyboard-accessible)
     StrokePlayer.jsx         animated stroke-order player (two-layer SVG: faint guide + drawn ink via stroke-dashoffset; play/pause/replay/step/speed; live "n / N strokes" label under the controls — old kd-stroke-counter merged into it; `onProgress(revealed)` reports the live stroke count so the Browse component chips can highlight in sync; the stroke box itself is click-to-copy via the CopyKanji overlay)
-    Result.jsx               score stamp + breakdown + mode-aware next-review panel
+    Result.jsx               score stamp + breakdown + mode-aware next-review panel. (t78) The "Why the same review date?" note was removed — the first-quiz schedule explanation lives in the Help overlay's Quiz section; the numbers are still verified by scripts/t74_srs_first_schedule.mjs
     Browse.jsx               full kanji library (filter pills, search, modal; the modal's stroke box is click-to-copy — see CopyKanji.jsx)
-    ReviewCalendar.jsx       shared month calendar + selected-day panel (used by the banner overlay)
+    ReviewCalendar.jsx       shared month calendar + selected-day panel (used by the banner overlay); buildScheduleEntries filters per level via state.jlptLevel with a unitId-prefix fallback ("N1-U3" → "N1", t78) so freshly scheduled units are never hidden from the level-scoped calendar; days the user actually studied on (≥ 1 completed quiz) are gold — same color story as the lit streak card (t76: the marker is on activity days, not on "today"; today keeps its indigo border); the study dot under the day number is gold too
     CalendarModal.jsx        review-calendar overlay opened from the review banner: calendar + day panel
     NextReviewBanner.jsx     one-line schedule banner — a clickable calendar entry in ALL states (empty/due/scheduled); click opens the review-calendar overlay
     ThemeToggle.jsx          Sun/Moon dark-mode switch
@@ -913,6 +938,16 @@ same-day rules are identical, migrated states keep their `nextReviewAt`
 **exactly**, and 3,200 simulated continuation steps drift only by day
 rounding (p50 0.53d, p95 2.0d). Report:
 `download/tsfsrs-differential-report.json`.
+
+A first-time unit quiz always lands on a **fixed starting interval** (the
+absolute anchor of the adapter has no model expectation to compare
+against): ≤80% → 1 day, 87–99% → 2 days, 100% → 8 days — so two units
+with different first scores can share the same review date, and the app
+explains this in the Help overlay's Quiz section (t78: the result-screen
+note was removed at the user's request to keep results clean). Adaptation
+begins with the
+second review (1 → 5 → 13 days… for good results). The per-score table
+is verified by `scripts/t74_srs_first_schedule.mjs`.
 
 ```
 R(t, S) = (1 + FACTOR · t/S) ^ -w20        # forgetting curve, decay TRAINED from data

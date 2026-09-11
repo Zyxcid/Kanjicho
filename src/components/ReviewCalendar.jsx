@@ -8,9 +8,10 @@ import { toDateStr, formatHHMM } from "../lib/studyStats.js";
  *   - CalendarModal : overlay dari klik banner review (default hari ini).
  *   - ProgressView  : bagian tengah layar Progress penuh.
  *
- * Kalender: angka seal = unit dijadwalkan review hari itu, titik indigo =
- * hari pernah belajar. Klik tanggal → panel hari itu menampilkan unit +
- * JAM jatuh tempo persis (nextReviewAt tersimpan sebagai timestamp).
+ * Kalender: angka seal = unit dijadwalkan review hari itu, angka + titik
+ * GOLD = hari yang benar-benar dipakai belajar (≥ 1 kuis — t76: satu
+ * warna dengan kartu streak). Klik tanggal → panel hari itu menampilkan
+ * unit + JAM jatuh tempo persis (nextReviewAt tersimpan sebagai timestamp).
  * Baris overdue (jam sudah lewat) adalah tombol — onJump membuka kuisnya.
  */
 
@@ -43,12 +44,21 @@ export function units(n) {
 }
 
 /** Jadwal review dari state SRS: [{unitId, at}] terurut waktu. `level`
- *  memfilter ke unit level itu (dipakai saat konteksnya per-level). */
+ *  memfilter ke unit level itu (dipakai saat konteksnya per-level).
+ *  Level unit diambil dari state.jlptLevel; kalau field itu absen (state
+ *  in-memory yang dibuat reviewUnit() sebelum t78, atau data lama),
+ *  jatuh ke prefix unitId ("N1-U3" → "N1") — unitId selalu berformat
+ *  "<level>-U<n>" — supaya penyaringan per-level tidak pernah
+ *  menyembunyikan unit yang memang dijadwalkan (t78: bug "jadwal N1
+ *  besok tidak ditandai di kalender N1, tapi muncul di semua level"). */
 export function buildScheduleEntries(progress, level) {
   const out = [];
   for (const [unitId, state] of Object.entries(progress || {})) {
     if (!state || !state.nextReviewAt) continue;
-    if (level && state.jlptLevel !== level) continue;
+    const dash = unitId.indexOf("-");
+    const unitLevel =
+      state.jlptLevel || (dash > 0 ? unitId.slice(0, dash) : null);
+    if (level && unitLevel !== level) continue;
     out.push({ unitId, at: new Date(state.nextReviewAt) });
   }
   out.sort((a, b) => a.at - b.at);
@@ -173,6 +183,10 @@ export default function ReviewCalendar({ entries, activity, onJump }) {
               "kd-cal-cell",
               d < todayStart ? "past" : "",
               key === today ? "today" : "",
+              // t76: hari dengan aktivitas kuis → kelas .active (angka gold,
+              // satu warna dengan streak). Urutan kelas tidak penting;
+              // prioritas warna diatur urutan rule CSS (lihat global.css).
+              studied ? "active" : "",
               key === selected ? "selected" : "",
             ]
               .filter(Boolean)

@@ -375,6 +375,20 @@ export function useRouter() {
       // handler menjalankan applyAt(targetDepth) — lihat onPop (3).
       const targetDepth = d - back;
       pendingCollapseRef.current = { targetDepth, apply: () => applyAt(targetDepth) };
+      // OPTIMISTIK (t74): view/level/unit dipindahkan SEKARANG, sebelum
+      // popstate mendarat. Tanpa ini ada satu siklus render penuh yang
+      // masih memakai view LAMA — dan efek pembersih sesi di App.jsx
+      // ("view !== quiz → setQuiz(null)") MENYAPU kuis yang baru saja
+      // dipasang (navigate dipanggil SETELAH setQuiz di startWeakReview),
+      // sehingga tombol "Review again" hasilnya jatuh ke Home (quiz null
+      // → route "weak" tidak punya sesi → fallback Home). Dengan sinkron
+      // view, setQuiz + setView masuk SATU batch render — efek pembersih
+      // melihat view quiz yang sudah benar. popstate kemudian hanya
+      // menimpa entri history tujuan (applyAt no-op untuk state view).
+      locRef.current = { view: nextView, level: nextLevel, unit: nextUnit };
+      setView(nextView);
+      setLevel(nextLevel);
+      setUnit(nextUnit);
       window.history.go(-back);
       return;
     }
