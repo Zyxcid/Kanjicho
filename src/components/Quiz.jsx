@@ -3,9 +3,10 @@ import { ChevronLeft, CircleX, HelpCircle, MoveHorizontal } from "lucide-react";
 import { DONT_KNOW } from "../lib/quizGenerator.js";
 import { ReadingList } from "./Readings.jsx";
 import { kanaToRomaji } from "../lib/kana.js";
-import GenkouGlyph from "./GenkouGlyph.jsx";
+import RevealGlyph from "./RevealGlyph.jsx";
 import ComponentBreakdown from "./ComponentBreakdown.jsx";
 import { loadComponents } from "../lib/components.js";
+import { loadStrokes } from "../lib/strokes.js";
 
 /**
  * Label satu pilihan sesuai skrip aktif: soal arti → teks biasa; soal
@@ -230,10 +231,18 @@ export default function Quiz({
   // adalah alat bantu mengingat ("明 = sun + moon"), bukan petunjuk
   // jawaban. Varian plain: TEKS BIASA glyph saja (t64: jumlah goresan
   // dihapus; t63: tanpa kotak chip) — detail penuh tetap di modal Browse.
+  // (t83) loadStrokes ikut DIPANASKAN di sini: data goresan KanjiVG
+  // dipakai glyph kecil di KEPALA punggung kartu (RevealGlyph) — memuat
+  // sejak soal muncul membuat punggung langsung memunculkan SVG selesai
+  // begitu kartu terbalik, tanpa kedip placeholder font.
   const [compEntry, setCompEntry] = useState(null);
   useEffect(() => {
     let cancelled = false;
     setCompEntry(null);
+    // Panaskan dua chunk sekaligus (keduanya di-cache per level —
+    // pemanggilan ganda tetap satu unduhan): komponen untuk baris
+    // "Components", goresan KanjiVG untuk kepala punggung kartu.
+    loadStrokes(current.level);
     loadComponents(current.level).then((map) => {
       if (!cancelled) setCompEntry(map[current.kanji] || null);
     });
@@ -269,6 +278,11 @@ export default function Quiz({
       }
       // Modal terbuka (help overlay) — shortcut tidak boleh menembus modal.
       if (document.querySelector(".kd-modal-overlay")) return;
+      // (t82) Tur onboarding aktif — shortcut kuis (w/e/s/d/f/r/Enter)
+      // menunggu tur selesai: kartu & pilihan sedang diredupkan oleh
+      // shade-nya; menjawab lewat keyboard di balik overlay akan mendesink
+      // alur tur (tooltip hanya menunggu klik nyata pada UI).
+      if (document.querySelector(".kd-tut-shades")) return;
       // r = toggle kana/romaji — bekerja baik sebelum maupun sesudah
       // menjawab (reading sheet di belakang kartu ikut berganti live),
       // jadi dicek dulu.
@@ -354,18 +368,16 @@ export default function Quiz({
                   baris "Components" DI SISI BELAKANG KARTU setelah
                   dijawab (bukan blok terpisah di sini). */}
               <div className="kd-quiz-left">
-                {/* Glyph selalu dirender sebagai SVG KanjiVG keadaan SELESAI
-                    sejak soal muncul (bentuk konsisten, tidak ada pergantian
-                    font). KLIK KIRI glyph → animasi urutan goresan diputar
-                    LANGSUNG di kotak genkō-yōshi ini (default 1x, tanpa
-                    kontrol — lihat GenkouGlyph.jsx); KLIK KANAN → animasi
-                    langsung diselesaikan (semua goresan muncul seketika).
-                    Shortcut kuis tetap hidup karena tidak ada overlay. Sheet
-                    detail (bacaan, arti, contoh kata) ada di sisi BELAKANG
-                    kartu SETELAH menjawab — sebelum itu memang tersembunyi
-                    karena membocorkan jawaban soal. */}
+                {/* (t83) Kotak genkō kembali menampilkan KANJI FONT
+                    Shippori Mincho biasa — seperti sebelum animasi goresan
+                    pernah tinggal di depan. Animasi urutan goresan KanjiVG
+                    PINDAH ke kepala reading sheet di sisi BELAKANG kartu
+                    (RevealGlyph, pojok kiri-atas, ukuran lebih kecil):
+                    bentuk yang sedang belajar ditulis BARU layak dilihat
+                    SETELAH menjawab, bersama bacaannya. Tidak ada interaksi
+                    di kotak ini — diam menempel di atas kolom. */}
                 <div className="kd-genkou">
-                  <GenkouGlyph key={current.kanji} kanji={current.kanji} level={current.level} />
+                  <div className="kd-genkou-glyph">{current.kanji}</div>
                 </div>
               </div>
 
@@ -425,15 +437,20 @@ export default function Quiz({
               ada: jawaban harus tersembunyi). Struktur kelas dalam
               (kd-reveal-head/yomi/comp/examples) sama dengan versi
               panel dulu — CSS-nya dipakai bersama modal Browse.
-              (t80) Head: kanji KIRI, arti KANAN (justify-content
-              space-between di CSS) — konsisten dengan tata letak depan
-              kartu (genkō kiri, info kanan); toggle skrip sudah pindah
-              ke topbar app (universal). */}
+              (t80) Head: kanji KIRI, arti KANAN — konsisten dengan tata
+              letak depan kartu (genkō kiri, info kanan); toggle skrip sudah
+              pindah ke topbar app (universal).
+              (t83) Kanji di kepala kini GLYPH KANJIVG KECIL (RevealGlyph,
+              pojok kiri-atas, ±72px — lebih kecil dari genkō depan):
+              KLIK = putar animasi urutan goresan, klik kanan = selesaikan
+              seketika. Arti mengalir DI SAMPING glyph (margin-left:auto
+              dihapus dari .kd-meaning-text — tidak lagi didorong ke tepi
+              kanan lembar). */}
           {answered && (
             <div className="kd-card-face back" inert={showBack ? undefined : "true"}>
               <div className="kd-card-back-body">
                 <div className="kd-reveal-head">
-                  <span className="kd-meaning-kanji">{current.kanji}</span>
+                  <RevealGlyph kanji={current.kanji} level={current.level} />
                   <span className="kd-meaning-text">{current.meanings.join(", ")}</span>
                 </div>
                 {/* Baris bacaan mengikuti skrip toggle (kana atau romaji);

@@ -16,12 +16,64 @@ npm run preview   # preview the production build locally
 
 ## Features
 
+- **Guided onboarding tour (t82)** — a first-run "hint overlay" that dims
+  the whole UI except a spotlight on the exact element being explained:
+  welcome → choose a JLPT level → pick a unit (all units are open from
+  the start, nothing to unlock) → inside the quiz, the topbar
+  kana/romaji toggle → **answer one real question** (any choice or
+  "Don't know"; being wrong is fine, this is just a tour) so the card
+  flips over on its own → the card's back (the readings in **bold** are
+  the ones the choices came from; tap the kanji at its top-left corner
+  to watch its stroke order) → the SRS closing line ("after you answer
+  all the questions, your review schedule is arranged with SRS") → on
+  the home screen, the due-calendar card and the Browse-all-kanji entry
+  (both pure-info steps, no click required) → a centered "That's the
+  tour!" closing. Steps advance on the user's REAL clicks (the
+  spotlight hole is click-through, so the app reacts normally — no
+  simulated UI), on a **Got it** button for pure-info steps, or on the
+  target appearing via an alternate route; every step carries **Skip
+  tutorial** (plus Escape). (t85) The SRS step's tooltip carries the
+  **Home button itself** (chevron icon + label, styled like the app's
+  Home buttons): tapping it performs a real `navigate home` + history
+  reset — the tour quiz is left without the Cancel/Leave dialog dance,
+  the whole screen is dimmed (no spotlight) so that button is the one
+  obvious way forward, and the remaining steps wait on the home screen.
+  (t85) The two spotlight-only steps (due-calendar card, Browse entry)
+  are **locked**: a transparent cover (z 57) swallows clicks/touches on
+  the hole and a capture-phase key guard swallows Enter/Space on the
+  focused target, so the spotlight is look-only and **Got it** is the
+  single way forward (user request). The spotlight is four shade
+  rectangles around the hole — no z-index surgery on highlighted
+  elements; shades sit *below* modals (z 55/56) so a dialog opened
+  mid-tour (e.g. the leave-quiz confirmation via system Back) stays
+  clickable, while the tooltip sits above everything (z 72). The SRS
+  step also keeps a waitAppear safety valve: a back-gesture/Back-button
+  escape that lands on home advances the step by itself. (t84) Escape
+  no longer kills the tour while a
+  modal is open: the leave dialog, review calendar and help overlay
+  consume it first. Tooltips for steps whose
+  target is missing/hidden (or that have no target at all, like the
+  welcome) are centered and fully visible — an early t82 build left
+  them stuck invisible (passive-effect reset clobbered the layout
+  placement on mount); placement now waits until the target is measured
+  or confirmed absent. Auto-starts only for genuinely new users (no
+  localStorage flag AND no quiz history/unit progress — existing users
+  are silently marked done); persists as `kanjicho-tutorial` =
+  done/skipped and can be replayed any time from the Help overlay's
+  **Getting started** section. Quiz keyboard shortcuts are muted while
+  the tour is active. Because the tour now teaches the basics in place,
+  the Help overlay was trimmed to a quick reference (auto-flip settings
+  + bold-readings note with the tap-the-back-kanji stroke hint,
+  "Don't know" honesty advice, radical/phonetic dots, data sources,
+  progress, contact).
 - **JLPT practice (N5–N1)** — multiple-choice reading quizzes, one unit at
   a time. The quiz is a **physical flip card** (t77): the front holds the
-  question and choices (the genkō-yōshi kanji box, tappable for stroke
-  order), the back is the reading sheet (readings, components, example
-  words; head reads kanji **left** / meaning box **right** with naturally
-  left-aligned lines, t80–t81). After you
+  question and choices (the genkō-yōshi kanji box shows a plain
+  Shippori Mincho font glyph, t83), the back is the reading sheet
+  (readings, components, example words; its head holds a **small KanjiVG
+  stroke-order glyph at the top-left** — tap it to replay the strokes,
+  right-click to finish them instantly — with the meaning flowing
+  **beside** it rather than pinned to the right edge, t83). After you
   answer, the card **turns over on its own** after a moment — **1 s by
   default**, and the wait is user-selectable in the Help overlay
   (0.5 / 1 / 1.5 / 2 / 3 s pills under the auto-flip switch, t81;
@@ -265,8 +317,10 @@ npm run preview   # preview the production build locally
   progress first asks for confirmation (Enter = leave, Esc = keep
   studying — for Q and mouse clicks alike). The shortcuts still work,
   but their help-overlay section was removed (t74: the app targets
-  Android where there is no keyboard) — the help overlay now teaches
-  the touch flows instead (Quiz / Browse kanji sections).
+  Android where there is no keyboard) — the onboarding tour (t82)
+  teaches the touch flows in place on first run, and the help overlay
+  keeps a trimmed quick reference (Quiz settings / Browse dots);
+  shortcuts are muted while the tour overlay is active.
 - **Offline PWA** — installable, caches all data + assets, auto-updates.
 - **Lazy-loaded kanji data** — each JLPT level's full data (readings,
   meanings, example words) loads on demand the first time it's opened, not
@@ -297,13 +351,14 @@ src/
     Home.jsx                next-review banner (the calendar entry) + stat cards panel + browse entry + level grid
     StatCards.jsx           shared panel of three large read-only stat cards (x/total Studied, Due now, Mastered) used by Home and UnitSelect
     UnitSelect.jsx           per-level stat cards + unit cards (dimmed = free practice; "✕ N" missed-review pill next to the title, hidden once the unit is due)
-    Quiz.jsx                 quiz screen as a FLIP CARD (t77): front = kanji box + choices, back = reading sheet (readings, components, examples; head kanji-left / meaning-box-right with left-aligned lines t80–t81) + weak-review badge on the front. CSS 3D (perspective on .kd-card-scene, preserve-3d + rotateY on .kd-card-inner via inline cumulative style, backface-visibility on both faces + 1 px translateZ depth separation, t78); auto-flips to the back after answering — delay default 1000 ms, user-selectable in the Help overlay as 0.5–3 s pills (t81: App owns the "kanji-autoflip-delay" state and passes it as a prop; changing it mid-session reschedules the pending timer safely; manual swipe cancels the timer; the on/off toggle lives beside the pills, off = fully manual, the t79 behavior); a horizontal swipe (pointer events, ≥56 px, only after answering) is the only manual flip trigger — the Flip button was removed (t79) — and its DIRECTION sets the rotation direction (right sweep +180, left sweep −180, t80); a one-time swipe hint (t78) shows under the card after answering until the user's first registered swipe (localStorage "kanji-swipe-learned"); the hidden face is inert; key=qIndex remounts a fresh card per question. The kanji is always shown as the finished KanjiVG SVG — left-click the box to replay the stroke animation inline, right-click to finish it instantly (no detail entry from inside the quiz before answering — that would leak the answer); the script toggle lives in the app topbar (t80, universal for quiz + Browse); the dots above the card are a live scoreboard (t76): answers prop + correctIndex comparison sorts them into [correct (full indigo, leftmost)] [current] [wrong (dimmed)] [unanswered]
+    Quiz.jsx                 quiz screen as a FLIP CARD (t77): front = kanji box + choices, back = reading sheet (readings, components, examples; head = small KanjiVG glyph left / meaning flowing BESIDE it, t83 — the old kanji-left / meaning-box-right split and its margin-left:auto retired) + weak-review badge on the front. CSS 3D (perspective on .kd-card-scene, preserve-3d + rotateY on .kd-card-inner via inline cumulative style, backface-visibility on both faces + 1 px translateZ depth separation, t78); auto-flips to the back after answering — delay default 1000 ms, user-selectable in the Help overlay as 0.5–3 s pills (t81: App owns the "kanji-autoflip-delay" state and passes it as a prop; changing it mid-session reschedules the pending timer safely; manual swipe cancels the timer; the on/off toggle lives beside the pills, off = fully manual, the t79 behavior); a horizontal swipe (pointer events, ≥56 px, only after answering) is the only manual flip trigger — the Flip button was removed (t79) — and its DIRECTION sets the rotation direction (right sweep +180, left sweep −180, t80); a one-time swipe hint (t78) shows under the card after answering until the user's first registered swipe (localStorage "kanji-swipe-learned"); the hidden face is inert; key=qIndex remounts a fresh card per question. (t83) The front kanji box is a PLAIN Shippori Mincho font glyph again (no interaction — the stroke animation moved to the card's back); the back's head holds the small RevealGlyph button; the strokes chunk is pre-warmed at question mount together with the components chunk so the flipped back renders its finished SVG without a placeholder blink; the script toggle lives in the app topbar (t80, universal for quiz + Browse); the dots above the card are a live scoreboard (t76): answers prop + correctIndex comparison sorts them into [correct (full indigo, leftmost)] [current] [wrong (dimmed)] [unanswered]
     Readings.jsx             shared On/Kun rendering with primary bolding, kana or romaji
-    GenkouGlyph.jsx          quiz kanji box as a button: renders the KanjiVG SVG in its finished state on mount (paths lazy-loaded per level); left-click → replays the stroke animation from the first stroke (1× default), right-click → completes it instantly
+    RevealGlyph.jsx          (t83) small KanjiVG glyph BUTTON at the top-left of the quiz card's back (72 px mobile / 88 px desktop — clearly smaller than the front genkō box): renders the finished SVG on mount (paths lazy-loaded per level, pre-warmed by Quiz so the back never blinks a font placeholder); left-click → replays the stroke animation from the first stroke (620 ms/stroke, same feel as StrokePlayer 1×); right-click → completes it instantly; falls back to the plain font kanji when no KanjiVG data (currently 0 kanji). Replaced GenkouGlyph.jsx, which animated the FRONT box pre-t83
     ComponentBreakdown.jsx   component equation (時 = 日 + 寺): plain-text variant inside the quiz answer panel's "Components" row (after answering, glyphs only, no interaction, no chip boxes); full chip variant in the Browse modal directly below the stroke animation (no "kanji =" lead) — glyph-only chips with radical/phonetic role tooltips (radical = meaning carrier, phonetic = sound carrier) and radical/phonetic dots (their meaning is explained in the help overlay's Browse section — t76 removed the in-modal mini-legend again to keep the screen clean); the `progress` prop keeps the chips in sync with the running stroke animation (future → active → done); clickable chips navigate to the component kanji (← Back button from Browse's navHistory); +N loose-stroke chip; long equations wrap as "+ chip" terms in the 180px animation column
     CopyKanji.jsx            transparent <button> covering the Browse stroke box: click = copy the kanji (faint corner copy icon as affordance, inline "Copied 語" pill, keyboard-accessible)
     StrokePlayer.jsx         animated stroke-order player (two-layer SVG: faint guide + drawn ink via stroke-dashoffset; play/pause/replay/step/speed; live "n / N strokes" label under the controls — old kd-stroke-counter merged into it; `onProgress(revealed)` reports the live stroke count so the Browse component chips can highlight in sync; the stroke box itself is click-to-copy via the CopyKanji overlay)
     ScriptToggle.jsx         (t80) topbar kana/romaji toggle — universal for the quiz and Browse (Readings + example readings switch live); neutral pill, no on/off color: the label (あ / Aa) is the state; (t81) sits BETWEEN the Help and Theme buttons
+    Tutorial.jsx             (t82) guided onboarding tour, (t84) 10 steps (welcome → level grid → unit grid → script toggle → answer a real question → card's back reading sheet + stroke-order tap → SRS → due-calendar card → Browse-all-kanji entry → centered closing), each with a spotlight hole that is click-through to the real UI; advances on real clicks (capture listener, no stopPropagation — selector lists allowed, e.g. any choice OR Don't know), on the target appearing (poll), or on Got it (calendar/browse/closing steps are pure info, no click required); (t85) the SRS step's tooltip carries the Home button (cta "home" → onGoHome from App = real navigate+history reset, no leave dialog; whole screen dimmed, target null, waitAppear on the home Browse entry stays as a safety valve for back-gesture escapes); (t85) calendar/browse steps set `block: true` — a transparent .kd-tut-cover (z 57) seals the hole and a capture keydown guard swallows Enter/Space on the focused target, so those spotlights are look-only and Got it is the only way forward; 4 shade rects around the hole (z 55, below modals → dialogs stay clickable), ring z 56, cover z 57, tooltip z 72; measures targets on mount/scroll/resize/400 ms poll; missing/hidden targets (e.g. Cancel on phones) fall back to a CENTERED, visible tooltip via the explicit `absent` state; (t84) Escape is ignored while a .kd-modal-overlay is open (the modal consumes it, the tour survives) and step texts are em-dash-free plain sentences (user style); App owns the "kanjicho-tutorial" flag (auto-start for new users only, replay from Help)
     Result.jsx               score stamp + breakdown + mode-aware next-review panel; the "Why the same review date?" note was removed (t78) — the fixed 1/2/8-day first-quiz schedule is explained in the Help overlay's Quiz section instead
     Browse.jsx               full kanji library (filter pills, search, modal; the modal's stroke box is click-to-copy — see CopyKanji.jsx); readings and example readings follow the universal topbar script toggle, the separate Romaji row was removed (t80)
     ReviewCalendar.jsx       shared month calendar + selected-day panel (used by the banner overlay); days the user actually studied on (≥ 1 completed quiz) are gold — same color story as the lit streak card (t76: the marker is on activity days, not on "today"; today keeps its indigo border); the study dot under the day number is gold too

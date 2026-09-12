@@ -11,8 +11,9 @@ import { kanaToRomaji } from "../lib/kana.js";
  * di-bold), dan contoh kata.
  *
  * Dibuka lewat ikon pena kecil di pojok kotak genkō-yōshi layar kuis
- * (klik glyph itu sendiri kini memutar animasi LANGSUNG di dalam kotak,
- * tanpa overlay — lihat GenkouGlyph.jsx).
+ * (sejak t83 animasi goresan di layar kuis diputar di glyph kecil
+ * punggung kartu — lihat RevealGlyph.jsx; modal Browse memuat versi
+ * detailnya sendiri, komponen ini dipertahankan sebagai cadangan).
  * Pakai class modal yang sama dengan modal lain (.kd-modal-overlay) —
  * otomatis ikut "mengunci" shortcut keyboard layar kuis selama terbuka
  * (Quiz.jsx dan App.jsx keduanya mengecek keberadaan overlay).

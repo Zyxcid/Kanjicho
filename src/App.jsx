@@ -18,6 +18,7 @@ import Browse from "./components/Browse.jsx";
 import CalendarModal from "./components/CalendarModal.jsx";
 import { buildScheduleEntries } from "./components/ReviewCalendar.jsx";
 import HelpButton, { AUTO_FLIP_DELAYS } from "./components/HelpButton.jsx";
+import Tutorial, { TUTORIAL_KEY } from "./components/Tutorial.jsx";
 
 export function unitStatus(state) {
   if (!state || state.stability === null) return "new";
@@ -105,6 +106,35 @@ export default function App() {
   function changeAutoFlipDelay(ms) {
     setAutoFlipDelay(ms);
     localStorage.setItem("kanji-autoflip-delay", String(ms));
+  }
+
+  // (t82) Tur onboarding "hint overlay" — menyala OTOMATIS hanya untuk
+  // user baru (flag localStorage TUTORIAL_KEY belum ada DAN belum ada
+  // jejak belajar: riwayat kuis / progress unit). User lama dari versi
+  // pra-tur ditandai "done" diam-diam supaya tidak disambut overlay;
+  // siapa pun bisa memutar ulang tur dari Help (seksi Getting started).
+  // Komponen Tutorial.jsx memasang sendiri lapisan redup + spotlight +
+  // tooltip-nya; App hanya menyalakan/mematikan + menyimpan hasil.
+  const [tutorialActive, setTutorialActive] = useState(false);
+
+  function finishTutorial(mode) {
+    // mode: "done" (tur tuntas / tombol Got it terakhir) | "skipped"
+    // (tombol Skip / Escape). try/catch: mode privat browser bisa melarang
+    // localStorage — tur hanya akan tawarkan lagi di buka berikutnya.
+    try {
+      localStorage.setItem(TUTORIAL_KEY, mode);
+    } catch {
+      /* abaikan */
+    }
+    setTutorialActive(false);
+  }
+
+  // Replay dari Help: tur selalu dimulai dari sambutan di HOME (langkah
+  // kedua menyorot grid level) — reset tumpukan history (pola tombol Home
+  // layar hasil) supaya Back dari mana pun bersih, lalu nyalakan tur.
+  function replayTutorial() {
+    navigate("home", { reset: true });
+    setTutorialActive(true);
   }
 
   // activeLevel/activeUnit tertinggal dari route supaya UnitSelect tetap
@@ -255,6 +285,30 @@ export default function App() {
     loadAllData().finally(() => setLoading(false));
   }, []);
 
+  // (t82) Keputusan auto-start tur: tunggu data selesai dimuat supaya
+  // "user lama" terdeteksi dari attempts/progress yang NYATA (bukan tebak-
+  // tebakan flag). attempts/progress di-set sebelum loading berakhir dalam
+  // satu batch render, jadi efek ini membaca nilai final.
+  useEffect(() => {
+    if (loading) return;
+    let seen = null;
+    try {
+      seen = localStorage.getItem(TUTORIAL_KEY);
+    } catch {
+      seen = null; // mode privat — anggap belum pernah, tawarkan tur
+    }
+    if (seen) return;
+    if (attempts.length > 0 || Object.keys(progress).length > 0) {
+      try {
+        localStorage.setItem(TUTORIAL_KEY, "done");
+      } catch {
+        /* abaikan */
+      }
+      return;
+    }
+    setTutorialActive(true);
+  }, [loading, attempts, progress]);
+
   // Buang state kuis begitu sesinya tidak lagi dipakai: layar kuis
   // ditinggalkan (selesai, Cancel, atau Leave dari dialog Back browser),
   // ATAU route kuis menunjuk unit lain. Hash #/quiz tanpa state kuis yang
@@ -285,6 +339,9 @@ export default function App() {
       // Modal terbuka (help / detail Browse / konfirmasi) — shortcut tidak
       // menembus modal.
       if (document.querySelector(".kd-modal-overlay")) return;
+      // (t82) Tur onboarding aktif — biarkan tooltip tur yang memegang
+      // panggung (tombol-tombol app sedang diredupkan & terkunci shade).
+      if (document.querySelector(".kd-tut-shades")) return;
       // Home & Result tidak punya tombol back → q tidak melakukan apa-apa.
       document.querySelector(".kd-back")?.click();
     }
@@ -673,6 +730,7 @@ export default function App() {
             onToggleAutoFlip={toggleAutoFlip}
             autoFlipDelay={autoFlipDelay}
             onChangeAutoFlipDelay={changeAutoFlipDelay}
+            onReplayTutorial={replayTutorial}
           />
           <ScriptToggle answerScript={answerScript} onToggleScript={toggleAnswerScript} />
           <ThemeToggle />
@@ -773,6 +831,21 @@ export default function App() {
           activity={studyStats.activity}
           onClose={closeCalendarUI}
           onJump={jumpFromCalendar}
+        />
+      )}
+
+      {/* (t82) Tur onboarding — hanya hidup saat tutorialActive: user baru
+          (auto) atau replay dari Help. Lapisan redup 4-bidang + cincin
+          spotlight + tooltip dikelola komponen ini sendiri; langkah-langkah
+          menunggu KLIK NYATA pada UI (klik menembus lubang ke elemen asli)
+          atau tombol Got it, dengan Skip tutorial selalu tersedia.
+          (t85) onGoHome: tombol "Home" di tooltip langkah SRS memanggil
+          navigasi SUNGGUHAN ini (reset history, persis tombol Home layar
+          hasil / replay) — pulang dari kuis tur tanpa dialog Leave. */}
+      {tutorialActive && (
+        <Tutorial
+          onFinish={finishTutorial}
+          onGoHome={() => navigate("home", { reset: true })}
         />
       )}
 

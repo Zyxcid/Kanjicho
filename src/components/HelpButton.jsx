@@ -29,6 +29,7 @@ export default function HelpButton({
   onToggleAutoFlip,
   autoFlipDelay = 1000, // (t81) ms — satu dari AUTO_FLIP_DELAYS
   onChangeAutoFlipDelay, // (t81) (ms) => void — dikelola App + localStorage
+  onReplayTutorial, // (t82) () => void — putar ulang tur onboarding dari Help
 }) {
   const [open, setOpen] = React.useState(false);
   // Penutup overlay yang terdaftar di tumpukan overlay router (t65):
@@ -51,6 +52,19 @@ export default function HelpButton({
     const close = closeRef.current;
     closeRef.current = null;
     closeOverlayUI(close);
+  }
+
+  // (t82) Replay tur onboarding. Help ditutup TANPA mengonsumsi entri
+  // history (discard, bukan closeOverlayUI): App akan navigate("home",
+  // {reset}) seketika setelah ini, dan history.back() asinkron dari
+  // konsumsi akan bertabrakan dengan pushState navigate — pola yang sama
+  // dengan jumpFromCalendar di App.jsx (entri overlay basi digantikan
+  // entri navigasi baru).
+  function replayTour() {
+    setOpen(false);
+    discardOverlayEntry(closeRef.current);
+    closeRef.current = null;
+    onReplayTutorial();
   }
 
   // Escape menutup modal help — konsisten dengan modal lain (kalender,
@@ -93,11 +107,32 @@ export default function HelpButton({
                 utama. Handler shortcutnya (w/e/s/d/f/r/q/Enter di
                 Quiz.jsx + App.jsx) TETAP hidup untuk development. */}
 
+            {/* (t82) Tur onboarding (Tutorial.jsx) kini menjelaskan alur
+                dasar LANGSUNG DI TEMPATNYA (level → unit → kuis → Browse),
+                jadi Help dipangkas: kalimat-kalimat pengantar untuk user
+                baru pensiun; yang tinggal adalah REFERENSI cepat + kontrol.
+                Seksi ini satu-satunya pintu replay tur (auto-start hanya
+                untuk user baru — lihat App.jsx). */}
+            <div className="kd-help-section">
+              <div className="kd-help-heading">Getting started</div>
+              <p className="kd-help-text">
+                New to Kanjichō? The built-in tour walks you through
+                levels, units, quizzes and the kanji library in about
+                half a minute.
+              </p>
+              <button
+                className="kd-btn secondary kd-help-replay"
+                onClick={replayTour}
+              >
+                Replay the tutorial
+              </button>
+            </div>
+
             {/* t76: seksi Quiz & Browse kanji ditulis sebagai PROSA pendek
                 (bukan bullet) — mengikuti referensi user: kalimat mengalir
-                lebih mengundang dibaca daripada poin-poin; penjelasan
-                lengkap untuk user baru hidup DI SINI, layar kuis/browse
-                sendiri tetap bersih.
+                lebih mengundang dibaca daripada poin-poin. Penjelasan
+                lengkap untuk user baru kini hidup di TUR ONBOARDING (t82),
+                bukan di sini — help menjadi referensi ringkas.
                 (t80) Toggle auto-flip hidup di seksi ini (pola row yang
                 sama dengan toggle "Reset progress button"): kartu berputar
                 sendiri setelah menjawab (default ON), bisa dimatikan bila
@@ -108,14 +143,13 @@ export default function HelpButton({
             <div className="kd-help-section">
               <div className="kd-help-heading">Quiz</div>
               <p className="kd-help-text">
-                You can tap the kanji to watch its stroke order. Once you
-                answer, the card turns over on its own to a reading
-                sheet — the readings written in <b>bold</b> are the ones
-                the multiple-choice options come from. A sideways swipe
-                flips the card back and forth whenever you like. If the
-                card waits too long or too briefly before turning, pick
-                a different delay just below — or switch auto-flip off
-                to flip only by hand.
+                Once you answer, the card turns over on its own to a
+                reading sheet — the readings written in <b>bold</b> are
+                the ones the multiple-choice options come from, and
+                tapping the kanji at its corner replays the stroke
+                order. A sideways swipe flips the card back and forth
+                whenever you like; to turn it yourself every time,
+                switch auto-flip off below.
               </p>
               {/* (t80) Toggle auto-flip — pola row switch yang sama dengan
                   toggle reset button di seksi Progress. */}
@@ -177,10 +211,6 @@ export default function HelpButton({
             <div className="kd-help-section">
               <div className="kd-help-heading">Browse kanji</div>
               <p className="kd-help-text">
-                Tap any kanji to see its stroke order, readings, and
-                example words.
-              </p>
-              <p className="kd-help-text">
                 In a kanji&apos;s components, a{" "}
                 <span className="kd-help-dot rad" aria-hidden="true" /> red
                 dot marks the <b>radical</b>, the part that carries the
@@ -218,7 +248,7 @@ export default function HelpButton({
                 <a href="https://github.com/Bluskyo/JLPT_Vocabulary" target="_blank" rel="noreferrer">
                   Bluskyo/JLPT_Vocabulary
                 </a>
-                <span className="kd-help-license"> (MIT)</span>. Stroke order animations (tap any kanji in a quiz) from{" "}
+                <span className="kd-help-license"> (MIT)</span>. Stroke order animations (tap the kanji on a card&apos;s back, or open one in Browse) from{" "}
                 <a href="http://kanjivg.tagaini.net/" target="_blank" rel="noreferrer">
                   KanjiVG
                 </a>{" "}
