@@ -18,20 +18,22 @@ npm run cap:sync  # build + copy dist/ into the Android project (Capacitor)
 
 ## Features
 
-- **Guided onboarding tour (t82, revised t83 & t87)** — a first-run "hint
+- **Guided onboarding tour (t82, revised t83, t87 & t88)** — a first-run "hint
   overlay" that dims
   the whole UI except a spotlight on the exact element being explained:
   welcome → choose a JLPT level → pick a unit → inside the quiz, the
   topbar kana/romaji toggle → **answer one real question** (any choice
-  or "Don't know" — being wrong is fine, this is just a tour) so the
-  card flips over on its own → the card's back (the readings in **bold**
-  are the ones the choices came from; the little kanji at the corner
-  replays its stroke order, t87) → the
+  or "Don't know" works, t87) so the card flips over on its own → the
+  card's back, spotlighted in full (t88: the ring now wraps the whole
+  reading sheet — bold readings stay bright; the little kanji at the
+  corner replays its stroke order, t87) → the
   SRS closing line ("after a quiz ends, the app schedules the next
-  review with spaced repetition") → the ✕ that leaves the quiz plus the
-  leave-dialog's **Leave** button (the tour quiz now has answer
-  progress, so the progress gate and its confirmation are demonstrated
-  for real, t87) → the back arrow that returns home → the due-now
+  review with spaced repetition") → the ✕ that leaves the quiz **in one
+  tap** (t88: the tutorial session is a throwaway demo, so App skips the
+  leave-confirmation dialog while the tour is active — outside the tour
+  the progress gate stays fully intact) → the **< Home** button that
+  returns home (t88: restored as a labeled topbar button, simpler than
+  the bare arrow) → the due-now
   stats card (mention-only, click blocked) → the Browse entry
   (mention-only, click blocked) → the closing line. Steps advance on the
   user's
@@ -45,13 +47,18 @@ npm run cap:sync  # build + copy dist/ into the Android project (Capacitor)
   target can't be triggered by keyboard either — **Got it** is the only
   way forward; every step
   carries **Skip tutorial** (plus Escape — but Escape first belongs to
-  any modal that happens to be open, e.g. the leave dialog or help,
-  t87). The spotlight is four shade
+  any modal that happens to be open, e.g. the help overlay, t87). The
+  spotlight is four shade
   rectangles around the hole — no z-index surgery on highlighted
   elements; shades sit *below* modals (z 55/56) so a dialog opened
-  mid-tour (the leave confirmation, or the practice confirm on replay)
-  stays clickable, while
-  the tooltip sits above everything (z 72). Auto-starts only for
+  mid-tour stays clickable, while
+  the tooltip sits above everything (z 72). t88 fixed a long-standing
+  visibility bug: a step-change reset in a passive effect clobbered the
+  tooltip position computed by the layout effect, so target-less steps
+  (welcome, finale) hung on `visibility:hidden` — a dimmed screen with
+  no overlay; the reset is now owned solely by the advance routine
+  (verified by real computed-visibility checks, not synthetic clicks).
+  Auto-starts only for
   genuinely new users (no localStorage flag AND no quiz history/unit
   progress — existing users are silently marked done); persists as
   `kanjicho-tutorial` = done/skipped and can be replayed any time from
@@ -314,7 +321,8 @@ npm run cap:sync  # build + copy dist/ into the Android project (Capacitor)
   answer, F = "don't know", R toggles kana ↔ romaji (the same global
   state as the topbar あ/Aa toggle; works before and
   after answering), Q triggers the left topbar navigation (the ✕ that
-  leaves a quiz, or the ← back arrow on the unit list / Browse, t83), Enter
+  leaves a quiz, or the **< Home** button on the unit list / Browse,
+  t88), Enter
   **or Space** continues to the next question. Leaving a quiz with
   progress first asks for confirmation (Enter = leave, Esc = keep
   studying — for Q and mouse clicks alike). The shortcuts still work,
@@ -339,7 +347,7 @@ src/
                             shell the APK bundle is already fully offline and a
                             stale SW cache could serve an old build after a Play
                             Store update, so SW stays web/PWA-only
-  App.jsx                  state machine + router wiring + SRS flow; (t83) owns the quiz-exit chrome: the ✕ button in the topbar next to the session brand, the leave-confirmation dialog (Enter/Esc keys included) and the browser-Back guard — all lifted out of Quiz.jsx so the topbar button and the quiz screen share one exit path (the old in-screen "< Cancel" and "< Home" buttons are gone; the unit list and Browse now show a ← back arrow in the topbar instead of the brand, home and result keep the full brand); (t86, dipulihkan t87) also owns the
+  App.jsx                  state machine + router wiring + SRS flow; (t83) owns the quiz-exit chrome: the ✕ button in the topbar next to the session brand, the leave-confirmation dialog (Enter/Esc keys included) and the browser-Back guard — all lifted out of Quiz.jsx so the topbar button and the quiz screen share one exit path (the old in-screen "< Cancel" button is gone; t88 restores a labeled **< Home** topbar button for the unit list and Browse in place of t83's bare arrow — home and result keep the full brand; during the onboarding tour the exit gate is bypassed so ✕/Back leave directly, outside the tour the progress gate is unchanged); (t86, dipulihkan t87) also owns the
                             review-reminder wiring: reminders state + Help toggle
                             handler, a visibilitychange sync (open/foreground/
                             background), and afterScheduleChanged() fire-and-forget
@@ -403,7 +411,7 @@ src/
     CopyKanji.jsx            transparent <button> covering the Browse stroke box: click = copy the kanji (faint corner copy icon as affordance, inline "Copied 語" pill, keyboard-accessible)
     StrokePlayer.jsx         animated stroke-order player (two-layer SVG: faint guide + drawn ink via stroke-dashoffset; play/pause/replay/step/speed; live "n / N strokes" label under the controls — old kd-stroke-counter merged into it; `onProgress(revealed)` reports the live stroke count so the Browse component chips can highlight in sync; the stroke box itself is click-to-copy via the CopyKanji overlay)
     ScriptToggle.jsx         (t80) topbar kana/romaji toggle — universal for the quiz and Browse (Readings + example readings switch live); neutral pill, no on/off color: the label (あ / Aa) is the state; (t81) sits BETWEEN the Help and Theme buttons
-    Tutorial.jsx             (t82, revised t83 & t87) guided onboarding tour: 11 steps (welcome → level grid → unit grid → script toggle → ANSWER one real question (t87: choices step is now practice — any choice or "Don't know", being wrong is fine) → the card's back (bold readings + tappable stroke glyph, t87) → SRS + real ✕ exit followed by the leave-dialog's Leave button (t87: the tour quiz has answer progress, so the progress gate is demonstrated; if the user skipped answering via Got it, ✕ exits directly and waitAppear covers it) → real back arrow → due-now card → Browse entry → finale); navigation steps wait for clicks on the REAL topbar buttons; the due-now and Browse spotlights are mention-only "lock" steps (a transparent z-57 blocker covers the hole so the target can't be clicked, and since t87 a capture-phase key guard swallows Enter/Space outside the tooltip so the locked target can't be keyboard-triggered either — Got it is the only way forward); Escape no longer kills the tour while a modal is open (t87: the leave dialog / calendar / help consume it first); advances on real clicks (capture listener, no stopPropagation), on the target appearing (poll), or on Got it (also the escape hatch on the two quiz steps); 4 shade rects around the hole (z 55, below modals → dialogs stay clickable), ring z 56, tooltip z 72; measures targets on mount/scroll/resize/400 ms poll; App owns the "kanjicho-tutorial" flag (auto-start for new users only, replay from Help)
+    Tutorial.jsx             (t82, revised t83, t87 & t88) guided onboarding tour: 11 steps (welcome → level grid → unit grid → script toggle → ANSWER one real question (t87: choices step is practice — any choice or "Don't know"; t88: body trimmed to "Pick the choice that matches the kanji's reading.") → the card's back (t88: spotlight wraps the WHOLE reading sheet so the bold readings stay bright; bold readings + tappable corner stroke glyph, t87) → SRS + real ✕ exit in ONE tap (t88: App bypasses the leave dialog while the tour is active — the tour session is a throwaway demo; waitAppear covers alternate exits) → the real < Home button (t88: labeled topbar button, one tap home) → due-now card → Browse entry → finale); navigation steps wait for clicks on the REAL topbar buttons; the due-now and Browse spotlights are mention-only "lock" steps (a transparent z-57 blocker covers the hole so the target can't be clicked, and since t87 a capture-phase key guard swallows Enter/Space outside the tooltip so the locked target can't be keyboard-triggered either — Got it is the only way forward); Escape no longer kills the tour while a modal is open (t87: the calendar / help consume it first); advances on real clicks (capture listener, no stopPropagation), on the target appearing (poll), or on Got it (also the escape hatch on the two quiz steps); 4 shade rects around the hole (z 55, below modals → dialogs stay clickable), ring z 56, tooltip z 72; measures targets on mount/scroll/resize/400 ms poll; t88 bug fix: the step-change reset (rect→null, pop→null) moved out of the passive measure effect into advance() alone — the passive reset used to run after the layout effect had already positioned the tooltip, so target-less steps (welcome, finale) stayed visibility:hidden forever (dimmed screen, no overlay; t82-era bug that synthetic-click harnesses couldn't catch); App owns the "kanjicho-tutorial" flag (auto-start for new users only, replay from Help)
     Result.jsx               score stamp + breakdown + mode-aware next-review panel; the "Why the same review date?" note was removed (t78) — the fixed 1/2/8-day first-quiz schedule is explained in the Help overlay's Quiz section instead
     Browse.jsx               full kanji library (filter pills, search, modal; the modal's stroke box is click-to-copy — see CopyKanji.jsx); readings and example readings follow the universal topbar script toggle, the separate Romaji row was removed (t80)
     ReviewCalendar.jsx       shared month calendar + selected-day panel (used by the banner overlay); days the user actually studied on (≥ 1 completed quiz) are gold — same color story as the lit streak card (t76: the marker is on activity days, not on "today"; today keeps its indigo border); the study dot under the day number is gold too
@@ -418,7 +426,11 @@ src/
     strokes_n5.json ... strokes_n1.json     KanjiVG stroke-order paths per kanji (loaded on demand, code-split)
     components_n5.json ... components_n1.json   KanjiVG component decompositions per kanji (loaded on demand, code-split)
   styles/
-    global.css               genkouyoushi design system (light + dark tokens)
+    global.css               genkouyoushi design system (light + dark tokens); t88 adds
+                            .kd-topbar-back — the restored labeled "< Home" topbar button
+                            for the unit list & Browse (replacing t83's bare round arrow;
+                            class name kept so the tour spotlight, the q shortcut and the
+                            assert harness all keep working)
 
 public/
   icons/                    PWA icons (192, 512, maskable)
@@ -1290,7 +1302,7 @@ Mobile Back button behaves like a native app (t65):
   (`history.back()`), so Back afterwards navigates for real instead of
   hitting a dead entry.
 - **"Up" navigation folds entries instead of stacking.** The quiz ✕ exit,
-  Browse ← back, Unit Select ← back collapse one entry (`collapse: 1`);
+  Browse < Home, Unit Select < Home collapse one entry (`collapse: 1`);
   "Back to Units" on the result screen folds quiz + result (`collapse: 2`).
   Back after these
   never resurrects a dead quiz/result screen.

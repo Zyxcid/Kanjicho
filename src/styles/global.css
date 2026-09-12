@@ -140,11 +140,20 @@ body {
   .kd-theme-toggle-label { display: none; }
 }
 
-/* (t83) Tombol .kd-back ("< Cancel" kuis / "< Home" daftar unit &
-   Browse) DIHAPUS SELURUHNYA — keluar kuis kini tombol ✕ di kiri brand
-   sesi topbar (selalu terlihat, termasuk layar <900px yang dulu sama
-   sekali tanpa tombol keluar), pulang dari daftar unit/Browse kini
-   panah back topbar. Shortcut q meng-klik tombol-tombol itu. */
+/* (t88) Tombol "< Home" DIKEMBALIKAN di topbar (daftar unit & Browse):
+   panah polos t83 diganti tombol BERLABEL — afordansi "pulang ke
+   beranda" terbaca seketika dan satu ketukan (permintaan user; kelas
+   .kd-topbar-back tetap dipakai spotlight tur + shortcut q). Tombol
+   .kd-back lama ("< Cancel" kuis / "< Home" di dalam layar) tetap
+   pensiun — keluar kuis tetap ✕ di kiri brand sesi topbar. */
+.kd-topbar-back {
+  display: flex; align-items: center; gap: 4px;
+  background: none; border: none; cursor: pointer; flex-shrink: 0;
+  color: var(--ink-soft); font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-size: 14px; font-weight: 700; padding: 6px 10px 6px 0;
+  transition: color 0.15s;
+}
+.kd-topbar-back:hover { color: var(--indigo); }
 
 .kd-section-title {
   font-family: 'Shippori Mincho', serif; font-weight: 700; font-size: 19px; color: var(--ink);

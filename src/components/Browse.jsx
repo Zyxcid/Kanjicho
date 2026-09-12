@@ -199,9 +199,10 @@ export default function Browse({ script = "kana" }) {
 
   return (
     <>
-      {/* (t83) Tombol "< Home" dihapus — navigasi pulang kini panah back
-          di TOPBAR (App.jsx, kiri). ChevronLeft tetap dipakai modal detail
-          untuk navigasi komponen (navHistory) di bawah. */}
+      {/* (t88) Navigasi pulang: tombol "< Home" BERLABEL di TOPBAR
+          (App.jsx, kiri) — dikembalikan dari panah polos t83. ChevronLeft
+          tetap dipakai modal detail untuk navigasi komponen (navHistory)
+          di bawah. */}
 
       <div className="kd-section-title kd-section-title-row">
         <span>kanji Library</span>

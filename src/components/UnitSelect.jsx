@@ -77,9 +77,10 @@ export default function UnitSelect({
 
   return (
     <>
-      {/* (t83) Tombol "< Home" dihapus — navigasi pulang kini panah back
-          di TOPBAR (App.jsx, kiri, menggantikan brand di layar ini);
-          satu pola navigasi-kiri/aksi-kanan di semua sublayar. */}
+      {/* (t88) Navigasi pulang: tombol "< Home" BERLABEL di TOPBAR
+          (App.jsx, kiri, menggantikan brand di layar ini) — dikembalikan
+          dari panah polos t83 atas permintaan (afordansi satu ketukan);
+          tetap satu pola navigasi-kiri/aksi-kanan di semua sublayar. */}
 
       {/* Statistik kartu besar scope level ini (Studied x/total, Due now,
           Mastered — lihat StatCards.jsx): kartu streak global (api +

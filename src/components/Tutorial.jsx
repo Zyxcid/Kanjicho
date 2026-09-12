@@ -39,12 +39,24 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
  *
  * (t87) Animasi urutan goresan pindah ke PUNGGUNG kartu (RevealGlyph)
  * → alur tengah kuis dirombak: user kini MENJAWAB SATU SOAL NYATA di
- * langkah choices (boleh salah, boleh "Don't know"), kartu terbalik
- * sendiri, lalu langkah back menjelaskan punggung kartu (bacaan bold +
- * glyph goresan di pojok). Karena tur kini punya progres jawaban,
- * tombol ✕ di langkah srs membuka dialog konfirmasi — tur menunggu
- * tombol "Leave" di dialog itu (modal z 60 berada DI ATAS shade, jadi
- * tetap bisa diklik; tooltip z 72 tetap di atas semuanya).
+ * langkah choices, kartu terbalik sendiri, lalu langkah back menjelaskan
+ * punggung kartu (bacaan bold + glyph goresan di pojok).
+ *
+ * (t88) Keluar kuis saat tur kini SATU KETUKAN (✕ lolos gerbang dialog
+ * selama tur aktif), pulang dari daftar unit lewat tombol "< Home"
+ * yang dikembalikan di topbar.
+ *
+ * (t88) BUG FIX "layar redup tanpa overlay": efek (a) dulu memanggil
+ * setRect(null)+setPop(null) saat TIAP pergantian langkah — padahal
+ * useLayoutEffect (e) sudah menghitung posisi tooltip SEBELUM efek
+ * pasif itu jalan, sehingga reset di (a) SELALU menimpa (clobber)
+ * hasilnya. Langkah BERTARGET pulih lewat poll measure() yang
+ * memicu ulang (e) lewat perubahan rect — tapi langkah TANPA target
+ * (welcome, finale) tidak pernah terpicu: tooltip menggantung
+ * visibility:hidden selamanya, yang tersisa hanya layar redup.
+ * (Harness t82–t87 lolos karena el.click() sintetis menembus elemen
+ * visibility:hidden.) Perbaikan: reset state kini MILIK advance()
+ * satu-satunya; efek (a) hanya mengukur, tidak mereset.
  *
  * Persistensi di App (localStorage TUTORIAL_KEY = "kanjicho-tutorial"):
  * "done" / "skipped" — tur hanya menyala OTOMATIS untuk user baru
@@ -98,8 +110,7 @@ const STEPS = [
     waitClick: ".kd-unit-main",
     waitAppear: ".kd-card-scene",
     title: "Pick a unit",
-    body:
-      "A unit is a small set of kanji with one quiz. Every unit is open from the start, so you can study in any order. Tap one to step inside.",
+    body: "A unit is a small set of kanji with one quiz. Tap one to step inside.",
   },
   {
     id: "script",
@@ -113,52 +124,59 @@ const STEPS = [
   {
     // (t87) User kini MENJAWAB satu soal NYATA — diperlukan supaya
     // punggung kartu (langkah berikutnya) muncul: kartu terbalik sendiri
-    // begitu dijawab. Salah boleh — ini tur; "Don't know" juga sah.
-    // Got-it tetap tersedia sebagai pintu darurat (tanpa menjawab,
-    // langkah-langkah berikutnya masih bisa dilewati lewat Got-it).
+    // begitu dijawab. Got-it tetap tersedia sebagai pintu darurat (tanpa
+    // menjawab, langkah-langkah berikutnya masih bisa dilewati lewat
+    // Got-it). (t88) Body dipangkas atas permintaan: cukup arah jawabannya
+    // — bacaan kanji, bukan arti.
     id: "choices",
     target: ".kd-choice-grid",
     waitClick: ".kd-choice-btn, .kd-dontknow",
     waitAppear: ".kd-reveal-glyph",
     title: "How a question works",
-    body:
-      "Pick the choice that matches the kanji. Being wrong is fine here, this is just a tour, and Don't know works too. Once you answer, the card turns over on its own.",
+    body: "Pick the choice that matches the kanji's reading.",
     cta: "got-it",
   },
   {
     // (t87) Punggung kartu: bacaan BOLD = sumber pilihan kuis; kanji
     // kecil di pojok kiri-atas = animasi urutan goresan (klik = putar,
-    // klik kanan = selesaikan). waitClick pada glyph — atau Got it.
+    // klik kanan = selesaikan). (t88) Spotlight kini SELURUH lembar
+    // bacaan (.kd-card-back-body — dulu hanya glyph pojok, bacaan bold
+    // tertutup shade), waitClick tetap pada glyph — atau Got it.
+    // (t88) Kalimat pengantar "This reading sheet is..." dipangkas.
     id: "back",
-    target: ".kd-reveal-glyph",
+    target: ".kd-card-back-body",
     waitClick: ".kd-reveal-glyph",
     title: "The card's back",
     body:
-      "This reading sheet is what you were quizzed on: the readings in bold are the ones the choices came from. Tap the little kanji at the corner to watch it being written.",
+      "The readings in bold are the ones the choices came from. Tap the little kanji at the corner to watch it being written.",
     cta: "got-it",
   },
   {
-    // (t87) Karena tur kini punya progres jawaban, ✕ membuka dialog
-    // konfirmasi (gerbang progres App) — tur menunggu tombol "Leave"
-    // di dialog itu (di atas shade, tetap klikabel). Jalur tanpa progres
-    // (user melewati choices lewat Got-it) → ✕ keluar LANGSUNG;
-    // waitAppear .kd-unit-grid menutup kedua jalur + Back sistem.
+    // (t88) Kembali SATU KETUKAN: sesi kuis tur adalah demo sekali pakai
+    // (jawaban tur memang terbuang saat pergi — tidak ada yang hilang),
+    // jadi App meloloskan ✕ LANGSUNG tanpa dialog konfirmasi selama tur
+    // aktif. Di luar tur, gerbang dialog untuk kuis berprogres tetap
+    // utuh (lihat requestQuizExit App.jsx). waitAppear .kd-unit-grid
+    // menutup jalur Back sistem.
     id: "srs",
     target: ".kd-quiz-exit",
-    waitClick: ".kd-drill-confirm .kd-btn.primary",
+    waitClick: ".kd-quiz-exit",
     waitAppear: ".kd-unit-grid",
     title: "The schedule takes care of itself",
     body:
-      "After a quiz ends, the app schedules the unit's next review with spaced repetition, just before you'd start to forget. That's the whole learning loop. Tap the ✕ next to the quiz title, then confirm with Leave, to head back.",
+      "After a quiz ends, the app schedules the unit's next review with spaced repetition, just before you'd start to forget. That's the whole learning loop. Tap the ✕ next to the quiz title to head back.",
   },
   {
+    // (t88) Tombol "< Home" DIKEMBALIKAN di topbar daftar unit (kelas
+    // .kd-topbar-back tetap): afordansi pulang satu ketukan yang
+    // terbaca seketika — lebih sederhana daripada panah polos.
     id: "home",
     target: ".kd-topbar-back",
     waitClick: ".kd-topbar-back",
     waitAppear: ".kd-browse-entry",
     title: "Back to home",
     body:
-      "This is the unit list, where you land after finishing or leaving a quiz. Tap the back arrow to return home.",
+      "This is the unit list, where you land after finishing or leaving a quiz. Tap Home to head back.",
   },
   {
     // (t83) Langkah LOCK: kartu "Due now" hanya DISEBUT (kalender review
@@ -228,10 +246,16 @@ export default function Tutorial({ onFinish }) {
   }
 
   // ---- (a) Temukan & ukur target, lalu IKUTI (mount/scroll/resize) ----
+  // (t88) TANPA reset rect/pop di sini! Reset state kini milik advance()
+  // (dan state awal memang null saat mount). Efek pasif ini jalan
+  // SETELAH useLayoutEffect (e); reset di sini sebelumnya menimpa posisi
+  // tooltip yang barusan dihitung (e) — langkah tanpa target (welcome,
+  // finale) tidak pernah terpicu ulang → tooltip tersembunyi selamanya
+  // → "layar redup tanpa overlay". Ketika target hilang di tengah
+  // langkah (navigasi), measure() sudah mengembalikan rect ke null dan
+  // (e) ikut menempatkan ulang tooltip ke mode terpusat.
   useEffect(() => {
     let cancelled = false;
-    setRect(null);
-    setPop(null);
     const sel = STEPS[step].target;
 
     function measure() {

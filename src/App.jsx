@@ -408,7 +408,13 @@ export default function App() {
   }
 
   function requestQuizExit() {
-    if (qIndex > 0 || selectedChoice !== null) {
+    // (t88) Selama tur onboarding: sesi kuis tur adalah demo sekali pakai
+    // — jawabannya memang terbuang begitu pergi (saveUnitProgress hanya
+    // jalan saat kuis TUNTAS), jadi dialog "leaving discards progress"
+    // hanya akan menakut-nakuti user baru tanpa melindungi apa pun.
+    // ✕ keluar LANGSUNG selama tur; gerbang dialog kuis berprogres tetap
+    // utuh untuk sesi sungguhan.
+    if (!tutorialActive && (qIndex > 0 || selectedChoice !== null)) {
       setExitSource("ui");
       setExitConfirm(true);
     } else {
@@ -458,7 +464,9 @@ export default function App() {
   useEffect(() => {
     if (!inQuizSession) return;
     registerGuard({
-      canLeave: () => leavingRef.current || !quizHasProgress,
+      // (t88) tutorialActive: tur tidak digerbangi — sama seperti tombol
+      // ✕ (requestQuizExit), Back sistem saat tur juga keluar langsung.
+      canLeave: () => leavingRef.current || !quizHasProgress || tutorialActive,
       onBlocked: () => {
         // Dialog sudah terbuka + Back ditekan LAGI (t65) → tutup dialognya
         // (= "tetap belajar"), seperti Back menutup overlay lain; router
@@ -472,7 +480,7 @@ export default function App() {
       },
     });
     return () => registerGuard(null);
-  }, [registerGuard, inQuizSession, quizHasProgress, exitConfirm]);
+  }, [registerGuard, inQuizSession, quizHasProgress, exitConfirm, tutorialActive]);
 
   const showToast = useCallback((msg) => {
     setToast(msg);
@@ -868,14 +876,16 @@ export default function App() {
 
   return (
     <div className="kd-root">
-      {/* (t83) NAVIGASI KIRI TOPBAR — satu pola di semua sublayar:
+      {/* (t83→t88) NAVIGASI KIRI TOPBAR — satu pola di semua sublayar:
           chrome navigasi kiri, aksi (help/skrip/tema) kanan.
           - kuis        : ✕ keluar sesi + brand SESI (N5 · Unit 1) — tombol
-                          Cancel di dalam layar kuis dihapus;
-          - daftar unit  : panah back ke home (brand Kanjichō disembunyikan
-                          di sini — konteks level sudah dibawa judul seksi
-                          & kartu statistik di bawahnya);
-          - Browse      : panah back ke home (tombol "< Home" dihapus);
+                          Cancel di dalam layar kuis dihapus; selama tur
+                          onboarding ✕ lolos gerbang dialog (t88);
+          - daftar unit  : tombol "< Home" ke beranda (brand Kanjichō
+                          disembunyikan di sini — konteks level sudah dibawa
+                          judul seksi & kartu statistik di bawahnya);
+          - Browse      : tombol "< Home" yang sama (t88: panah polos
+                          dikembalikan jadi tombol berlabel);
           - home/hasil  : brand penuh (tidak ada yang bisa di-back). */}
       <div className="kd-topbar">
         <div className="kd-topbar-left">
@@ -891,12 +901,12 @@ export default function App() {
           )}
           {effectiveView === "unitSelect" || effectiveView === "browse" ? (
             <button
-              className="kd-icon-btn kd-topbar-back"
+              className="kd-topbar-back"
               onClick={() => navigate("home", { collapse: 1 })}
               aria-label="Back to home"
               title="Back to home"
             >
-              <ChevronLeft size={16} strokeWidth={2.25} />
+              <ChevronLeft size={16} strokeWidth={2.25} /> Home
             </button>
           ) : sessionLevel ? (
             <div className="kd-brand" aria-label={`Studying ${sessionLevel} ${sessionUnitLabel}`}>
