@@ -12,68 +12,66 @@ npm install
 npm run dev       # dev server → http://localhost:5173
 npm run build     # production build → dist/
 npm run preview   # preview the production build locally
+npm test          # logic + reminder-plan unit tests (node, no browser)
+npm run cap:sync  # build + copy dist/ into the Android project (Capacitor)
 ```
 
 ## Features
 
-- **Guided onboarding tour (t82)** — a first-run "hint overlay" that dims
+- **Guided onboarding tour (t82, revised t83 & t87)** — a first-run "hint
+  overlay" that dims
   the whole UI except a spotlight on the exact element being explained:
-  welcome → choose a JLPT level → pick a unit (all units are open from
-  the start, nothing to unlock) → inside the quiz, the topbar
-  kana/romaji toggle → **answer one real question** (any choice or
-  "Don't know"; being wrong is fine, this is just a tour) so the card
-  flips over on its own → the card's back (the readings in **bold** are
-  the ones the choices came from; tap the kanji at its top-left corner
-  to watch its stroke order) → the SRS closing line ("after you answer
-  all the questions, your review schedule is arranged with SRS") → on
-  the home screen, the due-calendar card and the Browse-all-kanji entry
-  (both pure-info steps, no click required) → a centered "That's the
-  tour!" closing. Steps advance on the user's REAL clicks (the
-  spotlight hole is click-through, so the app reacts normally — no
-  simulated UI), on a **Got it** button for pure-info steps, or on the
-  target appearing via an alternate route; every step carries **Skip
-  tutorial** (plus Escape). (t85) The SRS step's tooltip carries the
-  **Home button itself** (chevron icon + label, styled like the app's
-  Home buttons): tapping it performs a real `navigate home` + history
-  reset — the tour quiz is left without the Cancel/Leave dialog dance,
-  the whole screen is dimmed (no spotlight) so that button is the one
-  obvious way forward, and the remaining steps wait on the home screen.
-  (t85) The two spotlight-only steps (due-calendar card, Browse entry)
-  are **locked**: a transparent cover (z 57) swallows clicks/touches on
-  the hole and a capture-phase key guard swallows Enter/Space on the
-  focused target, so the spotlight is look-only and **Got it** is the
-  single way forward (user request). The spotlight is four shade
+  welcome → choose a JLPT level → pick a unit → inside the quiz, the
+  topbar kana/romaji toggle → **answer one real question** (any choice
+  or "Don't know" — being wrong is fine, this is just a tour) so the
+  card flips over on its own → the card's back (the readings in **bold**
+  are the ones the choices came from; the little kanji at the corner
+  replays its stroke order, t87) → the
+  SRS closing line ("after a quiz ends, the app schedules the next
+  review with spaced repetition") → the ✕ that leaves the quiz plus the
+  leave-dialog's **Leave** button (the tour quiz now has answer
+  progress, so the progress gate and its confirmation are demonstrated
+  for real, t87) → the back arrow that returns home → the due-now
+  stats card (mention-only, click blocked) → the Browse entry
+  (mention-only, click blocked) → the closing line. Steps advance on the
+  user's
+  REAL clicks (the spotlight hole is click-through, so the app reacts
+  normally — no simulated UI), on a **Got it** button for info steps
+  (also the escape hatch if the user would rather not answer), or on
+  the target appearing via an alternate route; mention-only
+  steps (t83) add a transparent full-viewport blocker (z 57) so their
+  spotlighted target cannot be clicked — and since t87 a capture-phase
+  key guard swallows Enter/Space outside the tooltip, so the locked
+  target can't be triggered by keyboard either — **Got it** is the only
+  way forward; every step
+  carries **Skip tutorial** (plus Escape — but Escape first belongs to
+  any modal that happens to be open, e.g. the leave dialog or help,
+  t87). The spotlight is four shade
   rectangles around the hole — no z-index surgery on highlighted
   elements; shades sit *below* modals (z 55/56) so a dialog opened
-  mid-tour (e.g. the leave-quiz confirmation via system Back) stays
-  clickable, while the tooltip sits above everything (z 72). The SRS
-  step also keeps a waitAppear safety valve: a back-gesture/Back-button
-  escape that lands on home advances the step by itself. (t84) Escape
-  no longer kills the tour while a
-  modal is open: the leave dialog, review calendar and help overlay
-  consume it first. Tooltips for steps whose
-  target is missing/hidden (or that have no target at all, like the
-  welcome) are centered and fully visible — an early t82 build left
-  them stuck invisible (passive-effect reset clobbered the layout
-  placement on mount); placement now waits until the target is measured
-  or confirmed absent. Auto-starts only for genuinely new users (no
-  localStorage flag AND no quiz history/unit progress — existing users
-  are silently marked done); persists as `kanjicho-tutorial` =
-  done/skipped and can be replayed any time from the Help overlay's
-  **Getting started** section. Quiz keyboard shortcuts are muted while
-  the tour is active. Because the tour now teaches the basics in place,
-  the Help overlay was trimmed to a quick reference (auto-flip settings
-  + bold-readings note with the tap-the-back-kanji stroke hint,
-  "Don't know" honesty advice, radical/phonetic dots, data sources,
-  progress, contact).
+  mid-tour (the leave confirmation, or the practice confirm on replay)
+  stays clickable, while
+  the tooltip sits above everything (z 72). Auto-starts only for
+  genuinely new users (no localStorage flag AND no quiz history/unit
+  progress — existing users are silently marked done); persists as
+  `kanjicho-tutorial` = done/skipped and can be replayed any time from
+  the Help overlay's **Getting started** section. Quiz keyboard
+  shortcuts are muted while the tour is active. Because the tour now
+  teaches the basics in place, the Help overlay was trimmed to a quick
+  reference (auto-flip settings, "Don't know"
+  honesty advice, radical/phonetic dots, data sources, progress,
+  contact — the quiz intro paragraph was removed entirely at t87: the
+  swipe hint, the tour, and the toggle labels already cover it).
 - **JLPT practice (N5–N1)** — multiple-choice reading quizzes, one unit at
   a time. The quiz is a **physical flip card** (t77): the front holds the
-  question and choices (the genkō-yōshi kanji box shows a plain
-  Shippori Mincho font glyph, t83), the back is the reading sheet
-  (readings, components, example words; its head holds a **small KanjiVG
-  stroke-order glyph at the top-left** — tap it to replay the strokes,
-  right-click to finish them instantly — with the meaning flowing
-  **beside** it rather than pinned to the right edge, t83). After you
+  question and choices (the genkō-yōshi kanji box with a plain Shippori
+  Mincho glyph — since t87 the stroke-order animation lives on the
+  card's back), the back is the reading sheet (readings, components,
+  example words; its head holds a small tappable KanjiVG glyph on the
+  **left** with the meaning flowing beside it, t87 — and the back's
+  text was bumped up a notch at t87: meaning 16px semibold, reading
+  rows 15px, example words 17px, so the answer sheet reads comfortably
+  at arm's length). After you
   answer, the card **turns over on its own** after a moment — **1 s by
   default**, and the wait is user-selectable in the Help overlay
   (0.5 / 1 / 1.5 / 2 / 3 s pills under the auto-flip switch, t81;
@@ -84,9 +82,12 @@ npm run preview   # preview the production build locally
   flips it back and forth**
   whenever you like; the rotation **follows the swipe direction** (swipe
   right sweeps the card right, swipe left sweeps left, t80) instead of
-  replaying the same animation. On desktop (≥900px) the card widens to
-  780 px so its two-column front breathes (t81 — the 480 px cap used to
-  crush the choice column to ~124 px). A one-time hint under the card
+  replaying the same animation. The card is a **portrait card on every
+  viewport (t83): the choices always sit BELOW the kanji** — desktop
+  (≥900px) used to put them beside the kanji in a wide 780 px two-column
+  card that looked oversized and awkward mid-flip; now every screen
+  shares the slim 480 px vertical layout, with slightly larger elements
+  on desktop. A one-time hint under the card
   teaches the
   swipe and disappears for good after the first real swipe (t78, localStorage
   flag). The old Flip button is gone (t79: the swipe already covered it);
@@ -304,7 +305,7 @@ npm run preview   # preview the production build locally
   toggle for the per-level reset button.
 - **History-aware navigation** — the browser Back button navigates within the
   app (Home ↔ Browse ↔ Unit Select ↔ Quiz ↔ Result) instead of exiting,
-  and is guarded like the Cancel button: going Back during a quiz with
+  and is guarded like the quiz's ✕ button: going Back during a quiz with
   progress opens the same leave-confirmation dialog (the URL snaps back
   until you choose). Leaving a finished or abandoned quiz can't be
   re-entered via Back — its in-memory session is discarded, which also
@@ -312,7 +313,8 @@ npm run preview   # preview the production build locally
 - **Keyboard-friendly quiz (kept for development)** — W/E/S/D select an
   answer, F = "don't know", R toggles kana ↔ romaji (the same global
   state as the topbar あ/Aa toggle; works before and
-  after answering), Q triggers the back button (Cancel / Home), Enter
+  after answering), Q triggers the left topbar navigation (the ✕ that
+  leaves a quiz, or the ← back arrow on the unit list / Browse, t83), Enter
   **or Space** continues to the next question. Leaving a quiz with
   progress first asks for confirmation (Enter = leave, Esc = keep
   studying — for Q and mouse clicks alike). The shortcuts still work,
@@ -330,8 +332,19 @@ npm run preview   # preview the production build locally
 
 ```
 src/
-  main.jsx                 entry point
-  App.jsx                  state machine + router wiring + SRS flow
+  main.jsx                 entry point; (t86, dipulihkan t87) service-worker
+                            registration is now EXPLICIT from the
+                            vite-plugin-pwa virtual module and guarded with
+                            Capacitor.isNativePlatform() — inside the native
+                            shell the APK bundle is already fully offline and a
+                            stale SW cache could serve an old build after a Play
+                            Store update, so SW stays web/PWA-only
+  App.jsx                  state machine + router wiring + SRS flow; (t83) owns the quiz-exit chrome: the ✕ button in the topbar next to the session brand, the leave-confirmation dialog (Enter/Esc keys included) and the browser-Back guard — all lifted out of Quiz.jsx so the topbar button and the quiz screen share one exit path (the old in-screen "< Cancel" and "< Home" buttons are gone; the unit list and Browse now show a ← back arrow in the topbar instead of the brand, home and result keep the full brand); (t86, dipulihkan t87) also owns the
+                            review-reminder wiring: reminders state + Help toggle
+                            handler, a visibilitychange sync (open/foreground/
+                            background), and afterScheduleChanged() fire-and-forget
+                            right after an SRS quiz's progress is saved — all no-ops
+                            on web/PWA)
   lib/
     dataLoader.js           loads level data on demand, merges examples
     quizGenerator.js        generates multiple-choice questions (pure function)
@@ -347,18 +360,50 @@ src/
     useCopy.js               clipboard hook (navigator.clipboard + execCommand fallback, 1.4s "copied" state) powering click-to-copy on the stroke box
     strokes.js              loads KanjiVG stroke-order data per level (code-split dynamic import, in-memory cache)
     components.js           loads KanjiVG component decompositions per level (same code-split + cache pattern)
+    reminderPlan.js         (t86, dipulihkan t87) PURE reminder plan for local notifications: maps every
+                            unit's due moment to the next daily "nudge slot" (08:00 /
+                            12:00 / 17:00 / 20:00), merges units sharing a slot into one
+                            notification with a cumulative due count, clamps past-due work
+                            behind a 2 h grace, caps the chain at 3 scheduled nudges;
+                            Node-testable (no Capacitor/DOM imports)
+    notifications.js        (t86, dipulihkan t87) Capacitor glue for the reminders: permission ask
+                            (once, at the first finished SRS quiz — the natural moment),
+                            Android channel "reminders", cancel + reschedule of the id
+                            range 10001–10003, and a total no-op on web/PWA
+                            (isNativePlatform guard; the Help toggle row is native-only
+                            so the web UI is untouched)
   components/
     Home.jsx                next-review banner (the calendar entry) + stat cards panel + browse entry + level grid
     StatCards.jsx           shared panel of three large read-only stat cards (x/total Studied, Due now, Mastered) used by Home and UnitSelect
     UnitSelect.jsx           per-level stat cards + unit cards (dimmed = free practice; "✕ N" missed-review pill next to the title, hidden once the unit is due)
-    Quiz.jsx                 quiz screen as a FLIP CARD (t77): front = kanji box + choices, back = reading sheet (readings, components, examples; head = small KanjiVG glyph left / meaning flowing BESIDE it, t83 — the old kanji-left / meaning-box-right split and its margin-left:auto retired) + weak-review badge on the front. CSS 3D (perspective on .kd-card-scene, preserve-3d + rotateY on .kd-card-inner via inline cumulative style, backface-visibility on both faces + 1 px translateZ depth separation, t78); auto-flips to the back after answering — delay default 1000 ms, user-selectable in the Help overlay as 0.5–3 s pills (t81: App owns the "kanji-autoflip-delay" state and passes it as a prop; changing it mid-session reschedules the pending timer safely; manual swipe cancels the timer; the on/off toggle lives beside the pills, off = fully manual, the t79 behavior); a horizontal swipe (pointer events, ≥56 px, only after answering) is the only manual flip trigger — the Flip button was removed (t79) — and its DIRECTION sets the rotation direction (right sweep +180, left sweep −180, t80); a one-time swipe hint (t78) shows under the card after answering until the user's first registered swipe (localStorage "kanji-swipe-learned"); the hidden face is inert; key=qIndex remounts a fresh card per question. (t83) The front kanji box is a PLAIN Shippori Mincho font glyph again (no interaction — the stroke animation moved to the card's back); the back's head holds the small RevealGlyph button; the strokes chunk is pre-warmed at question mount together with the components chunk so the flipped back renders its finished SVG without a placeholder blink; the script toggle lives in the app topbar (t80, universal for quiz + Browse); the dots above the card are a live scoreboard (t76): answers prop + correctIndex comparison sorts them into [correct (full indigo, leftmost)] [current] [wrong (dimmed)] [unanswered]
+    Quiz.jsx                 quiz screen as a FLIP CARD (t77): front = kanji box on top + choices below (portrait layout on every viewport, t83 — desktop's 780 px two-column card retired), back = reading sheet (readings, components, examples; head = small tappable
+                            KanjiVG glyph left (RevealGlyph) with the meaning flowing
+                            beside it and bumped-up text since t87 — meaning 16px
+                            semibold, yomi rows 15px, example words 17px) + weak-review
+                            badge on the front. CSS 3D (perspective on .kd-card-scene, preserve-3d + rotateY on .kd-card-inner via inline cumulative style, backface-visibility on both faces + 1 px translateZ depth separation, t78); auto-flips to the back after answering — delay default 1000 ms, user-selectable in the Help overlay as 0.5–3 s pills (t81: App owns the "kanji-autoflip-delay" state and passes it as a prop; changing it mid-session reschedules the pending timer safely; manual swipe cancels the timer; the on/off toggle lives beside the pills, off = fully manual, the t79 behavior); a horizontal swipe (pointer events, ≥56 px, only after answering) is the only manual flip trigger — the Flip button was removed (t79) — and its DIRECTION sets the rotation direction (right sweep +180, left sweep −180, t80); a one-time swipe hint (t78) shows under the card after answering until the user's first registered swipe (localStorage "kanji-swipe-learned"); the hidden face is inert; key=qIndex remounts a fresh card per question. (t87, dari t86) The front kanji box is a PLAIN Shippori Mincho font glyph
+                            again (no interaction — the stroke-order animation moved to
+                            the card's back: left-click the little head glyph to replay it,
+                            right-click to finish it instantly; the strokes chunk is
+                            pre-warmed at question mount together with the components
+                            chunk so the flipped back renders its finished SVG without a
+                            placeholder blink; no detail entry from inside the quiz before
+                            answering — that would leak the answer); the script toggle lives in the app topbar (t80, universal for quiz + Browse); the dots above the card are a live scoreboard (t76): answers prop + correctIndex comparison sorts them into [correct (full indigo, leftmost)] [current] [wrong (dimmed)] [unanswered]; exit/leave logic (dialog, guard, q shortcut target) lives in App.jsx (t83)
     Readings.jsx             shared On/Kun rendering with primary bolding, kana or romaji
-    RevealGlyph.jsx          (t83) small KanjiVG glyph BUTTON at the top-left of the quiz card's back (72 px mobile / 88 px desktop — clearly smaller than the front genkō box): renders the finished SVG on mount (paths lazy-loaded per level, pre-warmed by Quiz so the back never blinks a font placeholder); left-click → replays the stroke animation from the first stroke (620 ms/stroke, same feel as StrokePlayer 1×); right-click → completes it instantly; falls back to the plain font kanji when no KanjiVG data (currently 0 kanji). Replaced GenkouGlyph.jsx, which animated the FRONT box pre-t83
+    RevealGlyph.jsx          (t87, dari t86) small KanjiVG glyph BUTTON at the top-left of the quiz
+                            card's back (72 px mobile / 88 px desktop — clearly smaller
+                            than the front genkō box): renders the finished SVG on
+                            mount (paths lazy-loaded per level, pre-warmed by Quiz so the
+                            back never blinks a font placeholder); left-click → replays
+                            the stroke animation from the first stroke (620 ms/stroke,
+                            same feel as StrokePlayer 1×); right-click → completes it
+                            instantly; falls back to the plain font kanji when no KanjiVG
+                            data (currently 0 kanji). Replaced GenkouGlyph.jsx, which
+                            animated the FRONT box pre-t87
     ComponentBreakdown.jsx   component equation (時 = 日 + 寺): plain-text variant inside the quiz answer panel's "Components" row (after answering, glyphs only, no interaction, no chip boxes); full chip variant in the Browse modal directly below the stroke animation (no "kanji =" lead) — glyph-only chips with radical/phonetic role tooltips (radical = meaning carrier, phonetic = sound carrier) and radical/phonetic dots (their meaning is explained in the help overlay's Browse section — t76 removed the in-modal mini-legend again to keep the screen clean); the `progress` prop keeps the chips in sync with the running stroke animation (future → active → done); clickable chips navigate to the component kanji (← Back button from Browse's navHistory); +N loose-stroke chip; long equations wrap as "+ chip" terms in the 180px animation column
     CopyKanji.jsx            transparent <button> covering the Browse stroke box: click = copy the kanji (faint corner copy icon as affordance, inline "Copied 語" pill, keyboard-accessible)
     StrokePlayer.jsx         animated stroke-order player (two-layer SVG: faint guide + drawn ink via stroke-dashoffset; play/pause/replay/step/speed; live "n / N strokes" label under the controls — old kd-stroke-counter merged into it; `onProgress(revealed)` reports the live stroke count so the Browse component chips can highlight in sync; the stroke box itself is click-to-copy via the CopyKanji overlay)
     ScriptToggle.jsx         (t80) topbar kana/romaji toggle — universal for the quiz and Browse (Readings + example readings switch live); neutral pill, no on/off color: the label (あ / Aa) is the state; (t81) sits BETWEEN the Help and Theme buttons
-    Tutorial.jsx             (t82) guided onboarding tour, (t84) 10 steps (welcome → level grid → unit grid → script toggle → answer a real question → card's back reading sheet + stroke-order tap → SRS → due-calendar card → Browse-all-kanji entry → centered closing), each with a spotlight hole that is click-through to the real UI; advances on real clicks (capture listener, no stopPropagation — selector lists allowed, e.g. any choice OR Don't know), on the target appearing (poll), or on Got it (calendar/browse/closing steps are pure info, no click required); (t85) the SRS step's tooltip carries the Home button (cta "home" → onGoHome from App = real navigate+history reset, no leave dialog; whole screen dimmed, target null, waitAppear on the home Browse entry stays as a safety valve for back-gesture escapes); (t85) calendar/browse steps set `block: true` — a transparent .kd-tut-cover (z 57) seals the hole and a capture keydown guard swallows Enter/Space on the focused target, so those spotlights are look-only and Got it is the only way forward; 4 shade rects around the hole (z 55, below modals → dialogs stay clickable), ring z 56, cover z 57, tooltip z 72; measures targets on mount/scroll/resize/400 ms poll; missing/hidden targets (e.g. Cancel on phones) fall back to a CENTERED, visible tooltip via the explicit `absent` state; (t84) Escape is ignored while a .kd-modal-overlay is open (the modal consumes it, the tour survives) and step texts are em-dash-free plain sentences (user style); App owns the "kanjicho-tutorial" flag (auto-start for new users only, replay from Help)
+    Tutorial.jsx             (t82, revised t83 & t87) guided onboarding tour: 11 steps (welcome → level grid → unit grid → script toggle → ANSWER one real question (t87: choices step is now practice — any choice or "Don't know", being wrong is fine) → the card's back (bold readings + tappable stroke glyph, t87) → SRS + real ✕ exit followed by the leave-dialog's Leave button (t87: the tour quiz has answer progress, so the progress gate is demonstrated; if the user skipped answering via Got it, ✕ exits directly and waitAppear covers it) → real back arrow → due-now card → Browse entry → finale); navigation steps wait for clicks on the REAL topbar buttons; the due-now and Browse spotlights are mention-only "lock" steps (a transparent z-57 blocker covers the hole so the target can't be clicked, and since t87 a capture-phase key guard swallows Enter/Space outside the tooltip so the locked target can't be keyboard-triggered either — Got it is the only way forward); Escape no longer kills the tour while a modal is open (t87: the leave dialog / calendar / help consume it first); advances on real clicks (capture listener, no stopPropagation), on the target appearing (poll), or on Got it (also the escape hatch on the two quiz steps); 4 shade rects around the hole (z 55, below modals → dialogs stay clickable), ring z 56, tooltip z 72; measures targets on mount/scroll/resize/400 ms poll; App owns the "kanjicho-tutorial" flag (auto-start for new users only, replay from Help)
     Result.jsx               score stamp + breakdown + mode-aware next-review panel; the "Why the same review date?" note was removed (t78) — the fixed 1/2/8-day first-quiz schedule is explained in the Help overlay's Quiz section instead
     Browse.jsx               full kanji library (filter pills, search, modal; the modal's stroke box is click-to-copy — see CopyKanji.jsx); readings and example readings follow the universal topbar script toggle, the separate Romaji row was removed (t80)
     ReviewCalendar.jsx       shared month calendar + selected-day panel (used by the banner overlay); days the user actually studied on (≥ 1 completed quiz) are gold — same color story as the lit streak card (t76: the marker is on activity days, not on "today"; today keeps its indigo border); the study dot under the day number is gold too
@@ -379,6 +424,13 @@ public/
   icons/                    PWA icons (192, 512, maskable)
 
 vite.config.js              Vite + PWA config (manifest + service worker)
+capacitor.config.json     (t86, dipulihkan t87) Capacitor shell config: appId dev.kanjicho.app,
+                            appName Kanjichō, webDir dist, LocalNotifications plugin
+                            (small icon ic_stat_kanjicho, icon color #1F3C5C)
+android/                   (t86, dipulihkan t87) Capacitor Android project (committed): app
+                            sources + gradle wrapper; web assets are copied in by
+                            `npm run cap:sync` (dist → android/app/src/main/assets/public —
+                            generated, do not edit)
 
 scripts/
   convert_kanji.py          Step 1: raw/kanjidic2.xml.gz + raw/JLPT_kanji_ALL.json
@@ -521,6 +573,13 @@ scripts/
                             @fontsource/*.
   test_logic.mjs            Unit test logika app (FSRS adapter, quiz,
                             histori) — node scripts/test_logic.mjs
+  test_reminders.mjs       (t86, dipulihkan t87) Unit test reminderPlan.js (slot
+                            boundaries, cumulative counts, 2 h grace, batch cap,
+                            strictly-future) — node scripts/test_reminders.mjs;
+  gen_android_icons.py     (t86, dipulihkan t87) regenerates every Android launcher/status icon
+                            density (legacy + adaptive foreground with a safe zone)
+                            from public/icons/icon-512.png — re-run when the PWA
+                            icon changes
   differential_tsfsrs.mjs, srs_oracle.mjs, experiment_adapters.mjs,
   experiment_slope_full.mjs  Bukti validasi mesin SRS (differential
                             test 2.600 kasus vs engine manual; oracle;
@@ -1230,9 +1289,10 @@ Mobile Back button behaves like a native app (t65):
   modal via its own UI (✕ / Escape / backdrop / Cancel) consumes that entry
   (`history.back()`), so Back afterwards navigates for real instead of
   hitting a dead entry.
-- **"Up" navigation folds entries instead of stacking.** Cancel quiz, Browse
-  Home, Unit Select Home collapse one entry (`collapse: 1`); "Back to Units"
-  on the result screen folds quiz + result (`collapse: 2`). Back after these
+- **"Up" navigation folds entries instead of stacking.** The quiz ✕ exit,
+  Browse ← back, Unit Select ← back collapse one entry (`collapse: 1`);
+  "Back to Units" on the result screen folds quiz + result (`collapse: 2`).
+  Back after these
   never resurrects a dead quiz/result screen.
 - **Home from the result screen resets to the app root** (`reset: true`), so
   Back exits the app instead of reopening the finished quiz's result.
@@ -1321,18 +1381,82 @@ section, and (when the time comes) implement purchases exclusively via
 Google Play Billing — including for a TWA-wrapped PWA — and never paywall
 the CC BY-SA data itself (features only).
 
-### Notifications (or lack thereof)
+### Notifications (local, Android shell only — t86, dipulihkan t87)
 
-There is **no push notification system** — no background reminders, no OS
-notifications when a review becomes due while the app is closed. This is a
-frontend-only PWA with no backend, and real push notifications need a server
-to trigger them (or the still-experimental Notification Triggers API,
-Chromium-only, not a broad standard yet).
+There is **no push notification system** and there never needs to be one:
+reminders are **local notifications** scheduled on the device itself, so the
+zero-backend / zero-account promise holds (nothing is sent anywhere; the
+Android permission is `POST_NOTIFICATIONS` only, and the notification
+channel "Review reminders" is importance-default, no vibration, no lights).
 
-What *is* implemented: the app icon shows a badge with the current "due"
-count via the [Badging API](https://developer.mozilla.org/en-US/docs/Web/API/Badging_API)
-(`navigator.setAppBadge()`), for installed PWAs on browsers that support it
-(Chromium-based; not Safari/iOS). This only updates **while the app is open**
-— it reflects the due count as of the last time it ran, not a live
-background count. All "you have N due" signals (the badge, the Home stats,
-`NextReviewBanner`) are pull-based: you have to open the app to see them.
+- **Web/PWA**: no notifications. The app icon badge (Badging API) and the
+  Home stats remain pull-based signals, exactly as before — the Capacitor
+  glue is a complete no-op on the web and the Help overlay doesn't even
+  show the toggle row there.
+- **Android (Capacitor shell)**: up to 3 reminders are scheduled ahead of
+  time at fixed daily "nudge slots" (08:00, 12:00, 17:00, 20:00 local):
+  each unit's due moment maps to the next slot, units sharing a slot merge
+  into one notification with a cumulative count ("2 units are due for
+  review"), and work that is already overdue when the app closes waits out
+  a 2-hour grace before its nudge. The whole chain is **recomputed from
+  IndexedDB** on every app open, foreground/background switch, and finished
+  quiz — stale nudges are cancelled, the next ones scheduled. Permission is
+  asked exactly once, at the moment the first real SRS quiz completes (the
+  user just watched their schedule form); the toggle to turn reminders off
+  lives in Help → Reminders (native only).
+
+## Android app (Capacitor, t86 — dipulihkan t87)
+
+The same web build ships as a native Android app via
+[Capacitor](https://capacitorjs.com/) 8 (`dev.kanjicho.app`), giving it a
+Play Store APK/AAB and the local notifications above. Service-worker
+registration is skipped inside the native shell (the bundle ships inside
+the APK; a stale SW cache would serve old builds after Play updates) —
+`main.jsx` guards it with `Capacitor.isNativePlatform()`, web/PWA behavior
+is unchanged.
+
+Build from a machine with Android Studio (SDK 36, JDK 17+):
+
+```bash
+npm install          # also patches font maxp (postinstall)
+npm run cap:sync     # vite build → npx cap sync android (copies dist/)
+npx cap open android # open in Android Studio → Run / Build APK
+# headless: cd android && ./gradlew assembleDebug (or bundleRelease)
+```
+
+- Version: `android/app/build.gradle` `versionCode 1` / `versionName "1.0.0"`
+  — bump per Play release; the web `package.json` stays 1.0.0 until publish.
+- Launcher icons: `scripts/gen_android_icons.py` generates every density
+  (legacy + adaptive foreground with a 72/108 safe zone over an indigo
+  background + a white glyph status-bar icon) from the single PWA source
+  `public/icons/icon-512.png`. Re-run it whenever that icon changes.
+- The `INTERNET` permission in the template manifest is Capacitor's
+  default; the app itself still makes **zero network requests** (all
+  assets, data, and fonts are bundled).
+
+**Publishing + in-app purchases (checklist, not code):**
+
+1. Google Play Console account — **$25 one-time** registration fee
+   (lifetime, not yearly). Required before *any* Play listing, and before
+   you can create in-app products.
+2. Upload the AAB, fill store listing, Data safety (no data collected /
+   shared — still true: notifications are local), content rating, target
+   audience, and the privacy-policy URL (host `public/privacy-policy.html`
+   on your domain).
+3. **IAP**: selling digital goods on Android *must* use **Google Play
+   Billing** (policy-mandated; no other payment rails for digital
+   content). In Play Console you additionally set up a **payments profile
+   (merchant account)** to receive revenue. Google's service fee is 15%
+   for the first $1M of earnings per year (small-developer program,
+   one-time enrollment; 30% above that). Products are created in Console
+   (Monetize → Products), e.g. a one-time "Kanjichō supporter" unlock.
+4. Implementation on Capacitor later: the official
+   `@capacitor-community/in-app-purchases` plugin (Play Billing library) or
+   [RevenueCat](https://www.revenuecat.com/) (free tier, saves the
+   receipt-validation server). Purchases must be testable via **license
+   testers** before going live — and note IAP only fully works once the app
+   is uploaded to a Play track (internal testing is enough).
+
+Keep the CC BY-SA data free for everyone; if purchases are ever added,
+sell convenience/supporter features only (see "Privacy & Google Play
+readiness" above).

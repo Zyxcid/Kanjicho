@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ChevronLeft, CircleX, HelpCircle, MoveHorizontal } from "lucide-react";
+import { CircleX, HelpCircle, MoveHorizontal } from "lucide-react";
 import { DONT_KNOW } from "../lib/quizGenerator.js";
 import { ReadingList } from "./Readings.jsx";
 import { kanaToRomaji } from "../lib/kana.js";
@@ -62,8 +62,6 @@ export default function Quiz({
   autoFlipDelay = 1000, // (t81) jeda auto-flip (ms) — dari deretan pill help overlay
   onSubmitAnswer,
   onContinue,
-  onCancel,
-  registerGuard, // dari useRouter — menahan Back browser saat sesi berprogres
 }) {
   const current = quiz[qIndex];
   const isKana = current.questionType === "reading" && answerScript === "kana";
@@ -169,60 +167,9 @@ export default function Quiz({
     swipeStartRef.current = null;
   }
 
-  // Konfirmasi sebelum keluar kuis: kalau sesi sudah ada progres (minimal
-  // satu jawaban terkumpul — qIndex > 0, atau soal saat ini sudah dijawab),
-  // tombol Cancel/q menampilkan dialog dulu. Tanpa progres, keluar langsung.
-  const [confirmExit, setConfirmExit] = useState(false);
-  // Sumber dialog: "ui" (tombol Cancel / shortcut q) atau "browser"
-  // (Back browser ditahan guard) — menentukan aksi tombol Leave.
-  const [exitSource, setExitSource] = useState("ui");
-  // Leave dari Back browser: loloskan popstate BERIKUTNYA dari guard —
-  // history.back() di confirmLeave memicu popstate itu.
-  const leavingRef = useRef(false);
-  const hasProgress = qIndex > 0 || selectedChoice !== null;
-  function requestExit() {
-    if (hasProgress) {
-      setExitSource("ui");
-      setConfirmExit(true);
-    } else {
-      onCancel();
-    }
-  }
-
-  // "Leave": dari Back browser → lanjutkan Back yang tadi ditahan
-  // (tujuan asli Alt+← dihormati); dari tombol Cancel → navigate biasa.
-  function confirmLeave() {
-    setConfirmExit(false);
-    if (exitSource === "browser") {
-      leavingRef.current = true;
-      window.history.back();
-    } else {
-      onCancel();
-    }
-  }
-
-  // Guard Back browser (Alt+← / tombol Back): saat sesi berprogres,
-  // router menahan popstate (URL dikembalikan ke kuis) lalu dialog ini
-  // dibuka — jalur keluar sama dengan tombol Cancel. Dipasang ulang saat
-  // hasProgress/confirmExit berubah; lepas otomatis saat layar unmount.
-  useEffect(() => {
-    if (!registerGuard) return;
-    registerGuard({
-      canLeave: () => leavingRef.current || !hasProgress,
-      onBlocked: () => {
-        // Dialog sudah terbuka + Back ditekan LAGI (t65) → tutup dialognya
-        // (= "tetap belajar"), seperti Back menutup overlay lain; router
-        // sudah mengembalikan URL ke layar kuis sebelum callback ini.
-        if (confirmExit) {
-          setConfirmExit(false);
-          return;
-        }
-        setExitSource("browser");
-        setConfirmExit(true);
-      },
-    });
-    return () => registerGuard(null);
-  }, [registerGuard, hasProgress, confirmExit]);
+  // (t83) Keluar sesi (tombol ✕ topbar, dialog konfirmasi, guard Back
+  // browser, shortcut q) kini sepenuhnya dikelola App.jsx — Quiz murni
+  // isi sesi. Shortcut keyboard dialog (Enter/Esc) juga sudah di App.
 
   // Dekomposisi komponen soal aktif (KanjiVG stroke-group) — dimuat
   // sejak soal muncul (chunk per level, di-cache; level biasanya sudah
@@ -231,17 +178,16 @@ export default function Quiz({
   // adalah alat bantu mengingat ("明 = sun + moon"), bukan petunjuk
   // jawaban. Varian plain: TEKS BIASA glyph saja (t64: jumlah goresan
   // dihapus; t63: tanpa kotak chip) — detail penuh tetap di modal Browse.
-  // (t83) loadStrokes ikut DIPANASKAN di sini: data goresan KanjiVG
-  // dipakai glyph kecil di KEPALA punggung kartu (RevealGlyph) — memuat
-  // sejak soal muncul membuat punggung langsung memunculkan SVG selesai
-  // begitu kartu terbalik, tanpa kedip placeholder font.
   const [compEntry, setCompEntry] = useState(null);
   useEffect(() => {
     let cancelled = false;
     setCompEntry(null);
     // Panaskan dua chunk sekaligus (keduanya di-cache per level —
     // pemanggilan ganda tetap satu unduhan): komponen untuk baris
-    // "Components", goresan KanjiVG untuk kepala punggung kartu.
+    // "Components", goresan KanjiVG untuk glyph kecil di KEPALA punggung
+    // kartu (RevealGlyph) — memuat sejak soal muncul membuat punggung
+    // langsung memunculkan SVG selesai begitu kartu terbalik, tanpa kedip
+    // placeholder font.
     loadStrokes(current.level);
     loadComponents(current.level).then((map) => {
       if (!cancelled) setCompEntry(map[current.kanji] || null);
@@ -254,8 +200,8 @@ export default function Quiz({
   // Shortcut keyboard: w/e/s/d pilih jawaban (mirror grid 2×2), f =
   // "Don't know", r = toggle kana/romaji (kini toggle global di topbar,
   // state yang sama — r tetap hanya hidup di layar kuis), Enter/Space =
-  // lanjut. (q = tombol Cancel ditangani global di App.jsx — dia
-  // meng-KLIK tombol ini, jadi ikut alur konfirmasi yang sama dengan
+  // lanjut. (q = tombol ✕ topbar ditangani global di App.jsx — dia
+  // meng-KLIK tombol itu, jadi ikut alur konfirmasi yang sama dengan
   // klik mouse.) Listener di window supaya jalan tanpa fokus ke elemen
   // tertentu.
   useEffect(() => {
@@ -264,19 +210,8 @@ export default function Quiz({
       // sampai ikut menjawab/toggle.
       if (e.ctrlKey || e.metaKey || e.altKey) return;
       const key = e.key.toLowerCase();
-      // Dialog konfirmasi keluar terbuka: Enter = Leave, Esc = Keep
-      // studying. Dicek SEBELUM guard modal umum karena dialog ini sendiri
-      // adalah .kd-modal-overlay (guard itu akan langsung return).
-      if (confirmExit) {
-        if (e.key === "Enter") {
-          e.preventDefault();
-          confirmLeave();
-        } else if (e.key === "Escape") {
-          setConfirmExit(false);
-        }
-        return;
-      }
-      // Modal terbuka (help overlay) — shortcut tidak boleh menembus modal.
+      // Modal terbuka (help overlay / dialog konfirmasi keluar milik App)
+      // — shortcut tidak boleh menembus modal.
       if (document.querySelector(".kd-modal-overlay")) return;
       // (t82) Tur onboarding aktif — shortcut kuis (w/e/s/d/f/r/Enter)
       // menunggu tur selesai: kartu & pilihan sedang diredupkan oleh
@@ -307,14 +242,10 @@ export default function Quiz({
     }
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [selectedChoice, current, onSubmitAnswer, onContinue, onToggleScript, confirmExit, exitSource, onCancel]);
+  }, [selectedChoice, current, onSubmitAnswer, onContinue, onToggleScript]);
 
   return (
     <>
-      <button className="kd-back" onClick={requestExit}>
-        <ChevronLeft size={16} /> Cancel
-      </button>
-
       <div className="kd-progress-dots" aria-hidden="true">
         {/* t76: titik = papan skor LIVE, bukan nomor soal — urutan dot adalah
             STATUS: [benar (indigo penuh, terkumpul KIRI)] [soal berjalan
@@ -334,10 +265,12 @@ export default function Quiz({
       </div>
 
       {/* (t77) KARTU KUIS — satu kartu fisik dengan dua sisi. DEPAN:
-          soal + pilihan (tata letak lama utuh: mobile ditumpuk vertikal,
-          desktop ≥900px genkō kiri + kolom soal kanan). BELAKANG:
-          reading sheet. Rotasi di sumbu Y (perspective di .kd-card-scene);
-          (t80) transform di-set INLINE dari state kumulatif `rot` supaya
+          soal + pilihan, tata letak VERTIKAL (genkō di atas, pilihan di
+          bawahnya) di SEMUA ukuran layar (t83 — dulu desktop ≥900px memakai
+          2 kolom genkō-kiri/pilihan-kanan; kartu 780px landscape terlalu
+          besar & canggung saat diflip, pilihan kini selalu di bawah kanji).
+          BELAKANG: reading sheet. Rotasi di sumbu Y (perspektif di
+          .kd-card-scene); (t80) transform di-set INLINE dari state kumulatif `rot` supaya
           ARAH transisi mengikuti arah swipe — bukan kelas statis .flipped.
           key=qIndex membuat soal baru = kartu BARU yang ter-mount polos
           (tanpa bekas rotasi), masuk dengan animasi kartu segar. Sisi
@@ -357,25 +290,25 @@ export default function Quiz({
         >
           {/* ============ DEPAN: soal + pilihan ============ */}
           <div className="kd-card-face front" inert={showBack ? "true" : undefined}>
-            {/* Mobile: kanji dan soal ditumpuk vertikal. Desktop (>=900px,
-                lihat global.css): kanji di kiri ATAS (posisi statis —
-                tidak pernah bergeser saat kartu dibalik), soal + pilihan
-                di kanan. */}
+            {/* Kartu portrait: kanji genkō di ATAS (terpusat), soal dan
+                pilihan di BAWAHnya — konsisten di mobile dan desktop
+                (t83). */}
             <div className="kd-quiz-layout">
-              {/* Kolom kiri: kotak genkō SAJA. Di desktop kotak ini DIJANGKAR
-                  DI ATAS kolom (align-items flex-start pada layout) — genkō
-                  tidak ikut bergerak. Persamaan komponen dirender sebagai
+              {/* Kotak genkō — elemen pertama tumpukan vertikal (terpusat).
+                  Persamaan komponen dirender sebagai
                   baris "Components" DI SISI BELAKANG KARTU setelah
                   dijawab (bukan blok terpisah di sini). */}
               <div className="kd-quiz-left">
-                {/* (t83) Kotak genkō kembali menampilkan KANJI FONT
-                    Shippori Mincho biasa — seperti sebelum animasi goresan
-                    pernah tinggal di depan. Animasi urutan goresan KanjiVG
-                    PINDAH ke kepala reading sheet di sisi BELAKANG kartu
-                    (RevealGlyph, pojok kiri-atas, ukuran lebih kecil):
-                    bentuk yang sedang belajar ditulis BARU layak dilihat
-                    SETELAH menjawab, bersama bacaannya. Tidak ada interaksi
-                    di kotak ini — diam menempel di atas kolom. */}
+                {/* (t87, dari t86) Kotak genkō kini menampilkan KANJI FONT
+                    Shippori Mincho biasa — animasi urutan goresan KanjiVG
+                    PINDAH ke glyph kecil di KEPALA reading sheet sisi
+                    BELAKANG kartu (RevealGlyph): bentuk yang sedang
+                    dipelajari baru layak dilihat SETELAH menjawab, bersama
+                    bacaannya, dan animasi tidak pernah membocorkan bentuk
+                    "sedang digambar" sebelum user berkomitmen pada jawaban.
+                    Tidak ada interaksi di kotak ini — diam menempel di atas
+                    tumpukan. Sheet detail (bacaan, arti, contoh kata) tetap
+                    di sisi belakang SETELAH dijawab. */}
                 <div className="kd-genkou">
                   <div className="kd-genkou-glyph">{current.kanji}</div>
                 </div>
@@ -437,15 +370,10 @@ export default function Quiz({
               ada: jawaban harus tersembunyi). Struktur kelas dalam
               (kd-reveal-head/yomi/comp/examples) sama dengan versi
               panel dulu — CSS-nya dipakai bersama modal Browse.
-              (t80) Head: kanji KIRI, arti KANAN — konsisten dengan tata
-              letak depan kartu (genkō kiri, info kanan); toggle skrip sudah
-              pindah ke topbar app (universal).
-              (t83) Kanji di kepala kini GLYPH KANJIVG KECIL (RevealGlyph,
-              pojok kiri-atas, ±72px — lebih kecil dari genkō depan):
-              KLIK = putar animasi urutan goresan, klik kanan = selesaikan
-              seketika. Arti mengalir DI SAMPING glyph (margin-left:auto
-              dihapus dari .kd-meaning-text — tidak lagi didorong ke tepi
-              kanan lembar). */}
+              (t87, dari t86) Kepala sheet: kanji kini GLYPH KanjiVG KECIL
+              (RevealGlyph, pojok kiri-atas) — KLIK = putar animasi urutan
+              goresan, klik kanan = selesaikan seketika; arti mengalir DI
+              SAMPINGNYA, bukan didorong ke tepi kanan lembar. */}
           {answered && (
             <div className="kd-card-face back" inert={showBack ? undefined : "true"}>
               <div className="kd-card-back-body">
@@ -536,26 +464,6 @@ export default function Quiz({
           <button className="kd-btn primary kd-continue-btn" onClick={onContinue}>
             {qIndex + 1 < quiz.length ? "Continue" : "See Results"}
           </button>
-        </div>
-      )}
-
-      {/* Dialog konfirmasi keluar sesi — hanya muncul kalau ada progres
-          yang akan hilang. */}
-      {confirmExit && (
-        <div className="kd-modal-overlay">
-          <div className="kd-modal kd-drill-confirm" onClick={(e) => e.stopPropagation()}>
-            <p className="kd-drill-confirm-text">
-              Leave this session? Your answers so far won&apos;t be saved.
-            </p>
-            <div className="kd-btn-row">
-              <button className="kd-btn secondary" onClick={() => setConfirmExit(false)}>
-                Keep studying
-              </button>
-              <button className="kd-btn primary" onClick={confirmLeave}>
-                Leave
-              </button>
-            </div>
-          </div>
         </div>
       )}
     </>

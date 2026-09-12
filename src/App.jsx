@@ -1,9 +1,22 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
+import { ChevronLeft, X } from "lucide-react";
 import { LEVEL_IDS, getUnitsForLevel, getLevelMeta, loadLevelKanji } from "./lib/dataLoader.js";
 import { createInitialUnitState, reviewUnit, migrateUnitState } from "./lib/srs.js";
 import { generateQuiz, generateWeakQuiz, scoreQuiz } from "./lib/quizGenerator.js";
 import { computeStudyStats } from "./lib/studyStats.js";
 import * as storage from "./lib/storage.js";
+// (t86, dipulihkan t87) Pengingat review via local notification (shell
+// Capacitor Android). Modul ini no-op total di web/PWA — lihat
+// src/lib/notifications.js.
+import {
+  isNativeApp,
+  getRemindersEnabled,
+  setRemindersEnabled,
+  requestReminderPermission,
+  syncReviewReminders,
+  cancelReviewReminders,
+  afterScheduleChanged,
+} from "./lib/notifications.js";
 import { useRouter } from "./lib/useRouter.js";
 import { pushOverlayEntry, closeOverlayUI, discardOverlayEntry } from "./lib/useRouter.js";
 
@@ -108,6 +121,32 @@ export default function App() {
     localStorage.setItem("kanji-autoflip-delay", String(ms));
   }
 
+  // (t86, dipulihkan t87) Sakelar pengingat review — hanya hidup di shell
+  // Android (Capacitor); di web baris ini tidak pernah dirender Help
+  // (web tidak punya local notification yang bisa diandalkan). Default
+  // ON; izin notifikasi diminta sekali saat kuis SRS PERTAMA selesai
+  // (momen pas: user baru menyaksikan jadwal reviewnya terbentuk).
+  const [reminders, setReminders] = useState(() => getRemindersEnabled());
+
+  async function toggleReminders() {
+    const next = !reminders;
+    setReminders(next);
+    setRemindersEnabled(next);
+    if (!next) {
+      await cancelReviewReminders();
+      return;
+    }
+    // Menyalakan dari Help = permintaan eksplisit user — minta izin (bila
+    // masih "prompt") dan sinkronkan seketika. Izin ditolak permanen →
+    // sakelar tetap ON tapi tidak ada yang akan menyala; toast memberi
+    // tahu ke mana harus memperbaikinya (pengaturan sistem Android).
+    const granted = await requestReminderPermission();
+    if (!granted) {
+      showToast("Notifications are blocked for Kanjichō — allow them in system settings.");
+    }
+    await syncReviewReminders(await storage.getAllProgress());
+  }
+
   // (t82) Tur onboarding "hint overlay" — menyala OTOMATIS hanya untuk
   // user baru (flag localStorage TUTORIAL_KEY belum ada DAN belum ada
   // jejak belajar: riwayat kuis / progress unit). User lama dari versi
@@ -136,6 +175,21 @@ export default function App() {
     navigate("home", { reset: true });
     setTutorialActive(true);
   }
+
+  // (t83) KONFIRMASI KELUIR KUIS — kini milik App (dulu state di Quiz.jsx
+  // bersama tombol "< Cancel"). Pemicunya kini TIGA: tombol ✕ di topbar
+  // (di kiri brand sesi, satu-satunya tombol keluar — tombol Cancel di
+  // dalam layar kuis dihapus), shortcut q (meng-klik tombol ✕ yang sama),
+  // dan Back browser/gesture (lewat guard router di bawah). Logika
+  // gerbangnya tidak berubah: hanya sesi yang SUDAH BERPROGRES (ada
+  // jawaban) yang dimintai konfirmasi; sesi polos keluar langsung.
+  const [exitConfirm, setExitConfirm] = useState(false);
+  // Sumber dialog: "ui" (tombol ✕ / shortcut q) atau "browser" (Back
+  // ditahan guard) — menentukan aksi tombol Leave.
+  const [exitSource, setExitSource] = useState("ui");
+  // Leave dari Back browser: loloskan popstate BERIKUTNYA dari guard —
+  // history.back() di confirmQuizLeave memicu popstate itu.
+  const leavingRef = useRef(false);
 
   // activeLevel/activeUnit tertinggal dari route supaya UnitSelect tetap
   // menampilkan level yang benar saat kita sempat route home (mis. Cancel
@@ -285,6 +339,28 @@ export default function App() {
     loadAllData().finally(() => setLoading(false));
   }, []);
 
+  // (t86, dipulihkan t87) Sinkron pengingat notifikasi saat app dibuka dan
+  // setiap kali kembali / berpindah ke latar: visibilitychange juga
+  // menembak di WebView Capacitor saat activity pause/resume. Semakin
+  // sering data disegarkan, semakin akurat rantai nudge — dan tetap
+  // idempoten (batch dibatalkan lalu dijadwalkan ulang dari IndexedDB di
+  // tiap sync). Saat berpindah ke belakang: reviu yang menumpuk tanpa
+  // dikerjakan → nudge slot berikutnya (tenggang 2 jam, lihat
+  // reminderPlan.js). Saat ke depan: nudge basi (reviu sudah dikerjakan)
+  // tersapu otomatis.
+  useEffect(() => {
+    function syncReminders() {
+      if (!isNativeApp()) return;
+      storage
+        .getAllProgress()
+        .then((records) => syncReviewReminders(records))
+        .catch(() => {});
+    }
+    syncReminders();
+    document.addEventListener("visibilitychange", syncReminders);
+    return () => document.removeEventListener("visibilitychange", syncReminders);
+  }, []);
+
   // (t82) Keputusan auto-start tur: tunggu data selesai dimuat supaya
   // "user lama" terdeteksi dari attempts/progress yang NYATA (bukan tebak-
   // tebakan flag). attempts/progress di-set sebelum loading berakhir dalam
@@ -320,15 +396,95 @@ export default function App() {
     if (view !== "quiz" || (quiz && routeUnit !== quizRouteUnit)) setQuiz(null);
   }, [view, routeUnit, quizRouteUnit, quiz]);
 
+  // (t83) Keluar kuis → kembali ke daftar unit ASAL sesi (missed review →
+  // level asalnya). collapse 1: lipat entri kuis — entri di bawahnya
+  // memang layar sebelum kuis, jadi Back setelahnya tidak menghidupkan
+  // kuis mati. (Persis onCancel lama; kini dipakai tombol ✕ topbar.)
+  function leaveQuiz() {
+    navigate("unitSelect", {
+      level: quizMode === "weak" ? weakOriginLevel || activeLevel : activeLevel,
+      collapse: 1,
+    });
+  }
+
+  function requestQuizExit() {
+    if (qIndex > 0 || selectedChoice !== null) {
+      setExitSource("ui");
+      setExitConfirm(true);
+    } else {
+      leaveQuiz();
+    }
+  }
+
+  // "Leave": dari Back browser → lanjutkan Back yang tadi ditahan
+  // (tujuan asli Alt+← dihormati); dari tombol ✕ → navigate biasa.
+  function confirmQuizLeave() {
+    setExitConfirm(false);
+    if (exitSource === "browser") {
+      leavingRef.current = true;
+      window.history.back();
+    } else {
+      leaveQuiz();
+    }
+  }
+
+  // Dialog konfirmasi terbuka: Enter = Leave, Esc = Keep studying
+  // (dulu di keydown Quiz.jsx; ikut pindah ke App bersama dialognya).
+  useEffect(() => {
+    if (!exitConfirm) return;
+    function onDialogKey(e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        confirmQuizLeave();
+      } else if (e.key === "Escape") {
+        setExitConfirm(false);
+      }
+    }
+    window.addEventListener("keydown", onDialogKey);
+    return () => window.removeEventListener("keydown", onDialogKey);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [exitConfirm, exitSource, quizMode, activeLevel, weakOriginLevel]);
+
+  // Guard Back browser (Alt+← / tombol Back): saat sesi kuis berprogres,
+  // router menahan popstate (URL dikembalikan ke kuis) lalu dialog keluar
+  // dibuka — jalur yang sama dengan tombol ✕ (t83; dulu dipasang dari
+  // Quiz.jsx). inQuizSession = view quiz SAH (state kuis hidup & cocok
+  // dengan hash) — sama dengan syarat mount layar Quiz, tapi bisa dihitung
+  // SEBELUM early-return loading supaya hook ini tetap unconditional.
+  // Dipasang ulang saat progres/dialog berubah; lepas saat sesi berakhir.
+  const quizHasProgress = qIndex > 0 || selectedChoice !== null;
+  const inQuizSession =
+    view === "quiz" && !!quiz && routeUnit === quizRouteUnit;
+  useEffect(() => {
+    if (!inQuizSession) return;
+    registerGuard({
+      canLeave: () => leavingRef.current || !quizHasProgress,
+      onBlocked: () => {
+        // Dialog sudah terbuka + Back ditekan LAGI (t65) → tutup dialognya
+        // (= "tetap belajar"), seperti Back menutup overlay lain; router
+        // sudah mengembalikan URL ke layar kuis sebelum callback ini.
+        if (exitConfirm) {
+          setExitConfirm(false);
+          return;
+        }
+        setExitSource("browser");
+        setExitConfirm(true);
+      },
+    });
+    return () => registerGuard(null);
+  }, [registerGuard, inQuizSession, quizHasProgress, exitConfirm]);
+
   const showToast = useCallback((msg) => {
     setToast(msg);
     setTimeout(() => setToast(null), 2200);
   }, []);
 
-  // Shortcut global: q = klik tombol back (".kd-back") di layar yang punya
-  // tombol itu. Diimplementasikan dengan meng-KLIK tombolnya (bukan
-  // navigasi langsung) supaya shortcut menempuh alur yang sama dengan klik
-  // mouse — termasuk dialog konfirmasi keluar kuis di Quiz.jsx.
+  // Shortcut global: q = tombol keluar/back di topbar layar yang punya
+  // navigasi kiri (t83: ✕ kuis / panah back daftar unit & Browse). Di-
+  // implementasikan dengan meng-KLIK tombolnya (bukan navigasi langsung)
+  // supaya shortcut menempuh alur yang sama dengan klik mouse — termasuk
+  // dialog konfirmasi keluar kuis. Home & Result tidak punya tombol itu
+  // (brand murni) → q tidak melakukan apa-apa di sana.
   useEffect(() => {
     function handleBackKey(e) {
       if (e.ctrlKey || e.metaKey || e.altKey) return; // Ctrl+Q/Cmd+Q = OS/browser
@@ -342,8 +498,8 @@ export default function App() {
       // (t82) Tur onboarding aktif — biarkan tooltip tur yang memegang
       // panggung (tombol-tombol app sedang diredupkan & terkunci shade).
       if (document.querySelector(".kd-tut-shades")) return;
-      // Home & Result tidak punya tombol back → q tidak melakukan apa-apa.
-      document.querySelector(".kd-back")?.click();
+      // Home & Result tidak punya tombol kiri → q tidak melakukan apa-apa.
+      document.querySelector(".kd-quiz-exit, .kd-topbar-back")?.click();
     }
     window.addEventListener("keydown", handleBackKey);
     return () => window.removeEventListener("keydown", handleBackKey);
@@ -629,6 +785,11 @@ export default function App() {
         ...finalResult,
         rating: extra.newState.lastRating,
       });
+      // (t86, dipulihkan t87) Jadwal SRS baru saja terbentuk — sinkronkan
+      // rantai pengingat notifikasi (minta izin SEKALI di momen ini;
+      // fire-and-forget supaya dialog sistem Android tidak menunda
+      // navigasi ke layar hasil).
+      afterScheduleChanged(await storage.getAllProgress()).catch(() => {});
     } else if (quizMode === "weak") {
       // Weak review dihitung sebagai aktivitas belajar (streak) tapi tidak
       // mengubah jadwal SRS unit mana pun.
@@ -707,17 +868,47 @@ export default function App() {
 
   return (
     <div className="kd-root">
+      {/* (t83) NAVIGASI KIRI TOPBAR — satu pola di semua sublayar:
+          chrome navigasi kiri, aksi (help/skrip/tema) kanan.
+          - kuis        : ✕ keluar sesi + brand SESI (N5 · Unit 1) — tombol
+                          Cancel di dalam layar kuis dihapus;
+          - daftar unit  : panah back ke home (brand Kanjichō disembunyikan
+                          di sini — konteks level sudah dibawa judul seksi
+                          & kartu statistik di bawahnya);
+          - Browse      : panah back ke home (tombol "< Home" dihapus);
+          - home/hasil  : brand penuh (tidak ada yang bisa di-back). */}
       <div className="kd-topbar">
-        {sessionLevel ? (
-          <div className="kd-brand" aria-label={`Studying ${sessionLevel} ${sessionUnitLabel}`}>
-            <span>{sessionLevel}</span>
-            <small>{sessionUnitLabel}</small>
-          </div>
-        ) : (
-          <div className="kd-brand">
-            漢字帳 <small>Kanjichō</small>
-          </div>
-        )}
+        <div className="kd-topbar-left">
+          {effectiveView === "quiz" && (
+            <button
+              className="kd-icon-btn kd-quiz-exit"
+              onClick={requestQuizExit}
+              aria-label="Leave this quiz"
+              title="Leave this quiz"
+            >
+              <X size={16} strokeWidth={2.25} />
+            </button>
+          )}
+          {effectiveView === "unitSelect" || effectiveView === "browse" ? (
+            <button
+              className="kd-icon-btn kd-topbar-back"
+              onClick={() => navigate("home", { collapse: 1 })}
+              aria-label="Back to home"
+              title="Back to home"
+            >
+              <ChevronLeft size={16} strokeWidth={2.25} />
+            </button>
+          ) : sessionLevel ? (
+            <div className="kd-brand" aria-label={`Studying ${sessionLevel} ${sessionUnitLabel}`}>
+              <span>{sessionLevel}</span>
+              <small>{sessionUnitLabel}</small>
+            </div>
+          ) : (
+            <div className="kd-brand">
+              漢字帳 <small>Kanjichō</small>
+            </div>
+          )}
+        </div>
         <div className="kd-topbar-right">
           {/* (t81) Urutan tombol topbar: Help → toggle skrip (あ/Aa) →
               Theme — toggle kana/romaji kini DI TENGAH antara keduanya
@@ -731,6 +922,12 @@ export default function App() {
             autoFlipDelay={autoFlipDelay}
             onChangeAutoFlipDelay={changeAutoFlipDelay}
             onReplayTutorial={replayTutorial}
+            // (t86, dipulihkan t87) Baris "Review reminders" hanya
+            // dirender di shell native; web/PWA tidak melihat seksi ini
+            // sama sekali (tidak ada regresi tampilan help untuk user PWA).
+            showReminders={isNativeApp()}
+            reminders={reminders}
+            onToggleReminders={toggleReminders}
           />
           <ScriptToggle answerScript={answerScript} onToggleScript={toggleAnswerScript} />
           <ThemeToggle />
@@ -739,10 +936,10 @@ export default function App() {
 
       {effectiveView === "home" && <Home levelIds={LEVEL_IDS} getLevelMeta={getLevelMeta} getLevelStats={(level) => levelStatsMap[level]} onOpenLevel={openLevel} onBrowse={() => navigate("browse")} stats={allLevelsStats} studyStats={studyStats} onOpenCalendar={() => openCalendar(null)} />}
 
-      {/* Back dari Browse MELIPAT entri browse (collapse 1) — mundur ke
-          entri home yang sudah ada di tumpukan; tanpa ini Back setelah
-          "Home" akan membuka ulang Browse. */}
-      {effectiveView === "browse" && <Browse onBack={() => navigate("home", { collapse: 1 })} script={answerScript} />}
+      {/* Panah back topbar dari Browse MELIPAT entri browse (collapse 1) —
+          mundur ke entri home yang sudah ada di tumpukan; tanpa ini Back
+          setelah kembali akan membuka ulang Browse. */}
+      {effectiveView === "browse" && <Browse script={answerScript} />}
 
       {effectiveView === "unitSelect" && (
         <UnitSelect
@@ -751,7 +948,6 @@ export default function App() {
           progress={progress}
           stats={levelStats}
           studyStats={studyStats}
-          onBack={() => navigate("home", { collapse: 1 })}
           onStartUnit={startUnit}
           onOpenCalendar={() => openCalendar(activeLevel)}
           onResetProgress={resetLevelProgress}
@@ -779,16 +975,6 @@ export default function App() {
           autoFlipDelay={autoFlipDelay}
           onSubmitAnswer={submitAnswer}
           onContinue={handleContinue}
-          registerGuard={registerGuard}
-          // Cancel kuis = semantics Back browser: kembali ke daftar unit
-          // asal kuis (missed review → daftar unit level asalnya).
-          // collapse 1: lipat entri kuis — entri di bawahnya memang layar
-          // sebelum kuis, jadi Back setelahnya tidak menghidupkan kuis mati.
-          onCancel={() =>
-            quizMode === "weak"
-              ? navigate("unitSelect", { level: weakOriginLevel || activeLevel, collapse: 1 })
-              : navigate("unitSelect", { level: activeLevel, collapse: 1 })
-          }
         />
       )}
 
@@ -819,6 +1005,28 @@ export default function App() {
         />
       )}
 
+      {/* (t83) Dialog konfirmasi keluar sesi kuis — dipicu tombol ✕
+          topbar / shortcut q / Back browser (guard). Hanya muncul kalau
+          ada progres (jawaban terkumpul) yang akan hilang; Enter = Leave,
+          Escape = Keep studying. */}
+      {exitConfirm && inQuizSession && (
+        <div className="kd-modal-overlay">
+          <div className="kd-modal kd-drill-confirm" onClick={(e) => e.stopPropagation()}>
+            <p className="kd-drill-confirm-text">
+              Leave this session? Your answers so far won&apos;t be saved.
+            </p>
+            <div className="kd-btn-row">
+              <button className="kd-btn secondary" onClick={() => setExitConfirm(false)}>
+                Keep studying
+              </button>
+              <button className="kd-btn primary" onClick={confirmQuizLeave}>
+                Leave
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Overlay kalender review (dari klik kartu "Due now"): kalender +
           panel hari (default hari ini) dengan jam due per unit — baris
           overdue klik → kuis. Statistik ringkas tampil sebagai tiga kartu
@@ -838,16 +1046,8 @@ export default function App() {
           (auto) atau replay dari Help. Lapisan redup 4-bidang + cincin
           spotlight + tooltip dikelola komponen ini sendiri; langkah-langkah
           menunggu KLIK NYATA pada UI (klik menembus lubang ke elemen asli)
-          atau tombol Got it, dengan Skip tutorial selalu tersedia.
-          (t85) onGoHome: tombol "Home" di tooltip langkah SRS memanggil
-          navigasi SUNGGUHAN ini (reset history, persis tombol Home layar
-          hasil / replay) — pulang dari kuis tur tanpa dialog Leave. */}
-      {tutorialActive && (
-        <Tutorial
-          onFinish={finishTutorial}
-          onGoHome={() => navigate("home", { reset: true })}
-        />
-      )}
+          atau tombol Got it, dengan Skip tutorial selalu tersedia. */}
+      {tutorialActive && <Tutorial onFinish={finishTutorial} />}
 
       {toast && <Toast message={toast} />}
     </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ChevronLeft, CircleX, Trash2 } from "lucide-react";
+import { CircleX, Trash2 } from "lucide-react";
 import { unitStatus } from "../App.jsx";
 import { intervalUntilLabel } from "../lib/dueFormat.js";
 import { loadLevelKanji } from "../lib/dataLoader.js";
@@ -19,7 +19,6 @@ export default function UnitSelect({
   progress,
   stats,
   studyStats,
-  onBack,
   onStartUnit,
   onOpenCalendar,
   onResetProgress,
@@ -78,9 +77,9 @@ export default function UnitSelect({
 
   return (
     <>
-      <button className="kd-back" onClick={onBack}>
-        <ChevronLeft size={16} /> Home
-      </button>
+      {/* (t83) Tombol "< Home" dihapus — navigasi pulang kini panah back
+          di TOPBAR (App.jsx, kiri, menggantikan brand di layar ini);
+          satu pola navigasi-kiri/aksi-kanan di semua sublayar. */}
 
       {/* Statistik kartu besar scope level ini (Studied x/total, Due now,
           Mastered — lihat StatCards.jsx): kartu streak global (api +

@@ -18,7 +18,7 @@ const LEVELS = ["All", ...LEVEL_IDS];
 // "Show more" menaikkan batas bertahap.
 const VISIBLE_STEP = 400;
 
-export default function Browse({ onBack, script = "kana" }) {
+export default function Browse({ script = "kana" }) {
   const [activeLevel, setActiveLevel] = useState("N5");
   const [query, setQuery] = useState("");
   const [visibleCount, setVisibleCount] = useState(VISIBLE_STEP);
@@ -199,9 +199,9 @@ export default function Browse({ onBack, script = "kana" }) {
 
   return (
     <>
-      <button className="kd-back" onClick={onBack}>
-        <ChevronLeft size={16} /> Home
-      </button>
+      {/* (t83) Tombol "< Home" dihapus — navigasi pulang kini panah back
+          di TOPBAR (App.jsx, kiri). ChevronLeft tetap dipakai modal detail
+          untuk navigasi komponen (navHistory) di bawah. */}
 
       <div className="kd-section-title kd-section-title-row">
         <span>kanji Library</span>

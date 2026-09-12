@@ -1,8 +1,8 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { ChevronLeft } from "lucide-react";
 
 /**
- * Tutorial (t82) — tur onboarding "hint overlay" untuk user baru.
+ * Tutorial (t82, direvisi t83) — tur onboarding "hint overlay" untuk
+ * user baru.
  *
  * SELURUH UI diredupkan oleh EMPAT bidang shade (atas/bawah/kiri/kanan)
  * yang mengitari "lubang" persis di persegi target langkah — hanya area
@@ -11,41 +11,40 @@ import { ChevronLeft } from "lucide-react";
  * tur ikut maju). Ini dipilih daripada menaikkan z-index elemen target
  * (z-index surgery): tidak ada styling user yang disentuh sama sekali.
  *
+ * (t83) LANGKAH "lock": langkah yang hanya MENYEBUT target (kalender
+ * review, Browse) tanpa meminta klik — .kd-tut-blocker (z 57, transparan)
+ * menutup seluruh viewport termasuk lubang, jadi target TIDAK bisa
+ * diinteraksi; satu-satunya jalan maju adalah tombol "Got it".
+ *
  * Z-INDEX: shade 55 & ring 56 SENGAJA DI BAWAH modal (60) — modal yang
  * kebetulan terbuka saat tour (mis. dialog practice saat replay oleh
  * user lama) tetap bisa diklik sehingga tour tidak pernah mengunci
- * user di dead-end. Tooltip 72 DI ATAS modal supaya Skip/Got it selalu
- * terjangkau.
+ * user di dead-end. Blocker 57 juga di bawah modal. Tooltip 72 DI ATAS
+ * modal supaya Skip/Got it selalu terjangkau.
  *
  * TIAP LANGKAH maju lewat SALAH SATU:
  *   - waitClick : klik pada selector (listener capture di document —
- *                 handler asli app tetap ikut jalan, tur hanya "menumpang";
- *                 selector boleh berupa daftar koma — mis. pilihan kuis
- *                 ATAU tombol Don't know, mana pun yang diklik user)
+ *                 handler asli app tetap ikut jalan, tur hanya "menumpang")
  *   - waitAppear: elemen muncul di DOM (poll 120 ms — menutup jalur
- *                 navigasi alternatif, mis. dialog practice → kuis; juga
- *                 daftar koma untuk "unit list ATAU home")
- *   - cta       : tombol "Got it" di tooltip (langkah informasi murni)
+ *                 navigasi alternatif, mis. dialog practice → kuis)
+ *   - cta       : tombol "Got it" di tooltip (langkah informasi murni;
+ *                 WAJIB untuk langkah lock)
  * Semua langkah SELALU punya "Skip tutorial" (kabur total) dan
  * Escape. Double-advance dalam satu langkah dicegah stepRef.
  *
- * (t83) Urutan langkah di KUIS: tur MENJAWAB satu soal sungguhan
- * (langkah "answer") supaya punggung kartu terbuka — animasi goresan
- * KanjiVG kini hidup di sana (RevealGlyph), dan penjelasan "bacaan
- * bold = asal pilihan" diberikan PERSIS di sisi yang menampilkannya.
+ * (t83) Navigasi tur kini memakai TOMBOL NYATA app: keluar kuis lewat ✕
+ * di kiri brand sesi topbar, pulang dari daftar unit lewat panah back
+ * — bukan lagi instruksi teks tentang tombol Cancel/Home (keduanya
+ * sudah dihapus dari layar).
  *
- * (t84) Tiga langkah penutup di beranda: kartu Due (kalender jadwal),
- * Browse all kanji, lalu penutup terpusat. Esc saat modal terbuka
- * TIDAK lagi mematikan tur (modal yang bersangkutan mengonsumsinya).
- *
- * (t85) Langkah SRS kini membawa user ke beranda lewat TOMBOL HOME DI
- * TOOLTIP itu sendiri (onGoHome dari App: navigate reset) — kalimat
- * panjang "tap Cancel and confirm Leave, then Home..." tidak perlu
- * lagi; seluruh layar diredupkan penuh (target null) sehingga tombol
- * tersebut adalah SATU-SATUNYA jalan pulang. Langkah ber-flag `block`
- * (kalender due & Browse) menutup lubangnya dengan penutup transparan
- * (.kd-tut-cover, + guard Enter/Space): spotlight cukup DILIHAT, klik
- * pada target dicegah — maju hanya lewat tombol Got it.
+ * (t87) Animasi urutan goresan pindah ke PUNGGUNG kartu (RevealGlyph)
+ * → alur tengah kuis dirombak: user kini MENJAWAB SATU SOAL NYATA di
+ * langkah choices (boleh salah, boleh "Don't know"), kartu terbalik
+ * sendiri, lalu langkah back menjelaskan punggung kartu (bacaan bold +
+ * glyph goresan di pojok). Karena tur kini punya progres jawaban,
+ * tombol ✕ di langkah srs membuka dialog konfirmasi — tur menunggu
+ * tombol "Leave" di dialog itu (modal z 60 berada DI ATAS shade, jadi
+ * tetap bisa diklik; tooltip z 72 tetap di atas semuanya).
  *
  * Persistensi di App (localStorage TUTORIAL_KEY = "kanjicho-tutorial"):
  * "done" / "skipped" — tur hanya menyala OTOMATIS untuk user baru
@@ -69,26 +68,19 @@ const POLL_MS = 400;
  *   "start"   → tombol "Start tour" (sambutan)
  *   "got-it"  → tombol "Got it" (langkah informasi; boleh juga maju lewat
  *               waitClick bila ada — mis. toggle skrip)
- *   "home"    → (t85) tombol "Home" di tooltip: memanggil onGoHome()
- *               (navigasi SUNGGUHAN ke beranda oleh App) lalu maju —
- *               dipakai langkah SRS untuk menggantikan penjelasan
- *               panjang jalur pulang (Cancel → Leave → Home).
  *   undefined → langkah praktik murni: hanya aksi nyata yang memajukan
  *               (tidak ada tombol maju — arah sudah ditulis di body).
- * `block` = true → (t85) target di-spotlight tapi DIKUNCI: penutup
- *   transparan + guard keyboard menelan klik/touch/Enter/Space pada
- *   area lubang; satu-satunya jalan maju tombol Got it (langkah
- *   "cukup dilihat": kartu Due, entry Browse).
+ * `lock: true` → (t83) target TIDAK interaktif: blocker menutup lubang,
+ *               jalan maju HANYA tombol "Got it" (langkah menyebut,
+ *               bukan meminta klik).
  */
-// (t84) Teks langkah sengaja TANPA em-dash dan dirangkai mengalir
-// (permintaan user: tanda baca "—" dikurangi, kalimat lebih luwes).
 const STEPS = [
   {
     id: "welcome",
     target: null,
     title: "Welcome to Kanjichō",
     body:
-      "Learn the JLPT kanji with short quizzes, and let the app bring each one back for review right before you'd forget it. This quick tour takes about half a minute.",
+      "Learn the JLPT kanji with short quizzes, and let the app bring each one back for review right before you'd forget it. A quick tour, about half a minute.",
     cta: "start",
   },
   {
@@ -98,19 +90,16 @@ const STEPS = [
     waitAppear: ".kd-unit-grid",
     title: "Choose a JLPT level",
     body:
-      "Each level keeps its own kanji and units, so start with the one you're aiming for. Your progress will show on these cards as you study. Tap any level to continue.",
+      "Each level keeps its own kanji and units. Start with the one you're aiming for; your progress will show on these cards as you study. Tap any level to continue.",
   },
   {
-    // (t84) "Finishing it unlocks the next unit" TIDAK BENAR: semua unit
-    // terbuka sejak awal. Yang benar: kuis yang diselesaikan meletakkan
-    // kanjinya di jadwal review (SRS).
     id: "unit",
     target: ".kd-unit-grid",
     waitClick: ".kd-unit-main",
     waitAppear: ".kd-card-scene",
     title: "Pick a unit",
     body:
-      "A unit is a small set of kanji with one quiz. They're all open from the start, so you can begin wherever you like. Every quiz you finish puts its kanji on your review schedule. Tap one to step inside.",
+      "A unit is a small set of kanji with one quiz. Every unit is open from the start, so you can study in any order. Tap one to step inside.",
   },
   {
     id: "script",
@@ -122,107 +111,91 @@ const STEPS = [
     cta: "got-it",
   },
   {
-    // (t83) Tur kini BENAR-BENAR MENJAWAB satu soal — diperlukan karena
-    // animasi goresan KanjiVG pindah ke PUNGGUNG kartu (RevealGlyph):
-    // langkah "stroke" lama menunjuk kotak genkō depan yang kini diam
-    // (glyph font biasa). Lubang mencakup seluruh kolom kanan supaya
-    // tombol Don't know (di bawah grid) tetap bisa diklik.
-    id: "answer",
-    target: ".kd-quiz-right",
+    // (t87) User kini MENJAWAB satu soal NYATA — diperlukan supaya
+    // punggung kartu (langkah berikutnya) muncul: kartu terbalik sendiri
+    // begitu dijawab. Salah boleh — ini tur; "Don't know" juga sah.
+    // Got-it tetap tersedia sebagai pintu darurat (tanpa menjawab,
+    // langkah-langkah berikutnya masih bisa dilewati lewat Got-it).
+    id: "choices",
+    target: ".kd-choice-grid",
     waitClick: ".kd-choice-btn, .kd-dontknow",
-    waitAppear: ".kd-card-face.back",
+    waitAppear: ".kd-reveal-glyph",
     title: "How a question works",
     body:
-      "Pick the choice that matches the kanji. Tapping Don't know works too, and it's fine to be wrong since you're just touring. The card turns over on its own once you answer, or with a sideways swipe.",
+      "Pick the choice that matches the kanji. Being wrong is fine here, this is just a tour, and Don't know works too. Once you answer, the card turns over on its own.",
+    cta: "got-it",
   },
   {
-    // Punggung kartu = reading sheet. Lubang sengaja SELURUH badan
-    // punggung (bukan cuma glyph) supaya user bisa MEMBACA lembar
-    // (bacaan bold yang dijelaskan) di balik tooltip — glyph kecilnya
-    // tetap bisa diklik untuk memutar animasi urutan goresan (t83).
-    id: "stroke",
-    target: ".kd-card-back-body",
+    // (t87) Punggung kartu: bacaan BOLD = sumber pilihan kuis; kanji
+    // kecil di pojok kiri-atas = animasi urutan goresan (klik = putar,
+    // klik kanan = selesaikan). waitClick pada glyph — atau Got it.
+    id: "back",
+    target: ".kd-reveal-glyph",
     waitClick: ".kd-reveal-glyph",
     title: "The card's back",
     body:
-      "This is the reading sheet. The readings in bold are the ones the choices come from. Tap the kanji at the top-left corner to watch its stroke order.",
+      "This reading sheet is what you were quizzed on: the readings in bold are the ones the choices came from. Tap the little kanji at the corner to watch it being written.",
     cta: "got-it",
   },
   {
-    // (t85) Tombol Home kini HIDUP DI TOOLTIP langkah ini (cta "home"):
-    // klik = navigasi SUNGGUHAN ke beranda lewat onGoHome dari App
-    // (navigate home + reset history, persis tombol Home layar hasil)
-    // — kuis tur ditinggalkan tanpa dialog Leave, lalu sisa tur menunggu
-    // di beranda. Kalimat panjang "tap Cancel and confirm Leave, then
-    // Home on the unit list..." dihapus: tombolnya menggantikan kalimat.
-    // target sengaja null → seluruh layar diredupkan PENUH: Cancel kuis
-    // tidak bisa diklik (tidak ada lagi dua jalur yang bersaing), dan
-    // tombol Home di tooltip menjadi satu-satunya cara maju. waitAppear
-    // tetap sebagai katup aman: back gesture/mobile & browser-back yang
-    // lolos guard → Leave → mendarat di beranda → langkah maju sendiri.
+    // (t87) Karena tur kini punya progres jawaban, ✕ membuka dialog
+    // konfirmasi (gerbang progres App) — tur menunggu tombol "Leave"
+    // di dialog itu (di atas shade, tetap klikabel). Jalur tanpa progres
+    // (user melewati choices lewat Got-it) → ✕ keluar LANGSUNG;
+    // waitAppear .kd-unit-grid menutup kedua jalur + Back sistem.
     id: "srs",
-    target: null,
-    waitAppear: ".kd-browse-entry",
+    target: ".kd-quiz-exit",
+    waitClick: ".kd-drill-confirm .kd-btn.primary",
+    waitAppear: ".kd-unit-grid",
     title: "The schedule takes care of itself",
     body:
-      "After you answer all the questions in a quiz, the app arranges your review schedule with SRS (spaced repetition). That's the whole learning loop. Tap Home to head back and see what it set up for you.",
-    cta: "home",
+      "After a quiz ends, the app schedules the unit's next review with spaced repetition, just before you'd start to forget. That's the whole learning loop. Tap the ✕ next to the quiz title, then confirm with Leave, to head back.",
   },
   {
-    // (t84) Langkah BARU, informasi murni: kartu "Due now" di beranda
-    // adalah pintu kalender jadwal. Cukup disebut, user TIDAK perlu
-    // mengkliknya (tombol Got it memajukan).
-    // (t85) block: klik pada kartu kini DICEGAL — penutup transparan
-    // (.kd-tut-cover) menelan klik/touch di lubang, guard keydown menelan
-    // Enter/Space bila user Tab ke kartunya. Spotlight cukup DILIHAT;
-    // maju hanya lewat Got it (permintaan user).
+    id: "home",
+    target: ".kd-topbar-back",
+    waitClick: ".kd-topbar-back",
+    waitAppear: ".kd-browse-entry",
+    title: "Back to home",
+    body:
+      "This is the unit list, where you land after finishing or leaving a quiz. Tap the back arrow to return home.",
+  },
+  {
+    // (t83) Langkah LOCK: kartu "Due now" hanya DISEBUT (kalender review
+    // dibuka-buka nanti sendiri); klik target diblokir, maju = Got it.
     id: "calendar",
     target: ".kd-stat.due",
-    block: true,
-    title: "Your due calendar",
+    lock: true,
+    title: "Your review calendar",
     body:
-      "That schedule lives here. The card counts the units waiting for review, and tapping it opens a calendar of everything that's coming. You never have to manage any of it by hand.",
+      "Tap this card any time to open the review calendar. It shows when every unit comes due and the days you've studied, so the schedule is never a mystery.",
     cta: "got-it",
   },
   {
-    // (t84) Dulu langkah TERAKHIR yang mengharuskan KLIK entry Browse;
-    // kini informasi murni (Got it, tanpa klik) — tur ditutup di
-    // beranda, bukan di dalam layar Browse.
-    // (t85) block: entry Browse juga DIKUNCI selama spotlight (klik/
-    // touch/Enter ditelan) — jalur tunggal Got it, senada kartu Due.
+    // (t83) Langkah LOCK: perpustakaan hanya DISEBUT; klik diblokir.
     id: "browse",
     target: ".kd-browse-entry",
-    block: true,
+    lock: true,
     title: "Browse all kanji",
     body:
-      "The whole library lives here, from N5 to N1. Open it whenever you want to look up a kanji's strokes, readings, components or example words.",
+      "The kanji library holds every kanji in the app, with stroke animations, readings, components and example words. Open it whenever you want to look one up.",
     cta: "got-it",
   },
   {
-    // (t84) Penutup baru: terpusat, tanpa target — kalimat "explore all
-    // kanji" lama sudah diambil alih langkah browse di atasnya.
-    id: "end",
+    id: "finale",
     target: null,
     title: "That's the tour!",
     body:
-      "Short quizzes, a schedule that takes care of itself, and a whole library to explore. The rest you'll pick up along the way. がんばろう!",
+      "Study a little each day and let the schedule do the remembering. がんばろう!",
     cta: "got-it",
   },
 ];
 
-export default function Tutorial({ onFinish, onGoHome }) {
+export default function Tutorial({ onFinish }) {
   const [step, setStep] = useState(0);
   // Persegi lubang (viewport coords) — null = mode terpusat (tanpa target,
   // seluruh layar diredupkan; dipakai sambutan & langkah menunggu target).
   const [rect, setRect] = useState(null);
-  // (t82-fix) Target terukur ABSEN (tidak ada di DOM / display:none, mis.
-  // tombol Cancel di layar <900px) — berbeda dari "belum selesai mengukur":
-  // absent=true memasang tooltip TERPUSAT supaya langkah tetap terbaca,
-  // bukan layar gelap tanpa teks. Tanpa ini, langkah tanpa target/tersembunyi
-  // tidak pernah menampilkan tooltip-nya (efek pasif yang mereset posisi
-  // menimpa efek layout di mount, dan rect yang tak pernah berubah tidak
-  // pernah memicu penempatan ulang).
-  const [absent, setAbsent] = useState(false);
   // Ukuran viewport — ikut dide-trace supaya shade/lubang mengikuti resize.
   const [vp, setVp] = useState(() => ({
     w: window.innerWidth,
@@ -259,7 +232,6 @@ export default function Tutorial({ onFinish, onGoHome }) {
     let cancelled = false;
     setRect(null);
     setPop(null);
-    setAbsent(false);
     const sel = STEPS[step].target;
 
     function measure() {
@@ -270,21 +242,18 @@ export default function Tutorial({ onFinish, onGoHome }) {
           : { w: window.innerWidth, h: window.innerHeight }
       );
       const el = sel ? document.querySelector(sel) : null;
-      // Elemen display:none (mis. .kd-back di layar <900px) melaporkan
-      // perseki 0×0 — perlakukan sama seperti absen (tooltip terpusat,
-      // seluruh layar diredupkan), bukan ring ciut di pojok (0,0).
+      // Elemen display:none (mis. elemen yang disembunyikan media query)
+      // melaporkan perseki 0×0 — perlakukan sama seperti absen (tooltip
+      // terpusat, seluruh layar diredupkan), bukan ring ciut di pojok (0,0).
       if (!el) {
-        setAbsent(true);
         setRect((prev) => (prev === null ? prev : null));
         return;
       }
       const r = el.getBoundingClientRect();
       if (r.width < 2 || r.height < 2) {
-        setAbsent(true);
         setRect((prev) => (prev === null ? prev : null));
         return;
       }
-      setAbsent(false);
       setRect((prev) =>
         prev &&
         prev.x === r.left &&
@@ -352,10 +321,9 @@ export default function Tutorial({ onFinish, onGoHome }) {
   }, [step]);
 
   // ---- (d) Escape = menyerah pada tur (sama seperti tombol Skip) ----
-  // (t84) GUARD: bila ada modal yang terbuka (dialog Leave, kalender,
-  // help), Esc MILIK modal itu — biarkan modal mengonsumsinya. Tanpa
-  // guard ini, Esc yang user maksudkan untuk menutup dialog Leave
-  // ("Keep studying") atau kalender juga MEMATIKAN tur begitu saja.
+  // (t87) GUARD MODAL: saat ada modal terbuka (dialog konfirmasi Leave,
+  // kalender, help), Escape milik modal itu dulu — tanpa guard ini satu
+  // tekan Escape menutup modal DAN membunuh tur sekaligus.
   useEffect(() => {
     function onKey(e) {
       if (e.key !== "Escape") return;
@@ -366,45 +334,38 @@ export default function Tutorial({ onFinish, onGoHome }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [onFinish]);
 
-  // ---- (f) (t85) Langkah ber-block: keyboard juga DIKUNCI ----
-  // Penutup transparan (.kd-tut-cover) sudah menelan klik/touch pada
-  // lubang; jalur yang tersisa untuk mengaktifkan tombol yang di-
-  // spotlight adalah keyboard (Tab lalu Enter/Space). Listener CAPTURE di
-  // window menelan aktivasi itu SEBELUM handler React-nya — tooltip
-  // tetap memegang fokus (CTA-nya di-fokus otomatis), jadi guard ini
-  // hanya menyempurnakan celah Tab, bukan jalur utama.
+  // ---- (d2) (t87) Langkah "lock": keyboard ikut diblokir ----
+  // Blocker pointer-events sudah menelan klik/touch pada target, tapi
+  // keyboard TIDAK tertutup pointer-events: Enter/Space pada tombol yang
+  // sedang fokus (kartu Due, entry Browse) tetap bisa mengaktifkannya.
+  // Listener capture di window menelan Enter/Space selama langkah lock
+  // aktif; tombol Got it di tooltip tetap bisa diklik mouse, dan tombol
+  // CTA maju lewat onClick (bukan keydown), jadi tidak terkena blok.
   useEffect(() => {
-    const sel = STEPS[step].target;
-    if (!STEPS[step].block || !sel) return;
-    function onKey(e) {
+    if (!STEPS[step].lock) return;
+    function onLockKey(e) {
       if (e.key !== "Enter" && e.key !== " ") return;
-      const el = document.activeElement;
-      if (el && el.closest && el.closest(sel)) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
+      // Enter/Space di DALAM tooltip (tombol Got it sedang fokus otomatis)
+      // tetap sah — hanya aktivasi keyboard ELEMEN DI LUAR tooltip yang
+      // ditelan (termasuk target spotlight yang terkunci).
+      if (popRef.current && popRef.current.contains(e.target)) return;
+      e.preventDefault();
+      e.stopPropagation();
     }
-    window.addEventListener("keydown", onKey, true);
-    return () => window.removeEventListener("keydown", onKey, true);
+    window.addEventListener("keydown", onLockKey, true);
+    return () => window.removeEventListener("keydown", onLockKey, true);
   }, [step]);
 
   // ---- (e) Letakkan tooltip di dekat lubang (ukur nyata post-render) ----
   useLayoutEffect(() => {
     const el = popRef.current;
     if (!el) return;
-    // Masih mengukur (rect belum ada, target belum dipastikan absen) →
-    // tooltip tetap disembunyikan dulu — mencegah kedip "muncul di tengah
-    // lalu melompat" pada langkah ber-target (dan menahan penempatan
-    // SEBELUM reset efek (a) berjalan — urutan layout-efek vs pasif-efek
-    // di mount dulunya saling menimpa).
-    if (!rect && !absent) return;
     const { w: vw, h: vh } = vp;
     const tw = el.offsetWidth;
     const th = el.offsetHeight;
     let x;
     let y;
     if (!rect) {
-      // Target absen / langkah tanpa target → TERPUSAT.
       x = (vw - tw) / 2;
       y = (vh - th) / 2;
     } else {
@@ -420,7 +381,7 @@ export default function Tutorial({ onFinish, onGoHome }) {
     // praktik (tanpa CTA) sengaja tidak memfokuskan apa pun: Enter pada
     // "Skip tutorial" akan mengakhiri tur tanpa sengaja.
     el.querySelector(".kd-tut-cta")?.focus({ preventScroll: true });
-  }, [rect, step, vp, absent]);
+  }, [rect, step, vp]);
 
   // ---- Render: 4 shade + cincin + tooltip ----
   // Lubang = persegi target dipadatkan HOLE_PAD; mode terpusat = lubang
@@ -476,18 +437,10 @@ export default function Tutorial({ onFinish, onGoHome }) {
         />
       )}
 
-      {/* (t85) Langkah ber-block: penutup transparan PERSIS di lubang —
-          target tetap terang & bercincin (cukup DILIHAT), tapi klik/touch
-          jatuh ke penutup ini, bukan ke elemen asli. Satu-satunya jalan
-          maju tombol "Got it" di tooltip. z 57: di atas cincin (56),
-          tetap di bawah modal (60) & tooltip (72). */}
-      {rect && current.block && (
-        <div
-          className="kd-tut-cover"
-          aria-hidden="true"
-          style={{ top: hole.y, left: hole.x, width: hole.w, height: hole.h }}
-        />
-      )}
+      {/* (t83) Langkah "lock": transparan di atas lubang — target terlihat
+          (cincin di bawahnya) tapi TIDAK bisa diklik; Got it satu-satunya
+          jalan maju. */}
+      {current.lock && <div className="kd-tut-blocker" aria-hidden="true" />}
 
       <div
         ref={popRef}
@@ -500,28 +453,8 @@ export default function Tutorial({ onFinish, onGoHome }) {
         <div className="kd-tut-title">{current.title}</div>
         <p className="kd-tut-body">{current.body}</p>
         {current.cta && (
-          <button
-            className={`kd-btn primary kd-tut-cta${current.cta === "home" ? " kd-tut-cta-home" : ""}`}
-            onClick={() => {
-              // (t85) cta "home" (langkah SRS): tombol ini MEMBAWA user
-              // pulang lewat navigasi SUNGGUHAN (onGoHome dari App —
-              // navigate home + reset history, kuis tur ditinggalkan
-              // tanpa dialog Leave) SEBELUM langkah maju; sisa tur
-              // (kalender, Browse, penutup) menunggu di beranda.
-              if (current.cta === "home" && onGoHome) onGoHome();
-              advance(step);
-            }}
-          >
-            {current.cta === "start" ? (
-              "Start tour"
-            ) : current.cta === "home" ? (
-              <>
-                <ChevronLeft size={16} aria-hidden="true" />
-                Home
-              </>
-            ) : (
-              "Got it"
-            )}
+          <button className="kd-btn primary kd-tut-cta" onClick={() => advance(step)}>
+            {current.cta === "start" ? "Start tour" : "Got it"}
           </button>
         )}
         <div className="kd-tut-foot">

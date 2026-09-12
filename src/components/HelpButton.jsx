@@ -30,6 +30,13 @@ export default function HelpButton({
   autoFlipDelay = 1000, // (t81) ms — satu dari AUTO_FLIP_DELAYS
   onChangeAutoFlipDelay, // (t81) (ms) => void — dikelola App + localStorage
   onReplayTutorial, // (t82) () => void — putar ulang tur onboarding dari Help
+  // (t86) Pengingat review (local notification) — hanya shell Capacitor
+  // Android; App mengirim showReminders=false di web/PWA sehingga seksi
+  // ini tidak pernah dirender di browser (web tidak punya local
+  // notification yang bisa diandalkan).
+  showReminders = false,
+  reminders = true,
+  onToggleReminders,
 }) {
   const [open, setOpen] = React.useState(false);
   // Penutup overlay yang terdaftar di tumpukan overlay router (t65):
@@ -131,35 +138,28 @@ export default function HelpButton({
             {/* t76: seksi Quiz & Browse kanji ditulis sebagai PROSA pendek
                 (bukan bullet) — mengikuti referensi user: kalimat mengalir
                 lebih mengundang dibaca daripada poin-poin. Penjelasan
-                lengkap untuk user baru kini hidup di TUR ONBOARDING (t82),
-                bukan di sini — help menjadi referensi ringkas.
+                lengkap untuk user baru kini hidup di TUR ONBOARDING (t82)
+                dan petunjuk di tempat (hint swipe di layar kuis), bukan
+                di sini — help menjadi referensi ringkas.
                 (t80) Toggle auto-flip hidup di seksi ini (pola row yang
-                sama dengan toggle "Reset progress button"): kartu berputar
-                sendiri setelah menjawab (default ON), bisa dimatikan bila
-                user ingin kendali penuh lewat swipe.
+                sama dengan toggle "Reset progress button").
                 (t81) JEDA-nya kini bisa dipilih (deretan pill di bawah
-                sakelar) — default 1 dtk. */}
+                sakelar) — default 1 dtk.
+                (t87) Dipangkas lagi atas permintaan user: paragraf
+                pengantar seksi Quiz DIHAPUS (auto-flip, swipe, dan glyph
+                goresan sudah dijelaskan tur + hint swipe; bacaan bold
+                dijelaskan tur langkah punggung kartu) dan deskripsi kecil
+                di bawah kedua label (auto-flip & jeda) ikut dihapus —
+                labelnya sendiri sudah cukup jelas. Yang tersisa di seksi
+                ini: dua kontrol + nasihat jujur "Don't know". */}
 
             <div className="kd-help-section">
               <div className="kd-help-heading">Quiz</div>
-              <p className="kd-help-text">
-                Once you answer, the card turns over on its own to a
-                reading sheet — the readings written in <b>bold</b> are
-                the ones the multiple-choice options come from, and
-                tapping the kanji at its corner replays the stroke
-                order. A sideways swipe flips the card back and forth
-                whenever you like; to turn it yourself every time,
-                switch auto-flip off below.
-              </p>
               {/* (t80) Toggle auto-flip — pola row switch yang sama dengan
-                  toggle reset button di seksi Progress. */}
+                  toggle reset button di seksi Progress. (t87) tanpa
+                  deskripsi: label "Auto-flip the card" sudah cukup. */}
               <div className="kd-help-toggle-row">
-                <div>
-                  <div className="kd-help-toggle-name">Auto-flip the card</div>
-                  <div className="kd-help-toggle-desc">
-                    Turn it over automatically once you answer
-                  </div>
-                </div>
+                <div className="kd-help-toggle-name">Auto-flip the card</div>
                 <button
                   className={`kd-toggle ${autoFlip ? "on" : ""}`}
                   role="switch"
@@ -172,14 +172,11 @@ export default function HelpButton({
               </div>
               {/* (t81) Jeda auto-flip — deretan pill durasi; row meredup
                   saat auto-flip off (pilihan tetap tersimpan, timer Quiz
-                  membaca nilai terbaru begitu toggle menyala lagi). */}
+                  membaca nilai terbaru begitu toggle menyala lagi).
+                  (t87) tanpa deskripsi: label "Auto-flip delay" + deretan
+                  pill durasi sudah cukup. */}
               <div className={`kd-help-delay-row ${autoFlip ? "" : "off"}`}>
-                <div>
-                  <div className="kd-help-toggle-name">Auto-flip delay</div>
-                  <div className="kd-help-toggle-desc">
-                    How long the answer stays visible before the turn
-                  </div>
-                </div>
+                <div className="kd-help-toggle-name">Auto-flip delay</div>
                 <div
                   className="kd-help-delay-pills"
                   role="group"
@@ -207,6 +204,40 @@ export default function HelpButton({
                 schedule accurate.
               </p>
             </div>
+
+            {/* (t86) Seksi Reminders — hanya di shell Android. Sakelar
+                memakai pola row switch yang sama dengan auto-flip/reset.
+                Notifikasi lokal murni (tidak ada data yang meninggalkan
+                perangkat) — konsisten dengan privacy policy app. */}
+            {showReminders && (
+              <div className="kd-help-section">
+                <div className="kd-help-heading">Reminders</div>
+                <div className="kd-help-toggle-row">
+                  <div>
+                    <div className="kd-help-toggle-name">Review reminders</div>
+                    <div className="kd-help-toggle-desc">
+                      A quiet nudge when reviews come due
+                    </div>
+                  </div>
+                  <button
+                    className={`kd-toggle ${reminders ? "on" : ""}`}
+                    role="switch"
+                    aria-checked={reminders}
+                    aria-label="Review reminders"
+                    onClick={onToggleReminders}
+                  >
+                    <span className="kd-toggle-knob" />
+                  </button>
+                </div>
+                <p className="kd-help-text">
+                  Reminders arrive at a few quiet times of day (morning,
+                  midday, late afternoon, evening) whenever units are due,
+                  and they reschedule themselves whenever you finish a quiz.
+                  Nothing ever leaves your phone: they are local
+                  notifications, with no network or account behind them.
+                </p>
+              </div>
+            )}
 
             <div className="kd-help-section">
               <div className="kd-help-heading">Browse kanji</div>

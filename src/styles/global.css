@@ -106,6 +106,11 @@ body {
   max-width: 640px; margin: 0 auto 22px; gap: 10px;
 }
 .kd-topbar-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+/* (t83) Grup kiri topbar: chrome NAVIGASI (✕ kuis / panah back daftar
+   unit & Browse / brand) — satu pola di semua layar: navigasi kiri,
+   aksi (help/skrip/tema) kanan. min-width 0 supaya brand sesi yang
+   panjang bisa menyusut di layar sempit tanpa mendorong tombol aksi. */
+.kd-topbar-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .kd-brand {
   font-family: 'Shippori Mincho', serif; font-weight: 800; font-size: 26px;
   letter-spacing: 0.02em; color: var(--indigo); display: flex; align-items: baseline; gap: 8px;
@@ -135,25 +140,11 @@ body {
   .kd-theme-toggle-label { display: none; }
 }
 
-.kd-back {
-  /* width:100% PENTING: elemen <button> ber-perilaku shrink-to-fit walau
-     display:flex, jadi tanpa ini margin-auto malah men-CENTER tombolnya.
-     Dengan width:100% + max-width + margin-auto, kotaknya selebar kolom
-     konten (880px, sama dengan topbar/grids) dan kontennya rata kiri —
-     tombol back menempel ke tepi kiri kolom konten, bukan tepi kiri layar
-     penuh (sebelumnya tampak "terpisah jauh" di desktop lebar). */
-  display: flex; align-items: center; gap: 4px; background: none; border: none;
-  color: var(--indigo-soft); font-family: 'Zen Kaku Gothic New'; font-size: 14px; font-weight: 700;
-  cursor: pointer; padding: 6px 0; margin: 0 auto 6px; width: 100%; max-width: 880px;
-}
-.kd-back:hover { color: var(--indigo); }
-/* t63: tombol back (Cancel kuis / Home) disembunyikan di layar kecil —
-   pengguna hp/tablet cukup memakai navigasi sistem (Back Android,
-   geser; guard kuis tetap menahan dengan dialog konfirmasi). Layar
-   lebar (desktop, keyboard) tetap memilikinya. */
-@media (max-width: 899px) {
-  .kd-back { display: none; }
-}
+/* (t83) Tombol .kd-back ("< Cancel" kuis / "< Home" daftar unit &
+   Browse) DIHAPUS SELURUHNYA — keluar kuis kini tombol ✕ di kiri brand
+   sesi topbar (selalu terlihat, termasuk layar <900px yang dulu sama
+   sekali tanpa tombol keluar), pulang dari daftar unit/Browse kini
+   panah back topbar. Shortcut q meng-klik tombol-tombol itu. */
 
 .kd-section-title {
   font-family: 'Shippori Mincho', serif; font-weight: 700; font-size: 19px; color: var(--ink);
@@ -734,9 +725,9 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 .kd-comp.plain { margin: 0; }
 .kd-comp.plain .kd-comp-row { gap: 7px; row-gap: 2px; align-items: baseline; justify-content: flex-start; }
 .kd-comp-pt { display: inline-flex; align-items: baseline; gap: 3px; }
-.kd-comp-pt .kd-comp-glyph { font-size: 17px; line-height: 1.3; }
-.kd-comp-loose { font-family: 'DM Mono', monospace; font-size: 11.5px; color: var(--ink-soft); }
-.kd-comp.plain .kd-comp-plus { font-size: 11.5px; }
+.kd-comp-pt .kd-comp-glyph { font-size: 18px; line-height: 1.3; }
+.kd-comp-loose { font-family: 'DM Mono', monospace; font-size: 12.5px; color: var(--ink-soft); }
+.kd-comp.plain .kd-comp-plus { font-size: 12.5px; }
 
 /* (t77) Label soal di TENGAH barisnya — toggle skrip yang dulu di
    kanan baris ini sudah pindah (t80: ke topbar app, universal). */
@@ -839,9 +830,9 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
   border: 1px solid var(--paper-line); border-radius: 4px; padding: 16px;
   contain: layout paint;
 }
-/* (t80→t83) Head reading sheet: kanji KIRI (sejak t83 glyph KanjiVG
-   kecil, pojok kiri-atas — lihat .kd-reveal-glyph di bawah), arti DI
-   SAMPINGNYA (t83: margin-left auto dihapus, permintaan user — arti
+/* (t80→t87) Head reading sheet: kanji KIRI — sejak t87 (dari t86) glyph
+   KanjiVG KECIL (tombol, pojok kiri-atas — lihat .kd-reveal-glyph di
+   bawah), arti mengalir DI SAMPINGNYA (margin-left:auto dihapus, arti
    menempel kanji, tidak lagi didorong ke tepi kanan lembar); TANPA
    text-align right, TANPA flex-wrap, TANPA justify-content:
    space-between (t81) — arti panjang melipat di sisa lebar baris
@@ -850,13 +841,12 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
   display: flex; align-items: center; gap: 12px;
   padding-bottom: 12px; margin-bottom: 12px; border-bottom: 1px dashed var(--paper-line);
 }
-/* (t83) Kepala reading sheet: kanji kini GLYPH KANJIVG KECIL (tombol,
-   pojok kiri-atas) + arti mengalir DI SAMPINGNYA — margin-left:auto
-   dihapus dari .kd-meaning-text, arti tidak lagi didorong ke tepi
-   kanan lembar. Kotak 72px (88px desktop): jelas lebih kecil dari
-   kotak genkō sisi depan (168/260px), pas untuk posisi kiri-atas
-   tanpa menggeser baris yomi di bawahnya. Klik = animasi urutan
-   goresan (RevealGlyph.jsx), klik kanan = selesaikan seketika. */
+/* (t87, dari t86) Kepala reading sheet: kanji kini GLYPH KanjiVG KECIL
+   (tombol, pojok kiri-atas) + arti mengalir DI SAMPINGNYA. Kotak 72px
+   (88px desktop): jelas lebih kecil dari kotak genkō sisi depan
+   (168/200px), pas untuk posisi kiri-atas tanpa menggeser baris yomi
+   di bawahnya. Klik = animasi urutan goresan (RevealGlyph.jsx), klik
+   kanan = selesaikan seketika. */
 .kd-reveal-glyph {
   flex: 0 0 auto;
   width: 72px; height: 72px;
@@ -872,9 +862,15 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
   outline-offset: 2px;
   border-radius: 2px;
 }
-.kd-meaning-text { flex: 1 1 auto; min-width: 0; font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.5; }
+/* (t87, permintaan user: font punggung kartu "agak terlalu kecil") Arti
+   naik 14→16px + semibold + flex supaya mengisi sisa lebar di samping
+   glyph — seimbang dengan kotak glyph 72px di sebelahnya. */
+.kd-meaning-text { flex: 1 1 auto; min-width: 0; font-size: 16px; font-weight: 600; color: var(--ink); line-height: 1.5; }
 .kd-reveal-yomi { display: flex; flex-direction: column; gap: 6px; margin-bottom: 4px; }
-.kd-yomi-row { font-size: 13.5px; color: var(--ink); display: flex; align-items: baseline; gap: 8px; }
+/* (t87) Bacaan 13.5→15px — baris yomi punggung kartu terbaca sekilas
+   tanpa mencondongkan badan (dipakai bersama modal Browse, juga ikut
+   naik supaya kedua permukaan tetap satu rupa). */
+.kd-yomi-row { font-size: 15px; color: var(--ink); display: flex; align-items: baseline; gap: 8px; }
 /* Wadah daftar bacaan: SATU item flex (bukan fragment lepas per bacaan).
    Tanpa ini tiap bacaan + separator "、" menjadi item flex sendiri yang
    menyusut ke lebar 1 karakter di baris sempit → kana ditumpuk vertikal.
@@ -883,7 +879,7 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
   flex: 1 1 auto; min-width: 0; line-height: 1.8; overflow-wrap: break-word;
 }
 .kd-yomi-tag {
-  font-family: 'DM Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.04em;
+  font-family: 'DM Mono', monospace; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.04em;
   padding: 2px 6px; border-radius: 2px; flex-shrink: 0;
 }
 .kd-yomi-tag.on { background: var(--on-tag-bg); color: var(--indigo); }
@@ -901,14 +897,14 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 .kd-reveal-comp .kd-comp { margin: 0; }
 .kd-yomi-tag.comp { background: var(--paper); color: var(--ink-soft); }
 .kd-examples { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--paper-line); display: flex; flex-direction: column; gap: 8px; }
-.kd-example-item { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; font-size: 13px; }
-.kd-example-word { font-family: 'Shippori Mincho', serif; font-size: 16px; color: var(--ink); }
+.kd-example-item { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; font-size: 14px; }
+.kd-example-word { font-family: 'Shippori Mincho', serif; font-size: 17px; color: var(--ink); }
 /* Reading kana contoh kata: font JAPANESE, bukan DM Mono — DM Mono tidak
    punya glyph kana, kana jatuh ke fallback sistem yang tampak tidak
    serasi. Zen Kaku Gothic New punya kana rapi dan sudah di-load sebagai
    webfont. */
-.kd-example-reading { font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 12px; color: var(--indigo-soft); letter-spacing: 0.01em; }
-.kd-example-meaning { font-size: 12.5px; color: var(--ink-soft); }
+.kd-example-reading { font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 13px; color: var(--indigo-soft); letter-spacing: 0.01em; }
+.kd-example-meaning { font-size: 13.5px; color: var(--ink-soft); }
 /* Masuknya bar aksi mengikuti berputarnya kartu ke sisi belakang (fade
    + naik kecil saja, dipakai .kd-card-actions). */
 @keyframes kd-rise-in {
@@ -992,51 +988,26 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
   .kd-btn-row .kd-btn { flex: 1; }
 }
 
-/* Kuis: kanji di kiri, soal + pilihan jawaban di kanan (2 kolom).
-   Mobile (default, di luar media query ini) tetap ditumpuk vertikal. */
+/* ===== (t83) Kuis: kartu PORTRAIT di semua ukuran layar =====
+   Pilihan jawaban SELALU di bawah kanji (permintaan user: di desktop
+   pilihan tadinya di KANAN genkō dan kartu 780px landscape terlalu
+   besar + canggung ketika diflip). Tata letak vertikal yang dipakai
+   mobile sejak awal kini berlaku untuk semua viewport — satu rupa,
+   kartu lebih ramping (480px, terpusat), flip sumbu-Y terasa natural.
+   Desktop hanya menaikkan ukuran elemen sedikit supaya kehadirannya
+   terasa di layar lebar; lebar kartu/dots/hint/bar aksi tidak berubah
+   (480px — override 780px t81 dihapus). */
 @media (min-width: 900px) {
-  .kd-quiz-layout {
-    display: flex; flex-direction: row; align-items: flex-start; justify-content: center;
-    gap: 64px; max-width: 900px; margin: 0 auto;
-  }
-  .kd-quiz-left {
-    /* t63/t64: genkō DIJANGKAR DI ATAS kolom — membuka panel reveal
-       (di kolom kanan) tidak menggeser kotak genkō sama sekali (t62:
-       genkō "turun" saat reveal membuka, dinilai jelek). */
-    flex: 0 0 auto; display: flex; flex-direction: column; align-items: center;
-    align-self: flex-start;
-  }
-  .kd-quiz-left .kd-genkou { width: 260px; height: 260px; margin: 0; }
-  .kd-quiz-left .kd-genkou-glyph { font-size: 138px; }
-
-  .kd-quiz-right { flex: 1 1 420px; max-width: 440px; }
-  .kd-quiz-right .kd-question-sub { font-size: 19px; }
-  .kd-quiz-right .kd-mode-badge { max-width: none; }
-  .kd-quiz-right .kd-choice-grid { max-width: none; margin: 0; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .kd-quiz-right .kd-choice-btn { padding: 18px 10px; font-size: 15.5px; }
-  .kd-quiz-right .kd-dontknow { max-width: none; }
-  /* t64: reveal + Continue kembali di kolom kanan — lebar mengikuti
-     kolom (t63 sempat baris lebar 560px sendiri di bawah layout). */
-  .kd-quiz-right .kd-reveal { max-width: none; }
-  .kd-quiz-right .kd-continue-btn { max-width: none; }
-
-  /* (t81) KARTU MELEBAR DI DESKTOP — root keluhan "tampilan desktop agak
-     kacau": sejak t77 layout depan kartu 2-kolom (genkō 260 + gap 64 +
-     kolom soal ±420px ≈ 744px) tapi .kd-card-scene masih dibatasi 480px
-     → kolom pilihan TERGENCET ±124px (pilihan menyempit & teks melipat
-     aneh). Kini scene 780px (di dalam kolom konten 880px) sehingga
-     kedua kolom muat lega; papan dots, hint swipe, dan bar aksi
-     disejajarkan dengan LEBAR KARTU yang sama supaya tepinya rapi.
-     Reading sheet di belakang ikut sedikit melebar (460→560px, tetap
-     terpusat) supaya tidak "kosong" di kartu yang melebar. */
-  .kd-card-scene { max-width: 780px; }
-  .kd-progress-dots, .kd-swipe-hint, .kd-card-actions { max-width: 780px; }
-  .kd-quiz-layout { max-width: none; }
-  .kd-card-back-body { max-width: 560px; }
-  /* (t83) Glyph KanjiVG di kepala punggung kartu melebar sedikit di
-     desktop mengikuti back-body 560px — tetap jelas lebih kecil dari
-     kotak genkō 260px di sisi depan. Placeholder font ikut menyesuaikan. */
+  .kd-genkou { width: 200px; height: 200px; margin-bottom: 24px; }
+  /* (t87) Glyph teks depan ikut membesar mengikuti kotak 200px (proporsi
+      sama dengan mobile: 92/168) — dulu SVG mengisi kotak secara
+      otomatis, glyph font harus dinaikkan eksplisit. Glyph KanjiVG di
+      kepala punggung ikut melebar (72→88px) mengikuti kartu desktop. */
+  .kd-genkou-glyph { font-size: 108px; }
   .kd-reveal-glyph { width: 88px; height: 88px; font-size: 66px; }
+  .kd-choice-grid { gap: 12px; }
+  .kd-choice-btn { padding: 18px 12px; font-size: 15.5px; }
+  .kd-dontknow { padding: 13px; }
 }
 
 .kd-loading {
@@ -1318,11 +1289,12 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 
 /* ===== Modal detail kanji (Browse) + animasi urutan goresan (KanjiVG) ===== */
 
-/* (t83) Glyph kuis sisi DEPAN kembali GLYPH TEKS BIASA (font Shippori
-   Mincho) — tombol & SVG-nya pensiun bersama pindahnya animasi urutan
-   goresan ke glyph kecil di punggung kartu (button.kd-genkou-glyph,
-   .kd-genkou-svg, dan komponen GenkouGlyph.jsx dihapus). Aturan font
-   dasar ini tetap dipakai div glyph dalam kotak genkō-yōshi. */
+/* (t87, dari t86) Glyph kuis sisi DEPAN kembali GLYPH TEKS BIASA (font
+   Shippori Mincho) — tombol & SVG-nya pensiun bersama pindahnya animasi
+   urutan goresan ke glyph kecil di punggung kartu (button.kd-genkou-glyph,
+   .kd-genkou-svg, dan komponen GenkouGlyph.jsx dihapus). Aturan font dasar
+   .kd-genkou-glyph (di blok kuis) tetap dipakai div glyph dalam kotak
+   genkō-yōshi. */
 
 /* Kotak animasi — estetika sama dengan kotak glyph kuis (genkō-yōshi).
    Seluruh kotak bisa DIKLIK untuk menyalin kanji (tombol overlay
@@ -1522,9 +1494,10 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
                        user di dead-end.
    - .kd-tut-ring    : cincin spotlight di lubang (z 56, pointer-events
                        none) — denyut lembut menarik mata ke target.
-   - .kd-tut-cover   : (t85) penutup TRANSPARAN di lubang langkah ber-
-                       block (z 57) — target tetap terlihat tapi klik/touch
-                       ditelan; maju hanya lewat tombol Got it.
+   - .kd-tut-blocker : (t83) lapisan transparan full-viewport (z 57) untuk
+                       langkah "lock" — langkah yang menyebut target TANPA
+                       meminta klik: target harus tidak interaktif, satu-
+                       satunya jalan maju adalah tombol Got it tooltip.
    - .kd-tut-pop     : tooltip (z 72, DI ATAS modal — Skip/Got it selalu
                        terjangkau), kartu kertas sama bahasa dengan modal
                        app (surface + garis kertas + Shippori Mincho). */
@@ -1540,16 +1513,12 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
   transition: top 0.35s ease, left 0.35s ease, width 0.35s ease, height 0.35s ease;
   animation: kd-tut-pulse 2.4s ease-in-out infinite;
 }
-/* (t85) Penutup lubang langkah ber-block (kartu Due, entry Browse):
-   transparan & tanpa tampilan — tugasnya satu: MENELAN klik/touch di
-   area spotlight supaya elemen yang sedang dijelaskan tidak bisa
-   dipakai (permintaan user: cukup dilihat, maju lewat Got it). Ikut
-   berpindah mulus mengikuti lubang. z 57: di atas cincin (56), tetap
-   di bawah modal (60) & tooltip (72). */
-.kd-tut-cover {
-  position: fixed; z-index: 57; background: transparent;
-  pointer-events: auto; cursor: default;
-  transition: top 0.35s ease, left 0.35s ease, width 0.35s ease, height 0.35s ease;
+/* (t83) Blokade langkah "lock": transparan (cincin z 56 tetap terlihat
+   di bawahnya), menutup SELURUH viewport termasuk lubang shade — target
+   spotlight tidak bisa diklik; tooltip (z 72) tetap bebas. */
+.kd-tut-blocker {
+  position: fixed; inset: 0; z-index: 57;
+  background: transparent; pointer-events: auto;
 }
 @keyframes kd-tut-pulse {
   0%, 100% { box-shadow: 0 0 0 5px rgba(31, 60, 92, 0.2); }
@@ -1572,12 +1541,6 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 /* Tombol utama tooltip — turunan kd-btn primary (lebar penuh seperti pola
    Continue di bar aksi kuis), sedikit lebih ringkas. */
 .kd-tut-cta { width: 100%; margin-top: 14px; padding: 11px; font-size: 13.5px; }
-/* (t85) Varian "home" (langkah SRS): ikon ChevronLeft + label sebaris —
-   bahasa ikon tombol Home asli aplikasi (daftar unit), jadi tombol tur
-   terbaca sebagai "tombol Home yang sama", bukan tombol generik. */
-.kd-tut-cta-home {
-  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
-}
 .kd-tut-foot {
   display: flex; align-items: center; justify-content: space-between;
   gap: 12px; margin-top: 12px;
@@ -1593,7 +1556,7 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 .kd-tut-skip:hover { color: var(--seal); text-decoration-color: var(--seal); }
 .kd-tut-count { font-family: 'DM Mono', monospace; font-size: 10.5px; color: var(--ink-soft); }
 @media (prefers-reduced-motion: reduce) {
-  .kd-tut-shade, .kd-tut-ring, .kd-tut-cover, .kd-tut-pop { transition: none; }
+  .kd-tut-shade, .kd-tut-ring, .kd-tut-pop { transition: none; }
   .kd-tut-ring { animation: none; box-shadow: 0 0 0 5px rgba(31, 60, 92, 0.2); }
   .kd-tut-pop { animation: none; }
 }
