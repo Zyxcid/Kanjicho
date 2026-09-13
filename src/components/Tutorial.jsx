@@ -1,4 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { ChevronLeft } from "lucide-react";
+import { t } from "../lib/i18n.js";
 
 /**
  * Tutorial (t82, direvisi t83) — tur onboarding "hint overlay" untuk
@@ -46,6 +48,18 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
  * selama tur aktif), pulang dari daftar unit lewat tombol "< Home"
  * yang dikembalikan di topbar.
  *
+ * (t89) Langkah srs: CTA "< Home" DI DALAM TOOLTIP menggantikan instruksi
+ * teks "Tap the ✕ next to the quiz title to head back" (permintaan user —
+ * tombol pulang yang SUNGUGU, desain sama dengan tombol back topbar app:
+ * chevron + label). Seluruh layar diredupkan (target null), tombol itu
+ * satu-satunya jalan; klik = keluar kuis demo + navigate home + reset
+ * history (prop onGoHome dari App) — tanpa dialog Leave. Langkah "home"
+ * (spotlight tombol "< Home" daftar unit) ikut pensiun: tur kini terbang
+ * LURUS dari kuis ke beranda, dan tombol berlabel di topbar tidak lagi
+ * perlu diajarkan. Langkah tour kini ber-KEY i18n (t89): title/body berupa
+ * kunci kamus, diselesaikan saat RENDER (kamus bisa berganti bahasa
+ * kapan pun lewat help overlay).
+ *
  * (t88) BUG FIX "layar redup tanpa overlay": efek (a) dulu memanggil
  * setRect(null)+setPop(null) saat TIAP pergantian langkah — padahal
  * useLayoutEffect (e) sudah menghitung posisi tooltip SEBELUM efek
@@ -90,9 +104,8 @@ const STEPS = [
   {
     id: "welcome",
     target: null,
-    title: "Welcome to Kanjichō",
-    body:
-      "Learn the JLPT kanji with short quizzes, and let the app bring each one back for review right before you'd forget it. A quick tour, about half a minute.",
+    title: "tour.welcome.title",
+    body: "tour.welcome.body",
     cta: "start",
   },
   {
@@ -100,25 +113,23 @@ const STEPS = [
     target: ".kd-level-grid",
     waitClick: ".kd-level-card",
     waitAppear: ".kd-unit-grid",
-    title: "Choose a JLPT level",
-    body:
-      "Each level keeps its own kanji and units. Start with the one you're aiming for; your progress will show on these cards as you study. Tap any level to continue.",
+    title: "tour.level.title",
+    body: "tour.level.body",
   },
   {
     id: "unit",
     target: ".kd-unit-grid",
     waitClick: ".kd-unit-main",
     waitAppear: ".kd-card-scene",
-    title: "Pick a unit",
-    body: "A unit is a small set of kanji with one quiz. Tap one to step inside.",
+    title: "tour.unit.title",
+    body: "tour.unit.body",
   },
   {
     id: "script",
     target: ".kd-script-toggle",
     waitClick: ".kd-script-toggle",
-    title: "Kana or romaji",
-    body:
-      "This switch works everywhere. Readings in quizzes and in the kanji library flip between kana and romaji the moment you tap it.",
+    title: "tour.script.title",
+    body: "tour.script.body",
     cta: "got-it",
   },
   {
@@ -128,12 +139,16 @@ const STEPS = [
     // menjawab, langkah-langkah berikutnya masih bisa dilewati lewat
     // Got-it). (t88) Body dipangkas atas permintaan: cukup arah jawabannya
     // — bacaan kanji, bukan arti.
+    // (t89) waitClick pada pilihan DIHAPUS: maju kini HANYA lewat munculnya
+    // punggung kartu (waitAppear .kd-reveal-glyph = soal benar-benar
+    // dijawab). Ketukan PERTAMA pada pilihan saat fitur "blur pilihan"
+    // (t89, Quiz.jsx) aktif hanya membuka blur — tanpa guard ini tur akan
+    // maju ke langkah punggung sebelum kartu terbalik (dead-end).
     id: "choices",
     target: ".kd-choice-grid",
-    waitClick: ".kd-choice-btn, .kd-dontknow",
     waitAppear: ".kd-reveal-glyph",
-    title: "How a question works",
-    body: "Pick the choice that matches the kanji's reading.",
+    title: "tour.choices.title",
+    body: "tour.choices.body",
     cta: "got-it",
   },
   {
@@ -146,37 +161,22 @@ const STEPS = [
     id: "back",
     target: ".kd-card-back-body",
     waitClick: ".kd-reveal-glyph",
-    title: "The card's back",
-    body:
-      "The readings in bold are the ones the choices came from. Tap the little kanji at the corner to watch it being written.",
+    title: "tour.back.title",
+    body: "tour.back.body",
     cta: "got-it",
   },
   {
-    // (t88) Kembali SATU KETUKAN: sesi kuis tur adalah demo sekali pakai
-    // (jawaban tur memang terbuang saat pergi — tidak ada yang hilang),
-    // jadi App meloloskan ✕ LANGSUNG tanpa dialog konfirmasi selama tur
-    // aktif. Di luar tur, gerbang dialog untuk kuis berprogres tetap
-    // utuh (lihat requestQuizExit App.jsx). waitAppear .kd-unit-grid
-    // menutup jalur Back sistem.
+    // (t89) CTA "< Home": keluar SATU KETUKAN dari tooltip — sesi kuis
+    // tur memang demo sekali pakai (jawaban tur terbuang saat pergi —
+    // tidak ada yang hilang), jadi tidak perlu dialog konfirmasi.
+    // Target sengaja NULL (seluruh layar diredupkan): tombol ini
+    // satu-satunya jalan maju — tidak ada elemen lain yang bisa diklik.
+    // Kalimat "Tap the ✕ next to the quiz title to head back" pensiun.
     id: "srs",
-    target: ".kd-quiz-exit",
-    waitClick: ".kd-quiz-exit",
-    waitAppear: ".kd-unit-grid",
-    title: "The schedule takes care of itself",
-    body:
-      "After a quiz ends, the app schedules the unit's next review with spaced repetition, just before you'd start to forget. That's the whole learning loop. Tap the ✕ next to the quiz title to head back.",
-  },
-  {
-    // (t88) Tombol "< Home" DIKEMBALIKAN di topbar daftar unit (kelas
-    // .kd-topbar-back tetap): afordansi pulang satu ketukan yang
-    // terbaca seketika — lebih sederhana daripada panah polos.
-    id: "home",
-    target: ".kd-topbar-back",
-    waitClick: ".kd-topbar-back",
-    waitAppear: ".kd-browse-entry",
-    title: "Back to home",
-    body:
-      "This is the unit list, where you land after finishing or leaving a quiz. Tap Home to head back.",
+    target: null,
+    cta: "home",
+    title: "tour.srs.title",
+    body: "tour.srs.body",
   },
   {
     // (t83) Langkah LOCK: kartu "Due now" hanya DISEBUT (kalender review
@@ -184,9 +184,8 @@ const STEPS = [
     id: "calendar",
     target: ".kd-stat.due",
     lock: true,
-    title: "Your review calendar",
-    body:
-      "Tap this card any time to open the review calendar. It shows when every unit comes due and the days you've studied, so the schedule is never a mystery.",
+    title: "tour.calendar.title",
+    body: "tour.calendar.body",
     cta: "got-it",
   },
   {
@@ -194,22 +193,23 @@ const STEPS = [
     id: "browse",
     target: ".kd-browse-entry",
     lock: true,
-    title: "Browse all kanji",
-    body:
-      "The kanji library holds every kanji in the app, with stroke animations, readings, components and example words. Open it whenever you want to look one up.",
+    title: "tour.browse.title",
+    body: "tour.browse.body",
     cta: "got-it",
   },
   {
+    // (t89) Penutup diarahkan ulang atas permintaan user: pelajari
+    // SEDIKIT DEMI SEDIKIT + jangan lupa me-review kanji yang dijawab
+    // salah (mengganti "let the schedule do the remembering").
     id: "finale",
     target: null,
-    title: "That's the tour!",
-    body:
-      "Study a little each day and let the schedule do the remembering. がんばろう!",
+    title: "tour.finale.title",
+    body: "tour.finale.body",
     cta: "got-it",
   },
 ];
 
-export default function Tutorial({ onFinish }) {
+export default function Tutorial({ onFinish, onGoHome }) {
   const [step, setStep] = useState(0);
   // Persegi lubang (viewport coords) — null = mode terpusat (tanpa target,
   // seluruh layar diredupkan; dipakai sambutan & langkah menunggu target).
@@ -471,19 +471,38 @@ export default function Tutorial({ onFinish }) {
         className="kd-tut-pop"
         role="dialog"
         aria-modal="false"
-        aria-label={`Tutorial: ${current.title}`}
+        aria-label={t("tour.aria", { title: t(current.title) })}
         style={pop ? { left: pop.x, top: pop.y } : { visibility: "hidden" }}
       >
-        <div className="kd-tut-title">{current.title}</div>
-        <p className="kd-tut-body">{current.body}</p>
-        {current.cta && (
-          <button className="kd-btn primary kd-tut-cta" onClick={() => advance(step)}>
-            {current.cta === "start" ? "Start tour" : "Got it"}
+        <div className="kd-tut-title">{t(current.title)}</div>
+        <p className="kd-tut-body">{t(current.body)}</p>
+        {current.cta === "home" ? (
+          /* (t89) CTA "< Home" — tombol pulang SUNGGUH di dalam tooltip:
+             desain chevron + label (bahasa ikon tombol back topbar app),
+             pewarnaan tombol primer supaya terbaca sebagai satu-satunya
+             jalan saat seluruh layar diredupkan. Klik = keluar kuis demo
+             + pulang (onGoHome dari App: navigate home + reset history)
+             DAN memajukan tur — langkah berikutnya (kalender beranda)
+             mem-poll targetnya sampai render. */
+          <button
+            className="kd-btn primary kd-tut-cta kd-tut-cta-home"
+            onClick={() => {
+              if (onGoHome) onGoHome();
+              advance(step);
+            }}
+          >
+            <ChevronLeft size={15} strokeWidth={2.25} /> {t("common.home")}
           </button>
+        ) : (
+          current.cta && (
+            <button className="kd-btn primary kd-tut-cta" onClick={() => advance(step)}>
+              {current.cta === "start" ? t("tour.start") : t("tour.gotIt")}
+            </button>
+          )
         )}
         <div className="kd-tut-foot">
           <button className="kd-tut-skip" onClick={() => onFinish("skipped")}>
-            Skip tutorial
+            {t("tour.skip")}
           </button>
           <span className="kd-tut-count" aria-hidden="true">
             {step + 1} / {STEPS.length}

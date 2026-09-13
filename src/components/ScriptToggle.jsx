@@ -1,4 +1,5 @@
 import React from "react";
+import { t } from "../lib/i18n.js";
 
 /**
  * ScriptToggle (t80) — toggle kana ↔ romaji, kini di TOPBAR sehingga
@@ -19,24 +20,17 @@ import React from "react";
  * state yang sama.
  */
 export default function ScriptToggle({ answerScript, onToggleScript }) {
+  const kana = answerScript === "kana";
   return (
     <button
       type="button"
       className="kd-script-toggle"
       onClick={onToggleScript}
-      title={
-        answerScript === "kana"
-          ? "Show readings in romaji (r)"
-          : "Show readings in kana (r)"
-      }
-      aria-label={
-        answerScript === "kana"
-          ? "Show readings in romaji"
-          : "Show readings in kana"
-      }
-      aria-pressed={answerScript === "kana"}
+      title={kana ? t("script.romaji.title") : t("script.kana.title")}
+      aria-label={kana ? t("script.romaji.aria") : t("script.kana.aria")}
+      aria-pressed={kana}
     >
-      {answerScript === "kana" ? "あ" : "Aa"}
+      {kana ? "あ" : "Aa"}
     </button>
   );
 }

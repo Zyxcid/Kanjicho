@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { X } from "lucide-react";
 import ReviewCalendar from "./ReviewCalendar.jsx";
+import { t } from "../lib/i18n.js";
 
 /**
  * CalendarModal — overlay kalender review (kd-cal + kd-day-panel, default
@@ -28,12 +29,14 @@ export default function CalendarModal({ level, entries, activity, onClose, onJum
   return (
     <div className="kd-modal-overlay" onClick={onClose}>
       <div className="kd-modal kd-cal-modal" onClick={(e) => e.stopPropagation()}>
-        <button className="kd-modal-close" onClick={onClose} aria-label="Close" autoFocus>
+        <button className="kd-modal-close" onClick={onClose} aria-label={t("common.close")} autoFocus>
           <X size={18} />
         </button>
 
-        <div className="kd-cal-modal-title">Review calendar</div>
-        <div className="kd-cal-modal-sub">{level ? `${level} units` : "All levels"}</div>
+        <div className="kd-cal-modal-title">{t("cal.modal.title")}</div>
+        <div className="kd-cal-modal-sub">
+          {level ? t("cal.modal.scopeLevel", { level }) : t("cal.modal.scopeAll")}
+        </div>
 
         <ReviewCalendar entries={entries} activity={activity} onJump={onJump} />
       </div>

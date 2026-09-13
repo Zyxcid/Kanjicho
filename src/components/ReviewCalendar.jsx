@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { ChevronLeft, ChevronRight, Check } from "lucide-react";
 import { toDateStr, formatHHMM } from "../lib/studyStats.js";
+import { t, localeOf } from "../lib/i18n.js";
 
 /**
  * ReviewCalendar — kalender bulanan review (kd-cal) digabung panel hari
@@ -15,8 +16,14 @@ import { toDateStr, formatHHMM } from "../lib/studyStats.js";
  * Baris overdue (jam sudah lewat) adalah tombol — onJump membuka kuisnya.
  */
 
-const WEEKDAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]; // minggu mulai Minggu (kalender Jepang/Indonesia)
 const MS_PER_DAY = 1000 * 60 * 60 * 24;
+
+// (t89) Header hari dalam seminggu — kunci kamus "cal.weekdays" (string
+// dipisah spasi, 7 label 2-huruf). Minggu tetap MULAI MINGGU di kedua
+// bahasa (kalender Jepang; grid tidak bergeser — hanya labelnya berganti).
+function weekdays() {
+  return t("cal.weekdays").split(" ");
+}
 
 export function startOfDay(d) {
   const x = new Date(d);
@@ -34,13 +41,13 @@ function monthKey(d) {
   return d.getFullYear() * 12 + d.getMonth();
 }
 
-/** "Wed, Sep 3" — label hari ringkas (en-US, konsisten dgn UI app). */
+/** "Wed, Sep 3" — label hari ringkas (locale mengikuti bahasa aktif). */
 export function shortDate(d) {
-  return d.toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" });
+  return d.toLocaleDateString(localeOf(), { weekday: "short", month: "short", day: "numeric" });
 }
 
 export function units(n) {
-  return `${n} ${n === 1 ? "unit" : "units"}`;
+  return n === 1 ? t("cal.unitOne", { n }) : t("cal.units", { n });
 }
 
 /** Jadwal review dari state SRS: [{unitId, at}] terurut waktu. `level`
@@ -147,24 +154,24 @@ export default function ReviewCalendar({ entries, activity, onJump }) {
       <div className="kd-cal">
         <div className="kd-cal-head">
           <span className="kd-cal-title">
-            {anchor.toLocaleDateString("en-US", { month: "long", year: "numeric" })}
+            {anchor.toLocaleDateString(localeOf(), { month: "long", year: "numeric" })}
           </span>
           <div className="kd-cal-nav">
             {!isCurrentMonth && (
               <button className="kd-cal-today-btn" onClick={() => setAnchor(new Date(now.getFullYear(), now.getMonth(), 1))}>
-                Today
+                {t("cal.today")}
               </button>
             )}
-            <button disabled={!canPrev} onClick={() => shiftMonth(-1)} aria-label="Previous month">
+            <button disabled={!canPrev} onClick={() => shiftMonth(-1)} aria-label={t("cal.prev")}>
               <ChevronLeft size={14} />
             </button>
-            <button disabled={!canNext} onClick={() => shiftMonth(1)} aria-label="Next month">
+            <button disabled={!canNext} onClick={() => shiftMonth(1)} aria-label={t("cal.next")}>
               <ChevronRight size={14} />
             </button>
           </div>
         </div>
         <div className="kd-cal-grid">
-          {WEEKDAYS.map((w) => (
+          {weekdays().map((w) => (
             <span key={w} className="kd-cal-weekday">
               {w}
             </span>
@@ -191,7 +198,7 @@ export default function ReviewCalendar({ entries, activity, onJump }) {
                 key={key}
                 className={cls}
                 onClick={() => setSelected(key)}
-                aria-label={`${shortDate(d)}${due ? `, ${units(due)} due` : ""}${studied ? ", studied" : ""}`}
+                aria-label={`${shortDate(d)}${due ? ", " + t("cal.cellDue", { n: due }) : ""}${studied ? ", " + t("cal.cellStudied") : ""}`}
               >
                 <span className="kd-cal-daynum">{d.getDate()}</span>
                 <span className="kd-cal-marks">
@@ -207,11 +214,11 @@ export default function ReviewCalendar({ entries, activity, onJump }) {
       {/* Detail hari terpilih (default hari ini): unit + jam jatuh tempo. */}
       <div className="kd-day-panel">
         <div className="kd-day-panel-head">
-          <span className="kd-day-panel-title">{isToday ? "Today" : shortDate(selectedDate)}</span>
+          <span className="kd-day-panel-title">{isToday ? t("cal.today") : shortDate(selectedDate)}</span>
           {dayRows.length > 0 && <span className="kd-day-panel-count">{units(dayRows.length)}</span>}
         </div>
         {dayRows.length === 0 ? (
-          <p className="kd-day-empty">{isToday ? "Nothing due today" : "No reviews due this day"}</p>
+          <p className="kd-day-empty">{isToday ? t("cal.empty.today") : t("cal.empty.day")}</p>
         ) : (
           <div className="kd-day-list">
             {dayRows.map((e) => {
@@ -222,7 +229,7 @@ export default function ReviewCalendar({ entries, activity, onJump }) {
                 <>
                   {wasEarlierDay && <span>{shortDate(e.at)}</span>}
                   <span>{formatHHMM(e.at)}</span>
-                  {overdue && <span className="kd-day-overdue">overdue</span>}
+                  {overdue && <span className="kd-day-overdue">{t("cal.overdue")}</span>}
                 </>
               );
               return overdue ? (
@@ -230,7 +237,7 @@ export default function ReviewCalendar({ entries, activity, onJump }) {
                   key={e.unitId}
                   className="kd-day-row"
                   onClick={() => onJump && onJump(e.unitId)}
-                  title={`Review ${e.unitId} now`}
+                  title={t("cal.reviewNow", { unit: e.unitId })}
                 >
                   <span className="kd-day-unit">{e.unitId}</span>
                   <span className="kd-day-when">
@@ -249,8 +256,8 @@ export default function ReviewCalendar({ entries, activity, onJump }) {
         )}
         {activityCount > 0 && (
           <div className="kd-day-activity">
-            <Check size={12} /> {activityCount === 1 ? "1 quiz completed" : `${activityCount} quizzes completed`}{" "}
-            {isToday ? "today" : "this day"}
+            <Check size={12} /> {activityCount === 1 ? t("cal.quizzesOne") : t("cal.quizzes", { n: activityCount })}{" "}
+            {isToday ? t("cal.todayWord") : t("cal.thisDayWord")}
           </div>
         )}
       </div>

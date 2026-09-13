@@ -1,6 +1,7 @@
 import React from "react";
 import { ChevronRight, Flame } from "lucide-react";
 import { intervalUntilLabel } from "../lib/dueFormat.js";
+import { t, getLang } from "../lib/i18n.js";
 
 /**
  * intervalUntilLabel → bentuk ringkas untuk ANGKA kartu "Next due" ("6h").
@@ -8,15 +9,18 @@ import { intervalUntilLabel } from "../lib/dueFormat.js";
  * "under a minute" dipetak ke "<1m". "now" dikembalikan null — tak mungkin
  * tampil bersamaan dengan due = 0 (unit yang jatuh tempo terhitung due),
  * jadi pemanggil jatuh ke varian "0 · Due now".
+ * (t89) Padanan singkatan kini per bahasa ("min/jam/hari" vs "min/hour/
+ * day") — regex yang dipakai mengikuti bahasa aktif.
  */
 function compactInterval(iso) {
   const label = intervalUntilLabel(iso);
-  if (label === "now") return null;
+  if (label === t("dur.now")) return null;
+  const id = getLang() === "id";
   return label
-    .replace("under a minute", "<1m")
-    .replace(/ min$/, "m")
-    .replace(/ hours?$/, "h")
-    .replace(/ days?$/, "d");
+    .replace(id ? "kurang dari semenit" : "under a minute", "<1m")
+    .replace(id ? / menit$/ : / min$/, "m")
+    .replace(id ? / jam$/ : / hours?$/, "h")
+    .replace(id ? / hari$/ : / days?$/, "d");
 }
 
 /**
@@ -87,13 +91,13 @@ export default function StatCards({ stats, studyStats, onOpenCalendar }) {
   // saat streak > 0; keadaan via tooltip + warna angka/api.
   const showFlame = streak > 0;
   const flameTitle = streakDoneToday
-    ? `${streak}-day streak — done today`
-    : `${streak}-day streak — quiz today to keep it`;
+    ? t("stat.streak.done", { n: streak })
+    : t("stat.streak.risk", { n: streak });
 
   // Angka & label kartu due: dua peran — "N · Due now" (ada yang due)
   // atau "3h · Next due" (kosong, tampilkan jadwal terdekat).
   const dueNum = showNext ? nextCompact : stats.due;
-  const dueLabel = showNext ? "Next due" : "Due now";
+  const dueLabel = showNext ? t("stat.nextDue") : t("stat.dueNow");
 
   const dueContent = (
     <>
@@ -106,19 +110,23 @@ export default function StatCards({ stats, studyStats, onOpenCalendar }) {
   );
 
   const dueTitle = hasDue
-    ? `${stats.due} unit${stats.due === 1 ? "" : "s"} ready to review — see what's due and when`
+    ? stats.due === 1
+      ? t("stat.due.titleOne", { n: stats.due })
+      : t("stat.due.title", { n: stats.due })
     : showNext
-      ? `No units due — next review in ${intervalUntilLabel(stats.nextReviewAt)}. Open the calendar`
-      : "Open the review calendar";
+      ? t("stat.next.title", { label: intervalUntilLabel(stats.nextReviewAt) })
+      : t("stat.cal.title");
 
   const dueAria = hasDue
-    ? `Due now: ${stats.due} units — open review calendar`
+    ? stats.due === 1
+      ? t("stat.due.ariaOne", { n: stats.due })
+      : t("stat.due.aria", { n: stats.due })
     : showNext
-      ? `Next review in ${intervalUntilLabel(stats.nextReviewAt)} — open review calendar`
-      : "Due now: none — open review calendar";
+      ? t("stat.next.aria", { label: intervalUntilLabel(stats.nextReviewAt) })
+      : t("stat.none.aria");
 
   return (
-    <div className="kd-hero" role="group" aria-label="Study statistics">
+    <div className="kd-hero" role="group" aria-label={t("stat.group")}>
       <div className={`kd-hero-row${showFlame ? " count-4" : ""}`}>
         {showFlame && (
           // Tanpa label (t55): api + angka saja. role="img" + aria-label
@@ -145,7 +153,7 @@ export default function StatCards({ stats, studyStats, onOpenCalendar }) {
             {stats.studied}
             <span className="kd-stat-total">/{stats.total}</span>
           </div>
-          <div className="kd-stat-label">Studied</div>
+          <div className="kd-stat-label">{t("stat.studied")}</div>
         </div>
         {canOpen ? (
           <button
@@ -162,7 +170,7 @@ export default function StatCards({ stats, studyStats, onOpenCalendar }) {
         )}
         <div className="kd-stat mastered">
           <div className="kd-stat-num">{stats.mastered}</div>
-          <div className="kd-stat-label">Mastered</div>
+          <div className="kd-stat-label">{t("stat.mastered")}</div>
         </div>
       </div>
     </div>

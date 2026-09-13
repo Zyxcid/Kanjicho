@@ -19,6 +19,7 @@ import {
 } from "./lib/notifications.js";
 import { useRouter } from "./lib/useRouter.js";
 import { pushOverlayEntry, closeOverlayUI, discardOverlayEntry } from "./lib/useRouter.js";
+import { t, getLang, setLang } from "./lib/i18n.js";
 
 import Home from "./components/Home.jsx";
 import UnitSelect from "./components/UnitSelect.jsx";
@@ -51,6 +52,37 @@ export default function App() {
   // berpindah layar di dalam app, bukan keluar. registerGuard dipakai
   // layar kuis untuk menahan Back browser saat sesi masih berprogres.
   const { view, level: routeLevel, unit: routeUnit, navigate, registerGuard } = useRouter();
+
+  // (t89) BAHASA ANTARMUKA — state App (bukan context) sengaja: mengganti
+  // bahasa me-render ulang SELURUH pohon (tidak ada React.memo di app ini),
+  // jadi fungsi t() di semua komponen cukup membaca bahasa aktif dari modul
+  // i18n.js (getLang/setLang + localStorage "kanji-lang"). <html lang>
+  // disinkronkan setLang. Seksi Data sources di Help tetap Inggris di semua
+  // bahasa (teks legal/kredit — konvensi aplikasi).
+  const [lang, setLangState] = useState(() => getLang());
+
+  function changeLang(next) {
+    if (setLang(next)) setLangState(next);
+  }
+
+  // (t89) BLUR PILIHAN (atas usulan user): pilihan jawaban kabur sampai
+  // diketuk sekali — memaksa mengingat bacaan kanji DULU sebelum membaca
+  // pilihan (active recall). Default OFF (opt-in): blur di kuis pertama
+  // tanpa penjelasan terasa seperti bug; sakelar di Help menjelaskan
+  // perilaku dua-ketukannya. Logika dua-ketukan + reset per soal ada di
+  // Quiz.jsx (state `choicesRevealed`).
+  const [blurChoices, setBlurChoices] = useState(
+    () => localStorage.getItem("kanji-blur-choices") === "1"
+  );
+
+  function toggleBlurChoices() {
+    setBlurChoices((v) => {
+      const next = !v;
+      localStorage.setItem("kanji-blur-choices", next ? "1" : "0");
+      return next;
+    });
+  }
+
 
   // Skrip tampilan kana/romaji: "romaji" (default, ramah pemula) atau
   // "kana" (autentik — melatih baca kana langsung). Mengatur seluruh layar
@@ -142,7 +174,7 @@ export default function App() {
     // tahu ke mana harus memperbaikinya (pengaturan sistem Android).
     const granted = await requestReminderPermission();
     if (!granted) {
-      showToast("Notifications are blocked for Kanjichō — allow them in system settings.");
+      showToast(t("app.toast.notifBlocked"));
     }
     await syncReviewReminders(await storage.getAllProgress());
   }
@@ -174,6 +206,15 @@ export default function App() {
   function replayTutorial() {
     navigate("home", { reset: true });
     setTutorialActive(true);
+  }
+
+  // (t89) Tombol "< Home" DI DALAM tooltip langkah srs tur (Tutorial.jsx):
+  // keluar dari kuis demo + pulang ke beranda dalam SATU KETUKAN, tanpa
+  // dialog Leave (sesi tur memang sekali pakai — jawaban tidak pernah
+  // disimpan saat pergi). reset history (pola tombol Home layar hasil):
+  // Back dari beranda keluar dari app, bukan membuka layar sesi tur.
+  function goHomeFromTour() {
+    navigate("home", { reset: true });
   }
 
   // (t83) KONFIRMASI KELUIR KUIS — kini milik App (dulu state di Quiz.jsx
@@ -662,7 +703,7 @@ export default function App() {
     // resolve dari cache.
     const pool = await loadLevelKanji(level);
     if (pool.length < 4) {
-      showToast("This level doesn't have enough kanji to generate distractors.");
+      showToast(t("app.toast.notEnoughKanji"));
       return;
     }
     const kanjiInUnit = pool.filter((k) => k.unit === unitId);
@@ -687,13 +728,13 @@ export default function App() {
   async function startWeakReview(unitId, navOpts) {
     const pool = await loadLevelKanji(activeLevel);
     if (pool.length < 4) {
-      showToast("This level doesn't have enough kanji to generate distractors.");
+      showToast(t("app.toast.notEnoughKanji"));
       return;
     }
     const entries = pool.filter((k) => k.unit === unitId && weakChars.has(k.kanji));
 
     if (entries.length === 0) {
-      showToast("No missed kanji in this unit right now.");
+      showToast(t("app.toast.noMissed"));
       return;
     }
 
@@ -715,7 +756,7 @@ export default function App() {
   async function resetLevelProgress(level) {
     await storage.deleteLevelProgress(level);
     await loadAllData();
-    showToast(`${level} progress deleted`);
+    showToast(t("app.toast.progressDeleted", { level }));
   }
 
   // Dipanggil dari baris overdue di layar Progress (panel hari & chip
@@ -833,7 +874,7 @@ export default function App() {
   }
 
   if (loading) {
-    return <div className="kd-root kd-loading">Loading your progress…</div>;
+    return <div className="kd-root kd-loading">{t("app.loading")}</div>;
   }
 
   // Kalau route menunjuk quiz/result tapi state in-memory untuk LAYAR ITU
@@ -867,10 +908,12 @@ export default function App() {
   if (effectiveView === "quiz") {
     if (quizMode === "weak") {
       const m = weakOriginUnit && /-U(\d+)$/.exec(weakOriginUnit);
-      sessionUnitLabel = m ? `Unit ${m[1]} · review` : "Missed review";
+      sessionUnitLabel = m
+        ? t("app.session.unitReview", { n: m[1] })
+        : t("app.session.missed");
     } else {
       const m = activeUnit && /-U(\d+)$/.exec(activeUnit);
-      sessionUnitLabel = m ? `Unit ${m[1]}` : activeUnit || "";
+      sessionUnitLabel = m ? t("app.session.unit", { n: m[1] }) : activeUnit || "";
     }
   }
 
@@ -893,8 +936,8 @@ export default function App() {
             <button
               className="kd-icon-btn kd-quiz-exit"
               onClick={requestQuizExit}
-              aria-label="Leave this quiz"
-              title="Leave this quiz"
+              aria-label={t("app.quizExit.aria")}
+              title={t("app.quizExit.aria")}
             >
               <X size={16} strokeWidth={2.25} />
             </button>
@@ -903,13 +946,13 @@ export default function App() {
             <button
               className="kd-topbar-back"
               onClick={() => navigate("home", { collapse: 1 })}
-              aria-label="Back to home"
-              title="Back to home"
+              aria-label={t("app.topbarBack.aria")}
+              title={t("app.topbarBack.aria")}
             >
-              <ChevronLeft size={16} strokeWidth={2.25} /> Home
+              <ChevronLeft size={16} strokeWidth={2.25} /> {t("common.home")}
             </button>
           ) : sessionLevel ? (
-            <div className="kd-brand" aria-label={`Studying ${sessionLevel} ${sessionUnitLabel}`}>
+            <div className="kd-brand" aria-label={t("app.session.aria", { level: sessionLevel, unit: sessionUnitLabel })}>
               <span>{sessionLevel}</span>
               <small>{sessionUnitLabel}</small>
             </div>
@@ -932,6 +975,12 @@ export default function App() {
             autoFlipDelay={autoFlipDelay}
             onChangeAutoFlipDelay={changeAutoFlipDelay}
             onReplayTutorial={replayTutorial}
+            // (t89) Blur pilihan + bahasa antarmuka — keduanya state App
+            // supaya pergantian nilai me-render ulang seluruh pohon.
+            blurChoices={blurChoices}
+            onToggleBlurChoices={toggleBlurChoices}
+            lang={lang}
+            onChangeLang={changeLang}
             // (t86, dipulihkan t87) Baris "Review reminders" hanya
             // dirender di shell native; web/PWA tidak melihat seksi ini
             // sama sekali (tidak ada regresi tampilan help untuk user PWA).
@@ -983,6 +1032,8 @@ export default function App() {
           // (t81) jeda kini prop terpisah (dipilih user di help overlay).
           autoFlip={autoFlip}
           autoFlipDelay={autoFlipDelay}
+          // (t89) Blur pilihan — hanya dibaca Quiz (logika di sana).
+          blurChoices={blurChoices}
           onSubmitAnswer={submitAnswer}
           onContinue={handleContinue}
         />
@@ -1023,14 +1074,14 @@ export default function App() {
         <div className="kd-modal-overlay">
           <div className="kd-modal kd-drill-confirm" onClick={(e) => e.stopPropagation()}>
             <p className="kd-drill-confirm-text">
-              Leave this session? Your answers so far won&apos;t be saved.
+              {t("app.exitDialog.text")}
             </p>
             <div className="kd-btn-row">
               <button className="kd-btn secondary" onClick={() => setExitConfirm(false)}>
-                Keep studying
+                {t("app.exitDialog.keep")}
               </button>
               <button className="kd-btn primary" onClick={confirmQuizLeave}>
-                Leave
+                {t("app.exitDialog.leave")}
               </button>
             </div>
           </div>
@@ -1057,7 +1108,7 @@ export default function App() {
           spotlight + tooltip dikelola komponen ini sendiri; langkah-langkah
           menunggu KLIK NYATA pada UI (klik menembus lubang ke elemen asli)
           atau tombol Got it, dengan Skip tutorial selalu tersedia. */}
-      {tutorialActive && <Tutorial onFinish={finishTutorial} />}
+      {tutorialActive && <Tutorial onFinish={finishTutorial} onGoHome={goHomeFromTour} />}
 
       {toast && <Toast message={toast} />}
     </div>

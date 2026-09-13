@@ -1,6 +1,7 @@
 import React from "react";
 import { CircleX, Clock } from "lucide-react";
 import { formatDueExact, intervalUntilLabel } from "../lib/dueFormat.js";
+import { t } from "../lib/i18n.js";
 
 /**
  * Layar hasil. Tampilannya menyesuaikan mode sesi:
@@ -18,8 +19,8 @@ export default function Result({ result, mode, activeUnit, onBackToUnits, onHome
   const isWeak = mode === "weak";
   const isPractice = mode === "practice";
 
-  const stampLabel = isWeak ? "Missed review" : activeUnit;
-  const backLabel = "Back to Units";
+  const stampLabel = isWeak ? t("result.missed") : activeUnit;
+  const backLabel = t("result.backToUnits");
   // Untuk SRS: state BARU hasil review. Untuk practice: state lama yang
   // tidak tersentuh. Keduanya dirender dengan panel "Next review in" yang
   // sama — hasil latihan bebas pun tetap informatif.
@@ -39,22 +40,22 @@ export default function Result({ result, mode, activeUnit, onBackToUnits, onHome
       <div className="kd-result-breakdown">
         <div className="kd-rb-item">
           <div className="kd-rb-num" style={{ color: "var(--indigo)" }}>{result.correctCount}</div>
-          <div className="kd-rb-label">Correct</div>
+          <div className="kd-rb-label">{t("result.correct")}</div>
         </div>
         <div className="kd-rb-item">
           <div className="kd-rb-num" style={{ color: "var(--seal)" }}>{result.wrongCount}</div>
-          <div className="kd-rb-label">Wrong</div>
+          <div className="kd-rb-label">{t("result.wrong")}</div>
         </div>
         <div className="kd-rb-item">
           <div className="kd-rb-num" style={{ color: "var(--ink-soft)" }}>{result.dontKnowCount}</div>
-          <div className="kd-rb-label">Don't know</div>
+          <div className="kd-rb-label">{t("result.dontKnow")}</div>
         </div>
       </div>
 
       {shownState && shownState.nextReviewAt && (
         <div className="kd-next-review">
           <Clock size={14} style={{ marginBottom: 4 }} />
-          <div>Next review in</div>
+          <div>{t("result.next")}</div>
           {/* Durasi dihitung dari nextReviewAt persis (bukan stability):
               loop Relearning ber-jam tampil "6 hours", bukan "2.3 days". */}
           <div className="kd-next-review-num">{intervalUntilLabel(shownState.nextReviewAt)}</div>
@@ -65,7 +66,7 @@ export default function Result({ result, mode, activeUnit, onBackToUnits, onHome
           {/* Menegaskan tanggal ini TIDAK digeser oleh sesi practice — tanpa
               ini panelnya identik dengan hasil review sungguhan. */}
           {isPractice && (
-            <div className="kd-next-review-note">schedule unchanged</div>
+            <div className="kd-next-review-note">{t("result.scheduleUnchanged")}</div>
           )}
           {/* (t78) Kartu "Why the same review date?" DIHAPUS atas
               permintaan user — penjelasan jadwal awal (1/2/8 hari)
@@ -82,8 +83,8 @@ export default function Result({ result, mode, activeUnit, onBackToUnits, onHome
                 sebelum angka siap. */}
             {typeof result.remainingMissed === "number"
               ? result.remainingMissed > 0
-                ? `${result.remainingMissed} kanji still missed`
-                : "No kanji missed"
+                ? t("result.stillMissed", { n: result.remainingMissed })
+                : t("result.noMissed")
               : "…"}
           </div>
         </div>
@@ -95,7 +96,7 @@ export default function Result({ result, mode, activeUnit, onBackToUnits, onHome
             (srs/practice/weak bersih) susunan tombol seperti biasa. */}
         {canReviewAgain && (
           <button className="kd-btn primary" onClick={onReviewAgain}>
-            Review again
+            {t("result.reviewAgain")}
           </button>
         )}
         <button
@@ -104,7 +105,7 @@ export default function Result({ result, mode, activeUnit, onBackToUnits, onHome
         >
           {backLabel}
         </button>
-        <button className="kd-btn secondary" onClick={onHome}>Home</button>
+        <button className="kd-btn secondary" onClick={onHome}>{t("common.home")}</button>
       </div>
     </>
   );

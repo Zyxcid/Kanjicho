@@ -3,6 +3,7 @@ import { HelpCircle, X, Mail, ShieldCheck } from "lucide-react";
 import pkg from "../../package.json";
 import BackupControls from "./BackupControls";
 import { pushOverlayEntry, closeOverlayUI, discardOverlayEntry, isOverlayEntryRegistered } from "../lib/useRouter.js";
+import { t, LANGS } from "../lib/i18n.js";
 
 // Kontak resmi app (t74): email kanjicho — mailto membuka aplikasi email
 // dengan penerima terisi; tombol Back browser/Android menutup dulu
@@ -30,6 +31,15 @@ export default function HelpButton({
   autoFlipDelay = 1000, // (t81) ms — satu dari AUTO_FLIP_DELAYS
   onChangeAutoFlipDelay, // (t81) (ms) => void — dikelola App + localStorage
   onReplayTutorial, // (t82) () => void — putar ulang tur onboarding dari Help
+  // (t89) Blur pilihan jawaban — state + localStorage dikelola App
+  // (kunci "kanji-blur-choices", default OFF; dua-ketukan di Quiz.jsx).
+  blurChoices = false,
+  onToggleBlurChoices,
+  // (t89) Bahasa antarmuka — pill EN / Bahasa Indonesia; App memegang
+  // state (localStorage "kanji-lang" via lib/i18n.js) supaya pergantian
+  // bahasa me-render ulang SELURUH pohon (semua t() ikut berganti).
+  lang = "en",
+  onChangeLang,
   // (t86) Pengingat review (local notification) — hanya shell Capacitor
   // Android; App mengirim showReminders=false di web/PWA sehingga seksi
   // ini tidak pernah dirender di browser (web tidak punya local
@@ -95,19 +105,49 @@ export default function HelpButton({
 
   return (
     <>
-      <button className="kd-icon-btn" onClick={openHelp} aria-label="Help & about">
+      <button className="kd-icon-btn" onClick={openHelp} aria-label={t("help.aria")}>
         <HelpCircle size={18} />
       </button>
 
       {open && (
         <div className="kd-modal-overlay" onClick={closeHelp}>
           <div className="kd-modal kd-help-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="kd-modal-close" onClick={closeHelp} aria-label="Close">
+            <button className="kd-modal-close" onClick={closeHelp} aria-label={t("common.close")}>
               <X size={18} />
             </button>
 
             <div className="kd-help-title">漢字帳 Kanjichō</div>
             <div className="kd-help-version">v{pkg.version}</div>
+
+            {/* (t89) BAHASA — seksi PERTAMA Help: memilih bahasa di sini
+                seketika menerjemahkan seluruh UI (App re-render penuh;
+                t() membaca bahasa aktif). Pill memakai pola deretan durasi
+                auto-flip di bawah; label = NAMA ASLI tiap bahasa (konvensi
+                UI bahasa — "English", "Bahasa Indonesia"). Tersimpan di
+                localStorage "kanji-lang" (default en). Seksi Data sources
+                sengaja tetap Inggris di semua bahasa (teks legal/kredit
+                lisensi — konvensi aplikasi). */}
+            <div className="kd-help-section">
+              <div className="kd-help-heading">{t("help.language")}</div>
+              <div
+                className="kd-help-delay-pills kd-lang-pills"
+                role="group"
+                aria-label={t("help.language")}
+              >
+                {LANGS.map((l) => (
+                  <button
+                    key={l.id}
+                    type="button"
+                    className={`kd-delay-pill ${lang === l.id ? "active" : ""}`}
+                    aria-pressed={lang === l.id}
+                    onClick={() => onChangeLang && onChangeLang(l.id)}
+                  >
+                    {l.label}
+                  </button>
+                ))}
+              </div>
+              <p className="kd-help-text">{t("help.languageHint")}</p>
+            </div>
 
             {/* t74: seksi "Keyboard shortcuts" DIHAPUS dari UI — app
                 fokus Android, hover/shortcut desktop bukan lagi audiens
@@ -121,17 +161,13 @@ export default function HelpButton({
                 Seksi ini satu-satunya pintu replay tur (auto-start hanya
                 untuk user baru — lihat App.jsx). */}
             <div className="kd-help-section">
-              <div className="kd-help-heading">Getting started</div>
-              <p className="kd-help-text">
-                New to Kanjichō? The built-in tour walks you through
-                levels, units, quizzes and the kanji library in about
-                half a minute.
-              </p>
+              <div className="kd-help-heading">{t("help.getting")}</div>
+              <p className="kd-help-text">{t("help.intro")}</p>
               <button
                 className="kd-btn secondary kd-help-replay"
                 onClick={replayTour}
               >
-                Replay the tutorial
+                {t("help.replay")}
               </button>
             </div>
 
@@ -154,17 +190,37 @@ export default function HelpButton({
                 ini: dua kontrol + nasihat jujur "Don't know". */}
 
             <div className="kd-help-section">
-              <div className="kd-help-heading">Quiz</div>
+              <div className="kd-help-heading">{t("help.quiz")}</div>
+              {/* (t89) Toggle blur pilihan — diletakkan SEBELUM auto-flip
+                  (urutan kronologi kuis: ingat dulu → jawab → baru kartu
+                  terbalik). Deskripsi kecil DIPERTAHANKAN untuk toggle ini
+                  (pengecualian kebijakan t87 "tanpa deskripsi"): perilaku
+                  dua-ketukannya tidak terbaca dari label saja. */}
+              <div className="kd-help-toggle-row">
+                <div>
+                  <div className="kd-help-toggle-name">{t("help.blur")}</div>
+                  <div className="kd-help-toggle-desc">{t("help.blurDesc")}</div>
+                </div>
+                <button
+                  className={`kd-toggle ${blurChoices ? "on" : ""}`}
+                  role="switch"
+                  aria-checked={blurChoices}
+                  aria-label={t("help.blur")}
+                  onClick={onToggleBlurChoices}
+                >
+                  <span className="kd-toggle-knob" />
+                </button>
+              </div>
               {/* (t80) Toggle auto-flip — pola row switch yang sama dengan
                   toggle reset button di seksi Progress. (t87) tanpa
                   deskripsi: label "Auto-flip the card" sudah cukup. */}
               <div className="kd-help-toggle-row">
-                <div className="kd-help-toggle-name">Auto-flip the card</div>
+                <div className="kd-help-toggle-name">{t("help.autoflip")}</div>
                 <button
                   className={`kd-toggle ${autoFlip ? "on" : ""}`}
                   role="switch"
                   aria-checked={autoFlip}
-                  aria-label="Auto-flip the card"
+                  aria-label={t("help.autoflip")}
                   onClick={onToggleAutoFlip}
                 >
                   <span className="kd-toggle-knob" />
@@ -176,11 +232,11 @@ export default function HelpButton({
                   (t87) tanpa deskripsi: label "Auto-flip delay" + deretan
                   pill durasi sudah cukup. */}
               <div className={`kd-help-delay-row ${autoFlip ? "" : "off"}`}>
-                <div className="kd-help-toggle-name">Auto-flip delay</div>
+                <div className="kd-help-toggle-name">{t("help.autoflipDelay")}</div>
                 <div
                   className="kd-help-delay-pills"
                   role="group"
-                  aria-label="Auto-flip delay"
+                  aria-label={t("help.autoflipDelay")}
                 >
                   {AUTO_FLIP_DELAYS.map((ms) => (
                     <button
@@ -196,12 +252,9 @@ export default function HelpButton({
                 </div>
               </div>
               <p className="kd-help-text">
-                The first time you finish a unit, its review is always
-                scheduled 1 or 2 days away (8 for a perfect score). The
-                app uses that early date as the starting reference for
-                your next reviews, so don&apos;t hesitate to answer{" "}
-                <b>Don&apos;t know</b>: an honest answer keeps your
-                schedule accurate.
+                {t("help.quizText.a")}
+                <b>{t("quiz.dontKnow")}</b>
+                {t("help.quizText.b")}
               </p>
             </div>
 
@@ -211,44 +264,38 @@ export default function HelpButton({
                 perangkat) — konsisten dengan privacy policy app. */}
             {showReminders && (
               <div className="kd-help-section">
-                <div className="kd-help-heading">Reminders</div>
+                <div className="kd-help-heading">{t("help.reminders")}</div>
                 <div className="kd-help-toggle-row">
                   <div>
-                    <div className="kd-help-toggle-name">Review reminders</div>
+                    <div className="kd-help-toggle-name">{t("help.remindersToggle")}</div>
                     <div className="kd-help-toggle-desc">
-                      A quiet nudge when reviews come due
+                      {t("help.remindersDesc")}
                     </div>
                   </div>
                   <button
                     className={`kd-toggle ${reminders ? "on" : ""}`}
                     role="switch"
                     aria-checked={reminders}
-                    aria-label="Review reminders"
+                    aria-label={t("help.remindersToggle")}
                     onClick={onToggleReminders}
                   >
                     <span className="kd-toggle-knob" />
                   </button>
                 </div>
-                <p className="kd-help-text">
-                  Reminders arrive at a few quiet times of day (morning,
-                  midday, late afternoon, evening) whenever units are due,
-                  and they reschedule themselves whenever you finish a quiz.
-                  Nothing ever leaves your phone: they are local
-                  notifications, with no network or account behind them.
-                </p>
+                <p className="kd-help-text">{t("help.remindersText")}</p>
               </div>
             )}
 
             <div className="kd-help-section">
-              <div className="kd-help-heading">Browse kanji</div>
+              <div className="kd-help-heading">{t("help.browse")}</div>
               <p className="kd-help-text">
-                In a kanji&apos;s components, a{" "}
-                <span className="kd-help-dot rad" aria-hidden="true" /> red
-                dot marks the <b>radical</b>, the part that carries the
-                meaning, and a{" "}
-                <span className="kd-help-dot phon" aria-hidden="true" /> blue
-                dot marks the <b>phonetic</b>, the part that carries the
-                sound. Tap a component to open its own page.
+                {t("help.browseText.a")}{" "}
+                <span className="kd-help-dot rad" aria-hidden="true" />{" "}
+                {t("help.browseText.b")} <b>{t("help.browseText.radical")}</b>
+                {t("help.browseText.c")}{" "}
+                <span className="kd-help-dot phon" aria-hidden="true" />{" "}
+                {t("help.browseText.d")} <b>{t("help.browseText.phonetic")}</b>
+                {t("help.browseText.e")}
               </p>
             </div>
 
@@ -327,21 +374,21 @@ export default function HelpButton({
             </div>
 
             <div className="kd-help-section">
-              <div className="kd-help-heading">Progress</div>
+              <div className="kd-help-heading">{t("help.progress")}</div>
               <BackupControls />
               {/* Toggle visibilitas tombol "Reset progress" per level —
                   destruktif, jadi disembunyikan dari layar utama dan hanya
                   diaktifkan dari sini. */}
               <div className="kd-help-toggle-row">
                 <div>
-                  <div className="kd-help-toggle-name">Reset progress button</div>
-                  <div className="kd-help-toggle-desc">Show reset button</div>
+                  <div className="kd-help-toggle-name">{t("help.resetToggle")}</div>
+                  <div className="kd-help-toggle-desc">{t("help.resetDesc")}</div>
                 </div>
                 <button
                   className={`kd-toggle ${showReset ? "on" : ""}`}
                   role="switch"
                   aria-checked={showReset}
-                  aria-label="Show reset button"
+                  aria-label={t("help.resetDesc")}
                   onClick={onToggleShowReset}
                 >
                   <span className="kd-toggle-knob" />
@@ -350,7 +397,7 @@ export default function HelpButton({
             </div>
 
             <div className="kd-help-section">
-              <div className="kd-help-heading">Contact</div>
+              <div className="kd-help-heading">{t("help.contact")}</div>
               <div className="kd-help-links">
                 {/* t74: kontak = email kanjicho (mailto) — satu klik di
                     Android langsung membuka aplikasi email dengan penerima
@@ -370,7 +417,7 @@ export default function HelpButton({
                   rel="noreferrer"
                   className="kd-help-link"
                 >
-                  <ShieldCheck size={15} /> Privacy policy
+                  <ShieldCheck size={15} /> {t("help.privacy")}
                 </a>
               </div>
             </div>

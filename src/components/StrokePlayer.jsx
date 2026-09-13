@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Pause, Play, RotateCcw, StepBack, StepForward } from "lucide-react";
 import CopyKanji from "./CopyKanji.jsx";
+import { t } from "../lib/i18n.js";
 
 /**
  * StrokePlayer — animasi urutan goresan satu kanji dari data path KanjiVG.
@@ -88,7 +89,7 @@ export default function StrokePlayer({ paths, kanji, onProgress }) {
           className="kd-stroke-svg"
           viewBox="0 0 109 109"
           role="img"
-          aria-label={`Stroke order animation, ${paths.length} strokes`}
+          aria-label={t("stroke.aria", { n: paths.length })}
         >
           {/* Lapis guide: kerangka samar seluruh kanji. */}
           <g className="kd-stroke-guide" aria-hidden="true">
@@ -114,34 +115,34 @@ export default function StrokePlayer({ paths, kanji, onProgress }) {
       </div>
 
       <div className="kd-stroke-controls">
-        <button className="kd-stroke-ctrl-btn" onClick={replay} aria-label="Replay stroke animation" title="Replay">
+        <button className="kd-stroke-ctrl-btn" onClick={replay} aria-label={t("stroke.replay")} title={t("stroke.replay")}>
           <RotateCcw size={14} strokeWidth={2.25} />
         </button>
         <button
           className="kd-stroke-ctrl-btn"
           onClick={togglePlay}
-          aria-label={done ? "Replay" : playing ? "Pause" : "Play"}
-          title={done ? "Replay" : playing ? "Pause" : "Play"}
+          aria-label={done ? t("stroke.replay") : playing ? t("stroke.pause") : t("stroke.play")}
+          title={done ? t("stroke.replay") : playing ? t("stroke.pause") : t("stroke.play")}
         >
           {done || !playing ? <Play size={14} strokeWidth={2.25} /> : <Pause size={14} strokeWidth={2.25} />}
         </button>
-        <button className="kd-stroke-ctrl-btn" onClick={() => step(-1)} disabled={revealed === 0} aria-label="Previous stroke" title="Previous stroke">
+        <button className="kd-stroke-ctrl-btn" onClick={() => step(-1)} disabled={revealed === 0} aria-label={t("stroke.prev")} title={t("stroke.prev")}>
           <StepBack size={14} strokeWidth={2.25} />
         </button>
         <button
           className="kd-stroke-ctrl-btn"
           onClick={() => step(1)}
           disabled={done}
-          aria-label="Next stroke"
-          title="Next stroke"
+          aria-label={t("stroke.next")}
+          title={t("stroke.next")}
         >
           <StepForward size={14} strokeWidth={2.25} />
         </button>
         <button
           className="kd-stroke-ctrl-btn kd-stroke-speed"
           onClick={() => setSpeed((s) => SPEEDS[(SPEEDS.indexOf(s) + 1) % SPEEDS.length])}
-          aria-label={`Animation speed ${speed}x`}
-          title="Animation speed"
+          aria-label={t("stroke.speedAria", { s: speed })}
+          title={t("stroke.speed")}
         >
           {speed}x
         </button>
@@ -151,7 +152,8 @@ export default function StrokePlayer({ paths, kanji, onProgress }) {
           digabung ke label .kd-detail-strokes: "2 / 4 strokes" hidup
           mengikuti animasi, memberi tahu goresan keberapa sekarang. */}
       <div className="kd-detail-strokes">
-        {revealed} / {paths.length} {paths.length === 1 ? "stroke" : "strokes"}
+        {revealed} / {paths.length}{" "}
+        {paths.length === 1 ? t("stroke.counterOne") : t("stroke.counter", { n: paths.length })}
       </div>
     </div>
   );

@@ -784,8 +784,18 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 .kd-choice-btn {
   background: var(--surface); border: 1.5px solid var(--paper-line); border-radius: 4px; padding: 16px 10px;
   font-family: 'DM Mono', monospace; font-size: 15px; cursor: pointer; text-align: center;
-  transition: border-color 0.15s, background-color 0.15s, opacity 0.25s ease; position: relative; color: var(--ink);
+  transition: border-color 0.15s, background-color 0.15s, opacity 0.25s ease, filter 0.25s ease; position: relative; color: var(--ink);
 }
+/* (t89) BLUR PILIHAN (fitur "blur pilihan ganda", toggle di Help):
+   pilihan kabur sampai diketuk sekali — ketukan pertama membuka blur
+   SEMUA pilihan (bukan cuma yang diketuk — momen "murni mengingat"
+   sudah lewat begitu satu terbaca, membandingkan keempatnya kini adil).
+   user-select none menjaga teks tidak bisa "diintip" lewat seleksi
+   (highlight memaksa glyph digambar ulang tanpa blur). */
+.kd-choice-btn.blurred { filter: blur(8px); user-select: none; -webkit-user-select: none; }
+/* Hover tetap hidup saat blur (border menyala) — sinyal bahwa tombol
+   memang bisa diklik, bukan elemen rusak. */
+.kd-choice-btn.blurred:hover:not(:disabled) { border-color: var(--indigo-soft); }
 .kd-choice-btn:hover:not(:disabled) { border-color: var(--indigo-soft); }
 /* Setelah dijawab: UKURAN PILIHAN TETAP (t78 — animasi menciut
    dihapus; transisi padding ikut pensiun), hanya pilihan netral yang
@@ -1245,6 +1255,14 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 }
 .kd-help-delay-row.off { opacity: 0.55; }
 .kd-help-delay-pills { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
+/* (t89) Deretan pill bahasa (seksi Language Help) — pola delay pill, tapi
+   rata KIRI-baris penuh (bukan di ujung row) dan label pakai font UI
+   (bukan DM Mono — "Bahasa Indonesia" adalah kata, bukan angka). */
+.kd-lang-pills { justify-content: flex-start; margin-top: 4px; }
+.kd-lang-pills .kd-delay-pill {
+  font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 12.5px;
+  padding: 6px 12px;
+}
 .kd-delay-pill {
   background: var(--surface); border: 1px solid var(--paper-line); color: var(--ink-soft);
   padding: 5px 9px; border-radius: 3px; cursor: pointer;
@@ -1550,6 +1568,13 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 /* Tombol utama tooltip — turunan kd-btn primary (lebar penuh seperti pola
    Continue di bar aksi kuis), sedikit lebih ringkas. */
 .kd-tut-cta { width: 100%; margin-top: 14px; padding: 11px; font-size: 13.5px; }
+/* (t89) CTA "< Home" (langkah srs): tombol pulang SUNGGUH di dalam
+   tooltip — desain chevron + label (bahasa ikon tombol back topbar app)
+   di atas pewarnaan tombol primer, supaya terbaca sebagai satu-satunya
+   jalan saat seluruh layar diredupkan. */
+.kd-tut-cta-home {
+  display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+}
 .kd-tut-foot {
   display: flex; align-items: center; justify-content: space-between;
   gap: 12px; margin-top: 12px;

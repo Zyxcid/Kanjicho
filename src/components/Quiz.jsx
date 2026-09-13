@@ -3,6 +3,7 @@ import { CircleX, HelpCircle, MoveHorizontal } from "lucide-react";
 import { DONT_KNOW } from "../lib/quizGenerator.js";
 import { ReadingList } from "./Readings.jsx";
 import { kanaToRomaji } from "../lib/kana.js";
+import { t } from "../lib/i18n.js";
 import RevealGlyph from "./RevealGlyph.jsx";
 import ComponentBreakdown from "./ComponentBreakdown.jsx";
 import { loadComponents } from "../lib/components.js";
@@ -60,6 +61,10 @@ export default function Quiz({
   onToggleScript,
   autoFlip = true, // (t80) dari toggle help overlay — default ON
   autoFlipDelay = 1000, // (t81) jeda auto-flip (ms) — dari deretan pill help overlay
+  // (t89) Blur pilihan dari toggle help overlay — default OFF (opt-in:
+  // blur di kuis pertama tanpa penjelasan akan terasa seperti bug; sakelar
+  // di Help menjelaskan perilakunya dua-ketukan sebelum diaktifkan).
+  blurChoices = false,
   onSubmitAnswer,
   onContinue,
 }) {
@@ -86,6 +91,37 @@ export default function Quiz({
   const answered = selectedChoice !== null;
   const [rot, setRot] = useState(0);
   const flipped = Math.abs(rot % 360) === 180;
+
+  // (t89) BLUR PILIHAN: pilihan kabur sampai diketuk sekali — user dipaksa
+  // mengingat bacaan kanji DULU sebelum membaca pilihan (active recall,
+  // atas usulan user). Dua keputusan desain:
+  //  (a) ketukan PERTAMA membuka blur SEMUA pilihan sekaligus — begitu satu
+  //      pilihan terbaca, momen "murni mengingat" sudah lewat, jadi
+  //      membandingkan keempatnya kini adil; ketukan KEDUA menjawab.
+  //  (b) "Don't know" TIDAK ikut blur dan tetap menjawab langsung — jalur
+  //      kabur dari kejujuran tidak boleh hilang (menjawab tidak-tahu tidak
+  //      membocorkan apa pun).
+  // `choicesRevealed` reset per soal: tiap kanji baru harus diingat ulang.
+  // Setelah dijawab (answered) blur otomatis tidak relevan — state
+  // correct/wrong harus terbaca jelas.
+  const [choicesRevealed, setChoicesRevealed] = useState(false);
+  useEffect(() => {
+    setChoicesRevealed(false);
+  }, [qIndex, current.kanji]);
+  const blurActive = blurChoices && !answered && !choicesRevealed;
+
+  // Ketukan pilihan: saat masih blur, ketukan hanya MEMBUKA blur (tidak
+  // menjawab) — klik "menembus" tur onboarding tetap tidak masalah karena
+  // langkah choices tur kini maju lewat waitAppear punggung kartu (t89,
+  // lihat Tutorial.jsx), bukan lewat klik pilihan.
+  function handleChoiceClick(idx) {
+    if (blurActive) {
+      setChoicesRevealed(true);
+      return;
+    }
+    onSubmitAnswer(idx);
+  }
+
   // (t78) Petunjuk swipe sekali-lihat — lihat SWIPE_LEARNED_KEY di atas.
   // try/catch: mode privat browser bisa melempar saat membaca localStorage
   // (hint lalu tampil tiap sesi — aman, hanya redundan).
@@ -235,14 +271,26 @@ export default function Quiz({
       // toLowerCase() supaya CapsLock/Shift tetap kepilih.
       const idx = CHOICE_KEYS.indexOf(key);
       if (idx !== -1) {
-        if (idx < current.choices.length) onSubmitAnswer(idx);
+        if (idx < current.choices.length) {
+          // (t89) Blur aktif = tekanan PERTAMA membuka blur (konsisten dengan
+          // ketukan mouse — dua langkah: ingat dulu, baru jawab); tekanan
+          // KEDUA menjawab. blurActive HARUS masuk deps efek ini (anti
+          // stale closure: efek lama masih memegang blurActive basi).
+          if (blurActive) {
+            setChoicesRevealed(true);
+            return;
+          }
+          onSubmitAnswer(idx);
+        }
       } else if (key === DONT_KNOW_KEY) {
+        // "Don't know" lolos tanpa membuka blur (lihat catatan desain di
+        // atas): jawaban jujur tetap satu ketukan.
         onSubmitAnswer(DONT_KNOW);
       }
     }
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [selectedChoice, current, onSubmitAnswer, onContinue, onToggleScript]);
+  }, [selectedChoice, current, onSubmitAnswer, onContinue, onToggleScript, blurActive]);
 
   return (
     <>
@@ -320,13 +368,13 @@ export default function Quiz({
                     diberi badge. */}
                 {mode === "weak" && (
                   <div className="kd-mode-badge weak">
-                    <CircleX size={13} strokeWidth={2.25} /> Missed kanji review
+                    <CircleX size={13} strokeWidth={2.25} /> {t("quiz.modeBadge.weak")}
                   </div>
                 )}
 
                 <div className="kd-question-row">
                   <div className="kd-question-label">
-                    Question {qIndex + 1} of {quiz.length}
+                    {t("quiz.question", { n: qIndex + 1, m: quiz.length })}
                   </div>
                 </div>
 
@@ -342,12 +390,16 @@ export default function Quiz({
                       if (idx === current.correctIndex) cls += " correct";
                       else if (idx === selectedChoice) cls += " wrong";
                     }
+                    // (t89) Blur pilihan aktif → kelas .blurred (CSS:
+                    // filter blur + user-select none); ketukan pertama
+                    // membuka semua (handleChoiceClick).
+                    if (blurActive) cls += " blurred";
                     return (
                       <button
                         key={idx}
                         className={cls}
                         disabled={answered}
-                        onClick={() => onSubmitAnswer(idx)}
+                        onClick={() => handleChoiceClick(idx)}
                       >
                         {choiceLabel(choice, current.questionType, answerScript)}
                       </button>
@@ -357,7 +409,7 @@ export default function Quiz({
 
                 {!answered && (
                   <button className="kd-dontknow" onClick={() => onSubmitAnswer(DONT_KNOW)}>
-                    <HelpCircle size={15} /> Don't know
+                    <HelpCircle size={15} /> {t("quiz.dontKnow")}
                   </button>
                 )}
               </div>
@@ -447,7 +499,7 @@ export default function Quiz({
       {answered && !swipeLearned && (
         <div className="kd-swipe-hint" aria-hidden="true">
           <MoveHorizontal size={14} />
-          <span>Swipe the card sideways to flip it</span>
+          <span>{t("quiz.swipeHint")}</span>
         </div>
       )}
 
@@ -462,7 +514,7 @@ export default function Quiz({
       {answered && (
         <div className="kd-card-actions">
           <button className="kd-btn primary kd-continue-btn" onClick={onContinue}>
-            {qIndex + 1 < quiz.length ? "Continue" : "See Results"}
+            {qIndex + 1 < quiz.length ? t("quiz.continue") : t("quiz.seeResults")}
           </button>
         </div>
       )}

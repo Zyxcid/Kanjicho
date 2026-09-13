@@ -4,13 +4,14 @@ import { unitStatus } from "../App.jsx";
 import { intervalUntilLabel } from "../lib/dueFormat.js";
 import { loadLevelKanji } from "../lib/dataLoader.js";
 import { useDialogOverlay } from "../lib/useRouter.js";
+import { t } from "../lib/i18n.js";
 import StatCards from "./StatCards.jsx";
 
 const STATUS_LABEL = {
-  new: "Not started",
-  due: "Review now",
-  scheduled: "Scheduled",
-  mastered: "Mastered",
+  new: "unit.status.new",
+  due: "unit.status.due",
+  scheduled: "unit.status.scheduled",
+  mastered: "unit.status.mastered",
 };
 
 export default function UnitSelect({
@@ -99,14 +100,14 @@ export default function UnitSelect({
           dari modal Help DAN ada progress yang bisa dihapus — tidak ada
           gunanya menawarkan reset pada level yang masih bersih. */}
       <div className="kd-section-title kd-section-title-row">
-        <span>{level} Units</span>
+        <span>{t("unit.section", { level })}</span>
         {showReset && stats.studied > 0 && (
           <button
             className="kd-reset-progress"
             onClick={openResetDialog}
-            title={`Delete this level's progress: SRS schedule, quiz history and missed kanji. Other levels are not affected.`}
+            title={t("unit.reset.title")}
           >
-            <Trash2 size={13} strokeWidth={2.25} /> Reset progress
+            <Trash2 size={13} strokeWidth={2.25} /> {t("unit.reset")}
           </button>
         )}
       </div>
@@ -141,8 +142,8 @@ export default function UnitSelect({
                     type="button"
                     className="kd-unit-missed"
                     onClick={() => onStartWeakReview(unitId)}
-                    title={`Quiz the ${missed} kanji you missed in this unit — doesn't change your schedule`}
-                    aria-label={`Review ${missed} missed kanji`}
+                    title={t("unit.missed.title", { n: missed })}
+                    aria-label={t("unit.missed.aria", { n: missed })}
                   >
                     <CircleX size={12} strokeWidth={2.25} /> {missed}
                   </button>
@@ -162,9 +163,9 @@ export default function UnitSelect({
                 }
               >
                 <div className="kd-unit-status">
-                  {STATUS_LABEL[status]}
+                  {t(STATUS_LABEL[status])}
                   {status === "scheduled" &&
-                    ` · in ${intervalUntilLabel(state.nextReviewAt)}`}
+                    ` · ${t("unit.in", { label: intervalUntilLabel(state.nextReviewAt) })}`}
                 </div>
                 <div className="kd-unit-preview">{kanjiList ? previewFor(unitId) : "…"}</div>
               </button>
@@ -179,14 +180,14 @@ export default function UnitSelect({
             {/* Konfirmasi destruktif: sebutkan eksplisit apa saja yang
                 terhapus supaya tidak dikira hanya jadwal SRS-nya. Klik di
                 luar dialog = batal. */}
-            <p className="kd-drill-confirm-text">Delete all {level} progress?</p>
+            <p className="kd-drill-confirm-text">{t("unit.dialog.resetTitle", { level })}</p>
             <p className="kd-drill-confirm-text">
-              SRS schedule, quiz history and missed kanji for this level will be removed
+              {t("unit.dialog.resetLine2")}
             </p>
-            <p className="kd-drill-confirm-text">other levels are not affected</p>
+            <p className="kd-drill-confirm-text">{t("unit.dialog.resetLine3")}</p>
             <div className="kd-btn-row">
               <button className="kd-btn secondary" onClick={closeResetDialogUI}>
-                Cancel
+                {t("common.cancel")}
               </button>
               <button
                 className="kd-btn danger"
@@ -198,7 +199,7 @@ export default function UnitSelect({
                   onResetProgress(level);
                 }}
               >
-                Delete
+                {t("common.delete")}
               </button>
             </div>
           </div>
@@ -217,17 +218,17 @@ export default function UnitSelect({
                   {/* Dua kalimat pendek di dua baris terpisah (tanpa
                       em-dash — gaya user). */}
                   <p className="kd-drill-confirm-text">
-                    This unit still has {pendingMissed} missed kanji
+                    {t("unit.dialog.missed1", { n: pendingMissed })}
                   </p>
                   <p className="kd-drill-confirm-text">
-                    practice opens again once they&apos;re cleared
+                    {t("unit.dialog.missed2")}
                   </p>
                   <div className="kd-btn-row">
                     <button
                       className="kd-btn secondary"
                       onClick={closeDrillDialogUI}
                     >
-                      Cancel
+                      {t("common.cancel")}
                     </button>
                     {/* Cukup "Review" tanpa angka — jumlah missed sudah
                         disebut di kalimat atasnya. dismiss ( bukan close ):
@@ -242,24 +243,24 @@ export default function UnitSelect({
                         onStartWeakReview(unitId);
                       }}
                     >
-                      Review
+                      {t("unit.dialog.review")}
                     </button>
                   </div>
                 </>
               ) : (
                 <>
                   <p className="kd-drill-confirm-text">
-                    This unit isn&apos;t due yet
+                    {t("unit.dialog.notDue1")}
                   </p>
                   <p className="kd-drill-confirm-text">
-                    practice won&apos;t change your review schedule
+                    {t("unit.dialog.notDue2")}
                   </p>
                   <div className="kd-btn-row">
                     <button
                       className="kd-btn secondary"
                       onClick={closeDrillDialogUI}
                     >
-                      Cancel
+                      {t("common.cancel")}
                     </button>
                     <button
                       className="kd-btn primary"
@@ -269,7 +270,7 @@ export default function UnitSelect({
                         onStartUnit(unitId);
                       }}
                     >
-                      Practice
+                      {t("unit.dialog.practice")}
                     </button>
                   </div>
                 </>

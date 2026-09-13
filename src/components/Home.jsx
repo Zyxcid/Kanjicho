@@ -1,6 +1,7 @@
 import React from "react";
 import { BookOpen, ChevronRight } from "lucide-react";
 import StatCards from "./StatCards.jsx";
+import { t } from "../lib/i18n.js";
 
 /**
  * Badge tiap kartu level di Home, mencerminkan progres nyata user:
@@ -10,17 +11,17 @@ import StatCards from "./StatCards.jsx";
  *   - else              → "New" (muted)
  */
 function levelBadge(stats) {
-  if (!stats) return { label: "New", variant: "muted" };
+  if (!stats) return { label: t("home.badge.new"), variant: "muted" };
   if (stats.total > 0 && stats.mastered === stats.total) {
-    return { label: "Mastered", variant: "gold" };
+    return { label: t("home.badge.mastered"), variant: "gold" };
   }
   if (stats.due > 0) {
-    return { label: `${stats.due} due`, variant: "seal" };
+    return { label: t("home.badge.due", { n: stats.due }), variant: "seal" };
   }
   if (stats.studied > 0) {
     return { label: `${stats.studied}/${stats.total}`, variant: "indigo" };
   }
-  return { label: "New", variant: "muted" };
+  return { label: t("home.badge.new"), variant: "muted" };
 }
 
 /**
@@ -68,13 +69,13 @@ export default function Home({
             <BookOpen size={16} />
           </span>
           <span className="kd-ar-body">
-            <span className="kd-ar-title">Browse all kanji</span>
-            <span className="kd-ar-small">Reference library · N5–N1</span>
+            <span className="kd-ar-title">{t("home.browse.title")}</span>
+            <span className="kd-ar-small">{t("home.browse.small")}</span>
           </span>
         </button>
       </div>
 
-      <div className="kd-section-title">Choose a JLPT Level</div>
+      <div className="kd-section-title">{t("home.levels")}</div>
       <div className="kd-level-grid">
         {levelIds.map((level) => {
           const meta = getLevelMeta(level);
@@ -84,7 +85,9 @@ export default function Home({
               <span className={`kd-level-badge ${badge.variant}`}>{badge.label}</span>
               <div className="kd-level-name">{level}</div>
               <div className="kd-level-count">
-                {meta.total} kanji · {meta.units} units
+                {meta.units === 1
+                  ? t("home.levelCountOne", { kanji: meta.total, units: meta.units })
+                  : t("home.levelCount", { kanji: meta.total, units: meta.units })}
               </div>
             </button>
           );

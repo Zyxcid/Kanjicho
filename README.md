@@ -28,12 +28,16 @@ npm run cap:sync  # build + copy dist/ into the Android project (Capacitor)
   reading sheet — bold readings stay bright; the little kanji at the
   corner replays its stroke order, t87) → the
   SRS closing line ("after a quiz ends, the app schedules the next
-  review with spaced repetition") → the ✕ that leaves the quiz **in one
-  tap** (t88: the tutorial session is a throwaway demo, so App skips the
-  leave-confirmation dialog while the tour is active — outside the tour
-  the progress gate stays fully intact) → the **< Home** button that
-  returns home (t88: restored as a labeled topbar button, simpler than
-  the bare arrow) → the due-now
+  review with spaced repetition") which since **t89 ends with a real
+  < Home button inside the tooltip** — the whole screen dims, the
+  chevron+Home button (styled after the app's topbar back button) is the
+  single lit way forward, and one tap **exits the demo quiz and flies
+  straight to home** (App's `goHomeFromTour`: navigate home + reset
+  history, no leave dialog — the tour session is a throwaway demo). The
+  old text instruction "Tap the ✕ next to the quiz title to head back"
+  and the separate unit-list "Back to home" step are retired (the
+  labeled topbar button needs no teaching; the tour is now 10 steps) →
+  the due-now
   stats card (mention-only, click blocked) → the Browse entry
   (mention-only, click blocked) → the closing line. Steps advance on the
   user's
@@ -110,6 +114,43 @@ npm run cap:sync  # build + copy dist/ into the Android project (Capacitor)
   dot marks the running question — a dot's position encodes its status
   (correct / current / wrong / unanswered), not the question's original
   number.
+- **Blur the choices (t89)** — an opt-in study aid (switch in the Help
+  overlay's Quiz section, `kanji-blur-choices`, default off) for
+  **active recall**: the four answer choices render blurred
+  (filter blur 8px + user-select none, so the text can't be peeked at
+  by selecting it) while the kanji and the dashed "Don't know" stay
+  crisp. The **first tap clears the blur on all four choices at once**
+  (once one choice is readable the pure-recall moment has passed, so
+  comparing them fairly is fine), the **second tap answers** — the same
+  two-step applies to the w/e/s/d keyboard shortcuts (first press
+  reveals, second answers; "Don't know"/f always answers in one press,
+  so the honest escape hatch never goes away). Blur resets on every new
+  question, resets after answering (correct/wrong states must be
+  readable), and persists across sessions. The onboarding tour is
+  blur-proof: its answer step advances only when the card actually
+  flips (waitAppear on the back), so the blur-clearing tap never
+  desyncs the tour.
+- **Interface language switcher: English / Bahasa Indonesia (t89)** —
+  a tiny dependency-free i18n module (`src/lib/i18n.js` + two flat
+  dictionaries in `src/strings/{en,id}.js`, ~230 keys) with a `t(key,
+  vars)` lookup. The switch lives in the Help overlay's first section
+  ("Language", two pills, native names), the choice persists in
+  localStorage `kanji-lang`, and switching re-renders the whole tree
+  (App holds the state; every component calls `t()` at render time),
+  so **everything flips instantly**: home, unit list, quiz, results,
+  Browse, review calendar, help, toasts, dialogs, the onboarding tour
+  (step texts resolve from the dictionary at render), duration labels
+  ("6 hours" / "6 jam") and date locale (en-US / id-ID), plus Android
+  notification title/body (read at schedule time). `<html lang>` is
+  kept in sync for screen readers. Deliberate limits: dictionary keys
+  fall back to English when missing; the Data sources / license credit
+  section stays English in both languages (legal text convention); the
+  Android notification *channel name* stays English (Android can't
+  rename channels after creation); kanji meanings stay English (they
+  are KANJIDIC2 dictionary data). Indonesian vocabulary choices:
+  "review" stays a loanword ("ulasan" means the wrong kind of review),
+  no plural inflection ("2 hari"), kanji/kana/romaji/JLPT/unit/level
+  stay as-is.
 - **Stroke-order animations (KanjiVG)** — the quiz kanji is **always
   rendered as the KanjiVG stroke SVG, fully drawn** (same shape before,
   during and after the animation — no font swap). **Left-click** (tap) the
@@ -380,6 +421,14 @@ src/
                             range 10001–10003, and a total no-op on web/PWA
                             (isNativePlatform guard; the Help toggle row is native-only
                             so the web UI is untouched)
+    i18n.js                  (t89) dependency-free interface-language module: t(key, vars) lookup over
+                            flat dictionaries (src/strings/{en,id}.js), getLang/setLang + localStorage
+                            "kanji-lang", <html lang> sync, en fallback for missing keys; Node-safe
+                            (guarded DOM/localStorage access) so reminderPlan.js keeps importing it in
+                            Node tests; localeOf() powers date formatting (en-US / id-ID)
+  strings/
+    en.js / id.js            (t89) the two UI dictionaries (~230 flat keys, grouped by component prefix);
+                            id keeps "review" as a loanword and skips plural inflection ("2 hari")
   components/
     Home.jsx                next-review banner (the calendar entry) + stat cards panel + browse entry + level grid
     StatCards.jsx           shared panel of three large read-only stat cards (x/total Studied, Due now, Mastered) used by Home and UnitSelect
@@ -395,7 +444,7 @@ src/
                             pre-warmed at question mount together with the components
                             chunk so the flipped back renders its finished SVG without a
                             placeholder blink; no detail entry from inside the quiz before
-                            answering — that would leak the answer); the script toggle lives in the app topbar (t80, universal for quiz + Browse); the dots above the card are a live scoreboard (t76): answers prop + correctIndex comparison sorts them into [correct (full indigo, leftmost)] [current] [wrong (dimmed)] [unanswered]; exit/leave logic (dialog, guard, q shortcut target) lives in App.jsx (t83)
+                            answering — that would leak the answer); the script toggle lives in the app topbar (t80, universal for quiz + Browse); the dots above the card are a live scoreboard (t76): answers prop + correctIndex comparison sorts them into [correct (full indigo, leftmost)] [current] [wrong (dimmed)] [unanswered]; exit/leave logic (dialog, guard, q shortcut target) lives in App.jsx (t83); (t89) blur-the-choices study aid: blurChoices prop (App state + localStorage "kanji-blur-choices", default off, switch in Help) — while active and unanswered the four choice buttons get .blurred (filter blur 8px); first tap/keypress reveals ALL choices (choicesRevealed state, reset per question), second answers; "Don't know"/f stays one-press
     Readings.jsx             shared On/Kun rendering with primary bolding, kana or romaji
     RevealGlyph.jsx          (t87, dari t86) small KanjiVG glyph BUTTON at the top-left of the quiz
                             card's back (72 px mobile / 88 px desktop — clearly smaller
@@ -411,7 +460,7 @@ src/
     CopyKanji.jsx            transparent <button> covering the Browse stroke box: click = copy the kanji (faint corner copy icon as affordance, inline "Copied 語" pill, keyboard-accessible)
     StrokePlayer.jsx         animated stroke-order player (two-layer SVG: faint guide + drawn ink via stroke-dashoffset; play/pause/replay/step/speed; live "n / N strokes" label under the controls — old kd-stroke-counter merged into it; `onProgress(revealed)` reports the live stroke count so the Browse component chips can highlight in sync; the stroke box itself is click-to-copy via the CopyKanji overlay)
     ScriptToggle.jsx         (t80) topbar kana/romaji toggle — universal for the quiz and Browse (Readings + example readings switch live); neutral pill, no on/off color: the label (あ / Aa) is the state; (t81) sits BETWEEN the Help and Theme buttons
-    Tutorial.jsx             (t82, revised t83, t87 & t88) guided onboarding tour: 11 steps (welcome → level grid → unit grid → script toggle → ANSWER one real question (t87: choices step is practice — any choice or "Don't know"; t88: body trimmed to "Pick the choice that matches the kanji's reading.") → the card's back (t88: spotlight wraps the WHOLE reading sheet so the bold readings stay bright; bold readings + tappable corner stroke glyph, t87) → SRS + real ✕ exit in ONE tap (t88: App bypasses the leave dialog while the tour is active — the tour session is a throwaway demo; waitAppear covers alternate exits) → the real < Home button (t88: labeled topbar button, one tap home) → due-now card → Browse entry → finale); navigation steps wait for clicks on the REAL topbar buttons; the due-now and Browse spotlights are mention-only "lock" steps (a transparent z-57 blocker covers the hole so the target can't be clicked, and since t87 a capture-phase key guard swallows Enter/Space outside the tooltip so the locked target can't be keyboard-triggered either — Got it is the only way forward); Escape no longer kills the tour while a modal is open (t87: the calendar / help consume it first); advances on real clicks (capture listener, no stopPropagation), on the target appearing (poll), or on Got it (also the escape hatch on the two quiz steps); 4 shade rects around the hole (z 55, below modals → dialogs stay clickable), ring z 56, tooltip z 72; measures targets on mount/scroll/resize/400 ms poll; t88 bug fix: the step-change reset (rect→null, pop→null) moved out of the passive measure effect into advance() alone — the passive reset used to run after the layout effect had already positioned the tooltip, so target-less steps (welcome, finale) stayed visibility:hidden forever (dimmed screen, no overlay; t82-era bug that synthetic-click harnesses couldn't catch); App owns the "kanjicho-tutorial" flag (auto-start for new users only, replay from Help)
+    Tutorial.jsx             (t82, revised t83, t87, t88 & t89) guided onboarding tour: 10 steps (welcome → level grid → unit grid → script toggle → ANSWER one real question (t87: choices step is practice — any choice or "Don't know"; t88: body trimmed to "Pick the choice that matches the kanji's reading."; t89: no waitClick on the choices — the step advances ONLY when the card actually flips, so the blur-clearing first tap of the t89 blur feature can't desync the tour) → the card's back (t88: spotlight wraps the WHOLE reading sheet so the bold readings stay bright; bold readings + tappable corner stroke glyph, t87) → SRS closing line ending in a REAL < Home CTA button inside the tooltip (t89: target null — the whole screen dims, the chevron+Home button styled after the topbar back button is the single lit way forward; one tap = onGoHome → navigate home + reset history, no leave dialog, the tour session is a throwaway demo; the old "Tap the ✕ next to the quiz title" text instruction and the separate unit-list Home step are retired) → due-now card → Browse entry → finale (t89: closing line now "learn a little at a time + review the kanji you got wrong")); navigation steps wait for clicks on the REAL topbar buttons; the due-now and Browse spotlights are mention-only "lock" steps (a transparent z-57 blocker covers the hole so the target can't be clicked, and since t87 a capture-phase key guard swallows Enter/Space outside the tooltip so the locked target can't be keyboard-triggered either — Got it is the only way forward); Escape no longer kills the tour while a modal is open (t87: the calendar / help consume it first); advances on real clicks (capture listener, no stopPropagation), on the target appearing (poll), or on Got it (also the escape hatch on the two quiz steps); 4 shade rects around the hole (z 55, below modals → dialogs stay clickable), ring z 56, tooltip z 72; measures targets on mount/scroll/resize/400 ms poll; t88 bug fix: the step-change reset (rect→null, pop→null) moved out of the passive measure effect into advance() alone — the passive reset used to run after the layout effect had already positioned the tooltip, so target-less steps (welcome, finale) stayed visibility:hidden forever (dimmed screen, no overlay; t82-era bug that synthetic-click harnesses couldn't catch); App owns the "kanjicho-tutorial" flag (auto-start for new users only, replay from Help)
     Result.jsx               score stamp + breakdown + mode-aware next-review panel; the "Why the same review date?" note was removed (t78) — the fixed 1/2/8-day first-quiz schedule is explained in the Help overlay's Quiz section instead
     Browse.jsx               full kanji library (filter pills, search, modal; the modal's stroke box is click-to-copy — see CopyKanji.jsx); readings and example readings follow the universal topbar script toggle, the separate Romaji row was removed (t80)
     ReviewCalendar.jsx       shared month calendar + selected-day panel (used by the banner overlay); days the user actually studied on (≥ 1 completed quiz) are gold — same color story as the lit streak card (t76: the marker is on activity days, not on "today"; today keeps its indigo border); the study dot under the day number is gold too

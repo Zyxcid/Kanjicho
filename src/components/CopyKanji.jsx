@@ -1,6 +1,7 @@
 import React from "react";
 import { Copy } from "lucide-react";
 import { useCopy } from "../lib/useCopy.js";
+import { t } from "../lib/i18n.js";
 
 // CopyKanji — tombol transparan yang menutupi SELURUH kotak goresan
 // (.kd-stroke-box) di modal Browse: klik di mana pun pada kotak =
@@ -29,14 +30,14 @@ export default function CopyKanji({ kanji }) {
         type="button"
         className="kd-stroke-copy"
         onClick={() => copy(kanji)}
-        aria-label={`Copy ${kanji} to clipboard`}
-        title={`Copy ${kanji}`}
+        aria-label={t("copy.aria", { kanji })}
+        title={t("copy.title", { kanji })}
       >
         <Copy className="kd-copy-icon" size={13} strokeWidth={2.25} aria-hidden="true" />
       </button>
       {copied && (
         <span className="kd-copy-note" role="status" aria-live="polite">
-          Copied {kanji}
+          {t("copy.done", { kanji })}
         </span>
       )}
     </>

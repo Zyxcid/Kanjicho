@@ -24,6 +24,7 @@
 import { Capacitor } from "@capacitor/core";
 import { LocalNotifications } from "@capacitor/local-notifications";
 import { computeReminderBatch, reminderBody, REMINDER_IDS } from "./reminderPlan.js";
+import { t } from "./i18n.js";
 
 // localStorage keys — konvensi sama dengan toggle app lain ("1"/"0",
 // absen = default ON seperti auto-flip; reminder bisa dimatikan user).
@@ -56,7 +57,9 @@ export function setRemindersEnabled(v) {
 
 // Kanal Android (O+): nama yang user lihat di pengaturan sistem. Sekali
 // dibuat tidak bisa diubah deskripsinya — guard flag per sesi supaya tidak
-// menagih bridge berulang kali.
+// menagih bridge berulang kali. (t89) nama kanal SENGAJA tetap Inggris di
+// semua bahasa: Android tidak bisa mengganti nama kanal pasca-pembuatan,
+// dan campur bahasa di daftar kanal pengaturan sistem justru membingungkan.
 let channelReady = false;
 async function ensureChannel() {
   if (channelReady) return;
@@ -153,7 +156,10 @@ export async function syncReviewReminders(records, now = new Date()) {
     await LocalNotifications.schedule({
       notifications: batch.map((n) => ({
         id: n.id,
-        title: "Review time",
+        // (t89) Judul/body mengikuti bahasa aktif saat penjadwalan —
+        // sinkron ulang tiap app dibuka menjaga bahasa notifikasi tetap
+        // segar setelah user mengganti bahasa.
+        title: t("notif.title"),
         body: reminderBody(n.count),
         schedule: { at: n.at, allowWhileIdle: true },
         channelId: CHANNEL_ID,

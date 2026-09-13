@@ -15,13 +15,20 @@
  *     saat jam menymbung 24), ≥ 24 jam hari-menaik (konsisten dengan
  *     daysUntil lama: ceil).
  *   formatDueExact(time) → tanggal + jam tepat: "Sat, Sep 6 · 14:30"
- *     (en-US, jam lokal 24-jam — sama dengan formatHHMM panel kalender).
+ *     (locale mengikuti bahasa aktif — en-US atau id-ID; jam lokal 24-jam,
+ *     sama dengan formatHHMM panel kalender).
  *
  * `time` menerima ISO string, timestamp number, atau Date.
  * Fungsi murni — aman dipakai di render maupun test.
+ *
+ * (t89) Label durasi kini lewat kamus i18n (kunci "dur.*") — bahasa
+ * Indonesia tanpa infleksi jamak ("2 hari", bukan "2 days"); fungsi
+ * membaca bahasa aktif saat DIPANGGIL, dan semua pemanggilnya re-render
+ * saat bahasa diganti (state di App), jadi label ikut berganti live.
  */
 
 import { formatHHMM } from "./studyStats.js";
+import { t, localeOf } from "./i18n.js";
 
 const MS_PER_MIN = 60 * 1000;
 const MS_PER_HOUR = 60 * MS_PER_MIN;
@@ -29,10 +36,6 @@ const MS_PER_DAY = 24 * MS_PER_HOUR;
 
 function toDate(time) {
   return time instanceof Date ? time : new Date(time);
-}
-
-function plural(n, unit) {
-  return `${n} ${unit}${n === 1 ? "" : "s"}`;
 }
 
 /**
@@ -43,17 +46,17 @@ function plural(n, unit) {
  */
 export function intervalUntilLabel(time, now = new Date()) {
   const ms = toDate(time).getTime() - toDate(now).getTime();
-  if (ms <= 0) return "now";
-  if (ms < MS_PER_MIN) return "under a minute";
+  if (ms <= 0) return t("dur.now");
+  if (ms < MS_PER_MIN) return t("dur.underMinute");
   const mins = Math.round(ms / MS_PER_MIN);
   // "min" singkatan — tanpa "s" jamak (45 min, bukan 45 mins).
-  if (mins < 60) return `${mins} min`;
+  if (mins < 60) return t("dur.min", { n: mins });
   const hours = Math.round(ms / MS_PER_HOUR);
-  if (hours < 24) return plural(hours, "hour");
+  if (hours < 24) return hours === 1 ? t("dur.hourOne") : t("dur.hours", { n: hours });
   // ≥ 24 jam: hari menaik — "1 day" saat jam tepat menymbung 24, selaras
   // dengan semantik daysUntil (ceil) yang dipakai status unit.
   const days = Math.ceil(ms / MS_PER_DAY);
-  return plural(days, "day");
+  return days === 1 ? t("dur.dayOne") : t("dur.days", { n: days });
 }
 
 /**
@@ -63,7 +66,7 @@ export function intervalUntilLabel(time, now = new Date()) {
  */
 export function formatDueExact(time) {
   const d = toDate(time);
-  const date = d.toLocaleDateString("en-US", {
+  const date = d.toLocaleDateString(localeOf(), {
     weekday: "short",
     month: "short",
     day: "numeric",

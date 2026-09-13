@@ -9,6 +9,7 @@ import { loadStrokes } from "../lib/strokes.js";
 import { loadComponents } from "../lib/components.js";
 import { pushOverlayEntry, closeOverlayUI, discardOverlayEntry } from "../lib/useRouter.js";
 import { kanaToRomaji } from "../lib/kana.js";
+import { t } from "../lib/i18n.js";
 
 // "All" + N5..N1. Default N5 supaya paint pertama ringan (N1 sendiri
 // berisi 1.232 entri; N5 lebih ramah sebagai halaman mula).
@@ -205,9 +206,13 @@ export default function Browse({ script = "kana" }) {
           di bawah. */}
 
       <div className="kd-section-title kd-section-title-row">
-        <span>kanji Library</span>
+        <span>{t("browse.title")}</span>
         <small className="kd-browse-count-inline">
-          {pool === null ? "Loading…" : `${list.length} kanji${activeLevel !== "All" ? ` in ${activeLevel}` : ""}`}
+          {pool === null
+            ? t("common.loading")
+            : activeLevel !== "All"
+              ? t("browse.countIn", { n: list.length, lv: activeLevel })
+              : t("browse.count", { n: list.length })}
         </small>
       </div>
 
@@ -228,16 +233,16 @@ export default function Browse({ script = "kana" }) {
           <Search size={15} />
           <input
             type="text"
-            placeholder="Search kanji, meaning, reading…"
+            placeholder={t("browse.search")}
             value={query}
             onChange={(e) => updateQuery(e.target.value)}
-            aria-label="Search kanji"
+            aria-label={t("browse.search.aria")}
           />
           {query && (
             <button
               className="kd-search-clear"
               onClick={() => updateQuery("")}
-              aria-label="Clear search"
+              aria-label={t("browse.clear")}
             >
               <X size={14} />
             </button>
@@ -263,10 +268,10 @@ export default function Browse({ script = "kana" }) {
         ))}
       </div>
 
-      {pool === null && <div className="kd-empty-note">Loading {activeLevel}…</div>}
+      {pool === null && <div className="kd-empty-note">{t("browse.loadingLevel", { lv: activeLevel })}</div>}
 
       {pool !== null && list.length === 0 && (
-        <div className="kd-empty-note">No kanji match “{query}”.</div>
+        <div className="kd-empty-note">{t("browse.noMatch", { q: query })}</div>
       )}
 
       {hasMore && (
@@ -275,7 +280,7 @@ export default function Browse({ script = "kana" }) {
             className="kd-btn secondary kd-showmore-btn"
             onClick={() => setVisibleCount((c) => c + VISIBLE_STEP)}
           >
-            Show more ({list.length - visibleCount} remaining)
+            {t("browse.showMore", { n: list.length - visibleCount })}
           </button>
         </div>
       )}
@@ -290,7 +295,7 @@ export default function Browse({ script = "kana" }) {
             <button
               className="kd-modal-close"
               onClick={closeModalUI}
-              aria-label="Close"
+              aria-label={t("common.close")}
             >
               <X size={18} />
             </button>
@@ -301,7 +306,7 @@ export default function Browse({ script = "kana" }) {
               <button
                 className="kd-modal-back"
                 onClick={goBack}
-                aria-label={`Back to ${navHistory[navHistory.length - 1].kanji}`}
+                aria-label={t("browse.back", { kanji: navHistory[navHistory.length - 1].kanji })}
               >
                 <ChevronLeft size={16} />
                 <span className="kd-modal-back-glyph">
@@ -343,7 +348,9 @@ export default function Browse({ script = "kana" }) {
                       <CopyKanji kanji={selected.kanji} />
                     </div>
                     <div className="kd-detail-strokes">
-                      {selected.stroke_count} {selected.stroke_count === 1 ? "stroke" : "strokes"}
+                      {selected.stroke_count === 1
+                        ? t("browse.strokeOne")
+                        : t("browse.strokes", { n: selected.stroke_count })}
                     </div>
                   </>
                 )}

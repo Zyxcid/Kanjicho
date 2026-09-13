@@ -1,13 +1,15 @@
 import React from "react";
+import { t } from "../lib/i18n.js";
 
 /**
  * Tooltip satu bagian — cukup menjelaskan APA ITU radikal/fonetik
  * (t64: jumlah goresan, arti, bentuk asli ditarik dari chip — tooltip
  * hanya definisi peran bagian). Bagian tanpa peran tidak punya tooltip.
+ * (t89) Teks tooltip mengikuti bahasa aktif (kunci comp.*).
  */
 function partTitle(part) {
-  if (part.r) return "Radical — the component that carries the meaning";
-  if (part.ph) return "Phonetic — the component that carries the sound";
+  if (part.r) return t("comp.radical");
+  if (part.ph) return t("comp.phonetic");
   return null;
 }
 
@@ -81,9 +83,9 @@ export default function ComponentBreakdown({
 
   // Persamaan utuh tetap dibacakan screen reader (kanji = bagian-bagian)
   // walau lead visualnya tidak dirender — konteks tanpa melihat layar.
-  const ariaLabel = `Components: ${kanji} = ${visible
-    .map((p) => p.e || `+${p.u}`)
-    .join(" + ")}`;
+  const ariaLabel = t("comp.aria", {
+    eq: `${kanji} = ${visible.map((p) => p.e || `+${p.u}`).join(" + ")}`,
+  });
 
   // ---- Varian plain (panel reveal kuis): baris teks tenang ----------
   if (plain) {
@@ -92,7 +94,9 @@ export default function ComponentBreakdown({
         <div className="kd-comp-row" role="group" aria-label={ariaLabel}>
           {visible.map((p, i) => {
             const title = p.u
-              ? `${p.u} ${p.u === 1 ? "stroke" : "strokes"} not part of a named component`
+              ? p.u === 1
+                ? t("comp.looseOne")
+                : t("comp.loose", { n: p.u })
               : partTitle(p);
             return (
               <span
@@ -123,7 +127,7 @@ export default function ComponentBreakdown({
   // ---- Varian full (modal Browse, di bawah animasi goresan) ----------
   return (
     <div className="kd-comp">
-      <div className="kd-comp-label">Components</div>
+      <div className="kd-comp-label">{t("comp.label")}</div>
       <div className="kd-comp-row" role="group" aria-label={ariaLabel}>
         {visible.map((p, i) => (
           /* Term = "+" MENEMPEL pada chip sesudahnya: baris baru selalu
@@ -138,7 +142,7 @@ export default function ComponentBreakdown({
             {p.u ? (
               <span
                 className={`kd-comp-chip static ungrouped${syncClass(i)}`}
-                title={`${p.u} ${p.u === 1 ? "stroke" : "strokes"} not part of a named component`}
+                title={p.u === 1 ? t("comp.looseOne") : t("comp.loose", { n: p.u })}
               >
                 <span className="kd-comp-glyph">+{p.u}</span>
               </span>
@@ -148,7 +152,7 @@ export default function ComponentBreakdown({
                 className={`kd-comp-chip ${p.r ? "rad" : p.ph ? "phon" : ""}${syncClass(i)}`}
                 onClick={() => onOpenPart(p)}
                 title={partTitle(p) || undefined}
-                aria-label={`Show component ${p.e}`}
+                aria-label={t("comp.show", { k: p.e })}
               >
                 <span className="kd-comp-glyph" aria-hidden="true">
                   {p.e}

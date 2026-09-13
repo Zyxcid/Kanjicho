@@ -21,6 +21,11 @@
  *   berubah, seluruh batch dibatalkan dan dihitung ulang dari data terkini.
  */
 
+// (t89) t() dari i18n untuk teks body — i18n aman dimuat di Node (semua
+// akses DOM/localStorage dijaga), jadi sifat "murni, bisa diuji di Node"
+// modul ini tetap utuh; di Node bahasa jatuh ke default "en".
+import { t } from "./i18n.js";
+
 // Jam slot nudge harian (waktu lokal), menaik.
 export const REMINDER_SLOTS = [8, 12, 17, 20];
 
@@ -91,7 +96,10 @@ export function computeReminderBatch(records, now = new Date(), opts = {}) {
   }));
 }
 
-/** Teks body notifikasi (bahasa Inggris, konsisten dengan UI app). */
+/** Teks body notifikasi — (t89) mengikuti bahasa antarmuka aktif
+ *  (kunci notif.*; dibaca saat jadwal disusun, jadi notifikasi yang sudah
+ *  terjadwal memakai bahasa saat penjadwalannya — sinkron ulang tiap
+ *  buka app menjaga tetap segar). */
 export function reminderBody(count) {
-  return count === 1 ? "1 unit is due for review." : `${count} units are due for review.`;
+  return count === 1 ? t("notif.bodyOne") : t("notif.bodyMany", { n: count });
 }

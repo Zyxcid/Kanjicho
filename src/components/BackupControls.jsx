@@ -6,12 +6,13 @@
  * SELURUH progress perangkat ini diganti isinya. Logika lengkapnya ada di
  * lib/backup.js — komponen ini hanya UI-nya.
  *
- * Label sengaja bahasa Inggris agar konsisten dengan teks UI aplikasi
- * lainnya (modal Help, tombol kuis, dsb.).
+ * (t89) Label kini mengikuti bahasa antarmuka aktif (kamus backup.*) —
+ * termasuk dialog confirm() dan pesan alert() kegagalan.
  */
 import React, { useRef } from "react";
 import { Download, Upload } from "lucide-react";
 import { exportProgress, readBackup, applyBackup } from "../lib/backup";
+import { t } from "../lib/i18n.js";
 
 export default function BackupControls() {
   const fileRef = useRef(null);
@@ -20,7 +21,7 @@ export default function BackupControls() {
     try {
       await exportProgress();
     } catch (err) {
-      alert(`Export failed: ${err.message}`);
+      alert(t("backup.exportFail", { msg: err.message }));
     }
   }
 
@@ -30,28 +31,24 @@ export default function BackupControls() {
     if (!file) return;
 
     // Konfirmasi wajib: impor mengganti SELURUH progress saat ini.
-    if (
-      !window.confirm(
-        "Importing replaces ALL progress on this device with the backup file.\nContinue?"
-      )
-    ) {
+    if (!window.confirm(t("backup.confirm"))) {
       return;
     }
 
     try {
       await applyBackup(await readBackup(file));
     } catch (err) {
-      alert(`Import failed: ${err.message}`);
+      alert(t("backup.importFail", { msg: err.message }));
     }
   }
 
   return (
     <div className="kd-help-links">
       <button className="kd-help-btn" onClick={handleExport}>
-        <Download size={15} /> Export progress
+        <Download size={15} /> {t("backup.export")}
       </button>
       <button className="kd-help-btn" onClick={() => fileRef.current?.click()}>
-        <Upload size={15} /> Import progress
+        <Upload size={15} /> {t("backup.import")}
       </button>
       {/* input file tersembunyi — tombol Import yang mengkliknya, supaya
           tampilannya konsisten dengan tombol Export */}
