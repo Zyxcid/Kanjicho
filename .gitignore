@@ -9,3 +9,4 @@ dist-ssr/
 raw/
 output/
 __pycache__/
+.idea/
