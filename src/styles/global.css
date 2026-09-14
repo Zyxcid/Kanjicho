@@ -95,6 +95,16 @@ html, body {
   width: 100%;
   box-sizing: border-box;
   padding: 20px 16px 60px;
+  /* (t91) EDGE-TO-EDGE: WebView kini menggambar sampai balik status bar
+     & navigation bar (MainActivity.java), inset diumumkan native sebagai
+     CSS variables --safe-area-inset-*. Background kertas tetap sampai
+     ujung layar; KONTEN diberi ruang ekstra supaya tidak tertutup
+     jam/baterai (atas) dan tombol navigasi (bawah). Di web/PWA variable
+     tidak ada → 0px → tampilan web tidak berubah. */
+  padding-top: calc(20px + var(--safe-area-inset-top, 0px));
+  padding-bottom: calc(60px + var(--safe-area-inset-bottom, 0px));
+  padding-left: calc(16px + var(--safe-area-inset-left, 0px));
+  padding-right: calc(16px + var(--safe-area-inset-right, 0px));
 }
 .kd-root * { box-sizing: border-box; }
 .kd-root::before { content: none; }
@@ -157,28 +167,36 @@ html, body {
 }
 .kd-brand small { font-family: 'Zen Kaku Gothic New', sans-serif; font-weight: 500; font-size: 12.5px; color: var(--ink-soft); }
 
-/* Tombol ikon generik di topbar (Help, dst) — netral, konsisten dengan
-   ThemeToggle. */
+/* (t90) KELUARGA TOMBOL IKON TOPBAR — Help (?), toggle skrip (あ/Aa), dan
+   toggle tema (bulan/matahari) kini SATU bentuk: lingkaran 36×36, border
+   kertas netral + latar surface, isi ink-soft, hover indigo. Sebelumnya
+   campuran tiga bentuk/ukuran berjejer: lingkaran 32px (Help) + pill
+   persegi 38px (あ/Aa) + pill lebar berlabel (tema) — terasa kacau.
+   Konvensi app tetap: tombol IKON = lingkaran; tombol BERLABEL = pill
+   (kd-btn). 36px juga touch target yang nyaman di Android. */
 .kd-icon-btn {
-  display: flex; align-items: center; justify-content: center; width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px;
   border-radius: 50%; border: 1px solid var(--paper-line); background: var(--surface);
-  color: var(--ink-soft); cursor: pointer; flex-shrink: 0; transition: color 0.15s, border-color 0.15s;
+  color: var(--ink-soft); cursor: pointer; flex-shrink: 0;
+  transition: color 0.15s, border-color 0.15s;
 }
 .kd-icon-btn:hover { color: var(--indigo); border-color: var(--indigo-soft); }
+.kd-icon-btn:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; }
 
-/* ---- Tombol dark mode ---- */
+/* ---- Tombol dark mode (t90: lingkaran ikon 36px — satu keluarga dengan
+   tombol Help & toggle skrip; label teks pensiun, ikon bulan/matahari
+   sudah umum terbaca, nama mode tetap ada di title/aria-label) ---- */
 .kd-theme-toggle {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: var(--surface); border: 1px solid var(--paper-line); color: var(--ink-soft);
-  padding: 6px 10px; border-radius: 3px; cursor: pointer;
-  font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 12.5px; font-weight: 700;
-  line-height: 1; min-height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; padding: 0;
+  border-radius: 50%; background: var(--surface);
+  border: 1px solid var(--paper-line); color: var(--ink-soft);
+  cursor: pointer; flex-shrink: 0;
+  transition: color 0.15s, border-color 0.15s;
 }
 .kd-theme-toggle:hover { color: var(--indigo); border-color: var(--indigo-soft); }
-.kd-theme-toggle-label { font-family: 'DM Mono', monospace; }
-@media (max-width: 420px) {
-  .kd-theme-toggle-label { display: none; }
-}
+.kd-theme-toggle:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; }
 
 /* (t88) Tombol "< Home" DIKEMBALIKAN di topbar (daftar unit & Browse):
    panah polos t83 diganti tombol BERLABEL — afordansi "pulang ke
@@ -790,15 +808,22 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
    TANPA indikator on/off berwarna — labelnya sendiri (あ / Aa) adalah
    statusnya; mode aktif diumumkan lewat aria-pressed untuk pembaca
    layar. Shortcut dev "r" (layar kuis) men-toggle state yang sama. */
+/* (t90) Toggle skrip あ/Aa — lingkaran 36px satu keluarga dengan tombol
+   Help & toggle tema (dulu pill persegi 38px — bentuk beda dari
+   tetangganya). Tetap TANPA indikator on/off berwarna: label あ/Aa
+   adalah statusnya; mode aktif diumumkan lewat aria-pressed untuk
+   pembaca layar. */
 .kd-script-toggle {
-  display: inline-flex; align-items: center; justify-content: center;
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; padding: 0; border-radius: 50%;
   background: var(--surface); border: 1px solid var(--paper-line); color: var(--ink-soft);
-  min-width: 38px; padding: 6px 9px; border-radius: 3px; cursor: pointer;
-  font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 13px; font-weight: 700;
-  line-height: 1; min-height: 32px; flex-shrink: 0;
+  cursor: pointer;
+  font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 14.5px; font-weight: 700;
+  line-height: 1; flex-shrink: 0;
   transition: color 0.15s, border-color 0.15s;
 }
 .kd-script-toggle:hover { color: var(--indigo); border-color: var(--indigo-soft); }
+.kd-script-toggle:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; }
 .kd-question-sub { text-align: center; font-family: 'Shippori Mincho', serif; font-size: 17px; font-weight: 700; margin-bottom: 20px; color: var(--indigo); }
 
 /* Badge mode sesi di atas soal — hanya untuk missed-kanji review (sesi
@@ -1012,7 +1037,8 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 .kd-btn.danger:hover { filter: brightness(1.08); }
 
 .kd-toast {
-  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--toast-bg); color: var(--toast-fg);
+  /* (t91) bottom + safe-area: toast tidak tertutup navigation bar. */
+  position: fixed; bottom: calc(20px + var(--safe-area-inset-bottom, 0px)); left: 50%; transform: translateX(-50%); background: var(--toast-bg); color: var(--toast-fg);
   padding: 10px 18px; border-radius: 4px; font-size: 13px; max-width: 90%; text-align: center; z-index: 50;
 }
 
@@ -1027,7 +1053,13 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 /* ===== Desktop (>=900px): container lebih lebar, bukan cuma kolom
    sempit di tengah layar kosong ===== */
 @media (min-width: 900px) {
-  .kd-root { padding: 36px 32px 80px; }
+  .kd-root {
+    padding: 36px 32px 80px;
+    /* (t91) safe-area tetap dihormati di desktop wrapper (native
+       landscape/tablet) — di web biasa variable tidak ada → 0px. */
+    padding-top: calc(36px + var(--safe-area-inset-top, 0px));
+    padding-bottom: calc(80px + var(--safe-area-inset-bottom, 0px));
+  }
 
   .kd-topbar, .kd-section-title, .kd-hero,
   .kd-level-grid, .kd-unit-grid, .kd-browse-entry-row {
@@ -1182,8 +1214,10 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
   animation: kd-pop-in 0.18s ease;
 }
 .kd-modal-close {
+  /* (t90) lingkaran 32px — satu bahasa dengan tombol ikon topbar. */
   position: absolute; top: 10px; right: 10px; background: none; border: none; cursor: pointer;
-  color: var(--ink-soft); padding: 4px; border-radius: 3px; display: flex; align-items: center; justify-content: center;
+  color: var(--ink-soft); width: 32px; height: 32px; padding: 0; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
 }
 .kd-modal-close:hover { color: var(--ink); background: var(--paper); }
 
@@ -1221,10 +1255,25 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 .kd-drill-confirm { max-width: 340px; }
 .kd-drill-confirm-text { font-size: 13.5px; color: var(--ink); line-height: 1.7; margin: 4px 0 0; }
 .kd-drill-confirm .kd-btn-row { margin-top: 16px; }
+/* (t90) Kepala modal Help — judul + chip versi SATU baris (dulu versi
+   di baris sendiri di bawah judul). Padding kanan memberi jarak ke
+   tombol ✕ absolut. */
+.kd-help-header { display: flex; align-items: baseline; gap: 8px; padding-right: 42px; }
 .kd-help-title { font-family: 'Shippori Mincho', serif; font-size: 22px; font-weight: 800; color: var(--indigo); }
-.kd-help-version { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--ink-soft); margin-top: 2px; margin-bottom: 18px; }
-.kd-help-section { margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--paper-line); }
-.kd-help-section:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+.kd-help-version { font-family: 'DM Mono', monospace; font-size: 10.5px; color: var(--ink-soft); border: 1px solid var(--paper-line); border-radius: 3px; padding: 2px 6px; flex-shrink: 0; }
+/* (t90) GRUP — Help kini tiga bab: Pengaturan / Panduan / Tentang.
+   Divider bab = garis solid tebal + label kecil indigo; divider ANTAR
+   seksi dalam satu bab = dashed tipis — hierarki dua tingkat (sebelumnya
+   8 seksi datar berjejer = terasa kacau). Urutan baru menempatkan semua
+   PENGATURAN di atas, PANDUAN di tengah, TENTANG di bawah. */
+.kd-help-group { margin-top: 20px; padding-top: 16px; border-top: 2px solid var(--paper-line); }
+.kd-help-group:first-of-type { margin-top: 0; }
+.kd-help-group-label {
+  font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--indigo); margin-bottom: 12px;
+}
+.kd-help-section { padding: 0; margin: 0; }
+.kd-help-section + .kd-help-section { margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--paper-line); }
 .kd-help-heading {
   font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-soft);
   font-weight: 700; margin-bottom: 10px;
@@ -1245,10 +1294,19 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 .kd-help-dot.phon { background: var(--indigo); }
 .kd-help-text { font-size: 12.5px; color: var(--ink-soft); line-height: 1.7; margin: 0; }
 .kd-help-text a { color: var(--indigo-soft); }
+/* (t90) Daftar sumber data — dinding teks lama (satu paragraf penuh
+   link inline) dipecah jadi TIAP SUMBER satu baris: nama (link tebal) —
+   keterangan + pemegang hak + lisensi (redup). Gampang dipindai. */
+.kd-help-sources { margin: 0; padding: 0; list-style: none; }
+.kd-help-sources li { font-size: 12px; color: var(--ink-soft); line-height: 1.65; padding: 5px 0; }
+.kd-help-sources li + li { border-top: 1px dashed var(--paper-line); }
+.kd-help-sources a { color: var(--indigo-soft); font-weight: 700; }
 /* Paragraf legal bantu (disclaimer JLPT, repo data, OSS) — lebih kecil dan
-   kalem dari kredit sumber data, pemisah halus supaya bagian "Data sources"
-   tidak menyatu dengan legal. */
-.kd-help-legal { margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--paper-line); font-size: 11.5px; color: var(--ink-soft); opacity: 0.85; }
+   kalem dari kredit sumber data, pemisah halus HANYA sebelum blok legal
+   pertama (dulu tiap paragraf punya dashed sendiri → deretan garis). */
+.kd-help-legal { margin-top: 8px; font-size: 11.5px; color: var(--ink-soft); opacity: 0.85; }
+.kd-help-legal + .kd-help-legal { margin-top: 7px; }
+.kd-help-sources + .kd-help-legal { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--paper-line); }
 /* (t82) Tombol replay tur onboarding — seksi Getting started help.
    Varian secondary (netral, kertas) + lebar penuh: satu aksi jelas,
    senada dengan deretan kontrol lain di modal. */
@@ -1266,10 +1324,10 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
    Pil bergaya link supaya seirama dengan .kd-help-link, tapi berborder
    dan klik-able sebagai <button>. */
 .kd-help-btn {
-  display: flex; align-items: center; gap: 6px; font-size: 13px;
-  font-weight: 700; color: var(--indigo); background: none;
-  border: 1px solid var(--indigo-soft); border-radius: 999px;
-  padding: 7px 14px; cursor: pointer; margin-top: 10px;
+  display: flex; align-items: center; justify-content: center; flex: 1; gap: 6px; font-size: 13px;
+  font-weight: 700; color: var(--indigo); background: var(--surface);
+  border: 1px solid var(--indigo-soft); border-radius: 4px;
+  padding: 8px 12px; cursor: pointer; margin-top: 10px;
   font-family: inherit;
 }
 .kd-help-btn:hover { color: var(--indigo-soft); }
@@ -1290,12 +1348,14 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
    + border indigo TANPA latar berwarna; row meredup saat auto-flip
    dimatikan (pilihan tetap tersimpan & aktif lagi begitu toggle
    menyala — timer Quiz membaca nilai terbaru). */
-.kd-help-delay-row {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 14px; margin-top: 12px;
-}
+/* (t90) Kolom jeda auto-flip — label di ATAS, deretan pill di bawahnya
+   (pola yang sama dengan pill bahasa). Row lama (label kiri + pill
+   kanan sejajar) terlalu sempit di modal 420px: deretan 5 pill
+   menekan label sampai patah dua baris. */
+.kd-help-delay-row { margin-top: 12px; }
 .kd-help-delay-row.off { opacity: 0.55; }
-.kd-help-delay-pills { display: flex; gap: 6px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
+.kd-help-delay-row .kd-help-delay-pills { margin-top: 6px; }
+.kd-help-delay-pills { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-start; }
 /* (t89) Deretan pill bahasa (seksi Language Help) — pola delay pill, tapi
    rata KIRI-baris penuh (bukan di ujung row) dan label pakai font UI
    (bukan DM Mono — "Bahasa Indonesia" adalah kata, bukan angka). */

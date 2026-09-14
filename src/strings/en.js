@@ -74,6 +74,10 @@ export default {
 
   // ---- HelpButton.jsx ----
   "help.aria": "Help & about",
+  // (t90) Label BAB — Help kini tiga grup: settings / guide / about.
+  "help.groupSettings": "Settings",
+  "help.groupGuide": "Guide",
+  "help.groupAbout": "About",
   "help.getting": "Getting started",
   "help.intro":
     "New to Kanjichō? The built-in tour walks you through levels, units, quizzes and the kanji library in about half a minute.",

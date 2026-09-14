@@ -13,8 +13,10 @@ import { t } from "../lib/i18n.js";
  * (t81) Posisi DI TENGAH antara tombol Help dan toggle tema (permintaan
  * user: "pindahkan toggle kana/romaji ke tengah help button dan theme").
  *
- * Penampilan mengikuti ThemeToggle (pill netral kertas) dan sengaja TANPA
- * indikator on/off berwarna — labelnya sendiri (あ saat mode kana, Aa
+ * (t90) Penampilan: lingkaran ikon 36px — SATU keluarga bentuk dengan
+ * tombol Help dan toggle tema di topbar (dulu pill persegi yang bentuk
+ * dan lebarnya beda dari tetangganya), tetap sengaja TANPA indikator
+ * on/off berwarna — labelnya sendiri (あ saat mode kana, Aa
  * saat romaji) adalah statusnya; mode aktif diumumkan lewat aria-pressed
  * untuk pembaca layar. Shortcut dev "r" (layar kuis) tetap men-toggle
  * state yang sama.

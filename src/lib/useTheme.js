@@ -22,10 +22,32 @@ function readStoredTheme() {
   return "light";
 }
 
+/**
+ * (t91) Sinkron warna IKON status bar & navigation bar Android dengan
+ * tema IN-APP — bukan tema sistem (bisa berbeda, karena tema app
+ * tersimpan di localStorage). Plugin SystemBars bawaan Capacitor 8:
+ * style "LIGHT" = ikon gelap (untuk kertas terang), "DARK" = ikon
+ * terang (untuk tema malam). Di web/PWA window.Capacitor tidak ada →
+ * no-op total.
+ */
+function syncSystemBars(theme) {
+  try {
+    const cap = typeof window !== "undefined" ? window.Capacitor : null;
+    if (cap && typeof cap.isNativePlatform === "function" && cap.isNativePlatform()) {
+      cap.Plugins?.SystemBars?.setStyle?.({
+        style: theme === "dark" ? "DARK" : "LIGHT",
+      });
+    }
+  } catch (_) {
+    // Plugin tak tersedia / shell lama — biarkan default (tema sistem).
+  }
+}
+
 function applyTheme(theme) {
   const root = document.documentElement;
   if (theme === "dark") root.classList.add("dark");
   else root.classList.remove("dark");
+  syncSystemBars(theme);
 }
 
 function persist(theme) {

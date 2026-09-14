@@ -78,6 +78,10 @@ export default {
 
   // ---- HelpButton.jsx ----
   "help.aria": "Bantuan & tentang",
+  // (t90) Label BAB — Help kini tiga grup: pengaturan / panduan / tentang.
+  "help.groupSettings": "Pengaturan",
+  "help.groupGuide": "Panduan",
+  "help.groupAbout": "Tentang",
   "help.getting": "Memulai",
   "help.intro":
     "Baru di Kanjichō? Tur bawaan akan mengantarmu melewati level, unit, kuis, dan pustaka kanji dalam sekitar setengah menit.",
