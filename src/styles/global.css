@@ -12,6 +12,46 @@ body {
   min-height: 100vh;
 }
 
+/* ===== Perilaku sentuh native di WebView Android (t89) =====
+   DUA keluhan pengguna APK yang diperbaiki di blok ini:
+
+   1. "UI lingkaran saat diklik malah tampak KOTAK BIRU." Itu tap
+      highlight bawaan WebView Android: overlay transparan yang selalu
+      digambar PERSEGI walau elemennya lingkaran — memang terlihat seperti
+      membuka web. Sebelumnya hanya .kd-reveal-glyph dan .kd-stroke-copy
+      yang mematikannya; sekarang global lewat selector *.
+
+   2. Semua tombol terasa "mati" setelah highlight dihapus (CSS ini tidak
+      punya satu pun rule :active) — diganti feedback tekan halus ala
+      native di bawah (elemen sedikit menggelap saat ditekan, hanya di
+      perangkat sentuh; desktop web tetap memakai hover seperti biasa).
+
+   Bonus dua "aroma web" lain yang ikut dimatikan:
+   - touch-action: manipulation → zoom double-tap & sisa delay tap
+     era web mobile hilang (pinch-zoom tetap boleh — aksesibilitas);
+   - overscroll-behavior-y: none → efek "stretch" Android 12+ saat
+     scroll mentok di tepi (ciri khas halaman web) tidak muncul. */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+html {
+  touch-action: manipulation;
+}
+html, body {
+  overscroll-behavior-y: none;
+}
+
+/* Feedback tekan pengganti tap highlight — brightness() dipilih karena
+   tidak menyentuh layout/transform sama sekali, jadi tidak bentrok
+   dengan transisi transform kartu/kotak yang sudah ada. */
+@media (hover: none) {
+  button:enabled:active,
+  a:active,
+  [role="button"]:active {
+    filter: brightness(0.92);
+  }
+}
+
 /* ===== Token tema =====
    Light (default) = kertas genkouyoushi krem.
    Dark (.dark di <html>) = tema "belajar malam" hangat.
@@ -1136,6 +1176,7 @@ button.kd-day-row .kd-day-unit { color: var(--indigo); }
 }
 .kd-modal {
   position: relative; max-width: 460px; width: 100%; max-height: 85vh; overflow-y: auto;
+  overscroll-behavior: contain; /* (t89) scroll mentok di modal tidak "merambat" ke halaman di belakangnya */
   background: var(--surface); border: 1px solid var(--paper-line); border-radius: 4px; padding: 20px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
   animation: kd-pop-in 0.18s ease;
