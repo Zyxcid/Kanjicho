@@ -55,6 +55,30 @@ export default function UnitSelect({
     };
   }, [level]);
 
+  // (t92) SATU pintu aktivasi untuk SELURUH kartu unit. Keluhan user:
+  // "area klik unit agak aneh, tidak bisa klik di bagian N-U" — kartu
+  // tampak seperti satu tombol utuh (border + hover naik + bayangan),
+  // tapi hanya tombol utama di BAWAH yang benar-benar bisa diklik; baris
+  // judul "N5-U1" (bagian atas kartu) adalah zona mati. Perbaikan: klik
+  // dipasang di KARTU (div pembungkus) — semua klik di dalam kartu,
+  // termasuk pada tombol utama (event click menggelembung naik ke kartu),
+  // masuk ke fungsi yang sama. Tombol utama tetap ada untuk fokus
+  // keyboard (Tab + Enter memicu click → menggelembung ke kartu juga);
+  // pill "✕ N" mencegah gelembung supaya kliknya tetap membuka weak
+  // review, bukan unit. Guard kanjiList: klik saat data masih loading
+  // diabaikan (menggantikan perlindungan disabled tombol untuk area baru).
+  function activateUnit(unitId) {
+    if (!kanjiList) return;
+    const status = unitStatus(progress[unitId]);
+    const dim = status === "scheduled";
+    const drillGated = missedCountFor(unitId) > 0;
+    if (dim || (status === "mastered" && drillGated)) {
+      openDrillDialog(unitId);
+    } else {
+      onStartUnit(unitId);
+    }
+  }
+
   function previewFor(unitId) {
     if (!kanjiList) return "";
     return kanjiList
@@ -120,28 +144,30 @@ export default function UnitSelect({
           // "new"/"due" justru paling menonjol karena itu yang dikerjakan.
           const dim = status === "scheduled";
           const missed = missedCountFor(unitId);
-          // Practice hanya terbuka SETELAH missed kanji unit itu bersih:
-          // unit dim/mastered yang masih punya missed → klik tombol utamanya
-          // membuka popup "review dulu". Unit new/due tetap langsung membuka
-          // kuis SRS (review jatuh tempo prioritas; kanji missed ikut
-          // ditanyakan lagi di sana).
-          const drillGated = missed > 0;
           return (
-            <div key={unitId} className={`kd-unit-card ${status}${dim ? " dim" : ""}`}>
+            <div
+              key={unitId}
+              className={`kd-unit-card ${status}${dim ? " dim" : ""}`}
+              onClick={() => activateUnit(unitId)}
+            >
               {/* Baris judul: judul unit + pill "✕ N" missed review (desain
                   lama pra-hanko, diminta user kembali). HANKO DIHAPUS
                   SEPENUHNYA (済/要/✕N stamp pojok tidak ada lagi): status
                   unit tetap terbaca dari label tombol utama + warna border
                   kartu; sinyal missed kini pill kecil di sebelah judul —
                   satu elemen, satu sinyal, dan merupakan TOMBOL: klik =
-                  review missed unit itu. */}
+                  review missed unit itu. stopPropagation (t92): klik pill
+                  TIDAK ikut mengaktivasi kartu. */}
               <div className="kd-unit-head">
                 <div className="kd-unit-title">{unitId}</div>
                 {missed > 0 && (
                   <button
                     type="button"
                     className="kd-unit-missed"
-                    onClick={() => onStartWeakReview(unitId)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onStartWeakReview(unitId);
+                    }}
                     title={t("unit.missed.title", { n: missed })}
                     aria-label={t("unit.missed.aria", { n: missed })}
                   >
@@ -149,18 +175,17 @@ export default function UnitSelect({
                   </button>
                 )}
               </div>
-              {/* Tombol utama = status + preview kanji. Klik unit dim →
-                  konfirmasi practice; dim/mastered dengan missed → gate
-                  "review dulu"; status lain langsung membuka kuis (mode
-                  diderive di App.jsx startUnit). */}
+              {/* Tombol utama = status + preview kanji — kini TOMBOL FOKUS
+                  saja (klik di mana pun di kartu masuk ke activateUnit di
+                  atas lewat gelembungan click). Tanpa onClick sendiri:
+                  klik tombol memicu click pada tombol → menggelembung ke
+                  kartu → satu kali aktivasi (tidak dobel). disabled tetap
+                  menjaga semantik loading + gaya redupnya. */}
               <button
+                type="button"
                 className="kd-unit-main"
                 disabled={!kanjiList}
-                onClick={() =>
-                  (dim || (status === "mastered" && drillGated))
-                    ? openDrillDialog(unitId)
-                    : onStartUnit(unitId)
-                }
+                aria-label={`${unitId} — ${t(STATUS_LABEL[status])}`}
               >
                 <div className="kd-unit-status">
                   {t(STATUS_LABEL[status])}

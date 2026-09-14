@@ -4,10 +4,12 @@ import { toDateStr, formatHHMM } from "../lib/studyStats.js";
 import { t, localeOf } from "../lib/i18n.js";
 
 /**
- * ReviewCalendar — kalender bulanan review (kd-cal) digabung panel hari
- * terpilih (kd-day-panel), dipakai di dua tempat:
- *   - CalendarModal : overlay dari klik banner review (default hari ini).
- *   - ProgressView  : bagian tengah layar Progress penuh.
+ * ReviewCalendar — kalender bulanan review (kd-cal) dengan panel hari
+ * terpilih (kd-day-panel) sebagai seksi dalam kartu yang sama (t92),
+ * dipakai di dua tempat:
+ *   - CalendarModal : overlay dari klik kartu statistik Due now (default
+ *                      hari ini).
+ *   - ProgressView  : (kode layar lama, tidak lagi dipasang di App.)
  *
  * Kalender: angka seal = unit dijadwalkan review hari itu, angka + titik
  * GOLD = hari yang benar-benar dipakai belajar (≥ 1 kuis — t76: satu
@@ -150,7 +152,14 @@ export default function ReviewCalendar({ entries, activity, onJump }) {
 
   return (
     <>
-      {/* Kalender bulanan: klik tanggal → panel detail (jam review hari itu). */}
+      {/* Kalender bulanan + panel hari — (t92) kini SATU kartu: dulu
+          kd-day-panel adalah kotak kedua ber-border DASHED terpisah di
+          bawah kartu kalender yang ber-border solid (keluhan user: "bagian
+          border due terasa out of place" — dua kotak bersarang dengan dua
+          gaya garis berbeda). Kedua-duanya dipakai selalu bersama, jadi
+          panel hari menjadi SEKSI di dalam kartu kalender, dipisah satu
+          garis solid tipis (bahasa garis "kertas" yang sama dengan grid
+          genkouyoushi). Klik tanggal → panel detail hari itu. */}
       <div className="kd-cal">
         <div className="kd-cal-head">
           <span className="kd-cal-title">
@@ -209,57 +218,58 @@ export default function ReviewCalendar({ entries, activity, onJump }) {
             );
           })}
         </div>
-      </div>
 
-      {/* Detail hari terpilih (default hari ini): unit + jam jatuh tempo. */}
-      <div className="kd-day-panel">
-        <div className="kd-day-panel-head">
-          <span className="kd-day-panel-title">{isToday ? t("cal.today") : shortDate(selectedDate)}</span>
-          {dayRows.length > 0 && <span className="kd-day-panel-count">{units(dayRows.length)}</span>}
+        {/* Detail hari terpilih (default hari ini): unit + jam jatuh tempo
+            — seksi dalam kartu yang sama, di bawah garis pemisah. */}
+        <div className="kd-day-panel">
+          <div className="kd-day-panel-head">
+            <span className="kd-day-panel-title">{isToday ? t("cal.today") : shortDate(selectedDate)}</span>
+            {dayRows.length > 0 && <span className="kd-day-panel-count">{units(dayRows.length)}</span>}
+          </div>
+          {dayRows.length === 0 ? (
+            <p className="kd-day-empty">{isToday ? t("cal.empty.today") : t("cal.empty.day")}</p>
+          ) : (
+            <div className="kd-day-list">
+              {dayRows.map((e) => {
+                // Overdue = waktunya sudah lewat → bisa langsung direview.
+                const overdue = e.at <= now;
+                const wasEarlierDay = e.at < todayStart;
+                const when = (
+                  <>
+                    {wasEarlierDay && <span>{shortDate(e.at)}</span>}
+                    <span>{formatHHMM(e.at)}</span>
+                    {overdue && <span className="kd-day-overdue">{t("cal.overdue")}</span>}
+                  </>
+                );
+                return overdue ? (
+                  <button
+                    key={e.unitId}
+                    className="kd-day-row"
+                    onClick={() => onJump && onJump(e.unitId)}
+                    title={t("cal.reviewNow", { unit: e.unitId })}
+                  >
+                    <span className="kd-day-unit">{e.unitId}</span>
+                    <span className="kd-day-when">
+                      {when}
+                      <ChevronRight size={13} className="kd-day-chevron" />
+                    </span>
+                  </button>
+                ) : (
+                  <div key={e.unitId} className="kd-day-row">
+                    <span className="kd-day-unit">{e.unitId}</span>
+                    <span className="kd-day-when">{when}</span>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+          {activityCount > 0 && (
+            <div className="kd-day-activity">
+              <Check size={12} /> {activityCount === 1 ? t("cal.quizzesOne") : t("cal.quizzes", { n: activityCount })}{" "}
+              {isToday ? t("cal.todayWord") : t("cal.thisDayWord")}
+            </div>
+          )}
         </div>
-        {dayRows.length === 0 ? (
-          <p className="kd-day-empty">{isToday ? t("cal.empty.today") : t("cal.empty.day")}</p>
-        ) : (
-          <div className="kd-day-list">
-            {dayRows.map((e) => {
-              // Overdue = waktunya sudah lewat → bisa langsung direview.
-              const overdue = e.at <= now;
-              const wasEarlierDay = e.at < todayStart;
-              const when = (
-                <>
-                  {wasEarlierDay && <span>{shortDate(e.at)}</span>}
-                  <span>{formatHHMM(e.at)}</span>
-                  {overdue && <span className="kd-day-overdue">{t("cal.overdue")}</span>}
-                </>
-              );
-              return overdue ? (
-                <button
-                  key={e.unitId}
-                  className="kd-day-row"
-                  onClick={() => onJump && onJump(e.unitId)}
-                  title={t("cal.reviewNow", { unit: e.unitId })}
-                >
-                  <span className="kd-day-unit">{e.unitId}</span>
-                  <span className="kd-day-when">
-                    {when}
-                    <ChevronRight size={13} className="kd-day-chevron" />
-                  </span>
-                </button>
-              ) : (
-                <div key={e.unitId} className="kd-day-row">
-                  <span className="kd-day-unit">{e.unitId}</span>
-                  <span className="kd-day-when">{when}</span>
-                </div>
-              );
-            })}
-          </div>
-        )}
-        {activityCount > 0 && (
-          <div className="kd-day-activity">
-            <Check size={12} /> {activityCount === 1 ? t("cal.quizzesOne") : t("cal.quizzes", { n: activityCount })}{" "}
-            {isToday ? t("cal.todayWord") : t("cal.thisDayWord")}
-          </div>
-        )}
       </div>
     </>
   );

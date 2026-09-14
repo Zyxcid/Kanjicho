@@ -3,6 +3,12 @@
  * review Kanjichō (t86). Semua perhitungan murni ada di reminderPlan.js;
  * modul ini hanya bicara dengan Capacitor dan localStorage.
  *
+ * (t94) Pengingat kini punya DUA MODE pilihan user, disimpan di
+ * localStorage dan dibaca ulang setiap sinkronisasi (notifikasi yang sudah
+ * terjadwal ikut berganti perilaku saat mode diubah):
+ * - "time" — satu kabar harian pada jam pilihan user (kanji-reminder-time);
+ * - "due"  — kabar begitu unit jatuh tempo (default: kanji-reminder-mode).
+ *
  * Prinsip: WEB/PWA TIDAK TERPENGARUH. Setiap fungsi dicek isNativeApp()
  * lebih dulu — di browser semua panggilan Capacitor dilewati (plugin web
  * memang tidak berfungsi untuk local notification). Tidak ada request
@@ -18,24 +24,50 @@
  *   SEKALI (momen alami: user baru melihat jadwalnya terbentuk), lalu
  *   sinkron.
  * - toggleReminders(next) dari App mengelola izin + sinkron saat user
- *   mengubah sakelar di Help.
+ *   mengubah sakelar di Help; changeReminderMode/changeReminderTime
+ *   dipanggil saat mode/jam pilihannya diganti.
  */
 
 import { Capacitor } from "@capacitor/core";
 import { LocalNotifications } from "@capacitor/local-notifications";
-import { computeReminderBatch, reminderBody, REMINDER_IDS } from "./reminderPlan.js";
+import {
+  computeReminderBatch,
+  reminderBody,
+  REMINDER_IDS,
+  DEFAULT_REMINDER_MODE,
+  DEFAULT_REMINDER_TIME,
+  normalizeReminderTime,
+} from "./reminderPlan.js";
 import { t } from "./i18n.js";
 
 // localStorage keys — konvensi sama dengan toggle app lain ("1"/"0",
 // absen = default ON seperti auto-flip; reminder bisa dimatikan user).
 export const REMINDERS_KEY = "kanji-reminders";
 export const REMINDERS_ASKED_KEY = "kanji-reminders-asked";
+// (t94) Mode pengingat + jam pilihan (mode "time"). Nilai di sini
+// DIVALIDASI saat dibaca — nilai rusak/legacy jatuh kembali ke default,
+// bukan melempar exception ke UI.
+export const REMINDERS_MODE_KEY = "kanji-reminder-mode";
+export const REMINDERS_TIME_KEY = "kanji-reminder-time";
 
 const CHANNEL_ID = "reminders";
 
+/** Flag DEV-only: buka UI pengingat di browser demi uji tampilan
+ *  (seksi ini aslinya tersembunyi di web — isNativeApp() false).
+ *  import.meta.env.DEV hanya benar di dev server Vite; di build produksi
+ *  nilainya false (dead-code) dan di Node optional-chaining menahannya.
+ *  Aktifkan: localStorage.setItem("kanji-dev-native", "1") lalu reload. */
+function devNativeFlag() {
+  try {
+    return Boolean(import.meta.env?.DEV) && localStorage.getItem("kanji-dev-native") === "1";
+  } catch {
+    return false;
+  }
+}
+
 /** True hanya di dalam shell native (Capacitor Android). */
 export function isNativeApp() {
-  return Capacitor.isNativePlatform();
+  return Capacitor.isNativePlatform() || devNativeFlag();
 }
 
 /** Sakelar user — default ON; di web nilainya tidak berefek apa pun. */
@@ -50,6 +82,48 @@ export function getRemindersEnabled() {
 export function setRemindersEnabled(v) {
   try {
     localStorage.setItem(REMINDERS_KEY, v ? "1" : "0");
+  } catch {
+    /* abaikan */
+  }
+}
+
+/** Mode pengingat pilihan user — "time" | "due" (default saat absen /
+ *  nilainya tidak dikenal: mode "due", paling langsung menjawab "kapan
+ *  ada kerjaan?"). Default hanya berlaku SEKALI: begitu user memilih,
+ *  pilihannya menetap di localStorage. */
+export function getReminderMode() {
+  try {
+    const v = localStorage.getItem(REMINDERS_MODE_KEY);
+    return v === "time" || v === "due" ? v : DEFAULT_REMINDER_MODE;
+  } catch {
+    return DEFAULT_REMINDER_MODE;
+  }
+}
+
+export function setReminderMode(mode) {
+  if (mode !== "time" && mode !== "due") return; // hanya nilai dikenal
+  try {
+    localStorage.setItem(REMINDERS_MODE_KEY, mode);
+  } catch {
+    /* abaikan */
+  }
+}
+
+/** Jam pilihan mode "time" — "HH:MM" ternormalisasi (default 09:00
+ *  saat absen/rusak). */
+export function getReminderTime() {
+  try {
+    return normalizeReminderTime(localStorage.getItem(REMINDERS_TIME_KEY)) || DEFAULT_REMINDER_TIME;
+  } catch {
+    return DEFAULT_REMINDER_TIME;
+  }
+}
+
+export function setReminderTime(time) {
+  const norm = normalizeReminderTime(time);
+  if (!norm) return; // input invalid (mis. "", "25:99") tidak ditimpa
+  try {
+    localStorage.setItem(REMINDERS_TIME_KEY, norm);
   } catch {
     /* abaikan */
   }
@@ -149,7 +223,13 @@ export async function syncReviewReminders(records, now = new Date()) {
     return;
   }
   await ensureChannel();
-  const batch = computeReminderBatch(records, now);
+  // (t94) Mode + jam dibaca dari localStorage DI SINI (bukan parameter):
+  // tiap sinkronisasi otomatis memakai preferensi terbaru tanpa perlu
+  // melempar state React ke mana-mana.
+  const batch = computeReminderBatch(records, now, {
+    mode: getReminderMode(),
+    time: getReminderTime(),
+  });
   await cancelReviewReminders();
   if (batch.length === 0) return;
   try {

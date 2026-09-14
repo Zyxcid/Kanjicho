@@ -100,8 +100,15 @@ export default {
   "help.reminders": "Pengingat",
   "help.remindersToggle": "Pengingat review",
   "help.remindersDesc": "Kabar kecil saat review jatuh tempo",
-  "help.remindersText":
-    "Pengingat datang di beberapa waktu tenang dalam sehari (pagi, siang, sore, malam) setiap ada unit yang jatuh tempo, dan menata ulang jadwalnya setiap kali kamu menyelesaikan kuis. Tidak ada data yang keluar dari ponselmu: semuanya notifikasi lokal, tanpa jaringan dan tanpa akun.",
+  // (t94) Dua mode pengingat — pill pilihan di bawah sakelar.
+  "help.reminderMode": "Cara mengingatkan",
+  "help.reminderModeTime": "Jam tertentu",
+  "help.reminderModeDue": "Saat jatuh tempo",
+  "help.reminderTime": "Jam pengingat",
+  "help.remindersTextTime":
+    "Kabar datang sekali sehari pada jam pilihanmu, hanya saat ada unit yang menunggu, dan menata ulang dirinya setiap kali kamu menyelesaikan kuis. Tidak ada data yang keluar dari ponselmu: semuanya notifikasi lokal, tanpa jaringan dan tanpa akun.",
+  "help.remindersTextDue":
+    "Kabar muncul begitu ada unit yang jatuh tempo; yang jatuh berdekatan digabung jadi satu, dan yang jatuh di jam malam (22.00–07.00) menunggu sampai pagi. Jadwal menata ulang dirinya setiap kali kamu menyelesaikan kuis. Tidak ada data yang keluar dari ponselmu: semuanya notifikasi lokal, tanpa jaringan dan tanpa akun.",
   "help.browse": "Jelajahi kanji",
   "help.browseText.a": "Pada komponen sebuah kanji, titik",
   "help.browseText.b": "merah menandai",

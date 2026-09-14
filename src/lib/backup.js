@@ -22,6 +22,9 @@
  */
 
 import { getDB } from "./storage";
+import { Capacitor } from "@capacitor/core";
+import { Filesystem, Directory, Encoding } from "@capacitor/filesystem";
+import { Share } from "@capacitor/share";
 
 // Pengaturan localStorage yang ikut di-backup. Daftar ini EKSPLISIT
 // (bukan menyapu semua key) karena progress tidak pernah tersimpan di
@@ -58,16 +61,52 @@ function readSettings() {
   return out;
 }
 
-// Unduh "backup" sebagai file JSON bernama kanjicho-backup-YYYY-MM-DD.json.
-function downloadBackup(backup) {
-  const blob = new Blob([JSON.stringify(backup, null, 2)], {
-    type: "application/json",
-  });
+// (t92) Serahkan file backup ke pengguna — dua jalur berbeda:
+//
+//   WEB/PWA : unduhan klasik <a download> + blob URL (tetap seperti
+//              dulu — jalur ini andal di semua browser).
+//
+//   APK     : blob URL + <a download> TIDAK berfungsi di WebView Android
+//              (tidak ada download manager yang meng-hook WebView — klik
+//              tombol “Ekspor progres” tadinya tidak bereaksi sama sekali,
+//              keluhan user “tombol export progress tidak bekerja di
+//              .apk”). Jalur native: file ditulis ke CACHE app lewat
+//              plugin Filesystem (@capacitor/filesystem — tanpa izin
+//              penyimpanan, dir cache milik app sendiri), lalu SHEET
+//              BAGIKAN sistem dibuka lewat plugin Share dengan file itu
+//              sebagai lampiran (content:// dari FileProvider — manifest
+//              app sudah punya provider + res/xml/file_paths.xml dengan
+//              <cache-path>, persis yang dibutuhkan plugin Share untuk
+//              cache dir). Dari sheet: simpan ke Drive, kirim via email,
+//              atau “Save to Files” tergantung perangkat.
+async function downloadBackup(backup) {
+  const json = JSON.stringify(backup, null, 2);
+  const filename = `kanjicho-backup-${new Date().toISOString().slice(0, 10)}.json`;
+
+  if (Capacitor.isNativePlatform()) {
+    // Tulis ke cache app, lalu buka share sheet Android dengan file itu.
+    // Encoding.UTF8 → data string ditulis apa adanya (tanpa base64).
+    const { uri } = await Filesystem.writeFile({
+      path: filename,
+      data: json,
+      directory: Directory.Cache,
+      encoding: Encoding.UTF8,
+    });
+    await Share.share({
+      title: filename,
+      dialogTitle: filename,
+      files: [uri],
+    });
+    return;
+  }
+
+  // ---- jalur web ----
+  const blob = new Blob([json], { type: "application/json" });
   const url = URL.createObjectURL(blob);
 
   const a = document.createElement("a");
   a.href = url;
-  a.download = `kanjicho-backup-${new Date().toISOString().slice(0, 10)}.json`;
+  a.download = filename;
   a.click();
 
   // revoke ditunda sebentar agar unduhan sempat dimulai di semua browser.
@@ -75,8 +114,9 @@ function downloadBackup(backup) {
 }
 
 /**
- * Kumpulkan seluruh progress (3 tabel + pengaturan) dan unduh sebagai
- * satu file JSON. Setelah selesai, simpan file itu di tempat aman.
+ * Kumpulkan seluruh progress (3 tabel + pengaturan) dan serahkan sebagai
+ * satu file JSON: di web = unduhan browser; di APK = share sheet Android
+ * (lihat downloadBackup). Setelah selesai, simpan file itu di tempat aman.
  */
 export async function exportProgress() {
   const db = getDB();

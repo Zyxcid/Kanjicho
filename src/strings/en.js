@@ -96,8 +96,15 @@ export default {
   "help.reminders": "Reminders",
   "help.remindersToggle": "Review reminders",
   "help.remindersDesc": "A quiet nudge when reviews come due",
-  "help.remindersText":
-    "Reminders arrive at a few quiet times of day (morning, midday, late afternoon, evening) whenever units are due, and they reschedule themselves whenever you finish a quiz. Nothing ever leaves your phone: they are local notifications, with no network or account behind them.",
+  // (t94) Two reminder modes — choice pills under the toggle.
+  "help.reminderMode": "How to remind",
+  "help.reminderModeTime": "At a set time",
+  "help.reminderModeDue": "When due",
+  "help.reminderTime": "Reminder time",
+  "help.remindersTextTime":
+    "A nudge arrives once a day at your chosen hour, only when units are waiting, and it reschedules itself whenever you finish a quiz. Nothing ever leaves your phone: they are local notifications, with no network or account behind them.",
+  "help.remindersTextDue":
+    "A nudge arrives the moment a unit comes due; units due close together are merged into one, and anything landing at night (22:00–07:00) waits until morning. Reminders reschedule themselves whenever you finish a quiz. Nothing ever leaves your phone: they are local notifications, with no network or account behind them.",
   "help.browse": "Browse kanji",
   "help.browseText.a": "In a kanji's components, a",
   "help.browseText.b": "red dot marks the",

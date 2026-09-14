@@ -1,8 +1,10 @@
 /**
- * BackupControls — tombol Export/Import progress, dipasang di modal Help.
+ * BackupControls — tombol Export/Import progress, dipasang di menu Help.
  *
- * Export: unduh seluruh progress (3 tabel IndexedDB + pengaturan tampilan)
- * sebagai satu file JSON. Import: pilih file backup, konfirmasi, lalu
+ * Export: serahkan seluruh progress (3 tabel IndexedDB + pengaturan
+ * tampilan) sebagai satu file JSON — di web berupa unduhan browser, di
+ * APK berupa share sheet Android (Drive / email / Save to Files; lihat
+ * lib/backup.js t92). Import: pilih file backup, konfirmasi, lalu
  * SELURUH progress perangkat ini diganti isinya. Logika lengkapnya ada di
  * lib/backup.js — komponen ini hanya UI-nya.
  *

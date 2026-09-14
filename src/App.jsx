@@ -12,6 +12,10 @@ import {
   isNativeApp,
   getRemindersEnabled,
   setRemindersEnabled,
+  getReminderMode,
+  setReminderMode,
+  getReminderTime,
+  setReminderTime,
   requestReminderPermission,
   syncReviewReminders,
   cancelReviewReminders,
@@ -160,6 +164,13 @@ export default function App() {
   // (momen pas: user baru menyaksikan jadwal reviewnya terbentuk).
   const [reminders, setReminders] = useState(() => getRemindersEnabled());
 
+  // (t94) Mode + jam pengingat — mirror localStorage untuk render seksi
+  // Reminders di Help (input jam hanya muncul di mode "time"). Sinkron
+  // notifikasi membaca localStorage LANGSUNG tiap kali, jadi state ini
+  // murni urusan tampilan.
+  const [reminderMode, setReminderModeState] = useState(() => getReminderMode());
+  const [reminderTime, setReminderTimeState] = useState(() => getReminderTime());
+
   async function toggleReminders() {
     const next = !reminders;
     setReminders(next);
@@ -177,6 +188,32 @@ export default function App() {
       showToast(t("app.toast.notifBlocked"));
     }
     await syncReviewReminders(await storage.getAllProgress());
+  }
+
+  // (t94) Ganti mode/jam pengingat dari Help: simpan pilihan lalu sinkron
+  // ulang SEKETIKA — batch notifikasi dibatalkan dan dijadwalkan ulang
+  // dengan perilaku baru (mis. pindah "jam tertentu" → "saat jatuh
+  // tempo"). Saat pengingat sedang MATI cukup simpan saja; begitu sakelar
+  // dinyalakan (toggleReminders), sinkron otomatis memakai nilai terbaru.
+  async function changeReminderMode(mode) {
+    if (mode !== "time" && mode !== "due") return;
+    setReminderModeState(mode);
+    setReminderMode(mode);
+    if (reminders) {
+      await syncReviewReminders(await storage.getAllProgress());
+    }
+  }
+
+  async function changeReminderTime(time) {
+    // Input time native hanya menghasilkan "HH:MM" valid atau ""; nilai
+    // kosong (user membatalkan picker) diabaikan supaya pilihan lama
+    // tidak terhapus. Penyimpanan divalidasi lagi di setReminderTime.
+    if (!time) return;
+    setReminderTimeState(time);
+    setReminderTime(time);
+    if (reminders) {
+      await syncReviewReminders(await storage.getAllProgress());
+    }
   }
 
   // (t82) Tur onboarding "hint overlay" — menyala OTOMATIS hanya untuk
@@ -987,6 +1024,11 @@ export default function App() {
             showReminders={isNativeApp()}
             reminders={reminders}
             onToggleReminders={toggleReminders}
+            // (t94) Mode + jam pengingat — lihat komentar state di atas.
+            reminderMode={reminderMode}
+            onChangeReminderMode={changeReminderMode}
+            reminderTime={reminderTime}
+            onChangeReminderTime={changeReminderTime}
           />
           <ScriptToggle answerScript={answerScript} onToggleScript={toggleAnswerScript} />
           <ThemeToggle />
