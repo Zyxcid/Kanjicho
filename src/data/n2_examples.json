@@ -483,9 +483,9 @@
       "type": "on"
     },
     {
-      "word": "武し",
-      "reading": "たけし",
-      "meaning": "brave",
+      "word": "百武彗星",
+      "reading": "ひゃくたけすいせい",
+      "meaning": "Comet Hyakutake",
       "type": "kun"
     }
   ],
@@ -701,9 +701,9 @@
   ],
   "門": [
     {
-      "word": "門",
-      "reading": "もん",
-      "meaning": "gate",
+      "word": "正門",
+      "reading": "せいもん",
+      "meaning": "main gate",
       "type": "on"
     },
     {
@@ -889,10 +889,10 @@
       "type": "on"
     },
     {
-      "word": "階",
-      "reading": "きざはし",
-      "meaning": "stairs",
-      "type": "kun"
+      "word": "段階",
+      "reading": "だんかい",
+      "meaning": "stage",
+      "type": "on"
     }
   ],
   "管": [
@@ -917,10 +917,10 @@
       "type": "on"
     },
     {
-      "word": "兵",
-      "reading": "つわもの",
+      "word": "兵士",
+      "reading": "へいし",
       "meaning": "soldier",
-      "type": "kun"
+      "type": "on"
     }
   ],
   "接": [
@@ -967,15 +967,15 @@
   ],
   "丸": [
     {
-      "word": "丸",
-      "reading": "がん",
-      "meaning": "fishball",
+      "word": "弾丸",
+      "reading": "だんがん",
+      "meaning": "bullet",
       "type": "on"
     },
     {
-      "word": "丸い",
-      "reading": "まるい",
-      "meaning": "round",
+      "word": "丸",
+      "reading": "まる",
+      "meaning": "circle",
       "type": "kun"
     }
   ],
@@ -1275,9 +1275,9 @@
   ],
   "根": [
     {
-      "word": "根",
-      "reading": "こん",
-      "meaning": "stick-to-itiveness",
+      "word": "根拠",
+      "reading": "こんきょ",
+      "meaning": "basis",
       "type": "on"
     },
     {
@@ -1323,23 +1323,23 @@
       "type": "on"
     },
     {
-      "word": "将",
-      "reading": "はた",
-      "meaning": "or",
-      "type": "kun"
+      "word": "将棋",
+      "reading": "しょうぎ",
+      "meaning": "shogi",
+      "type": "on"
     }
   ],
   "幅": [
     {
-      "word": "幅",
-      "reading": "ふく",
-      "meaning": "scroll",
+      "word": "振幅",
+      "reading": "しんぷく",
+      "meaning": "amplitude (of vibration)",
       "type": "on"
     },
     {
-      "word": "大幅",
-      "reading": "おおはば",
-      "meaning": "big",
+      "word": "幅",
+      "reading": "はば",
+      "meaning": "width",
       "type": "kun"
     }
   ],
@@ -1771,10 +1771,10 @@
       "type": "on"
     },
     {
-      "word": "停める",
-      "reading": "とめる",
-      "meaning": "to stop",
-      "type": "kun"
+      "word": "停車",
+      "reading": "ていしゃ",
+      "meaning": "stopping (of a train, car, etc.)",
+      "type": "on"
     }
   ],
   "爆": [
@@ -1863,15 +1863,15 @@
   ],
   "羽": [
     {
-      "word": "羽",
-      "reading": "う",
-      "meaning": "fifth degree (of the Japanese and Chinese pentatonic scale)",
+      "word": "羽化",
+      "reading": "うか",
+      "meaning": "emergence (of insects)",
       "type": "on"
     },
     {
-      "word": "矢羽",
-      "reading": "やばね",
-      "meaning": "arrow feathers",
+      "word": "羽",
+      "reading": "はね",
+      "meaning": "feather",
       "type": "kun"
     }
   ],
@@ -2255,15 +2255,15 @@
   ],
   "裏": [
     {
-      "word": "裏",
-      "reading": "り",
-      "meaning": "in (e.g. secret)",
+      "word": "脳裏",
+      "reading": "のうり",
+      "meaning": "one's mind",
       "type": "on"
     },
     {
-      "word": "裏切る",
-      "reading": "うらぎる",
-      "meaning": "to betray",
+      "word": "裏",
+      "reading": "うら",
+      "meaning": "opposite side",
       "type": "kun"
     }
   ],
@@ -2857,9 +2857,9 @@
   ],
   "跡": [
     {
-      "word": "跡",
-      "reading": "せき",
-      "meaning": "trace",
+      "word": "奇跡",
+      "reading": "きせき",
+      "meaning": "miracle",
       "type": "on"
     },
     {
@@ -3437,9 +3437,9 @@
       "type": "on"
     },
     {
-      "word": "女の童",
-      "reading": "めのわらべ",
-      "meaning": "girl",
+      "word": "京童",
+      "reading": "きょうわらべ",
+      "meaning": "Kyoto's children",
       "type": "kun"
     }
   ],
@@ -4089,29 +4089,29 @@
   ],
   "卵": [
     {
-      "word": "卵",
-      "reading": "らん",
-      "meaning": "ovum",
+      "word": "鶏卵",
+      "reading": "けいらん",
+      "meaning": "hen's egg",
       "type": "on"
     },
     {
-      "word": "生卵",
-      "reading": "なまたまご",
-      "meaning": "raw egg",
+      "word": "卵",
+      "reading": "たまご",
+      "meaning": "eggs",
       "type": "kun"
     }
   ],
   "湖": [
     {
-      "word": "湖",
-      "reading": "こ",
-      "meaning": "lake (in place names)",
+      "word": "湖沼",
+      "reading": "こしょう",
+      "meaning": "lake",
       "type": "on"
     },
     {
-      "word": "白鳥の湖",
-      "reading": "はくちょうのみずうみ",
-      "meaning": "Swan Lake (ballet)",
+      "word": "湖",
+      "reading": "みずうみ",
+      "meaning": "lake",
       "type": "kun"
     }
   ],
@@ -4271,15 +4271,15 @@
   ],
   "枝": [
     {
-      "word": "枝",
-      "reading": "し",
-      "meaning": "counter for long, thin things (i.e. swords)",
+      "word": "爪楊枝",
+      "reading": "つまようじ",
+      "meaning": "toothpick",
       "type": "on"
     },
     {
-      "word": "枯れ枝",
-      "reading": "かれえだ",
-      "meaning": "dead branch (or twig, etc.)",
+      "word": "枝",
+      "reading": "えだ",
+      "meaning": "branch",
       "type": "kun"
     }
   ],
@@ -4439,9 +4439,9 @@
   ],
   "糸": [
     {
-      "word": "糸",
-      "reading": "し",
-      "meaning": "thread",
+      "word": "蚕糸",
+      "reading": "さんし",
+      "meaning": "silk thread",
       "type": "on"
     },
     {
@@ -4851,10 +4851,10 @@
       "type": "on"
     },
     {
-      "word": "地膚",
-      "reading": "じはだ",
-      "meaning": "texture",
-      "type": "kun"
+      "word": "皮膚科",
+      "reading": "ひふか",
+      "meaning": "dermatology",
+      "type": "on"
     }
   ],
   "濯": [
@@ -4985,15 +4985,15 @@
   ],
   "貝": [
     {
-      "word": "貝",
-      "reading": "バイ",
-      "meaning": "Japanese Babylon (Babylonia japonica)",
+      "word": "貝多羅葉",
+      "reading": "ばいたらよう",
+      "meaning": "pattra (palmyra leaves used in Ancient India for writing upon)",
       "type": "on"
     },
     {
-      "word": "巻き貝",
-      "reading": "まきがい",
-      "meaning": "snail",
+      "word": "貝",
+      "reading": "かい",
+      "meaning": "shellfish",
       "type": "kun"
     }
   ],

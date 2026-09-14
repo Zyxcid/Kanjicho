@@ -193,7 +193,10 @@ def load_pri_words(jmdict_path):
     # Lazy import (lihat komentar modul): hindari sikulus import
     # build_examples ↔ rerank_readings.
     from build_examples import parse_jmdict
-    terms, alt_terms, _alt_common = parse_jmdict(jmdict_path)
+    # t73: parse_jmdict kini juga mengembalikan alt_variants (gerbang
+    # varian ejaan) — rerank tidak memakainya (hanya terms), tapi
+    # unpack-nya tetap dijaga sinkron.
+    terms, alt_terms, _alt_common, _alt_variants = parse_jmdict(jmdict_path)
     # t72 — sinyal hybrid: jiten utama, pri fallback. SATU titik injeksi
     # yang sama dengan build_examples.py (hybrid_freq.attach).
     from hybrid_freq import attach as hybrid_attach

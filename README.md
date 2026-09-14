@@ -856,6 +856,22 @@ example typing lives in `build_examples.py` itself:
   morphological variants and frequency-winning primaries are never
   swapped. 摂 セツ and 列 レツ and 代 か.わり emerge from the pipeline
   themselves.
+- **Archaic / rare-form / variant / tautology gates (t73):** four
+  data-driven gates (general rules, no per-kanji code) close the
+  class 候由 (JMdict `&arch;`, jiten rank 185,163 — was 由's only kun
+  example), 理り (`&io;` irregular okurigana), 識る (variant spelling
+  that inherited the parent entry's common mark without being
+  corpus-attested itself, rank 41,339) and the corpus-path tautology
+  理【ことわり】 (rank 49,014). Archaic entries (all senses `&arch;`)
+  are dropped at parse time; `&io;` joins rK/oK/iK/sK in the
+  per-spelling filter; a variant keb keeps its "common" status only
+  if its own (spelling, reading) pair is jiten-strong (rank ≤ 10k —
+  活かす 7,568 / 治る 1,742 / 撃つ 2,008 pass); single-kanji corpus
+  candidates must be genuinely common (freq ≥ 2000 — 位【くらい】,
+  蚕【かいこ】 pass, 山【さん】 fails). 発つ【たつ】 is deliberately kept:
+  kun た.つ is listed in KANJIDIC2, it has its own JMdict entry
+  (2857436), is JLPT N2 vocabulary (Bluskyo), jiten rank 11,576 — a
+  standard modern word, not an archaic/irregular form.
 
 The read-only verifier for ALL of this is
 `scripts/audit_primary_readings.mjs` — it re-checks every promoted

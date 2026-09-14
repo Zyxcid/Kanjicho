@@ -2252,14 +2252,14 @@
     "stroke_count": 7,
     "primary_readings": [
       {
+        "kana": "ダン",
+        "romaji": "dan",
+        "type": "on"
+      },
+      {
         "kana": "おとこ",
         "romaji": "otoko",
         "type": "kun"
-      },
-      {
-        "kana": "ナン",
-        "romaji": "nan",
-        "type": "on"
       }
     ]
   },

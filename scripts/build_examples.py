@@ -143,6 +143,36 @@ t68 (feedback user, kelas 験【馬験【うまじるし】 + 験【しるし】
      gerbang D. Lebih baik nol contoh jelek daripada satu contoh
      sampah — tapi dua contoh bagus lebih baik daripada satu.
 
+t73 (feedback user — kelas 候由 / 理り / 識る / 発つ) — EMPAT GERBANG
+baru, semuanya aturan umum berbasis sinyal data (tanpa nama kanji
+satu per satu di kode):
+  A. ENTRI ARKAIS (misc &arch; di SEMUA sense bergloss) digugurkan
+     sejak parse: kata yang sudah tidak dipakai penutur modern bukan
+     bahan contoh pelajar, apa pun jalurnya (termasuk korpus
+     slot-floor). Kelas 候由【そうろうよし】(&arch;, rank jiten 185.163,
+     dulu SATU-SATUNYA contoh kun 由) gugur di akar. Kelas slot-fill
+     N1 (奈落 #21k / 山彦 #75k — TANPA tanda arch) tidak tersentuh.
+  B. Ejaan bertanda &io; (irregular okurigana usage) ikut rK/oK/iK/sK
+     dikeluarkan dari pool fallback (kelas 理り — keb kedua entri
+     理【ことわり】, rank jiten 311.593).
+  C. Varian ejaan (keb non-pertama) yang dianggap "common" HANYA
+     karena ENTRI induknya bertanda re_pri (alt_common warisan)
+     kini harus membuktikan dirinya sendiri: pasangan (ejaan,
+     bacaan) terattestasi jiten kuat (rank <= 10.000). 識る
+     (rank 41.339 — ejaan lain dari 知る ichi1) gugur; varian yang
+     benar-benar hidup justru makin yakin: 治る 1.742 / 撃つ
+     2.008 / 活かす 7.568 lolos.
+  D. Kata satu-kanji jalur korpus (tautologis: "kata" == kanji yang
+     diajarkan) hanya sah bila benar-benar umum — freq hybrid >=
+     P2A_FREQ_FLOOR (jiten kuat / bertanda pri). 理【ことわり】#49.014,
+     山【さん】#225.291, 女【じょ】#24.868, 徴【しるし】#42.161 gugur;
+     位【くらい】(ichi1), 蚕【かいこ】(spec2 — kelas Fix-6), 時【とき】,
+     都【みやこ】 tetap.
+  発つ【たつ】 sengaja TIDAK digugurkan: bacaan kun た.つ memang
+  tercatat KANJIDIC2, entri JMdict-nya sendiri (2857436), kosakata
+  JLPT N2 (Bluskyo), rank jiten 11.576 — kata modern standar
+  "to depart", bukan bentuk kuno/irregular.
+
 Tiap kanji dicari 2 kata contoh umum: satu pakai on'yomi, satu pakai
 kun'yomi — TIPE tiap contoh ditentukan atribusi struktural. Kata
 dirank berdasarkan frekuensi HYBRID (jiten global utama + tanda
@@ -189,6 +219,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from rerank_readings import kana_to_romaji, clean_reading, katakana_to_hiragana
+# t73 C — ambang jiten untuk refinemen varian ejaan (hybrid_freq
+# standalone: tidak mengimpor modul pipeline mana pun — bebas siklus).
+from hybrid_freq import JITEN_MAX_RANK
 
 MAX_EXAMPLES_PER_KANJI = 2
 MIN_WORD_LEN = 1
@@ -207,14 +240,19 @@ UK_HINT = "usually written using kana alone"
 # sehingga filter ejaan langka TIDAK PERNAH menyala — akar kelas bug
 # 対【primary kun むか.う ditopang 対い (ejaan rK entri 向かい)】.
 RK_HINT = "rarely used kanji form"
+# t73 A — teks entitas &arch; (<!ENTITY arch "archaic"> di DTD
+# JMdict). Entri arkais tidak layak menjadi contoh kata pelajar.
+ARCH_HINT = "archaic"
 # Tag per-ejaan yang tidak layak menjadi contoh bacaan (pool fallback
 # kamus): rK langka, oK kedaluwarsa, iK kanji tak beraturan, sK
-# hanya-untuk-pencarian (artefak kamus, bukan kata nyata).
+# hanya-untuk-pencarian (artefak kamus, bukan kata nyata), io
+# okurigana tak beraturan (t73 B — kelas 理り).
 RARE_FORM_HINTS = (
     RK_HINT,
     "word containing out-dated kanji",
     "word containing irregular kanji usage",
     "search-only kanji form",
+    "irregular okurigana usage",
 )
 # t67 — aturan umum dari feedback user (kelas 対): bacaan kun hasil
 # DERIVASI (kandidat turunan) tidak boleh menjadi primary hanya karena
@@ -275,7 +313,7 @@ def clean_kun(text):
 # ============================================================
 
 def parse_jmdict(jmdict_path):
-    """Parse JMdict → (terms, alt_terms, alt_common).
+    """Parse JMdict → (terms, alt_terms, alt_common, alt_variants).
 
     terms       : { keb-PERTAMA: [(reading, glosses, pri), ...] } — sumber
                   kandidat UTAMA. t70: pasangan kini membawa skor
@@ -298,10 +336,19 @@ def parse_jmdict(jmdict_path):
                   (馬験, 地士 — tak bertanda apa-apa). Dipakai gerbang
                   mutu fallback (t68 D) dan gerbang promosi kun (t68 E).
 
+    alt_variants
+                : { keb: {reading, ...} } — t73 C: ejaan yang
+                  mendapat status common HANYA karena entri induknya
+                  bertanda re_pri (bukan ke_pri milik ejaan itu
+                  sendiri). main() men-refine: ejaan varian harus
+                  terattestasi jiten kuat, kalau tidak status
+                  common-nya dicabut (kelas 識る; 活かす lolos).
+
     Lewati entry yang ejaan kanjinya bukan bentuk tulis normal — buruk
     sebagai contoh bacaan:
       - semua sense bertanda "usually written using kana alone" (uk),
-      - bentuk kanji pertama bertanda "rare kanji form" (rK).
+      - bentuk kanji pertama bertanda "rare kanji form" (rK),
+      - t73 A: semua sense bertanda "archaic" (arkais — kelas 候由).
     """
     print(f"Parsing JMdict from {jmdict_path} ...")
 
@@ -313,8 +360,11 @@ def parse_jmdict(jmdict_path):
     terms = {}
     alt_terms = {}
     alt_common = {}
+    alt_variants = {}   # t73 C — keb ber-status common warisan re_pri
+    alt_solid = set()   # t73 C — keb yang pernah punya ke_pri sendiri
     skipped_uk = 0
     skipped_rk_forms = 0
+    skipped_arch = 0    # t73 A
     context = ET.iterparse(f, events=("end",))
     for _event, entry in context:
         if entry.tag != "entry":
@@ -355,10 +405,24 @@ def parse_jmdict(jmdict_path):
             entry.clear()
             continue
 
+        # t73 A — ENTRI ARKAIS (&arch; di SEMUA sense bergloss): kata
+        # yang sudah tidak dipakai penutur modern (候由【そうろうよし】,
+        # 是者, 山【むれ】…) bukan bahan contoh pelajar — gugurkan entri
+        # sejak parse supaya TIDAK bisa masuk lewat jalur mana pun
+        # (korpus slot-floor sekalipun). Semantics "semua sense"
+        # (cermin gerbang uk): entri ber-sense campuran modern+arkais
+        # seperti 後【あと】 / 上【うえ】 tetap hidup.
         # "Usually written using kana alone" (misc &uk;): kalau SEMUA sense
         # yang punya gloss bertanda uk, ejaan kanjinya bukan yang biasanya
         # dilihat pelajar (mis. 平仮名 vs ひらがな) — lewati.
         senses = [s for s in entry.findall("sense") if s.findall("gloss")]
+        if senses and all(
+            any(ARCH_HINT in (m.text or "") for m in s.findall("misc"))
+            for s in senses
+        ):
+            skipped_arch += 1
+            entry.clear()
+            continue
         if senses and all(
             any(UK_HINT in (m.text or "") for m in s.findall("misc"))
             for s in senses
@@ -409,27 +473,77 @@ def parse_jmdict(jmdict_path):
             if any(hint in it for it in inf_texts for hint in RARE_FORM_HINTS):
                 skipped_rk_forms += 1
                 continue
-            if k_ele.findall("ke_pri") or entry_re_pri:
+            own_pri = bool(k_ele.findall("ke_pri"))
+            if own_pri:
+                alt_solid.add(k.text)
+            if own_pri or entry_re_pri:
                 # union antar entri: ejaan yang umum di satu entri
                 # cukup (bucket alt_terms juga union antar entri).
                 alt_common[k.text] = True
+                if not own_pri and entry_re_pri:
+                    # t73 C — status common ini PINJAMAN dari entri
+                    # induk (re_pri), bukan milik ejaan sendiri:
+                    # catat bacaannya untuk refinemen attestasi
+                    # jiten di main() (refine_alt_common).
+                    alt_variants.setdefault(k.text, set()).add(reading)
             ab = alt_terms.setdefault(k.text, [])
             if pair not in ab:
                 ab.append(pair)
         entry.clear()
 
+    # t73 C: ejaan yang di entri MANA PUN punya ke_pri sendiri adalah
+    # solid (活かす bertanda di entri lain, dsb.) — tidak boleh digugurkan
+    # oleh refinemen varian.
+    for keb in alt_solid:
+        alt_variants.pop(keb, None)
+
     f.close()
     print(f"  Loaded {len(terms)} JMdict terms with kanji (len {MIN_WORD_LEN}-{MAX_WORD_LEN})"
-          f" — skipped {skipped_uk} kana-preferred/rare-headword entries")
+          f" — skipped {skipped_uk} kana-preferred/rare-headword entries, "
+          f"{skipped_arch} archaic entries (t73 A)")
     print(f"  {len(alt_terms)} ejaan kanji untuk fallback kamus "
-          f"({skipped_rk_forms} ejaan rK/oK/iK/sK dikeluarkan — filter rK "
-          f"baru efektif t67, dulu string hint tak pernah cocok)")
+          f"({skipped_rk_forms} ejaan rK/oK/iK/sK/io dikeluarkan — filter rK "
+          f"baru efektif t67, dulu string hint tak pernah cocok; io t73 B)")
     print(f"  {len(alt_common)} ejaan bertanda common JMdict (ke_pri/re_pri) "
-          f"— gerbang mutu fallback t68")
+          f"— gerbang mutu fallback t68; {len(alt_variants)} di antaranya "
+          f"varian warisan re_pri (refinemen t73 C di main)")
     n_common = sum(1 for pairs in terms.values()
                    for _r, _g, pr in pairs if pr > 0)
     print(f"  {n_common} entry bertanda pri (lapisan fallback hybrid)")
-    return terms, alt_terms, alt_common
+    return terms, alt_terms, alt_common, alt_variants
+
+
+def refine_alt_common(alt_common, alt_variants, jiten_pairs):
+    """t73 C — gerbang varian ejaan (dipanggil main() SETELAH overlay
+    hybrid, supaya jiten tersedia).
+
+    Varian ejaan (keb non-pertama tanpa ke_pri sendiri) yang dianggap
+    common HANYA karena entri induknya bertanda re_pri harus
+    membuktikan dirinya sendiri: pasangan (ejaan, bacaan) terattestasi
+    jiten KUAT (rank <= JITEN_MAX_RANK).
+
+      識る (rank 41.339 — ejaan kedua entri 知る ichi1) → digugurkan;
+      活かす (7.568 — keb kedua 生かす【いかす】) → tetap common;
+      治る (1.742) / 撃つ (2.008) → entri sendiri ber-ke_pri, bukan
+      varian — tidak tersentuh refinemen ini.
+
+    Ejaan yang digugurkan kehilangan alt_common → gerbang mutu fallback
+    t68 D menolaknya (kelas 識る). Aturan umum frekuensi, tanpa nama
+    kanji di kode.
+    """
+    demoted = 0
+    for keb, readings in alt_variants.items():
+        strong = False
+        for r in readings:
+            rank = jiten_pairs.get((keb, katakana_to_hiragana(r)))
+            if rank is not None and rank <= JITEN_MAX_RANK:
+                strong = True
+                break
+        if strong:
+            continue
+        if alt_common.pop(keb, None):
+            demoted += 1
+    return demoted
 
 
 # ============================================================
@@ -1052,6 +1166,17 @@ def build_examples_for_kanji(kanji, jmdict_terms, term_index,
         for reading, glosses, freq_val in jmdict_terms[term]:
             if freq_val is None or freq_val <= 0:
                 continue  # bukan kandidat korpus — jalur fallback yang menangani
+
+            # t73 D — kata satu-kanji jalur korpus TERTULIS KANJI SAJA
+            # (tautologis: "kata" == kanji yang sedang diajarkan,
+            # kelas 験【しるし】 versi korpus) hanya layak bila benar-benar
+            # umum: freq hybrid >= P2A_FREQ_FLOOR (jiten kuat / bertanda
+            # pri). Kelas slot-floor (freq 50 — tanpa pri, rank jiten
+            # lemah) gugur: 理【ことわり】#49.014, 山【さん】#225.291,
+            # 女【じょ】, 徴【しるし】; 位【くらい】(ichi1) dan 蚕【かいこ】
+            # (spec2, kelas Fix-6) tetap lolos karena ber-pri.
+            if len(term) == 1 and freq_val < P2A_FREQ_FLOOR:
+                continue
 
             gloss = glosses[0]
             if is_likely_proper_noun(term, gloss):
@@ -2082,7 +2207,8 @@ def main():
 
     # Satu file sumber untuk gloss DAN pseudo-freq pri (lapisan fallback);
     # frekuensi jiten datang dari overlay hybrid_freq di bawah.
-    jmdict_terms, alt_terms, alt_common = parse_jmdict(jmdict_path)
+    jmdict_terms, alt_terms, alt_common, alt_variants = parse_jmdict(
+        jmdict_path)
 
     # Sinyal HYBRID: frekuensi global jiten.moe (CC BY-SA 4.0)
     # MENIMPA pseudo-freq pri untuk pasangan terattestasi (rank ≤ 10.000);
@@ -2092,8 +2218,18 @@ def main():
     # sama dengan JLPT_vocab_ALL.json). Cutoff rank selaras dgn
     # P2A_FREQ_FLOOR 2000 (rank 10.000 ↔ freq 2.000, Zipf 20M/rank).
     from hybrid_freq import attach as hybrid_freq_attach
-    hybrid_freq_attach(jmdict_path.parent, jmdict_terms, alt_terms,
-                       label="build_examples")
+    _hyb_stats, jiten_pairs = hybrid_freq_attach(
+        jmdict_path.parent, jmdict_terms, alt_terms,
+        label="build_examples")
+
+    # t73 C — gerbang varian ejaan: status common warisan re_pri harus
+    # dibuktikan attestasi jiten kuat milik ejaan itu sendiri (識る
+    # gugur; 活かす lolos). jiten_pairs dikembalikan attach() supaya
+    # CSV tidak perlu dimuat dua kali.
+    demoted_variants = refine_alt_common(alt_common, alt_variants,
+                                         jiten_pairs)
+    print(f"  t73 C: {demoted_variants} ejaan varian ber-status common "
+          f"warisan entri digugurkan (tidak terattestasi jiten kuat)")
 
     # Wajib — dijamin ada oleh pengecekan di atas.
     vocab = load_jlpt_vocab(vocab_path)

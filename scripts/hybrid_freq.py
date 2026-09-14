@@ -172,6 +172,11 @@ def attach(raw_dir, terms, alt_terms, label="hybrid"):
     Dipakai rerank_readings.py & build_examples.py segera setelah
     parse_jmdict — SATU titik injeksi supaya dua langkah melihat sinyal
     yang identik. raw_dir = direktori berisi JMdict (raw/).
+
+    t73: return (stats, jiten) — jiten (map {(word, form_hira): rank})
+    dikembalikan supaya build_examples.py bisa men-refine gerbang
+    varian ejaan TANPA memuat CSV dua kali; caller lain boleh
+    mengabaikan elemen kedua.
     """
     path = Path(raw_dir) / JITEN_CSV_NAME
     jiten = load_jiten(path)
@@ -193,7 +198,7 @@ def attach(raw_dir, terms, alt_terms, label="hybrid"):
           f"{stats['weak_capped']:,} lemah+pri di-cap {WEAK_CAP:,}; "
           f"{stats['weak_slotfloor']:,} lemah tanpa pri → slot-floor "
           f"{SLOT_FLOOR}; {stats['pairs_seen']:,} pasangan diperiksa")
-    return stats
+    return stats, jiten
 
 
 if __name__ == "__main__":

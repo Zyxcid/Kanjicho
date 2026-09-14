@@ -575,15 +575,15 @@
   ],
   "山": [
     {
-      "word": "山",
-      "reading": "さん",
-      "meaning": "Mt.",
+      "word": "下山",
+      "reading": "げざん",
+      "meaning": "descending a mountain",
       "type": "on"
     },
     {
-      "word": "奥山",
-      "reading": "おくやま",
-      "meaning": "remote mountain",
+      "word": "山",
+      "reading": "やま",
+      "meaning": "mountain",
       "type": "kun"
     }
   ],
@@ -603,15 +603,15 @@
   ],
   "女": [
     {
-      "word": "女",
-      "reading": "じょ",
-      "meaning": "woman",
+      "word": "彼女",
+      "reading": "かのじょ",
+      "meaning": "she",
       "type": "on"
     },
     {
-      "word": "女の子",
-      "reading": "おんなのこ",
-      "meaning": "girl",
+      "word": "女",
+      "reading": "おんな",
+      "meaning": "woman",
       "type": "kun"
     }
   ],
@@ -645,9 +645,9 @@
   ],
   "百": [
     {
-      "word": "百",
-      "reading": "ひゃく",
-      "meaning": "hundred",
+      "word": "数百",
+      "reading": "すうひゃく",
+      "meaning": "several hundred",
       "type": "on"
     },
     {
@@ -757,29 +757,29 @@
   ],
   "男": [
     {
-      "word": "男",
-      "reading": "なん",
-      "meaning": "son",
+      "word": "男性",
+      "reading": "だんせい",
+      "meaning": "man",
       "type": "on"
     },
     {
-      "word": "男の子",
-      "reading": "おとこのこ",
-      "meaning": "boy",
+      "word": "男",
+      "reading": "おとこ",
+      "meaning": "man",
       "type": "kun"
     }
   ],
   "西": [
     {
-      "word": "西",
-      "reading": "せい",
-      "meaning": "Spain",
+      "word": "西欧",
+      "reading": "せいおう",
+      "meaning": "Western Europe",
       "type": "on"
     },
     {
-      "word": "真西",
-      "reading": "まにし",
-      "meaning": "due west",
+      "word": "西",
+      "reading": "にし",
+      "meaning": "west",
       "type": "kun"
     }
   ],
@@ -1051,15 +1051,15 @@
   ],
   "左": [
     {
-      "word": "左",
-      "reading": "さ",
-      "meaning": "left (esp. in vertical Japanese writing)",
+      "word": "左右",
+      "reading": "さゆう",
+      "meaning": "left and right",
       "type": "on"
     },
     {
-      "word": "右左",
-      "reading": "みぎひだり",
-      "meaning": "right and left",
+      "word": "左",
+      "reading": "ひだり",
+      "meaning": "left",
       "type": "kun"
     }
   ],

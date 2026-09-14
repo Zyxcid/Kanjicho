@@ -309,15 +309,15 @@
   ],
   "目": [
     {
-      "word": "目",
-      "reading": "もく",
-      "meaning": "order",
+      "word": "目的",
+      "reading": "もくてき",
+      "meaning": "purpose",
       "type": "on"
     },
     {
-      "word": "見た目",
-      "reading": "みため",
-      "meaning": "appearance",
+      "word": "目",
+      "reading": "め",
+      "meaning": "eye",
       "type": "kun"
     }
   ],
@@ -357,10 +357,10 @@
       "type": "on"
     },
     {
-      "word": "理",
-      "reading": "ことわり",
+      "word": "理由",
+      "reading": "りゆう",
       "meaning": "reason",
-      "type": "kun"
+      "type": "on"
     }
   ],
   "体": [
@@ -981,9 +981,9 @@
   ],
   "朝": [
     {
-      "word": "朝",
-      "reading": "ちょう",
-      "meaning": "dynasty",
+      "word": "朝食",
+      "reading": "ちょうしょく",
+      "meaning": "breakfast",
       "type": "on"
     },
     {
@@ -1093,9 +1093,9 @@
   ],
   "口": [
     {
-      "word": "口",
-      "reading": "く",
-      "meaning": "mouth",
+      "word": "人口",
+      "reading": "じんこう",
+      "meaning": "population",
       "type": "on"
     },
     {
@@ -1121,15 +1121,15 @@
   ],
   "町": [
     {
-      "word": "町",
-      "reading": "ちょう",
-      "meaning": "town",
+      "word": "市町村",
+      "reading": "しちょうそん",
+      "meaning": "cities, towns and villages",
       "type": "on"
     },
     {
-      "word": "下町",
-      "reading": "したまち",
-      "meaning": "low-lying part of a city (usu. containing shops, factories, etc.)",
+      "word": "町",
+      "reading": "まち",
+      "meaning": "town",
       "type": "kun"
     }
   ],
@@ -1275,15 +1275,15 @@
   ],
   "足": [
     {
-      "word": "足",
-      "reading": "そく",
-      "meaning": "counter for pairs of socks, shoes, etc.",
+      "word": "顧客満足",
+      "reading": "こきゃくまんぞく",
+      "meaning": "customer satisfaction",
       "type": "on"
     },
     {
-      "word": "足りる",
-      "reading": "たりる",
-      "meaning": "to be sufficient",
+      "word": "足",
+      "reading": "あし",
+      "meaning": "foot",
       "type": "kun"
     }
   ],
@@ -1435,10 +1435,10 @@
       "type": "on"
     },
     {
-      "word": "銀",
-      "reading": "しろがね",
-      "meaning": "silver",
-      "type": "kun"
+      "word": "輸銀",
+      "reading": "ゆぎん",
+      "meaning": "import-export bank",
+      "type": "on"
     }
   ],
   "早": [
@@ -1519,10 +1519,10 @@
       "type": "on"
     },
     {
-      "word": "医する",
-      "reading": "いする",
-      "meaning": "to cure",
-      "type": "kun"
+      "word": "医学",
+      "reading": "いがく",
+      "meaning": "medicine",
+      "type": "on"
     }
   ],
   "仕": [
@@ -1793,9 +1793,9 @@
   ],
   "紙": [
     {
-      "word": "紙",
-      "reading": "し",
-      "meaning": "newspaper",
+      "word": "表紙",
+      "reading": "ひょうし",
+      "meaning": "cover (of a book, magazine, etc.)",
       "type": "on"
     },
     {
@@ -1905,9 +1905,9 @@
   ],
   "色": [
     {
-      "word": "色",
-      "reading": "しょく",
-      "meaning": "counter for colours",
+      "word": "異色",
+      "reading": "いしょく",
+      "meaning": "unique",
       "type": "on"
     },
     {
@@ -1947,15 +1947,15 @@
   ],
   "夏": [
     {
-      "word": "夏",
-      "reading": "か",
-      "meaning": "Xia dynasty (of China; ca. 2070-1600 BCE; possibly mythological)",
+      "word": "今夏",
+      "reading": "こんか",
+      "meaning": "this summer",
       "type": "on"
     },
     {
-      "word": "夏休み",
-      "reading": "なつやすみ",
-      "meaning": "summer vacation",
+      "word": "夏",
+      "reading": "なつ",
+      "meaning": "summer",
       "type": "kun"
     }
   ],
@@ -2087,9 +2087,9 @@
   ],
   "肉": [
     {
-      "word": "肉",
-      "reading": "にく",
-      "meaning": "flesh",
+      "word": "牛肉",
+      "reading": "ぎゅうにく",
+      "meaning": "beef",
       "type": "on"
     },
     {
@@ -2297,15 +2297,15 @@
   ],
   "姉": [
     {
-      "word": "姉",
-      "reading": "し",
-      "meaning": "honorific suffix used after the name of a woman of equal or higher status",
+      "word": "姉妹",
+      "reading": "しまい",
+      "meaning": "sisters",
       "type": "on"
     },
     {
-      "word": "義理の姉",
-      "reading": "ぎりのあね",
-      "meaning": "one's sister-in-law",
+      "word": "姉",
+      "reading": "あね",
+      "meaning": "older sister",
       "type": "kun"
     }
   ],

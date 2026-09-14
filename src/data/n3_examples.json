@@ -35,9 +35,9 @@
       "type": "on"
     },
     {
-      "word": "国民",
-      "reading": "くにたみ",
-      "meaning": "people of a country",
+      "word": "流浪の民",
+      "reading": "るろうのたみ",
+      "meaning": "wandering people",
       "type": "kun"
     }
   ],
@@ -399,9 +399,9 @@
       "type": "on"
     },
     {
-      "word": "法",
-      "reading": "のり",
-      "meaning": "rule",
+      "word": "内法",
+      "reading": "うちのり",
+      "meaning": "inside measure",
       "type": "kun"
     }
   ],
@@ -413,10 +413,10 @@
       "type": "on"
     },
     {
-      "word": "性",
-      "reading": "さが",
-      "meaning": "one's nature",
-      "type": "kun"
+      "word": "男性",
+      "reading": "だんせい",
+      "meaning": "man",
+      "type": "on"
     }
   ],
   "要": [
@@ -1575,9 +1575,9 @@
       "type": "on"
     },
     {
-      "word": "局",
-      "reading": "つぼね",
-      "meaning": "court lady (Heian period)",
+      "word": "御局",
+      "reading": "おつぼね",
+      "meaning": "court lady with her own private chamber or office",
       "type": "kun"
     }
   ],
@@ -1757,9 +1757,9 @@
       "type": "on"
     },
     {
-      "word": "候由",
-      "reading": "そうろうよし",
-      "meaning": "I hear that ...",
+      "word": "由",
+      "reading": "よし",
+      "meaning": "reason",
       "type": "kun"
     }
   ],
@@ -1939,10 +1939,10 @@
       "type": "on"
     },
     {
-      "word": "術なし",
-      "reading": "すべなし",
-      "meaning": "having no choice",
-      "type": "kun"
+      "word": "手術",
+      "reading": "しゅじゅつ",
+      "meaning": "surgery",
+      "type": "on"
     }
   ],
   "備": [
@@ -2009,10 +2009,10 @@
       "type": "on"
     },
     {
-      "word": "警め",
-      "reading": "いましめ",
-      "meaning": "caution",
-      "type": "kun"
+      "word": "警告",
+      "reading": "けいこく",
+      "meaning": "warning",
+      "type": "on"
     }
   ],
   "育": [
@@ -2101,15 +2101,15 @@
   ],
   "声": [
     {
-      "word": "声",
-      "reading": "しょう",
-      "meaning": "voice",
+      "word": "歓声",
+      "reading": "かんせい",
+      "meaning": "cheer",
       "type": "on"
     },
     {
-      "word": "笑い声",
-      "reading": "わらいごえ",
-      "meaning": "(sound of) laughter",
+      "word": "声",
+      "reading": "こえ",
+      "meaning": "voice",
       "type": "kun"
     }
   ],
@@ -2177,9 +2177,9 @@
       "type": "on"
     },
     {
-      "word": "然",
-      "reading": "しか",
-      "meaning": "like that",
+      "word": "然然",
+      "reading": "しかじか",
+      "meaning": "such and such",
       "type": "kun"
     }
   ],
@@ -2227,9 +2227,9 @@
   ],
   "葉": [
     {
-      "word": "葉",
-      "reading": "よう",
-      "meaning": "counter for leaves, pieces of paper, etc.",
+      "word": "一葉",
+      "reading": "いちよう",
+      "meaning": "one leaf",
       "type": "on"
     },
     {
@@ -2667,10 +2667,10 @@
       "type": "on"
     },
     {
-      "word": "識る",
-      "reading": "しる",
-      "meaning": "to know",
-      "type": "kun"
+      "word": "知識",
+      "reading": "ちしき",
+      "meaning": "knowledge",
+      "type": "on"
     }
   ],
   "呼": [
@@ -3255,9 +3255,9 @@
       "type": "on"
     },
     {
-      "word": "因りて",
-      "reading": "よりて",
-      "meaning": "as such",
+      "word": "因み",
+      "reading": "ちなみ",
+      "meaning": "association",
       "type": "kun"
     }
   ],
@@ -3501,15 +3501,15 @@
   ],
   "妻": [
     {
-      "word": "妻",
-      "reading": "さい",
-      "meaning": "one's wife",
+      "word": "愛妻",
+      "reading": "あいさい",
+      "meaning": "beloved wife",
       "type": "on"
     },
     {
-      "word": "新妻",
-      "reading": "にいづま",
-      "meaning": "new wife",
+      "word": "妻",
+      "reading": "つま",
+      "meaning": "wife",
       "type": "kun"
     }
   ],
@@ -3557,15 +3557,15 @@
   ],
   "薬": [
     {
-      "word": "薬",
-      "reading": "やく",
-      "meaning": "dope",
+      "word": "医薬",
+      "reading": "いやく",
+      "meaning": "medicine",
       "type": "on"
     },
     {
-      "word": "飲み薬",
-      "reading": "のみぐすり",
-      "meaning": "oral medicine",
+      "word": "薬",
+      "reading": "くすり",
+      "meaning": "medicine",
       "type": "kun"
     }
   ],
@@ -3613,15 +3613,15 @@
   ],
   "船": [
     {
-      "word": "船",
-      "reading": "せん",
-      "meaning": "ship",
+      "word": "艦船",
+      "reading": "かんせん",
+      "meaning": "warships and other vessels",
       "type": "on"
     },
     {
-      "word": "黒船",
-      "reading": "くろふね",
-      "meaning": "black ships",
+      "word": "船",
+      "reading": "ふね",
+      "meaning": "ship",
       "type": "kun"
     }
   ],
@@ -4439,15 +4439,15 @@
   ],
   "草": [
     {
-      "word": "草",
-      "reading": "そう",
-      "meaning": "draft",
+      "word": "海草",
+      "reading": "かいそう",
+      "meaning": "marine plant",
       "type": "on"
     },
     {
-      "word": "下草",
-      "reading": "したくさ",
-      "meaning": "undergrowth",
+      "word": "草",
+      "reading": "くさ",
+      "meaning": "grass",
       "type": "kun"
     }
   ],
@@ -4467,9 +4467,9 @@
   ],
   "酒": [
     {
-      "word": "酒",
-      "reading": "しゅ",
-      "meaning": "alcohol",
+      "word": "飲酒",
+      "reading": "いんしゅ",
+      "meaning": "drinking alcohol",
       "type": "on"
     },
     {
@@ -4529,10 +4529,10 @@
       "type": "on"
     },
     {
-      "word": "到る",
-      "reading": "いたる",
-      "meaning": "to arrive at (e.g. a decision)",
-      "type": "kun"
+      "word": "到達",
+      "reading": "とうたつ",
+      "meaning": "reaching",
+      "type": "on"
     }
   ],
   "寝": [

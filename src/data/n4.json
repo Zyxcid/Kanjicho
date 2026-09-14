@@ -1083,11 +1083,6 @@
         "kana": "リ",
         "romaji": "ri",
         "type": "on"
-      },
-      {
-        "kana": "ことわり",
-        "romaji": "kotowari",
-        "type": "kun"
       }
     ]
   },
@@ -3169,14 +3164,14 @@
     "stroke_count": 3,
     "primary_readings": [
       {
-        "kana": "ク",
-        "romaji": "ku",
-        "type": "on"
-      },
-      {
         "kana": "くち",
         "romaji": "kuchi",
         "type": "kun"
+      },
+      {
+        "kana": "コウ",
+        "romaji": "kou",
+        "type": "on"
       }
     ]
   },
@@ -3717,8 +3712,8 @@
         "type": "on"
       },
       {
-        "kana": "た.りる",
-        "romaji": "tariru",
+        "kana": "あし",
+        "romaji": "ashi",
         "type": "kun"
       }
     ]
@@ -4142,11 +4137,6 @@
         "kana": "ギン",
         "romaji": "gin",
         "type": "on"
-      },
-      {
-        "kana": "しろがね",
-        "romaji": "shirogane",
-        "type": "kun"
       }
     ]
   },
@@ -4384,11 +4374,6 @@
         "kana": "イ",
         "romaji": "i",
         "type": "on"
-      },
-      {
-        "kana": "い.する",
-        "romaji": "isuru",
-        "type": "kun"
       }
     ]
   },
