@@ -127,9 +127,9 @@
   ],
   "相": [
     {
-      "word": "首相",
-      "reading": "しゅしょう",
-      "meaning": "prime minister",
+      "word": "相談",
+      "reading": "そうだん",
+      "meaning": "consultation",
       "type": "on"
     },
     {
@@ -539,9 +539,9 @@
       "type": "on"
     },
     {
-      "word": "和む",
-      "reading": "なごむ",
-      "meaning": "to be softened",
+      "word": "和らぐ",
+      "reading": "やわらぐ",
+      "meaning": "to soften",
       "type": "kun"
     }
   ],

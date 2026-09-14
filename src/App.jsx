@@ -24,6 +24,9 @@ import {
 import { useRouter } from "./lib/useRouter.js";
 import { pushOverlayEntry, closeOverlayUI, discardOverlayEntry } from "./lib/useRouter.js";
 import { t, getLang, setLang } from "./lib/i18n.js";
+// (t96) Overlay Bahasa Indonesia untuk DATA kanji (arti + gloss contoh) —
+// provider context; chunk id_gloss.json dimuat on-demand saat lang = id.
+import { IdDataProvider } from "./lib/idData.jsx";
 
 import Home from "./components/Home.jsx";
 import UnitSelect from "./components/UnitSelect.jsx";
@@ -955,6 +958,7 @@ export default function App() {
   }
 
   return (
+    <IdDataProvider lang={lang}>
     <div className="kd-root">
       {/* (t83→t88) NAVIGASI KIRI TOPBAR — satu pola di semua sublayar:
           chrome navigasi kiri, aksi (help/skrip/tema) kanan.
@@ -1154,5 +1158,6 @@ export default function App() {
 
       {toast && <Toast message={toast} />}
     </div>
+    </IdDataProvider>
   );
 }

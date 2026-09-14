@@ -26,7 +26,7 @@ export default {
   "app.exitDialog.text": "Keluar dari sesi ini? Jawabanmu sejauh ini tidak akan disimpan.",
   "app.exitDialog.keep": "Lanjut belajar",
   "app.exitDialog.leave": "Keluar",
-  "app.toast.notifBlocked": "Notifikasi Kanjichō diblokir — izinkan lewat pengaturan sistem.",
+  "app.toast.notifBlocked": "Notifikasi Kanjichō diblokir. Izinkan lewat pengaturan sistem.",
   "app.toast.notEnoughKanji": "Level ini tidak punya cukup kanji untuk membuat pengecoh.",
   "app.toast.noMissed": "Tidak ada kanji yang salah di unit ini saat ini.",
   "app.toast.progressDeleted": "Progres {level} dihapus",
@@ -87,7 +87,6 @@ export default {
     "Baru di Kanjichō? Tur bawaan akan mengantarmu melewati level, unit, kuis, dan pustaka kanji dalam sekitar setengah menit.",
   "help.replay": "Putar ulang tur",
   "help.language": "Bahasa",
-  "help.languageHint": "Bahasa antarmuka — berlaku di mana saja, seketika.",
   "help.quiz": "Kuis",
   "help.blur": "Buramkan pilihan jawaban",
   "help.blurDesc":
@@ -154,7 +153,7 @@ export default {
     "Hapus progres level ini: jadwal SRS, riwayat kuis, dan kanji yang salah. Level lain tidak terpengaruh.",
   "unit.missed.aria": "Review {n} kanji yang salah",
   "unit.missed.title":
-    "Kuis {n} kanji yang kamu jawab salah di unit ini — tidak mengubah jadwalmu",
+    "Kuis {n} kanji yang salah di unit ini. Jadwalmu tidak berubah",
   "unit.dialog.resetTitle": "Hapus semua progres {level}?",
   "unit.dialog.resetLine2":
     "Jadwal SRS, riwayat kuis, dan kanji yang salah untuk level ini akan dihapus",
@@ -172,15 +171,15 @@ export default {
   "stat.nextDue": "Review berikutnya",
   "stat.mastered": "Dikuasai",
   "stat.group": "Statistik belajar",
-  "stat.streak.done": "Streak {n} hari — hari ini sudah",
-  "stat.streak.risk": "Streak {n} hari — kuis hari ini agar tetap hidup",
-  "stat.due.title": "{n} unit siap direview — lihat apa yang jatuh tempo dan kapan",
-  "stat.due.titleOne": "{n} unit siap direview — lihat apa yang jatuh tempo dan kapan",
-  "stat.next.title": "Tidak ada unit jatuh tempo — review berikutnya dalam {label}. Buka kalendernya",
-  "stat.due.aria": "Perlu review: {n} unit — buka kalender review",
-  "stat.due.ariaOne": "Perlu review: {n} unit — buka kalender review",
-  "stat.next.aria": "Review berikutnya dalam {label} — buka kalender review",
-  "stat.none.aria": "Perlu review: tidak ada — buka kalender review",
+  "stat.streak.done": "Streak {n} hari, hari ini sudah",
+  "stat.streak.risk": "Streak {n} hari, kuis hari ini agar tetap hidup",
+  "stat.due.title": "{n} unit siap direview. Lihat apa yang jatuh tempo dan kapan",
+  "stat.due.titleOne": "{n} unit siap direview. Lihat apa yang jatuh tempo dan kapan",
+  "stat.next.title": "Tidak ada unit jatuh tempo. Review berikutnya dalam {label}",
+  "stat.due.aria": "Perlu review: {n} unit, buka kalender review",
+  "stat.due.ariaOne": "Perlu review: {n} unit, buka kalender review",
+  "stat.next.aria": "Review berikutnya dalam {label}, buka kalender review",
+  "stat.none.aria": "Perlu review: tidak ada, buka kalender review",
   "stat.cal.title": "Buka kalender review",
 
   // ---- Result.jsx ----
@@ -271,8 +270,8 @@ export default {
   "stroke.counterOne": "1 goresan",
 
   // ---- ComponentBreakdown.jsx ----
-  "comp.radical": "Radikal — komponen pembawa makna",
-  "comp.phonetic": "Fonetik — komponen pembawa bunyi",
+  "comp.radical": "Radikal: komponen pembawa makna",
+  "comp.phonetic": "Fonetik: komponen pembawa bunyi",
   "comp.label": "Komponen",
   "comp.loose": "{n} goresan bukan bagian komponen bernama",
   "comp.looseOne": "1 goresan bukan bagian komponen bernama",

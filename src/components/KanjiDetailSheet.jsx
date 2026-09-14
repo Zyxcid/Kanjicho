@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { X } from "lucide-react";
-import { loadStrokes } from "../lib/strokes.js";
+import { loadStrokePaths } from "../lib/strokes.js";
 import { ReadingList } from "./Readings.jsx";
 import StrokePlayer from "./StrokePlayer.jsx";
 import { kanaToRomaji } from "../lib/kana.js";
+// (t96) Arti & gloss contoh mengikuti bahasa UI (overlay id_gloss).
+import { useIdData, localizedMeanings, localizedGloss } from "../lib/idData.jsx";
 
 /**
  * KanjiDetailSheet — modal detail satu kanji: animasi urutan goresan
@@ -22,6 +24,8 @@ import { kanaToRomaji } from "../lib/kana.js";
  * berganti live seperti di layar kuis.
  */
 export default function KanjiDetailSheet({ entry, script = "romaji", onClose }) {
+  // (t96) Peta gloss Indonesia aktif — null bila bahasa UI bukan id.
+  const idData = useIdData();
   // Data goresan: null = sedang dimuat, [] = tidak ada (fallback glyph),
   // array = render StrokePlayer. Cache loader membuat pembukaan kedua
   // untuk level yang sama instan.
@@ -30,8 +34,9 @@ export default function KanjiDetailSheet({ entry, script = "romaji", onClose }) 
   useEffect(() => {
     let cancelled = false;
     setPaths(null);
-    loadStrokes(entry.level).then((map) => {
-      if (!cancelled) setPaths(map[entry.kanji] || []);
+    // (t96) Per-kanji: level terpecah (N1) hanya mengunduh satu sub-chunk.
+    loadStrokePaths(entry.level, entry.kanji).then((p) => {
+      if (!cancelled) setPaths(p);
     });
     return () => {
       cancelled = true;
@@ -83,7 +88,7 @@ export default function KanjiDetailSheet({ entry, script = "romaji", onClose }) 
               duplikat. */}
           <div className="kd-detail-info">
             <div className="kd-detail-head">
-              <span className="kd-detail-meaning">{entry.meanings.join(", ")}</span>
+              <span className="kd-detail-meaning">{localizedMeanings(entry, idData).join(", ")}</span>
             </div>
             <div className="kd-reveal-yomi">
               {entry.readings.on.length > 0 && (
@@ -112,7 +117,7 @@ export default function KanjiDetailSheet({ entry, script = "romaji", onClose }) 
                     <span className="kd-example-reading">
                       {script === "romaji" ? kanaToRomaji(ex.reading) : ex.reading}
                     </span>
-                    <span className="kd-example-meaning">{ex.meaning}</span>
+                    <span className="kd-example-meaning">{localizedGloss(ex, idData)}</span>
                   </div>
                 ))}
               </div>

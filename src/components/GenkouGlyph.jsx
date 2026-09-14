@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { loadStrokes } from "../lib/strokes.js";
+import { loadStrokePaths } from "../lib/strokes.js";
 
 // Durasi dasar satu goresan — sama dengan default StrokePlayer (speed 1x),
 // supaya rasa animasinya identik di kotak genkō dan di modal Browse.
@@ -52,11 +52,12 @@ export default function GenkouGlyph({ kanji, level }) {
 
   // Muat data goresan SEJAK SOAL MUNCUL, lalu tampilkan dalam keadaan
   // selesai (revealed = semua goresan) — klik baru memutar animasi.
+  // (t96) loadStrokePaths per-kanji: level terpecah hanya mengunduh satu
+  // sub-chunk.
   useEffect(() => {
     let cancelled = false;
-    loadStrokes(level).then((map) => {
+    loadStrokePaths(level, kanji).then((p) => {
       if (cancelled) return;
-      const p = map[kanji] || [];
       setPaths(p);
       setRevealed(p.length);
     });

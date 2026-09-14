@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { loadStrokes } from "../lib/strokes.js";
+import { loadStrokePaths } from "../lib/strokes.js";
 
 // Durasi dasar satu goresan — sama dengan default StrokePlayer (speed 1x),
 // supaya rasa animasinya identik di punggung kartu kuis dan di modal Browse.
@@ -24,7 +24,7 @@ const BASE_STROKE_MS = 620;
  * goresan sudah tergambar) sejak punggung muncul — bukan glyph teks
  * font — supaya bentuknya konsisten sebelum dan sesudah animasi. Data
  * goresan level soal sudah DIPANASKAN sejak soal muncul (Quiz.jsx ikut
- * memanggil loadStrokes bersama chunk komponen), jadi chunk biasanya
+ * memanggil loadStrokePaths bersama chunk komponen), jadi chunk biasanya
  * sudah di cache saat kartu terbalik; kalau belum, kanji font tampil
  * sesaat sebagai placeholder (kepala tidak pernah kosong).
  *
@@ -62,11 +62,12 @@ export default function RevealGlyph({ kanji, level }) {
 
   // Muat data goresan sejak punggung muncul, lalu tampilkan dalam
   // keadaan selesai (revealed = semua goresan) — klik baru memutar.
+  // (t96) loadStrokePaths per-kanji: level terpecah hanya mengunduh satu
+  // sub-chunk.
   useEffect(() => {
     let cancelled = false;
-    loadStrokes(level).then((map) => {
+    loadStrokePaths(level, kanji).then((p) => {
       if (cancelled) return;
-      const p = map[kanji] || [];
       setPaths(p);
       setRevealed(p.length);
     });

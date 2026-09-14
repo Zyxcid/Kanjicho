@@ -4013,14 +4013,14 @@
     "stroke_count": 3,
     "primary_readings": [
       {
-        "kana": "ひさ.しい",
-        "romaji": "hisashii",
-        "type": "kun"
-      },
-      {
         "kana": "キュウ",
         "romaji": "kyuu",
         "type": "on"
+      },
+      {
+        "kana": "ひさ.しい",
+        "romaji": "hisashii",
+        "type": "kun"
       }
     ]
   },

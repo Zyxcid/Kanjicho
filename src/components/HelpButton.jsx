@@ -33,8 +33,9 @@ function delayLabel(ms) {
 //   2. Tiga bab (Pengaturan / Panduan / Tentang) menjadi AKORDEON:
 //      header bab bisa dilipat. Default hanya Pengaturan terbuka —
 //      tinggi panel jadi pendek & bisa diprediksi; panduan/tentang
-//      tinggal dibuka saat memang dicari. (Bab tetap independen: dua bab
-//      boleh terbuka bersamaan.)
+//      tinggal dibuka saat memang dicari. (t96: akordeon kini
+//      EKSKLUSIF — membuka satu bab melipat bab lain, panel tak
+//      pernah tumbuh melebihi tinggi satu bab.)
 // Tekanan tetap: Escape, tombol Back Android (entri overlay router t65),
 // klik luar, tombol ✕ di kepala panel.
 export default function HelpButton({
@@ -84,13 +85,18 @@ export default function HelpButton({
   const [anchor, setAnchor] = React.useState(null);
   // (t92) Bab akordeon mana yang terbuka. Semua TERLIPAT default — panel
   // yang terbuka tampak seperti menu dropdown ringkas (tiga kepala bab);
-  // pengaturan/panduan/tentang dibuka sesuai kebutuhan. (Bab independen:
-  // dua bab boleh terbuka bersamaan.)
+  // pengaturan/panduan/tentang dibuka sesuai kebutuhan. (t96: EKSKLUSIF —
+  // membuka satu bab melipat bab lain yang sedang terbuka; memilih bab
+  // yang sudah terbuka melipatnya kembali.)
   const [groups, setGroups] = React.useState({ settings: false, guide: false, about: false });
   const btnRef = React.useRef(null);
 
   function toggleGroup(key) {
-    setGroups((g) => ({ ...g, [key]: !g[key] }));
+    setGroups((g) =>
+      g[key]
+        ? { settings: false, guide: false, about: false }
+        : { settings: key === "settings", guide: key === "guide", about: key === "about" }
+    );
   }
 
   // Penutup overlay yang terdaftar di tumpukan overlay router (t65):
@@ -233,7 +239,9 @@ export default function HelpButton({
                         durasi auto-flip di bawah; label = NAMA ASLI tiap
                         bahasa (konvensi UI bahasa — "English", "Bahasa
                         Indonesia"). Tersimpan di localStorage "kanji-lang"
-                        (default en). Seksi Data sources sengaja tetap
+                        (default en). (t96: paragraf petunjuk dihapus atas
+                        permintaan user — deretan pill sudah menjelaskan
+                        dirinya sendiri.) Seksi Data sources sengaja tetap
                         Inggris di semua bahasa (teks legal/kredit lisensi
                         — konvensi aplikasi). */}
                     <div className="kd-help-section">
@@ -255,7 +263,6 @@ export default function HelpButton({
                           </button>
                         ))}
                       </div>
-                      <p className="kd-help-text">{t("help.languageHint")}</p>
                     </div>
 
                     {/* t76: seksi Quiz & Browse kanji ditulis sebagai PROSA

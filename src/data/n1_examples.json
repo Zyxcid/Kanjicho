@@ -6428,9 +6428,9 @@
       "type": "on"
     },
     {
-      "word": "隔たる",
-      "reading": "へだたる",
-      "meaning": "to be distant",
+      "word": "隔てる",
+      "reading": "へだてる",
+      "meaning": "to separate (by distance, time, etc.)",
       "type": "kun"
     }
   ],
@@ -11763,9 +11763,9 @@
       "type": "on"
     },
     {
-      "word": "貝殻",
-      "reading": "かいがら",
-      "meaning": "seashell",
+      "word": "殻",
+      "reading": "から",
+      "meaning": "shell",
       "type": "kun"
     }
   ],
@@ -11862,9 +11862,9 @@
       "type": "on"
     },
     {
-      "word": "一番鶏",
-      "reading": "いちばんどり",
-      "meaning": "first cockcrowing",
+      "word": "鶏",
+      "reading": "にわとり",
+      "meaning": "chicken (Gallus gallus domesticus)",
       "type": "kun"
     }
   ],

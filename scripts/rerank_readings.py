@@ -29,6 +29,15 @@ sama (終 お.わる / おわ.る) tidak saling memecah kredit; POS 固有名詞
 tidak mengkredit apa pun; seed default (bacaan pertama kamus) hanya
 tergulingkan bila pemenang korpus menang telak (margin > 100).
 
+(t96) TIER KREDIT korpus-riil vs pri-band editorial: frekuensi
+jiten-attested (rank <= 10.000) dan nilai pri JMdict (band 2.500-50.000,
+register koran) TIDAK setara — kata editorial umum-koran yang tak
+terattestasi jiten (mis. 二十世紀 pri 40.521) tidak boleh menimpa
+frekuensi korpus riil kata sehari-hari (十分 jiten rank 593) hanya
+karena angka bandnya lebih besar. Bila minimal satu bacaan punya
+kata jiten-kuat, ranking hanya membandingkan kredit kata kuat;
+pri-band dipakai hanya bila tidak ada bukti kuat sama sekali.
+
 Input:
   - raw/JMdict_e.gz  (kamus Jepang→Inggris — sumber gloss sekaligus
                      tanda common ke_pri/re_pri fallback, t70)
@@ -179,7 +188,7 @@ def clean_reading(kana):
 # ============================================================
 
 def load_pri_words(jmdict_path):
-    """Muat entri sinyal hybrid → [(lemma, reading_hira, freq), ...]
+    """Muat entri sinyal hybrid → [(lemma, reading_hira, freq, pos, strong), ...]
     (jiten.moe global UTAMA + penanda pri JMdict FALLBACK).
 
     Overlay hybrid (hybrid_freq.attach) diterapkan pada hasil
@@ -188,7 +197,13 @@ def load_pri_words(jmdict_path):
     nilai pri. POS tidak tersedia dan tidak diperlukan: nama diri
     hidup di JMnedict, bukan JMdict, jadi saring 固有名詞 tidak pernah
     dibutuhkan (parameter pos tetap dibawa sebagai None supaya
-    rank_readings tidak berubah)."""
+    rank_readings tidak berubah).
+
+    (t96) Elemen ke-5 `strong`: True bila pasangan (lemma, reading)
+    terattestasi jiten KUAT (rank ≤ JITEN_MAX_RANK) — frekuensi korpus
+    RIIL. False untuk kata pri-band (editorial koran, tak terattestasi
+    jiten) dan attestasi lemah (rank > cutoff). Dipakai rank_readings
+    untuk memisahkan TIER kredit bacaan (lihat docstring modul)."""
     print(f"Loading hybrid corpus words (jiten + pri) from {jmdict_path} ...")
     # Lazy import (lihat komentar modul): hindari sikulus import
     # build_examples ↔ rerank_readings.
@@ -199,8 +214,11 @@ def load_pri_words(jmdict_path):
     terms, alt_terms, _alt_common, _alt_variants = parse_jmdict(jmdict_path)
     # t72 — sinyal hybrid: jiten utama, pri fallback. SATU titik injeksi
     # yang sama dengan build_examples.py (hybrid_freq.attach).
-    from hybrid_freq import attach as hybrid_attach
-    hybrid_attach(jmdict_path.parent, terms, alt_terms, label="rerank")
+    from hybrid_freq import attach as hybrid_attach, JITEN_MAX_RANK
+    # t96: jiten map dikembalikan attach — dipakai untuk menandai tier
+    # kata (kuat vs pri-band) tanpa memuat CSV dua kali.
+    _stats, jiten = hybrid_attach(jmdict_path.parent, terms, alt_terms,
+                                  label="rerank")
     words = []
     for lemma, entries in terms.items():
         if not any("\u4e00" <= ch <= "\u9fff" for ch in lemma):
@@ -208,23 +226,26 @@ def load_pri_words(jmdict_path):
         for reading, _glosses, freq in entries:
             if freq is None or freq <= 0:
                 continue
-            words.append((lemma, katakana_to_hiragana(reading), freq, None))
+            hira = katakana_to_hiragana(reading)
+            rank = jiten.get((lemma, hira))
+            strong = rank is not None and rank <= JITEN_MAX_RANK
+            words.append((lemma, hira, freq, None, strong))
     print(f"  Loaded {len(words)} hybrid corpus words "
           f"(jiten-attested strong + pri-marked)")
     return words
 
 
 def build_kanji_word_index(pri_words):
-    """Susun { kanji_char: [(lemma, reading, freq), ...] }."""
+    """Susun { kanji_char: [(lemma, reading, freq, pos, strong), ...] }."""
     print("Indexing pri words by kanji ...")
     index = {}
-    for lemma, reading, freq, pos in pri_words:
+    for lemma, reading, freq, pos, strong in pri_words:
         seen_kanji = set()
         for ch in lemma:
             if "\u4e00" <= ch <= "\u9fff":
                 seen_kanji.add(ch)
         for ch in seen_kanji:
-            index.setdefault(ch, []).append((lemma, reading, freq, pos))
+            index.setdefault(ch, []).append((lemma, reading, freq, pos, strong))
     print(f"  {len(index)} unique kanji indexed")
     return index
 
@@ -237,7 +258,7 @@ def rank_readings(kanji, on_readings, kun_readings, pri_words, cand_table=None):
     """Rank bacaan berdasarkan total pseudo-freq pri — Fix-5:
     kredit via atribusi struktural DP, bukan substring first-match.
 
-    Per kata (lemma, reading, freq) yang memuat kanji:
+    Per kata (lemma, reading, freq, pos, strong) yang memuat kanji:
       attr = attribute_example_reading(...)  → type on/kun + matched_reading
       - on  : kredit bacaan on yang clean-hira == matched_reading.
       - kun : bacaan se-stem (kun_stem == matched); kalau ada anggota yang
@@ -248,6 +269,19 @@ def rank_readings(kanji, on_readings, kun_readings, pri_words, cand_table=None):
       - unknown → tanpa kredit (kata aneh/ateji bukan bukti).
     Rendaku loose: matched dikembalikan ke BASIS oleh DP (出口【でぐち】
     → basis くち) sehingga kredit tetap ke bacaan benar.
+
+    (t96) TIER KREDIT — korpus riil menomori satu, editorial di bawahnya:
+    tiap kata membawa tanda `strong` (terattestasi jiten rank ≤ 10.000).
+    Kredit dicatat di DUA tabel per tipe: *_strong (hanya kata kuat)
+    dan *_any (semua kata, termasuk pri-band koran). Pemilihan pemenang
+    memakai tabel strong BILA TIDAK KOSONG — nilai pri-band (band
+    2.500-50.000 yang condong register koran) tidak boleh menggulingkan
+    urutan kamus saat frekuensi KORPUS RIIL tersedia untuk bacaan mana
+    pun. Kasus pelatuk: 十 — 二十世紀【にじっせいき】 pri 40.521 (tak
+    terattestasi jiten) pernah menimpa ジュウ yang dibuktikan 十分
+    (jiten rank 593 = 33.726), membuat bacaan primer on salah ジッ.
+    Bila tidak ada kata kuat sama sekali (kanji sastra/langka), tabel
+    any (pri) dipakai seperti sedia kala.
     """
     # Lazy import (lihat komentar modul): hindari sikulus import
     # build_examples ↔ rerank_readings.
@@ -283,10 +317,18 @@ def rank_readings(kanji, on_readings, kun_readings, pri_words, cand_table=None):
         if entry not in kun_by_stem[stem]:
             kun_by_stem[stem].append(entry)
 
-    on_freq = {}
-    kun_freq = {}
+    # (t96) Dua tabel kredit per tipe — tier korpus-riil (strong) dan
+    # tier gabungan (any, termasuk pri-band editorial). Kredit MAX tetap
+    # di tiap tabel (bukan SUM).
+    on_any, on_strong = {}, {}
+    kun_any, kun_strong = {}, {}
 
-    for lemma, word_reading, freq, pos in pri_words:
+    def _credit(bucket_any, bucket_strong, key, val, strong):
+        bucket_any[key] = max(bucket_any.get(key, 0), val)
+        if strong:
+            bucket_strong[key] = max(bucket_strong.get(key, 0), val)
+
+    for lemma, word_reading, freq, pos, strong in pri_words:
         if kanji not in lemma:
             continue
         # Fix-5 iterasi-2: nama diri tidak boleh mengkredit bacaan
@@ -308,7 +350,7 @@ def rank_readings(kanji, on_readings, kun_readings, pri_words, cand_table=None):
                     # punya BANYAK kata menengah (万:
                     # バン 12 kata x ~30k tidak boleh mengalahkan マン
                     # 数万 41k — frekuensi korpus berdistribusi Zipf).
-                    on_freq[matched] = max(on_freq.get(matched, 0), freq)
+                    _credit(on_any, on_strong, matched, freq, strong)
             else:
                 # Kata dengan ekor kana MURNI setelah kanji (kata kerja
                 # 入る/終わる: kanji di awal + okurigana; kata akhir-kanji
@@ -322,8 +364,7 @@ def rank_readings(kanji, on_readings, kun_readings, pri_words, cand_table=None):
                 if all(not ("\u4e00" <= ch <= "\u9fff") for ch in tail):
                     whole_clean = katakana_to_hiragana(word_reading)
                     if whole_clean in kun_clean:
-                        kun_freq[whole_clean] = max(
-                            kun_freq.get(whole_clean, 0), freq)
+                        _credit(kun_any, kun_strong, whole_clean, freq, strong)
                         continue
                 group = kun_by_stem.get(matched)
                 if not group:
@@ -335,7 +376,7 @@ def rank_readings(kanji, on_readings, kun_readings, pri_words, cand_table=None):
                     # kata membedakan anggota secara pasti (okurigana
                     # persis) → kredit MAX hanya ke bentuk bersih itu.
                     for c in dict.fromkeys(exact):
-                        kun_freq[c] = max(kun_freq.get(c, 0), freq)
+                        _credit(kun_any, kun_strong, c, freq, strong)
                 else:
                     # Kata tidak membedakan anggota grup-stem (入れた
                     # membuktikan い-sesuatu). Kredit MAX setara dibagi
@@ -344,7 +385,7 @@ def rank_readings(kanji, on_readings, kun_readings, pri_words, cand_table=None):
                     cleans = list(dict.fromkeys(c for (c, r, okuri) in group))
                     share = freq / len(cleans)
                     for c in cleans:
-                        kun_freq[c] = max(kun_freq.get(c, 0), share)
+                        _credit(kun_any, kun_strong, c, share, strong)
         else:  # pragma: no cover — jalur fallback tanpa kanjidic2
             matched_on = None
             matched_kun = None
@@ -362,9 +403,16 @@ def rank_readings(kanji, on_readings, kun_readings, pri_words, cand_table=None):
                 elif len(matched_on) > len(matched_kun):
                     matched_kun = None
             if matched_on:
-                on_freq[matched_on] = on_freq.get(matched_on, 0) + freq
+                _credit(on_any, on_strong, matched_on, freq, strong)
             if matched_kun:
-                kun_freq[matched_kun] = kun_freq.get(matched_kun, 0) + freq
+                _credit(kun_any, kun_strong, matched_kun, freq, strong)
+
+    # (t96) Pilih TIER AKTIF per tipe: strong bila ada bukti korpus riil,
+    # sisanya any (pri-band) — kredit strong di tabel any ikut terbawa
+    # (freq jiten juga masuk bucket_any), jadi tabel any hanya dipakai
+    # bila tabel strong kosong (kanji tanpa satu pun kata jiten kuat).
+    on_freq = on_strong if on_strong else on_any
+    kun_freq = kun_strong if kun_strong else kun_any
 
     # Fix-5 iterasi-2 — guard "prior kamus + margin":
     # urutan KANJIDIC2 (bacaan pertama) adalah prior yang layak percaya;
@@ -376,31 +424,43 @@ def rank_readings(kanji, on_readings, kun_readings, pri_words, cand_table=None):
     #     二 ふた.つ 54k vs ふた 14k → korpus menang telak ✓
     # Tanpa kredit sama sekali → default (jangan jatuhkan slot:
     # 京 みやこ, 対 あいて) — perilaku sama dengan rerank kanonik.
+    # (t96) Kredit DEFAULT diambil dari tier TERBAIKNYA di mana pun
+    # (strong ATAU any): bacaan kamus yang ditopang pri-band tetap
+    # punya suara (甲: コウ 2.500 bertahan lawan カン 2.369 — kata kuat
+    # tunggal kalah tipis dari konsensus kamus + koran), sementara
+    # pemenang kuat yang MENANG TELAK tetap menggulingkan default
+    # (九: キュウ 九州 20.000 > ク 四十九日 15.876 + 100).
     SEED_MARGIN = 100
 
-    def _pick(freq_dict, default_reading, winner_map):
+    def _pick(strong_dict, any_dict, default_reading, winner_map):
         """Pilih seed: default kamus, atau pemenang korpus bila menang
-        telak (kredit > default + margin). winner_map: clean → bacaan
-        tertulis (on_clean / clean_first)."""
+        telak. Pemenang ditentukan di tier aktif (strong bila ada);
+        default dibandingkan dengan kredit TERBAIKNYA lintas tier.
+        winner_map: clean → bacaan tertulis (on_clean / clean_first)."""
         if default_reading is None:
             return None
         default_clean = clean_reading(default_reading)
-        if freq_dict:
-            winner_clean = max(freq_dict, key=freq_dict.get)
+        active = strong_dict if strong_dict else any_dict
+        if active:
+            winner_clean = max(active, key=active.get)
             if winner_clean != default_clean and \
-                    freq_dict[winner_clean] > \
-                    freq_dict.get(default_clean, 0) + SEED_MARGIN:
+                    active[winner_clean] > \
+                    max(strong_dict.get(default_clean, 0),
+                        any_dict.get(default_clean, 0)) + SEED_MARGIN:
                 return winner_map.get(winner_clean, default_reading)
         return default_reading
 
-    best_on = _pick(on_freq,
+    best_on = _pick(on_strong, on_any,
                     on_readings[0] if on_readings else None, on_clean)
-    best_kun = _pick(kun_freq,
+    best_kun = _pick(kun_strong, kun_any,
                      kun_readings[0] if kun_readings else None, clean_first)
 
     best_on_romaji = kana_to_romaji(best_on) if best_on else None
     best_kun_romaji = kana_to_romaji(best_kun) if best_kun else None
 
+    # (t96) on_freq/kun_freq yang dikembalikan = tier AKTIF (lihat
+    # pemilihan tier di atas) — pemanggil diagnostik/diag_kanji.py ingin
+    # tahu tabel yang benar-benar menentukan ranking.
     return best_on_romaji, best_kun_romaji, on_freq, kun_freq
 
 

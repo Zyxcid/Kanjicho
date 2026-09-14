@@ -22,7 +22,7 @@ export default {
   "app.exitDialog.text": "Leave this session? Your answers so far won't be saved.",
   "app.exitDialog.keep": "Keep studying",
   "app.exitDialog.leave": "Leave",
-  "app.toast.notifBlocked": "Notifications are blocked for Kanjichō — allow them in system settings.",
+  "app.toast.notifBlocked": "Notifications are blocked for Kanjichō. Allow them in system settings.",
   "app.toast.notEnoughKanji": "This level doesn't have enough kanji to generate distractors.",
   "app.toast.noMissed": "No missed kanji in this unit right now.",
   "app.toast.progressDeleted": "{level} progress deleted",
@@ -83,7 +83,6 @@ export default {
     "New to Kanjichō? The built-in tour walks you through levels, units, quizzes and the kanji library in about half a minute.",
   "help.replay": "Replay the tutorial",
   "help.language": "Language",
-  "help.languageHint": "Interface language — applies everywhere, instantly.",
   "help.quiz": "Quiz",
   "help.blur": "Blur the choices",
   "help.blurDesc":
@@ -150,7 +149,7 @@ export default {
     "Delete this level's progress: SRS schedule, quiz history and missed kanji. Other levels are not affected.",
   "unit.missed.aria": "Review {n} missed kanji",
   "unit.missed.title":
-    "Quiz the {n} kanji you missed in this unit — doesn't change your schedule",
+    "Quiz the {n} kanji you missed in this unit. Your schedule won't change",
   "unit.dialog.resetTitle": "Delete all {level} progress?",
   "unit.dialog.resetLine2":
     "SRS schedule, quiz history and missed kanji for this level will be removed",
@@ -168,15 +167,15 @@ export default {
   "stat.nextDue": "Next due",
   "stat.mastered": "Mastered",
   "stat.group": "Study statistics",
-  "stat.streak.done": "{n}-day streak — done today",
-  "stat.streak.risk": "{n}-day streak — quiz today to keep it",
-  "stat.due.title": "{n} units ready to review — see what's due and when",
-  "stat.due.titleOne": "{n} unit ready to review — see what's due and when",
-  "stat.next.title": "No units due — next review in {label}. Open the calendar",
-  "stat.due.aria": "Due now: {n} units — open review calendar",
-  "stat.due.ariaOne": "Due now: {n} unit — open review calendar",
-  "stat.next.aria": "Next review in {label} — open review calendar",
-  "stat.none.aria": "Due now: none — open review calendar",
+  "stat.streak.done": "{n}-day streak, done today",
+  "stat.streak.risk": "{n}-day streak, quiz today to keep it",
+  "stat.due.title": "{n} units ready to review. See what's due and when",
+  "stat.due.titleOne": "{n} unit ready to review. See what's due and when",
+  "stat.next.title": "No units due. Next review in {label}",
+  "stat.due.aria": "Due now: {n} units, open review calendar",
+  "stat.due.ariaOne": "Due now: {n} unit, open review calendar",
+  "stat.next.aria": "Next review in {label}, open review calendar",
+  "stat.none.aria": "Due now: none, open review calendar",
   "stat.cal.title": "Open the review calendar",
 
   // ---- Result.jsx ----
@@ -267,8 +266,8 @@ export default {
   "stroke.counterOne": "1 stroke",
 
   // ---- ComponentBreakdown.jsx ----
-  "comp.radical": "Radical — the component that carries the meaning",
-  "comp.phonetic": "Phonetic — the component that carries the sound",
+  "comp.radical": "Radical: the component that carries the meaning",
+  "comp.phonetic": "Phonetic: the component that carries the sound",
   "comp.label": "Components",
   "comp.loose": "{n} strokes not part of a named component",
   "comp.looseOne": "1 stroke not part of a named component",

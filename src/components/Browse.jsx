@@ -5,14 +5,18 @@ import { ReadingList } from "./Readings.jsx";
 import StrokePlayer from "./StrokePlayer.jsx";
 import CopyKanji from "./CopyKanji.jsx";
 import ComponentBreakdown from "./ComponentBreakdown.jsx";
-import { loadStrokes } from "../lib/strokes.js";
+import { loadStrokePaths } from "../lib/strokes.js";
 import { loadComponents } from "../lib/components.js";
 import { pushOverlayEntry, closeOverlayUI, discardOverlayEntry } from "../lib/useRouter.js";
 import { kanaToRomaji } from "../lib/kana.js";
 import { t } from "../lib/i18n.js";
+// (t96) Arti & gloss contoh mengikuti bahasa UI (overlay id_gloss).
+import { useIdData, localizedMeanings, localizedGloss } from "../lib/idData.jsx";
 
-// "All" + N5..N1. Default N5 supaya paint pertama ringan (N1 sendiri
-// berisi 1.232 entri; N5 lebih ramah sebagai halaman mula).
+// "All" + N5..N1. Default "All" (t96): pustaka adalah alat referensi —
+// user datang mencari kanji, bukan level; batas render 400 kartu +
+// pencarian tetap menjaga kecepatan pertama bahkan dengan 2.211 kanji
+// (level JSON dimuat on-demand, jadi "All" hanya sekali muat 5 file).
 const LEVELS = ["All", ...LEVEL_IDS];
 
 // Batas render per step supaya grid 1000+ kartu tetap mulus saat scroll.
@@ -20,7 +24,9 @@ const LEVELS = ["All", ...LEVEL_IDS];
 const VISIBLE_STEP = 400;
 
 export default function Browse({ script = "kana" }) {
-  const [activeLevel, setActiveLevel] = useState("N5");
+  // (t96) Peta gloss Indonesia aktif (null bila bahasa en / belum termuat).
+  const idData = useIdData();
+  const [activeLevel, setActiveLevel] = useState("All");
   const [query, setQuery] = useState("");
   const [visibleCount, setVisibleCount] = useState(VISIBLE_STEP);
   const [selected, setSelected] = useState(null); // kanji yang ditampilkan di modal
@@ -36,7 +42,8 @@ export default function Browse({ script = "kana" }) {
   const modalRef = useRef(null);
 
   // Data urutan goresan untuk kanji di modal (KanjiVG, per level —
-  // loader di lib/strokes.js meng-cache chunk per level). null = dimuat.
+  // loader di lib/strokes.js meng-cache chunk per level; N1 terpecah
+  // jadi sub-chunk per ~400 kanji, t96). null = dimuat.
   const [strokePaths, setStrokePaths] = useState(null);
   // Dekomposisi komponen kanji di modal (KanjiVG stroke-group, per
   // level — lib/components.js). null = dimuat.
@@ -67,7 +74,10 @@ export default function Browse({ script = "kana" }) {
     };
   }, [activeLevel]);
 
-  // Susun daftar level aktif (+ filter pencarian bila ada).
+  // Susun daftar level aktif (+ filter pencarian bila ada). Pencarian
+  // mencocokkan arti INGGRIS maupun terjemahannya (t96): user berbahasa
+  // Indonesia mengetik "air" tetap menemukan 水 (water) walau kartu
+  // menampilkan "air".
   const list = useMemo(() => {
     if (!pool) return [];
     const q = query.trim().toLowerCase();
@@ -76,11 +86,13 @@ export default function Browse({ script = "kana" }) {
       (k) =>
         k.kanji.includes(q) ||
         k.meanings.some((m) => m.toLowerCase().includes(q)) ||
+        (idData &&
+          k.meanings.some((m) => (idData.m[m] || "").toLowerCase().includes(q))) ||
         k.romaji_readings.some((r) => r.toLowerCase().includes(q)) ||
         k.readings.on.some((r) => r.includes(q)) ||
         k.readings.kun.some((r) => r.includes(q))
     );
-  }, [pool, query]);
+  }, [pool, query, idData]);
 
   // Ganti level/query sekaligus reset batas render supaya selalu mulai
   // dari awal hasil baru.
@@ -136,11 +148,11 @@ export default function Browse({ script = "kana" }) {
     setCompEntry(null);
     setStrokeProgress(null);
     Promise.all([
-      loadStrokes(selected.jlpt_level),
+      loadStrokePaths(selected.jlpt_level, selected.kanji),
       loadComponents(selected.jlpt_level),
-    ]).then(([strokesMap, compsMap]) => {
+    ]).then(([paths, compsMap]) => {
       if (cancelled) return;
-      setStrokePaths(strokesMap[selected.kanji] || []);
+      setStrokePaths(paths);
       setCompEntry(compsMap[selected.kanji] || null);
     });
     if (modalRef.current) modalRef.current.scrollTop = 0;
@@ -258,8 +270,9 @@ export default function Browse({ script = "kana" }) {
             onClick={() => openKanji(k)}
           >
             <div className="kd-browse-glyph">{k.kanji}</div>
+            {/* (t96) Arti kartu mengikuti bahasa UI. */}
             <div className="kd-browse-meaning">
-              {k.meanings.slice(0, 2).join(", ")}
+              {localizedMeanings(k, idData).slice(0, 2).join(", ")}
             </div>
             <div className="kd-browse-meta">
               {k.jlpt_level} · {k.unit}
@@ -313,7 +326,7 @@ export default function Browse({ script = "kana" }) {
                   {navHistory[navHistory.length - 1].kanji}
                 </span>
                 <span className="kd-modal-back-mean">
-                  {(navHistory[navHistory.length - 1].meanings || [])[0] || ""}
+                  {localizedMeanings(navHistory[navHistory.length - 1], idData)[0] || ""}
                 </span>
               </button>
             )}
@@ -376,7 +389,7 @@ export default function Browse({ script = "kana" }) {
                     dianimasikan) di kolom kiri, tampilkan lagi di head hanya
                     duplikat. */}
                 <div className="kd-detail-head">
-                  <span className="kd-detail-meaning">{selected.meanings.join(", ")}</span>
+                  <span className="kd-detail-meaning">{localizedMeanings(selected, idData).join(", ")}</span>
                 </div>
                 <div className="kd-reveal-yomi">
                   {/* (t80) Skrip mengikuti toggle universal あ/Aa di topbar
@@ -416,7 +429,7 @@ export default function Browse({ script = "kana" }) {
                         <span className="kd-example-reading">
                           {script === "romaji" ? kanaToRomaji(ex.reading) : ex.reading}
                         </span>
-                        <span className="kd-example-meaning">{ex.meaning}</span>
+                        <span className="kd-example-meaning">{localizedGloss(ex, idData)}</span>
                       </div>
                     ))}
                   </div>

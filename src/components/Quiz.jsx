@@ -3,11 +3,13 @@ import { CircleX, HelpCircle, MoveHorizontal } from "lucide-react";
 import { DONT_KNOW } from "../lib/quizGenerator.js";
 import { ReadingList } from "./Readings.jsx";
 import { kanaToRomaji } from "../lib/kana.js";
+// (t96) Arti & gloss contoh mengikuti bahasa UI (overlay id_gloss).
+import { useIdData, localizedMeanings, localizedGloss } from "../lib/idData.jsx";
 import { t } from "../lib/i18n.js";
 import RevealGlyph from "./RevealGlyph.jsx";
 import ComponentBreakdown from "./ComponentBreakdown.jsx";
 import { loadComponents } from "../lib/components.js";
-import { loadStrokes } from "../lib/strokes.js";
+import { loadStrokePaths } from "../lib/strokes.js";
 
 /**
  * Label satu pilihan sesuai skrip aktif: soal arti → teks biasa; soal
@@ -70,6 +72,8 @@ export default function Quiz({
 }) {
   const current = quiz[qIndex];
   const isKana = current.questionType === "reading" && answerScript === "kana";
+  // (t96) Peta gloss Indonesia aktif — null bila bahasa UI bukan id.
+  const idData = useIdData();
 
   // Papan skor dot (t76): jumlah benar/salah dari jawaban yang SUDAH
   // dimasukkan (answers bertambah tiap Continue; panjangnya = qIndex).
@@ -218,13 +222,14 @@ export default function Quiz({
   useEffect(() => {
     let cancelled = false;
     setCompEntry(null);
-    // Panaskan dua chunk sekaligus (keduanya di-cache per level —
-    // pemanggilan ganda tetap satu unduhan): komponen untuk baris
-    // "Components", goresan KanjiVG untuk glyph kecil di KEPALA punggung
-    // kartu (RevealGlyph) — memuat sejak soal muncul membuat punggung
+    // Panaskan dua chunk sekaligus (keduanya di-cache — pemanggilan
+    // ganda tetap satu unduhan): komponen untuk baris "Components",
+    // goresan KanjiVG untuk glyph kecil di KEPALA punggung kartu
+    // (RevealGlyph) — memuat sejak soal muncul membuat punggung
     // langsung memunculkan SVG selesai begitu kartu terbalik, tanpa kedip
-    // placeholder font.
-    loadStrokes(current.level);
+    // placeholder font. (t96) loadStrokePaths per-kanji: N1 terpecah,
+    // prefetch hanya satu sub-chunk ~300 kB.
+    loadStrokePaths(current.level, current.kanji);
     loadComponents(current.level).then((map) => {
       if (!cancelled) setCompEntry(map[current.kanji] || null);
     });
@@ -431,7 +436,8 @@ export default function Quiz({
               <div className="kd-card-back-body">
                 <div className="kd-reveal-head">
                   <RevealGlyph kanji={current.kanji} level={current.level} />
-                  <span className="kd-meaning-text">{current.meanings.join(", ")}</span>
+                  {/* (t96) Arti punggung kartu mengikuti bahasa UI. */}
+                  <span className="kd-meaning-text">{localizedMeanings(current, idData).join(", ")}</span>
                 </div>
                 {/* Baris bacaan mengikuti skrip toggle (kana atau romaji);
                     primary tetap di-bold di kedua skrip. */}
@@ -477,7 +483,7 @@ export default function Quiz({
                         <span className="kd-example-reading">
                           {answerScript === "romaji" ? kanaToRomaji(ex.reading) : ex.reading}
                         </span>
-                        <span className="kd-example-meaning">{ex.meaning}</span>
+                        <span className="kd-example-meaning">{localizedGloss(ex, idData)}</span>
                       </div>
                     ))}
                   </div>
