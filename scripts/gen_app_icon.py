@@ -1,23 +1,28 @@
 #!/usr/bin/env python3
 """
-gen_app_icon.py — (t104 → t105) ikon brand Kanichō versi 3.
+gen_app_icon.py — (t104 → t105 → t106) ikon brand Kanichō versi 4.
 
-DESAIN — "kanji di atas kertas" (evolusi arahan pengguna, Ronde 11):
-  v2 (t104) masih berupa kartu genkōyōshi (bingkai tinta + garis
-  panduan) di atas latar indigo. Masukan pengguna final:
-    1. glyph = 字 (kanji yang BERARTI "huruf/aksara" — tema app)
+DESAIN — "kanji di atas kertas bergaris" (evolusi arahan pengguna):
+  v3 (t105): kertas polos + 字 60% — pengguna menilai glyph TERLALU
+  BESAR dan minta garis-garis background DIKEMBALIKAN (Ronde 12):
+    1. glyph = 字 (kanji "huruf/aksara"), tinggi ink 45% kanvas
+       (proporsi efektif v2 yang tidak pernah dikeluhkan).
     2. warna glyph = var(--indigo) #1F3C5C — persis class .kd-brand
-       (Shippori Mincho 800, weight brand di topbar app)
-    3. latar = --paper #F5F1E8 — seperti layar saat app dibuka
-       (tulisan 漢字帳 Kanjichō di atas kertas genkōyōshi)
-    4. TANPA border/kartu → fleksibel untuk bentuk icon launcher
-       APA PUN (square, round, squircle, teardrop): mask hanya
-       memotong kertas, glyph selalu di zona aman.
+       (Shippori Mincho 800, weight brand di topbar app).
+    3. latar = --paper #F5F1E8 + GRID GENKŌYŌSHI #DDD5C3 — replika
+       background app (.kd-root: SVG 34px crispEdges) — inilah
+       "garis-garis" yang tampak di belakang tulisan 漢字帳 saat app
+       dibuka. 4 sel per sisi (kerapatan app ±12 sel/layar diperbesar
+       agar terbaca di launcher 48-192px); garis INTERIOR saja —
+       garis tepi akan terbaca sebagai border (dihapus per Ronde 11).
+    4. TETAP tanpa border/kartu → fleksibel untuk bentuk launcher
+       APA PUN (square, round, squircle, teardrop).
   Setiap elemen = elemen nyata layar pembuka app; tidak ada dekorasi
   tanpa makna (lingkaran merah v1 sudah hilang sejak t104).
 
 JAMINAN ZONA AMAN (dihitung dari TINTA AKTUAL, bukan tebakan):
-  - icon-512 (legacy/PWA/Play):  tinggi ink glyph 60% kanvas.
+  - icon-512 (legacy/PWA/Play):  tinggi ink glyph 45% kanvas
+    (radius tinta ±127px; mask lingkaran legacy r=256px).
   - icon-512-maskable (PWA):      radius tinta maks ≤ 195px
     (lingkaran aman spec maskable r=40% = 204.8px + margin AA).
   - scripts/icon-512-foreground.png (Android adaptif): kanvas
@@ -26,23 +31,30 @@ JAMINAN ZONA AMAN (dihitung dari TINTA AKTUAL, bukan tebakan):
   Semua diukur per-piksel (alpha≥16) lalu diskalakan bila melampaui
   → tidak ada stroke yang terpotong di bentuk launcher mana pun.
 
-SPLASH (11 kepadatan Android): kertas #F5F1E8 + LOCKUP brand satu
-  baris "漢字帳 Kanjichō" — replika persis .kd-brand topbar: kanji
-  Shippori 800 indigo + romaji Zen Kaku Gothic New 500 ink-soft,
-  baseline sejajar, gap 8/26em. (Subset @fontsource Zen Kaku tidak
-  memuat U+014D "ō" — browser app memakai fallback sistem untuk
-  satu huruf itu; di splash macron digambar manual di atas "o"
+SPLASH (11 kepadatan Android): kertas #F5F1E8 + GRID dengan
+  KERAPATAN ASLI APP (sel = sisi terpendek/12 ≈ 34px CSS pada layar
+  nyata — splash = miniatur literal layar pembuka) + LOCKUP brand
+  satu baris "漢字帳 Kanjichō" — replika persis .kd-brand topbar:
+  kanji Shippori 800 indigo + romaji Zen Kaku Gothic New 500
+  ink-soft, baseline sejajar, gap 8/26em. (Subset @fontsource Zen
+  Kaku tidak memuat U+014D "ō" — browser app memakai fallback sistem
+  untuk satu huruf itu; di splash macron digambar manual di atas "o"
   terakhir supaya tipografi tetap Zen Kaku.) Cold-start kini mulus:
-  splash kertas + brand → app terbuka menampilkan baris yang sama.
+  splash kertas bergaris + brand → app terbuka menampilkan baris yang
+  sama di atas grid yang sama.
 
 Menghasilkan:
-  1. public/icons/icon-512.png           — ikon utama (kertas penuh)
+  1. public/icons/icon-512.png           — ikon utama (kertas + grid)
   2. public/icons/icon-512-maskable.png  — varian maskable PWA
   3. public/icons/icon-192.png           — downscale LANCZOS
   4. scripts/icon-512-foreground.png     — sumber layer adaptif
      (intermediate — BUKAN di public/ agar tidak ikut terkirim
      ke dist/APK; dibaca gen_android_icons.py)
-  5. android res drawable*/splash.png ×11 — splash branded
+  5. scripts/icon-512-background.png     — sumber layer BACKGROUND
+     adaptif: kertas + grid full-bleed TANPA glyph (glyph = layer
+     foreground; grid = tekstur background yang boleh dipotong
+     mask launcher — persis filosofi ikon adaptif Android)
+  6. android res drawable*/splash.png ×11 — splash branded
 
 Jalankan ulang kapan pun desain berubah:
   python3 scripts/gen_app_icon.py && python3 scripts/gen_android_icons.py
@@ -74,8 +86,14 @@ GLYPH_CHAR = "字"            # kanji "huruf/aksara" — tema inti app
 BRAND_KANJI = "漢字帳"        # lockup splash = brand topbar app
 BRAND_ROMAJI = "Kanjicho"    # + macron manual di atas "o" terakhir
 
+# Grid genkōyōshi: warna --paper-line app; 4 sel per sisi ikon
+# (app: ±12 sel per lebar layar — diperbesar agar grid tetap terbaca
+# di ukuran launcher 48-192px).
+GRID_LINE = (221, 213, 195)  # --paper-line #DDD5C3
+GRID_CELLS = 4
+
 # Batas ukuran (px pada kanvas 512) — lihat docstring untuk alasannya.
-ICON_INK_RATIO = 0.60        # tinggi ink glyph vs kanvas (ikon utama)
+ICON_INK_RATIO = 0.45        # tinggi ink glyph vs kanvas (t106: dari 60%)
 MASKABLE_MAX_R = 195.0       # maskable PWA: lingkaran aman r=204.8
 FOREGROUND_MAX_R = 150.0     # adaptif Android: lingkaran r=156.4
 
@@ -143,6 +161,33 @@ def ink_max_radius(tile, thresh=16):
     h, w = alpha.shape
     cx, cy = (w - 1) / 2.0, (h - 1) / 2.0
     return float(np.sqrt((xs - cx) ** 2 + (ys - cy) ** 2).max())
+
+
+def draw_grid(img, cell_px):
+    """Grid genkōyōshi (#DDD5C3) di atas kertas — replika background
+    app (.kd-root: SVG 34px shape-rendering crispEdges). Garis
+    INTERIOR saja: garis di tepi kanvas akan terbaca sebagai BORDER
+    (elemen yang dihapus per arahan Ronde 11). Lebar garis memakai
+    rasio app: 1px per 34px sel. Digambar SEBELUM glyph — z-order
+    sama seperti app (glyph menimpa grid, bukan sebaliknya).
+    """
+    w, h = img.size
+    d = ImageDraw.Draw(img)
+    lw = max(round(cell_px / 34.0), 1)
+    half1, half2 = lw // 2, (lw + 1) // 2 - 1
+
+    x = float(cell_px)
+    while x < w - lw:
+        px = round(x)
+        d.rectangle((px - half1, 0, px + half2, h - 1),
+                    fill=GRID_LINE + (255,))
+        x += cell_px
+    y = float(cell_px)
+    while y < h - lw:
+        py = round(y)
+        d.rectangle((0, py - half1, w - 1, py + half2),
+                    fill=GRID_LINE + (255,))
+        y += cell_px
 
 
 def draw_glyph_centered(img, ttf_path, char, target_h, color, max_radius=None):
@@ -251,7 +296,8 @@ def em_ink_factor(ttf_path, text):
 
 
 def make_splash(w, h, ship_ttf, zen_ttf):
-    """Splash: kertas penuh + lockup brand terpusat (ink-bbox)."""
+    """Splash: kertas + grid (kerapatan asli app) + lockup brand
+    terpusat (ink-bbox) — miniatur literal layar pembuka app."""
     minside = min(w, h)
     kanji_h = minside * SPLASH_KANJI_RATIO
     s1 = max(round(kanji_h / em_ink_factor(ship_ttf, BRAND_KANJI)), 8)
@@ -261,6 +307,7 @@ def make_splash(w, h, ship_ttf, zen_ttf):
         tile = tile.resize((max(int(tile.width * ratio), 1),
                             max(int(tile.height * ratio), 1)), Image.LANCZOS)
     im = Image.new("RGBA", (w, h), PAPER + (255,))
+    draw_grid(im, minside / 12.0)  # kerapatan asli app: sel ≈ 34px CSS
     im.alpha_composite(tile, ((w - tile.width) // 2, (h - tile.height) // 2))
     return im
 
@@ -287,19 +334,22 @@ def main():
     os.makedirs(icons, exist_ok=True)
 
     try:
-        # 1. Ikon utama 512 — kertas penuh + 字 (legacy square, PWA,
+        # 1. Ikon utama 512 — kertas + grid + 字 (legacy square, PWA,
         #    Play Store, apple-touch): mask launcher memotong kertas.
         art = Image.new("RGBA", (512, 512), PAPER + (255,))
+        draw_grid(art, 512.0 / GRID_CELLS)
         t = draw_glyph_centered(art, ship, GLYPH_CHAR,
                                 round(512 * ICON_INK_RATIO), INDIGO)
         art.convert("RGB").save(os.path.join(icons, "icon-512.png"))
         art.resize((192, 192), Image.LANCZOS).convert("RGB").save(
             os.path.join(icons, "icon-192.png"))
-        print(f"icon-512/192: ink {t.width}x{t.height}px, "
+        print(f"icon-512/192: ink {t.width}x{t.height}px (grid {GRID_CELLS} sel), "
               f"radius tinta {ink_max_radius(t):.1f}px")
 
-        # 2. Maskable PWA — glyph dijaga dalam lingkaran aman r=40%.
+        # 2. Maskable PWA — glyph dijaga dalam lingkaran aman r=40%
+        #    (grid full-bleed: tekstur background, boleh terpotong mask).
         m = Image.new("RGBA", (512, 512), PAPER + (255,))
+        draw_grid(m, 512.0 / GRID_CELLS)
         tm = draw_glyph_centered(m, ship, GLYPH_CHAR,
                                  round(512 * ICON_INK_RATIO), INDIGO,
                                  max_radius=MASKABLE_MAX_R)
@@ -317,12 +367,19 @@ def main():
         print(f"foreground: ink {tf.width}x{tf.height}px, "
               f"radius tinta {ink_max_radius(tf):.1f}/{FOREGROUND_MAX_R:.0f}px")
 
-        # 4. Splash Android ×11 — kertas + lockup 漢字帳 Kanjichō.
+        # 4. Background adaptif — kertas + grid full-bleed TANPA glyph
+        #    (glyph = layer foreground; grid boleh dipotong mask).
+        bg = Image.new("RGBA", (512, 512), PAPER + (255,))
+        draw_grid(bg, 512.0 / GRID_CELLS)
+        bg.save(os.path.join(ROOT, "scripts", "icon-512-background.png"))
+        print("background: kertas + grid full-bleed (tanpa glyph)")
+
+        # 5. Splash Android ×11 — kertas + grid + lockup 漢字帳 Kanjichō.
         res = os.path.join(ROOT, "android", "app", "src", "main", "res")
         for folder, (w, h) in SPLASHES.items():
             make_splash(w, h, ship, zen).convert("RGB").save(
                 os.path.join(res, folder, "splash.png"))
-        print(f"splash → {len(SPLASHES)} kepadatan (kertas + lockup brand)")
+        print(f"splash → {len(SPLASHES)} kepadatan (kertas + grid + lockup)")
     finally:
         os.unlink(ship)
         os.unlink(zen)

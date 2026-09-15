@@ -43,18 +43,20 @@ in the privacy policy honest. A postinstall hook
 subsets and soft-fails when Python/fontTools are unavailable. OFL licence
 texts for the three families are kept in `docs/licenses/`.
 
-## App icon & splash (t105)
+## App icon & splash (t105/t106)
 
-The launcher icon (paper `--paper` #F5F1E8 + kanji **字** in
-`--indigo` #1F3C5C, Shippori Mincho 800 — i.e. the `.kd-brand` style) and
-the splash screens (paper + the "漢字帳 Kanjichō" brand lockup) are
-**generated, not hand-drawn**: `scripts/gen_app_icon.py` renders them
-straight from the bundled @fontsource TTFs so the icon typography always
-matches the in-app brand typography, then `scripts/gen_android_icons.py`
-derives every Android density (legacy/round/adaptive foreground/status
-silhouette) from that single source. Glyph safe-zone radii are verified
-per-pixel, so the design survives any launcher mask shape (square, round,
-squircle, teardrop). Re-run both scripts after changing the brand glyph,
+The launcher icon (paper `--paper` #F5F1E8 with the genkōyōshi grid in
+`--paper-line` #DDD5C3 + kanji **字** in `--indigo` #1F3C5C, Shippori
+Mincho 800 — i.e. the `.kd-brand` style over the app's paper background)
+and the splash screens (paper + grid + the "漢字帳 Kanjichō" brand
+lockup) are **generated, not hand-drawn**: `scripts/gen_app_icon.py`
+renders them straight from the bundled @fontsource TTFs so the icon
+typography always matches the in-app brand typography, then
+`scripts/gen_android_icons.py` derives every Android density
+(legacy/round/adaptive foreground+background/status silhouette) from
+that single source. Glyph safe-zone radii are verified per-pixel, so
+the design survives any launcher mask shape (square, round, squircle,
+teardrop). Re-run both scripts after changing the brand glyph, grid,
 colours, or fonts — do not edit the generated PNGs by hand.
 
 ## Privacy policy

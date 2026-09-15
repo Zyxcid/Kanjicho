@@ -4,23 +4,29 @@ gen_android_icons.py — (t86) ikon Android shell Capacitor dari ikon PWA
 public/icons/icon-512.png (satu-satunya sumber brand ikon app — tetap
 sinkron antara PWA & Play Store).
 
-(t105) Desain v3 "kanji di atas kertas": ikon 512 = kertas --paper
-#F5F1E8 penuh + 字 indigo (.kd-brand). TANPA kartu/bingkai → mask
-launcher (circle/squircle/square/rounded) hanya memotong kertas.
+(t105→t106) Desain v4 "kanji di atas kertas bergaris": ikon 512 =
+kertas --paper #F5F1E8 + GRID genkōyōshi #DDD5C3 (4 sel, garis
+interior) + 字 indigo 45% (.kd-brand). TETAP tanpa border/kartu →
+mask launcher bentuk apa pun hanya memotong kertas bergaris.
 
 Menghasilkan di android/app/src/main/res/:
 1. mipmap-*/ic_launcher(.png/_round.png) — launcher LEGACY (pre-8.0 &
-   beberapa shortcut): resize langsung ikon 512 (kertas penuh; radius
-   tinta terukur 170px << r lingkaran 256px → aman di mask bundar).
-2. mipmap-*/ic_launcher_foreground.png — layer FOREGROUND ikon adaptif
-   (8.0+): sumber scripts/icon-512-foreground.png (kanvas TRANSPARAN +
-   字 dengan radius tinta ≤ 150/512 = 31.6dp pada kanvas 108dp, di
-   dalam lingkaran dijamin r=33dp) → cukup resize 1:1 ke kanvas — TANPA
-   inset zona aman lagi (geometri zona aman sudah dibangkan di sumber).
-   Layer background: values/ic_launcher_background.xml = #F5F1E8 kertas.
-3. drawable-*/ic_stat_kanjicho.png — ikon KECIL status bar (alpha-only
-   putih): siluet 字 dari CHANNEL ALPHA foreground (glyph sudah
-   terisolasi di kanvas transparan — tidak perlu deteksi warna lagi).
+   beberapa shortcut): resize langsung ikon 512 (grid + glyph utuh;
+   radius tinta terukur 127px << r lingkaran 256px).
+2. mipmap-*/ic_launcher_foreground.png — layer FOREGROUND ikon
+   adaptif (8.0+): sumber scripts/icon-512-foreground.png (kanvas
+   TRANSPARAN + 字 radius tinta ≤ 150/512) → resize 1:1.
+   mipmap-*/ic_launcher_background.png — layer BACKGROUND adaptif
+   (t106): kertas + grid genkōyōshi full-bleed dari
+   scripts/icon-512-background.png — grid = tekstur background yang
+   memang boleh dipotong mask (filosofi resmi ikon adaptif);
+   sebelumnya warna solid via values XML (t105) / indigo (t104).
+3. mipmap-anydpi-v26/*.xml — ditulis ulang script ini: background
+   kini @mipmap/ic_launcher_background (PNG grid) + foreground &
+   monochrome = glyph transparan. values/ic_launcher_background.xml
+   (era warna solid) DIHAPUS — sudah tidak direferensikan.
+4. drawable-*/ic_stat_kanjicho.png — ikon KECIL status bar
+   (alpha-only putih): siluet 字 dari channel alpha foreground.
    Disetel lewat plugins.LocalNotifications.smallIcon di
    capacitor.config.json (iconColor memberi warna indigo di shade).
 
@@ -33,6 +39,7 @@ from PIL import Image, ImageDraw
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "public", "icons", "icon-512.png")
 SRC_FG = os.path.join(ROOT, "scripts", "icon-512-foreground.png")
+SRC_BG = os.path.join(ROOT, "scripts", "icon-512-background.png")
 RES = os.path.join(ROOT, "android", "app", "src", "main", "res")
 
 # Kepadatan layar → px untuk basis 48dp (launcher legacy).
@@ -42,11 +49,23 @@ FG_CANVAS = {"mdpi": 108, "hdpi": 162, "xhdpi": 216, "xxhdpi": 324, "xxxhdpi": 4
 # Ikon status bar (basis 24dp).
 STATUS = {"mdpi": 24, "hdpi": 36, "xhdpi": 48, "xxhdpi": 72, "xxxhdpi": 96}
 
-BG_COLOR = (245, 241, 232, 255)  # --paper #F5F1E8 (latar ikon 512, t105)
-
 # Ikon adaptif: sumber foreground sudah menjaga radius tinta di dalam
 # lingkaran dijamin (33/108 kanvas) — lihat gen_app_icon.py. Tidak ada
-# inset zona aman di sini; resize 1:1 mempertahankan geometri.
+# inset zona aman di sini; resize 1:1 mempertahankan geometri. Layer
+# background juga resize 1:1 dari sumber 512 (grid full-bleed).
+
+ADAPTIVE_XML = (
+    '<?xml version="1.0" encoding="utf-8"?>\n'
+    '<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">\n'
+    "    <background android:drawable=\"@mipmap/ic_launcher_background\"/>\n"
+    "    <foreground android:drawable=\"@mipmap/ic_launcher_foreground\"/>\n"
+    "    <!-- (t105/t106) Themed icons Android 13+: siluet diambil dari\n"
+    "         alpha layer foreground — 字 ikut diwarnai wallpaper user.\n"
+    "         Aman di API 26-32 (elemen tak dikenal diabaikan saat\n"
+    "         inflate). -->\n"
+    "    <monochrome android:drawable=\"@mipmap/ic_launcher_foreground\"/>\n"
+    "</adaptive-icon>\n"
+)
 
 
 def load_source():
@@ -71,6 +90,16 @@ def make_foreground(canvas_px):
     relatif di zona aman (radius tinta ≤ 29,3% kanvas) — resize 1:1."""
     fg_src = Image.open(SRC_FG).convert("RGBA")
     return fg_src.resize((canvas_px, canvas_px), Image.LANCZOS)
+
+
+def make_background(canvas_px):
+    """Layer background adaptif: kertas + grid genkōyōshi full-bleed
+    TANPA glyph (glyph = layer foreground). Full-bleed supaya mask
+    launcher memotong grid persis seperti memotong background asli
+    (filosofi resmi ikon adaptif: tekstur boleh terpotong, subjek
+    harus selalu utuh di zona aman)."""
+    bg_src = Image.open(SRC_BG).convert("RGBA")
+    return bg_src.resize((canvas_px, canvas_px), Image.LANCZOS)
 
 
 def glyph_silhouette():
@@ -110,7 +139,9 @@ def main():
         canvas = FG_CANVAS[density]
         make_foreground(canvas).save(
             os.path.join(out, "ic_launcher_foreground.png"))
-        print(f"mipmap-{density}: launcher {px}px + round + foreground {canvas}px")
+        make_background(canvas).save(
+            os.path.join(out, "ic_launcher_background.png"))
+        print(f"mipmap-{density}: launcher {px}px + round + fg/bg {canvas}px")
 
     # Ikon status bar — putih alpha-only (straight alpha: RGB konstan 255,
     # hanya channel A yang membentuk glyph — bila RGB ikut dikali alpha,
@@ -125,18 +156,36 @@ def main():
         im.save(os.path.join(out, "ic_stat_kanjicho.png"))
         print(f"drawable-{density}: ic_stat_kanjicho {px}px")
 
-    # Background adaptif: kertas paper (dulu indigo; t105 — latar ikon
-    # kini kertas supaya mask apa pun memotong warna yang sama dengan
-    # tepi ikon 512).
-    bg_xml = os.path.join(RES, "values", "ic_launcher_background.xml")
-    with open(bg_xml, "w", encoding="utf-8") as f:
-        f.write(
-            '<?xml version="1.0" encoding="utf-8"?>\n'
-            "<resources>\n"
-            '    <color name="ic_launcher_background">#F5F1E8</color>\n'
-            "</resources>\n"
-        )
-    print("values/ic_launcher_background.xml → #F5F1E8 (paper)")
+    # XML ikon adaptif (anydpi-v26) — ditulis script agar regenerasi
+    # ikon selalu lengkap tanpa edit manual: background = PNG grid
+    # (@mipmap), foreground + monochrome = glyph transparan.
+    anydpi = os.path.join(RES, "mipmap-anydpi-v26")
+    os.makedirs(anydpi, exist_ok=True)
+    for name in ("ic_launcher.xml", "ic_launcher_round.xml"):
+        with open(os.path.join(anydpi, name), "w", encoding="utf-8") as f:
+            f.write(ADAPTIVE_XML)
+    print("mipmap-anydpi-v26: XML adaptif → bg @mipmap (grid) + monochrome")
+
+    # (t106) values/ic_launcher_background.xml (warna solid era t105)
+    # tidak direferensikan lagi — background kini PNG grid di mipmap-*/.
+    old_bg = os.path.join(RES, "values", "ic_launcher_background.xml")
+    if os.path.exists(old_bg):
+        os.remove(old_bg)
+        print("values/ic_launcher_background.xml dihapus (diganti mipmap PNG)")
+
+    # (t106) Sisa template Capacitor yang TIDAK PERNAH direferensikan
+    # (logo default Capacitor): drawable/ic_launcher_background.xml
+    # (vector) + drawable-v24/ic_launcher_foreground.xml — semua ikon
+    # kini PNG di mipmap-*/. Dihapus supaya res/ bersih dan tidak ada
+    # kebingungan sumber ikon.
+    for leftover in (
+        os.path.join(RES, "drawable", "ic_launcher_background.xml"),
+        os.path.join(RES, "drawable-v24", "ic_launcher_foreground.xml"),
+    ):
+        if os.path.exists(leftover):
+            os.remove(leftover)
+            print(f"dihapus (template Capacitor tak terpakai): "
+                  f"{os.path.relpath(leftover, RES)}")
 
 
 if __name__ == "__main__":
