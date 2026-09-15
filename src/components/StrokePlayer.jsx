@@ -12,6 +12,12 @@ import { t } from "../lib/i18n.js";
  *    pathLength={1} lalu stroke-dasharray:1 dan dashoffset 1→0, jadi
  *    goresan TERGAMBAR dari ujung ke ujung lewat transisi CSS (efek pena),
  *    bukan sekadar muncul.
+ *    Goresan yang BELUM ditulis juga diberi opacity:0 — murni
+ *    dashoffset=1 + stroke-linecap:round membuat segmen dash degenerat
+ *    (panjang ≈0) ikut dirender sebagai TITIK di titik pena-turun pada
+ *    sebagian versi WebView Android (t98: 9 titik di 前). Gerbang opacity
+ *    memutus sumber cahanya sama sekali; transisi opacity 0.15s di CSS
+ *    menjaga efek pena tetap mulus saat goresan mulai digambar.
  *
  * Kontrol: play/pause, replay, maju/mundur satu goresan, dan kecepatan
  * (0.5x / 1x / 2x). Label "n / N strokes" di bawah kontrol adalah
@@ -97,14 +103,21 @@ export default function StrokePlayer({ paths, kanji, onProgress }) {
               <path key={`g${i}`} d={d} />
             ))}
           </g>
-          {/* Lapis ink: goresan yang sudah ditulis, tergambar urut. */}
+          {/* Lapis ink: goresan yang sudah ditulis, tergambar urut.
+              Goresan yang belum tergambar disembunyikan DUA lapis:
+              dashoffset penuh + opacity 0 (lihat komentar header — titik
+              artefak dash degenerat di WebView Android, t98). */}
           {paths.map((d, i) => (
             <path
               key={i}
               d={d}
               pathLength={1}
               className="kd-stroke-ink"
-              style={{ strokeDasharray: 1, strokeDashoffset: i < revealed ? 0 : 1 }}
+              style={{
+                strokeDasharray: 1,
+                strokeDashoffset: i < revealed ? 0 : 1,
+                opacity: i < revealed ? 1 : 0,
+              }}
             />
           ))}
         </svg>
@@ -148,12 +161,12 @@ export default function StrokePlayer({ paths, kanji, onProgress }) {
         </button>
       </div>
 
-      {/* Penghitung goresan (dulu .kd-stroke-counter di baris kontrol)
-          digabung ke label .kd-detail-strokes: "2 / 4 strokes" hidup
-          mengikuti animasi, memberi tahu goresan keberapa sekarang. */}
+      {/* Penghitung goresan live — cukup "2 / 4" tanpa kata: total
+          sudah disampaikan aria-label SVG dan total memang angka kedua.
+          (t98: dulu label menempel string "{n} strokes" sehingga terbaca
+          "1 / 9 9 strokes" — angka dobel, atas laporan user.) */}
       <div className="kd-detail-strokes">
-        {revealed} / {paths.length}{" "}
-        {paths.length === 1 ? t("stroke.counterOne") : t("stroke.counter", { n: paths.length })}
+        {revealed} / {paths.length}
       </div>
     </div>
   );

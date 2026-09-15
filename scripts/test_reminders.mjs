@@ -1,25 +1,24 @@
 /**
- * test_reminders.mjs — uji murni perencanaan pengingat review (t86, t94).
+ * test_reminders.mjs — uji murni perencanaan pengingat review (t86, t94, t98).
  * reminderPlan.js sengaja bebas Capacitor/DOM supaya bisa diuji di Node.
  * Jalankan: node scripts/test_reminders.mjs
  *
  * (t94) Pengingat punya dua mode:
  * - "time": satu nudge harian di jam pilihan user (default 09.00);
- * - "due" : nudge PADA momen due (merge 30 menit + jam malam 22–07).
+ * - "due" : nudge PADA momen due (merge rantai 30 menit; t98: jam malam
+ *   tidak lagi ditahan — notifikasi menyala persis saat due, DND OS
+ *   urusan user).
  */
 import {
   REMINDER_MODES,
   DEFAULT_REMINDER_MODE,
   DEFAULT_REMINDER_TIME,
-  REMINDER_QUIET_START,
-  REMINDER_QUIET_END,
   REMINDER_MERGE_MS,
   REMINDER_IDS,
   REMINDER_BATCH_MAX,
   parseReminderTime,
   normalizeReminderTime,
   nextDailyAt,
-  applyQuietHours,
   computeReminderBatch,
   reminderBody,
 } from "../src/lib/reminderPlan.js";
@@ -52,10 +51,6 @@ assert(DEFAULT_REMINDER_TIME === "09:00", `default jam "09:00" (dapat "${DEFAULT
 assert(
   REMINDER_IDS.length === REMINDER_BATCH_MAX,
   `jumlah id sama dengan batch max (${REMINDER_IDS.length})`
-);
-assert(
-  REMINDER_QUIET_START === 22 && REMINDER_QUIET_END === 7,
-  "jam malam 22:00–07:00"
 );
 assert(REMINDER_MERGE_MS === 30 * 60 * 1000, "jendela merge 30 menit");
 
@@ -98,20 +93,6 @@ console.log("\nnextDailyAt — kejadian jam harian berikutnya");
   t("08.30 → besok 08.15", at(2026, 9, 12, 8, 30), 8, 15, 1);
   // 23.30, jam 09.00 → besok
   t("23.30 → besok 09.00", at(2026, 9, 12, 23, 30), 9, 0, 1);
-}
-
-console.log("\napplyQuietHours — jam malam 22.00–07.00");
-{
-  const t = (msg, input, exp) =>
-    assert(eq(applyQuietHours(input), exp), msg);
-  const D = at;
-  t("13.00 siang → tetap", D(2026, 9, 12, 13, 0), D(2026, 9, 12, 13, 0));
-  t("21.59 → tetap (batas malam eksklusif)", D(2026, 9, 12, 21, 59), D(2026, 9, 12, 21, 59));
-  t("22.00 tepat → besok 07.00", D(2026, 9, 12, 22, 0), D(2026, 9, 13, 7, 0));
-  t("23.30 → besok 07.00", D(2026, 9, 12, 23, 30), D(2026, 9, 13, 7, 0));
-  t("03.00 dini hari → 07.00 hari itu", D(2026, 9, 12, 3, 0), D(2026, 9, 12, 7, 0));
-  t("06.59 → 07.00 hari itu", D(2026, 9, 12, 6, 59), D(2026, 9, 12, 7, 0));
-  t("07.00 tepat → tetap (batas pagi eksklusif)", D(2026, 9, 12, 7, 0), D(2026, 9, 12, 7, 0));
 }
 
 console.log("\ncomputeReminderBatch — MODE \"time\" (ingatkan jam sekian)");
@@ -311,27 +292,29 @@ console.log("\ncomputeReminderBatch — MODE \"due\" (ingatkan setiap ada yang d
   );
   assert(b5[0] && b5[0].count === 2, "jumlah kumulatif 2");
 
-  // 6. Anchor jatuh di jam malam (now 21.30 → anchor 23.30) → geser pagi:
-  //    nudge besok 07.00, bukan tengah malam.
+  // 6. Anchor jatuh di malam (now 21.30 → anchor 23.30) → nudge tetap
+  //    MALAM INI 23.30 (t98: jam malam tidak ditahan — due lampau hanya
+  //    menunggu grace, tidak digeser pagi).
   const b6 = computeReminderBatch(
     [{ nextReviewAt: iso(2026, 9, 12, 7, 0) }],
     at(2026, 9, 12, 21, 30),
     D
   );
   assert(
-    b6.length === 1 && eq(b6[0].at, at(2026, 9, 13, 7, 0)),
-    "anchor 23.30 di jam malam → besok 07.00"
+    b6.length === 1 && eq(b6[0].at, at(2026, 9, 12, 23, 30)),
+    "anchor 23.30 malam → nudge 23.30 (tidak digeser pagi)"
   );
 
-  // 7. Due malam (23.30) → tunggu pagi: besok 07.00.
+  // 7. Due malam (23.30) → nudge PERSIS 23.30 malam itu.
   const b7 = computeReminderBatch([{ nextReviewAt: iso(2026, 9, 12, 23, 30) }], now, D);
   assert(
-    b7.length === 1 && eq(b7[0].at, at(2026, 9, 13, 7, 0)),
-    "due 23.30 → nudge besok 07.00 (jam sopan)"
+    b7.length === 1 && eq(b7[0].at, at(2026, 9, 12, 23, 30)),
+    "due 23.30 → nudge 23.30 (jam malam diizinkan, t98)"
   );
 
-  // 8. Gugus malam: 23.30 / 23.50 / 01.00(+1) → semua meluncur ke 07.00
-  //    besok → SATU notifikasi pagi, jumlah 3.
+  // 8. Gugus malam: 23.30 / 23.50 / 01.00(+1) → 23.30+23.50 menyatu
+  //    (jeda 20 mnt), 01.00 terpisah (jeda 70 mnt > 30) → DUA notifikasi
+  //    persis di waktunya (dulu digeser ke satu kabar pagi 07.00).
   const b8 = computeReminderBatch(
     [
       { nextReviewAt: iso(2026, 9, 12, 23, 30) },
@@ -341,35 +324,33 @@ console.log("\ncomputeReminderBatch — MODE \"due\" (ingatkan setiap ada yang d
     now,
     D
   );
-  assert(b8.length === 1, `gugus malam menyatu jadi satu kabar pagi (dapat ${b8.length})`);
-  assert(b8[0] && eq(b8[0].at, at(2026, 9, 13, 7, 0)), "kabar pagi 07.00");
-  assert(b8[0] && b8[0].count === 3, "jumlah kumulatif 3");
+  assert(b8.length === 2, `gugus malam: 2 notifikasi terpisah (dapat ${b8.length})`);
+  assert(b8[0] && eq(b8[0].at, at(2026, 9, 12, 23, 50)) && b8[0].count === 2, "nudge pertama 23.50 (2 unit kumulatif)");
+  assert(b8[1] && eq(b8[1].at, at(2026, 9, 13, 1, 0)) && b8[1].count === 3, "nudge kedua 01.00 (3 unit kumulatif)");
 
-  // 9. Due dini hari (05.00, sekarang 03.00) → 07.00 hari yang sama.
+  // 9. Due dini hari (05.00, sekarang 03.00) → nudge PERSIS 05.00.
   const b9 = computeReminderBatch(
     [{ nextReviewAt: iso(2026, 9, 12, 5, 0) }],
     at(2026, 9, 12, 3, 0),
     D
   );
   assert(
-    b9.length === 1 && eq(b9[0].at, at(2026, 9, 12, 7, 0)),
-    "due 05.00 → nudge 07.00 hari itu"
+    b9.length === 1 && eq(b9[0].at, at(2026, 9, 12, 5, 0)),
+    "due 05.00 → nudge 05.00 (dini hari diizinkan)"
   );
 
-  // 10. Due PERSIS jam sopan batas (07.00 & 21.59) → tidak digeser.
-  //     (now diambil 06.00 supara 07.00 benar-benar masa depan — due
-  //     lampau akan ikut tenggang grace, itu kasus no. 5.)
+  // 10. Jam-jam ekstrem tetap persis: 07.00 pagi & 23.00 malam.
   const b10 = computeReminderBatch(
     [
       { nextReviewAt: iso(2026, 9, 12, 7, 0) },
-      { nextReviewAt: iso(2026, 9, 12, 21, 59) },
+      { nextReviewAt: iso(2026, 9, 12, 23, 0) },
     ],
     at(2026, 9, 12, 6, 0),
     D
   );
-  assert(b10.length === 2, "07.00 & 21.59 = dua notifikasi (tidak digeser)");
+  assert(b10.length === 2, "07.00 & 23.00 = dua notifikasi (tidak digeser)");
   assert(b10[0] && eq(b10[0].at, at(2026, 9, 12, 7, 0)), "07.00 tepat tetap 07.00");
-  assert(b10[1] && eq(b10[1].at, at(2026, 9, 12, 21, 59)), "21.59 tetap 21.59 (batas malam eksklusif)");
+  assert(b10[1] && eq(b10[1].at, at(2026, 9, 12, 23, 0)), "23.00 tetap 23.00 (malam penuh diizinkan)");
 
   // 11. Cap rantai: lima due tersebar jauh → dipangkas max 3.
   const b11 = computeReminderBatch(
@@ -390,10 +371,9 @@ console.log("\ncomputeReminderBatch — MODE \"due\" (ingatkan setiap ada yang d
   );
 
   // 12. Sweep: kombinasi acak — (a) semua nudge strictly masa depan,
-  //     (b) mode "due" TIDAK PERNAH menyala di jam malam, (c) terurut
-  //     naik + kumulatif monoton.
+  //     (b) terurut naik + kumulatif monoton. (t98: jam malam kini
+  //     diizinkan — cek "civil" pensiun.)
   let allFuture = true;
-  let allCivil = true;
   let monotonic = true;
   for (let day = 0; day < 20; day++) {
     for (const h of [0, 3, 6, 9, 13, 18, 21, 23]) {
@@ -411,10 +391,6 @@ console.log("\ncomputeReminderBatch — MODE \"due\" (ingatkan setiap ada yang d
         );
         for (const n of b) {
           if (n.at.getTime() <= now.getTime()) allFuture = false;
-          const hh = n.at.getHours();
-          if (mode === "due" && (hh >= REMINDER_QUIET_START || hh < REMINDER_QUIET_END)) {
-            allCivil = false;
-          }
         }
         if (
           !b.every((n, i) => i === 0 || (n.at.getTime() > b[i - 1].at.getTime() && n.count >= b[i - 1].count))
@@ -425,7 +401,6 @@ console.log("\ncomputeReminderBatch — MODE \"due\" (ingatkan setiap ada yang d
     }
   }
   assert(allFuture, "semua mode: nudge strictly > now (sweep 20 hari × 8 jam × 2 mode)");
-  assert(allCivil, "mode \"due\": tidak pernah menyala di jam malam (sweep)");
   assert(monotonic, "semua mode: terurut naik + kumulatif monoton (sweep)");
 }
 

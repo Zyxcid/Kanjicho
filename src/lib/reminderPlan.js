@@ -9,7 +9,7 @@
  * era t86 yang ternyata tidak pas buat semua orang):
  *
  * 1. MODE "time" — "ingatkan jam sekian":
- *    - Satu nudge per hari pada JAM PILIHAN user (HH:MM, default 08.00),
+ *    - Satu nudge per hari pada JAM PILIHAN user (HH:MM, default 09.00),
  *      hanya pada hari ketika ada unit yang sudah/belum-tiba-tapi-sudah
  *      jatuh tempo pada jam itu. Tidak ada yang due → tidak ada nudge.
  *    - Unit yang jatuh tempo SETELAH jam pilihan hari itu menunggu nudge
@@ -18,20 +18,21 @@
  *
  * 2. MODE "due" — "ingatkan setiap ada yang due":
  *    - Nudge menyala PADA SAAT sebuah unit jatuh tempo (jam persisnya,
- *      bukan slot tetap). Dua penenang supaya tetap sopan:
- *      (a) MERGE: due yang jatuh dalam jendela 30 menit yang sama
- *          digabung jadi SATU notifikasi di momen due TERAKHIR gugusnya
- *          (jumlah kumulatif) — lima unit selesai dikuis bersamaan akan
- *          menyatu, bukan lima dering;
- *      (b) JAM MALAM: due yang jatuh di rentang 22.00–07.00 digeser ke
- *          07.00 pagi (semua due malam bertemu di satu kabar pagi).
+ *      bukan slot tetap), TERMASUK di jam malam. (t98: penahan jam malam
+ *      22.00–07.00 yang lama DIHAPUS atas keputusan user — "when due"
+ *      harus berarti tepat ketika jatuh tempo; kalau user ingin hening
+ *      di malam hari, Do Not Disturb Android adalah alat yang tepat di
+ *      OS, bukan app yang diam-diam menunda kabar.)
+ *    - MERGE: due yang jatuh berdekatan (rantai adjacency ≤ 30 menit)
+ *      digabung jadi SATU notifikasi di momen due TERAKHIR gugusnya
+ *      (jumlah kumulatif) — lima unit selesai dikuis bersamaan akan
+ *      menyatu, bukan lima dering.
  *
  * KEWAJIBAN SEMUA MODE:
  * - Notifikasi tidak pernah menyala di masa lampau: patokan `now`.
  * - Reviu yang SUDAH due saat sinkronisasi (app ditutup dengan pekerjaan
  *   menunggu) tidak menagih seketika — tenggang REMINDER_GRACE_MS (2 jam)
- *   berlalu dulu; yang jatuh DI MALAM HARinya tetap digeser pagi (mode
- *   "due") / ke jam pilihan berikutnya (mode "time").
+ *   berlalu dulu; due masa depan tetap di waktunya persis.
  * - Maksimum REMINDER_BATCH_MAX notifikasi terjadwal sekaligus; setiap
  *   kali app dibuka / jadwal berubah, seluruh batch dibatalkan dan
  *   dihitung ulang dari data terkini.
@@ -52,14 +53,9 @@ export const DEFAULT_REMINDER_MODE = "due";
 // kabar pertama sebelum aktivitas hari dimulai).
 export const DEFAULT_REMINDER_TIME = "09:00";
 
-// Mode "due" — jam malam: nudge tidak pernah menyala dalam rentang ini.
-// Batas kiri inklusif (22.00 tepat = malam), batas kanan eksklusif
-// (07.00 tepat = pagi, boleh menyala).
-export const REMINDER_QUIET_START = 22;
-export const REMINDER_QUIET_END = 7;
-
 // Mode "due" — dua due yang jatuh tempo dalam jarak selebar ini dianggap
-// "bersamaan" dan digabung jadi satu notifikasi.
+// "bersamaan" dan digabung jadi satu notifikasi (rantai adjacency:
+// A→B ≤ 30 mnt dan B→C ≤ 30 mnt menyatu walau A→C 60 mnt).
 export const REMINDER_MERGE_MS = 30 * 60 * 1000;
 
 // ID notifikasi milik Kanjichō — rentang tetap, dipakai pembatalan
@@ -114,31 +110,6 @@ export function nextDailyAt(at, h, m) {
 }
 
 /**
- * Geser momen yang jatuh di JAM MALAM (22.00–07.00) ke 07.00 pagi.
- * Malam (>= 22.00) → 07.00 BESOK; dini hari (< 07.00) → 07.00 hari itu.
- * Di luar jam malam → dikembalikan apa adanya. Hanya bergeser MAJU.
- *
- * @param {Date|number} at
- * @returns {Date}
- */
-export function applyQuietHours(at) {
-  const d = at instanceof Date ? at : new Date(at);
-  const h = d.getHours();
-  if (h >= REMINDER_QUIET_START) {
-    const r = new Date(d);
-    r.setDate(r.getDate() + 1);
-    r.setHours(REMINDER_QUIET_END, 0, 0, 0);
-    return r;
-  }
-  if (h < REMINDER_QUIET_END) {
-    const r = new Date(d);
-    r.setHours(REMINDER_QUIET_END, 0, 0, 0);
-    return r;
-  }
-  return d;
-}
-
-/**
  * Rencana notifikasi dari record unitProgress.
  *
  * @param {Array<{nextReviewAt?: string}>} records - record unitProgress
@@ -183,12 +154,12 @@ export function computeReminderBatch(records, now = new Date(), opts = {}) {
       .sort((a, b) => a - b)
       .slice(0, Math.max(1, max));
   } else {
-    // Mode "due": nudge PADA momen due — dengan dua penenang: jam malam
-    // digeser pagi, lalu gugus due berdekatan (rantai adjacency) menyatu
-    // di momen TERAKHIR gugusnya. Patokan `base` memastikan due lampau
-    // tidak menyala di masa lampau.
+    // Mode "due": nudge PADA momen due — gugus due berdekatan (rantai
+    // adjacency ≤ mergeMs) menyatu di momen TERAKHIR gugusnya. Patokan
+    // `base` memastikan due lampau tidak menyala di masa lampau
+    // (tenggang grace). Jam malam TIDAK ditahan (t98) — lihat docstring.
     const fires = times
-      .map((ts) => applyQuietHours(base(ts)).getTime())
+      .map((ts) => base(ts))
       .sort((a, b) => a - b);
     const clusters = [];
     for (const f of fires) {

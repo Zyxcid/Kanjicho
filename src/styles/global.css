@@ -183,6 +183,15 @@ html, body {
 }
 .kd-icon-btn:hover { color: var(--indigo); border-color: var(--indigo-soft); }
 .kd-icon-btn:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; }
+/* (t98) Cue visual tombol yang dropdown-nya sedang terbuka (help ?):
+   aria-expanded di-set komponennya — state aktif = warna + tint indigo
+   lembut, konsisten dengan hover tapi bertahan selama panel terbuka. */
+.kd-icon-btn[aria-expanded="true"] {
+  color: var(--indigo);
+  border-color: var(--indigo-soft);
+  background: rgba(31, 60, 92, 0.06);
+}
+.dark .kd-icon-btn[aria-expanded="true"] { background: rgba(143, 182, 218, 0.1); }
 
 /* ---- Tombol dark mode (t90: lingkaran ikon 36px — satu keluarga dengan
    tombol Help & toggle skrip; label teks pensiun, ikon bulan/matahari
@@ -1290,7 +1299,16 @@ button.kd-day-row:focus-visible { outline: 2px solid var(--indigo); outline-offs
   display: flex; flex-direction: column;
   background: var(--surface); border: 1px solid var(--paper-line); border-radius: 6px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
-  animation: kd-pop-in 0.16s ease;
+  /* (t98) Animasi pembuka: tumbuh dari arah tombol ? (origin kanan-atas
+     tempat panah berlabuh) — sedikit turun + membesar, bukan sekadar
+     fade. Keyframe khusus supaya kd-pop-in (dipakai modal lain) tidak
+     ikut berubah. */
+  transform-origin: 100% 0;
+  animation: kd-help-pop-in 0.2s cubic-bezier(0.2, 0.9, 0.3, 1.12);
+}
+@keyframes kd-help-pop-in {
+  from { opacity: 0; transform: scale(0.94) translateY(-6px); }
+  to { opacity: 1; transform: none; }
 }
 /* Panah kecil di atas panel, menunjuk tombol ? — identitas visual
    "dropdown" (persegi 10px diputar 45°, dua sisi diberi border). */
@@ -1325,16 +1343,30 @@ button.kd-day-row:focus-visible { outline: 2px solid var(--indigo); outline-offs
 .kd-help-group:first-child { border-top: none; }
 .kd-help-group-toggle {
   display: flex; align-items: center; justify-content: space-between; gap: 8px;
-  width: 100%; padding: 10px 2px; background: none; border: none; cursor: pointer;
+  width: 100%; padding: 10px 2px 10px 8px; background: none; border: none; cursor: pointer;
   font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 10.5px; font-weight: 800;
   text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-soft);
   transition: color 0.15s;
 }
 .kd-help-group-toggle:hover { color: var(--indigo); }
 .kd-help-group-toggle:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; }
+/* (t98) CUE VISUAL bab aktif: label menyala indigo + garis aksen 3px di
+   tepi kiri (box-shadow inset — tidak menggeser layout; padding kiri 8px
+   sudah menyediakan ruangnya sejak awal). Chevron sudah ikut berputar
+   + indigo via aturan di bawah. */
+.kd-help-group.open .kd-help-group-toggle {
+  color: var(--indigo);
+  box-shadow: inset 3px 0 0 var(--indigo);
+}
 .kd-help-group-chevron { color: var(--ink-soft); flex-shrink: 0; transition: transform 0.18s ease, color 0.15s; }
 .kd-help-group.open .kd-help-group-chevron { transform: rotate(180deg); color: var(--indigo); }
-.kd-help-group-body { padding: 2px 2px 14px; }
+/* (t98) Isi bab muncul dengan fade + slide kecil (bukan pop mendadak) —
+   keyframe berjalan setiap kali React memasang body saat bab dibuka. */
+.kd-help-group-body { padding: 2px 2px 14px; animation: kd-group-in 0.16s ease-out; }
+@keyframes kd-group-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: none; }
+}
 /* Overlay kalender review (dari klik banner): kd-cal + kd-day-panel di
    dalam modal — margin/max-width keduanya dinolkan supaya rapat dengan
    header modal ("Review calendar" + scope level). */
@@ -1620,7 +1652,13 @@ button.kd-day-row:focus-visible { outline: 2px solid var(--indigo); outline-offs
 /* Dua lapis render: guide (seluruh kanji samar seperti kertas latihan)
    dan ink (goresan yang sudah "ditulis" — dashoffset dianimasikan dari
    inline style, lihat StrokePlayer.jsx; pathLength=1 menormalkan panjang
-   tiap path sehingga dasharray/dashoffset bisa memakai angka 0..1). */
+   tiap path sehingga dasharray/dashoffset bisa memakai angka 0..1).
+   (t98) Goresan yang belum tergambar diberi opacity:0 DI TAMBAH
+   dashoffset penuh: di sebagian WebView Android, segmen dash degenerat
+   sisa dashoffset=1 + linecap round dirender sebagai TITIK di titik
+   pena-turun tiap goresan. Transisi opacity 0.15s membuat goresan
+   "pertama menyala" tetap mulus (memudar naik selama 0.42s dashoffset
+   berjalan — efek pena tidak berubah). */
 .kd-stroke-guide path {
   fill: none;
   stroke: var(--ink);
@@ -1635,7 +1673,7 @@ button.kd-day-row:focus-visible { outline: 2px solid var(--indigo); outline-offs
   stroke-width: 5.5;
   stroke-linecap: round;
   stroke-linejoin: round;
-  transition: stroke-dashoffset 0.42s ease;
+  transition: stroke-dashoffset 0.42s ease, opacity 0.15s ease-out;
 }
 
 .kd-stroke-loading { color: var(--ink-soft); font-size: 13px; }
@@ -1807,4 +1845,9 @@ button.kd-day-row:focus-visible { outline: 2px solid var(--indigo); outline-offs
   .kd-tut-shade, .kd-tut-ring, .kd-tut-pop { transition: none; }
   .kd-tut-ring { animation: none; box-shadow: 0 0 0 5px rgba(31, 60, 92, 0.2); }
   .kd-tut-pop { animation: none; }
+  /* (t98) Animasi dropdown help + akordeon ikut dimatikan — konten tetap
+     langsung tampak, hanya tanpa gerak. */
+  .kd-help-pop, .kd-help-group-body { animation: none; }
+  .kd-help-group-chevron { transition: none; }
+  .kd-stroke-ink { transition: none; }
 }

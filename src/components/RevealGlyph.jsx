@@ -127,7 +127,11 @@ export default function RevealGlyph({ kanji, level }) {
               d={d}
               pathLength={1}
               className="kd-stroke-ink"
-              style={{ strokeDasharray: 1, strokeDashoffset: i < revealed ? 0 : 1 }}
+              style={{
+                strokeDasharray: 1,
+                strokeDashoffset: i < revealed ? 0 : 1,
+                opacity: i < revealed ? 1 : 0,
+              }}
             />
           ))}
         </svg>

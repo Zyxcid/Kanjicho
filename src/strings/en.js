@@ -89,9 +89,12 @@ export default {
     "Recall the reading first; one tap clears the blur, the next answers",
   "help.autoflip": "Auto-flip the card",
   "help.autoflipDelay": "Auto-flip delay",
-  "help.quizText.a":
+  // (t98) Review-schedule explanation moved to the GUIDE chapter — the Quiz
+  // section in Settings is now controls only.
+  "help.schedule": "Review schedule",
+  "help.scheduleText.a":
     "The first time you finish a unit, its review is always scheduled 1 or 2 days away (8 for a perfect score). The app uses that early date as the starting reference for your next reviews, so don't hesitate to answer ",
-  "help.quizText.b": ": an honest answer keeps your schedule accurate.",
+  "help.scheduleText.b": ": an honest answer keeps your schedule accurate.",
   "help.reminders": "Reminders",
   "help.remindersToggle": "Review reminders",
   "help.remindersDesc": "A quiet nudge when reviews come due",
@@ -100,10 +103,8 @@ export default {
   "help.reminderModeTime": "At a set time",
   "help.reminderModeDue": "When due",
   "help.reminderTime": "Reminder time",
-  "help.remindersTextTime":
-    "A nudge arrives once a day at your chosen hour, only when units are waiting, and it reschedules itself whenever you finish a quiz. Nothing ever leaves your phone: they are local notifications, with no network or account behind them.",
-  "help.remindersTextDue":
-    "A nudge arrives the moment a unit comes due; units due close together are merged into one, and anything landing at night (22:00–07:00) waits until morning. Reminders reschedule themselves whenever you finish a quiz. Nothing ever leaves your phone: they are local notifications, with no network or account behind them.",
+  // (t98) Mode-explanation paragraphs removed per user request — the two
+  // pills + time input explain themselves.
   "help.browse": "Browse kanji",
   "help.browseText.a": "In a kanji's components, a",
   "help.browseText.b": "red dot marks the",
@@ -262,8 +263,6 @@ export default {
   "stroke.next": "Next stroke",
   "stroke.speed": "Animation speed",
   "stroke.speedAria": "Animation speed {s}x",
-  "stroke.counter": "{n} strokes",
-  "stroke.counterOne": "1 stroke",
 
   // ---- ComponentBreakdown.jsx ----
   "comp.radical": "Radical: the component that carries the meaning",

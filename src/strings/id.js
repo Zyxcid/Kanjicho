@@ -93,9 +93,12 @@ export default {
     "Ingat bacaannya dulu; ketukan pertama menghapus blur, ketukan berikutnya menjawab",
   "help.autoflip": "Balik kartu otomatis",
   "help.autoflipDelay": "Jeda balik otomatis",
-  "help.quizText.a":
+  // (t98) Penjelasan jadwal review pindah ke bab PANDUAN (help.schedule*) —
+  // seksi Kuis di Pengaturan kini murni kontrol.
+  "help.schedule": "Jadwal review",
+  "help.scheduleText.a":
     "Saat pertama kali menyelesaikan sebuah unit, review-nya selalu dijadwalkan 1–2 hari ke depan (8 hari untuk skor sempurna). App memakai tanggal awal itu sebagai titik acu untuk review berikutnya, jadi jangan ragu menjawab ",
-  "help.quizText.b": ": jawaban jujur menjaga jadwalmu tetap akurat.",
+  "help.scheduleText.b": ": jawaban jujur menjaga jadwalmu tetap akurat.",
   "help.reminders": "Pengingat",
   "help.remindersToggle": "Pengingat review",
   "help.remindersDesc": "Kabar kecil saat review jatuh tempo",
@@ -104,10 +107,8 @@ export default {
   "help.reminderModeTime": "Jam tertentu",
   "help.reminderModeDue": "Saat jatuh tempo",
   "help.reminderTime": "Jam pengingat",
-  "help.remindersTextTime":
-    "Kabar datang sekali sehari pada jam pilihanmu, hanya saat ada unit yang menunggu, dan menata ulang dirinya setiap kali kamu menyelesaikan kuis. Tidak ada data yang keluar dari ponselmu: semuanya notifikasi lokal, tanpa jaringan dan tanpa akun.",
-  "help.remindersTextDue":
-    "Kabar muncul begitu ada unit yang jatuh tempo; yang jatuh berdekatan digabung jadi satu, dan yang jatuh di jam malam (22.00–07.00) menunggu sampai pagi. Jadwal menata ulang dirinya setiap kali kamu menyelesaikan kuis. Tidak ada data yang keluar dari ponselmu: semuanya notifikasi lokal, tanpa jaringan dan tanpa akun.",
+  // (t98) Paragraf penjelas mode pengingat dihapus atas permintaan user —
+  // dua pill + input jam sudah menjelaskan dirinya.
   "help.browse": "Jelajahi kanji",
   "help.browseText.a": "Pada komponen sebuah kanji, titik",
   "help.browseText.b": "merah menandai",
@@ -266,8 +267,6 @@ export default {
   "stroke.next": "Goresan berikutnya",
   "stroke.speed": "Kecepatan animasi",
   "stroke.speedAria": "Kecepatan animasi {s}x",
-  "stroke.counter": "{n} goresan",
-  "stroke.counterOne": "1 goresan",
 
   // ---- ComponentBreakdown.jsx ----
   "comp.radical": "Radikal: komponen pembawa makna",

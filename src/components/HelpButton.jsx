@@ -347,11 +347,10 @@ export default function HelpButton({
                           ))}
                         </div>
                       </div>
-                      <p className="kd-help-text">
-                        {t("help.quizText.a")}
-                        <b>{t("quiz.dontKnow")}</b>
-                        {t("help.quizText.b")}
-                      </p>
+                      {/* (t98) Paragraf panjang tentang jadwal review pertama
+                          DIPINDAH ke bab Panduan (usulan user: ini penjelasan
+                          cara kerja, bukan pengaturan) — seksi Kuis kini
+                          murni kontrol. */}
                     </div>
 
                     {/* (t86) Seksi Reminders — hanya di shell Android.
@@ -362,7 +361,10 @@ export default function HelpButton({
                         (t94) Di bawah sakelar: PILIHAN MODE — "jam
                         tertentu" (sekali sehari di jam pilihan + input
                         jam) vs "saat jatuh tempo" (begitu unit due).
-                        Paragraf penjelas mengikuti mode aktif. */}
+                        (t98) Paragraf penjelas mode DIHAPUS atas permintaan
+                        user ("penjelasan ini tidak diperlukan") — dua pill
+                        + input jam sudah menjelaskan dirinya; detail
+                        perilaku (merge, resinkron) hidup di README. */}
                     {showReminders && (
                       <div className="kd-help-section">
                         <div className="kd-help-heading">{t("help.reminders")}</div>
@@ -434,9 +436,6 @@ export default function HelpButton({
                             />
                           </div>
                         )}
-                        <p className="kd-help-text">
-                          {t(reminderMode === "time" ? "help.remindersTextTime" : "help.remindersTextDue")}
-                        </p>
                       </div>
                     )}
 
@@ -498,6 +497,21 @@ export default function HelpButton({
                       >
                         {t("help.replay")}
                       </button>
+                    </div>
+
+                    {/* (t98) Jadwal review — paragraf SRS yang dulu menempel
+                        di seksi Kuis (Pengaturan), dipindah ke sini atas
+                        permintaan user: ini penjelasan cara kerja aplikasi
+                        (panduan), bukan pengaturan. Nasihat "jangan takut
+                        menjawab Tidak tahu" tetap satu kalimat dengan
+                        penjelasan jadwalnya. */}
+                    <div className="kd-help-section">
+                      <div className="kd-help-heading">{t("help.schedule")}</div>
+                      <p className="kd-help-text">
+                        {t("help.scheduleText.a")}
+                        <b>{t("quiz.dontKnow")}</b>
+                        {t("help.scheduleText.b")}
+                      </p>
                     </div>
 
                     <div className="kd-help-section">
