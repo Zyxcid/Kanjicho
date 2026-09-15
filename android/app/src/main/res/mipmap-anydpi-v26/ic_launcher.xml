@@ -2,4 +2,8 @@
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
     <background android:drawable="@color/ic_launcher_background"/>
     <foreground android:drawable="@mipmap/ic_launcher_foreground"/>
+    <!-- (t105) Themed icons Android 13+: siluet diambil dari alpha layer
+         foreground — 字 ikut diwarnai wallpaper user. Aman di API 26-32
+         (elemen tak dikenal diabaikan saat inflate). -->
+    <monochrome android:drawable="@mipmap/ic_launcher_foreground"/>
 </adaptive-icon>
