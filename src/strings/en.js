@@ -119,6 +119,7 @@ export default {
   "help.resetDesc": "Show reset button",
   "help.contact": "Contact",
   "help.privacy": "Privacy policy",
+  "help.licenses": "Open-source licenses",
 
   // ---- BackupControls.jsx ----
   "backup.export": "Export progress",

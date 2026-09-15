@@ -123,6 +123,7 @@ export default {
   "help.resetDesc": "Tampilkan tombol reset",
   "help.contact": "Kontak",
   "help.privacy": "Kebijakan privasi",
+  "help.licenses": "Lisensi open-source",
 
   // ---- BackupControls.jsx ----
   "backup.export": "Ekspor progres",

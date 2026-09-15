@@ -1,5 +1,5 @@
 import React from "react";
-import { HelpCircle, X, ChevronDown, Mail, ShieldCheck } from "lucide-react";
+import { HelpCircle, X, ChevronDown, Mail, ShieldCheck, Scale } from "lucide-react";
 import pkg from "../../package.json";
 import BackupControls from "./BackupControls";
 import { pushOverlayEntry, closeOverlayUI, discardOverlayEntry, isOverlayEntryRegistered } from "../lib/useRouter.js";
@@ -546,68 +546,53 @@ export default function HelpButton({
 
                 {groups.about && (
                   <div className="kd-help-group-body">
-                    {/* (t90) Data sources — tiap sumber satu baris sendiri:
-                        nama (link) — keterangan + pemegang hak + lisensi.
-                        Semua atribusi & tautan lisensi tetap utuh.
+                    {/* (t100) Data sources — kembali SATU PARAGRAF ringkas
+                        (permintaan user; bentuk daftar t90 pensiun), tetap
+                        membawa semua elemen atribusi wajib: nama sumber
+                        (link), pemegang hak ©, tautan lisensi tiap sumber,
+                        plus kalimat conformance lisensi EDRDG yang diminta
+                        halaman lisensi EDRDG (edrdg.org/edrdg/licence.html).
                         Sengaja tetap Inggris di semua bahasa (teks
                         legal/kredit — konvensi aplikasi). */}
                     <div className="kd-help-section">
                       <div className="kd-help-heading">Data sources</div>
-                      <ul className="kd-help-sources">
-                        <li>
-                          <a href="https://www.edrdg.org/wiki/KANJIDIC_Project.html" target="_blank" rel="noreferrer">
-                            KANJIDIC2
-                          </a>
-                          {" "}— kanji readings and meanings, © Electronic Dictionary
-                          Research and Development Group, used under{" "}
-                          <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">
-                            CC BY-SA 4.0
-                          </a>
-                          .
-                        </li>
-                        <li>
-                          <a href="https://www.edrdg.org/jmdict/edict_doc_depr.html" target="_blank" rel="noreferrer">
-                            JMdict
-                          </a>
-                          {" "}— example word glosses and common-word markers, ©
-                          Electronic Dictionary Research and Development Group,
-                          used under{" "}
-                          <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">
-                            CC BY-SA 4.0
-                          </a>
-                          .
-                        </li>
-                        <li>
-                          <a href="https://jiten.moe/frequency-dictionaries" target="_blank" rel="noreferrer">
-                            Jiten frequency lists
-                          </a>
-                          {" "}— reading and word frequency signals, © Jiten, used
-                          under{" "}
-                          <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">
-                            CC BY-SA 4.0
-                          </a>
-                          .
-                        </li>
-                        <li>
-                          <a href="https://github.com/Bluskyo/JLPT_Vocabulary" target="_blank" rel="noreferrer">
-                            Bluskyo/JLPT_Vocabulary
-                          </a>
-                          {" "}— JLPT kanji and vocabulary levels
-                          <span className="kd-help-license"> (MIT)</span>.
-                        </li>
-                        <li>
-                          <a href="http://kanjivg.tagaini.net/" target="_blank" rel="noreferrer">
-                            KanjiVG
-                          </a>
-                          {" "}— stroke order animations (tap the kanji on a
-                          card&apos;s back, or open one in Browse), © Ulrich Apel,
-                          used under{" "}
-                          <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noreferrer">
-                            CC BY-SA 3.0
-                          </a>
-                          .
-                        </li>
-                      </ul>
+                      <p className="kd-help-text kd-help-legal">
+                        Kanji data:{" "}
+                        <a href="https://www.edrdg.org/wiki/KANJIDIC_Project.html" target="_blank" rel="noreferrer">
+                          KANJIDIC2
+                        </a>{" "}
+                        and{" "}
+                        <a href="https://www.edrdg.org/jmdict/edict_doc_depr.html" target="_blank" rel="noreferrer">
+                          JMdict
+                        </a>{" "}
+                        © Electronic Dictionary Research and Development Group,
+                        and{" "}
+                        <a href="https://jiten.moe/frequency-dictionaries" target="_blank" rel="noreferrer">
+                          Jiten frequency lists
+                        </a>{" "}
+                        © Jiten, each used under{" "}
+                        <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">
+                          CC&nbsp;BY-SA&nbsp;4.0
+                        </a>
+                        ; JLPT levels from{" "}
+                        <a href="https://github.com/Bluskyo/JLPT_Vocabulary" target="_blank" rel="noreferrer">
+                          Bluskyo/JLPT_Vocabulary
+                        </a>{" "}
+                        (MIT); stroke orders from{" "}
+                        <a href="http://kanjivg.tagaini.net/" target="_blank" rel="noreferrer">
+                          KanjiVG
+                        </a>{" "}
+                        © Ulrich Apel, used under{" "}
+                        <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noreferrer">
+                          CC&nbsp;BY-SA&nbsp;3.0
+                        </a>
+                        . This app uses the KANJIDIC2 and JMdict dictionary
+                        files in conformance with the{" "}
+                        <a href="https://www.edrdg.org/edrdg/licence.html" target="_blank" rel="noreferrer">
+                          EDRDG licence
+                        </a>
+                        .
+                      </p>
                       {/* Disclaimer merek JLPT (JEES) + repo data terbuka +
                           kredit pustaka OSS — kebersihan publish (Play
                           Store): semua muatan legal Help kini satu tempat. */}
@@ -667,6 +652,23 @@ export default function HelpButton({
                           className="kd-help-link"
                         >
                           <ShieldCheck size={15} /> {t("help.privacy")}
+                        </a>
+                        {/* Teks lisensi PENUH komponen pihak ketiga yang
+                            dibundel ke APK/web bundle (MIT/Apache-2.0/ISC/
+                            OFL mensyaratkan teks lengkap ikut distribusi).
+                            Halaman statis di public/ — pattern yang sama
+                            dengan privacy-policy.html: ikut build, served
+                            dari origin sama, murni offline. Di-generate
+                            dari docs/licenses/ via
+                            scripts/build_licenses_page.mjs — jangan edit
+                            manual. */}
+                        <a
+                          href="licenses.html"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="kd-help-link"
+                        >
+                          <Scale size={15} /> {t("help.licenses")}
                         </a>
                       </div>
                     </div>

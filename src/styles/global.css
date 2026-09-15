@@ -1413,26 +1413,19 @@ button.kd-day-row:focus-visible { outline: 2px solid var(--indigo); outline-offs
 .kd-help-dot.phon { background: var(--indigo); }
 .kd-help-text { font-size: 12.5px; color: var(--ink-soft); line-height: 1.7; margin: 0; }
 .kd-help-text a { color: var(--indigo-soft); }
-/* (t90) Daftar sumber data — dinding teks lama (satu paragraf penuh
-   link inline) dipecah jadi TIAP SUMBER satu baris: nama (link tebal) —
-   keterangan + pemegang hak + lisensi (redup). Gampang dipindai. */
-.kd-help-sources { margin: 0; padding: 0; list-style: none; }
-.kd-help-sources li { font-size: 12px; color: var(--ink-soft); line-height: 1.65; padding: 5px 0; }
-.kd-help-sources li + li { border-top: 1px solid var(--paper-line); }
-.kd-help-sources a { color: var(--indigo-soft); font-weight: 700; }
-/* Paragraf legal bantu (disclaimer JLPT, repo data, OSS) — lebih kecil dan
-   kalem dari kredit sumber data, pemisah halus HANYA sebelum blok legal
-   pertama (dulu tiap paragraf punya dashed sendiri → deretan garis). */
+/* (t100) Atribusi sumber data kembali SATU PARAGRAF (permintaan user,
+   bentuk daftar t90 pensiun) — paragraf pertama seksi Data sources
+   memakai kelas legal yang sama dengan disclaimer JLPT/repo data/OSS:
+   keluarga teks kecil-kalem yang rapi jadi satu blok. */
+/* Paragraf legal (atribusi sumber data, disclaimer JLPT, repo data, OSS) —
+   kecil dan kalem; jarak antar-paragraf rapat. */
 .kd-help-legal { margin-top: 8px; font-size: 11.5px; color: var(--ink-soft); opacity: 0.85; }
 .kd-help-legal + .kd-help-legal { margin-top: 7px; }
-.kd-help-sources + .kd-help-legal { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--paper-line); }
 /* (t82) Tombol replay tur onboarding — seksi Getting started help.
    Varian secondary (netral, kertas) + lebar penuh: satu aksi jelas,
    senada dengan deretan kontrol lain di modal. */
 .kd-help-replay { width: 100%; margin-top: 10px; padding: 10px; font-size: 13px; }
 .kd-help-legal a { font-weight: 600; }
-/* Penanda lisensi inline non-tautan (mis. "(MIT)" setelah Bluskyo). */
-.kd-help-license { color: var(--ink-soft); opacity: 0.85; }
 .kd-help-links { display: flex; gap: 14px; }
 .kd-help-link {
   display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--indigo);

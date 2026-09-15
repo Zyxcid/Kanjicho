@@ -76,7 +76,8 @@ network requests for kanji data. Five public datasets feed the build:
 | [Bluskyo/JLPT_Vocabulary](https://github.com/Bluskyo/JLPT_Vocabulary) | modern N1–N5 levels for kanji & vocab | MIT |
 | [KanjiVG](https://github.com/KanjiVG/kanjivg) | stroke-order paths | © Ulrich Apel, CC BY-SA 3.0 |
 
-The derived JSON files are published at
+The derived JSON files (including the Indonesian overlay `id_gloss.json`
+and `manifest.json`) are published at
 [Zyxcid/kanjicho-data](https://github.com/Zyxcid/kanjicho-data) under the
 same licences (ShareAlike compliance — sync it whenever `src/data/`
 changes). `NOTICE.md` carries the full licensing map.
@@ -157,6 +158,8 @@ patches → `id_gloss.json`, verifies 100% coverage) → `audit_shift.mjs`.
 > zones from the original production run. It is history, not a reusable
 > step — running it again on clean data would corrupt it. The canonical
 > artifact is `src/data/id_gloss.json` itself; treat it as versioned data.
+> As translations of CC BY-SA glosses, the file is itself a CC BY-SA 4.0
+> adaptation and is published in the open data repo with the rest.
 
 ## Scripts
 

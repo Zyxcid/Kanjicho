@@ -5,43 +5,54 @@ ships and the obligations attached to that data are described here.
 
 ## Data licensing
 
-`src/data/n*.json`, `src/data/n*_examples.json`,
-`src/data/strokes_n*.json`, `src/data/components_n*.json` are derived from:
+Every file shipped in `src/data/` is derived from openly-licensed sources
+and published (byte-exact) in the open data repository
+**https://github.com/Zyxcid/kanjicho-data** — README + NOTICE + full
+licence texts + file-to-source mapping live there. Keep that repository in
+sync with `src/data/` on every release that changes the data.
 
-- **KANJIDIC2** and **JMdict** — © Electronic Dictionary Research and
-  Development Group — [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
-- **Jiten frequency lists (global)** — © Jiten (jiten.moe) —
-  [CC BY-SA 4.0](https://jiten.moe/frequency-dictionaries) — build-time
-  frequency signal (hybrid: jiten primary, JMdict common-word markers as
-  fallback), **no frequency values are shipped** in `src/data/`
-- **KanjiVG** — © Ulrich Apel — [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
-- **JLPT_Vocabulary** (Bluskyo) — MIT — level assignments only
+- `n*.json`, `n*_examples.json`, `manifest.json` — derived from
+  **KANJIDIC2** and **JMdict** — © Electronic Dictionary Research and
+  Development Group —
+  [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+  (also carrying JLPT levels from Bluskyo/JLPT_Vocabulary, MIT, and a
+  build-time frequency signal from Jiten, CC BY-SA 4.0 — no frequency
+  values are shipped, only decisions informed by them).
+- `id_gloss.json` — Indonesian translations of the KANJIDIC2 English
+  meanings and JMdict example-word glosses. A translation is an adaptation,
+  so this file is subject to the same **CC BY-SA 4.0** ShareAlike
+  obligation and is published in the data repo alongside the rest.
+- `strokes_n*.json` (N1 is split into `strokes_n1_idx.json` +
+  `strokes_n1_p0..p3.json` for lazy loading) and `components_n*.json` —
+  derived from **KanjiVG** — © Ulrich Apel —
+  [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
 
-To satisfy the ShareAlike obligations of the derived dataset, the exact data
-files shipped in the app are published at:
-**https://github.com/Zyxcid/kanjicho-data** (README + NOTICE + full licence
-texts + file-to-source mapping live there). Keep that repository in sync
-with `src/data/` on every release that changes the data.
-
-In-app attribution is shown in Help → "Data sources" (KANJIDIC2, JMdict,
-Jiten, KanjiVG, Bluskyo, with licence links), which satisfies the
-attribution requirement of the CC BY-SA licences.
+In-app attribution is shown in Help → "Data sources" (one paragraph naming
+every source, its rights holder, and its licence, plus the EDRDG licence
+conformance statement), which satisfies the attribution requirement of the
+CC BY-SA licences.
 
 ## Fonts
 
-`public/fonts/` + `src/styles/fonts.css` are self-hosted subsets (woff2,
-unicode-range) of Google Fonts — Shippori Mincho, Zen Kaku Gothic New,
-DM Mono — all **SIL Open Font License 1.1**. Regenerate with
-`python scripts/fetch_fonts.py`. Self-hosting exists so the app makes
-**zero third-party requests**, keeping the "no data collected / no data
-shared" declaration in the privacy policy honest.
+Fonts ship as npm **@fontsource** packages (Shippori Mincho, Zen Kaku
+Gothic New, DM Mono — all **SIL Open Font License 1.1**), bundled by Vite
+at build time. Self-hosting exists so the app makes **zero third-party
+requests**, keeping the "no data collected / no data shared" declaration
+in the privacy policy honest. A postinstall hook
+(`scripts/fix_font_maxp.py`) patches a Firefox font-warning in the Shippori
+subsets and soft-fails when Python/fontTools are unavailable. OFL licence
+texts for the three families are kept in `docs/licenses/`.
 
 ## Privacy policy
 
 `public/privacy-policy.html` — served from the same origin as the app and
 linked from Help → "Privacy policy". Developer identity placeholders are
-filled (Syahid Nurhidayatullah / kanjicho.dev@gmail.com / Indonesia) —
-review the contact and policy sections before publishing to Google Play.
+filled (Syahid Nurhidayatullah / kanjicho.dev@gmail.com / Indonesia).
+The public copy is hosted at
+**https://kanjicho-privacy-policy.vercel.app/** (repo
+`Zyxcid/kanjicho-privacy-policy`, auto-deployed by Vercel) — use that URL
+in Play Console → App content → Privacy policy. Keep the three copies
+(app `public/`, repo, deployment) in sync when the policy changes.
 
 ## Third-party libraries (bundled at build time)
 
@@ -49,10 +60,21 @@ review the contact and policy sections before publishing to Google Play.
 - dexie — Apache-2.0 © Dexie.js project
 - ts-fsrs — MIT
 - lucide-react — ISC © Lucide contributors
+- @capacitor/core, android, filesystem, share, local-notifications — MIT ©
+  Ionic (Drifty Co)
 - vite, @vitejs/plugin-react, vite-plugin-pwa (dev only) — MIT
+
+Full licence texts for everything that ships inside the APK/web bundle are
+kept in `docs/licenses/` (with a version-pinned index in its README) and
+**bundled into the app itself** as `public/licenses.html` (generated by
+`scripts/build_licenses_page.mjs` — rerun it after dependency upgrades),
+linked from Help → "Open-source licenses". This is what MIT/Apache-2.0/
+ISC/OFL actually require: the full texts must accompany the distributed
+binary — a public source repo is neither required nor sufficient.
 
 ## Trademark
 
 "JLPT" is a trademark of its organisers (JEES et al.). Kanjichō is an
 independent study tool and is not affiliated with, authorised by, or
-endorsed by them — disclaimer shown in-app (Help) and in the privacy policy.
+endorsed by them — disclaimer shown in-app (Help) and in the privacy
+policy.
