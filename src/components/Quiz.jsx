@@ -2,12 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { CircleX, HelpCircle, MoveHorizontal } from "lucide-react";
 import { DONT_KNOW } from "../lib/quizGenerator.js";
 import { ReadingList } from "./Readings.jsx";
-import { kanaToRomaji } from "../lib/kana.js";
 // (t96) Arti & gloss contoh mengikuti bahasa UI (overlay id_gloss).
-import { useIdData, localizedMeanings, localizedGloss } from "../lib/idData.jsx";
+import { useIdData, localizedMeanings } from "../lib/idData.jsx";
 import { t } from "../lib/i18n.js";
 import RevealGlyph from "./RevealGlyph.jsx";
 import ComponentBreakdown from "./ComponentBreakdown.jsx";
+// (t107) Daftar contoh kata + kalimat — komponen bersama 3 layar.
+import ExampleList from "./ExampleList.jsx";
 import { loadComponents } from "../lib/components.js";
 import { loadStrokePaths } from "../lib/strokes.js";
 
@@ -61,6 +62,9 @@ export default function Quiz({
   mode,
   answerScript = "romaji",
   onToggleScript,
+  // (t108) Furigana kalimat contoh dari gerbang global App — diteruskan
+  // ke ExampleList (panel reveal). Default ON bila prop tak diberikan.
+  furigana = true,
   autoFlip = true, // (t80) dari toggle help overlay — default ON
   autoFlipDelay = 1000, // (t81) jeda auto-flip (ms) — dari deretan pill help overlay
   // (t89) Blur pilihan dari toggle help overlay — default OFF (opt-in:
@@ -473,21 +477,10 @@ export default function Quiz({
                 )}
                 {/* Reading contoh kata juga ikut skrip toggle (romaji
                     dikonversi runtime — converter port pipeline, lihat
-                    lib/kana.js). */}
-                {current.examples.length > 0 && (
-                  <div className="kd-examples">
-                    {current.examples.map((ex) => (
-                      <div key={ex.word} className="kd-example-item">
-                        <span className={`kd-yomi-tag ${ex.type} small`}>{ex.type === "on" ? "On" : "Kun"}</span>
-                        <span className="kd-example-word">{ex.word}</span>
-                        <span className="kd-example-reading">
-                          {answerScript === "romaji" ? kanaToRomaji(ex.reading) : ex.reading}
-                        </span>
-                        <span className="kd-example-meaning">{localizedGloss(ex, idData)}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                    lib/kana.js). (t107) Render lewat ExampleList — kini
+                    juga membawa kalimat contoh Tatoeba (highlight kata
+                    target) di bawah tiap kata. */}
+                <ExampleList examples={current.examples} script={answerScript} furigana={furigana} />
               </div>
             </div>
           )}

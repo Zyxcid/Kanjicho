@@ -1,0 +1,3020 @@
+{
+ "levels": {
+  "N5": {
+   "ok": 130,
+   "mismatch": 0,
+   "disagree": 0,
+   "unverified": 0
+  },
+  "N4": {
+   "ok": 281,
+   "mismatch": 0,
+   "disagree": 0,
+   "unverified": 0
+  },
+  "N3": {
+   "ok": 604,
+   "mismatch": 2,
+   "disagree": 2,
+   "unverified": 4
+  },
+  "N2": {
+   "ok": 562,
+   "mismatch": 4,
+   "disagree": 0,
+   "unverified": 1
+  },
+  "N1": {
+   "ok": 1217,
+   "mismatch": 3,
+   "disagree": 1,
+   "unverified": 5
+  }
+ },
+ "conflicts": {},
+ "mismatch": [
+  {
+   "level": "N3",
+   "word": "市場",
+   "expected": [
+    "いちば"
+   ],
+   "jp": "市場はどこにありますか？",
+   "en": "Where is the market?",
+   "meaning": "(town) market",
+   "pos": [
+    0
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "絵を描く",
+   "expected": [
+    "えをかく"
+   ],
+   "jp": "彼女は絵を描くことが好きだ。",
+   "en": "She likes painting pictures.",
+   "meaning": "to paint a picture",
+   "pos": [
+    3
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "札",
+   "expected": [
+    "ふだ"
+   ],
+   "jp": "彼は店の入り口に閉店の札をかけた。",
+   "en": "He put a Closed sign on the front door of the store.",
+   "meaning": "ticket",
+   "pos": [
+    11
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "爪楊枝",
+   "expected": [
+    "つまようじ"
+   ],
+   "jp": "トムは爪楊枝をくわえていた。",
+   "en": "Tom was chewing on a toothpick.",
+   "meaning": "toothpick",
+   "pos": [
+    3
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "管",
+   "expected": [
+    "くだ"
+   ],
+   "jp": "管から水が吹き出した。",
+   "en": "Water shot from the pipe.",
+   "meaning": "pipe",
+   "pos": [
+    0
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "辛い",
+   "expected": [
+    "からい"
+   ],
+   "jp": "辛いカレーを好む人もいるが、ジェフの口にはあわない。",
+   "en": "Some people love hot curry, but it's not Jeff's cup of tea.",
+   "meaning": "spicy",
+   "pos": [
+    0
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "御霊",
+   "expected": [
+    "みたま"
+   ],
+   "jp": "御霊によって生まれるものも、皆そのとおりです。",
+   "en": "So it is with everyone born of the Spirit.",
+   "meaning": "spirit of a deceased person",
+   "pos": [
+    0
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "爪楊枝",
+   "expected": [
+    "つまようじ"
+   ],
+   "jp": "トムは爪楊枝をくわえていた。",
+   "en": "Tom was chewing on a toothpick.",
+   "meaning": "toothpick",
+   "pos": [
+    3
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "薪",
+   "expected": [
+    "まき"
+   ],
+   "jp": "トムは薪を割ってるよ。",
+   "en": "Tom is chopping firewood.",
+   "meaning": "piece(s) of firewood (esp. chopped or split from logs)",
+   "pos": [
+    3
+   ]
+  }
+ ],
+ "disagree": [
+  {
+   "level": "N3",
+   "word": "末",
+   "expected": [
+    "すえ"
+   ],
+   "jp": "彼は末っ子だ。",
+   "en": "He is the baby of the family.",
+   "meaning": "end",
+   "pos": [
+    2
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "陽",
+   "expected": [
+    "ひ"
+   ],
+   "jp": "ここは陽だまりだと思うね。",
+   "en": "I think that this is a sunny spot.",
+   "meaning": "sun",
+   "pos": [
+    3
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "岳",
+   "expected": [
+    "たけ"
+   ],
+   "jp": "あなたは槍ヶ岳に登ったことがありますか。",
+   "en": "Have you ever climbed Mt. Yari?",
+   "meaning": "(high) mountain",
+   "pos": [
+    6
+   ]
+  }
+ ],
+ "single_tool": [
+  {
+   "level": "N5",
+   "word": "お金",
+   "expected": [
+    "おかね"
+   ],
+   "jp": "お金ある？",
+   "en": "Is there money?",
+   "meaning": "money",
+   "tool": "unidic",
+   "unidic": [
+    "おかね"
+   ],
+   "pika": [
+    "おきん"
+   ]
+  },
+  {
+   "level": "N5",
+   "word": "この間",
+   "expected": [
+    "このあいだ"
+   ],
+   "jp": "この間はごめんなさい。",
+   "en": "I'm sorry about the other day.",
+   "meaning": "the other day",
+   "tool": "unidic",
+   "unidic": [
+    "このあいだ"
+   ],
+   "pika": [
+    "このかん"
+   ]
+  },
+  {
+   "level": "N5",
+   "word": "上手",
+   "expected": [
+    "じょうず"
+   ],
+   "jp": "話し上手だよね？",
+   "en": "He's a good story teller, isn't he?",
+   "meaning": "skillful",
+   "tool": "pika",
+   "unidic": [
+    "かみて"
+   ],
+   "pika": [
+    "じょうず"
+   ]
+  },
+  {
+   "level": "N5",
+   "word": "中",
+   "expected": [
+    "ちゅう"
+   ],
+   "jp": "今ダイエット中なの。",
+   "en": "I'm dieting.",
+   "meaning": "medium (size)",
+   "tool": "unidic",
+   "unidic": [
+    "ちゅう"
+   ],
+   "pika": [
+    "なか"
+   ]
+  },
+  {
+   "level": "N5",
+   "word": "人",
+   "expected": [
+    "ひと"
+   ],
+   "jp": "人をからかわないで。",
+   "en": "Don't kid me!",
+   "meaning": "person",
+   "tool": "unidic",
+   "unidic": [
+    "ひと"
+   ],
+   "pika": [
+    "にん"
+   ]
+  },
+  {
+   "level": "N5",
+   "word": "何",
+   "expected": [
+    "なに"
+   ],
+   "jp": "何かしてみましょう。",
+   "en": "Let's try something.",
+   "meaning": "what",
+   "tool": "pika",
+   "unidic": [
+    "なん"
+   ],
+   "pika": [
+    "なに"
+   ]
+  },
+  {
+   "level": "N5",
+   "word": "入る",
+   "expected": [
+    "はいる"
+   ],
+   "jp": "私が中に入る。",
+   "en": "I'll go in.",
+   "meaning": "to enter",
+   "tool": "unidic",
+   "unidic": [
+    "はいる"
+   ],
+   "pika": [
+    "いる"
+   ]
+  },
+  {
+   "level": "N5",
+   "word": "八つ",
+   "expected": [
+    "やっつ"
+   ],
+   "jp": "彼女は八つだ。",
+   "en": "She is eight.",
+   "meaning": "eight",
+   "tool": "pika",
+   "unidic": [
+    "ようつ"
+   ],
+   "pika": [
+    "やつ"
+   ]
+  },
+  {
+   "level": "N5",
+   "word": "六つ",
+   "expected": [
+    "むっつ"
+   ],
+   "jp": "一つ、二つ、三つ、四つ、五つ、六つ、七つ、八つ、九つ、十。",
+   "en": "One, two, three, four, five, six, seven, eight, nine, ten.",
+   "meaning": "six",
+   "tool": "pika",
+   "unidic": [
+    "むいつ"
+   ],
+   "pika": [
+    "むつ"
+   ]
+  },
+  {
+   "level": "N5",
+   "word": "四つ",
+   "expected": [
+    "よっつ"
+   ],
+   "jp": "今週、テストが四つもありました。",
+   "en": "I had four tests this week.",
+   "meaning": "four",
+   "tool": "pika",
+   "unidic": [
+    "よんつ"
+   ],
+   "pika": [
+    "よつ"
+   ]
+  },
+  {
+   "level": "N5",
+   "word": "四六時中",
+   "expected": [
+    "しろくじちゅう"
+   ],
+   "jp": "妻に四六時中ぶつぶつ言われるのには憂鬱になってしまう。",
+   "en": "My wife's constant nagging is getting me down.",
+   "meaning": "around the clock",
+   "tool": "pika",
+   "unidic": [
+    "よんろくじちゅう"
+   ],
+   "pika": [
+    "しろくじちゅう"
+   ]
+  },
+  {
+   "level": "N5",
+   "word": "小さい",
+   "expected": [
+    "ちいさい"
+   ],
+   "jp": "その本は小さい。",
+   "en": "That book is small.",
+   "meaning": "small",
+   "tool": "unidic",
+   "unidic": [
+    "ちいさい"
+   ],
+   "pika": [
+    "ちーさい"
+   ]
+  },
+  {
+   "level": "N5",
+   "word": "年",
+   "expected": [
+    "ねん"
+   ],
+   "jp": "今年はうるう年です。",
+   "en": "This year is a leap year.",
+   "meaning": "year",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "ねん"
+   ]
+  },
+  {
+   "level": "N4",
+   "word": "この度",
+   "expected": [
+    "このたび"
+   ],
+   "jp": "いえ、これは秘宝ですから。わたくしたちもこの度、初めて見たのです。",
+   "en": "No, it's a national treasure, you see. This is the first time we've seen it as well.",
+   "meaning": "this occasion",
+   "tool": "unidic",
+   "unidic": [
+    "このたび"
+   ],
+   "pika": [
+    "このど"
+   ]
+  },
+  {
+   "level": "N4",
+   "word": "一歩",
+   "expected": [
+    "いっぽ"
+   ],
+   "jp": "もう一歩も歩けないよ。",
+   "en": "I can't walk any farther.",
+   "meaning": "(a) step",
+   "tool": "pika",
+   "unidic": [
+    "いちほ"
+   ],
+   "pika": [
+    "いっぽ"
+   ]
+  },
+  {
+   "level": "N4",
+   "word": "上手",
+   "expected": [
+    "じょうず"
+   ],
+   "jp": "話し上手だよね？",
+   "en": "He's a good story teller, isn't he?",
+   "meaning": "skillful",
+   "tool": "pika",
+   "unidic": [
+    "かみて"
+   ],
+   "pika": [
+    "じょうず"
+   ]
+  },
+  {
+   "level": "N4",
+   "word": "公",
+   "expected": [
+    "おおやけ"
+   ],
+   "jp": "私たちはそれを公にしようと思う。",
+   "en": "We will make it public.",
+   "meaning": "official",
+   "tool": "unidic",
+   "unidic": [
+    "おおやけ"
+   ],
+   "pika": [
+    "こう"
+   ]
+  },
+  {
+   "level": "N4",
+   "word": "力",
+   "expected": [
+    "りょく"
+   ],
+   "jp": "コミュ力たけぇな。",
+   "en": "Your powers of communication are high.",
+   "meaning": "strength",
+   "tool": "unidic",
+   "unidic": [
+    "りょく"
+   ],
+   "pika": [
+    "ちから"
+   ]
+  },
+  {
+   "level": "N4",
+   "word": "昼",
+   "expected": [
+    "ひる"
+   ],
+   "jp": "昼メシにしよう。",
+   "en": "Let's do lunch!",
+   "meaning": "noon",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "ひる"
+   ]
+  },
+  {
+   "level": "N4",
+   "word": "止める",
+   "expected": [
+    "とめる"
+   ],
+   "jp": "どこで車を止めるかが問題だ。",
+   "en": "The question is where to stop the car.",
+   "meaning": "to stop",
+   "tool": "unidic",
+   "unidic": [
+    "とめる"
+   ],
+   "pika": [
+    "やめる"
+   ]
+  },
+  {
+   "level": "N4",
+   "word": "私",
+   "expected": [
+    "わたし"
+   ],
+   "jp": "私は山にいました。",
+   "en": "I was in the mountains.",
+   "meaning": "I",
+   "tool": "pika",
+   "unidic": [
+    "わたくし"
+   ],
+   "pika": [
+    "わたし"
+   ]
+  },
+  {
+   "level": "N4",
+   "word": "通る",
+   "expected": [
+    "とおる"
+   ],
+   "jp": "私は毎日その教会の前を通る。",
+   "en": "I go by that church every day.",
+   "meaning": "to go by",
+   "tool": "unidic",
+   "unidic": [
+    "とおる"
+   ],
+   "pika": [
+    "とうる"
+   ]
+  },
+  {
+   "level": "N4",
+   "word": "風",
+   "expected": [
+    "ふう"
+   ],
+   "jp": "そんな風に考えるのはやめよう。",
+   "en": "Let's not think like that.",
+   "meaning": "manner",
+   "tool": "unidic",
+   "unidic": [
+    "ふう"
+   ],
+   "pika": [
+    "かぜ"
+   ]
+  },
+  {
+   "level": "N4",
+   "word": "黄色",
+   "expected": [
+    "きいろ"
+   ],
+   "jp": "私の前に黄色い車がある。",
+   "en": "There's a yellow car in front of me.",
+   "meaning": "yellow",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "きいろ"
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "争う",
+   "expected": [
+    "あらそう"
+   ],
+   "jp": "お金のことで言い争うのはやめなさい。",
+   "en": "Stop arguing about money.",
+   "meaning": "to compete",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "あらそう"
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "交わす",
+   "expected": [
+    "かわす"
+   ],
+   "jp": "愛を語ることとは愛を交わすことである。",
+   "en": "To talk about love is to make love.",
+   "meaning": "to exchange (messages, greetings, arguments, etc.)",
+   "tool": "unidic",
+   "unidic": [
+    "かわす"
+   ],
+   "pika": [
+    "まじわす"
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "係",
+   "expected": [
+    "かかり"
+   ],
+   "jp": "じゃんけんで係を決めることになった。",
+   "en": "Rock Paper Scissors was used to decide who would be in charge.",
+   "meaning": "charge",
+   "tool": "unidic",
+   "unidic": [
+    "かかり"
+   ],
+   "pika": [
+    "かか"
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "倒れる",
+   "expected": [
+    "たおれる"
+   ],
+   "jp": "ケリーはぶっ倒れるまで働いた。",
+   "en": "Kelly worked until he dropped.",
+   "meaning": "to fall (over, down)",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "たおれる"
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "内",
+   "expected": [
+    "うち"
+   ],
+   "jp": "彼女は内へ入っていきました。",
+   "en": "She went inside.",
+   "meaning": "inside",
+   "tool": "unidic",
+   "unidic": [
+    "うち"
+   ],
+   "pika": [
+    "ない"
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "否",
+   "expected": [
+    "いな"
+   ],
+   "jp": "彼女はそれを聞くや否やすぐここへ来た。",
+   "en": "She came here as soon as she heard it.",
+   "meaning": "no",
+   "tool": "unidic",
+   "unidic": [
+    "いな"
+   ],
+   "pika": [
+    "ひ"
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "実",
+   "expected": [
+    "み"
+   ],
+   "jp": "木はその実で分かる。",
+   "en": "A tree is known by its fruit.",
+   "meaning": "fruit",
+   "tool": "pika",
+   "unidic": [
+    "じつ"
+   ],
+   "pika": [
+    "み"
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "御社",
+   "expected": [
+    "おんしゃ"
+   ],
+   "jp": "御社のお考えを先におっしゃってください。",
+   "en": "Please let us know your company's thoughts on this matter first.",
+   "meaning": "your company",
+   "tool": "pika",
+   "unidic": [
+    "ごしゃ"
+   ],
+   "pika": [
+    "おんしゃ"
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "怒る",
+   "expected": [
+    "おこる"
+   ],
+   "jp": "彼はすぐ怒る。",
+   "en": "He gets mad very easily.",
+   "meaning": "to get angry",
+   "tool": "unidic",
+   "unidic": [
+    "おこる"
+   ],
+   "pika": [
+    "いかる"
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "感じ",
+   "expected": [
+    "かんじ"
+   ],
+   "jp": "この服、半額でも高く感じる。",
+   "en": "Even at half price, these clothes seem expensive.",
+   "meaning": "feeling",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "かんじ"
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "抱く",
+   "expected": [
+    "だく"
+   ],
+   "jp": "めんどりは卵がかえるまで抱く。",
+   "en": "The hen sits on her eggs until they hatch.",
+   "meaning": "to hold in one's arms (e.g. a baby)",
+   "tool": "pika",
+   "unidic": [
+    "いだく"
+   ],
+   "pika": [
+    "だく"
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "数",
+   "expected": [
+    "すう"
+   ],
+   "jp": "彼女は数ヶ月来はじめて悲しく思った。",
+   "en": "She was sad for the first time in months.",
+   "meaning": "several",
+   "tool": "unidic",
+   "unidic": [
+    "すう"
+   ],
+   "pika": []
+  },
+  {
+   "level": "N3",
+   "word": "束",
+   "expected": [
+    "たば"
+   ],
+   "jp": "本はひとまとめに束ねてあった。",
+   "en": "The books were tied up in a bundle.",
+   "meaning": "bundle",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "たば"
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "港",
+   "expected": [
+    "みなと"
+   ],
+   "jp": "船は予定通り港に到着した。",
+   "en": "The ship arrived at the port on schedule.",
+   "meaning": "harbour",
+   "tool": "pika",
+   "unidic": [
+    "こう"
+   ],
+   "pika": [
+    "みなと"
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "由",
+   "expected": [
+    "よし"
+   ],
+   "jp": "彼がどこへ行ってしまったか知る由もない。",
+   "en": "There is no way of knowing where he's gone.",
+   "meaning": "reason",
+   "tool": "unidic",
+   "unidic": [
+    "よし"
+   ],
+   "pika": [
+    "ゆ"
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "積もる",
+   "expected": [
+    "つもる"
+   ],
+   "jp": "雪がしんしんと降り積もる・・・オレの体に。",
+   "en": "Snow falls silently and piles up ... on top of me.",
+   "meaning": "to pile up",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "つもる"
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "経つ",
+   "expected": [
+    "たつ"
+   ],
+   "jp": "彼女がここへ来てから１年が経つ。",
+   "en": "A year has passed since she came here.",
+   "meaning": "to pass (of time)",
+   "tool": "unidic",
+   "unidic": [
+    "たつ"
+   ],
+   "pika": [
+    "へつ"
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "肝心要",
+   "expected": [
+    "かんじんかなめ"
+   ],
+   "jp": "そう言えば、肝心要の部分を何も決めていなかった。",
+   "en": "Now that you mention it, I wasn't involved in the decision-making for the vital part.",
+   "meaning": "crucial",
+   "tool": "pika",
+   "unidic": [
+    "かんじんよう"
+   ],
+   "pika": [
+    "かんじんかなめ"
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "腹",
+   "expected": [
+    "はら"
+   ],
+   "jp": "私たちはお腹がすいています。",
+   "en": "We are hungry.",
+   "meaning": "abdomen",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "はら"
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "表",
+   "expected": [
+    "おもて"
+   ],
+   "jp": "内面の欠点は必ず表に現れる。",
+   "en": "An inner defect never fails to express itself outwardly.",
+   "meaning": "surface",
+   "tool": "pika",
+   "unidic": [
+    "ひょう"
+   ],
+   "pika": [
+    "おもて"
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "都",
+   "expected": [
+    "みやこ"
+   ],
+   "jp": "住めば都。",
+   "en": "Home is where you make it.",
+   "meaning": "capital (esp. Kyoto, Japan's former capital)",
+   "tool": "pika",
+   "unidic": [
+    "と"
+   ],
+   "pika": [
+    "みやこ"
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "丸",
+   "expected": [
+    "まる"
+   ],
+   "jp": "彼女は目を丸くして見つめた。",
+   "en": "She gazed with wide eyes.",
+   "meaning": "circle",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "まる"
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "半島",
+   "expected": [
+    "はんとう"
+   ],
+   "jp": "湿気の多い気候はその半島の特色です。",
+   "en": "A humid climate is characteristic of the peninsula.",
+   "meaning": "peninsula",
+   "tool": "unidic",
+   "unidic": [
+    "はんとう"
+   ],
+   "pika": [
+    "はんしま"
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "印",
+   "expected": [
+    "しるし"
+   ],
+   "jp": "彼はそのページに印をつけた。",
+   "en": "He put a mark on the page.",
+   "meaning": "mark",
+   "tool": "unidic",
+   "unidic": [
+    "しるし"
+   ],
+   "pika": [
+    "いん"
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "大勢",
+   "expected": [
+    "おおぜい"
+   ],
+   "jp": "そのため大勢の人が亡くなった。",
+   "en": "Therefore many people passed away.",
+   "meaning": "crowd of people",
+   "tool": "pika",
+   "unidic": [
+    "たいせい"
+   ],
+   "pika": [
+    "おおぜい"
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "宝",
+   "expected": [
+    "たから"
+   ],
+   "jp": "宝くじでも当たれば、左うちわで暮らせるだろうに。",
+   "en": "If I win the lottery, I'll be able to live high on the hog.",
+   "meaning": "treasure",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "たから"
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "床",
+   "expected": [
+    "ゆか"
+   ],
+   "jp": "トムは床の上に血が付いているのを見た。",
+   "en": "Tom saw blood on the floor.",
+   "meaning": "floor",
+   "tool": "unidic",
+   "unidic": [
+    "ゆか"
+   ],
+   "pika": [
+    "とこ"
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "延べ",
+   "expected": [
+    "のべ"
+   ],
+   "jp": "その支払いは２年間繰り延べられる。",
+   "en": "The payment will be deferred for two years.",
+   "meaning": "futures",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "のべ"
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "替える",
+   "expected": [
+    "かえる"
+   ],
+   "jp": "流れを渡っている間に馬を取り替えるな。",
+   "en": "Don't change horses midstream.",
+   "meaning": "to replace",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "かえる"
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "湯",
+   "expected": [
+    "ゆ"
+   ],
+   "jp": "ボイラは湯あかがびっしりついた。",
+   "en": "The boiler was heavily scaled.",
+   "meaning": "hot water",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "ゆ"
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "築く",
+   "expected": [
+    "きずく"
+   ],
+   "jp": "多くの家族が新生活を築くために辺境地方に移住した。",
+   "en": "Many families left to make a new life on the frontier.",
+   "meaning": "to build",
+   "tool": "unidic",
+   "unidic": [
+    "きずく"
+   ],
+   "pika": [
+    "きづく"
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "細い",
+   "expected": [
+    "ほそい"
+   ],
+   "jp": "彼女の腰は細いです。",
+   "en": "She has narrow hips.",
+   "meaning": "thin",
+   "tool": "unidic",
+   "unidic": [
+    "ほそい"
+   ],
+   "pika": [
+    "こまい"
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "翌朝",
+   "expected": [
+    "よくあさ"
+   ],
+   "jp": "翌朝まで待つしかなかった。",
+   "en": "There was nothing to do but wait until the next morning.",
+   "meaning": "next morning",
+   "tool": "unidic",
+   "unidic": [
+    "よくあさ"
+   ],
+   "pika": [
+    "よくちょう"
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "脂",
+   "expected": [
+    "あぶら"
+   ],
+   "jp": "男性の方が女性より肌が脂っぽいって本当ですか？",
+   "en": "Is it true men have oilier skin than women?",
+   "meaning": "fat",
+   "tool": "unidic",
+   "unidic": [
+    "あぶら"
+   ],
+   "pika": [
+    "やにくさ"
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "被る",
+   "expected": [
+    "かぶる"
+   ],
+   "jp": "教室では帽子を被るべきではない。",
+   "en": "Your hat should not be worn in the classroom.",
+   "meaning": "to put on (one's head)",
+   "tool": "unidic",
+   "unidic": [
+    "かぶる"
+   ],
+   "pika": [
+    "こうむる"
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "触る",
+   "expected": [
+    "さわる"
+   ],
+   "jp": "触るな！",
+   "en": "Hands off.",
+   "meaning": "to touch",
+   "tool": "unidic",
+   "unidic": [
+    "さわる"
+   ],
+   "pika": [
+    "ふる"
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "貝",
+   "expected": [
+    "かい"
+   ],
+   "jp": "プレゼントにするきれいな貝がらをひろいにいったよ！",
+   "en": "I went looking for pretty shells as a present!",
+   "meaning": "shellfish",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "かい"
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "足跡",
+   "expected": [
+    "あしあと"
+   ],
+   "jp": "犯人は足跡を残していた。",
+   "en": "The criminal left footprints.",
+   "meaning": "footprints",
+   "tool": "unidic",
+   "unidic": [
+    "あしあと"
+   ],
+   "pika": [
+    "そくせき"
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "額",
+   "expected": [
+    "ひたい"
+   ],
+   "jp": "彼は娘の額にキスした。",
+   "en": "He kissed his daughter on the forehead.",
+   "meaning": "forehead",
+   "tool": "pika",
+   "unidic": [
+    "がく"
+   ],
+   "pika": [
+    "ひたい"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "ご無沙汰",
+   "expected": [
+    "ごぶさた"
+   ],
+   "jp": "ご無沙汰しています。",
+   "en": "Long time no see!",
+   "meaning": "not writing or contacting for a while",
+   "tool": "pika",
+   "unidic": [
+    "ごむさた"
+   ],
+   "pika": [
+    "ごぶさた"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "一寸",
+   "expected": [
+    "いっすん"
+   ],
+   "jp": "一寸の虫にも五分の魂。",
+   "en": "The worm turns.",
+   "meaning": "one sun (approx. 3 cm)",
+   "tool": "unidic",
+   "unidic": [
+    "いちすん"
+   ],
+   "pika": [
+    "ちょっと"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "傷",
+   "expected": [
+    "きず"
+   ],
+   "jp": "負けて彼らの誇りが傷ついた。",
+   "en": "Losing injured their pride.",
+   "meaning": "wound",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "きず"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "冠",
+   "expected": [
+    "かんむり"
+   ],
+   "jp": "先生は生徒の作った花の冠をかぶった。",
+   "en": "The teacher put on a crown of flowers made by her pupils.",
+   "meaning": "traditional cap worn by Shinto clergy and courtiers",
+   "tool": "unidic",
+   "unidic": [
+    "かんむり"
+   ],
+   "pika": [
+    "かん"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "厳しい",
+   "expected": [
+    "きびしい"
+   ],
+   "jp": "その会社には遅刻に対する厳しいきまりがある。",
+   "en": "The company has hard and fast rules against lateness.",
+   "meaning": "severe",
+   "tool": "unidic",
+   "unidic": [
+    "きびしい"
+   ],
+   "pika": [
+    "いかめしい"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "只中",
+   "expected": [
+    "ただなか"
+   ],
+   "jp": "僕らは青春の真っ只中だ。",
+   "en": "We are in the heyday of youth.",
+   "meaning": "middle",
+   "tool": "unidic",
+   "unidic": [
+    "ただなか"
+   ],
+   "pika": []
+  },
+  {
+   "level": "N1",
+   "word": "堪えない",
+   "expected": [
+    "たえない"
+   ],
+   "jp": "動物がいじめられているのは見るに堪えない。",
+   "en": "I can't stand to see animals be teased.",
+   "meaning": "unable to suppress one's emotions",
+   "tool": "unidic",
+   "unidic": [
+    "たえない"
+   ],
+   "pika": [
+    "こたえない"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "塊",
+   "expected": [
+    "かたまり"
+   ],
+   "jp": "石の塊はセメントで接合された。",
+   "en": "The blocks of stone were jointed with cement.",
+   "meaning": "lump",
+   "tool": "unidic",
+   "unidic": [
+    "かたまり"
+   ],
+   "pika": [
+    "かい"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "大鎌",
+   "expected": [
+    "おおがま"
+   ],
+   "jp": "斜視の人は斜めの大鎌で草を刈った。",
+   "en": "The cross-eyed person cut the grass with a scythe.",
+   "meaning": "scythe",
+   "tool": "unidic",
+   "unidic": [
+    "おおかま"
+   ],
+   "pika": [
+    "だいかま"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "幹",
+   "expected": [
+    "みき"
+   ],
+   "jp": "きつつきは、長く尖ったくちばしで、木の幹をつついて、中にいる虫を食べます。",
+   "en": "Woodpeckers peck tree trunks with their long pointed beaks and eat insects found there.",
+   "meaning": "tree trunk",
+   "tool": "unidic",
+   "unidic": [
+    "みき"
+   ],
+   "pika": [
+    "かん"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "忍ぶ",
+   "expected": [
+    "しのぶ"
+   ],
+   "jp": "エコロジーのために堪え忍ぶのではなく、自然と調和した住環境の快適性が必要である。",
+   "en": "Not just for the sake of the ecology, a natural living environment is necessary.",
+   "meaning": "to conceal oneself",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "しのぶ"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "惨め",
+   "expected": [
+    "みじめ"
+   ],
+   "jp": "彼女は惨めな生活を送るよう運命づけられていた。",
+   "en": "She was condemned to lead a miserable life.",
+   "meaning": "miserable",
+   "tool": "unidic",
+   "unidic": [
+    "みじめ"
+   ],
+   "pika": [
+    "さんめ"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "描く",
+   "expected": [
+    "えがく"
+   ],
+   "jp": "その悲しい光景を思い描くと彼女の目には涙があふれた。",
+   "en": "Her eyes were filled with tears when she pictured the sad scene to herself.",
+   "meaning": "to draw",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "えがく"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "暦",
+   "expected": [
+    "こよみ"
+   ],
+   "jp": "マヤ暦には、19の月があります。",
+   "en": "The Mayan calendar has 19 months.",
+   "meaning": "calendar",
+   "tool": "pika",
+   "unidic": [
+    "れき"
+   ],
+   "pika": [
+    "こよみ"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "栓抜き",
+   "expected": [
+    "せんぬき"
+   ],
+   "jp": "それって栓抜きなの？",
+   "en": "Is that a bottle opener?",
+   "meaning": "bottle opener",
+   "tool": "unidic",
+   "unidic": [
+    "せんぬき"
+   ],
+   "pika": [
+    "せんぬきき"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "棟",
+   "expected": [
+    "むね"
+   ],
+   "jp": "建物は２棟とも全焼した。",
+   "en": "Both buildings burned down.",
+   "meaning": "ridge (of roof)",
+   "tool": "unidic",
+   "unidic": [
+    "むね"
+   ],
+   "pika": [
+    "とう"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "椎間板",
+   "expected": [
+    "ついかんばん"
+   ],
+   "jp": "椎間板ヘルニアをわずらっています。",
+   "en": "I have a slipped disc.",
+   "meaning": "intervertebral disk",
+   "tool": "pika",
+   "unidic": [
+    "ついかんいた"
+   ],
+   "pika": [
+    "ついかんばん"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "源",
+   "expected": [
+    "みなもと"
+   ],
+   "jp": "あなたにとってひらめきの最大の源は何？",
+   "en": "What is your greatest source of inspiration?",
+   "meaning": "source (of a river)",
+   "tool": "unidic",
+   "unidic": [
+    "みなもと"
+   ],
+   "pika": [
+    "げん"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "漢詩",
+   "expected": [
+    "かんし"
+   ],
+   "jp": "彼はその漢詩を肉太に書いた。",
+   "en": "He wrote the Chinese poem in bold strokes.",
+   "meaning": "Chinese poem",
+   "tool": "unidic",
+   "unidic": [
+    "かんし"
+   ],
+   "pika": [
+    "からうた"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "潤う",
+   "expected": [
+    "うるおう"
+   ],
+   "jp": "ボーナスが出てよかったね。これで、家計も愛も潤うね。",
+   "en": "Good thing you got your bonus. Now we can both pay the bills and treat ourselves.",
+   "meaning": "to become moist",
+   "tool": "unidic",
+   "unidic": [
+    "うるおう"
+   ],
+   "pika": [
+    "じゅんう"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "無沙汰",
+   "expected": [
+    "ぶさた"
+   ],
+   "jp": "ご無沙汰しています。",
+   "en": "Long time no see!",
+   "meaning": "not writing or contacting for a while",
+   "tool": "pika",
+   "unidic": [
+    "むさた"
+   ],
+   "pika": [
+    "ぶさた"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "琴",
+   "expected": [
+    "こと"
+   ],
+   "jp": "彼女は琴を弾くことがとても好きだ。",
+   "en": "She likes to play the koto very much.",
+   "meaning": "koto (13-stringed Japanese zither)",
+   "tool": "unidic",
+   "unidic": [
+    "こと"
+   ],
+   "pika": [
+    "こん"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "甚だ",
+   "expected": [
+    "はなはだ"
+   ],
+   "jp": "あんなことを彼女に言うなんて非常識も甚だしい。",
+   "en": "It's quite absurd of you to tell her that sort of thing.",
+   "meaning": "very",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "はなはだ"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "瞬く",
+   "expected": [
+    "またたく"
+   ],
+   "jp": "瞬くうちにテニスボール大の団子が消え去った。",
+   "en": "In the blink of an eye, the tennis-ball-sized dumpling had disappeared.",
+   "meaning": "to twinkle (e.g. stars)",
+   "tool": "pika",
+   "unidic": [
+    "しばたたく"
+   ],
+   "pika": [
+    "またたく"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "穂",
+   "expected": [
+    "ほ"
+   ],
+   "jp": "果樹栽培者がリンゴの接ぎ穂を台木に接ぎ木しました。",
+   "en": "The orchardist grafted an apple bud onto the rootstock.",
+   "meaning": "ear (of a cereal plant)",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "ほ"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "粋",
+   "expected": [
+    "いき"
+   ],
+   "jp": "今日の格好はとっても粋ですね。",
+   "en": "You're looking snappy today.",
+   "meaning": "chic",
+   "tool": "unidic",
+   "unidic": [
+    "いき"
+   ],
+   "pika": [
+    "すい"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "縛る",
+   "expected": [
+    "しばる"
+   ],
+   "jp": "歯を食い縛る、喉元までせりあがった感情を強引に飲み込む。",
+   "en": "He grits his teeth and forces back his growing fear.",
+   "meaning": "to tie",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "しばる"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "艶",
+   "expected": [
+    "つや"
+   ],
+   "jp": "メアリーは艶やかな黒髪をしている。",
+   "en": "Mary has beautiful dark hair.",
+   "meaning": "gloss",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "つや"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "証",
+   "expected": [
+    "あかし"
+   ],
+   "jp": "しかし、あなた方は私たちの証を受け入れません。",
+   "en": "But still you people do not accept our testimony.",
+   "meaning": "proof",
+   "tool": "unidic",
+   "unidic": [
+    "あかし"
+   ],
+   "pika": [
+    "しょう"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "誕生",
+   "expected": [
+    "たんじょう"
+   ],
+   "jp": "2006年2月23日、2,730㌘で誕生した我が家の宝物だ。",
+   "en": "Born on February 23, 2006, at 2730 g, she is our family's treasure.",
+   "meaning": "birth (of a person)",
+   "tool": "unidic",
+   "unidic": [
+    "たんじょう"
+   ],
+   "pika": [
+    "30"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "鈴",
+   "expected": [
+    "すず"
+   ],
+   "jp": "食事の最中に呼び鈴が鳴った。",
+   "en": "The doorbell rang during the meal.",
+   "meaning": "bell (often globular)",
+   "tool": "pika",
+   "unidic": [],
+   "pika": [
+    "すず"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "露",
+   "expected": [
+    "つゆ"
+   ],
+   "jp": "露は太陽が昇ると蒸発した。",
+   "en": "The dew evaporated when the sun rose.",
+   "meaning": "dew",
+   "tool": "pika",
+   "unidic": [
+    "ろ"
+   ],
+   "pika": [
+    "つゆ"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "駿馬",
+   "expected": [
+    "しゅんめ"
+   ],
+   "jp": "最も野性的な子馬が最高の駿馬になる。",
+   "en": "The wildest colt makes the best horse.",
+   "meaning": "swift horse",
+   "tool": "pika",
+   "unidic": [
+    "しゅんば"
+   ],
+   "pika": [
+    "しゅんめ"
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "鮮やか",
+   "expected": [
+    "あざやか"
+   ],
+   "jp": "布は鮮やかな赤色に染められた。",
+   "en": "The cloth was dyed bright red.",
+   "meaning": "vivid",
+   "tool": "unidic",
+   "unidic": [
+    "あざやか"
+   ],
+   "pika": [
+    "せんやか"
+   ]
+  }
+ ],
+ "unverified": [
+  {
+   "level": "N3",
+   "word": "抜ける",
+   "expected": [
+    "ぬける"
+   ],
+   "jp": "彼女にはその場を切り抜けるだけの力がある。",
+   "en": "She is equal to the occasion.",
+   "meaning": "to come out",
+   "pos": [
+    10
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "組む",
+   "expected": [
+    "くむ"
+   ],
+   "jp": "そろそろ本気で仕事に取り組むころだよ。",
+   "en": "It is time you get down to work.",
+   "meaning": "to cross (legs or arms)",
+   "pos": [
+    12
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "込む",
+   "expected": [
+    "こむ"
+   ],
+   "jp": "ここが差し込むように痛みます。",
+   "en": "I have a gripping pain here.",
+   "meaning": "to be crowded",
+   "pos": [
+    5
+   ]
+  },
+  {
+   "level": "N3",
+   "word": "除く",
+   "expected": [
+    "のぞく"
+   ],
+   "jp": "医者は痛みを取り除くため彼に薬を与えた。",
+   "en": "The doctor gave him some drugs to relieve the pain.",
+   "meaning": "to remove",
+   "pos": [
+    8
+   ]
+  },
+  {
+   "level": "N2",
+   "word": "坂",
+   "expected": [
+    "さか"
+   ],
+   "jp": "彼はもう下り坂だね。",
+   "en": "He is over the hill, you know.",
+   "meaning": "slope",
+   "pos": [
+    6
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "泡",
+   "expected": [
+    "あわ"
+   ],
+   "jp": "洋服店を開こうというトムの努力は水の泡になった。",
+   "en": "Tom's efforts to open a clothing store went up in smoke.",
+   "meaning": "bubble",
+   "pos": [
+    18
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "穴",
+   "expected": [
+    "あな"
+   ],
+   "jp": "法律に抜け穴があるために彼は起訴を逃れることができた。",
+   "en": "A loophole in the law allowed him to escape prosecution.",
+   "meaning": "hole",
+   "pos": [
+    5
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "縁",
+   "expected": [
+    "えん"
+   ],
+   "jp": "腐れ縁と思ってあきらめる。",
+   "en": "Make the best of one's lot with fatal resignation.",
+   "meaning": "fate",
+   "pos": [
+    2
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "裂く",
+   "expected": [
+    "さく"
+   ],
+   "jp": "私は彼がその手紙を引き裂くのを見た。",
+   "en": "I saw him tear up the letter.",
+   "meaning": "to tear",
+   "pos": [
+    11
+   ]
+  },
+  {
+   "level": "N1",
+   "word": "遂げる",
+   "expected": [
+    "とげる"
+   ],
+   "jp": "病気のために、作家はその仕事を成し遂げることができなかった。",
+   "en": "On account of ill health the writer couldn't go through with the work.",
+   "meaning": "to accomplish",
+   "pos": [
+    17
+   ]
+  }
+ ],
+ "sense_review": [
+  {
+   "level": "N5",
+   "word": "上",
+   "expected": [
+    "うえ"
+   ],
+   "jp": "上にあがるね。",
+   "en": "I'm going upstairs.",
+   "meaning": "above"
+  },
+  {
+   "level": "N5",
+   "word": "中",
+   "expected": [
+    "ちゅう"
+   ],
+   "jp": "今ダイエット中なの。",
+   "en": "I'm dieting.",
+   "meaning": "medium (size)"
+  },
+  {
+   "level": "N5",
+   "word": "人",
+   "expected": [
+    "ひと"
+   ],
+   "jp": "人をからかわないで。",
+   "en": "Don't kid me!",
+   "meaning": "person"
+  },
+  {
+   "level": "N5",
+   "word": "今",
+   "expected": [
+    "いま"
+   ],
+   "jp": "今、何時ですか。",
+   "en": "What time is it?",
+   "meaning": "now"
+  },
+  {
+   "level": "N5",
+   "word": "何",
+   "expected": [
+    "なに"
+   ],
+   "jp": "何かしてみましょう。",
+   "en": "Let's try something.",
+   "meaning": "what"
+  },
+  {
+   "level": "N5",
+   "word": "先",
+   "expected": [
+    "さき"
+   ],
+   "jp": "学校は２キロ先にある。",
+   "en": "The school is two kilometers ahead.",
+   "meaning": "point"
+  },
+  {
+   "level": "N5",
+   "word": "山",
+   "expected": [
+    "やま"
+   ],
+   "jp": "時間なんて山ほどあった。",
+   "en": "We had plenty of time.",
+   "meaning": "mountain"
+  },
+  {
+   "level": "N5",
+   "word": "後",
+   "expected": [
+    "あと"
+   ],
+   "jp": "後でまた電話するよ。",
+   "en": "I'll call back later.",
+   "meaning": "behind"
+  },
+  {
+   "level": "N5",
+   "word": "男",
+   "expected": [
+    "おとこ"
+   ],
+   "jp": "男ってそういうものだ。",
+   "en": "Boys will be boys.",
+   "meaning": "man"
+  },
+  {
+   "level": "N4",
+   "word": "体",
+   "expected": [
+    "からだ"
+   ],
+   "jp": "魚を食べることは体にいい。",
+   "en": "Eating fish is good for you.",
+   "meaning": "body"
+  },
+  {
+   "level": "N4",
+   "word": "公",
+   "expected": [
+    "おおやけ"
+   ],
+   "jp": "私たちはそれを公にしようと思う。",
+   "en": "We will make it public.",
+   "meaning": "official"
+  },
+  {
+   "level": "N4",
+   "word": "力",
+   "expected": [
+    "りょく"
+   ],
+   "jp": "コミュ力たけぇな。",
+   "en": "Your powers of communication are high.",
+   "meaning": "strength"
+  },
+  {
+   "level": "N4",
+   "word": "味",
+   "expected": [
+    "あじ"
+   ],
+   "jp": "魚はサーモンのような味がした。",
+   "en": "The fish tasted like salmon.",
+   "meaning": "flavor"
+  },
+  {
+   "level": "N4",
+   "word": "家",
+   "expected": [
+    "いえ"
+   ],
+   "jp": "家に帰りましょうか。",
+   "en": "Shall we go home?",
+   "meaning": "house"
+  },
+  {
+   "level": "N4",
+   "word": "店",
+   "expected": [
+    "みせ"
+   ],
+   "jp": "私の家の前に店があります。",
+   "en": "There is a shop in front of my house.",
+   "meaning": "store"
+  },
+  {
+   "level": "N4",
+   "word": "心",
+   "expected": [
+    "こころ"
+   ],
+   "jp": "心から同意します。",
+   "en": "I totally agree.",
+   "meaning": "mind"
+  },
+  {
+   "level": "N4",
+   "word": "昼",
+   "expected": [
+    "ひる"
+   ],
+   "jp": "昼メシにしよう。",
+   "en": "Let's do lunch!",
+   "meaning": "noon"
+  },
+  {
+   "level": "N4",
+   "word": "町",
+   "expected": [
+    "まち"
+   ],
+   "jp": "その町は山のふもとにあります。",
+   "en": "The city is at the foot of the mountain.",
+   "meaning": "town"
+  },
+  {
+   "level": "N4",
+   "word": "目",
+   "expected": [
+    "め"
+   ],
+   "jp": "またお目にかかれてうれしいです。",
+   "en": "I'm happy to see you again.",
+   "meaning": "eye"
+  },
+  {
+   "level": "N4",
+   "word": "秋",
+   "expected": [
+    "あき"
+   ],
+   "jp": "私は秋より春のほうが好きです。",
+   "en": "I like spring better than fall.",
+   "meaning": "autumn"
+  },
+  {
+   "level": "N4",
+   "word": "親",
+   "expected": [
+    "おや"
+   ],
+   "jp": "この親にしてこの子あり。",
+   "en": "Like father, like son.",
+   "meaning": "parent"
+  },
+  {
+   "level": "N4",
+   "word": "足",
+   "expected": [
+    "あし"
+   ],
+   "jp": "足が痛い。",
+   "en": "My feet hurt.",
+   "meaning": "foot"
+  },
+  {
+   "level": "N4",
+   "word": "道",
+   "expected": [
+    "みち"
+   ],
+   "jp": "道を教えていただけますか。",
+   "en": "Would you tell me the way?",
+   "meaning": "road"
+  },
+  {
+   "level": "N4",
+   "word": "音",
+   "expected": [
+    "おと"
+   ],
+   "jp": "ラジオの音を下げてくれませんか。",
+   "en": "Could you turn down the radio?",
+   "meaning": "sound"
+  },
+  {
+   "level": "N4",
+   "word": "風",
+   "expected": [
+    "ふう"
+   ],
+   "jp": "そんな風に考えるのはやめよう。",
+   "en": "Let's not think like that.",
+   "meaning": "manner"
+  },
+  {
+   "level": "N3",
+   "word": "他",
+   "expected": [
+    "ほか"
+   ],
+   "jp": "他に何かありますか。",
+   "en": "Anything else?",
+   "meaning": "another place"
+  },
+  {
+   "level": "N3",
+   "word": "位",
+   "expected": [
+    "くらい"
+   ],
+   "jp": "どれ位かかりますか。",
+   "en": "How long does it take?",
+   "meaning": "approximately"
+  },
+  {
+   "level": "N3",
+   "word": "声",
+   "expected": [
+    "こえ"
+   ],
+   "jp": "小さい声で話してください。",
+   "en": "Speak softly.",
+   "meaning": "voice"
+  },
+  {
+   "level": "N3",
+   "word": "幾",
+   "expected": [
+    "いく"
+   ],
+   "jp": "幾つかの可能性はある。",
+   "en": "There are several possibilities.",
+   "meaning": "some"
+  },
+  {
+   "level": "N3",
+   "word": "形",
+   "expected": [
+    "かたち"
+   ],
+   "jp": "地球は形がオレンジに似ている。",
+   "en": "The earth is similar to an orange in shape.",
+   "meaning": "(physical) form"
+  },
+  {
+   "level": "N3",
+   "word": "数",
+   "expected": [
+    "すう"
+   ],
+   "jp": "彼女は数ヶ月来はじめて悲しく思った。",
+   "en": "She was sad for the first time in months.",
+   "meaning": "several"
+  },
+  {
+   "level": "N3",
+   "word": "横",
+   "expected": [
+    "よこ"
+   ],
+   "jp": "ソファーに横になっても構いませんか。",
+   "en": "Do you mind if I lay down on the sofa?",
+   "meaning": "horizontal (as opposed to vertical)"
+  },
+  {
+   "level": "N3",
+   "word": "港",
+   "expected": [
+    "みなと"
+   ],
+   "jp": "船は予定通り港に到着した。",
+   "en": "The ship arrived at the port on schedule.",
+   "meaning": "harbour"
+  },
+  {
+   "level": "N3",
+   "word": "由",
+   "expected": [
+    "よし"
+   ],
+   "jp": "彼がどこへ行ってしまったか知る由もない。",
+   "en": "There is no way of knowing where he's gone.",
+   "meaning": "reason"
+  },
+  {
+   "level": "N3",
+   "word": "腹",
+   "expected": [
+    "はら"
+   ],
+   "jp": "私たちはお腹がすいています。",
+   "en": "We are hungry.",
+   "meaning": "abdomen"
+  },
+  {
+   "level": "N3",
+   "word": "表",
+   "expected": [
+    "おもて"
+   ],
+   "jp": "内面の欠点は必ず表に現れる。",
+   "en": "An inner defect never fails to express itself outwardly.",
+   "meaning": "surface"
+  },
+  {
+   "level": "N3",
+   "word": "都",
+   "expected": [
+    "みやこ"
+   ],
+   "jp": "住めば都。",
+   "en": "Home is where you make it.",
+   "meaning": "capital (esp. Kyoto, Japan's former capital)"
+  },
+  {
+   "level": "N3",
+   "word": "首",
+   "expected": [
+    "くび"
+   ],
+   "jp": "トムは首になった。",
+   "en": "Tom was fired.",
+   "meaning": "neck"
+  },
+  {
+   "level": "N2",
+   "word": "丸",
+   "expected": [
+    "まる"
+   ],
+   "jp": "彼女は目を丸くして見つめた。",
+   "en": "She gazed with wide eyes.",
+   "meaning": "circle"
+  },
+  {
+   "level": "N2",
+   "word": "型",
+   "expected": [
+    "かた"
+   ],
+   "jp": "カップケーキ型に、ペーパーカップを並べます。",
+   "en": "Set up paper cups in the cupcake baking tray.",
+   "meaning": "type"
+  },
+  {
+   "level": "N2",
+   "word": "境",
+   "expected": [
+    "さかい"
+   ],
+   "jp": "彼は生死の境をさ迷った。",
+   "en": "He hovered between life and death.",
+   "meaning": "border"
+  },
+  {
+   "level": "N2",
+   "word": "奥",
+   "expected": [
+    "おく"
+   ],
+   "jp": "今でも奥さんを愛していますか？",
+   "en": "Do you still love your wife?",
+   "meaning": "inner part"
+  },
+  {
+   "level": "N2",
+   "word": "宝",
+   "expected": [
+    "たから"
+   ],
+   "jp": "宝くじでも当たれば、左うちわで暮らせるだろうに。",
+   "en": "If I win the lottery, I'll be able to live high on the hog.",
+   "meaning": "treasure"
+  },
+  {
+   "level": "N2",
+   "word": "岸",
+   "expected": [
+    "きし"
+   ],
+   "jp": "彼らは船を岸に引き上げた。",
+   "en": "They drew their boat on the beach.",
+   "meaning": "bank"
+  },
+  {
+   "level": "N2",
+   "word": "幅",
+   "expected": [
+    "はば"
+   ],
+   "jp": "その川は幅が広い。",
+   "en": "The river is wide.",
+   "meaning": "width"
+  },
+  {
+   "level": "N2",
+   "word": "底",
+   "expected": [
+    "そこ"
+   ],
+   "jp": "心の底から同意します。",
+   "en": "I wholeheartedly agree.",
+   "meaning": "bottom"
+  },
+  {
+   "level": "N2",
+   "word": "林",
+   "expected": [
+    "はやし"
+   ],
+   "jp": "ランタンが林を照らした。",
+   "en": "The forest was illuminate​d by a lantern.",
+   "meaning": "wood"
+  },
+  {
+   "level": "N2",
+   "word": "森",
+   "expected": [
+    "もり"
+   ],
+   "jp": "私の家の後ろは森です。",
+   "en": "My house is backed by woods.",
+   "meaning": "forest"
+  },
+  {
+   "level": "N2",
+   "word": "湯",
+   "expected": [
+    "ゆ"
+   ],
+   "jp": "ボイラは湯あかがびっしりついた。",
+   "en": "The boiler was heavily scaled.",
+   "meaning": "hot water"
+  },
+  {
+   "level": "N2",
+   "word": "玉",
+   "expected": [
+    "たま"
+   ],
+   "jp": "彼女は気が短いのが玉にきずだ。",
+   "en": "A quick temper is the only defect in her character.",
+   "meaning": "ball"
+  },
+  {
+   "level": "N2",
+   "word": "筆",
+   "expected": [
+    "ふで"
+   ],
+   "jp": "弘法も筆の誤り。",
+   "en": "Anyone can make a mistake.",
+   "meaning": "writing brush"
+  },
+  {
+   "level": "N2",
+   "word": "粉",
+   "expected": [
+    "こな"
+   ],
+   "jp": "えーと、パン粉は有ったかな？",
+   "en": "Hmm, did we have some breadcrumbs?",
+   "meaning": "flour"
+  },
+  {
+   "level": "N2",
+   "word": "粒",
+   "expected": [
+    "つぶ"
+   ],
+   "jp": "２粒の涙が彼女のほおを流れ落ちた。",
+   "en": "Two tears fell down her cheeks.",
+   "meaning": "grain"
+  },
+  {
+   "level": "N2",
+   "word": "羽",
+   "expected": [
+    "はね"
+   ],
+   "jp": "そこに羽の生えたばかりの小鳥がありました。",
+   "en": "There was a fledgling bird there.",
+   "meaning": "feather"
+  },
+  {
+   "level": "N2",
+   "word": "脂",
+   "expected": [
+    "あぶら"
+   ],
+   "jp": "男性の方が女性より肌が脂っぽいって本当ですか？",
+   "en": "Is it true men have oilier skin than women?",
+   "meaning": "fat"
+  },
+  {
+   "level": "N2",
+   "word": "腕",
+   "expected": [
+    "うで"
+   ],
+   "jp": "彼はスキーに非常な腕を示した。",
+   "en": "He showed great skill in skiing.",
+   "meaning": "arm"
+  },
+  {
+   "level": "N2",
+   "word": "腰",
+   "expected": [
+    "こし"
+   ],
+   "jp": "彼女はソファーの上にだらしなく腰を下ろしていた。",
+   "en": "She was lounging on the sofa.",
+   "meaning": "lower back"
+  },
+  {
+   "level": "N2",
+   "word": "裏",
+   "expected": [
+    "うら"
+   ],
+   "jp": "私の家の裏に小さな池がある。",
+   "en": "There is a small pond in back of my house.",
+   "meaning": "opposite side"
+  },
+  {
+   "level": "N2",
+   "word": "貝",
+   "expected": [
+    "かい"
+   ],
+   "jp": "プレゼントにするきれいな貝がらをひろいにいったよ！",
+   "en": "I went looking for pretty shells as a present!",
+   "meaning": "shellfish"
+  },
+  {
+   "level": "N2",
+   "word": "針",
+   "expected": [
+    "はり"
+   ],
+   "jp": "変な魚が針にかかっている。",
+   "en": "A strange fish is on the hook.",
+   "meaning": "needle"
+  },
+  {
+   "level": "N2",
+   "word": "隅",
+   "expected": [
+    "すみ"
+   ],
+   "jp": "彼女は妻？あなたも隅に置けないわねえ。",
+   "en": "She's your wife? There's more to you than meets the eye.",
+   "meaning": "corner"
+  },
+  {
+   "level": "N2",
+   "word": "骨",
+   "expected": [
+    "ほね"
+   ],
+   "jp": "英語を学ぶのは骨が折れる。",
+   "en": "Learning English is hard work.",
+   "meaning": "bone"
+  },
+  {
+   "level": "N2",
+   "word": "鼻",
+   "expected": [
+    "はな"
+   ],
+   "jp": "珍客も３日いれば鼻につく。",
+   "en": "Even a rare guest wears out his welcome after three days.",
+   "meaning": "nose"
+  },
+  {
+   "level": "N1",
+   "word": "仮",
+   "expected": [
+    "かり"
+   ],
+   "jp": "仮に競馬でたまたま大穴を当てたとしましょう。",
+   "en": "Let's suppose you happen to strike it rich at the races.",
+   "meaning": "temporary"
+  },
+  {
+   "level": "N1",
+   "word": "侍",
+   "expected": [
+    "さむらい"
+   ],
+   "jp": "現代の日本に忍者や侍はいません。",
+   "en": "Nowadays there are no ninjas or samurais in Japan.",
+   "meaning": "warrior (esp. of military retainers of daimyos in the Edo period)"
+  },
+  {
+   "level": "N1",
+   "word": "傷",
+   "expected": [
+    "きず"
+   ],
+   "jp": "負けて彼らの誇りが傷ついた。",
+   "en": "Losing injured their pride.",
+   "meaning": "wound"
+  },
+  {
+   "level": "N1",
+   "word": "冠",
+   "expected": [
+    "かんむり"
+   ],
+   "jp": "先生は生徒の作った花の冠をかぶった。",
+   "en": "The teacher put on a crown of flowers made by her pupils.",
+   "meaning": "traditional cap worn by Shinto clergy and courtiers"
+  },
+  {
+   "level": "N1",
+   "word": "器",
+   "expected": [
+    "うつわ"
+   ],
+   "jp": "男でも女でも、人間は魂のない器にすぎない。",
+   "en": "Whether male or female, humans are nothing more than soulless meat puppets.",
+   "meaning": "bowl"
+  },
+  {
+   "level": "N1",
+   "word": "塊",
+   "expected": [
+    "かたまり"
+   ],
+   "jp": "石の塊はセメントで接合された。",
+   "en": "The blocks of stone were jointed with cement.",
+   "meaning": "lump"
+  },
+  {
+   "level": "N1",
+   "word": "墨",
+   "expected": [
+    "すみ"
+   ],
+   "jp": "墨を染料として使うと面白い模様ができます。",
+   "en": "India ink produces an interesting pattern when used as a dye.",
+   "meaning": "sumi"
+  },
+  {
+   "level": "N1",
+   "word": "奴",
+   "expected": [
+    "やつ"
+   ],
+   "jp": "本物のノイローゼの奴がノイローゼだなんて自称するのかね？",
+   "en": "Do you think real neurotics really go and call themselves such?",
+   "meaning": "fellow"
+  },
+  {
+   "level": "N1",
+   "word": "姿",
+   "expected": [
+    "すがた"
+   ],
+   "jp": "飛行機の姿は見えなくなった。",
+   "en": "The plane flew beyond our range of vision.",
+   "meaning": "figure"
+  },
+  {
+   "level": "N1",
+   "word": "嫌",
+   "expected": [
+    "いや"
+   ],
+   "jp": "嫌ならやめてもいいですよ。",
+   "en": "If you don't like doing that, it's OK to stop doing it.",
+   "meaning": "disliking"
+  },
+  {
+   "level": "N1",
+   "word": "岬",
+   "expected": [
+    "みさき"
+   ],
+   "jp": "船は岬に沿って回った。",
+   "en": "The boat sailed around the promontory.",
+   "meaning": "cape (on coast)"
+  },
+  {
+   "level": "N1",
+   "word": "峠",
+   "expected": [
+    "とうげ"
+   ],
+   "jp": "病人はもう峠を越した。",
+   "en": "The patient is now safe.",
+   "meaning": "(mountain) pass"
+  },
+  {
+   "level": "N1",
+   "word": "巣",
+   "expected": [
+    "す"
+   ],
+   "jp": "世界は奇人の巣だ。",
+   "en": "The world is a den of crazies.",
+   "meaning": "nest"
+  },
+  {
+   "level": "N1",
+   "word": "己",
+   "expected": [
+    "おのれ"
+   ],
+   "jp": "他人を支配せんと思う者は先ず己を支配せよ。",
+   "en": "He that would govern others, first should be master of himself.",
+   "meaning": "oneself (itself, etc.)"
+  },
+  {
+   "level": "N1",
+   "word": "幻",
+   "expected": [
+    "まぼろし"
+   ],
+   "jp": "私の罪は幻のように思える。",
+   "en": "My crime seems unreal to me.",
+   "meaning": "phantom"
+  },
+  {
+   "level": "N1",
+   "word": "暁",
+   "expected": [
+    "あかつき"
+   ],
+   "jp": "退職した暁には全ての時間をタトエバに捧げよう。",
+   "en": "Once I retire, I will dedicate all my time to Tatoeba.",
+   "meaning": "dawn"
+  },
+  {
+   "level": "N1",
+   "word": "梅",
+   "expected": [
+    "うめ"
+   ],
+   "jp": "梅の花は3月に咲く。",
+   "en": "Plum blossoms come out in March.",
+   "meaning": "Japanese apricot (Prunus mume)"
+  },
+  {
+   "level": "N1",
+   "word": "棚",
+   "expected": [
+    "たな"
+   ],
+   "jp": "棚は空っぽです。",
+   "en": "The shelves are empty.",
+   "meaning": "shelf"
+  },
+  {
+   "level": "N1",
+   "word": "棟",
+   "expected": [
+    "むね"
+   ],
+   "jp": "建物は２棟とも全焼した。",
+   "en": "Both buildings burned down.",
+   "meaning": "ridge (of roof)"
+  },
+  {
+   "level": "N1",
+   "word": "沼",
+   "expected": [
+    "ぬま"
+   ],
+   "jp": "ここに小さな沼があります。",
+   "en": "There is a small pond here.",
+   "meaning": "marsh"
+  },
+  {
+   "level": "N1",
+   "word": "浜",
+   "expected": [
+    "はま"
+   ],
+   "jp": "波が浜に打ち寄せている。",
+   "en": "Waves are beating the shore.",
+   "meaning": "beach"
+  },
+  {
+   "level": "N1",
+   "word": "溝",
+   "expected": [
+    "みぞ"
+   ],
+   "jp": "両者の溝が狭まった。",
+   "en": "The gap between them has narrowed.",
+   "meaning": "ditch"
+  },
+  {
+   "level": "N1",
+   "word": "滝",
+   "expected": [
+    "たき"
+   ],
+   "jp": "ナイアガラの滝は世界有数の観光地として名高い。",
+   "en": "The Niagara Falls are famous as a world leading tourist resort.",
+   "meaning": "waterfall"
+  },
+  {
+   "level": "N1",
+   "word": "炎",
+   "expected": [
+    "ほのお"
+   ],
+   "jp": "私の家は炎に包まれました。",
+   "en": "My house was on fire.",
+   "meaning": "flame"
+  },
+  {
+   "level": "N1",
+   "word": "獣",
+   "expected": [
+    "けもの"
+   ],
+   "jp": "人間は、考え、話すことができるという点で、獣と違う。",
+   "en": "Men differ from brutes in that they can think and speak.",
+   "meaning": "beast"
+  },
+  {
+   "level": "N1",
+   "word": "眉",
+   "expected": [
+    "まゆ"
+   ],
+   "jp": "笑いで誤魔化すと、亜美さんはさも不機嫌そうに眉を寄せた。",
+   "en": "Ami frowned in a very un-amused way as I brushed her off with a laugh.",
+   "meaning": "eyebrow"
+  },
+  {
+   "level": "N1",
+   "word": "穂",
+   "expected": [
+    "ほ"
+   ],
+   "jp": "果樹栽培者がリンゴの接ぎ穂を台木に接ぎ木しました。",
+   "en": "The orchardist grafted an apple bud onto the rootstock.",
+   "meaning": "ear (of a cereal plant)"
+  },
+  {
+   "level": "N1",
+   "word": "端",
+   "expected": [
+    "はし"
+   ],
+   "jp": "このＣＤプレイヤーを棚の前の端にぴったりとくっつけてください。",
+   "en": "Set the CD player square with the front edge of the shelf, please.",
+   "meaning": "end (e.g. of street)"
+  },
+  {
+   "level": "N1",
+   "word": "笛",
+   "expected": [
+    "ふえ"
+   ],
+   "jp": "捕らえられるまで、鳥には鳥捕りの笛がよい音に聞こえる。",
+   "en": "The fowler's pipe sounds sweet till the bird is caught.",
+   "meaning": "flute"
+  },
+  {
+   "level": "N1",
+   "word": "節",
+   "expected": [
+    "ふし"
+   ],
+   "jp": "その節はよろしくご指導のほどお願いいたします。",
+   "en": "I hope you will favor me with your guidance at that time.",
+   "meaning": "joint"
+  },
+  {
+   "level": "N1",
+   "word": "粋",
+   "expected": [
+    "いき"
+   ],
+   "jp": "今日の格好はとっても粋ですね。",
+   "en": "You're looking snappy today.",
+   "meaning": "chic"
+  },
+  {
+   "level": "N1",
+   "word": "縦",
+   "expected": [
+    "たて"
+   ],
+   "jp": "容積を計算するためには縦と横と深さをかければよい。",
+   "en": "To calculate the capacity, multiply the length by the width by the depth.",
+   "meaning": "the vertical"
+  },
+  {
+   "level": "N1",
+   "word": "艶",
+   "expected": [
+    "つや"
+   ],
+   "jp": "メアリーは艶やかな黒髪をしている。",
+   "en": "Mary has beautiful dark hair.",
+   "meaning": "gloss"
+  },
+  {
+   "level": "N1",
+   "word": "芽",
+   "expected": [
+    "め"
+   ],
+   "jp": "木が芽をふいている。",
+   "en": "The trees are shooting out buds.",
+   "meaning": "sprout"
+  },
+  {
+   "level": "N1",
+   "word": "苗",
+   "expected": [
+    "なえ"
+   ],
+   "jp": "彼は種からトマトの苗を育てた。",
+   "en": "He raised tomato plants from seed.",
+   "meaning": "seedling"
+  },
+  {
+   "level": "N1",
+   "word": "茎",
+   "expected": [
+    "くき"
+   ],
+   "jp": "バラは茎に刺がある。",
+   "en": "A rose has thorns on its stem.",
+   "meaning": "stalk"
+  },
+  {
+   "level": "N1",
+   "word": "虜",
+   "expected": [
+    "とりこ"
+   ],
+   "jp": "彼女の美しさは彼をすっかり虜にした。",
+   "en": "Her beauty cast a spell over him.",
+   "meaning": "captive"
+  },
+  {
+   "level": "N1",
+   "word": "裸",
+   "expected": [
+    "はだか"
+   ],
+   "jp": "まもなく木々は裸になるだろう。",
+   "en": "The trees will soon be bare.",
+   "meaning": "nakedness"
+  },
+  {
+   "level": "N1",
+   "word": "襟",
+   "expected": [
+    "えり"
+   ],
+   "jp": "彼女はそのメダルをピンで襟にとめた。",
+   "en": "She fastened the medal on the lapel with a pin.",
+   "meaning": "collar"
+  },
+  {
+   "level": "N1",
+   "word": "証",
+   "expected": [
+    "あかし"
+   ],
+   "jp": "しかし、あなた方は私たちの証を受け入れません。",
+   "en": "But still you people do not accept our testimony.",
+   "meaning": "proof"
+  },
+  {
+   "level": "N1",
+   "word": "誠",
+   "expected": [
+    "まこと"
+   ],
+   "jp": "親として誠に情けない状態にありました。",
+   "en": "As a parent I was in a truly pitiable state.",
+   "meaning": "truth"
+  },
+  {
+   "level": "N1",
+   "word": "趣",
+   "expected": [
+    "おもむき"
+   ],
+   "jp": "彼の最新作は趣を異にする。",
+   "en": "His latest work belongs to a different category.",
+   "meaning": "meaning"
+  },
+  {
+   "level": "N1",
+   "word": "雷",
+   "expected": [
+    "かみなり"
+   ],
+   "jp": "私は突然の雷にびっくりした。",
+   "en": "I was surprised at the sudden thunder.",
+   "meaning": "lightning"
+  },
+  {
+   "level": "N1",
+   "word": "霧",
+   "expected": [
+    "きり"
+   ],
+   "jp": "霧を通して、わずかに陸地をみわけることができた。",
+   "en": "The land could just be discerned through the mist.",
+   "meaning": "fog"
+  },
+  {
+   "level": "N1",
+   "word": "鬼",
+   "expected": [
+    "おに"
+   ],
+   "jp": "来年のことを言えば鬼が笑う。",
+   "en": "Next year is the devil's joke.",
+   "meaning": "ogre"
+  },
+  {
+   "level": "N1",
+   "word": "鶏",
+   "expected": [
+    "にわとり"
+   ],
+   "jp": "肥えた鶏は卵を産まない。",
+   "en": "Fat hens lay few eggs.",
+   "meaning": "chicken (Gallus gallus domesticus)"
+  }
+ ]
+}

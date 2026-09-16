@@ -396,6 +396,12 @@ html, body {
 .kd-ar-body { flex: 1; min-width: 0; display: flex; justify-content: space-between; align-items: center; gap: 2px; }
 .kd-ar-title { font-weight: 700; font-size: 14.5px; line-height: 1.25; color: var(--ink); }
 .kd-ar-small { font-family: 'DM Mono', monospace; font-weight: 400; font-size: 11.5px; color: var(--ink-soft); }
+/* (t109) Layar sempit: label kecil "Pustaka referensi · N5–N1" baris
+   aksi Browse disembunyikan supaya judul "Jelajahi semua kanji" muat
+   satu baris tanpa berdesak (permintaan user). */
+@media (max-width: 420px) {
+  .kd-browse-entry .kd-ar-small { display: none; }
+}
 .kd-ar-chevron { flex-shrink: 0; color: var(--ink-soft); }
 
 /* (Banner review yang dulu memakai kelas-kelas kd-nrb/kd-next-review
@@ -1030,6 +1036,24 @@ button.kd-day-row:focus-visible { outline: 2px solid var(--indigo); outline-offs
    webfont. */
 .kd-example-reading { font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 13px; color: var(--indigo-soft); letter-spacing: 0.01em; }
 .kd-example-meaning { font-size: 13.5px; color: var(--ink-soft); }
+/* (t107) Kalimat contoh Tatoeba — blok di bawah baris kata (flex-basis
+   100% memaksa baris sendiri dalam .kd-example-item yang wrap). Garis
+   kiri tipis memberi ritme "kutipan di margin buku" senada tema
+   genkōyōshi; kata target di-highlight indigo via <mark>. */
+.kd-example-sent { flex-basis: 100%; min-width: 0; margin-top: 5px; padding: 1px 0 1px 10px; border-left: 2px solid var(--paper-line); display: flex; flex-direction: column; gap: 2px; }
+/* (t108, permintaan user: Shippori Mincho pada ukuran kecil susah dibaca,
+   "kd-reveal-yomi sudah bagus") Kalimat JP pindah ke Zen Kaku Gothic New
+   (sans yang sama dengan baris yomi) + naik 14.5→15px. Mincho tetap untuk
+   glyph besar (headline kata contoh 17px, dsb.) di mana serif terbaca. */
+.kd-sent-jp { font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 15px; line-height: 1.6; color: var(--ink); }
+/* (t108) Furigana — run <ruby> diprakompute build_furigana.py. rt kecil
+   di atas glyph; line-height dinaikkan HANYA bila ada ruby (class
+   has-furi) supaya teks atas baris berikut tidak menabrak bacaan. */
+.kd-sent-jp.has-furi { line-height: 2.15; }
+.kd-sent-jp ruby { ruby-align: center; }
+.kd-sent-jp rt { font-size: 9.5px; font-weight: 500; color: var(--ink-soft); letter-spacing: 0.02em; }
+.kd-sent-hl { background: transparent; color: var(--indigo); font-weight: 700; padding: 0; }
+.kd-sent-tr { font-size: 12.5px; line-height: 1.5; color: var(--ink-soft); }
 /* Masuknya bar aksi mengikuti berputarnya kartu ke sisi belakang (fade
    + naik kecil saja, dipakai .kd-card-actions). */
 @keyframes kd-rise-in {
@@ -1209,6 +1233,50 @@ button.kd-day-row:focus-visible { outline: 2px solid var(--indigo); outline-offs
   display: flex; align-items: center; justify-content: center; border-radius: 3px;
 }
 .kd-search-clear:hover { color: var(--ink); }
+
+/* (t110) Baris pencarian + tombol filter di kanannya. Tombol mengikuti
+   bahasa visual kotak pencarian (surface + paper-line, tinggi serasi);
+   state aktif = aksen indigo (konsisten kd-pill.active), state terbuka
+   cukup ditegaskan border. Popover absolute di bawah tombol, rata kanan,
+   z-index DI ATAS grid kartu. */
+.kd-search-row { position: relative; display: flex; align-items: stretch; gap: 8px; }
+.kd-search-row .kd-search { flex: 1; }
+.kd-filter-btn {
+  position: relative; flex: 0 0 auto; width: 42px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--surface); border: 1px solid var(--paper-line); border-radius: 4px;
+  color: var(--ink-soft); cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.kd-filter-btn:hover { color: var(--indigo); border-color: var(--indigo-soft); }
+.kd-filter-btn.open { border-color: var(--indigo-soft); color: var(--indigo); }
+.kd-filter-btn.active { background: var(--indigo); border-color: var(--indigo); color: #fff; }
+.kd-filter-btn:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; }
+.kd-filter-dot {
+  position: absolute; top: 5px; right: 5px; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--seal); border: 1px solid var(--surface);
+}
+.kd-filter-pop {
+  position: absolute; top: calc(100% + 6px); right: 0; z-index: 40;
+  min-width: 230px; max-width: min(300px, calc(100vw - 32px));
+  background: var(--surface); border: 1px solid var(--paper-line); border-radius: 4px;
+  box-shadow: 0 8px 24px var(--shadow); padding: 12px;
+  display: flex; flex-direction: column; gap: 12px;
+  animation: kd-pop-in 0.14s ease-out;
+}
+.kd-filter-group { display: flex; flex-direction: column; gap: 6px; }
+.kd-filter-label {
+  font-family: 'DM Mono', monospace; font-size: 10.5px; font-weight: 500;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft);
+}
+.kd-filter-options { display: flex; flex-wrap: wrap; gap: 6px; }
+.kd-filter-reset {
+  align-self: flex-start; background: none; border: none; cursor: pointer;
+  color: var(--seal); font-family: 'DM Mono', monospace; font-size: 11.5px;
+  font-weight: 500; padding: 2px 0; text-decoration: underline dotted;
+}
+.kd-filter-reset:hover { text-decoration: underline; }
+.kd-filter-reset:focus-visible { outline: 2px solid var(--indigo); outline-offset: 2px; }
 
 /* Grid kartu kanji compact */
 .kd-browse-grid {
@@ -1427,6 +1495,11 @@ button.kd-day-row:focus-visible { outline: 2px solid var(--indigo); outline-offs
 .kd-help-replay { width: 100%; margin-top: 10px; padding: 10px; font-size: 13px; }
 .kd-help-legal a { font-weight: 600; }
 .kd-help-links { display: flex; gap: 14px; }
+/* (t109) Seksi Kontak di Help: email sendirian di baris pertama,
+   kebijakan privasi + lisensi open-source berbagi baris kedua —
+   sebelumnya tiga tautan sebaris dan terlalu penuh (permintaan user). */
+.kd-help-contact { flex-wrap: wrap; gap: 8px 16px; }
+.kd-help-contact .kd-help-link:first-child { flex: 1 1 100%; }
 .kd-help-link {
   display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--indigo);
   text-decoration: none; font-weight: 700;
@@ -1813,6 +1886,10 @@ button.kd-day-row:focus-visible { outline: 2px solid var(--indigo); outline-offs
 /* Tombol utama tooltip — turunan kd-btn primary (lebar penuh seperti pola
    Continue di bar aksi kuis), sedikit lebih ringkas. */
 .kd-tut-cta { width: 100%; margin-top: 14px; padding: 11px; font-size: 13.5px; }
+/* (t109) Langkah pilih bahasa: dua tombol berbagi satu baris —
+   bahasa aktif primer, satunya sekunder; label = nama asli bahasa. */
+.kd-tut-lang { display: flex; gap: 8px; margin-top: 14px; }
+.kd-tut-lang .kd-tut-lang-btn { width: auto; flex: 1; margin-top: 0; }
 /* (t89) CTA "< Home" (langkah srs): tombol pulang SUNGGUH di dalam
    tooltip — desain chevron + label (bahasa ikon tombol back topbar app)
    di atas pewarnaan tombol primer, supaya terbaca sebagai satu-satunya

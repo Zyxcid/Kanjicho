@@ -26,6 +26,30 @@ sync with `src/data/` on every release that changes the data.
   `strokes_n1_p0..p3.json` for lazy loading) and `components_n*.json` —
   derived from **KanjiVG** — © Ulrich Apel —
   [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
+- `n*_sentences.json` — one example sentence per example word, selected
+  from **Tatoeba.org** sentence pairs (JP–EN and JP–ID downloads). Each
+  sentence keeps the licence its author chose on Tatoeba — the bulk of
+  the corpus is [CC BY 2.0 FR](https://creativecommons.org/licenses/by/2.0/fr/)
+  / [CC0](https://creativecommons.org/publicdomain/zero/1.0/), and the
+  Tanaka-derived subset is
+  [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) —
+  so the file is published under CC BY-SA (the most restrictive option
+  present, per-sentence provenance untracked). The Indonesian fields mix
+  native Tatoeba JP–ID translations (826 entries) with LLM translations
+  produced for this app (Japanese as source, Tatoeba EN as reference);
+  they are adaptations of the corresponding sentences. The `furi`
+  (furigana) fields are reading annotations derived at build time with
+  [fugashi](https://github.com/polm/fugashi) (MIT) over
+  [UniDic](https://unidic.ninjal.ac.jp/) (© NINJAL,
+  [Apache Licence 2.0](https://www.apache.org/licenses/LICENSE-2.0),
+  via the `unidic-lite` package) plus
+  [pykakasi](https://codeberg.org/miuchiba/pykakasi) (GPL-3.0) for
+  surface readings — both are build-time tools only (reading
+  verification and ruby derivation); no dictionary or tokenizer data
+  from either is shipped inside the app, and the target word's ruby
+  uses the reading already licensed from JMdict/EDRDG. GPL applies to
+  the standalone pykakasi library used during the build, not to any
+  distributed output of this project.
 
 In-app attribution is shown in Help → "Data sources" (one paragraph naming
 every source, its rights holder, and its licence, plus the EDRDG licence

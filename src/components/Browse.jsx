@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect, useCallback, useRef } from "react";
-import { ChevronLeft, Search, X, BookOpen } from "lucide-react";
+import { ChevronLeft, Search, X, BookOpen, SlidersHorizontal } from "lucide-react";
 import { LEVEL_IDS, loadLevelKanji, loadAllKanji } from "../lib/dataLoader.js";
 import { ReadingList } from "./Readings.jsx";
 import StrokePlayer from "./StrokePlayer.jsx";
@@ -8,10 +8,11 @@ import ComponentBreakdown from "./ComponentBreakdown.jsx";
 import { loadStrokePaths } from "../lib/strokes.js";
 import { loadComponents } from "../lib/components.js";
 import { pushOverlayEntry, closeOverlayUI, discardOverlayEntry } from "../lib/useRouter.js";
-import { kanaToRomaji } from "../lib/kana.js";
 import { t } from "../lib/i18n.js";
 // (t96) Arti & gloss contoh mengikuti bahasa UI (overlay id_gloss).
-import { useIdData, localizedMeanings, localizedGloss } from "../lib/idData.jsx";
+import { useIdData, localizedMeanings } from "../lib/idData.jsx";
+// (t107) Daftar contoh kata + kalimat — komponen bersama 3 layar.
+import ExampleList from "./ExampleList.jsx";
 
 // "All" + N5..N1. Default "All" (t96): pustaka adalah alat referensi —
 // user datang mencari kanji, bukan level; batas render 400 kartu +
@@ -23,13 +24,38 @@ const LEVELS = ["All", ...LEVEL_IDS];
 // "Show more" menaikkan batas bertahap.
 const VISIBLE_STEP = 400;
 
-export default function Browse({ script = "kana" }) {
+// (t111) Lingkup pencarian pustaka — menggantikan bucket jumlah goresan
+// (t110): user menilai filter berdasarkan goresan tidak perlu, yang
+// bermanfaat adalah MEMPERSEMPIT KOLOM yang dicocokkan. "all" (bawaan)
+// = perilaku lama: cocokkan kanji, arti (EN+ID), dan bacaan sekaligus;
+// tiga pilihan lain membatasi ke satu kolom supaya hasil lebih presisi
+// (mis. "mizu" di bacaan menemukan 水 tanpa derau arti "future" dsb.).
+const SEARCH_SCOPES = ["all", "kanji", "meaning", "reading"];
+
+export default function Browse({ script = "kana", furigana = true }) {
   // (t96) Peta gloss Indonesia aktif (null bila bahasa en / belum termuat).
   const idData = useIdData();
   const [activeLevel, setActiveLevel] = useState("All");
   const [query, setQuery] = useState("");
   const [visibleCount, setVisibleCount] = useState(VISIBLE_STEP);
   const [selected, setSelected] = useState(null); // kanji yang ditampilkan di modal
+
+  // (t111) Filter pustaka: lingkup pencarian + urutan + popover
+  // terbuka/risau. "all" = cari semua kolom; "default" = urutan data
+  // (level lalu unit — urutan alami pustaka).
+  const [searchScope, setSearchScope] = useState("all");
+  const [sortMode, setSortMode] = useState("default");
+  const [filterOpen, setFilterOpen] = useState(false);
+  const filterBtnRef = useRef(null);
+  const filterPopRef = useRef(null);
+  const filtersActive = searchScope !== "all" || sortMode !== "default";
+
+  // Placeholder kotak pencarian MENGIKUTI lingkup aktif (t111) — cara
+  // paling murah menunjukkan bahwa filter sedang membatasi pencarian
+  // tanpa memakai ruang layar tambahan. Lingkup "all" memakai teks
+  // gabungan lama ("Cari kanji, arti, bacaan…").
+  const searchPlaceholder =
+    searchScope === "all" ? t("browse.search") : t(`browse.search.${searchScope}`);
 
   // Navigasi komponen: klik chip komponen di modal → tampilkan kanji
   // komponen itu; entri yang ditinggalkan ditumpuk di navHistory supaya
@@ -78,21 +104,54 @@ export default function Browse({ script = "kana" }) {
   // mencocokkan arti INGGRIS maupun terjemahannya (t96): user berbahasa
   // Indonesia mengetik "air" tetap menemukan 水 (water) walau kartu
   // menampilkan "air".
+  // (t111) Lingkup pencarian diterapkan SEBELUM cocok-matching: "all"
+  // = semua kolom sekaligus; "kanji"/"meaning"/"reading" = hanya kolom
+  // itu. Urutan tetap hanya mengubah susunan hasil (copy + sort stabil
+  // — pool asli tak tersentuh supaya ganti filter tidak memicu muat
+  // ulang data).
   const list = useMemo(() => {
     if (!pool) return [];
     const q = query.trim().toLowerCase();
-    if (!q) return pool;
-    return pool.filter(
-      (k) =>
-        k.kanji.includes(q) ||
-        k.meanings.some((m) => m.toLowerCase().includes(q)) ||
-        (idData &&
-          k.meanings.some((m) => (idData.m[m] || "").toLowerCase().includes(q))) ||
-        k.romaji_readings.some((r) => r.toLowerCase().includes(q)) ||
-        k.readings.on.some((r) => r.includes(q)) ||
-        k.readings.kun.some((r) => r.includes(q))
-    );
-  }, [pool, query, idData]);
+    let out = pool;
+    if (q) {
+      if (searchScope === "kanji") {
+        out = out.filter((k) => k.kanji.includes(q));
+      } else if (searchScope === "meaning") {
+        out = out.filter(
+          (k) =>
+            k.meanings.some((m) => m.toLowerCase().includes(q)) ||
+            (idData &&
+              k.meanings.some((m) => (idData.m[m] || "").toLowerCase().includes(q)))
+        );
+      } else if (searchScope === "reading") {
+        out = out.filter(
+          (k) =>
+            k.romaji_readings.some((r) => r.toLowerCase().includes(q)) ||
+            k.readings.on.some((r) => r.includes(q)) ||
+            k.readings.kun.some((r) => r.includes(q))
+        );
+      } else {
+        out = out.filter(
+          (k) =>
+            k.kanji.includes(q) ||
+            k.meanings.some((m) => m.toLowerCase().includes(q)) ||
+            (idData &&
+              k.meanings.some((m) => (idData.m[m] || "").toLowerCase().includes(q))) ||
+            k.romaji_readings.some((r) => r.toLowerCase().includes(q)) ||
+            k.readings.on.some((r) => r.includes(q)) ||
+            k.readings.kun.some((r) => r.includes(q))
+        );
+      }
+    }
+    if (sortMode === "asc" || sortMode === "desc") {
+      out = [...out].sort((a, b) =>
+        sortMode === "asc"
+          ? (a.stroke_count || 0) - (b.stroke_count || 0)
+          : (b.stroke_count || 0) - (a.stroke_count || 0)
+      );
+    }
+    return out;
+  }, [pool, query, idData, searchScope, sortMode]);
 
   // Ganti level/query sekaligus reset batas render supaya selalu mulai
   // dari awal hasil baru.
@@ -105,6 +164,41 @@ export default function Browse({ script = "kana" }) {
     setQuery(val);
     setVisibleCount(VISIBLE_STEP);
   }, []);
+
+  // (t111) Ganti lingkup/urutan → reset batas render (mulai dari awal
+  // hasil baru, konsisten dengan selectLevel/updateQuery).
+  const applySearchScope = useCallback((id) => {
+    setSearchScope(id);
+    setVisibleCount(VISIBLE_STEP);
+  }, []);
+  const applySortMode = useCallback((id) => {
+    setSortMode(id);
+    setVisibleCount(VISIBLE_STEP);
+  }, []);
+
+  // (t110) Popover filter: tutup saat klik DI LUAR tombol+popover
+  // (mousedown supaya klik pilihan tidak ikut menutup — onClick pilihan
+  // baru jalan sesudahnya) dan saat Escape (ditambahkan terpisah supaya
+  // tidak bentrok dengan handler Escape modal detail).
+  useEffect(() => {
+    if (!filterOpen) return;
+    function onDown(e) {
+      const btn = filterBtnRef.current;
+      const pop = filterPopRef.current;
+      if (btn && btn.contains(e.target)) return;
+      if (pop && pop.contains(e.target)) return;
+      setFilterOpen(false);
+    }
+    function onKey(e) {
+      if (e.key === "Escape") setFilterOpen(false);
+    }
+    document.addEventListener("mousedown", onDown);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [filterOpen]);
 
   // Tutup modal (tombol ✕ / klik overlay / Escape) — histori ikut
   // dikosongkan.
@@ -241,23 +335,83 @@ export default function Browse({ script = "kana" }) {
           ))}
         </div>
 
-        <div className="kd-search">
-          <Search size={15} />
-          <input
-            type="text"
-            placeholder={t("browse.search")}
-            value={query}
-            onChange={(e) => updateQuery(e.target.value)}
-            aria-label={t("browse.search.aria")}
-          />
-          {query && (
-            <button
-              className="kd-search-clear"
-              onClick={() => updateQuery("")}
-              aria-label={t("browse.clear")}
-            >
-              <X size={14} />
-            </button>
+        {/* (t111) Baris pencarian + tombol filter di KANAN kotak
+            pencarian. Tombol membuka popover: lingkup pencarian
+            (kanji/arti/bacaan) + urutan. Titik indikator saat filter
+            aktif. Placeholder kotak pencarian mengikuti lingkup. */}
+        <div className="kd-search-row">
+          <div className="kd-search">
+            <Search size={15} />
+            <input
+              type="text"
+              placeholder={searchPlaceholder}
+              value={query}
+              onChange={(e) => updateQuery(e.target.value)}
+              aria-label={t("browse.search.aria")}
+            />
+            {query && (
+              <button
+                className="kd-search-clear"
+                onClick={() => updateQuery("")}
+                aria-label={t("browse.clear")}
+              >
+                <X size={14} />
+              </button>
+            )}
+          </div>
+          <button
+            ref={filterBtnRef}
+            className={`kd-filter-btn ${filterOpen ? "open" : ""} ${filtersActive ? "active" : ""}`}
+            onClick={() => setFilterOpen((v) => !v)}
+            aria-label={t("browse.filter.aria")}
+            aria-expanded={filterOpen}
+            aria-haspopup="true"
+          >
+            <SlidersHorizontal size={15} />
+            {filtersActive && <span className="kd-filter-dot" aria-hidden="true" />}
+          </button>
+          {filterOpen && (
+            <div className="kd-filter-pop" ref={filterPopRef} role="dialog" aria-label={t("browse.filter.aria")}>
+              <div className="kd-filter-group">
+                <div className="kd-filter-label">{t("browse.filter.scope")}</div>
+                <div className="kd-filter-options">
+                  {SEARCH_SCOPES.map((s) => (
+                    <button
+                      key={s}
+                      className={`kd-pill ${searchScope === s ? "active" : ""}`}
+                      onClick={() => applySearchScope(s)}
+                    >
+                      {t(`browse.filter.scope.${s}`)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="kd-filter-group">
+                <div className="kd-filter-label">{t("browse.filter.sort")}</div>
+                <div className="kd-filter-options">
+                  {["default", "asc", "desc"].map((m) => (
+                    <button
+                      key={m}
+                      className={`kd-pill ${sortMode === m ? "active" : ""}`}
+                      onClick={() => applySortMode(m)}
+                    >
+                      {t(`browse.filter.sort.${m}`)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              {filtersActive && (
+                <button
+                  className="kd-filter-reset"
+                  onClick={() => {
+                    applySearchScope("all");
+                    applySortMode("default");
+                  }}
+                >
+                  {t("browse.filter.reset")}
+                </button>
+              )}
+            </div>
           )}
         </div>
       </div>
@@ -284,7 +438,12 @@ export default function Browse({ script = "kana" }) {
       {pool === null && <div className="kd-empty-note">{t("browse.loadingLevel", { lv: activeLevel })}</div>}
 
       {pool !== null && list.length === 0 && (
-        <div className="kd-empty-note">{t("browse.noMatch", { q: query })}</div>
+        <div className="kd-empty-note">
+          {/* (t111) Lingkup pencarian bukan filter keras — tanpa teks
+              kueri daftar selalu penuh, jadi satu-satunya sebab daftar
+              kosong adalah kueri tanpa cocok. */}
+          {t("browse.noMatch", { q: query })}
+        </div>
       )}
 
       {hasMore && (
@@ -416,24 +575,9 @@ export default function Browse({ script = "kana" }) {
                   </span>
                   <span>{selected.unit}</span>
                 </div>
-                {selected.examples.length > 0 && (
-                  <div className="kd-examples">
-                    {selected.examples.map((ex) => (
-                      <div key={ex.word} className="kd-example-item">
-                        <span className={`kd-yomi-tag ${ex.type} small`}>
-                          {ex.type === "on" ? "On" : "Kun"}
-                        </span>
-                        <span className="kd-example-word">{ex.word}</span>
-                        {/* (t80) Reading contoh kata ikut skrip toggle
-                            universal — romaji dikonversi runtime. */}
-                        <span className="kd-example-reading">
-                          {script === "romaji" ? kanaToRomaji(ex.reading) : ex.reading}
-                        </span>
-                        <span className="kd-example-meaning">{localizedGloss(ex, idData)}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                {/* (t107) Contoh kata + kalimat lewat ExampleList —
+                    sama dengan panel reveal kuis & detail sheet. */}
+                <ExampleList examples={selected.examples} script={script} furigana={furigana} />
               </div>
             </div>
           </div>

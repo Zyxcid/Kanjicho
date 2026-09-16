@@ -91,9 +91,9 @@
       "type": "on"
     },
     {
-      "word": "二百十日",
-      "reading": "にひゃくとおか",
-      "meaning": "210th day (from the first day of spring according to the lunar calendar)",
+      "word": "十日",
+      "reading": "とおか",
+      "meaning": "10th day of the month",
       "type": "kun"
     }
   ],
@@ -119,10 +119,10 @@
       "type": "on"
     },
     {
-      "word": "大本",
-      "reading": "おおもと",
-      "meaning": "root",
-      "type": "kun"
+      "word": "本当に",
+      "reading": "ほんとうに",
+      "meaning": "really",
+      "type": "on"
     }
   ],
   "中": [
@@ -169,9 +169,9 @@
   ],
   "三": [
     {
-      "word": "三人",
-      "reading": "さんにん",
-      "meaning": "three people",
+      "word": "三十一日",
+      "reading": "さんじゅういちにち",
+      "meaning": "31st day of the month",
       "type": "on"
     },
     {
@@ -281,9 +281,9 @@
   ],
   "五": [
     {
-      "word": "十五",
-      "reading": "じゅうご",
-      "meaning": "fifteen",
+      "word": "五十",
+      "reading": "ごじゅう",
+      "meaning": "fifty",
       "type": "on"
     },
     {
@@ -337,9 +337,9 @@
   ],
   "四": [
     {
-      "word": "四十九日",
-      "reading": "しじゅうくにち",
-      "meaning": "forty-ninth day after a person's death",
+      "word": "四方",
+      "reading": "しほう",
+      "meaning": "the four cardinal directions",
       "type": "on"
     },
     {
@@ -385,9 +385,9 @@
       "type": "on"
     },
     {
-      "word": "九つ",
-      "reading": "ここのつ",
-      "meaning": "nine",
+      "word": "九日",
+      "reading": "ここのか",
+      "meaning": "9th day of the month",
       "type": "kun"
     }
   ],
@@ -435,15 +435,15 @@
   ],
   "円": [
     {
-      "word": "一円",
-      "reading": "いちえん",
-      "meaning": "one yen",
+      "word": "円形",
+      "reading": "えんけい",
+      "meaning": "round shape",
       "type": "on"
     },
     {
-      "word": "円錐",
-      "reading": "まるぎり",
-      "meaning": "round gimlet",
+      "word": "円い",
+      "reading": "まるい",
+      "meaning": "round",
       "type": "kun"
     }
   ],
@@ -477,9 +477,9 @@
   ],
   "八": [
     {
-      "word": "四苦八苦",
-      "reading": "しくはっく",
-      "meaning": "being in dire distress",
+      "word": "二十八日",
+      "reading": "にじゅうはちにち",
+      "meaning": "28th day of the month",
       "type": "on"
     },
     {
@@ -491,9 +491,9 @@
   ],
   "六": [
     {
-      "word": "四六時中",
-      "reading": "しろくじちゅう",
-      "meaning": "around the clock",
+      "word": "十六日",
+      "reading": "じゅうろくにち",
+      "meaning": "16th day of the month",
       "type": "on"
     },
     {
@@ -561,9 +561,9 @@
   ],
   "七": [
     {
-      "word": "七回忌",
-      "reading": "しちかいき",
-      "meaning": "sixth anniversary of a death",
+      "word": "十七日",
+      "reading": "じゅうしちにち",
+      "meaning": "17th day of the month",
       "type": "on"
     },
     {
@@ -575,9 +575,9 @@
   ],
   "山": [
     {
-      "word": "下山",
-      "reading": "げざん",
-      "meaning": "descending a mountain",
+      "word": "火山",
+      "reading": "かざん",
+      "meaning": "volcano",
       "type": "on"
     },
     {
@@ -637,10 +637,10 @@
       "type": "on"
     },
     {
-      "word": "丙午",
-      "reading": "ひのえうま",
-      "meaning": "Fire Horse (43rd term of the sexagenary cycle, e.g. 1906, 1966, 2026)",
-      "type": "kun"
+      "word": "午前",
+      "reading": "ごぜん",
+      "meaning": "morning",
+      "type": "on"
     }
   ],
   "百": [
@@ -651,10 +651,10 @@
       "type": "on"
     },
     {
-      "word": "百千鳥",
-      "reading": "ももちどり",
-      "meaning": "many bird",
-      "type": "kun"
+      "word": "二百",
+      "reading": "にひゃく",
+      "meaning": "200",
+      "type": "on"
     }
   ],
   "書": [
@@ -721,9 +721,9 @@
       "type": "on"
     },
     {
-      "word": "千草",
-      "reading": "ちぐさ",
-      "meaning": "great variety of flowering plants",
+      "word": "千代",
+      "reading": "ちよ",
+      "meaning": "thousand years",
       "type": "kun"
     }
   ],
@@ -771,9 +771,9 @@
   ],
   "西": [
     {
-      "word": "西欧",
-      "reading": "せいおう",
-      "meaning": "Western Europe",
+      "word": "西洋",
+      "reading": "せいよう",
+      "meaning": "the West",
       "type": "on"
     },
     {
@@ -833,9 +833,9 @@
       "type": "on"
     },
     {
-      "word": "赤土",
-      "reading": "あかつち",
-      "meaning": "red clay",
+      "word": "土",
+      "reading": "つち",
+      "meaning": "earth",
       "type": "kun"
     }
   ],
@@ -897,10 +897,10 @@
   ],
   "何": [
     {
-      "word": "幾何",
-      "reading": "きか",
-      "meaning": "geometry",
-      "type": "on"
+      "word": "何か",
+      "reading": "なにか",
+      "meaning": "something",
+      "type": "kun"
     },
     {
       "word": "何",
@@ -911,9 +911,9 @@
   ],
   "南": [
     {
-      "word": "指南",
-      "reading": "しなん",
-      "meaning": "instruction (in martial arts, performance, etc.)",
+      "word": "南部",
+      "reading": "なんぶ",
+      "meaning": "southern part",
       "type": "on"
     },
     {
@@ -931,10 +931,10 @@
       "type": "on"
     },
     {
-      "word": "千代万代",
-      "reading": "ちよよろずよ",
-      "meaning": "for ever and ever",
-      "type": "kun"
+      "word": "万が一",
+      "reading": "まんがいち",
+      "meaning": "(if) by some chance",
+      "type": "on"
     }
   ],
   "毎": [
@@ -973,23 +973,23 @@
       "type": "on"
     },
     {
-      "word": "天下り",
-      "reading": "あまくだり",
-      "meaning": "retiring high-ranking government officials taking a lucrative job in a private or semi-private corporation",
+      "word": "天の川",
+      "reading": "あまのがわ",
+      "meaning": "Milky Way",
       "type": "kun"
     }
   ],
   "母": [
     {
-      "word": "異母",
-      "reading": "いぼ",
-      "meaning": "different mother",
+      "word": "祖母",
+      "reading": "そぼ",
+      "meaning": "grandmother",
       "type": "on"
     },
     {
-      "word": "継母",
-      "reading": "ままはは",
-      "meaning": "stepmother",
+      "word": "母",
+      "reading": "はは",
+      "meaning": "mother",
       "type": "kun"
     }
   ],
@@ -1065,9 +1065,9 @@
   ],
   "休": [
     {
-      "word": "自然休会",
-      "reading": "しぜんきゅうかい",
-      "meaning": "spontaneous recess (in the Diet)",
+      "word": "休憩",
+      "reading": "きゅうけい",
+      "meaning": "rest",
       "type": "on"
     },
     {
@@ -1085,17 +1085,17 @@
       "type": "on"
     },
     {
-      "word": "義理の父",
-      "reading": "ぎりのちち",
-      "meaning": "father-in-law",
+      "word": "父",
+      "reading": "ちち",
+      "meaning": "father",
       "type": "kun"
     }
   ],
   "雨": [
     {
-      "word": "雨中",
-      "reading": "うちゅう",
-      "meaning": "in the rain",
+      "word": "豪雨",
+      "reading": "ごうう",
+      "meaning": "torrential rain",
       "type": "on"
     },
     {

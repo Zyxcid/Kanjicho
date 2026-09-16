@@ -17,20 +17,23 @@ apply_hybrid() tepat setelah parse_jmdict — satu titik injeksi):
      rank <= JITEN_MAX_RANK → freq = JITEN_SCALE // rank
      (MENIMPA nilai pri; Zipf 20.000.000/rank).
   2. Terattestasi tapi rank > JITEN_MAX_RANK (LEMAH) + pri-marked →
-     freq di-CAP ke WEAK_CAP (turunkan nilai pri yang lebih tinggi;
-     nilai di bawah cap dibiarkan). Attestasi lemah adalah BUKTI
-     KEBARANGAN riil: kata yang kamus koran anggap umum (二死
-     news1/nf04 ≈ 47.000) tapi riilnya cuma #104.000 di media tidak
-     boleh mengalahkan kata yang benar-benar umum (第二 #2.926).
-     Cap = band "umum lemah" pri (ichi2/news2/spec2/gai2 = 2.500).
+     freq di-CAP KE NILAI ATTESTASI RIIL: min(pri, Zipf rank), lantai
+     SLOT_FLOOR (t110). Cap flat 2.500 lama menghapus URUTAN frekuensi
+     antar kata lemah — 七回忌 #74.757 (pri news, obituari) dan
+     二百十日 #345.741 sama-sama di-flat ke 2.500, lalu tiebreak jatuh
+     ke urutan file JMdict (efektif acak) sehingga kata arsip mengalahkan
+     kata umum (十日 #11.882). Dengan cap Zipf: rank 11k → 1.818,
+     rank 74k → 267, rank 345k → 57 — kebarangan riil tetap terbukti
+     (kata pri langka TIDAK BOLEH mengalahkan kata yang benar-benar umum,
+     第二 #2.926), DAN urutan riilnya utuh.
   3. Terattestasi LEMAH + TANPA pri → freq = SLOT_FLOOR (50):
      kelas SLOT-FILL-ONLY — di BAWAH SEED_MARGIN rerank (100) sehingga
      tak bisa menggulingkan urutan kamus, dan di bawah
-     P2A_FREQ_FLOOR (2000) sehingga tak bisa menukar primary; tapi
-     freq > 0 menjadikannya kandidat korpus supaya slot contoh N1
-     sastra tetap terisi (奈落 #21k, 山彦 #75k — kata NYATA, hanya
-     bukan top-10k media dan tanpa tanda editorial). Tanpa kelas ini,
-     99 kanji N1 kehilangan semua contohnya.
+     P2A_FREQ_FLOOR (2000) maupun MIN_EXAMPLE_FREQ t110 (1000)
+     sehingga tak bisa menukar primary MAUPUN menjadi contoh yang
+     ditampilkan app. freq > 0 hanya menjaga kelas ini tetap kandidat
+     teknis di pool (stabilitas ranking) — era "slot N1 sastra"
+     (奈落/山彦 jadi contoh) berakhir di gerbang tampilan build_examples.
   4. Tidak ada di jiten → pri tetap (kata editorial/korpus koran
      yang jarang muncul di media hiburan tetap dapat kredit pri).
 
@@ -55,13 +58,16 @@ ROOT = Path(__file__).resolve().parent.parent
 JITEN_MAX_RANK = 10_000
 JITEN_SCALE = 20_000_000
 # Cap untuk attestasi LEMAH (rank > JITEN_MAX_RANK tapi tercatat):
-# menurunkan nilai pri kata riil-langka ke band "umum lemah".
-# SELARAS P2A_FREQ_FLOOR 2000 (cap 2.500 tetap lolos floor, persis
-# perilaku tier-2 ichi2/news2).
+# pri diturunkan KE NILAI ATTESTASI RIIL — min(pri, Zipf rank), lantai
+# SLOT_FLOOR (t110; dulu cap flat 2.500 yang menghapus urutan frekuensi
+# antar kata lemah — lihat docstring aturan 2). Konstanta ini tetap
+# dipakai sebagai BATAS KELAS: pri >= WEAK_CAP (band kuat ichi1/news1/
+# spec1/gai1) masuk cabang cap; pri lebih rendah masuk cabang lantai.
 WEAK_CAP = 2_500
 # Lantai slot-fill-only untuk attestasi lemah TANPA pri: di bawah
-# SEED_MARGIN (100) dan P2A_FREQ_FLOOR (2000) — bisa mengisi slot
-# contoh, tidak bisa memengaruhi ranking bacaan/primary.
+# SEED_MARGIN (100), P2A_FREQ_FLOOR (2000) dan MIN_EXAMPLE_FREQ t110
+# (1000) — kandidat teknis di pool untuk stabilitas ranking, TIDAK
+# bisa memengaruhi ranking bacaan/primary maupun tampil jadi contoh.
 SLOT_FLOOR = 50
 
 # Nama file kanonik di raw/ (fail-fast bila hilang: rebuild harus
@@ -147,8 +153,12 @@ def apply_hybrid(terms, alt_terms, jiten):
                 stats["jiten_overridden"] += 1
                 changed = True
             elif freq >= WEAK_CAP:
-                # kasus 2: lemah + pri-marked (nilai pri ≥ 2.500) → cap.
-                bucket[i] = (reading, glosses, WEAK_CAP)
+                # kasus 2: lemah + pri-marked (nilai pri ≥ 2.500) →
+                # cap ke attestasi riil: min(pri, Zipf rank), lantai
+                # SLOT_FLOOR (t110 — urutan frekuensi riil utuh).
+                bucket[i] = (reading, glosses,
+                             max(min(freq, jiten_pseudo_freq(rank)),
+                                 SLOT_FLOOR))
                 stats["weak_capped"] += 1
                 changed = True
             else:
@@ -195,7 +205,8 @@ def attach(raw_dir, terms, alt_terms, label="hybrid"):
           f"(cutoff rank <= {JITEN_MAX_RANK:,})")
     stats = apply_hybrid(terms, alt_terms, jiten)
     print(f"  [{label}] overlay: {stats['jiten_overridden']:,} kuat menimpa; "
-          f"{stats['weak_capped']:,} lemah+pri di-cap {WEAK_CAP:,}; "
+          f"{stats['weak_capped']:,} lemah+pri di-cap attestasi riil "
+          f"(min(pri, Zipf), lantai {SLOT_FLOOR}); "
           f"{stats['weak_slotfloor']:,} lemah tanpa pri → slot-floor "
           f"{SLOT_FLOOR}; {stats['pairs_seen']:,} pasangan diperiksa")
     return stats, jiten

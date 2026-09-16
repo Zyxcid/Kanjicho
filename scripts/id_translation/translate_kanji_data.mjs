@@ -34,7 +34,9 @@ const LEVELS = ["n5", "n4", "n3", "n2", "n1"];
 const HERE = import.meta.dirname;
 const CACHE_FILE = path.join(HERE, "translate_cache.jsonl");
 const OUT_FILE = path.join(ROOT, "src/data/id_gloss.json");
-const CONCURRENCY = 2;
+// Tekanan API bisa diatur dari luar (mis. CONCURRENCY=1 saat rate-limit
+// 429 ketat) — default tetap 2.
+const CONCURRENCY = Number(process.env.CONCURRENCY || 2);
 const MEANING_BATCH = 150;
 const WORD_BATCH = 70;
 const PILOT = process.argv.includes("--pilot");
@@ -258,6 +260,30 @@ async function main() {
     }
   }
   await Promise.all(Array.from({ length: CONCURRENCY }, (_, i) => worker(i)));
+
+  // t110 — MERGE-RESUME dengan file final yang ada (paritas filosofi
+  // pipeline kalimat t108): kunci yang batch-nya gagal/gagal-format
+  // tetap memegang terjemahan file lama — cache per-batch tak bisa
+  // menyelamatkan batch yang hash-nya bergeser (komposisi data berubah)
+  // walau terjemahannya sendiri masih sah dan sudah di-ship. Tanpa ini,
+  // rebuild dari cache bisa MENURUNKAN cakupan (kelas batch-m #13/#16
+  // "kurung kurawal tidak seimbang" yang berulang) dan gerbang 95%
+  // memblokir penulisan selamanya.
+  if (!PILOT && fs.existsSync(OUT_FILE)) {
+    try {
+      const prev = JSON.parse(fs.readFileSync(OUT_FILE, "utf8"));
+      let mergedM = 0, mergedW = 0;
+      for (const [k, v] of Object.entries(prev.m || {})) {
+        if (outMaps.m[k] === undefined && meanings.has(k)) { outMaps.m[k] = v; mergedM++; }
+      }
+      for (const [k, v] of Object.entries(prev.w || {})) {
+        if (outMaps.w[k] === undefined && words.has(k)) { outMaps.w[k] = v; mergedW++; }
+      }
+      if (mergedM || mergedW) {
+        console.log(`Merge-resume: ${mergedM} arti + ${mergedW} kata diambil dari file final lama.`);
+      }
+    } catch { /* file lama korup → abaikan, jalur cache murni */ }
+  }
 
   const gotM = Object.keys(outMaps.m).length;
   const gotW = Object.keys(outMaps.w).length;

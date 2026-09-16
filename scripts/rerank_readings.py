@@ -209,9 +209,11 @@ def load_pri_words(jmdict_path):
     # build_examples ↔ rerank_readings.
     from build_examples import parse_jmdict
     # t73: parse_jmdict kini juga mengembalikan alt_variants (gerbang
-    # varian ejaan) — rerank tidak memakainya (hanya terms), tapi
-    # unpack-nya tetap dijaga sinkron.
-    terms, alt_terms, _alt_common, _alt_variants = parse_jmdict(jmdict_path)
+    # varian ejaan); t110: + strong_pri (gerbang tampilan) — rerank
+    # tidak memakai keduanya (hanya terms), tapi unpack-nya tetap
+    # dijaga sinkron.
+    terms, alt_terms, _alt_common, _alt_variants, _strong_pri = \
+        parse_jmdict(jmdict_path)
     # t72 — sinyal hybrid: jiten utama, pri fallback. SATU titik injeksi
     # yang sama dengan build_examples.py (hybrid_freq.attach).
     from hybrid_freq import attach as hybrid_attach, JITEN_MAX_RANK

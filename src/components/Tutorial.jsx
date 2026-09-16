@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ChevronLeft } from "lucide-react";
-import { t } from "../lib/i18n.js";
+import { t, getLang, LANGS } from "../lib/i18n.js";
 
 /**
  * Tutorial (t82, direvisi t83) — tur onboarding "hint overlay" untuk
@@ -102,6 +102,19 @@ const POLL_MS = 400;
  */
 const STEPS = [
   {
+    // (t109) Pilih bahasa SEBELUM materi tur — judul & isi dwibahasa
+    // (string sama di kedua kamus) supaya terbaca calon user apa pun
+    // bahasa antarmuka sekarang; label tombol memakai nama asli tiap
+    // bahasa (konvensi UI bahasa, LANGS di i18n.js). Memilih langsung
+    // mengganti bahasa antarmuka (onSetLang dari App) — tooltip dan
+    // langkah-langkah berikutnya langsung berganti bahasa.
+    id: "language",
+    target: null,
+    title: "tour.language.title",
+    body: "tour.language.body",
+    cta: "lang",
+  },
+  {
     id: "welcome",
     target: null,
     title: "tour.welcome.title",
@@ -135,10 +148,10 @@ const STEPS = [
   {
     // (t87) User kini MENJAWAB satu soal NYATA — diperlukan supaya
     // punggung kartu (langkah berikutnya) muncul: kartu terbalik sendiri
-    // begitu dijawab. Got-it tetap tersedia sebagai pintu darurat (tanpa
-    // menjawab, langkah-langkah berikutnya masih bisa dilewati lewat
-    // Got-it). (t88) Body dipangkas atas permintaan: cukup arah jawabannya
-    // — bacaan kanji, bukan arti.
+    // begitu dijawab. (t109) atas permintaan user, tombol Got-it DIHAPUS
+    // dari langkah ini: satu-satunya jalan maju adalah MEMILIH JAWABAN
+    // (kartu pun terbalik) — jawaban keliru sama-sama memajukan, tur
+    // tidak menghakimi.
     // (t89) waitClick pada pilihan DIHAPUS: maju kini HANYA lewat munculnya
     // punggung kartu (waitAppear .kd-reveal-glyph = soal benar-benar
     // dijawab). Ketukan PERTAMA pada pilihan saat fitur "blur pilihan"
@@ -149,7 +162,6 @@ const STEPS = [
     waitAppear: ".kd-reveal-glyph",
     title: "tour.choices.title",
     body: "tour.choices.body",
-    cta: "got-it",
   },
   {
     // (t87) Punggung kartu: bacaan BOLD = sumber pilihan kuis; kanji
@@ -209,7 +221,7 @@ const STEPS = [
   },
 ];
 
-export default function Tutorial({ onFinish, onGoHome }) {
+export default function Tutorial({ onFinish, onGoHome, onSetLang }) {
   const [step, setStep] = useState(0);
   // Persegi lubang (viewport coords) — null = mode terpusat (tanpa target,
   // seluruh layar diredupkan; dipakai sambutan & langkah menunggu target).
@@ -476,7 +488,29 @@ export default function Tutorial({ onFinish, onGoHome }) {
       >
         <div className="kd-tut-title">{t(current.title)}</div>
         <p className="kd-tut-body">{t(current.body)}</p>
-        {current.cta === "home" ? (
+        {current.cta === "lang" ? (
+          /* (t109) Dua tombol pilih bahasa — nama asli tiap bahasa
+             (konvensi UI bahasa); bahasa yang sedang aktif diberi
+             pewarnaan primer supaya terbaca sebagai posisi sekarang.
+             Memilih = mengganti bahasa antarmuka LANGSUNG (seluruh tur
+             berlanjut dalam bahasa itu) lalu maju. */
+          <div className="kd-tut-lang">
+            {LANGS.map((l) => (
+              <button
+                key={l.id}
+                className={`kd-btn kd-tut-cta kd-tut-lang-btn ${
+                  l.id === getLang() ? "primary" : "secondary"
+                }`}
+                onClick={() => {
+                  if (onSetLang) onSetLang(l.id);
+                  advance(step);
+                }}
+              >
+                {l.label}
+              </button>
+            ))}
+          </div>
+        ) : current.cta === "home" ? (
           /* (t89) CTA "< Home" — tombol pulang SUNGGUH di dalam tooltip:
              desain chevron + label (bahasa ikon tombol back topbar app),
              pewarnaan tombol primer supaya terbaca sebagai satu-satunya

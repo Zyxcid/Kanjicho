@@ -63,10 +63,10 @@
       "type": "on"
     },
     {
-      "word": "村のお社",
-      "reading": "むらのおやしろ",
-      "meaning": "village shrine",
-      "type": "kun"
+      "word": "社会",
+      "reading": "しゃかい",
+      "meaning": "society",
+      "type": "on"
     }
   ],
   "発": [
@@ -105,9 +105,9 @@
       "type": "on"
     },
     {
-      "word": "地下鉄",
-      "reading": "ちかてつ",
-      "meaning": "subway",
+      "word": "地理",
+      "reading": "ちり",
+      "meaning": "geography",
       "type": "on"
     }
   ],
@@ -197,9 +197,9 @@
   ],
   "開": [
     {
-      "word": "続開",
-      "reading": "ぞっかい",
-      "meaning": "resumption",
+      "word": "開始",
+      "reading": "かいし",
+      "meaning": "start",
       "type": "on"
     },
     {
@@ -301,9 +301,9 @@
       "type": "on"
     },
     {
-      "word": "帰京",
-      "reading": "ききょう",
-      "meaning": "returning (home) to Tokyo",
+      "word": "上京",
+      "reading": "じょうきょう",
+      "meaning": "going (up) to the capital",
       "type": "on"
     }
   ],
@@ -379,15 +379,15 @@
   ],
   "田": [
     {
-      "word": "塩田",
-      "reading": "えんでん",
-      "meaning": "saltpan",
+      "word": "上田",
+      "reading": "じょうでん",
+      "meaning": "high rice field",
       "type": "on"
     },
     {
-      "word": "半田",
-      "reading": "はんだ",
-      "meaning": "solder",
+      "word": "田",
+      "reading": "た",
+      "meaning": "rice field",
       "type": "kun"
     }
   ],
@@ -539,9 +539,9 @@
       "type": "on"
     },
     {
-      "word": "裾野",
-      "reading": "すその",
-      "meaning": "foot of a mountain",
+      "word": "大野",
+      "reading": "おおの",
+      "meaning": "large field",
       "type": "kun"
     }
   ],
@@ -707,10 +707,10 @@
       "type": "on"
     },
     {
-      "word": "恋文",
-      "reading": "こいぶみ",
-      "meaning": "love letter",
-      "type": "kun"
+      "word": "文化",
+      "reading": "ぶんか",
+      "meaning": "culture",
+      "type": "on"
     }
   ],
   "元": [
@@ -777,10 +777,10 @@
       "type": "on"
     },
     {
-      "word": "画する",
-      "reading": "かくする",
-      "meaning": "to draw (a line)",
-      "type": "kun"
+      "word": "映画",
+      "reading": "えいが",
+      "meaning": "movie",
+      "type": "on"
     }
   ],
   "海": [
@@ -1071,8 +1071,8 @@
       "type": "on"
     },
     {
-      "word": "真中",
-      "reading": "まなか",
+      "word": "真ん中",
+      "reading": "まんなか",
       "meaning": "middle",
       "type": "kun"
     }
@@ -1085,9 +1085,9 @@
       "type": "on"
     },
     {
-      "word": "由有る",
-      "reading": "よしある",
-      "meaning": "of rank",
+      "word": "有り余る",
+      "reading": "ありあまる",
+      "meaning": "to be superfluous",
       "type": "kun"
     }
   ],
@@ -1121,9 +1121,9 @@
   ],
   "町": [
     {
-      "word": "市町村",
-      "reading": "しちょうそん",
-      "meaning": "cities, towns and villages",
+      "word": "町内",
+      "reading": "ちょうない",
+      "meaning": "neighborhood",
       "type": "on"
     },
     {
@@ -1295,10 +1295,10 @@
       "type": "on"
     },
     {
-      "word": "究める",
-      "reading": "きわめる",
-      "meaning": "to investigate thoroughly",
-      "type": "kun"
+      "word": "研究室",
+      "reading": "けんきゅうしつ",
+      "meaning": "laboratory",
+      "type": "on"
     }
   ],
   "楽": [
@@ -1365,9 +1365,9 @@
       "type": "on"
     },
     {
-      "word": "作り病",
-      "reading": "つくりやまい",
-      "meaning": "feigned illness",
+      "word": "不治の病",
+      "reading": "ふじのやまい",
+      "meaning": "incurable illness",
       "type": "kun"
     }
   ],
@@ -1583,16 +1583,16 @@
   ],
   "字": [
     {
-      "word": "字",
-      "reading": "じ",
-      "meaning": "character (esp. kanji)",
+      "word": "漢字",
+      "reading": "かんじ",
+      "meaning": "kanji",
       "type": "on"
     },
     {
-      "word": "大字",
-      "reading": "おおあざ",
-      "meaning": "larger section (of village)",
-      "type": "kun"
+      "word": "数字",
+      "reading": "すうじ",
+      "meaning": "numeral",
+      "type": "on"
     }
   ],
   "答": [
@@ -1667,9 +1667,9 @@
   ],
   "古": [
     {
-      "word": "懐古",
-      "reading": "かいこ",
-      "meaning": "reminiscence",
+      "word": "古代",
+      "reading": "こだい",
+      "meaning": "ancient times",
       "type": "on"
     },
     {
@@ -1681,9 +1681,9 @@
   ],
   "歌": [
     {
-      "word": "演歌",
-      "reading": "えんか",
-      "meaning": "enka",
+      "word": "歌詞",
+      "reading": "かし",
+      "meaning": "song lyrics",
       "type": "on"
     },
     {
@@ -1695,9 +1695,9 @@
   ],
   "買": [
     {
-      "word": "購買",
-      "reading": "こうばい",
-      "meaning": "procurement",
+      "word": "買収",
+      "reading": "ばいしゅう",
+      "meaning": "acquisition (esp. corporate)",
       "type": "on"
     },
     {
@@ -1757,9 +1757,9 @@
       "type": "on"
     },
     {
-      "word": "氷室",
-      "reading": "ひむろ",
-      "meaning": "ice house",
+      "word": "室町",
+      "reading": "むろまち",
+      "meaning": "Muromachi period (1336-1573)",
       "type": "kun"
     }
   ],
@@ -1785,9 +1785,9 @@
       "type": "on"
     },
     {
-      "word": "そよ風",
-      "reading": "そよかぜ",
-      "meaning": "gentle breeze",
+      "word": "潮風",
+      "reading": "しおかぜ",
+      "meaning": "sea breeze",
       "type": "kun"
     }
   ],
@@ -1807,9 +1807,9 @@
   ],
   "黒": [
     {
-      "word": "黒鉛",
-      "reading": "こくえん",
-      "meaning": "graphite",
+      "word": "漆黒",
+      "reading": "しっこく",
+      "meaning": "pitch-black",
       "type": "on"
     },
     {
@@ -1849,9 +1849,9 @@
   ],
   "赤": [
     {
-      "word": "赤外線",
-      "reading": "せきがいせん",
-      "meaning": "infrared rays",
+      "word": "赤面",
+      "reading": "せきめん",
+      "meaning": "blushing",
       "type": "on"
     },
     {
@@ -1883,9 +1883,9 @@
       "type": "on"
     },
     {
-      "word": "恐怖の館",
-      "reading": "きょうふのやかた",
-      "meaning": "house of horrors",
+      "word": "館",
+      "reading": "やかた",
+      "meaning": "mansion",
       "type": "kun"
     }
   ],
@@ -1905,9 +1905,9 @@
   ],
   "色": [
     {
-      "word": "異色",
-      "reading": "いしょく",
-      "meaning": "unique",
+      "word": "物色",
+      "reading": "ぶっしょく",
+      "meaning": "looking for (a suitable thing or person)",
       "type": "on"
     },
     {
@@ -1933,9 +1933,9 @@
   ],
   "秋": [
     {
-      "word": "今秋",
-      "reading": "こんしゅう",
-      "meaning": "this autumn",
+      "word": "春秋",
+      "reading": "しゅんじゅう",
+      "meaning": "spring and autumn",
       "type": "on"
     },
     {
@@ -1947,9 +1947,9 @@
   ],
   "夏": [
     {
-      "word": "今夏",
-      "reading": "こんか",
-      "meaning": "this summer",
+      "word": "初夏",
+      "reading": "しょか",
+      "meaning": "early summer",
       "type": "on"
     },
     {
@@ -2009,9 +2009,9 @@
       "type": "on"
     },
     {
-      "word": "船旅",
-      "reading": "ふなたび",
-      "meaning": "trip by boat",
+      "word": "一人旅",
+      "reading": "ひとりたび",
+      "meaning": "travelling alone",
       "type": "kun"
     }
   ],
@@ -2073,9 +2073,9 @@
   ],
   "飲": [
     {
-      "word": "飲酒",
-      "reading": "いんしゅ",
-      "meaning": "drinking alcohol",
+      "word": "飲食店",
+      "reading": "いんしょくてん",
+      "meaning": "restaurant",
       "type": "on"
     },
     {
@@ -2093,17 +2093,17 @@
       "type": "on"
     },
     {
-      "word": "太り肉",
-      "reading": "ふとりじし",
-      "meaning": "corpulent",
-      "type": "kun"
+      "word": "豚肉",
+      "reading": "ぶたにく",
+      "meaning": "pork",
+      "type": "on"
     }
   ],
   "貸": [
     {
-      "word": "貸借",
-      "reading": "たいしゃく",
-      "meaning": "loan",
+      "word": "賃貸",
+      "reading": "ちんたい",
+      "meaning": "leasing (out)",
       "type": "on"
     },
     {
@@ -2129,9 +2129,9 @@
   ],
   "鳥": [
     {
-      "word": "愛鳥",
-      "reading": "あいちょう",
-      "meaning": "pet bird",
+      "word": "一石二鳥",
+      "reading": "いっせきにちょう",
+      "meaning": "killing two birds with one stone",
       "type": "on"
     },
     {
@@ -2149,9 +2149,9 @@
       "type": "on"
     },
     {
-      "word": "冷や飯",
-      "reading": "ひやめし",
-      "meaning": "cold rice",
+      "word": "昼飯",
+      "reading": "ひるめし",
+      "meaning": "lunch",
       "type": "kun"
     }
   ],
@@ -2163,17 +2163,17 @@
       "type": "on"
     },
     {
-      "word": "勤勉",
-      "reading": "きんべん",
-      "meaning": "diligent",
+      "word": "勉学",
+      "reading": "べんがく",
+      "meaning": "study",
       "type": "on"
     }
   ],
   "冬": [
     {
-      "word": "越冬",
-      "reading": "えっとう",
-      "meaning": "passing the winter",
+      "word": "冬眠",
+      "reading": "とうみん",
+      "meaning": "hibernation",
       "type": "on"
     },
     {
@@ -2233,17 +2233,17 @@
       "type": "on"
     },
     {
-      "word": "子牛",
-      "reading": "こうし",
-      "meaning": "calf",
+      "word": "牛",
+      "reading": "うし",
+      "meaning": "cattle (Bos taurus)",
       "type": "kun"
     }
   ],
   "魚": [
     {
-      "word": "魚介",
-      "reading": "ぎょかい",
-      "meaning": "marine products",
+      "word": "金魚",
+      "reading": "きんぎょ",
+      "meaning": "goldfish (Carassius auratus)",
       "type": "on"
     },
     {
@@ -2269,9 +2269,9 @@
   ],
   "犬": [
     {
-      "word": "愛犬",
-      "reading": "あいけん",
-      "meaning": "pet dog",
+      "word": "番犬",
+      "reading": "ばんけん",
+      "meaning": "watchdog",
       "type": "on"
     },
     {
@@ -2317,9 +2317,9 @@
       "type": "on"
     },
     {
-      "word": "漢語",
-      "reading": "かんご",
-      "meaning": "Japanese word of Chinese origin",
+      "word": "痴漢",
+      "reading": "ちかん",
+      "meaning": "molester",
       "type": "on"
     }
   ]

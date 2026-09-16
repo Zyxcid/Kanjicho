@@ -586,7 +586,21 @@ export default function HelpButton({
                         <a href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank" rel="noreferrer">
                           CC&nbsp;BY-SA&nbsp;3.0
                         </a>
-                        . This app uses the KANJIDIC2 and JMdict dictionary
+                        ; example sentences from{" "}
+                        <a href="https://tatoeba.org/" target="_blank" rel="noreferrer">
+                          Tatoeba
+                        </a>{" "}
+                        © their contributors, used under{" "}
+                        <a href="https://tatoeba.org/en/about/license" target="_blank" rel="noreferrer">
+                          CC&nbsp;BY&nbsp;/&nbsp;CC&nbsp;BY-SA
+                        </a>{" "}
+                        as applicable per sentence; furigana readings
+                        annotated at build time with{" "}
+                        <a href="https://unidic.ninjal.ac.jp/" target="_blank" rel="noreferrer">
+                          UniDic
+                        </a>{" "}
+                        (NINJAL, Apache&nbsp;2.0 — build tool only, not
+                        bundled). This app uses the KANJIDIC2 and JMdict dictionary
                         files in conformance with the{" "}
                         <a href="https://www.edrdg.org/edrdg/licence.html" target="_blank" rel="noreferrer">
                           EDRDG licence
@@ -631,7 +645,11 @@ export default function HelpButton({
 
                     <div className="kd-help-section">
                       <div className="kd-help-heading">{t("help.contact")}</div>
-                      <div className="kd-help-links">
+                      {/* (t109) Kelas tambahan `kd-help-contact`: email
+                          mengisi baris pertama sendirian, kebijakan privasi
+                          + lisensi berbagi baris kedua — sebelumnya tiga
+                          tautan sebaris satu dan terlalu penuh. */}
+                      <div className="kd-help-links kd-help-contact">
                         {/* t74: kontak = email kanjicho (mailto) — satu klik
                             di Android langsung membuka aplikasi email dengan
                             penerima (dan subjek) terisi. */}

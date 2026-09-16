@@ -35,6 +35,7 @@ import Result from "./components/Result.jsx";
 import Toast from "./components/Toast.jsx";
 import ThemeToggle from "./components/ThemeToggle.jsx";
 import ScriptToggle from "./components/ScriptToggle.jsx";
+import FuriganaToggle from "./components/FuriganaToggle.jsx";
 import Browse from "./components/Browse.jsx";
 import CalendarModal from "./components/CalendarModal.jsx";
 import { buildScheduleEntries } from "./components/ReviewCalendar.jsx";
@@ -120,6 +121,24 @@ export default function App() {
     setAnswerScript((s) => {
       const next = s === "kana" ? "romaji" : "kana";
       localStorage.setItem("kanji-answer-script", next);
+      return next;
+    });
+  }
+
+  // (t108) Furigana kalimat contoh — DEFAULT NYALA; ruby diprakompute
+  // build-time (scripts/build_furigana.py, field `furi`), jadi toggle ini
+  // murni render (menyembunyikan = berhenti merender <rt>). Satu gerbang
+  // global untuk Quiz reveal + Browse modal + KanjiDetailSheet; disimpan
+  // localStorage "kanji-sent-furigana" (absen/"1" = ON) — pola yang sama
+  // dengan auto-flip di bawah.
+  const [sentFurigana, setSentFurigana] = useState(
+    () => localStorage.getItem("kanji-sent-furigana") !== "0"
+  );
+
+  function toggleSentFurigana() {
+    setSentFurigana((v) => {
+      const next = !v;
+      localStorage.setItem("kanji-sent-furigana", next ? "1" : "0");
       return next;
     });
   }
@@ -1035,6 +1054,9 @@ export default function App() {
             onChangeReminderTime={changeReminderTime}
           />
           <ScriptToggle answerScript={answerScript} onToggleScript={toggleAnswerScript} />
+          {/* (t108) Furigana kalimat contoh — lingkaran ふ, pola & gaya
+              sama dengan toggle skrip (aria-pressed = status). */}
+          <FuriganaToggle furigana={sentFurigana} onToggleFurigana={toggleSentFurigana} />
           <ThemeToggle />
         </div>
       </div>
@@ -1044,7 +1066,7 @@ export default function App() {
       {/* Panah back topbar dari Browse MELIPAT entri browse (collapse 1) —
           mundur ke entri home yang sudah ada di tumpukan; tanpa ini Back
           setelah kembali akan membuka ulang Browse. */}
-      {effectiveView === "browse" && <Browse script={answerScript} />}
+      {effectiveView === "browse" && <Browse script={answerScript} furigana={sentFurigana} />}
 
       {effectiveView === "unitSelect" && (
         <UnitSelect
@@ -1073,6 +1095,9 @@ export default function App() {
           mode={quizMode}
           answerScript={answerScript}
           onToggleScript={toggleAnswerScript}
+          // (t108) Gerbang furigana global — Quiz meneruskannya ke
+          // ExampleList (panel reveal) lewat props, bukan state lokal.
+          furigana={sentFurigana}
           // (t80) auto-flip dari App (toggle help overlay) — Quiz hanya
           // membaca; jeda & pembatalan oleh swipe diatur di Quiz.jsx.
           // (t81) jeda kini prop terpisah (dipilih user di help overlay).
@@ -1154,7 +1179,7 @@ export default function App() {
           spotlight + tooltip dikelola komponen ini sendiri; langkah-langkah
           menunggu KLIK NYATA pada UI (klik menembus lubang ke elemen asli)
           atau tombol Got it, dengan Skip tutorial selalu tersedia. */}
-      {tutorialActive && <Tutorial onFinish={finishTutorial} onGoHome={goHomeFromTour} />}
+      {tutorialActive && <Tutorial onFinish={finishTutorial} onGoHome={goHomeFromTour} onSetLang={changeLang} />}
 
       {toast && <Toast message={toast} />}
     </div>

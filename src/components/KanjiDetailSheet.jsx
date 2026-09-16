@@ -3,9 +3,10 @@ import { X } from "lucide-react";
 import { loadStrokePaths } from "../lib/strokes.js";
 import { ReadingList } from "./Readings.jsx";
 import StrokePlayer from "./StrokePlayer.jsx";
-import { kanaToRomaji } from "../lib/kana.js";
 // (t96) Arti & gloss contoh mengikuti bahasa UI (overlay id_gloss).
-import { useIdData, localizedMeanings, localizedGloss } from "../lib/idData.jsx";
+import { useIdData, localizedMeanings } from "../lib/idData.jsx";
+// (t107) Daftar contoh kata + kalimat — komponen bersama 3 layar.
+import ExampleList from "./ExampleList.jsx";
 
 /**
  * KanjiDetailSheet — modal detail satu kanji: animasi urutan goresan
@@ -23,7 +24,7 @@ import { useIdData, localizedMeanings, localizedGloss } from "../lib/idData.jsx"
  * `script` mengikuti toggle あ/Aa global — bacaan dan reading contoh kata
  * berganti live seperti di layar kuis.
  */
-export default function KanjiDetailSheet({ entry, script = "romaji", onClose }) {
+export default function KanjiDetailSheet({ entry, script = "romaji", furigana = true, onClose }) {
   // (t96) Peta gloss Indonesia aktif — null bila bahasa UI bukan id.
   const idData = useIdData();
   // Data goresan: null = sedang dimuat, [] = tidak ada (fallback glyph),
@@ -108,20 +109,9 @@ export default function KanjiDetailSheet({ entry, script = "romaji", onClose }) 
               <span className="kd-yomi-tag kd-yomi-tag-indigo">{entry.level}</span>
               <span>{entry.unit}</span>
             </div>
-            {entry.examples.length > 0 && (
-              <div className="kd-examples">
-                {entry.examples.map((ex) => (
-                  <div key={ex.word} className="kd-example-item">
-                    <span className={`kd-yomi-tag ${ex.type} small`}>{ex.type === "on" ? "On" : "Kun"}</span>
-                    <span className="kd-example-word">{ex.word}</span>
-                    <span className="kd-example-reading">
-                      {script === "romaji" ? kanaToRomaji(ex.reading) : ex.reading}
-                    </span>
-                    <span className="kd-example-meaning">{localizedGloss(ex, idData)}</span>
-                  </div>
-                ))}
-              </div>
-            )}
+            {/* (t107) Contoh kata + kalimat lewat ExampleList — sama
+                dengan panel reveal kuis & modal Browse. */}
+            <ExampleList examples={entry.examples} script={script} furigana={furigana} />
           </div>
         </div>
 

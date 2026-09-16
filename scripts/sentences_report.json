@@ -1,0 +1,55 @@
+{
+  "levels": {
+    "N5": {
+      "words": 145,
+      "served": 139,
+      "pct": 95.9,
+      "native_id": 67,
+      "llm_needed": 72,
+      "len_median": 10,
+      "len_mean": 11.3
+    },
+    "N4": {
+      "words": 307,
+      "served": 294,
+      "pct": 95.8,
+      "native_id": 162,
+      "llm_needed": 132,
+      "len_median": 13.0,
+      "len_mean": 12.9
+    },
+    "N3": {
+      "words": 685,
+      "served": 650,
+      "pct": 94.9,
+      "native_id": 282,
+      "llm_needed": 368,
+      "len_median": 15.0,
+      "len_mean": 14.5
+    },
+    "N2": {
+      "words": 703,
+      "served": 613,
+      "pct": 87.2,
+      "native_id": 149,
+      "llm_needed": 464,
+      "len_median": 16,
+      "len_mean": 16.2
+    },
+    "N1": {
+      "words": 1655,
+      "served": 1291,
+      "pct": 78.0,
+      "native_id": 206,
+      "llm_needed": 1085,
+      "len_median": 18,
+      "len_mean": 18.4
+    }
+  },
+  "total_words": 3312,
+  "served_total": 2811,
+  "native_id_total": 866,
+  "llm_needed_total": 2121,
+  "merged_id_kept": 1612,
+  "merged_furi_kept": 2410
+}

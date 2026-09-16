@@ -5,12 +5,15 @@ export const LEVEL_IDS = ["N5", "N4", "N3", "N2", "N1"];
 // Loader per level. Vite memecah tiap import() jadi chunk terpisah saat
 // build, jadi file JSON besar (mis. n1.json, 1.232 kanji) hanya dimuat
 // kalau levelnya benar-benar dibuka.
+// (t107) n*_sentences.json ikut dimuat bersama contoh kata: peta
+// { kata: {jp, en, id?, pos[]} } — kalimat contoh Tatoeba (display-only,
+// tidak menyentuh kuis/jadwal). Ukurannya kecil relatif thd n*.json.
 const LOADERS = {
-  N5: () => Promise.all([import("../data/n5.json"), import("../data/n5_examples.json")]),
-  N4: () => Promise.all([import("../data/n4.json"), import("../data/n4_examples.json")]),
-  N3: () => Promise.all([import("../data/n3.json"), import("../data/n3_examples.json")]),
-  N2: () => Promise.all([import("../data/n2.json"), import("../data/n2_examples.json")]),
-  N1: () => Promise.all([import("../data/n1.json"), import("../data/n1_examples.json")]),
+  N5: () => Promise.all([import("../data/n5.json"), import("../data/n5_examples.json"), import("../data/n5_sentences.json")]),
+  N4: () => Promise.all([import("../data/n4.json"), import("../data/n4_examples.json"), import("../data/n4_sentences.json")]),
+  N3: () => Promise.all([import("../data/n3.json"), import("../data/n3_examples.json"), import("../data/n3_sentences.json")]),
+  N2: () => Promise.all([import("../data/n2.json"), import("../data/n2_examples.json"), import("../data/n2_sentences.json")]),
+  N1: () => Promise.all([import("../data/n1.json"), import("../data/n1_examples.json"), import("../data/n1_sentences.json")]),
 };
 
 // Cache Promise per level: membuka ulang level yang sudah pernah dibuka
@@ -24,10 +27,19 @@ const levelCache = new Map(); // level -> Promise<kanji[]>
  */
 export function loadLevelKanji(level) {
   if (!levelCache.has(level)) {
-    const promise = LOADERS[level]().then(([kanjiMod, examplesMod]) => {
+    const promise = LOADERS[level]().then(([kanjiMod, examplesMod, sentencesMod]) => {
       const kanjiList = kanjiMod.default;
       const examples = examplesMod.default;
-      return kanjiList.map((k) => ({ ...k, examples: examples[k.kanji] || [] }));
+      // (t107) tempel kalimat contoh (bila ada) ke entri contoh kata —
+      // `sent: {jp, en, id?, pos[]}`; kata tanpa kalimat tetap seperti
+      // semula (overlay best-effort, konvensi id_gloss).
+      const sentences = sentencesMod.default || {};
+      return kanjiList.map((k) => ({
+        ...k,
+        examples: (examples[k.kanji] || []).map((e) =>
+          sentences[e.word] ? { ...e, sent: sentences[e.word] } : e
+        ),
+      }));
     });
     levelCache.set(level, promise);
   }

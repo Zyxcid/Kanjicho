@@ -56,11 +56,14 @@ export function useIdData() {
   return React.useContext(IdDataContext);
 }
 
-/** Arti kanji terlokalisasi (array sejajar meanings EN). */
+/** Arti kanji terlokalisasi (array sejajar meanings EN).
+ *  (t111) DEDIUP: dua arti EN berbeda bisa berpeta ke gloss ID sama
+ *  (mis. "marsh"/"bog"/"swamp" pada 沼 semuanya → "rawa") — tampilkan
+ *  sekali saja supaya baris arti tidak diulang-ulang. */
 export function localizedMeanings(entry, idData) {
   const ms = entry?.meanings || [];
   if (!idData) return ms;
-  return ms.map((m) => idData.m[m] || m);
+  return [...new Set(ms.map((m) => idData.m[m] || m))];
 }
 
 /** Gloss contoh kata terlokalisasi (kunci kata Jepang). */

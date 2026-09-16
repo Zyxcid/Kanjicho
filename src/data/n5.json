@@ -346,11 +346,6 @@
         "kana": "ホン",
         "romaji": "hon",
         "type": "on"
-      },
-      {
-        "kana": "もと",
-        "romaji": "moto",
-        "type": "kun"
       }
     ]
   },
@@ -1173,8 +1168,8 @@
         "type": "on"
       },
       {
-        "kana": "ここの.つ",
-        "romaji": "kokonotsu",
+        "kana": "ここの",
+        "romaji": "kokono",
         "type": "kun"
       }
     ]
@@ -1343,8 +1338,8 @@
         "type": "on"
       },
       {
-        "kana": "まる",
-        "romaji": "maru",
+        "kana": "まる.い",
+        "romaji": "marui",
         "type": "kun"
       }
     ]
@@ -1472,6 +1467,11 @@
         "kana": "やっ.つ",
         "romaji": "yattsu",
         "type": "kun"
+      },
+      {
+        "kana": "ハチ",
+        "romaji": "hachi",
+        "type": "on"
       }
     ]
   },
@@ -1921,11 +1921,6 @@
         "kana": "ゴ",
         "romaji": "go",
         "type": "on"
-      },
-      {
-        "kana": "うま",
-        "romaji": "uma",
-        "type": "kun"
       }
     ]
   },
@@ -1957,11 +1952,6 @@
         "kana": "ヒャク",
         "romaji": "hyaku",
         "type": "on"
-      },
-      {
-        "kana": "もも",
-        "romaji": "momo",
-        "type": "kun"
       }
     ]
   },
@@ -2620,11 +2610,6 @@
     "stroke_count": 7,
     "primary_readings": [
       {
-        "kana": "カ",
-        "romaji": "ka",
-        "type": "on"
-      },
-      {
         "kana": "なに",
         "romaji": "nani",
         "type": "kun"
@@ -2696,11 +2681,6 @@
         "kana": "マン",
         "romaji": "man",
         "type": "on"
-      },
-      {
-        "kana": "よろず",
-        "romaji": "yorozu",
-        "type": "kun"
       }
     ]
   },

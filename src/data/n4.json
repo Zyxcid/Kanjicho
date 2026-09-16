@@ -195,11 +195,6 @@
         "kana": "シャ",
         "romaji": "sha",
         "type": "on"
-      },
-      {
-        "kana": "やしろ",
-        "romaji": "yashiro",
-        "type": "kun"
       }
     ]
   },
@@ -2044,11 +2039,6 @@
     "stroke_count": 4,
     "primary_readings": [
       {
-        "kana": "ふみ",
-        "romaji": "fumi",
-        "type": "kun"
-      },
-      {
         "kana": "ブン",
         "romaji": "bun",
         "type": "on"
@@ -2265,11 +2255,6 @@
         "kana": "カク",
         "romaji": "kaku",
         "type": "on"
-      },
-      {
-        "kana": "かく.する",
-        "romaji": "kakusuru",
-        "type": "kun"
       }
     ]
   },
@@ -3747,11 +3732,6 @@
         "kana": "キュウ",
         "romaji": "kyuu",
         "type": "on"
-      },
-      {
-        "kana": "きわ.める",
-        "romaji": "kiwameru",
-        "type": "kun"
       }
     ]
   },
@@ -4573,11 +4553,6 @@
         "kana": "ジ",
         "romaji": "ji",
         "type": "on"
-      },
-      {
-        "kana": "あざ",
-        "romaji": "aza",
-        "type": "kun"
       }
     ]
   },
@@ -5902,11 +5877,6 @@
         "kana": "ニク",
         "romaji": "niku",
         "type": "on"
-      },
-      {
-        "kana": "しし",
-        "romaji": "shishi",
-        "type": "kun"
       }
     ]
   },

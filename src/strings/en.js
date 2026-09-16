@@ -31,6 +31,11 @@ export default {
   "app.session.missed": "Missed review",
 
   // ---- Tutorial.jsx (kunci langkah; judul + isi) ----
+  // (t109) langkah pertama tur = pilih bahasa; judul & isi sengaja
+  // DWIBAHASA (string sama di kamus en & id) supaya terbaca user baru
+  // apa pun bahasa antarmuka defaultnya.
+  "tour.language.title": "Pilih bahasamu · Choose your language",
+  "tour.language.body": "Bisa diganti kapan pun lewat menu bantuan. · Change it any time from the help menu.",
   "tour.welcome.title": "Welcome to Kanjichō",
   "tour.welcome.body":
     "Learn the JLPT kanji with short quizzes, and let the app bring each one back for review right before you'd forget it. A quick tour, about half a minute.",
@@ -47,12 +52,11 @@ export default {
   "tour.back.title": "The card's back",
   "tour.back.body":
     "The readings in bold are the ones the choices came from. Tap the little kanji at the corner to watch it being written.",
-  "tour.srs.title": "The schedule takes care of itself",
+  "tour.srs.title": "Your review schedule",
   "tour.srs.body":
     "After a quiz ends, the app schedules the unit's next review with spaced repetition, just before you'd start to forget. That's the whole learning loop.",
   "tour.calendar.title": "Your review calendar",
-  "tour.calendar.body":
-    "Tap this card any time to open the review calendar. It shows when every unit comes due and the days you've studied, so the schedule is never a mystery.",
+  "tour.calendar.body": "See your review schedule here.",
   "tour.browse.title": "Browse all kanji",
   "tour.browse.body":
     "The kanji library holds every kanji in the app, with stroke animations, readings, components and example words. Open it whenever you want to look one up.",
@@ -198,6 +202,9 @@ export default {
   "browse.countIn": "{n} kanji in {lv}",
   "browse.search": "Search kanji, meaning, reading…",
   "browse.search.aria": "Search kanji",
+  "browse.search.kanji": "Search kanji…",
+  "browse.search.meaning": "Search meaning…",
+  "browse.search.reading": "Search reading…",
   "browse.clear": "Clear search",
   "browse.noMatch": "No kanji match \u201c{q}\u201d.",
   "browse.showMore": "Show more ({n} remaining)",
@@ -205,6 +212,21 @@ export default {
   "browse.back": "Back to {kanji}",
   "browse.strokes": "{n} strokes",
   "browse.strokeOne": "1 stroke",
+
+  // (t111) Filter pustaka: tombol di kanan kotak pencarian + popover
+  // (lingkup pencarian + urutan). Placeholder kotak pencarian ikut
+  // lingkup aktif.
+  "browse.filter.aria": "Filter and sort kanji",
+  "browse.filter.scope": "Search in",
+  "browse.filter.scope.all": "All",
+  "browse.filter.scope.kanji": "Kanji",
+  "browse.filter.scope.meaning": "Meaning",
+  "browse.filter.scope.reading": "Reading",
+  "browse.filter.sort": "Sort",
+  "browse.filter.sort.default": "Default",
+  "browse.filter.sort.asc": "Fewest strokes",
+  "browse.filter.sort.desc": "Most strokes",
+  "browse.filter.reset": "Reset filter",
 
   // ---- ReviewCalendar.jsx ----
   "cal.today": "Today",
@@ -243,6 +265,12 @@ export default {
   "script.kana.title": "Show readings in kana (r)",
   "script.romaji.aria": "Show readings in romaji",
   "script.kana.aria": "Show readings in kana",
+
+  // ---- FuriganaToggle.jsx (t108) ----
+  "furigana.on.title": "Show furigana in example sentences",
+  "furigana.off.title": "Hide furigana in example sentences",
+  "furigana.on.aria": "Show furigana in example sentences",
+  "furigana.off.aria": "Hide furigana in example sentences",
 
   // ---- ThemeToggle.jsx ----
   "theme.light.title": "Switch to light mode",

@@ -35,9 +35,14 @@ export default {
   "app.session.missed": "Review salah",
 
   // ---- Tutorial.jsx ----
+  // (t109) langkah pertama tur = pilih bahasa; judul & isi sengaja
+  // DWIBAHASA (string sama di kamus en & id) supaya terbaca user baru
+  // apa pun bahasa antarmuka defaultnya.
+  "tour.language.title": "Pilih bahasamu · Choose your language",
+  "tour.language.body": "Bisa diganti kapan pun lewat menu bantuan. · Change it any time from the help menu.",
   "tour.welcome.title": "Selamat datang di Kanjichō",
   "tour.welcome.body":
-    "Pelajari kanji JLPT lewat kuis-kuis singkat, dan biarkan app menghadirkan tiap kanji kembali untuk review tepat sebelum kamu mulai lupa. Tur singkat, sekitar setengah menit.",
+    "Pelajari kanji JLPT lewat kuis-kuis singkat — aplikasi akan memunculkan ulang tiap kanji untuk review tepat sebelum kamu mulai melupakannya. Tur singkat ini hanya butuh sekitar setengah menit.",
   "tour.level.title": "Pilih level JLPT",
   "tour.level.body":
     "Tiap level punya kanji dan unitnya sendiri. Mulai dari level yang kamu tuju; progresmu akan tampil di kartu-kartu ini seiring kamu belajar. Ketuk level mana pun untuk lanjut.",
@@ -45,18 +50,17 @@ export default {
   "tour.unit.body": "Unit adalah kumpulan kecil kanji dengan satu kuis. Ketuk satu untuk masuk.",
   "tour.script.title": "Kana atau romaji",
   "tour.script.body":
-    "Sakelar ini bekerja di mana saja. Bacaan di kuis dan di pustaka kanji berganti antara kana dan romaji begitu kamu mengetuknya.",
+    "Sakelar ini tersedia di semua halaman. Ketuk untuk mengganti bacaan di kuis dan pustaka kanji antara kana dan romaji.",
   "tour.choices.title": "Cara kerja soal",
   "tour.choices.body": "Pilih jawaban yang cocok dengan bacaan kanji itu.",
   "tour.back.title": "Punggung kartu",
   "tour.back.body":
     "Bacaan yang dicetak tebal adalah asal pilihan jawabannya. Ketuk kanji kecil di pojok untuk melihat cara penulisannya.",
-  "tour.srs.title": "Jadwalnya urus dirinya sendiri",
+  "tour.srs.title": "Jadwal review",
   "tour.srs.body":
     "Setelah kuis selesai, app menjadwalkan review berikutnya untuk unit itu dengan pengulangan berjarak (spaced repetition), tepat sebelum kamu mulai lupa. Itulah seluruh siklus belajarnya.",
   "tour.calendar.title": "Kalender review-mu",
-  "tour.calendar.body":
-    "Ketuk kartu ini kapan pun untuk membuka kalender review. Ia menunjukkan kapan tiap unit jatuh tempo dan hari-hari kamu belajar, jadi jadwal tidak pernah jadi teka-teki.",
+  "tour.calendar.body": "Lihat jadwal review-mu di sini.",
   "tour.browse.title": "Jelajahi semua kanji",
   "tour.browse.body":
     "Pustaka kanji memuat semua kanji di app ini, lengkap dengan animasi goresan, bacaan, komponen, dan contoh kata. Buka kapan pun kamu ingin mencari satu.",
@@ -202,6 +206,9 @@ export default {
   "browse.countIn": "{n} kanji di {lv}",
   "browse.search": "Cari kanji, arti, bacaan…",
   "browse.search.aria": "Cari kanji",
+  "browse.search.kanji": "Cari kanji…",
+  "browse.search.meaning": "Cari arti…",
+  "browse.search.reading": "Cari bacaan…",
   "browse.clear": "Hapus pencarian",
   "browse.noMatch": "Tidak ada kanji yang cocok dengan \u201c{q}\u201d.",
   "browse.showMore": "Tampilkan lagi (sisa {n})",
@@ -209,6 +216,22 @@ export default {
   "browse.back": "Kembali ke {kanji}",
   "browse.strokes": "{n} goresan",
   "browse.strokeOne": "1 goresan",
+
+  // (t111) Filter pustaka: tombol di kanan kotak pencarian + popover
+  // (lingkup pencarian + urutan). Placeholder kotak pencarian ikut
+  // lingkup aktif — "Arti" dipilih (bukan "Makna") agar satu-ke-satu
+  // dengan teks placeholder lama "Cari kanji, arti, bacaan…".
+  "browse.filter.aria": "Filter dan urutkan kanji",
+  "browse.filter.scope": "Cari di",
+  "browse.filter.scope.all": "Semua",
+  "browse.filter.scope.kanji": "Kanji",
+  "browse.filter.scope.meaning": "Arti",
+  "browse.filter.scope.reading": "Bacaan",
+  "browse.filter.sort": "Urutan",
+  "browse.filter.sort.default": "Bawaan",
+  "browse.filter.sort.asc": "Paling sedikit goresan",
+  "browse.filter.sort.desc": "Paling banyak goresan",
+  "browse.filter.reset": "Reset filter",
 
   // ---- ReviewCalendar.jsx ----
   "cal.today": "Hari ini",
@@ -247,6 +270,12 @@ export default {
   "script.kana.title": "Tampilkan bacaan dalam kana (r)",
   "script.romaji.aria": "Tampilkan bacaan dalam romaji",
   "script.kana.aria": "Tampilkan bacaan dalam kana",
+
+  // ---- FuriganaToggle.jsx (t108) ----
+  "furigana.on.title": "Tampilkan furigana pada kalimat contoh",
+  "furigana.off.title": "Sembunyikan furigana pada kalimat contoh",
+  "furigana.on.aria": "Tampilkan furigana pada kalimat contoh",
+  "furigana.off.aria": "Sembunyikan furigana pada kalimat contoh",
 
   // ---- ThemeToggle.jsx ----
   "theme.light.title": "Ganti ke mode terang",

@@ -233,6 +233,44 @@ MAX_WORD_LEN = 4
 P2A_STRONG_MARGIN = 4.0   # kandidat >= 4x frekuensi primary -> tukar
 P2A_FREQ_FLOOR = 2000     # ambang bawah frekuensi kandidat (anti-noise)
 
+# t110 — GERBANG TAMPILAN contoh (kelas user: 二百十日, 七回忌, 丙午,
+# 由有る — "istilah langka/budha/arsip"). Sebuah kata boleh DITAMPILKAN
+# sebagai contoh hanya bila kuat di SALAH SATU register:
+#   (a) MEDIA: rank jiten <= MEDIA_RANK_MAX (top ~6,6% pasangan korpus
+#       subtitle/media — sinyal register sehari-hari), ATAU
+#   (b) FORMAL: ejaan itu sendiri bertanda pri KUAT di JMdict —
+#       ichi1/spec1/gai1/news1, atau band surat kabar nf <= NF_DISPLAY_MAX
+#       (貿易 nf01 #21k, 憲法 nf01 #36k, 県庁 nf10 #60k, 定期券 nf19 #64k,
+#       控除 nf07 #92k — kata koran/formal yang korpus subtitle
+#       (anime/sehari-hari) under-rank secara sistematis).
+# Kata yang lemah di KEDUA register digugurkan apa pun jalurnya
+# (korpus/fallback/backfill): 二百十日 news1+nf22 #345k, 七回忌 news2+nf34
+# #74k, 丙午/由有る/山彦 tanpa pri #75k-#345k.
+# Catatan desain: jiten HANYA proxy register media — rank dalam TIDAK
+# berarti langka di register formal (貿易 #21k ⊄ sampah), makanya pri
+# kuat tetap lolos lewat cabang (b) meski rank-nya dalam; sebaliknya
+# nf dalam (nf22+) + rank dalam = bukti kebarangan dua-register → gugur.
+# Konsekuensi sadar: kanji yang SEMUA kandidatnya gugur (丙) kehilangan
+# slot contoh — nol contoh sampah > satu contoh sampah (t68 F
+# diperluas). primary_readings TIDAK ikut dikosongkan (cabang no-backed
+# filter_entry membiarkan apa adanya) sehingga kuis tetap sehat.
+MEDIA_RANK_MAX = 30_000
+NF_DISPLAY_MAX = 20
+STRONG_PRI_TAGS = {"ichi1", "news1", "spec1", "gai1"}
+
+
+def _strong_pri_tags(tags):
+    """True bila daftar tag pri ejaan ini KUAT (lihat gerbang t110).
+
+    nf hadir → band-nya yang memutus (nf ≤ NF_DISPLAY_MAX);
+    tanpa nf → tag kelas-1 langsung lolos (news1 tanpa nf = top-10k
+    korpus koran menurut konvensi JMdict).
+    """
+    nfs = [int(t[2:]) for t in tags if t.startswith("nf") and t[2:].isdigit()]
+    if nfs:
+        return min(nfs) <= NF_DISPLAY_MAX
+    return bool(set(tags) & STRONG_PRI_TAGS)
+
 # Penanda misc/ke_inf JMdict (entitas sudah diekspansi parser XML):
 UK_HINT = "usually written using kana alone"
 # t67: teks entitas &rK; yang BENAR adalah "rarely used kanji form".
@@ -313,7 +351,8 @@ def clean_kun(text):
 # ============================================================
 
 def parse_jmdict(jmdict_path):
-    """Parse JMdict → (terms, alt_terms, alt_common, alt_variants).
+    """Parse JMdict → (terms, alt_terms, alt_common, alt_variants,
+    strong_pri).
 
     terms       : { keb-PERTAMA: [(reading, glosses, pri), ...] } — sumber
                   kandidat UTAMA. t70: pasangan kini membawa skor
@@ -344,6 +383,15 @@ def parse_jmdict(jmdict_path):
                   terattestasi jiten kuat, kalau tidak status
                   common-nya dicabut (kelas 識る; 活かす lolos).
 
+    strong_pri  : { keb: True } — t110: ejaan dengan ke_pri MILIK
+                  SENDIRI yang KUAT (ichi1/news1/spec1/gai1, atau
+                  nf <= NF_DISPLAY_MAX — lihat _strong_pri_tags).
+                  Sinyal register FORMAL untuk gerbang tampilan,
+                  independen dari jiten (register media). Pinjaman
+                  re_pri entri sengaja TIDAK dihitung (kelas 識る —
+                  varian harus membuktikan dirinya sendiri, cermin
+                  t73 C).
+
     Lewati entry yang ejaan kanjinya bukan bentuk tulis normal — buruk
     sebagai contoh bacaan:
       - semua sense bertanda "usually written using kana alone" (uk),
@@ -361,6 +409,7 @@ def parse_jmdict(jmdict_path):
     alt_terms = {}
     alt_common = {}
     alt_variants = {}   # t73 C — keb ber-status common warisan re_pri
+    strong_pri = {}     # t110 — keb dengan ke_pri kuat milik sendiri
     alt_solid = set()   # t73 C — keb yang pernah punya ke_pri sendiri
     skipped_uk = 0
     skipped_rk_forms = 0
@@ -374,7 +423,32 @@ def parse_jmdict(jmdict_path):
         if keb is None or not keb.text:
             entry.clear()
             continue
+
+        # t110 — TERM = KEB KANJI PERTAMA TANPA DIGIT. JMdict menaruh
+        # ejaan angka modern (１０日, ７時, ７月, ２４時間) sebagai k_ele
+        # PERTAMA; kode lama memakainya sebagai term sehingga ejaan kanji
+        # (十日, 七時, 七月) — satu-satunya bentuk yang berguna sebagai
+        # contoh KANJI — terkubur di jalur fallback kamus dan kandidat
+        # korpusnya lenyap (term '１０日' tak memuat 十; slot 十 lalu diisi
+        # 二百十日). Aturan umum: pilih keb pertama yang ber-kanji, tanpa
+        # digit (ASCII maupun full-width — ch.isdigit() menangkap keduanya),
+        # dan bukan ejaan rK; jika tidak ada yang memenuhi, keb pertama
+        # (perilaku lama — ejaan kana/digit-only tetap hidup sebagai term
+        # dan nanti digugurkan atribusi/tier sendiri).
         term = keb.text
+        term_k = entry.find("k_ele")
+        for k_ele in entry.findall("k_ele"):
+            k = k_ele.find("keb")
+            if k is None or not k.text:
+                continue
+            if any(ch.isdigit() for ch in k.text):
+                continue  # ejaan digit — bukan wakil kata kanji
+            inf = k_ele.find("ke_inf")
+            if inf is not None and RK_HINT in (inf.text or ""):
+                continue  # ejaan kanji langka — bukan term (t67)
+            term = k.text
+            term_k = k_ele
+            break
 
         if not (MIN_WORD_LEN <= len(term) <= MAX_WORD_LEN):
             entry.clear()
@@ -432,14 +506,15 @@ def parse_jmdict(jmdict_path):
             continue
 
         # t68 C + t70: tanda common per-ENTRI — ke_pri milik k_ele
-        # pertama (ejaan utama) ATAU re_pri milik reb pertama entri
-        # (ejaan varian dari kata umum: 活かす tak bertanda ke_pri, tapi
-        # entri 生かす【いかす】 reb pertamanya ichi1 — うつ untuk 撃つ,
-        # なおる untuk 治る juga hanya bersumpah lewat re_pri). Skor
-        # pseudo-freq = maks dari semua penanda entri.
+        # TERPILIH (t110: k_ele term, bukan sekadar k_ele pertama —
+        # sinyal pri harus milik ejaan yang jadi kandidat) ATAU re_pri
+        # milik reb pertama entri (ejaan varian dari kata umum: 活かす
+        # tak bertanda ke_pri, tapi entri 生かす【いかす】 reb pertamanya
+        # ichi1 — うつ untuk 撃つ, なおる untuk 治る juga hanya bersumpah
+        # lewat re_pri). Skor pseudo-freq = maks dari semua penanda entri.
         first_r_ele = entry.find("r_ele")
-        k_pri_tags = [p.text for p in first_k.findall("ke_pri") if p.text] \
-            if first_k is not None else []
+        k_pri_tags = [p.text for p in term_k.findall("ke_pri") if p.text] \
+            if term_k is not None else []
         r_pri_tags = [p.text for p in first_r_ele.findall("re_pri") if p.text] \
             if first_r_ele is not None else []
         entry_re_pri = bool(r_pri_tags)
@@ -476,6 +551,14 @@ def parse_jmdict(jmdict_path):
             own_pri = bool(k_ele.findall("ke_pri"))
             if own_pri:
                 alt_solid.add(k.text)
+                # t110 — sinyal FORMAL untuk gerbang tampilan: pri kuat
+                # milik ejaan ini sendiri (news1+nf22 = LEMAH — band
+                # koran yang menentukan; ichi1/news1-tanpa-nf/spec1/
+                # gai1/nf<=20 = kuat).
+                own_tags = [p.text for p in k_ele.findall("ke_pri")
+                            if p.text]
+                if _strong_pri_tags(own_tags):
+                    strong_pri[k.text] = True
             if own_pri or entry_re_pri:
                 # union antar entri: ejaan yang umum di satu entri
                 # cukup (bucket alt_terms juga union antar entri).
@@ -510,7 +593,9 @@ def parse_jmdict(jmdict_path):
     n_common = sum(1 for pairs in terms.values()
                    for _r, _g, pr in pairs if pr > 0)
     print(f"  {n_common} entry bertanda pri (lapisan fallback hybrid)")
-    return terms, alt_terms, alt_common, alt_variants
+    print(f"  t110: {len(strong_pri)} ejaan ber-pri kuat milik sendiri "
+          f"(sinyal register formal untuk gerbang tampilan)")
+    return terms, alt_terms, alt_common, alt_variants, strong_pri
 
 
 def refine_alt_common(alt_common, alt_variants, jiten_pairs):
@@ -1069,7 +1154,8 @@ def build_examples_for_kanji(kanji, jmdict_terms, term_index,
                               primary_on_hira=None, primary_kun_reading=None,
                               kanji_level=None,
                               vocab=None, alt_terms=None, alt_index=None,
-                              alt_common=None):
+                              alt_common=None,
+                              jiten=None, strong_pri=None):
     """Susun kata contoh untuk satu kanji — attribution-first
     (Surgery 2 / Tahap B: kandidat hanya boleh masuk pool SE-TIPENYA).
 
@@ -1077,6 +1163,11 @@ def build_examples_for_kanji(kanji, jmdict_terms, term_index,
     struktural), menggantikan substring has_on/has_kun +
     classify_word_shape. Kata yang tak teratribusi / ambigu TIDAK
     dipercaya mengisi slot mana pun — dicatat sebagai attr_unknown.
+
+    GERBANG TAMPILAN t110 (jiten + strong_pri non-None): kata harus
+    kuat di register MEDIA (rank jiten <= MEDIA_RANK_MAX) ATAU register
+    FORMAL (pri kuat milik ejaan sendiri) — kelas langka/arsip
+    (二百十日/七回忌/丙午) gugur sebelum masuk pool, apa pun jalurnya.
 
     Pengisian dua slot (on + kun), korpus dulu:
       1. kandidat KORPUS (t70: term JMdict bertanda pri — keb pertama
@@ -1119,6 +1210,22 @@ def build_examples_for_kanji(kanji, jmdict_terms, term_index,
     """
     on_candidates, kun_candidates = [], []      # korpus (t70: bertanda pri)
     on_fallback, kun_fallback = [], []          # kamus (tanpa freq korpus)
+
+    # t110 — gerbang tampilan: kuat di SALAH SATU register (media /
+    # formal). jiten keys = (kata, bacaan-hiragana).
+    _disp_ok_cache = {}
+
+    def _display_ok(word, reading):
+        key = (word, reading)
+        hit = _disp_ok_cache.get(key)
+        if hit is None:
+            rank = jiten.get(key)
+            if rank is None:
+                hit = word in strong_pri      # tak terattestasi media
+            else:
+                hit = (rank <= MEDIA_RANK_MAX) or (word in strong_pri)
+            _disp_ok_cache[key] = hit
+        return hit
 
     entry_keys = _entry_reading_keys(on_readings, kun_readings)
     primary_kun_stem = kun_stem(primary_kun_reading) \
@@ -1166,6 +1273,17 @@ def build_examples_for_kanji(kanji, jmdict_terms, term_index,
         for reading, glosses, freq_val in jmdict_terms[term]:
             if freq_val is None or freq_val <= 0:
                 continue  # bukan kandidat korpus — jalur fallback yang menangani
+
+            # t110 — LANTAI TAMPILAN digantikan GERBANG ATTESTASI:
+            # kuat di media (rank <= MEDIA_RANK_MAX) ATAU formal
+            # (pri kuat). Kelas langka/arsip — 二百十日 #345k,
+            # 丙午 #153k, 山彦 #75k — gugur di sini, sebelum masuk
+            # pool mana pun (korpus/fallback/backfill melihat pool
+            # yang sama).
+            if jiten is not None and strong_pri is not None \
+                    and not _display_ok(term, katakana_to_hiragana(reading)):
+                _BUILD_STATS["display_gated"] += 1
+                continue
 
             # t73 D — kata satu-kanji jalur korpus TERTULIS KANJI SAJA
             # (tautologis: "kata" == kanji yang sedang diajarkan,
@@ -1263,9 +1381,19 @@ def build_examples_for_kanji(kanji, jmdict_terms, term_index,
             if "を" in keb:
                 _BUILD_STATS["fallback_gated"] += 1
                 continue
-            reading, glosses, _pair_pri = alt_terms[keb][0]
+            reading, glosses, pair_freq = alt_terms[keb][0]
             gloss = glosses[0]
             if is_likely_proper_noun(keb, gloss):
+                continue
+
+            # t110 — gerbang tampilan juga di jalur fallback (sinyal
+            # sama: media/formal). Ejaan varian sah tetap lolos lewat
+            # rank (治る #1.742) atau pri kuat sendiri; artefak kamus
+            # dan varian lemah (識る #41.3k tanpa pri sendiri) gugur —
+            # memperkuat gerbang alt_common t68 D.
+            if jiten is not None and strong_pri is not None \
+                    and not _display_ok(keb, katakana_to_hiragana(reading)):
+                _BUILD_STATS["fallback_gated"] += 1
                 continue
 
             attr = attribute_example_reading(
@@ -1302,10 +1430,11 @@ def build_examples_for_kanji(kanji, jmdict_terms, term_index,
                 if word_lvl is not None and word_lvl >= kanji_level:
                     tier = 0
 
-            # fallback tanpa frekuensi: okurigana persis primary dulu,
-            # lalu kata terpendek (frekuensi tak tersedia untuk mengurutkan).
+            # fallback kini ber-frekuensi (t110): okurigana persis primary
+            # dulu, lalu frekuensi hybrid — bukan lagi panjang kata
+            # (kandidat fallback sudah lolos gerbang tampilan).
             item = (tier, 0 if matches_primary else 1,
-                    fallback_okuri_flag, len(keb), keb, reading, gloss)
+                    fallback_okuri_flag, -pair_freq, keb, reading, gloss)
             if item_type == "on":
                 on_fallback.append(item)
             else:
@@ -1316,7 +1445,7 @@ def build_examples_for_kanji(kanji, jmdict_terms, term_index,
     # tidak menunjukkan apa pun di luar kanjinya sendiri), lalu tier
     # JLPT, lalu cocok primary, lalu slot-3/slot-4 (korpus: okurigana
     # persis [Fix-7] lalu frekuensi; kamus: okurigana persis primary,
-    # lalu panjang kata).
+    # lalu frekuensi hybrid — t110, dulu panjang kata).
     # Fix-6: KECUALI — kata satu-kanji yang membuktikan primary PERSIS
     # (蚕【かいこ】) diperlakukan multi-karakter, dengan okurigana flag 1
     # (dipatok saat konstruksi item) supaya tetap kalah lawan kata
@@ -2207,8 +2336,8 @@ def main():
 
     # Satu file sumber untuk gloss DAN pseudo-freq pri (lapisan fallback);
     # frekuensi jiten datang dari overlay hybrid_freq di bawah.
-    jmdict_terms, alt_terms, alt_common, alt_variants = parse_jmdict(
-        jmdict_path)
+    jmdict_terms, alt_terms, alt_common, alt_variants, strong_pri = \
+        parse_jmdict(jmdict_path)
 
     # Sinyal HYBRID: frekuensi global jiten.moe (CC BY-SA 4.0)
     # MENIMPA pseudo-freq pri untuk pasangan terattestasi (rank ≤ 10.000);
@@ -2294,7 +2423,7 @@ def main():
 
         _BUILD_STATS.update(fallback_filled=0, attr_unknown=0,
                             derive_kun_blocked=0, fallback_gated=0,
-                            backfilled=0)
+                            display_gated=0, backfilled=0)
 
         result = {}
         no_example = 0
@@ -2327,6 +2456,7 @@ def main():
                 on_readings, kun_readings,
                 primary_on_hira, primary_kun_reading,
                 kanji_level, vocab, alt_terms, alt_index, alt_common,
+                jiten=jiten_pairs, strong_pri=strong_pri,
             )
             result[kanji] = examples
             if not examples:
@@ -2417,6 +2547,8 @@ def main():
         bs = lv["build_stats"]
         print(f"  {level_file.stem}: {len(result) - lv['no_example']}/{len(result)} kanji got examples "
               f"({both_types} with both on+kun) → {out_path.name}")
+        print(f"    t110 gerbang tampilan menggugurkan {bs['display_gated']} "
+              f"kandidat lemah-dua-register (langka/arsip)")
         print(f"    fallback kamus mengisi {bs['fallback_filled']} slot kosong; "
               f"{bs['attr_unknown']} kandidat korpus tak teratribusi (dilewati)")
         if bs["fallback_gated"]:
